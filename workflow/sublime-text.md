@@ -41,8 +41,6 @@ Add this Package (first and most important):
   - See your markdown in nice readable view
 * Origami
   - Window management
-* html css prettify
-  - Make your code pretty
 * Bootstrap 3 snippets
   - Quickly grab Twitter Bootstrap snippets for your project
 * gist

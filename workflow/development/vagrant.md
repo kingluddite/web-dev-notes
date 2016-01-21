@@ -35,7 +35,7 @@ $ vagrant up
 You now can easily SSH into the box
 
 ```
-$ vagrant ssh
+$ ssh vagrant
 ```
 
 You are now logged in via SSH to your virtual box!
@@ -152,7 +152,7 @@ But an even better way is prefix the domain you are working on with `dev`, so ou
 
 Make the change in your host, save and browse to that new dev subdomain.
 
-**Why Vagrant instead of MAMP or XAMP?**
+**Why Vagrant instead of MAMP or XAMP or WAMP?**
 
 * You can play around with linux machines
 * You can destroy them when you are finished
