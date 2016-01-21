@@ -187,4 +187,9 @@ Vagrant
 access the database (mysql)
 * http://192.168.56.101/adminer/ (or the IP you put in when creating with puPHPet)
 
+### Remove existing files from the repository:
+
+```
+find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+```
 
