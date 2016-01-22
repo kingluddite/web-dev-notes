@@ -87,3 +87,43 @@ $ git push
 
 It should push it without asking you for a username or password. I know that was a whole heck of a lot of stuff to do but trust me, it's a huge freaking time saver.
 
+## Changing a Github remote URL
+This is a problem that bugged me for a while. When I cloned a site I made on one computer to my laptop, I was still getting requests for my email and password. The part that bugged me is I had taken the time to create a SSH key and share it with Github but why was it still asking me for a user/password combination.
+
+The soluton is when I cloned it I had the HTTPS option selected and not the SSH. A small oversight but one I'm sure many people make all the time.
+
+### The Fix
+On github switch your repo to SSH but clicking the `SSH` button. Copy the SSH info to your computer's clipboard by either highlight and hitting `ctrl` + `c` or using Githubs famous `copy to clipbard button`. ![copy to clipboard button](https://www.dropbox.com/s/amcqmatmck60msv/Screenshot%202016-01-21%2016.51.42.png?dl=0)
+
+Once you have it, you just need to reset your remote info.
+
+If I type this in my terminal:
+
+```bash
+$ git remote -v
+```
+
+I will get something like this:
+
+![my github remote info](https://www.dropbox.com/s/x39lxt2p9yuizez/Screenshot%202016-01-21%2016.53.09.png?dl=0)
+
+Notice how it begins with https? We need to change that to SSH.
+
+To do that, type this in your terminal:
+```bash
+$ git remote set-url origin git@github.com:kingluddite/web_dev_notes.git
+```
+
+Now if you type:
+
+```bash
+$ git remote -v
+```
+
+You will see something like this:
+
+![ssh on github](https://www.dropbox.com/s/9wevok94id1d40l/Screenshot%202016-01-21%2016.57.06.png?dl=0)
+
+Now if you try to `git push` your changes you will be able to and you will not be asked for a username/password. Awesome!
+
+This and more info about SSH and HTTP can be gathered at this [useful link](https://help.github.com/articles/changing-a-remote-s-url/)
