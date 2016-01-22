@@ -1,14 +1,28 @@
-## Install Sublime Text 3 (ST3) (Free Trial)
+# Sublime Text 3
+Is a text editor. There are a lot of [text editors out there](https://en.wikipedia.org/wiki/List_of_text_editors).
+
+I like ST3 and use it exclusively. [Atom](https://atom.io/) is also very popular. If you know of an text editor you think is super awesome, let me know.
+
+## Learning Resources for Sublime Text
+* [Free video tutorial on st2](http://code.tutsplus.com/articles/perfect-workflow-in-sublime-text-free-course--net-27293)
+  - a bit outdated but has a lot of great information
+* [More updated book and videos to learn the power of ST3](https://sublimetextbook.com/)
+  - Not Free
+ 
+## Install Sublime Text 3 (ST3)
+* Cost - It's free. Well, it's not really free but you can download and use it. If you don't [pay the fee ($70)](http://www.sublimetext.com/buy) you can use it for free as long as you want but you will get annoying popups that you can not remove until you pay for the license. The IDE is really cool and if you use it a lot and it helps you make money, you should shell out the cash to help the creators out for creating a great IDE.
 * IDE - Integrated Development Environment
-[Download Link](http://www.sublimetext.com/)
-[How Best to Use Tutorial](http://code.tutsplus.com/courses/perfect-workflow-in-sublime-text-2)
-[Other Modern Book/Video Tutorial](https://sublimetextbook.com/) (Not Free)
+* [Download Link](http://www.sublimetext.com/)
+* [How Best to Use Tutorial](http://code.tutsplus.com/courses/perfect-workflow-in-sublime-text-2)
+* [Other Modern Book/Video Tutorial](https://sublimetextbook.com/) (Not Free)
 * `Mac instructions` After downloading, extract and place inside Applications folder
 * Make sure you download ST3 (and not ST2)
 
-Add the following package to ST3:
-* Package Installer ([link](https://packagecontrol.io/installation))
-    - enables you to install other packages
+## Packages
+To make ST3 productive you need to add packages. The first package to install is the one that enables you to add other packages.
+
+* Here's how you install it.
+  - Package Installer ([link](https://packagecontrol.io/installation))
 * Copy the code below
 
 ```
@@ -19,14 +33,19 @@ import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc5
     - To close `ctrl` + `~` again
 * In the white box that opens up on the bottom of ST3, paste the code you have copied to the cliboard.
 * You now have the ability to add other packages to ST3
+* Make sure you are installing the code for ST3 and not ST2 or you will run into problems down the road.
 
-Add this Package (first and most important):
-* Following the pattern
+## Adding Packages
+Adding packages is really quick, painless and kind of fun.
+* Type this keyboard shortcut
     - `ctrl` + `shift` + `p`
     - Search for your package (`Skuzzy Search`)
+      + Skuzzy search is a fancy term for you just type some letters in what you are looking for and terms will pop up that contain those letters.
     - When package highlighted, click `RETURN` to install it
 
-## More Useful Packages
+## More Useful Packages To Check Out
+
+
 * Emmet
   - Super awesome productivity tool
   - [Video](https://www.youtube.com/watch?v=8n923UBjV9w)
@@ -59,7 +78,7 @@ Add this Package (first and most important):
   - [more info](https://github.com/hayaku/hayaku/#readme)
 WordPress specific packages
 * GhostText
-  - ![ghost text chrome extension](https://www.dropbox.com/s/msgdu3qtcvnc3ck/Screenshot%202016-01-19%2013.34.00.png?dl=0)
+  - (icon) ![ghost text chrome extension](https://i.imgur.com/FeiS6Vx.png)
   - Also add GhostText package for ST3
     + This enables you to work on your wordpress site in the browser, let's say you are typing up a post but if you use ghost editor, you can easily switch to your editor from the post, make the entry using ST3, save and it will add your post. Very Cool!
 **Note:** to remove package `ctrl` + `shift` + `p` and type `packre`
@@ -368,5 +387,6 @@ If you find yourself typing the same stuff over and over again, it might be time
 ```
 
 **I want to work on the same file on the left and right panel? How can I?**
+
 1. Open file
 2. Then... File > New View Into File
