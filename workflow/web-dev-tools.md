@@ -64,10 +64,15 @@ Every day you work with homebrew make sure you to update and upgrade. Many of th
 * I like to use `cmd` + `shift` + 4 to take a quick screenshot and this shortcut let's me choose the size I want. With imgur I can take the screenshot, upload that screenshot to the imgur website and save the URL of that remote image in my clipboard. This is very handy when taking notes with markdown as I can just use ![image description](image-url-on-imgur-here) and that screenshoot will be in my notes that I can easily email to a client using ST3's markdown packaged (markdownediting and markdown preview)
 
 [Mac2Imgur](https://github.com/mileswd/mac2imgur)
-Take a screenshot and it's uploaded to imgur
+Take a screenshot and it's uploaded to imgur.
+* I like to have this running as soon as my computer starts. You can change that it is's setting. This is what it looks like ![mac2imgure icon](https://i.imgur.com/u9w88vb.png)
+* If you also use Dropbox make sure this option `Share screenshots using Dropbox' is unchecked in Dropbox's settings as it will conflict with Mac2Imgur]
+* I also like setting this option so that all the screenshots that I'm taking are not littering my desktop. They will be automatically deleted once they are uploaded to imgur.
+![setting to auto delete uploaded imgur screenshots](https://i.imgur.com/8IH8DNj.png)
 
 ## Jumpcut (Free)
-Multiple saves of stuff you copy to clipboard 
+Multiple saves of stuff you copy to clipboard
+This is what the icon looks like [jumpcut icon](https://i.imgur.com/M1WQH0j.png)
 
 ## BetterSnapTool
 Browser Window Management
