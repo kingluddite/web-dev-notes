@@ -1,16 +1,32 @@
-# Vagrant
-"Create and configure lightweight, reproducible and portable development environments."
+# Setting up a Development Environment.
 
-# Virtual Box
-1. [Download Virtual Box](https://www.virtualbox.org/wiki/Downloads) (select Mac OS version)
-2. Install Virtual Box
-* [How to install virtual box?](https://www.youtube.com/watch?v=PL7Dh6drlBw)
-      - Video is showing how to install windows machine on Mac but the first part shows you the steps needed to simply install Virtual Box.
-3. [Download Vagrant](https://www.vagrantup.com/downloads.html)
+## The Backstory
+
+On a Mac the tradition has been to use `MAMP`. It is free to get `PHP`, `MySQL`, `phpMyAdmin` and `Apache` up and running quickly. This is great for `WordPress`. Millions of people currently use this process.
+
+There is a problem though and that is that is what if you are working on a team and member of your team is using different machines and different setups of MAMP which could have different versions of PHP, MySQL and Apache.
+
+The solution is to have your own box to test in and that is where `Vitural Box` comes to the rescue. It doesn't matter if you have a PC or a Mac because you can create a virtual Linux box on either system. Oh, and it's free.
+
+But then we have another problem and assuming we are not all sysops people (Systems Operations) and have a thorough knowledge about servers and how to configure them that is where Vagrant comes into play. `Vagrant` will make creating our server box easy and dare I say fun.
+
+## Virtual Box
+### Install
+* [Download Virtual Box](https://www.virtualbox.org/wiki/Downloads) 
+    - Select Mac OS version
+* Install Virtual Box
+ - [How to install virtual box?](https://www.youtube.com/watch?v=PL7Dh6drlBw)
+      + Video is showing how to install windows machine on Mac but the first part shows you the steps needed to simply install Virtual Box.
+
+## Vagrant
+"Create and configure lightweight, reproducible and portable development environments."
+* [Download Vagrant](https://www.vagrantup.com/downloads.html)
 * [Video How to Install and Use Vagrant](https://www.youtube.com/watch?v=PmOMc4zfCSw)
 
-Create a nice spot for your virtual boxes
-`~/Documents/dev/`
+* Where do you want to put your box on your machine?
+```
+~/Documents/dev/
+```
 
 * Now let's add a virtual box to our machine
 
@@ -39,6 +55,8 @@ $ ssh vagrant
 ```
 
 You are now logged in via SSH to your virtual box!
+
+### Installing Stuff On Your New Box
 
 **Install git on the box**
 

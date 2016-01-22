@@ -61,7 +61,7 @@ Every day you work with homebrew make sure you to update and upgrade. Many of th
 * Say you want to create a github repo from your Terminal. It's easy with Hub!
 
 ## Imgur Screenshot app (Free)
-* I like to use `cmd` + `shift` + 4 to take a quick screenshot and this shortcut let's me choose the size I want. With imgur I can take the screenshot, upload that screenshot to the imgur website and save the URL of that remote image in my clipboard. This is very handy when taking notes with markdown as I can just use ![image description](image-url-on-imgur-here) and that screenshoot will be in my notes that I can easily email to a client using ST3's markdown packaged (markdownediting and markdown preview)
+* I like to use `cmd` + `shift` + 4 to take a quick screenshot and this shortcut let's me choose the size I want. With imgur I can take the screenshot, upload that screenshot to the imgur website and save the URL of that remote image in my clipboard. This is very handy when taking notes with markdown as I can just use markdown with `![image description](image-url-on-imgur-here)` and that screenshoot will be in my notes that I can easily email to a client using ST3's markdown packaged (markdownediting and markdown preview)
 
 [Mac2Imgur](https://github.com/mileswd/mac2imgur)
 Take a screenshot and it's uploaded to imgur.

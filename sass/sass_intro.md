@@ -1,9 +1,11 @@
 # SASS
 **How to start watching sass**
+
 ```
 $ sass --watch scss:css
 $ sass --watch app/sass:public/stylesheets
 ```
+
 ## Stop watching sass keyboard shortcut
 
 ```
