@@ -51,7 +51,7 @@ $ vagrant up
 You now can easily SSH into the box
 
 ```
-$ ssh vagrant
+$ vagrant ssh
 ```
 
 You are now logged in via SSH to your virtual box!

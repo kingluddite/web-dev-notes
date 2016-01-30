@@ -1,12 +1,28 @@
 # Generating Keys
 
+## Videos
+* [How do I find my SSH Public Key?](https://www.youtube.com/watch?v=NX_IQrQA1FE)
+
 Say you are using Git and Github and you want to push your local git commit to your remote Github repo. You can use HTTPS or SSH. SSH is the better option because it will encrypt your information. It's safer and what's better is it will improve the speed of your workflow.
 
 I had problems wrapping my head around how to do this and how it works and my instructions here hopefully will save you time.
 
 When I try to push my commit to Github I get a request to enter my email and password. Doing this once is fine but when you are committing a lot, this gets old fast. The faster way is to generate a key. The long story short is this key will somehow reside on your computer and on the site you are trying to push to (in our case, Github). When Github sees our push request and our SSH key matches the key we set on our Github repo, the push can go through without an email and password because they know we are who we say we are.
 
+how to get to folder
+```bash
+$ cd ~/.ssh
+```
+generate key
+* replace test with name you want
+```bash
+$ ssh-keygen -t rsa -C 'test'
+```
+
+
 Here's how we do it:
+
+
 
 **Note:**
 The following information was gathered from this great [link](https://help.github.com/articles/generating-an-ssh-key/)

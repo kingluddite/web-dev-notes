@@ -1,5 +1,17 @@
 # Essential Web Dev Tools
 
+## Symbolic Linking on Macs (sym links)
+Symbolic links are awesome and they really make life easy. Here's an example of why I would use a symbolic link:
+I have a notes folder in `~/Documents/dev/notes/web-dev-notes`. Inside this folder I have a git repo initialized so I can push and pull commits from my laptop, work computer, school computer and home desktop. This works great but there are some files like connection information that I keep in digital notebooks. I add these files to my .gitignore so I don't push them up to github as it is a public site people can see them. I could drag and drop them into my Dropbox folder but then I would have a duplicate of the same file and this is a big problem because it will be a pain to manually keep the files in sync. I could also just move the folder into Dropbox but that is bad too because all my files would have to be in Dropbox and I like to put certain files in certain places in my computers. The best thing to do here is to create a sym link between a folder on your Mac and the Dropbox folder. To do this you `cd ~/Dropbox` and once there you open another terminal window and browse to your notes folder. Once there type: `pwd` in the terminal to get the absolute path of where you are. Let's say it gave you this path: `ln -s /Users/philiphowley/Documents/dev/notes/web-dev-notes`
+
+Then just (from the Dropbox root folder on your mac) type this in the terminal
+
+```
+$ ln -s ln /Users/philiphowley/Documents/dev/notes/web-dev-notes
+```
+
+That's it! Your folders are now linked so that when you make any changes on your file on your Mac (my notes file) it will be updated at the same time in the Dropbox folder. Since that folder will push it up to dropbox. You can easily access the file anywhere there is an internet connection.
+
 ## Homebrew (Free)
 For Mac, you need this to install stuff you should have on your mac as a developer
 * Homebrew needs Mac's XCode to be installed. It is a free install but large so when you install it, go grab a cup of coffee.
