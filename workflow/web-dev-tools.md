@@ -12,6 +12,8 @@ $ ln -s ln /Users/philiphowley/Documents/dev/notes/web-dev-notes
 
 That's it! Your folders are now linked so that when you make any changes on your file on your Mac (my notes file) it will be updated at the same time in the Dropbox folder. Since that folder will push it up to dropbox. You can easily access the file anywhere there is an internet connection.
 
+[Here is a great video showing you how to do this](https://www.youtube.com/watch?v=yDqinsWS0lA)
+
 ## Homebrew (Free)
 For Mac, you need this to install stuff you should have on your mac as a developer
 * Homebrew needs Mac's XCode to be installed. It is a free install but large so when you install it, go grab a cup of coffee.
