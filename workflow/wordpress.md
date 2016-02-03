@@ -1,6 +1,69 @@
 # WordPress
 [download](https://wordpress.org/download/)
 
+VVV
+* first install Virtual Box
+* second install Vagrant 1.7.x
+```
+$ vagrant plugin install vagrant-hostsupdater
+```
+
+then install triggers
+
+```
+$ vagrant plugin install vagrant-triggers
+```
+
+[Variable VVV](https://github.com/bradp/vv)
+[VVV Dashboard](https://github.com/leogopal/VVV-Dashboard)
+
+Clone the VVV project into a local directory
+* [Varying-Vagrant-Vagrants / VVV github](https://github.com/Varying-Vagrant-Vagrants/VVV)
+
+with this command
+
+```
+$ git clone git://github.com/Varying-Vagrant-Vagrants/VVV.git vagrant-local
+```
+
+cd into `vagrant-local`
+
+then
+
+```
+$ vagrant up
+```
+
+Go get coffee. Could take 30 minutes.
+
+WordPress Stable
+
+LOCAL PATH: vagrant-local/www/wordpress-default
+VM PATH: /srv/www/wordpress-default
+URL: http://local.wordpress.dev
+DB Name: wordpress_default
+WordPress Trunk
+
+LOCAL PATH: vagrant-local/www/wordpress-trunk
+VM PATH: /srv/www/wordpress-trunk
+URL: http://local.wordpress-trunk.dev
+DB Name: wordpress_trunk
+WordPress Develop
+
+LOCAL PATH: vagrant-local/www/wordpress-develop
+VM PATH: /srv/www/wordpress-develop
+/src URL: http://src.wordpress-develop.dev
+/build URL: http://build.wordpress-develop.dev
+DB Name: wordpress_develop
+DB Name: wordpress_unit_tests
+MySQL Root
+
+User: root
+Pass: root
+See: Connecting to MySQL from your local machine
+
+
+
 ## Local Environment
 * Use MAMP
     - Pro not needed (use free version)

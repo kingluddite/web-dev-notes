@@ -1,5 +1,11 @@
 # Setting up a Development Environment.
 
+go into your folder that has Vagrant file
+```
+$ vagrant up
+```
+
+Go to this URL `http://vvv.dev` and you will see the dashboard
 ## The Backstory
 
 On a Mac the tradition has been to use `MAMP`. It is free to get `PHP`, `MySQL`, `phpMyAdmin` and `Apache` up and running quickly. This is great for `WordPress`. Millions of people currently use this process.

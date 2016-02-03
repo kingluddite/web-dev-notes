@@ -1,4 +1,7 @@
 # WP CLI
+
+[how to use WP-CLI on godaddy](https://www.godaddy.com/help/how-to-install-wordpress-cli-on-shared-hosting-12363)
+
 **Note:**
 ```
 $ - local terminal
@@ -57,20 +60,17 @@ Then install wordpress with this:
 $ wp core download
 ```
 
-
-
 So now you are ready to create your `wp-config.php` file
 
 ```
- wp core config --dbuser=root --dbpass=123 --dbname=bhs
+ wp core config --dbuser=peh2createadmin --dbpass=YVm9uHNo5G --dbname=dev-create-wp
 ```
 
-If you get success, that file is created
 
 Now you need to finish your core install by creating your title, username and password and email
 
 ```
-$  wp core install --url=http://dev.bhs-wp.com --title=BHS --admin_user=peh2 --admin_password=password --admin_email=howley.phil@gmail.com
+$  wp core install --url=http://staging.createre.com.corere.com --title=CreateRe --admin_user=PhilHowley --admin_password=password --admin_email=howley.phil@gmail.com
 ```
 
 * If you get success, wordpress has been installed on command line. 
@@ -168,13 +168,13 @@ You can use WP-CLI every day to check for critical WordPress updates, and with s
 Do updates often for security
 For every plugin and theme you add to your website, you are adding a whole directory of files that may contain a vulnerability. This is why you should choose additional themes/plugins wisely and remove the ones you don’t need. You can do all this directly in the WordPress console, as long as you have write access to the server and your SFTP credentials. Plain FTP is an insecure communication mechanism, please leverage SFTP when it’s available.
 
-### Update all themes
+### Update all plugins 
 
 ```
 wp plugin update-all
 ```
 
-### Update all plugins
+### Update all themes
 
 ```
 wp theme update-all

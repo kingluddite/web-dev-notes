@@ -1,0 +1,191 @@
+# Todos
+
+ ☐ naming convention for future images, id house? lowercase, no space, hypens
+ ☐ change password for godaddy to something more complex
+ ☐
+
+## Global
+ ☐ Set up FTP for Development(Dev) on GoDaddy(GD)
+ ☐ Set up FTP for Production(Prod) on GD
+ ☐ Make sure SSH works
+ ☐ General SSH key for GD
+ ☐ Document connection information
+
+## [ElementsRE](http://elementsre.com)
+production: [http://elementsre.com](http://elementsre.com)
+staging: [http://staging.elementsre.com.corere.com](http://staging.elementsre.com.corere.com)
+local: [http://local.elementsre.com](http://local.elementsre.com) (**note:** only works on my machine)
+ ☐ Set up local dev server pointing to local.elementsre.com using VVV
+ ✔ Set up staging remote server point to staging.elementsre.com.corere.com subdomain @done (16-02-02 17:06)
+ ☐ Get local and staging to be identical to production
+ ✔ Create local Database (db) @done (16-02-02 17:06)
+ ✔ Create local user with privleges to local db @done (16-02-02 17:06)
+ ☐ Document local db connections for later use
+ ✔ Create staging db @done (16-02-02 17:06)
+ ✔ Create staging user with privleges to staging db @done (16-02-02 17:06)
+ ☐ Document staging db connections for later use
+ ☐ Intialize Git for version control
+ ☐ add .gitignore
+ ✔ Create github repo @done (16-02-02 17:07)
+ ☐ Push first repo to remote repo
+ ☐ remove unused themes on local
+ ☐ remove unused themes on local
+ ☐ update active plugins
+ ☐ add Yoast SEO plugin
+ ☐ add hyper cache plugin
+ ☐ add database optimize plugin
+ ☐ Export prod sql from GD
+ ✔ Update URLS from production SQL to match local.elementsre.com @done (16-02-02 17:09)
+ ✔ Update URLS from production SQL ot match staging.elementsre.com.corere.com @done (16-02-02 17:09)
+ ✔ Set up subdomain for ElementsRE @done (16-02-02 17:09)
+ ✔ Check to make sure local login to dashboard works @done (16-02-02 17:09)
+ ✔ After local login, update permalinks @done (16-02-02 17:09)
+ ☐ Check to make sure staging login to dashboard works
+ ☐ After staging login, update permalinks
+ ☐ Add broken links checker plugin on local to ensure all links are working
+ ☐ Get wordmove working for easy migration
+ ✔ Install Vaultpress plugin in production @done (16-02-02 17:08)
+ ✔ Email Ross from Image Magic about site and ask him why staging site is not working like live site @done (16-02-02 17:09)
+ ☐ Show Jaime and team staging site and ask for approval to move to production
+ ☐ Ensure site moving will not harm email
+ ☐ create folder in production cpanel called `elementsre.com-prod`
+ ☐ create folder in development cpanel called 'dev-elementsre.com`
+ ☐ Check `wp_options` (before sql import into phpmyadmin on staging) to see if you have to update serialized staging sql
+ ☐ Check `wp_options` (before sql import into phpmyadmin in local) to ensure mod_theme is correct
+ ☐ Document all connection information for local, staging and production.
+
+## [createRE](http://create.com)
+This site introduced many problems. First, there are two folders on godaddy (GD) for this site. On the contmpodesign.com cpanel of GD the folders are createre.com and create. (here is a screenshot of what they look like on GD). I eventually want to consolidate them into a folder called createre.com-prod (the `-prod` suffix is a naming convention I would like all production site folders to have) They both have WordPress installed in them and they use two different databases(DB#2 and DB#7). The live createre.com site is sharing images from both of these folders WordPress 'uploads' folder.
+production: [http://createre.com](http://createre.com)
+staging: [http://staging.createre.com.corere.com](http://staging.createre.com.corere.com)
+local: [http://local.createre.com](http://local.creatre.com) (**note:** only works on my machine)
+ ☐ Set up local dev server pointing to local.createre.com using VVV
+ ☐ Set up staging remote server point to staging.createre.com.corere.com subdomain
+ ☐ Get local and staging to be identical to production
+ ☐ Create local Database (db)
+ ☐ Create local user with privleges to local db
+ ☐ Create staging db
+ ☐ Create staging user with privleges to staging db
+ ☐ Intialize Git for version control
+ ☐ add .gitignore
+ ✔ Create github repo @done (16-02-02 17:07)
+ ☐ Push first repo to remote repo
+ ☐ remove unused themes on local
+ ☐ remove unused themes on local
+ ☐ update active plugins
+ ☐ add Yoast SEO plugin
+ ☐ add hyper cache plugin
+ ☐ add database optimize plugin
+ ☐ Export prod sql from GD
+ ☐ Update URLS from production SQL to match local.createre.com
+ ☐ Update URLS from production SQL ot match staging.createre.com.corere.com
+ ☐ Set up subdomain for ElementsRE
+ ☐ Check to make sure local login to dashboard works
+ ☐ After local login, update permalinks
+ ☐ Check to make sure staging login to dashboard works
+ ☐ After staging login, update permalinks
+ ☐ Add broken links checker plugin on local to ensure all links are working
+ ☐ Get wordmove working for easy migration
+ ✔ Install Vaultpress plugin in production @done (16-02-02 17:17)
+ ☐ consolidate 2 prod folders into 1 wordpress app in production
+ ☐ change dns to point to http://createre.com
+ ☐ make sure all links pointing to old `http://contmpodesign.com/create/` are removed
+ ☐ create folder in production cpanel called `createre.com-prod`
+ ☐ create folder in development cpanel called 'dev-createre.com`
+ ☐ Check `wp_options` (before sql import into phpmyadmin on staging) to see if you have to update serialized staging sql
+ ☐ Check `wp_options` (before sql import into phpmyadmin in local) to ensure mod_theme is correct
+ ☐ Document all connection information for local, staging and production.
+
+ ## [contmpodesign.com](http://contmpodesign.com)
+ I spoke with godaddy two times on this issue. This is not a major issue but one I am chasing because it will improve our folder organization. Currently, contmpodesign.com's WordPress resides in the cpanel root. I'm not a fan of this and would like it in its own folder (to match the folder structure of all the other sites). But the primary domain of this cpanel is contmposdesign.com and the primary domain must reside in the root. To get it the way I would like we need to change the cpanel primary domain to something else (we need to use one of these sites for the primary domain). If we switch it, then we can use contmpodesign.com inside a folder in the cpanel to match the structure of the other sites. The primary domain we use to replace contmpodesign should be a site we don't intent on making into a website anytime soon. If this doesn't make sense, I totally understand as it took me a couple hours with godaddy to wrap my head around it.
+production: [http://contmpodesign.com](http://contmpodesign.com)
+staging: [http://staging.contmpodesign.com.corere.com](http://staging.contmpodesign.com.corere.com)
+local: [http://local.contmpodesign.com](http://local.contmpodesign.com) (**note:** only works on my machine)
+ ☐ todo:
+test when subdomain works (less than 24hours)
+when it does
+go and replace primary domain of contmpodesign (trick to get into it domains and choose hosting than settings)
+when you do that, then go to domain add ons
+add new domain: contmpodesign.com
+document root: /contmpodesign.com-prod
+remove test subdomain sam created
+should be good to go - sam did notice one thing and then we were disconnected
+ ☐ Double check by calling GD
+ ☐ Set up local dev server pointing to local.contmpodesign.com using VVV
+ ☐ Set up staging remote server point to staging.createre.com.corere.com subdomain
+ ☐ Get local and staging to be identical to production
+ ☐ Create local Database (db)
+ ☐ Create local user with privleges to local db
+ ☐ Create staging db
+ ☐ Create staging user with privleges to staging db
+ ☐ Intialize Git for version control
+ ☐ add .gitignore
+ ✔ Create github repo @done (16-02-02 17:07)
+ ☐ Push first repo to remote repo
+ ☐ remove unused themes on local
+ ☐ remove unused themes on local
+ ☐ update active plugins
+ ☐ add Yoast SEO plugin
+ ☐ add hyper cache plugin
+ ☐ add database optimize plugin
+ ☐ Export prod sql from GD
+ ☐ Update URLS from production SQL to match local.createre.com
+ ☐ Update URLS from production SQL ot match staging.createre.com.corere.com
+ ☐ Set up subdomain for ElementsRE
+ ☐ Check to make sure local login to dashboard works
+ ☐ After local login, update permalinks
+ ☐ Check to make sure staging login to dashboard works
+ ☐ After staging login, update permalinks
+ ☐ Add broken links checker plugin on local to ensure all links are working
+ ☐ Get wordmove working for easy migration
+ ✔ Install Vaultpress plugin in production @done (16-02-02 17:17)
+ ☐ consolidate 2 prod folders into 1 wordpress app in production
+ ☐ change dns to point to http://createre.com
+ ☐ create folder in production cpanel called `contmpodesign.com-prod`
+ ☐ create folder in development cpanel called 'dev-contmpodesign.com`
+ ☐ Check `wp_options` (before sql import into phpmyadmin on staging) to see if you have to update serialized staging sql
+ ☐ Check `wp_options` (before sql import into phpmyadmin in local) to ensure mod_theme is correct
+ ☐ Document all connection information for local, staging and production.
+
+ ## [fairprogram.org](http://fairprogram.org)
+production: [http://fairprogram.org](http://fairprogram.org)
+staging: [http://staging.fairprogram.org.corere.com](http://staging.fairprogram.org.corere.com)
+local: [http://local.fairprogram.org](http://local.fairprogram.org) (**note:** only works on my machine)
+ ☐ Set up local dev server pointing to local.fairprogram.org using VVV
+ ✔ Move away from GD Managed Hosting to regular hosting @done (16-02-02 17:52)
+ ☐ Set up staging remote server point to staging.fairprogram.org.corere.com subdomain
+ ☐ Get local and staging to be identical to production
+ ☐ Create local Database (db)
+ ☐ Create local user with privleges to local db
+ ☐ Create staging db
+ ☐ Create staging user with privleges to staging db
+ ☐ Intialize Git for version control
+ ☐ add .gitignore
+ ✔ Create github repo @done (16-02-02 17:07)
+ ☐ Push first repo to remote repo
+ ☐ remove unused themes on local
+ ☐ remove unused themes on local
+ ☐ update active plugins
+ ☐ add Yoast SEO plugin
+ ☐ add hyper cache plugin
+ ☐ add database optimize plugin
+ ☐ Export prod sql from GD
+ ☐ Update URLS from production SQL to match local.fairprogram.org
+ ☐ Update URLS from production SQL ot match staging.fairprogram.org.corere.com
+ ☐ Set up subdomain for staging.fairprogram.org.corere.com
+ ☐ Check to make sure local login to dashboard works
+ ☐ After local login, update permalinks
+ ☐ Check to make sure staging login to dashboard works
+ ☐ After staging login, update permalinks
+ ☐ Add broken links checker plugin on local to ensure all links are working
+ ☐ Get wordmove working for easy migration
+ ✔ Install Vaultpress plugin in production @done (16-02-02 17:17)
+ ☐ consolidate 2 prod folders into 1 wordpress app in production
+ ☐ change dns to point to http://createre.com
+ ☐ create folder in production cpanel called `contmpodesign.com-prod`
+ ☐ create folder in development cpanel called 'dev-contmpodesign.com`
+ ☐ Check `wp_options` (before sql import into phpmyadmin on staging) to see if you have to update serialized staging sql
+ ☐ Check `wp_options` (before sql import into phpmyadmin in local) to ensure mod_theme is correct
+ ☐ Document all connection information for local, staging and production.
+
+
