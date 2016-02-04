@@ -2,6 +2,12 @@
 
 ## Install with brew
 
+We just need to add the cask tap and then install brew cask.
+
+```
+$ brew install caskroom/cask/brew-cask
+```
+
 [source of this info](http://sourabhbajaj.com/mac-setup/Vagrant/README.html)
 
 ```bash
@@ -10,7 +16,7 @@ $ brew cask install virtualbox
 
 Now install Vagrant either from the website or use homebrew for installing it.
 
-````
+```
 $ brew cask install vagrant
 ```
 
@@ -24,16 +30,23 @@ Add the Vagrant box you want to use.
 ```
 $ vagrant box add precise64 http://files.vagrantup.com/precise64.box
 ```
+
+```
 $ vagrant init precise64
 ```
+
 Now lets start the machine using the following command.
+
 ```
 $ vagrant up
 ```
+
 You can ssh into the machine now.
+
 ```
 $ vagrant ssh
 ```
+
 go into your folder that has Vagrant file
 
 ```

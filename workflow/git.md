@@ -113,3 +113,11 @@ core.precomposeunicode=true
 
 [video tutorial](https://www.youtube.com/watch?v=9qIK8ZC9BnU)
 
+## Forks
+When you want to jump in to the world of open source development you are going to fork someone else's repo. This is in contrast to just simply cloning the repo.
+
+When you fork someone else's repo, you get and exact copy of the repo (think xerox copy machine) but it is added inside your repo. You can take this code and totally do whatever you want with it but if you want to contribute to the open source project you can make pull requests to the other person's repo that you forked. They can accept and add your changes or deny or deny and ask for improvements before adding.
+
+When changes happen to this forked repo by the creators of it, you can pull down the new modifications only if you add `upstream` capability to your report. This is the direct connection to communicate from them to you and you to them.
+
+[Here is the link to add that capability](https://help.github.com/articles/syncing-a-fork/)
