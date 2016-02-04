@@ -1,6 +1,41 @@
 # Setting up a Development Environment.
 
+## Install with brew
+
+[source of this info](http://sourabhbajaj.com/mac-setup/Vagrant/README.html)
+
+```bash
+$ brew cask install virtualbox
+```
+
+Now install Vagrant either from the website or use homebrew for installing it.
+
+````
+$ brew cask install vagrant
+```
+
+Vagrant-Manager helps you manage all your virtual machines in one place directly from the menubar.
+
+```
+$ brew cask install vagrant-manager
+```
+
+Add the Vagrant box you want to use.
+```
+$ vagrant box add precise64 http://files.vagrantup.com/precise64.box
+```
+$ vagrant init precise64
+```
+Now lets start the machine using the following command.
+```
+$ vagrant up
+```
+You can ssh into the machine now.
+```
+$ vagrant ssh
+```
 go into your folder that has Vagrant file
+
 ```
 $ vagrant up
 ```
