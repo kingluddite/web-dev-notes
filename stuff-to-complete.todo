@@ -2,28 +2,29 @@
 
  ☐ naming convention for future images, id house? lowercase, no space, hypens
  ☐ change password for godaddy to something more complex
- ☐
+ ☐ www vs no www
+ ☐ createre folder named creatre
 
 ## Global
- ☐ Set up FTP for Development(Dev) on GoDaddy(GD)
- ☐ Set up FTP for Production(Prod) on GD
- ☐ Make sure SSH works
- ☐ General SSH key for GD
- ☐ Document connection information
+ ✔ Set up FTP for Development(dev) on GoDaddy(GD) @done (16-02-04 22:05)
+ ✔ Set up FTP for Production(prod) on GD @done (16-02-04 22:05)
+ ✔ SSH working on dev @done (16-02-04 22:06)
+ ✔ SSH working on prod @done (16-02-04 22:06)
+ ✔ General SSH key for GD on dev @done (16-02-04 22:06)
+ ✔ General SSH key for GD on prod @done (16-02-04 22:06)
+ ☐ Document all connection information
 
 ## [ElementsRE](http://elementsre.com)
 production: [http://elementsre.com](http://elementsre.com)
 staging: [http://staging.elementsre.com.corere.com](http://staging.elementsre.com.corere.com)
 local: [http://local.elementsre.com](http://local.elementsre.com) (**note:** only works on my machine)
- ☐ Set up local dev server pointing to local.elementsre.com using VVV
+ ✔ Set up local dev server pointing to local.elementsre.com using VVV @done (16-02-04 22:07)
  ✔ Set up staging remote server point to staging.elementsre.com.corere.com subdomain @done (16-02-02 17:06)
  ☐ Get local and staging to be identical to production
  ✔ Create local Database (db) @done (16-02-02 17:06)
  ✔ Create local user with privleges to local db @done (16-02-02 17:06)
- ☐ Document local db connections for later use
  ✔ Create staging db @done (16-02-02 17:06)
  ✔ Create staging user with privleges to staging db @done (16-02-02 17:06)
- ☐ Document staging db connections for later use
  ☐ Intialize Git for version control
  ☐ add .gitignore
  ✔ Create github repo @done (16-02-02 17:07)

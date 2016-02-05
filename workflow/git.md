@@ -1,6 +1,22 @@
 # GIT
 Version Control. You need to know how this works.
 
+## Useful git
+
+### Stash
+When you want to pull down the latest changes but you are in the middle of working on something. You can temporarily `stash` them with:
+
+```
+$ git stash
+```
+
+### Stash Pop
+And then when you have pull down changes you can get your stashed data back with:
+
+```
+$ git stash pop
+```
+
 ## Initialize git repo locally
 
 ```
