@@ -1,5 +1,12 @@
 # Generating Keys
 
+ls -al ~/.ssh
+ eval "$(ssh-agent -s)"
+ pbcopy < ~/.ssh/id_rsa.pub
+
+   sop /etc/hosts
+
+
 ## Videos
 * [How do I find my SSH Public Key?](https://www.youtube.com/watch?v=NX_IQrQA1FE)
 

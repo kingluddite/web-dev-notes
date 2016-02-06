@@ -4,7 +4,9 @@
 
 
 
-
+## Locked Out of WP Dashboard and Need to generate and admin user
+[This article shows you how](http://www.wpbeginner.com/wp-tutorials/how-to-add-an-admin-user-to-the-wordpress-database-via-mysql/)
+* two tables wp_users and wp_usermeta
 
 Change host information
 

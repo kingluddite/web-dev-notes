@@ -2,156 +2,204 @@
 
  ☐ naming convention for future images, id house? lowercase, no space, hypens
  ☐ change password for godaddy to something more complex
+ ☐ remove www from all domain names
+ ☐ add wp-cli on both dev and prod cpanels
+ ☐ to www or not to www? that is the question?
+For Search Engine Optimization (SEO) purposes, it is preferable to have a website respond only to http://www.example.com or http://example.com, not both. Otherwise, search engines see duplicate content on the www and non-www domains, and may downgrade the site ranking.
+
 
 ## Global
- ✔ Set up FTP for Development(Dev) on GoDaddy(GD) @done (16-02-04 22:35)
- ✔ Set up FTP for Production(Prod) on GD @done (16-02-04 22:35)
- ✔ Connect SSH for prod cpanel @done (16-02-04 22:36)
- ✔ General SSH for dev cpanel @done (16-02-04 22:36)
- ✔ Generate SSH key and authorize for dev cpanel @done (16-02-04 22:37)
- ✔ Generate SSH key and authorize for prod cpanel @done (16-02-04 22:37)
- ✔ Set up git repo for createre.com @done (16-02-04 22:33)
- ✔ Set up git repo for elementsre.com @done (16-02-04 22:33)
- ✔ Set up git repo for fairprogram.org @done (16-02-04 22:33)
- ✔ Set up git repo for contmpodesign.com @done (16-02-04 22:33)
- ✔ Add .gitignore for all 4 repos @done (16-02-04 22:35)
- ✔ Add README for all 4 repos @done (16-02-04 22:35)
  ☐ Email Jaime documentation
 
 ## [ElementsRE](http://elementsre.com)
-production: [http://elementsre.com](http://elementsre.com)
-staging: [http://staging.elementsre.com.corere.com](http://staging.elementsre.com.corere.com)
-local: [http://local.elementsre.com](http://local.elementsre.com) (**note:** only works on my machine)
- ✔ Set up local dev server pointing to local.elementsre.com using VVV @done (16-02-04 22:37)
- ✔ Set up staging remote server point to staging.elementsre.com.corere.com subdomain @done (16-02-02 17:06)
  ☐ Get local and staging to be identical to production
- ✔ Create local Database (db) @done (16-02-02 17:06)
- ✔ Create local user with privleges to local db @done (16-02-02 17:06)
- ✔ Create staging db @done (16-02-02 17:06)
- ✔ Create staging user with privleges to staging db @done (16-02-02 17:06)
- ✔ Create github repo @done (16-02-02 17:07)
- ☐ remove unused themes
- ☐ remove unused plugins
- ☐ update active plugins
- ☐ add Yoast SEO plugin
- ☐ add hyper cache plugin
- ☐ add database optimize plugin
- ☐ Add broken links checker plugin on local to ensure all links are working
- ✔ Update URLS from production SQL to match local.elementsre.com @done (16-02-02 17:09)
- ✔ Update URLS from production SQL ot match staging.elementsre.com.corere.com @done (16-02-02 17:09)
- ✔ Set up subdomain for ElementsRE @done (16-02-02 17:09)
- ✔ Check to make sure local login to dashboard works @done (16-02-02 17:09)
- ✔ After local login, update permalinks @done (16-02-02 17:09)
- ☐ verify WP logins work for local, staging and production
- ☐ update permalinks for local, staging and production
- ☐ Get wordmove working for local, staging and production
- ☐ Intialize Git for version control
- ☐ add .gitignore
- ☐ Push first repo to remote repo
- ✔ Install Vaultpress plugin in production @done (16-02-02 17:08)
- ✔ Email Ross from Image Magic about site and ask him why staging site is not working like live site @done (16-02-02 17:09)
+ ☐ Get wordmove working for production
  ☐ Ensure site moving will not harm email
- ✔ create folder in production cpanel called `elementsre.com-prod` @done (16-02-04 22:42)
- ✔ create folder in development cpanel called 'dev-elementsre.com` @done (16-02-04 22:42)
- ☐ Document all connection information for local, staging and production.
 
 ## [createRE](http://create.com)
-This site introduced many problems. First, there are two folders on godaddy (GD) for this site. On the contmpodesign.com cpanel of GD the folders are createre.com and create. (here is a screenshot of what they look like on GD). I eventually want to consolidate them into a folder called createre.com-prod (the `-prod` suffix is a naming convention I would like all production site folders to have) They both have WordPress installed in them and they use two different databases(DB#2 and DB#7). The live createre.com site is sharing images from both of these folders WordPress 'uploads' folder.
-production: [http://createre.com](http://createre.com)
-staging: [http://staging.createre.com.corere.com](http://staging.createre.com.corere.com)
-local: [http://local.createre.com](http://local.creatre.com) (**note:** only works on my machine)
- ✔ Set up local dev server pointing to local.createre.com using VVV @done (16-02-04 22:29)
- ✔ Set up staging remote server point to staging.createre.com.corere.com subdomain @done (16-02-04 22:29)
+☐ fix last 4 images that are still pulling from old `creatre` site
+☐ consolidate 2 prod folders into 1 wordpress app in production (move 1 folder into storage and moved prod site into createre.com-prod folder, still have 1 folder that has images used in prod site)
+✔ point domain http://createre.com to createre.com-prod folder on production cpanel @done (16-02-05 23:02)
+
+ ## [contmpodesign.com](http://contmpodesign.com)
+✔ Get local and staging to be identical to production @done (16-02-05 23:57)
+✔ Check to make sure local and staging sites are not being indexed by search engines @done (16-02-05 23:57)
+✔ Success: Plugin 'broken-link-checker' activated. @done (16-02-05 23:59)
+✔ Success: Plugin 'w3-total-cache' activated. @done (16-02-05 23:59)
+✔ Success: Plugin 'wp-optimize' activated. @done (16-02-05 23:59)
+✔ Success: Deleted 'wp-super-cache' plugin. @done (16-02-05 23:59)
+✔ verify WP logins work for local, staging @done (16-02-05 23:59)
+✔ update permalinks for local, staging @done (16-02-05 23:58) (had problems with plugins breaking testing site. Had to invidually deactivate and reactive plugins to resolve issue)
+✔ Document all connection information for local, staging and production. @done (16-02-05 23:58)
+✔ update github readme with documentation @done (16-02-05 23:58)
+
+ ## [fairprogram.org](http://fairprogram.org)
  ☐ Get local and staging to be identical to production
- ✔ Create local Database (db) @done (16-02-04 22:29)
- ✔ Create local user with privleges to local db @done (16-02-04 22:29)
- ✔ Create staging db @done (16-02-04 22:29)
- ✔ Create staging user with privleges to staging db @done (16-02-04 22:29)
- ☐ verify WP logins work for local, staging and production
- ☐ update permalinks for local, staging and production
- ☐ Get wordmove working for local, staging and production
- ☐ Intialize Git for version control
- ☐ add .gitignore
- ☐ Push first repo to remote repo
- ☐ remove unused themes
- ☐ remove unused plugins
- ☐ update active plugins
- ☐ add Yoast SEO plugin
- ☐ add hyper cache plugin
- ☐ add database optimize plugin
- ☐ Add broken links checker plugin on local to ensure all links are working
- ✔ Set up subdomain for ElementsRE @done (16-02-04 22:45)
- ✔ Install Vaultpress plugin in production @done (16-02-02 17:17)
- ☐ consolidate 2 prod folders into 1 wordpress app in production
- ☐ change dns to point to http://createre.com
- ☐ make sure all links pointing to old `http://contmpodesign.com/create/` are removed
+
+
+
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ add necessary documentation @done (16-02-05 21:12)
+ ✔ Add broken links checker plugin on local to ensure all links are working (1 broken link - http://staging.createre.com.corere.com/press/ 'real options realty' link) @done (16-02-05 21:12)
+ ✔ VERIFY WORDMOVE FILE WORKS! @done (16-02-05 21:02)
+  This site introduced many problems. First, there are two folders on godaddy (GD) for this site. On the contmpodesign.com cpanel of GD the folders are createre.com and create. (here is a screenshot of what they look like on GD). I eventually want to consolidate them into a folder called createre.com-prod (the `-prod` suffix is a naming convention I would like all production site folders to have) They both have WordPress installed in them and they use two different databases(DB#2 and DB#7). The live createre.com site is sharing images from both of these folders WordPress 'uploads' folder.
+  production: [http://createre.com](http://createre.com)
+  staging: [http://staging.createre.com.corere.com](http://staging.createre.com.corere.com)
+  local: [http://local.createre.com](http://local.creatre.com) (**note:** only works on my machine)
+ ✔ Spent time figuring out contmpodesign.com/creatre and changing it to createre.com @done (16-02-05 21:02)
+ ✔ FIX DB ON STAGING! @done (16-02-05 21:02)
+ ✔ FIX DB ON LOCAL! @done (16-02-05 21:02)
+ ✔ Did not have a admin login for this site, figured out how to create one @done (16-02-05 21:02)
+ ✔ make sure all links pointing to old `http://contmpodesign.com/create/` are removed @done (16-02-05 21:01)
+ ✔ Check to make sure local and staging sites are not being indexed by search engines @done (16-02-05 21:01)
+ ✔ verify WP logins work for local(working), staging and production @done (16-02-05 21:00)
+ ✔ update permalinks for local(done), staging and production @done (16-02-05 21:00)
+ ✔ Get local and staging to be identical to production @done (16-02-05 21:00)
+ ✔ Success: Deleted 'floating-social-media-icon' plugin. @done (16-02-05 20:49)
+ ✔ Success: Deleted 'floating-social-media-icon' plugin. @done (16-02-05 20:49)
+ ✔ install and activate wp-optimize @done (16-02-05 20:46)
+ ✔ install and activate w3-total-cache @done (16-02-05 20:46)
+ ✔ Success: Deleted 'wp-super-cache' plugin. @done (16-02-05 20:43)
+ ✔ Success: Deleted 'wp-smushit' plugin. @done (16-02-05 20:43)
+ ✔ Success: Deleted 'zillow-digs' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'wordpress-importer' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'twentythirteen' theme. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'twentysixteen' theme. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'twentyfourteen' theme. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'twentyfifteen' theme. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'quick-setup' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'pinterest-pin-it-button' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'nooz' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'ninja-forms' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'news-manager' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'megamenu' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'larx-1.6' theme. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'larx-1.4' theme. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'hello' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'folder-menu-vertical' plugin. @done (16-02-05 20:41)
+ ✔ Success: Deleted 'akismet' plugin. @done (16-02-05 20:41)
+ ✔ Update github README with site info @done (16-02-05 15:02)
+ ✔ add wp-optimize plugin @done (16-02-05 15:01)
+ ✔ add w3 super cache plugin @done (16-02-05 15:01)
+ ✔ Document all connection information for local, staging and production. @done (16-02-05 15:01)
+ ✔ Check to make sure local and staging sites are not being indexed by search engines @done (16-02-05 15:01)
+ ✔ Add broken links checker plugin on local to ensure all links are working (no broken links) @done (16-02-05 15:01)
+ ✔ FIX PUSHING DB ERROR TO STAGING @done (16-02-05 15:00)
+  production: [http://elementsre.com](http://elementsre.com)
+  staging: [http://staging.elementsre.com.corere.com](http://staging.elementsre.com.corere.com)
+  local: [http://local.elementsre.com](http://local.elementsre.com) (**note:** only works on my machine)
+ ✔ Update github README with site info @done (16-02-05 12:16)
+ ✔ Document all connection information for local, staging and production. @done (16-02-05 12:16)
+ ✔ verify WP logins work for local, staging @done (16-02-05 11:53)
+ ✔ update permalinks for local, staging @done (16-02-05 11:53)
+ ✔ Check to make sure local and staging sites are not being indexed by search engines @done (16-02-05 11:53)
+ ✔ Add broken links checker plugin on local to ensure all links are working @done (16-02-05 11:53)
+ ✔ update WP to latest version @done (16-02-05 11:50)
+ ✔ install and activate W3 Total Cache plugin @done (16-02-05 11:50)
+ ✔ install broken link checker plugin **(site has 4 broken links)** @done (16-02-05 11:34)
+ ✔ need to install brew on linux - See Linuxbrew: http://brew.sh/linuxbrew/ @done (16-02-05 11:33)
+  production: [http://fairprogram.org](http://fairprogram.org)
+  staging: [http://staging.fairprogram.org.corere.com](http://staging.fairprogram.org.corere.com)
+  local: [http://local.fairprogram.org](http://local.fairprogram.org) (**note:** only works on my machine)
+ ✔ add database optimize plugin (installed actived wp-optimize) @done (16-02-05 11:33)
+ ✔ Fix broken staging - add gravity forms (deactivated gravity forms to fix) @done (16-02-05 11:33)
+ ✔ verify WP logins work for local, staging @done (16-02-05 02:04)
+ ✔ update permalinks for local, staging and production @done (16-02-05 02:04)
+ ✔ Get wordmove working for local, staging and production @done (16-02-05 01:53)
+ ✔ update all plugins @done (16-02-05 01:52)
+ ✔ remove unused themes on local @done (16-02-05 01:52)
+ ✔ remove unused plugins on local @done (16-02-05 01:52)
+ ✔ add Yoast SEO plugin @done (16-02-05 01:52)
+ ✔ Push first repo to remote repo @done (16-02-05 01:52)
+ ✔ update active plugins @done (16-02-05 01:51)
+ ✔ update active plugins @done (16-02-05 01:51)
+ ✔ remove unused themes @done (16-02-05 01:51)
+ ✔ remove unused themes @done (16-02-05 01:51)
+ ✔ remove unused plugins @done (16-02-05 01:51)
+ ✔ remove unused plugins @done (16-02-05 01:51)
+ ✔ add Yoast SEO plugin @done (16-02-05 01:51)
+ ✔ add Yoast SEO plugin @done (16-02-05 01:51)
+ ✔ add .gitignore @done (16-02-05 01:51)
+ ✔ add .gitignore @done (16-02-05 01:51)
+ ✔ add .gitignore @done (16-02-05 01:51)
+ ✔ Push first repo to remote repo @done (16-02-05 01:51)
+ ✔ Push first repo to remote repo @done (16-02-05 01:51)
+ ✔ Push first repo to remote repo @done (16-02-05 01:51)
+ ✔ Intialize Git for version control @done (16-02-05 01:51)
+ ✔ Intialize Git for version control @done (16-02-05 01:51)
+ ✔ Intialize Git for version control @done (16-02-05 01:51)
+ ✔ Get wordmove working for local, staging and production @done (16-02-05 01:51)
+ ✔ Get wordmove working for local, staging and production @done (16-02-05 01:51)
+ ✔ add .gitignore @done (16-02-05 01:50)
+ ✔ Push first repo to remote repo @done (16-02-05 01:50)
+ ✔ Intialize Git for version control @done (16-02-05 01:50)
+ ✔ Get wordmove working for local, staging @done (16-02-05 01:50)
+ ✔ update active plugins @done (16-02-05 01:48)
+ ✔ remove unused themes @done (16-02-05 01:48)
+ ✔ remove unused plugins @done (16-02-05 01:48)
+ ✔ add Yoast SEO plugin @done (16-02-05 01:48)
+ ✔ create folder in production cpanel called `contmpodesign.com-prod` @done (16-02-04 22:51)
+ ✔ create folder in development cpanel called 'dev-contmpodesign.com` @done (16-02-04 22:51)
+ ✔ Set up subdomain for staging.fairprogram.org.corere.com @done (16-02-04 22:51)
+ ✔ create folder in production cpanel called `contmpodesign.com-prod` @done (16-02-04 22:49)
+ ✔ create folder in development cpanel called 'dev-contmpodesign.com` @done (16-02-04 22:49)
+ ✔ Set up staging remote server point to staging.fairprogram.org.corere.com subdomain @done (16-02-04 22:49)
+ ✔ Set up local dev server pointing to local.fairprogram.org using VVV @done (16-02-04 22:49)
+ ✔ Set up subdomain for ElementsRE @done (16-02-04 22:48)
+ ✔ Set up staging remote server point to staging.createre.com.corere.com subdomain @done (16-02-04 22:47)
+ ✔ Set up local dev server pointing to local.contmpodesign.com using VVV @done (16-02-04 22:47)
+ ✔ Create staging user with privleges to staging db @done (16-02-04 22:47)
+ ✔ Create staging db @done (16-02-04 22:47)
+ ✔ Create local user with privleges to local db @done (16-02-04 22:47)
+ ✔ Create local Database (db) @done (16-02-04 22:47)
  ✔ create folder in production cpanel called `createre.com-prod` @done (16-02-04 22:46)
  ✔ create folder in development cpanel called 'dev-createre.com` @done (16-02-04 22:46)
  ✔ Document all connection information for local, staging and production. @done (16-02-04 22:46)
-
- ## [contmpodesign.com](http://contmpodesign.com)
- ✔ Set up local dev server pointing to local.contmpodesign.com using VVV @done (16-02-04 22:47)
- ✔ Set up staging remote server point to staging.createre.com.corere.com subdomain @done (16-02-04 22:47)
- ☐ Get local and staging to be identical to production
- ✔ Create local Database (db) @done (16-02-04 22:47)
- ✔ Create local user with privleges to local db @done (16-02-04 22:47)
- ✔ Create staging db @done (16-02-04 22:47)
- ✔ Create staging user with privleges to staging db @done (16-02-04 22:47)
- ☐ Intialize Git for version control
- ☐ add .gitignore
- ✔ Create github repo @done (16-02-02 17:07)
- ☐ Push first repo to remote repo
- ☐ remove unused plugins
- ☐ remove unused themes
- ☐ update active plugins
- ☐ add Yoast SEO plugin
- ☐ add hyper cache plugin
- ☐ add database optimize plugin
- ☐ Add broken links checker plugin on local to ensure all links are working
- ☐ verify WP logins work for local, staging and production
- ☐ update permalinks for local, staging and production
- ☐ Get wordmove working for local, staging and production
- ☐ Intialize Git for version control
- ☐ add .gitignore
- ☐ Push first repo to remote repo
- ✔ Set up subdomain for ElementsRE @done (16-02-04 22:48)
- ☐ Get wordmove working for easy migration
- ✔ Install Vaultpress plugin in production @done (16-02-02 17:17)
- ☐ consolidate 2 prod folders into 1 wordpress app in production
- ☐ change dns to point to http://createre.com
- ✔ create folder in production cpanel called `contmpodesign.com-prod` @done (16-02-04 22:49)
- ✔ create folder in development cpanel called 'dev-contmpodesign.com` @done (16-02-04 22:49)
- ☐ Document all connection information for local, staging and production.
-
- ## [fairprogram.org](http://fairprogram.org)
-production: [http://fairprogram.org](http://fairprogram.org)
-staging: [http://staging.fairprogram.org.corere.com](http://staging.fairprogram.org.corere.com)
-local: [http://local.fairprogram.org](http://local.fairprogram.org) (**note:** only works on my machine)
- ✔ Set up local dev server pointing to local.fairprogram.org using VVV @done (16-02-04 22:49)
- ✔ Move away from GD Managed Hosting to regular hosting @done (16-02-02 17:52)
- ✔ Set up staging remote server point to staging.fairprogram.org.corere.com subdomain @done (16-02-04 22:49)
- ☐ Get local and staging to be identical to production
- ✔ Create local Database (db) @done (16-02-04 22:32)
- ✔ Create local user with privleges to local db @done (16-02-04 22:32)
- ✔ Create staging db @done (16-02-04 22:32)
- ✔ Create staging user with privleges to staging db @done (16-02-04 22:32)
- ✔ Create github repo @done (16-02-02 17:07)
- ☐ Push first repo to remote repo
- ☐ remove unused plugins on local
- ☐ remove unused themes on local
- ☐ update active plugins
- ☐ add Yoast SEO plugin
- ☐ add hyper cache plugin
- ☐ add database optimize plugin
- ☐ Add broken links checker plugin on local to ensure all links are working
- ☐ verify WP logins work for local, staging and production
- ☐ update permalinks for local, staging and production
- ☐ Get wordmove working for local, staging and production
- ✔ Set up subdomain for staging.fairprogram.org.corere.com @done (16-02-04 22:51)
+ ✔ Set up subdomain for ElementsRE @done (16-02-04 22:45)
+ ✔ create folder in production cpanel called `elementsre.com-prod` @done (16-02-04 22:42)
+ ✔ create folder in development cpanel called 'dev-elementsre.com` @done (16-02-04 22:42)
+ ✔ Set up local dev server pointing to local.elementsre.com using VVV @done (16-02-04 22:37)
+ ✔ Generate SSH key and authorize for prod cpanel @done (16-02-04 22:37)
+ ✔ Generate SSH key and authorize for dev cpanel @done (16-02-04 22:37)
+ ✔ General SSH for dev cpanel @done (16-02-04 22:36)
+ ✔ Connect SSH for prod cpanel @done (16-02-04 22:36)
+ ✔ Set up FTP for Production(Prod) on GD @done (16-02-04 22:35)
+ ✔ Set up FTP for Development(Dev) on GoDaddy(GD) @done (16-02-04 22:35)
+ ✔ Add README for all 4 repos @done (16-02-04 22:35)
+ ✔ Add .gitignore for all 4 repos @done (16-02-04 22:35)
+ ✔ Set up git repo for fairprogram.org @done (16-02-04 22:33)
+ ✔ Set up git repo for elementsre.com @done (16-02-04 22:33)
+ ✔ Set up git repo for createre.com @done (16-02-04 22:33)
+ ✔ Set up git repo for contmpodesign.com @done (16-02-04 22:33)
  ✔ Set up wordmove for local, dev and production @done (16-02-04 22:32)
+ ✔ Create staging user with privleges to staging db @done (16-02-04 22:32)
+ ✔ Create staging db @done (16-02-04 22:32)
+ ✔ Create local user with privleges to local db @done (16-02-04 22:32)
+ ✔ Create local Database (db) @done (16-02-04 22:32)
+ ✔ Set up staging remote server point to staging.createre.com.corere.com subdomain @done (16-02-04 22:29)
+ ✔ Set up local dev server pointing to local.createre.com using VVV @done (16-02-04 22:29)
+ ✔ Create staging user with privleges to staging db @done (16-02-04 22:29)
+ ✔ Create staging db @done (16-02-04 22:29)
+ ✔ Create local user with privleges to local db @done (16-02-04 22:29)
+ ✔ Create local Database (db) @done (16-02-04 22:29)
+ ✔ Move away from GD Managed Hosting to regular hosting @done (16-02-02 17:52)
  ✔ Install Vaultpress plugin in production @done (16-02-02 17:17)
- ✔ create folder in production cpanel called `contmpodesign.com-prod` @done (16-02-04 22:51)
- ✔ create folder in development cpanel called 'dev-contmpodesign.com` @done (16-02-04 22:51)
- ☐ Document all connection information for local, staging and production.
-
-
+ ✔ Install Vaultpress plugin in production @done (16-02-02 17:17)
+ ✔ Install Vaultpress plugin in production @done (16-02-02 17:17)
+ ✔ Update URLS from production SQL to match local.elementsre.com @done (16-02-02 17:09)
+ ✔ Update URLS from production SQL ot match staging.elementsre.com.corere.com @done (16-02-02 17:09)
+ ✔ Set up subdomain for ElementsRE @done (16-02-02 17:09)
+ ✔ Email Ross from Image Magic about site and ask him why staging site is not working like live site @done (16-02-02 17:09)
+ ✔ Check to make sure local login to dashboard works @done (16-02-02 17:09)
+ ✔ After local login, update permalinks @done (16-02-02 17:09)
+ ✔ Install Vaultpress plugin in production @done (16-02-02 17:08)
+ ✔ Create github repo @done (16-02-02 17:07)
+ ✔ Create github repo @done (16-02-02 17:07)
+ ✔ Create github repo @done (16-02-02 17:07)
+ ✔ Set up staging remote server point to staging.elementsre.com.corere.com subdomain @done (16-02-02 17:06)
+ ✔ Create staging user with privleges to staging db @done (16-02-02 17:06)
+ ✔ Create staging db @done (16-02-02 17:06)
+ ✔ Create local user with privleges to local db @done (16-02-02 17:06)
+ ✔ Create local Database (db) @done (16-02-02 17:06)

@@ -1,5 +1,11 @@
 # WP CLI
 
+deactivate all plugins at one time
+```
+$ wp plugin deactivate --all
+```
+wp theme list
+
 [how to use WP-CLI on godaddy](https://www.godaddy.com/help/how-to-install-wordpress-cli-on-shared-hosting-12363)
 
 **Note:**
