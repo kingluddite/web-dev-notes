@@ -4,6 +4,29 @@
 This is a really cool terminal.
 Here are free videos to learn how to use them.
 
+Theme - cobalt2
+[https://github.com/wesbos/Cobalt2-iterm](https://github.com/wesbos/Cobalt2-iterm)
+
+Install oh my zsh
+[video tutorial](https://www.youtube.com/watch?v=Tz4kScOIOW0)
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+to bring up xcode aggreement if you need it
+```
+$ sudo xcrun css
+```
+
+* good stuff
+* lower case completion document Document both work with tab
+* history based on what you have already typed in prompt - if you type c and hit up arrow, will only show you 'commands with c'
+
+when working with zsh you want to see hidden files on you finder
+* just add the code below to get it to work. When you add it and hit return you need to relaunch finder (hover over finder icon on dashboard and hold down option key, this will let you relaunch finder (can also choose from dropdown) now when you open it up you will see hidden files like `.zshrc` and `.oh-my-zsh`)
+
+tip: [show hidden files on mac](http://ianlunn.co.uk/articles/quickly-showhide-hidden-files-mac-os-x-mavericks/)
+```
+defaults write com.apple.finder AppleShowAllFiles YES
+```
 [zsh videos](http://commandlinepoweruser.com/)
 * Thanks for the tip Sean!
 
