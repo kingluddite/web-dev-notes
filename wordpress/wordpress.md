@@ -1,7 +1,34 @@
 # WordPress
 [download](https://wordpress.org/download/)
 
+## Git in WordPress
+So this is an any where lots of people have an opinion. Here's mine. Do you need to keep track of WordPress core files? No. So add them to your `.gitignore`. You need stuff inside `wp-content` but not everything and what you need will change depending on your individual project needs. Most of the time I'm just keeping track of the theme but I may have to start watching some custom plugins so I want the ability to add that. I usually create my README.md in the WordPress root and make sure not to ignore it.
 
+### Sample .gitignore file
+
+```
+# Thanks to: https://gist.github.com/jdbartlett/444295
+
+# Ignore everything in the root except the "wp-content" directory.
+/*
+!.gitignore
+!README.md
+!wp-content/
+
+# Ignore everything in the "wp-content" directory, except the "plugins" and "themes" directories.
+wp-content/*
+!wp-content/plugins/
+!wp-content/themes/
+
+# Ignore everything in the "plugins" directory, except the plugins you specify
+wp-content/plugins/*
+# !wp-content/plugins/my-single-file-plugin.php
+# !wp-content/plugins/my-directory-plugin/
+
+# Ignore everything in the "themes" directory, except the themes you specify
+wp-content/themes/*
+!wp-content/themes/my-awesome-theme/
+```
 
 
 ## Locked Out of WP Dashboard and Need to generate and admin user

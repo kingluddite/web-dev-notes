@@ -1,5 +1,29 @@
 # Terminal
 
+## ZSH
+This is a really cool terminal.
+Here are free videos to learn how to use them.
+
+[zsh videos](http://commandlinepoweruser.com/)
+* Thanks for the tip Sean!
+
+* add powerline fonts
+[fonts](https://github.com/powerline/fonts/blob/master/Inconsolata/Inconsolata%20for%20Powerline.otf)
+
+I like ZSH but I also like BASH as I've been using it so long and like the solarized and settings I set for it.
+
+To easily switch to bash from zsh (make zsh your defaut profile). You can have a .bash_profile and a .zshrc file with all your aliases then to switch to bash
+
+```
+exec bash -l
+```
+
+That will log you in. If you don't do that you will have to refresh your .bash_profile with:
+
+```
+$ source ~/.bash_profile
+```
+
 ## Terminal Cheatsheet
 [terminal cheatsheet](https://github.com/0nn0/terminal-mac-cheatsheet/wiki/Terminal-Cheatsheet-for-Mac-(-basics-))
 

@@ -1,7 +1,7 @@
 # GIT
 Version Control. You need to know how this works.
 
-## Useful git
+## Some Useful GIT commands
 
 ### Stash
 When you want to pull down the latest changes but you are in the middle of working on something. You can temporarily `stash` them with:
@@ -18,16 +18,27 @@ $ git stash pop
 ```
 
 ## Initialize git repo locally
+When you start a project you create a folder. If you want to starting using git for version control of your project, add the following `init` command while you are inside the root of your folder.
 
 ```
 $ git init
 ```
 
 ## Remove a git repo
+You would think this would be simple. If I see something I should just be able to type `rm` and remove it. For files, it is that simple but for folders you run into problems and that is why the `-rf` flag is important. If you want to delete a folder and everything inside it recursively, use the `-rf` flag like in the example below were you are removing the entire .git folder and all of its version control knowlege of your project. 
 
 ```
 $ rm -rf .git
 ```
+
+## Forking vs Cloning a repo
+You see a repo you like. Just grab its repo url and clone it to a spot on your computer and you are off and running. But what if you like the project so much you want to work on it and make it better. This is the whole impetus behind the open source movement. That is where forking comes into play. Instead of just cloning it, you fork it and that fork takes a copy of that open source community repo and puts that exact copy (github shows an animation of a photocopy machine making a copy of a book) to your repo. If you look at the Github UI you will see they are telling you this information.
+
+![Github UI shows forked repo](https://i.imgur.com/fsSP24C.png)
+
+When you set up your own Github repo you traditionally refer to that as your remote `origin master`. So when you are working on your own project you will add and commit locally and then push to your remote repo (origin master). But when you fork you also have access to `upstream` repo you forked from.
+
+A good tip is to check your remote connections information and this will show you where your remote origin master is and where your `upstream` is. If you don't see it, you may need to add it depending on what you are doing for your project.
 
 ## Grab changes instructors make from forked repo
 
