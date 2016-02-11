@@ -1,3 +1,5 @@
 .DS_Store
 my-conn-info.md
 conn/
+# don't track any generated html files
+*.html

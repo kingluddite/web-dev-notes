@@ -1,4 +1,17 @@
-# Setting up a Development Environment.
+# Virtual Box and Vagrant
+
+You need to install Virtual box first
+* there are multiple ways to install virtual box
+
+## Virtual Box
+### Install
+* [Download Virtual Box](https://www.virtualbox.org/wiki/Downloads) 
+    - Select Mac OS version
+* Install Virtual Box
+ - [How to install virtual box?](https://www.youtube.com/watch?v=PL7Dh6drlBw)
+      + Video is showing how to install windows machine on Mac but the first part shows you the steps needed to simply install Virtual Box.
+
+But an easier way is to install homebrew.
 
 ## Install with brew
 
@@ -64,13 +77,7 @@ The solution is to have your own box to test in and that is where `Vitural Box` 
 
 But then we have another problem and assuming we are not all sysops people (Systems Operations) and have a thorough knowledge about servers and how to configure them that is where Vagrant comes into play. `Vagrant` will make creating our server box easy and dare I say fun.
 
-## Virtual Box
-### Install
-* [Download Virtual Box](https://www.virtualbox.org/wiki/Downloads) 
-    - Select Mac OS version
-* Install Virtual Box
- - [How to install virtual box?](https://www.youtube.com/watch?v=PL7Dh6drlBw)
-      + Video is showing how to install windows machine on Mac but the first part shows you the steps needed to simply install Virtual Box.
+
 
 ## Vagrant
 "Create and configure lightweight, reproducible and portable development environments."

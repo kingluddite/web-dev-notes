@@ -4,6 +4,56 @@
 This is a really cool terminal.
 Here are free videos to learn how to use them.
 
+## problems with ruby version
+keeps kicking back to default install of ruby 1.9
+so i use $ wordmove
+and zsh says command not found
+![command not found](https://i.imgur.com/hSVc130.png)
+if I use $ gem list I see wordmove is a local install
+I get these errors
+Ignoring executable-hooks-1.3.2 because its extensions are not built.
+and
+Ignoring gem-wrappers-1.2.7 because its extensions are not built.
+and run these two lines to fix them
+gem pristine executable-hooks --version 1.3.2
+gem pristine gem-wrappers --version 1.2.7
+but still doesn't find wordmove command
+so i try to install wordmove again
+with $ gem install wordmove
+but get error
+"wordmove requires Ruby versio ~> 2.0."
+I type: $ ruby --version
+and I see I'm only using the default install of ruby 1.9.3p484
+I show my list of rvms with
+$ rvm list
+and see I have ruby-2.2.1 and ruby -2.2.2 install
+looks like 2.2.1 is current
+I switch to 2.2.2 with
+$ rvm use ruby-2.2.2
+Success! it now understands wordmove
+
+## Add Oh My ZSH to Vagrant
+
+```
+# Added zsh shell.
+$ sudo apt-get install zsh
+$ wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh 
+$ sudo chsh -s /bin/zsh vagrant
+zsh
+```
+
+As an nice addition, so that your terminals don't look too similar on the different boxes
+
+```
+# Change the oh my zsh default theme.
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="dieter"/g' ~/.zshrc
+```
+
+You may run into problems with themes
+
+[this link may help](https://github.com/robbyrussell/oh-my-zsh/issues/4182)
+
+
 Theme - cobalt2
 [https://github.com/wesbos/Cobalt2-iterm](https://github.com/wesbos/Cobalt2-iterm)
 
@@ -22,6 +72,11 @@ $ sudo xcrun css
 
 when working with zsh you want to see hidden files on you finder
 * just add the code below to get it to work. When you add it and hit return you need to relaunch finder (hover over finder icon on dashboard and hold down option key, this will let you relaunch finder (can also choose from dropdown) now when you open it up you will see hidden files like `.zshrc` and `.oh-my-zsh`)
+
+Caution: some problems after installing oh-my-zsh. Wordmove was was working great but after installing zsh and changing the ~/.zshrc config and alias i could not get wordmove to work. I got ruby errors saying I did not have permissions. I then used sudo gem install wordmove and that would not let me install it because I didn't have a ruby 2.0.0 or greater. I did but it did not work. I tried messing with the zshrc PATH config and that didn't work. I got GEM_PATH GEM_HOME errors says they weren't properly defined? I couldn't get brew installed on ssh of vagrant. I tried to install the linux flavor of brew no luck. It was 2 hours of pain but I finally just uninstall ruby and then reinstalled rvm 2.2.2. I checked the version and then installed wordmove and all was well.
+
+Note: don't install wordmove on osx. Install it on linux box. Following this tip will save you problems because the paths of wordmove are absolute paths based on the linux box.
+[link for rvm install](https://rvm.io/rvm/install)
 
 tip: [show hidden files on mac](http://ianlunn.co.uk/articles/quickly-showhide-hidden-files-mac-os-x-mavericks/)
 ```
@@ -326,6 +381,59 @@ $ touch
 $ mv 287.jpg images/kitten.jpg
 ```
 
+## Compress files
+[resource](http://coolestguidesontheplanet.com/how-to-compress-and-uncompress-files-and-folders-in-os-x-lion-10-7-using-terminal/)
+ZIP – Cross Platform
+
+First up is ZIP one of the most commonly used compression techniques used across all platforms
+
+To compress
+```
+zip -r archive_name.zip folder_to_compress
+```
+To extract
+```
+unzip archive_name.zip
+```
+If you want to make a zip without those invisible Mac resource files such as “_MACOSX” or “._Filename” and .ds store files, use the “-X” option in the command so:
+
+```
+zip -r -X archive_name.zip folder_to_compress
+```
+TAR.GZ – Cross Platform
+
+Second up is TAR, an old favourite on Unix/Linux – you add the GZ for the compression – compresses tighter than zip
+
+To compress
+```
+tar -zcvf archive_name.tar.gz folder_to_compress
+```
+To extract
+
+```
+tar -zxvf archive_name.tar.gz
+```
+TAR.BZ2 – Cross Platform
+
+A variation on TAR GZ but with better compression than both tar.gz and zip.
+
+To compress
+```
+tar -jcvf archive_name.tar.bz2 folder_to_compress
+```
+To extract
+```
+tar -jxvf archive_name.tar.bz2
+```
+
+GZ
+
+Without the tar
+
+To extract
+```
+gunzip archivename.gz
+```
 # SSH
 * Your login, commands, and text are all encrypted when you use SSH
 * On a remote shared hosting plan you need to check in the cpanel if this is enabled. If not, enable it.

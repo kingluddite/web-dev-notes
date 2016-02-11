@@ -1,6 +1,9 @@
 # WordPress
 [download](https://wordpress.org/download/)
 
+## Serialized themes
+[Use this site to manually change serialized them in sql file](http://pixelentity.com/wordpress-search-replace-domain/)
+
 ## Git in WordPress
 So this is an any where lots of people have an opinion. Here's mine. Do you need to keep track of WordPress core files? No. So add them to your `.gitignore`. You need stuff inside `wp-content` but not everything and what you need will change depending on your individual project needs. Most of the time I'm just keeping track of the theme but I may have to start watching some custom plugins so I want the ability to add that. I usually create my README.md in the WordPress root and make sure not to ignore it.
 

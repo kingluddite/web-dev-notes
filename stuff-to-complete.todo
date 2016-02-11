@@ -17,8 +17,8 @@ For Search Engine Optimization (SEO) purposes, it is preferable to have a websit
  ☐ Ensure site moving will not harm email
 
 ## [createRE](http://create.com)
-☐ fix last 4 images that are still pulling from old `creatre` site
-☐ consolidate 2 prod folders into 1 wordpress app in production (move 1 folder into storage and moved prod site into createre.com-prod folder, still have 1 folder that has images used in prod site)
+✔ fix last 4 images that are still pulling from old `creatre` site @done (16-02-08 18:26)
+✔ consolidate 2 prod folders into 1 wordpress app in production (move 1 folder into storage and moved prod site into createre.com-prod folder, still have 1 folder that has images used in prod site) @done (16-02-08 18:27)
 ✔ point domain http://createre.com to createre.com-prod folder on production cpanel @done (16-02-05 23:02)
 
  ## [contmpodesign.com](http://contmpodesign.com)
