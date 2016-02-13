@@ -3,6 +3,13 @@
 You need to install Virtual box first
 * there are multiple ways to install virtual box
 
+## Problems with FTP
+If you are using FTP you will need to install lftp on your ubunto server box
+
+```
+$ sudo apt-get install lftp
+```
+
 ## Virtual Box
 ### Install
 * [Download Virtual Box](https://www.virtualbox.org/wiki/Downloads) 
