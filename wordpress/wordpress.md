@@ -69,6 +69,25 @@ Staging server for clients with Git on it
 ### WordMove
 Wordmove is a nice little gem that lets you automatically mirror local Wordpress installations and DB data back and forth from your local development machine to the remote staging server. SSH and FTP connections are both supported.
 
+## Needed for a theme
+
+style.css
+
+```css
+/*
+Theme Name: BHS ZZ
+Author: Kingluddite
+Author URI: http://kingluddite.com
+Description: WordPress lab learning how to create custom themes
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+```
+
 ####Screencasts
 
 Push all WordPress, including database and uploads: [video](http://vimeo.com/74648079)

@@ -1,6 +1,18 @@
 #WordPress gotchas
 
+Turn on debug mode
+
+wp-config.php
+
+* turn on debugging only use in development 
+
+```php
+define( 'WP_DEBUG', true );
+```
+
 If you run into a memory error, add this to your wp-config.php
+
+wp-config.php
 
 ```php
 define( 'WP_MEMORY_LIMIT', '96M' );
