@@ -1,5 +1,7 @@
 # WP CLI
 
+add back cassady's email
+
 deactivate all plugins at one time
 ```
 $ wp plugin deactivate --all

@@ -1015,66 +1015,98 @@ body .markdown-body
   }
 }
 </style><title>gulp</title></head><body><article class="markdown-body"><h1 id="gulp"><a name="user-content-gulp" href="#gulp" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Gulp</h1>
-<p>JavaScript task runner<br />
-Task set in JavaScript file. They are compiled and run.<br />
-Tasks can run one after the other<br />
-some tasks can depend on other tasks<br />
-Example<br />
-1. Task - Concatenate JavaScript<br />
-2. Task - Minify JavaScript</p>
-<p>Or Tasks can be run all at the same time in parallel</p>
-<p>Pipelines - task setups</p>
+<p>JavaScript task runner</p>
+<ul>
+<li>Task set in JavaScript file. They are compiled and run.</li>
+<li>Tasks can run one after the other</li>
+<li>Some tasks can depend on other tasks</li>
+</ul>
+<p>Example</p>
+<ol>
+<li>Task - Concatenate JavaScript</li>
+<li>Task - Minify JavaScript</li>
+</ol>
+<p><strong>Note:</strong> Tasks can be run all at the same time or in parallel</p>
 <h2 id="gulpfilejs"><a name="user-content-gulpfilejs" href="#gulpfilejs" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>gulpfile.js</h2>
 <p>The file that gulp looks for defined tasks in</p>
-<p>What do I need to run gulp?<br />
+<p><strong>What do I need to run gulp?</strong><br />
 <em> Node<br />
 </em> NPM (node package manager)</p>
-<p>Is node installed?<br />
+<p>How can I tell if Node is node installed?</p>
 <pre><code>$ which node
-</code></pre></p>
-<p>Is NPM installed?<br />
-<pre><code>which npm
-</code></pre></p>
-<p>Install gulp and http-server globally</p>
+</code></pre>
+
+<p>How can I tell if <code>npm</code> is intstalled?</p>
+<pre><code>$ which npm
+</code></pre>
+
+<p><strong>Note:</strong> When you install <code>node</code>, npm is installed too.</p>
+<p>Install <code>gulp</code> and <code>http-server</code> globally</p>
 <pre><code># Install gulp globally
-npm install -g gulp
+$ npm install -g gulp
+
 # Install http-server globally
-npm install -g http-server
+$ npm install -g http-server
 </code></pre>
 
-<h2 id="clone-a-repo"><a name="user-content-clone-a-repo" href="#clone-a-repo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Clone a repo</h2>
-<pre><code># Clone this repo
-git clone https://github.com/hdngr/treehouse-gulp-basics.git
-# Navigate into the directory
-cd treehouse-gulp-basics
-# Install the project's node dependencies
-npm install
-# Checkout the branch for the video you want to follow along with
-git checkout &lt;some-video&gt;
+<h2 id="installing-node-dependencies"><a name="user-content-installing-node-dependencies" href="#installing-node-dependencies" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Installing Node Dependencies</h2>
+<p>1 ) Clone this repo</p>
+<pre><code>$ git clone https://github.com/hdngr/treehouse-gulp-basics.git
 </code></pre>
 
-<p>You can also checkout particular files from another branch in git like so:</p>
-<pre><code>git checkout master -- package.json
+<p>2 ) Navigate into the directory</p>
+<pre><code>$ cd treehouse-gulp-basics
 </code></pre>
 
-<p>How do I change http-server to port 3000 instead of 8080?<br />
-More conventional to serve node apps on port 3000<br />
+<p>3 ) Install the project&rsquo;s node dependencies</p>
+<pre><code>$ npm install
+</code></pre>
+
+<h2 id="some-git-tips"><a name="user-content-some-git-tips" href="#some-git-tips" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Some Git tips</h2>
+<p>1) Checkout the branch for the video you want to follow along with</p>
+<pre><code>$ git checkout &lt;some-video&gt;
+</code></pre>
+
+<p>2) You can also checkout particular files from another branch in git like so:</p>
+<pre><code>$ git checkout master -- package.json
+</code></pre>
+
+<h2 id="change-server-ports"><a name="user-content-change-server-ports" href="#change-server-ports" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Change Server Ports</h2>
+<p><strong>How do I change http-server to port 3000 instead of 8080?</strong></p>
+<p>More conventional to serve node apps on port 3000</p>
 <pre><code>$ http-server -p 3000
-</code></pre></p>
-<p>This<br />
+</code></pre>
+
+<h2 id="-global-vs-g"><a name="user-content--global-vs-g" href="#-global-vs-g" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>&ndash;global vs -g</h2>
+<p>This</p>
 <pre><code>$ npm install --global http-server
-</code></pre></p>
-<p>Is the same as this:<br />
+</code></pre>
+
+<p>Is the same as this:</p>
 <pre><code>$ npm install -g http-server
-</code></pre></p>
-<p>Run the http server with:<br />
+</code></pre>
+
+<p><strong>How do I run the server?</strong></p>
 <pre><code>$ http-server
-</code></pre></p>
+</code></pre>
+
 <h2 id="packagejson"><a name="user-content-packagejson" href="#packagejson" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>package.json</h2>
-<p>In order to add gulp to our project we have to use <code>package.json</code> which lists the packages node dependencies<br />
-* also contains<br />
-    - version of our project<br />
-    - url of our project&rsquo;s git url</p>
+<p>In order to add gulp to our project we have to use <code>package.json</code> which lists the packages node dependencies</p>
+<p>Sample package.json</p>
+<pre><code class="json">{
+  &quot;name&quot;: &quot;sample-gulp-project&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+}
+</code></pre>
+
+<p><strong>Tip</strong>: If you use <code>git init</code> before <code>npm init</code> it will point to your git repo when creating your package.json file.</p>
 <h2 id="kill-server"><a name="user-content-kill-server" href="#kill-server" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Kill Server</h2>
 <p><code>ctrl</code> + <code>c</code></p>
 <h2 id="create-packagejson"><a name="user-content-create-packagejson" href="#create-packagejson" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Create package.json</h2>
@@ -1133,7 +1165,134 @@ gulp.task(&quot;hello&quot;, function() {
 });
 </code></pre>
 
+<ul>
+<li>task(name, callback)</li>
+</ul>
 <p>Then to run that task:<br />
 <pre><code>$ gulp hello
 </code></pre></p>
-<p>Output: Hello!</p></article></body></html>
+<p><strong>Output</strong>:<br />
+<img alt="output" src="https://i.imgur.com/luacgqv.png" /></p>
+<h2 id="default-task"><a name="user-content-default-task" href="#default-task" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Default task</h2>
+<p>So we just have to type <code>gulp</code> and gulp will run all the tasks and we don&rsquo;t have to name them all to run them all. Cool!</p>
+<pre><code>gulp.task(&quot;default&quot;, [&quot;hello&quot;], function() {
+  console.log(&quot;This is the default task&quot;);
+});
+</code></pre>
+
+<p>This will run all the dependencies (second parameter of task()) before running the default task and all we have to do is type <code>gulp</code> in the Terminal. Cool!</p>
+<h1 id="gulp_1"><a name="user-content-gulp_1" href="#gulp_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Gulp</h1>
+<h2 id="gulp-plugins"><a name="user-content-gulp-plugins" href="#gulp-plugins" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Gulp plugins</h2>
+<h3 id="gulp-concat"><a name="user-content-gulp-concat" href="#gulp-concat" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Gulp concat</h3>
+<p>combines multiple files into 1 file<br />
+<pre><code>$ npm install gulp-concat --save-dev
+</code></pre></p>
+<p>It will be added as a dev dependency to <code>package.json</code></p>
+<pre><code>&quot;devDependencies&quot;: {
+    &quot;gulp&quot;: &quot;^3.9.0&quot;,
+    &quot;gulp-concat&quot;: &quot;^2.6.0&quot;
+  }
+</code></pre>
+
+<p>Turn 3 into 1 files<br />
+<pre><code>&lt;script src=&quot;js/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;js/sticky/jquery.sticky.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;js/main.js&quot;&gt;&lt;/script&gt;
+</code></pre></p>
+<p>Convert into <code>app.js</code> (one single file) Cool!</p>
+<pre><code>'use strict'
+
+var gulp   = require('gulp'),
+    concat = require('gulp-concat');
+
+gulp.task(&quot;concatScripts&quot;, function() {
+  gulp.src([
+    'js/jquery.js',
+    'js/sticky/jquery.sticky.js',
+    'js/main.js'])
+  .pipe(concat(&quot;app.js&quot;))
+  .pipe(gulp.dest(&quot;js&quot;));
+});
+
+gulp.task(&quot;default&quot;, [&quot;hello&quot;], function() {
+  console.log(&quot;This is the default task&quot;);
+});
+</code></pre>
+
+<ul>
+<li>Add the gulp-concat require</li>
+<li>Can&rsquo;t use <code>-</code> because JavaScript will think it is math operator<ul>
+<li>that is why we name the variable <code>gulp</code> and not <code>gulp-concat</code></li>
+</ul>
+</li>
+<li>We first grab the source files using <code>gulp.src()</code> method<ul>
+<li>This method creates <code>readable stream of data</code><ul>
+<li>in memory piece of data that can be used by the application</li>
+<li>streams are a node thing<ul>
+<li>there are huge benefits to running streams in memory verses writing to disk</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We use <code>.pipe</code> to get <code>readable stream of data</code> to our next method<ul>
+<li><code>.pipe(concat("app.js"))</code><ul>
+<li>We pipe the stream of data to the <code>concat()</code> method and give the name of the file we are going to create</li>
+<li>Then we pipe that file to its destination <code>.pipe(gulp.dest("js"));</code><ul>
+<li>gulp.dest() method actually persists <code>readable stream of data</code> (aka <code>writing it to disk</code>)</li>
+</ul>
+</li>
+<li>We want the concatenated file to end up in the <code>js</code> folder so that is why we add it as the destination</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Order may be important (in or example it is)</li>
+</ul>
+<h3 id="run-the-new-gulp-concat-task"><a name="user-content-run-the-new-gulp-concat-task" href="#run-the-new-gulp-concat-task" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Run the new gulp concat task</h3>
+<pre><code>$ gulp concatScripts
+</code></pre>
+
+<ul>
+<li>Gulp plugins are installed with npm</li>
+</ul>
+<h1 id="minifying-javascript-files"><a name="user-content-minifying-javascript-files" href="#minifying-javascript-files" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Minifying JavaScript Files</h1>
+<ul>
+<li>Compresses file and eliminates space</li>
+<li>Quicker downloads</li>
+<li>Faster sight</li>
+<li>Can even rename variables for performance</li>
+</ul>
+<p><a href="http://alistapart.com/article/better-javascript-minification">How Minification Works</a></p>
+<h2 id="gulp-uglify"><a name="user-content-gulp-uglify" href="#gulp-uglify" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>gulp-uglify</h2>
+<p>Gulp package that compresses files</p>
+<h3 id="install"><a name="user-content-install" href="#install" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Install</h3>
+<pre><code>$ npm install gulp-uglify --save-dev
+</code></pre>
+
+<p><strong>Tip:</strong><br />
+Good to doublecheck package was installed so you know team members can install the right dependencies</p>
+<p>Add require for gulp-uglify and here is the task</p>
+<pre><code>gulp.task(&quot;minifyScripts&quot;, function() {
+  gulp.src(&quot;js/app.js&quot;)
+      .pipe(uglify())
+      .pipe(gulp.dest('js'))
+});
+</code></pre>
+
+<h2 id="gulp-rename"><a name="user-content-gulp-rename" href="#gulp-rename" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>gulp-rename</h2>
+<p>You don&rsquo;t want to overwrite your concatenated file so this enables you to create a new file name for your minimized file.</p>
+<p>Add the require variable for gulp-rename</p>
+<pre><code>gulp.task(&quot;minifyScripts&quot;, function() {
+  gulp.src(&quot;js/app.js&quot;)
+      .pipe(uglify())
+      .pipe(rename('app.min.js'))
+      .pipe(gulp.dest('js'))
+});
+</code></pre>
+
+<p><strong>Tip</strong><br />
+You can&rsquo;t debug minified code so you need both files.<br />
+1. Minified for production<br />
+2. Concatenated and uncompressed for debugging</p></article></body></html>

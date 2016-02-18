@@ -1,86 +1,133 @@
 # Gulp
 JavaScript task runner
-Task set in JavaScript file. They are compiled and run.
-Tasks can run one after the other
-some tasks can depend on other tasks
+
+* Task set in JavaScript file. They are compiled and run.
+* Tasks can run one after the other
+* Some tasks can depend on other tasks
+
 Example
+
 1. Task - Concatenate JavaScript
 2. Task - Minify JavaScript
 
-Or Tasks can be run all at the same time in parallel
-
-Pipelines - task setups
+**Note:** Tasks can be run all at the same time or in parallel
 
 ## gulpfile.js
 The file that gulp looks for defined tasks in
 
-What do I need to run gulp?
+**What do I need to run gulp?**
 * Node
 * NPM (node package manager)
 
-Is node installed?
+How can I tell if Node is node installed?
+
 ```
 $ which node
 ```
 
-Is NPM installed?
+How can I tell if `npm` is intstalled?
+
 ```
-which npm
+$ which npm
 ```
 
-Install gulp and http-server globally
+**Note:** When you install `node`, npm is installed too.
+
+Install `gulp` and `http-server` globally
 
 ```
 # Install gulp globally
-npm install -g gulp
+$ npm install -g gulp
+
 # Install http-server globally
-npm install -g http-server
+$ npm install -g http-server
 ```
 
-## Clone a repo
-```
-# Clone this repo
-git clone https://github.com/hdngr/treehouse-gulp-basics.git
-# Navigate into the directory
-cd treehouse-gulp-basics
-# Install the project's node dependencies
-npm install
-# Checkout the branch for the video you want to follow along with
-git checkout <some-video>
-```
+## Installing Node Dependencies
 
-You can also checkout particular files from another branch in git like so:
+1 ) Clone this repo
 
 ```
-git checkout master -- package.json
+$ git clone https://github.com/hdngr/treehouse-gulp-basics.git
 ```
 
-How do I change http-server to port 3000 instead of 8080?
+2 ) Navigate into the directory
+
+```
+$ cd treehouse-gulp-basics
+```
+
+3 ) Install the project's node dependencies
+
+```
+$ npm install
+```
+
+## Some Git tips
+
+1) Checkout the branch for the video you want to follow along with
+
+```
+$ git checkout <some-video>
+```
+
+2) You can also checkout particular files from another branch in git like so:
+
+```
+$ git checkout master -- package.json
+```
+
+
+## Change Server Ports
+
+**How do I change http-server to port 3000 instead of 8080?**
+
 More conventional to serve node apps on port 3000
+
 ```
 $ http-server -p 3000
 ```
 
+## --global vs -g
+
 This
+
 ```
 $ npm install --global http-server
 ```
 
 Is the same as this:
+
 ```
 $ npm install -g http-server
 ```
 
-Run the http server with:
+**How do I run the server?**
+
 ```
 $ http-server
 ```
 
 ## package.json
 In order to add gulp to our project we have to use `package.json` which lists the packages node dependencies
-* also contains
-    - version of our project
-    - url of our project's git url
+
+Sample package.json
+
+```json
+{
+  "name": "sample-gulp-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+```
+
+**Tip**: If you use `git init` before `npm init` it will point to your git repo when creating your package.json file.
 
 ## Kill Server
 `ctrl` + `c`
