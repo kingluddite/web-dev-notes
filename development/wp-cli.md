@@ -69,14 +69,14 @@ $ wp core download
 So now you are ready to create your `wp-config.php` file
 
 ```
- wp core config --dbuser=peh2createadmin --dbpass=YVm9uHNo5G --dbname=dev-create-wp
+$ wp core config --dbuser=root --dbpass=root --dbname=bhs_wp_zz
 ```
 
 
 Now you need to finish your core install by creating your title, username and password and email
 
 ```
-$  wp core install --url=http://staging.createre.com.corere.com --title=CreateRe --admin_user=PhilHowley --admin_password=password --admin_email=howley.phil@gmail.com
+$  wp core install --url=http://localhost/bhs-wp-zz --title=BHS --admin_user=peh2 --admin_password=a12345 --admin_email=howley.phil@gmail.com
 ```
 
 * If you get success, wordpress has been installed on command line. 

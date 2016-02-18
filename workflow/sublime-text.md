@@ -1,6 +1,10 @@
 # Sublime Text 3
 Is a text editor. There are a lot of [text editors out there](https://en.wikipedia.org/wiki/List_of_text_editors).
 
+## Sublime Project file
+* this helps you organize your files especially if you are working with WordPress
+[sublime project bliss](http://code.tutsplus.com/tutorials/sublime-text-2-project-bliss--net-27256)
+
 I like ST3 and use it exclusively. [Atom](https://atom.io/) is also very popular. If you know of an text editor you think is super awesome, let me know.
 
 ## Learning Resources for Sublime Text
