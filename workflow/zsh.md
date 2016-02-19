@@ -3,6 +3,9 @@
 ## Keyboard shortcuts
 Clear line: `ctrl` + `u`
 
+## go back to previous directory
+type dash - and you go back to previous directory
+
 [Wes Bos Intro](https://www.youtube.com/watch?v=IVgo5msaTlo)
 
 [wes bos tips](https://www.youtube.com/watch?v=4q3eO17eEK4)
@@ -325,6 +328,5 @@ alias get='git '
 
 https://github.com/rupa/z
 
-## tips
-type dash - and you go back to previous directory
+
 
