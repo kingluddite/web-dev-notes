@@ -1,5 +1,41 @@
 # ZSH
 
+## making directory path shorter
+When you have a deeply nested folder, working in zsh is problematic
+
+something that looks like this:
+![long zsh path](https://i.imgur.com/PvHKlxX.png)
+
+can be made to look like this:
+![short zsh path](https://i.imgur.com/IJWU6Gg.png)
+
+if you ever need to find out the full path, just type `$ pwd`.
+
+here's how you do it:
+find out your current theme in your `.zshrc` file
+
+```bash
+ZSH_THEME="cobalt2"
+```
+
+Open up that theme by going to your themes folder
+
+```bash
+$ cd ~/.oh-my-zsh/themes/
+```
+
+I'm using the `cobalt2` theme so I opened that theme up and commented out the existing code _(comments are made using #)_
+
+```bash
+prompt_dir() {
+  prompt_segment blue black '%2/'
+  #echo $(pwd | sed -e "s,^$HOME,~," | sed "s@\(.\)[^/]*/@\1/@g")
+  #echo $(pwd | sed -e "s,^$HOME,~,")
+}
+```
+
+Since I have the number 2, I will only ever see 2 directories
+
 ## Keyboard shortcuts
 Clear line: `ctrl` + `u`
 

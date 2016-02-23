@@ -1,3 +1,20 @@
+## problems
+get CLI error when installing jshint when using Gulp
+
+![jshint error](https://i.imgur.com/5xEtagI.png)
+
+first make sure jshint is installed globally
+
+```
+npm install -g jshint
+```
+
+Solution
+
+```
+npm install --save-dev jshint gulp-jshint
+```
+
 ## Compile Sass into CSS
 **Never** Edit compiled application.css file
 
