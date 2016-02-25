@@ -48,7 +48,7 @@ Adding packages is really quick, painless and kind of fun.
     - When package highlighted, click `RETURN` to install it
 
 ## More Useful Packages To Check Out
-
+[Make your theme look cool with icons](https://packagecontrol.io/packages/Seti_UI)
 
 * Emmet
   - Super awesome productivity tool
@@ -349,26 +349,49 @@ Here are a couple links explaining what we just did in more details
 ```js
 {
   "bold_folder_labels": true,
-  "caret_extra_width": 1,
-  "caret_style": "wide",
-  "color_scheme": "Packages/User/Monokai (SL).tmTheme",
+  "caret_extra_width": 2,
+  "caret_extra_bottom": 3,
+  "caret_extra_top": 3,
+  "caret_style": "phase",
+  "close_windows_when_empty": true,
+  "color_scheme": "Packages/User/SublimeLinter/base16-ocean.dark (SL).tmTheme",
+  "create_window_at_startup": false,
+  "default_line_ending": "LF",
+  "drag_text": false,
+  "draw_white_space": "all",
+  "ensure_newline_at_eof_on_save": true,
   "fade_fold_buttons": false,
-  "font_size": 20,
+  "font_face": "Menlo",
+  "overlay_scroll_bars": "enabled",
+  "font_options":
+  [
+    "subpixel_antialias"
+  ],
+  "font_size": 19.0,
   "highlight_line": true,
   "highlight_modified_tabs": true,
+  "hot_exit": false,
   "ignored_packages":
   [
-    "",
-    "CSS"
+    "CSS",
+    "Markdown"
   ],
-  "index_files": false,
-  "line_padding_bottom": 1,
-  "line_padding_top": 1,
-  "save_on_focus_lost": true,
+  "line_padding_bottom": 2,
+  "line_padding_top": 2,
+  "remember_open_files": false,
+  "rulers":
+  [
+    80
+  ],
+  "saves_on_focus_lost": true,
   "scroll_past_end": true,
-  "tab_size": 2,
+  "tab_size": 4,
+  "theme": "Seti.sublime-theme",
   "translate_tabs_to_spaces": true,
-  "word_wrap": true
+  "trim_trailing_white_space_on_save": true,
+  "word_separators": "./\\()\"':,.;<>~!@#$%^&*|+=[]{}~?",
+  "word_wrap": true,
+  "wrap_width": 80
 }
 ```
 
