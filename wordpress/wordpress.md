@@ -31,6 +31,8 @@ wp-content/plugins/*
 # Ignore everything in the "themes" directory, except the themes you specify
 wp-content/themes/*
 !wp-content/themes/my-awesome-theme/
+
+node_modules
 ```
 
 

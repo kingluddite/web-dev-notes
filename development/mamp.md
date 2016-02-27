@@ -58,6 +58,12 @@ $ which mysql
 Output
 /Applications/MAMP/Library/bin/mysql
 
+if you don't get out it means the program doesn't see mysql, so to see this you need to go into your `.bash_profile` or `.zshrc` and make it see it throught the PATH environment variable with this:
+
+```
+export PATH=$PATH:/Applications/MAMP/Library/bin
+```
+
 ## Troubleshooting
 if you have mysql command not found, open up your .zshrc file
 
