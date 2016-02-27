@@ -15,7 +15,7 @@ $ npm install gulp browser-sync --save-dev
 code to install dependencies
 
 ```
-$ npm install gulp gulp-cssnano gulp-sass gulp-uglify gulp-jshint gulp-concat gulp-notify gulp-plumber jshint-stylish browser-sync gulp-autoprefixer 
+$ npm install --save-dev gulp gulp-cssnano gulp-sass gulp-uglify gulp-jshint gulp-concat gulp-notify gulp-plumber jshint-stylish browser-sync gulp-autoprefixer 
 ```
 
 Tip: add this to a public gist with ST3's gist package and use whenever you start a package.
