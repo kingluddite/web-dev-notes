@@ -58,6 +58,15 @@ $ which mysql
 Output
 /Applications/MAMP/Library/bin/mysql
 
+## Troubleshooting
+if you have mysql command not found, open up your .zshrc file
+
+can't connect through socket error
+try this sym link solution
+```
+sudo ln -s /Applications/MAMP/Library/bin/mysql /usr/local/bin/mysql
+```
+
 ```
 $ which php
 ```
