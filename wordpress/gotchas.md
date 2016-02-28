@@ -1,5 +1,8 @@
 #WordPress gotchas
 
+## Child Theme not seeing parent
+You must name the theme with the exact (case-sensitive ) name of parent theme folder.
+
 Turn on debug mode
 
 wp-config.php
