@@ -344,6 +344,8 @@ Here are a couple links explaining what we just did in more details
 
 ## ST3 Config
 
+Sublime Text > Preferences > Settings - User
+
 * Found these config setting sprawled out throughout the web. Worth checking out.
 
 ```js

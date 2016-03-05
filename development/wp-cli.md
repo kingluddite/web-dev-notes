@@ -70,14 +70,14 @@ $ wp core download
 So now you are ready to create your `wp-config.php` file
 
 ```
-$ wp core config --dbuser=root --dbpass=root --dbname=wp_custom_theme
+$ wp core config --dbuser=root --dbpass=root --dbname=rice_noodle
 ```
 
 
 Now you need to finish your core install by creating your title, username and password and email
 
 ```
-$  wp core install --url=http://localhost/wp-custom-theme --title=WPCustomTheme --admin_user=root --admin_password=root --admin_email=howley.phil@gmail.com
+$  wp core install --url=http://localhost/cross-bridge-rice-nood --title=RiceNoodle --admin_user=peh2 --admin_password=peh2 --admin_email=howley.phil@gmail.com
 ```
 
 * If you get success, wordpress has been installed on command line. 
