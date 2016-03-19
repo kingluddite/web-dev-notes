@@ -1,4 +1,16 @@
 # WP CLI
+
+## bugs
+database connection error with MAMP
+add this to your .zshrc file
+##
+# WP-CLI / MAMP compat
+##
+export MAMP_PHP=/Applications/MAMP/bin/php/php5.5.10/bin
+export PATH="$MAMP_PHP:$PATH:/Applications/MAMP/Library/bin"
+[ref](http://laurenpittenger.com/wpcli-error-establishing-database-connection-mamp/)
+
+
 add back cassady's email
 
 deactivate all plugins at one time
@@ -70,14 +82,14 @@ $ wp core download
 So now you are ready to create your `wp-config.php` file
 
 ```
-$ wp core config --dbuser=root --dbpass=root --dbname=rice_noodle
+$ wp core config --dbuser=root --dbpass=root --dbname=html5_boilerplate
 ```
 
 
 Now you need to finish your core install by creating your title, username and password and email
 
 ```
-$  wp core install --url=http://localhost/cross-bridge-rice-nood --title=RiceNoodle --admin_user=peh2 --admin_password=peh2 --admin_email=howley.phil@gmail.com
+$  wp core install --url=http://localhost/html5-boilerplate-wp --title=HTML5WPBoilerplate --admin_user=peh2 --admin_password=peh2 --admin_email=howley.phil@gmail.com
 ```
 
 * If you get success, wordpress has been installed on command line. 
