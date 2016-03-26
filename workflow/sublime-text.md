@@ -2,6 +2,23 @@
 Is a text editor. There are a lot of [text editors out there](https://en.wikipedia.org/wiki/List_of_text_editors).
 
 ## Sublime Project file
+
+When you have a bunch of project files they can be hard to navigate so on a Mac here is how you clear them. Go into the Session of ST3 and find this file
+
+```
+cd /Users/phowley/Library/Application Support/Sublime Text 3/Local
+```
+
+Then open this file in Sublime
+```
+sop Session.sublime_session
+```
+
+And manually remove all the history.
+
+You can also go to Project > open recent > clear all
+
+
 * this helps you organize your files especially if you are working with WordPress
 [sublime project bliss](http://code.tutsplus.com/tutorials/sublime-text-2-project-bliss--net-27256)
 
