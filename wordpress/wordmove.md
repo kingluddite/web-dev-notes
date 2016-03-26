@@ -1,3 +1,7 @@
+To set up WordMove in VVV you need to use these instructions:
+
+[wordmove in vvv](https://github.com/welaika/wordmove/wiki/Getting-Wordmove-installed-in-VVV-(or-any-Vagrant))
+
 push just db to staging
 
 ```
@@ -49,9 +53,9 @@ staging:
   wordpress_path: "/home/phil1020/public_html/dev-fairprogram.org" # use an absolute path here
 
   database:
-    name: "devfpwp2"
-    user: "peh2devfpwp2"
-    password: "NZ8KJ9ha#C1"
+    name: "devxxx"
+    user: "peh2devxxxx"
+    password: "NZ8KJ9xxxx"
     host: "localhost"
     # port: "3308" # Use just in case you have exotic server config
 
@@ -76,9 +80,9 @@ staging:
   #   themes: "wp-content/themes"
 
   ssh:
-   host: "107.180.54.176"
-   user: "phil1020"
-   password: "0gT6WrBlMioxtk" # password is optional, will use public keys if available.
+   host: "107.180.54.222"
+   user: "philiscool"
+   password: "0gT6Wr12345" # password is optional, will use public keys if available.
   #   port: 22 # Port is optional
   #   rsync_options: "--verbose" # Additional rsync options, optional
   #   gateway: # Gateway is optional
@@ -93,13 +97,13 @@ staging:
   #   passive: true
 
 production:
-  vhost: "http://fairprogram.org"
-  wordpress_path: "/home/contmpodesign/public_html/fairprogram.org-prod" # use an absolute path here
+  vhost: "http://prodsite.org"
+  wordpress_path: "/home/prodsite/public_html/prodsite.org-prod" # use an absolute path here
 
   database:
-    name: "i1222475_wp6"
-    user: "i1222475_wp6"
-    password: "U*AYX6Bs[24QIC2hQn[09~]6"
+    name: "i1dbnamexxx_wp6"
+    user: "i1xuser_wp6"
+    password: "ou812coolpassword"
     host: "localhost"
     # port: "3308" # Use just in case you have exotic server config
 
@@ -124,9 +128,9 @@ production:
   #   themes: "wp-content/themes"
 
   ssh:
-    host: "160.153.62.72"
-    user: "contmpodesign"
-    password: "NNXk9ESPgqdGth" # password is optional, will use public keys if available.
+    host: "160.153.62.111"
+    user: "imporuser"
+    password: "NNXk9ESPpasswordcool" # password is optional, will use public keys if available.
   #   port: 22 # Port is optional
   #   rsync_options: "--verbose" # Additional rsync options, optional
   #   gateway: # Gateway is optional
