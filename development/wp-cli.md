@@ -190,13 +190,13 @@ For every plugin and theme you add to your website, you are adding a whole direc
 ### Update all plugins 
 
 ```
-wp plugin update-all
+wp plugin update --all
 ```
 
 ### Update all themes
 
 ```
-wp theme update-all
+wp theme update --all
 ```
 
 Maybe you want to check which plugins are installed, and which have updates available?
