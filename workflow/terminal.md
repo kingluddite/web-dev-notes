@@ -19,6 +19,12 @@ $ cp -R file.js some_folder
 
 **Important** not to add ending `/` or you'll copy just the files inside the directory!
 
+## How do I move all files that are inside folder A into folder B
+```
+$ mv bhs/* ajax-gulp/
+```
+
+
 ## Home directory
 
 ## Clear terminal window when it gets too full
