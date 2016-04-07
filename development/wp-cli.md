@@ -1,5 +1,6 @@
 # WP CLI
 
+
 ## bugs
 database connection error with MAMP
 add this to your .zshrc file
@@ -10,8 +11,13 @@ export MAMP_PHP=/Applications/MAMP/bin/php/php5.5.10/bin
 export PATH="$MAMP_PHP:$PATH:/Applications/MAMP/Library/bin"
 [ref](http://laurenpittenger.com/wpcli-error-establishing-database-connection-mamp/)
 
+### Update
 
-add back cassady's email
+```
+# wp core update
+# wp core update-db
+```
+>>>>>>> update wp-cli notes
 
 deactivate all plugins at one time
 ```
@@ -165,13 +171,6 @@ Core files for your current versions of
 * Themes
 * Any custom or altered files
 * Your wp-config.php or database credentials
-
-### Update
-
-```
-# wp core update
-# wp core update-db
-```
 
 Can You Log In Successfully?
 At this point, you will want to check your website to make sure everything looks good and you can log in successfully.

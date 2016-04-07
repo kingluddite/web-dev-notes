@@ -22,6 +22,9 @@
 $ brew install composer
 ```
 
+## Useful Chrome browser extensions
+Y - [Y link](https://chrome.google.com/webstore/detail/yet-another-lorem-ipsum-g/jffcmkkfbampimhpimhofhhkanhflfce)
+* quick way to added html filler text to WordPress pages or anywhere.
 
 ## Symbolic Linking on Macs (sym links)
 Symbolic links are awesome and they really make life easy. Here's an example of why I would use a symbolic link:
