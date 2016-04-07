@@ -1,5 +1,22 @@
 # Essential Web Dev Tools
 
+* homebrew (mac) install
+* iterm2 (mac)
+* MAMP (mac)
+* Git (install on pc, old version pre-installed on Mac)
+* Signup Github Account
+* Download WordPress
+* Local/Staging
+* Install WordPress
+    - root server folder
+    - create DB in phpMyAdmin
+* VirtualBox (install at home)
+* Vagrant (install at home)
+* VVV (install at home)
+* VV Dashboard (install at home)
+* VV (install at home)
+* WordMove (install at home)
+
 ## Composer
 ```
 $ brew install composer
