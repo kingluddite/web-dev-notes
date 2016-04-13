@@ -14,8 +14,16 @@ $ cp -R file.js some_folder
 
 # Simple list of files in directory
 $ ls
+**Important** not to add ending `/` or you'll copy just the files inside the directory!
 
-# Quickly change to home directory
+## How do I move all files that are inside folder A into folder B
+$ mv bhs/* ajax-gulp/
+
+
+## Clear terminal window when it gets too full
+$ clear
+
+## Quickly change to `home` directory
 $ cd ~
 ## or just
 $ cd
@@ -58,7 +66,6 @@ zip -r archive_name.zip folder_to_compress
 
 # unzip (extract) zip
 unzip archive_name.zip
-
 ```
 
 ## Compress files Additional Information
