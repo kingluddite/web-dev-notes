@@ -14,3 +14,10 @@ Here is the terminal command to install a sql file into your local MySQL db
 ```
 $ mysql -u root -p 123 fair_dev < fairprogram-local.sql
 ```
+
+
+## How to extract data from mysql database
+
+```
+mysqldump --host=localhost --user=root --password=123 bhs --result-file=/Users/philiphowley/Documents/dev/puPHPet/bhs-wp/workspace/bhs-wp/wp-content/dump.sql
+```

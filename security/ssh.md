@@ -1,3 +1,19 @@
+# SSH
+* Your login, commands, and text are all encrypted when you use SSH
+* On a remote shared hosting plan you need to check in the cpanel if this is enabled. If not, enable it.
+* SSH allows you to perform secure file transfers and remote logins over an encrypted internet connection. Because you must have the private SSH key in order to authenticate a session, it is almost impossible to perform a brute force attack against an SSH connection. You can use this interface to create new SSH keys, import keys, manage keys, or delete keys in order to allow automated logins to SSH.
+
+```
+$ ssh remote_username@remote_host
+# example: ssh admin@pizza.com
+```
+
+If your don't have a SSH key here is how you generate it:
+
+```
+$ ssh-keygen -t rsa -C "your_email@example.com"
+```
+
 # Generating Keys
 
 ls -al ~/.ssh

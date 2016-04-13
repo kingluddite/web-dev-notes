@@ -4,166 +4,135 @@
 ## Terminal Cheatsheet
 [terminal cheatsheet](https://github.com/0nn0/terminal-mac-cheatsheet/wiki/Terminal-Cheatsheet-for-Mac-(-basics-))
 
-
-## Remove file/directory recursively
-
-```
-$ rm -R (name_of_file or name of directory)
-```
-
-## Move or rename
+## Terminal Commands
 
 ```
-$ cp -R file.js some_folder 
-```
+# Move or rename file
+## the mv command and rename or move files
+## not to add ending `/` or you'll copy just the files inside the directory!
+$ cp -R file.js some_folder
 
-**Important** not to add ending `/` or you'll copy just the files inside the directory!
-
-## Home directory
-
-## Clear terminal window when it gets too full
-
-```
-$ clear
-```
-
-## Quickly change to `home` directory
-
-```
-cd (or cd ~)
-```
-
-## Grab image from remote location and pull to your computer
-
-```
-$ curl https://fbstatic-a.akamaihd.net/rsrc.php/v2/yx/r/038LUUqibNf.png -O /images
-```
-
-## List files
-
-```
+# Simple list of files in directory
 $ ls
-```
 
-## List all files (hidden and and permissions)
-
-```
-$ ls -la 
-```
-
-## Change Directory
-
-```
+# Quickly change to home directory
+$ cd ~
+## or just
 $ cd
+
+# List all files (hidden and permissions)
+## useful if you want to find out if you have read/write permissions on a folder/file
+$ ls -la
+
+# Change Directory
+# if you just type cd by itself it takes you to the home directory
+# ~ is the symbol for home directory
+$ cd some-folder
+
+# Make Directory
+$ mkdir some-folder
+
+# Make File
+$ touch somefile.html
+
+# Move a file
+$ mv file.jpg images/kitten.jpg
+
+# Where are you? (Present Working Directory)
+$ pwd
+
+# Clear terminal window when it gets too full
+$ clear
+
+# Remove file or folder recursively
+## if will not be able to remove empty folders if you don't use the -r flag (recursive)
+## the -f flag is force
+$ rm -rf some-file.js
+$ rm -rf some-folder
+
+# grab image from internet and download to your computer
+$ curl https://fbstatic-a.akamaihd.net/rsrc.php/v2/yx/r/038LUUqibNf.png -O /images
+
+# zip a file
+zip -r archive_name.zip folder_to_compress
+
+# unzip (extract) zip
+unzip archive_name.zip
+
 ```
 
-## Make Directory
+## Compress files Additional Information
 
-``` 
-$ mkdir 
-```
-
-## Make File
-
-```
-$ touch 
-```
-
-## Move example
-
-```
-$ mv 287.jpg images/kitten.jpg
-```
-
-## Compress files
 [resource](http://coolestguidesontheplanet.com/how-to-compress-and-uncompress-files-and-folders-in-os-x-lion-10-7-using-terminal/)
-ZIP – Cross Platform
+### ZIP – Cross Platform
 
 First up is ZIP one of the most commonly used compression techniques used across all platforms
 
-To compress
-```
-zip -r archive_name.zip folder_to_compress
-```
-To extract
-```
-unzip archive_name.zip
-```
 If you want to make a zip without those invisible Mac resource files such as “_MACOSX” or “._Filename” and .ds store files, use the “-X” option in the command so:
+```
+$ zip -r -X archive_name.zip folder_to_compress
+```
 
-```
-zip -r -X archive_name.zip folder_to_compress
-```
-TAR.GZ – Cross Platform
+### TAR.GZ – Cross Platform
 
 Second up is TAR, an old favourite on Unix/Linux – you add the GZ for the compression – compresses tighter than zip
 
 To compress
+
 ```
 tar -zcvf archive_name.tar.gz folder_to_compress
 ```
+
 To extract
 
 ```
 tar -zxvf archive_name.tar.gz
 ```
-TAR.BZ2 – Cross Platform
+
+### TAR.BZ2 – Cross Platform
 
 A variation on TAR GZ but with better compression than both tar.gz and zip.
 
 To compress
+
 ```
 tar -jcvf archive_name.tar.bz2 folder_to_compress
 ```
+
 To extract
+
 ```
 tar -jxvf archive_name.tar.bz2
 ```
 
-GZ
+### GZ
 
 Without the tar
 
 To extract
+
 ```
 gunzip archivename.gz
 ```
-# SSH
-* Your login, commands, and text are all encrypted when you use SSH
-* On a remote shared hosting plan you need to check in the cpanel if this is enabled. If not, enable it.
-* SSH allows you to perform secure file transfers and remote logins over an encrypted internet connection. Because you must have the private SSH key in order to authenticate a session, it is almost impossible to perform a brute force attack against an SSH connection. You can use this interface to create new SSH keys, import keys, manage keys, or delete keys in order to allow automated logins to SSH.
-
-```
-$ ssh remote_username@remote_host
-# example: ssh admin@pizza.com
-```
-
-If your don't have a SSH key here is how you generate it:
-
-```
-$ ssh-keygen -t rsa -C "your_email@example.com"
-```
-2LbgWx.i3I%e
-
-```
-mysqldump --host=localhost --user=root --password=123 bhs --result-file=/Users/philiphowley/Documents/dev/puPHPet/bhs-wp/workspace/bhs-wp/wp-content/dump.sql
-```
-
-
 
 # Aliases
 ## .bash_profile
 
-# Sample .bash_profile
+### Sample .bash_profile
 
-This is your user configuration file. Alias are great to use for moving quickly around your files. Lots of other stuff you can do too but even if you only use aliases, then you will love the `.bash_profile`
+This is your user configuration file. 
+
+Moving from one folder to the next can be time consuming and cumbersome. The GUI Finder is what most people use on their Macs but once you get comfortable with the Terminal you will quickly start using Aliases and these will improve your workflow. They are just short keys you time that will take you to a location on your computer you go to a lot. You add these inside your user configuration file which is usually the `.bash_profile`
+
+Alias are great to use for moving quickly around your files. Lots of other stuff you can do too but even if you only use aliases, then you will love the `.bash_profile`
 
 ```
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 set -o vi
 
-alias md='mkdir'
-# running more than one web site on a single machine
+# =================
+# Aliases
+# =================
 
 ## Apache
 #alias editVhosts='sublime /etc/apache2/extra/httpd-vhosts.conf'
@@ -172,12 +141,17 @@ alias md='mkdir'
 # if trying to add IP and domains on your machine
 #alias editHosts='sublime /etc/hosts'
 
+## General aliases
+
+alias md='mkdir'
+
 # quick access to your bash file
 alias bash='sublime ~/.bash_profile'
+
 # refresh your bash 'refrash' lol!
 alias refrash='source ~/.bash_profile'
 
-#finding folders fast
+# finding folders fast
 # Sites is a file that many mac developers use to host their local dev files.
 # Old Mac OS had it created by default, no you have to create it
 alias sites='cd ~/Sites/'
@@ -221,8 +195,22 @@ alias mv='mv -iv'
 alias rm='rm -iv'
 alias mkdir='mkdir -pv'
 
-# make and change into directory you made
-function mcd() { [ -n "$1" ] && mkdir -p "$@" && cd "$1"; }
+# ====================
+# Git Aliases
+# ====================
+alias gs='git status'
+alias gap='git add -p'
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+alias glog='git log --pretty=oneline --abbrev-commit'
+# when I mispell git commands the following 2 commands help
+alias got='git '
+alias get='git '
 
 # =================
 # Additional Aliases
@@ -280,6 +268,9 @@ export HISTIGNORE="h"
 # Functions
 # =================
 
+# make and change into directory you made
+function mcd() { [ -n "$1" ] && mkdir -p "$@" && cd "$1"; }
+
 #######################################
 # Start an HTTP server from a directory
 # Arguments:
@@ -332,23 +323,6 @@ fi
 # ====================================
 # Environmental Variables and API Keys
 # ====================================
-
-# ====================
-# Git Aliases
-# ====================
-alias gs='git status'
-alias gap='git add -p'
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
-alias gd='git diff'
-alias go='git checkout '
-alias gk='gitk --all&'
-alias gx='gitx --all'
-alias glog='git log --pretty=oneline --abbrev-commit'
-# when I mispell git commands the following 2 commands help
-alias got='git '
-alias get='git '
 
 # Sexy Bash Prompt, inspired by "Extravagant Zsh Prompt"
 # Screenshot: http://img.gf3.ca/d54942f474256ec26a49893681c49b5a.png
