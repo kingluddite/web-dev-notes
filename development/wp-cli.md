@@ -88,15 +88,18 @@ $ wp core download
 So now you are ready to create your `wp-config.php` file
 
 ```
-$ wp core config --dbuser=root --dbpass=root --dbname=html5_boilerplate
+$ wp core config --dbuser=root --dbpass=root --dbname=wp_bootstrap
 ```
 
 
 Now you need to finish your core install by creating your title, username and password and email
 
 ```
-$  wp core install --url=http://localhost/html5-boilerplate-wp --title=HTML5WPBoilerplate --admin_user=peh2 --admin_password=peh2 --admin_email=howley.phil@gmail.com
+$  wp core install --url=http://localhost/wp-bootstrap --title=WPBootstrap --admin_user=peh2 --admin_password=peh2 --admin_email=howley.phil@gmail.com
 ```
+
+* sometimes you may have to rename localhost in wp-config.php to 127.0.0.1 to avoid database connection error
+
 
 * If you get success, wordpress has been installed on command line. 
 * Log in with the credentials you just created.

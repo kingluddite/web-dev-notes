@@ -59,7 +59,11 @@ $ rm -rf some-file.js
 $ rm -rf some-folder
 
 # grab image from internet and download to your computer
-$ curl https://fbstatic-a.akamaihd.net/rsrc.php/v2/yx/r/038LUUqibNf.png -O /images
+$ curl -O https://some-file.png
+# put in images folder
+$ curl -O https://some-file.png /images
+# rename and download image
+$ curl -O new-name.png https://some-file.png
 
 # zip a file
 zip -r archive_name.zip folder_to_compress
@@ -67,6 +71,8 @@ zip -r archive_name.zip folder_to_compress
 # unzip (extract) zip
 unzip archive_name.zip
 ```
+
+[download images with curl](http://osxdaily.com/2014/02/13/download-with-curl)
 
 ## Compress files Additional Information
 

@@ -1,5 +1,7 @@
 # WordPress Custom theme development
 
+## Enable Permalinks for nicer URLS
+
 ## Where themes live?
 Dashboard > Appearance > Active
 * can search themes
@@ -79,19 +81,19 @@ Our site is now blank
 1. copy css to underneath style.css
     - `@import`
 2. install homebrew
-3. install nodejs using [homebrew](http://brew.sh/)
 
 ```
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
+3. install nodejs using [homebrew](http://brew.sh/)
 
-4. [install nodejs with homebrew](http://blog.teamtreehouse.com/install-node-js-npm-mac)
+[install nodejs with homebrew](http://blog.teamtreehouse.com/install-node-js-npm-mac)
 
 ```
 $ brew install node
 ```
 
-5. Initialize your package.json file
+4. Initialize your package.json file
 
 * accept all default values
 
@@ -99,13 +101,13 @@ $ brew install node
 $ npm init
 ```
 
-6. Install [normalize.css](https://necolas.github.io/normalize.css/)
+5. Install [normalize.css](https://necolas.github.io/normalize.css/)
 
 ```
 $ npm install normalize.css
 ```
 
-7. Install [Zurb Foundation](http://foundation.zurb.com/)
+6. Install [Zurb Foundation](http://foundation.zurb.com/)
 
 ```
 $ npm install foundation-sites
@@ -116,8 +118,8 @@ $ npm install foundation-sites
             * [zurb github](https://github.com/zurb/bower-foundation)
         + install [normalize](https://github.com/necolas/normalize.css/)
 
-2. create `css` folder in custom theme
-3. 
+7. create `css` folder in custom theme
+
     
 functions.php
 
