@@ -1,5 +1,7 @@
 #Ajax
 
+**Note** You can not use Ajax without a server.
+
 Show Ajax requests
 1. google maps
 2. console
@@ -30,6 +32,8 @@ XML
 * `note`: need a server to have this work
 
 `index.html`
+
+Here we use Ajax to grab a file resource, which is just a fragment of HTML and place it inside a DIV element. We use the DOM to grab the DIV element by it's ID attribute. We create a new XHR object and check it's `onreadystate` property to see if it's a value of 4. If it is we know the response is ready and we plug the XHR's `responseText` property to the DIV element we captured. The `responseText` is going to hold our string of data (which is just the fragment of HTML). As soon as the page loads, we use AJAX and the page should load the fragment of HTML instaneously (or quickly depending on the internet connection.)
 
 ```html
 <!DOCTYPE html>
