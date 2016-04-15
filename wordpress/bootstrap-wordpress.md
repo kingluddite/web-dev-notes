@@ -59,8 +59,15 @@ Custom themes can have lots of files. But the only required files are `index.php
 * footer.php
 * index.php (required)
 * style.css (required)
+* screenshot.png
 
-[screenshot.png](https://themes.trac.wordpress.org/ticket/27213) - This is a step that let's you show an image of your theme in the Dashboard.
+Use this code to grab a proper dimensioned screenshot.png to give you a cute example of how to add a screenshot.png using the terminal
+
+* make sure you are inside the custom theme folder when entering this code
+
+```
+$ curl -O https://make.wordpress.org/training/files/2013/10/screenshot.png
+```
 
 ## 6. Add special css comment to style.css
 
@@ -96,7 +103,7 @@ We'll use this template and convert it so it looks the same in our WordPress cus
 
 ### header.php
 
-In `index.php`, select from the html5 doctype down to the closing NAV element and paste inside `header.php`
+In `index.php`, select from the `<!DOCTYPE html>` down to the closing `</nav>` element and paste inside `header.php`
 
 ### php includes
 
@@ -104,12 +111,13 @@ In `index.php`, select from the html5 doctype down to the closing NAV element an
 
 If you worked with PHP before you know about includes. It's just a way to include a chunk of code onto another page. `get_header()` will pull into index.php the code inside `header.php`.
 
-Replace cut code in index.php with the following PHP code:
+Replace the cut code in `index.php` with the following PHP code:
 
 `index.php`
 
 ```php
 <?php get_header(); ?>
+[rest of index.php code here]
 ```
 
 View page in browser to test if header include is working
@@ -121,6 +129,7 @@ In `index.php` select and cut from the HR element to end of the HTML element and
 Replace cut code in `index.php` with the following PHP code:
 
 ```php
+[rest of index.php code here]
 <?php get_footer(); ?>
 ```
 
@@ -147,18 +156,110 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ?>
 ```
 
-13. add this php to just before header.php closing HEAD element
+## 11.1 Homebrew
+
+[Homebrew](http://brew.sh/) is great for Mac computers.
+
+Install it with this code:
+
+```
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+## 11.2 Install Node using Homebrew
+
+```
+$ brew install node
+```
+
+Now you have `npm` (node package manager) and this gives you some cool abilities
+
+## 11.3 package.json
+
+```
+$ npm init
+```
+
+This will create a simple package.json file that will be used a lot when you are using git and github. We are using it here so we can easily install bootstrap. (Otherwise we would have to find a CDN link or manually download it). package.json is a file modern web developers use to spead up their workflow when building web applications.
+
+## 11.4 Install Twitter Bootstrap with npm
+
+```
+$ npm install bootstrap --save
+```
+
+## 11.5 Sample package.json
+
+After installing bootstrap and saving it, `package.json` will look something like this:
+
+```js
+{
+  "name": "kl-wordwrap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
+```
+
+The really cool thing about this file is that you can save all the dependencies your custom theme needs to github and then when you, or someone else, clones it to another computer, it can easily install all your application dependencies with this simple command:
+
+```
+$ npm install
+```
+
+**What is an application dependency?**
+If your site is using `jQuery` and `bootstrap`, they are application dependencies and you would have to manually download them every time you clone the site. You don't want to add `jQuery` and `bootstrap` to git (and github) because you are not maintaining these files. But you do need these files for your site to work. So the modern workflow for web developers is to add `node_modules` to your .gitignore file in `git` and then they won't be in your git or github repositories. But when you clone them you can easily (and quickly) add them with `$ npm install`. This is an advanced topic that may confuse you but it is just introduced here to simple introduce you to a very important web development tool.
+
+## 12. Hooks in WordPress
+
+There will be times where you need to inject code at a certain part of your custom theme. That is where hooks come in. In a standard static HTML site, you would put LINK elements to point to your CSS. In WordPress we use the `wp_head()` **hook** to inject the CSS we have line up (or a better WordPress word to use here would be **enqueued**). Once you do this and view your WordPress site, you will see that the CSS from Twitter Bootstrap's Jumbo sample page is now working.
+
+In `header.php` add this php to just before closing HEAD element
 
 ```php
 <?php wp_head(); ?>
+</head>
 ```
 
-14. View WP site and view source code
-15. You will see that bootstrap.min.css is included
-16. Delete unused old link to bootstrap.min.css
-17. What about link to jumbotron.css? How can we add that?
-    * click in source to see it's css
-    * Add that css to our style.css file
+## 13. View Source Code
+
+### 404 Errors
+
+Right click on the page and `View Page Source`. This will let you see if the hook is working. Our Bootstrap Jumbotron code still has some static links. Check out all these broken 404 pages. It means we requested the page from the server and the server tells us that it has no idea what we are talking about because the files we requested do not exist on the server.
+
+Here are some 404 errors when we use the Console in Google Chrome (shortcut to open is `cmd`+`option`+`j`)
+
+![404 errors](https://i.imgur.com/6RW0uHc.png)
+
+You will see that `bootstrap.min.css` is included
+![our hook is working](https://i.imgur.com/3jC4etb.png)
+
+* Delete unused old link to `bootstrap.min.css`
+
+## 14. Add our style.css using our functions.php page
+What about link to `jumbotron.css`? How can we add that?
+
+On the original static source if you click on the link it will take you to jumbotron.css and show you this code:
+
+```css
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+```
+
+Copy that code and put it at the bottom of `style.css`
+
+To enqueue it (add it to our list of needed css files) just adjust our `functions.php` file to look like the following:
 
 ```php
 <?php
@@ -170,17 +271,95 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ?>
 ```
 
-18. Delete hardcoded link to jumbotron.css
-19. Make sure fonts that came with bootstrap are linked correctly
-20. copy bootstrap `fonts` folder and paste into bootstrap theme
+**Notice** we just add another **wp_enqueue_style()** call but this time we point to our custom theme `style.css`
+
+View our source for our WordPress site and you'll see the style code is working. Delete the static reference to 
+
+```html
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+```
+
+#### wp_enqueue_style('name', path to file)
+
+The first parameter is just an internal name WordPress uses
+The second parameter concatenates a cool `get_template_directory_uri()` function that has the ability to point us the active theme and then we concatenate the rest of the path from inside the custom theme folder.
+
+If you view the source you should now see that our custom theme `style.css` file is now there:
+
+![style.css in source code](https://i.imgur.com/9QSoFEG.png)
+
+## 14.1 Adding Custom CSS
+
+Add a new file inside our `css` folder
+
+```
+$ touch css/ie10-viewport-bug-workaround.css
+```
+
+This is another file in our sample jumbotron bootstrap template.
+
+In that file grab the code from the original static template:
+
+```css
+/*!
+ * IE10 viewport hack for Surface/desktop Windows 8 bug
+ * Copyright 2014-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/*
+ * See the Getting Started docs for more information:
+ * http://getbootstrap.com/getting-started/#support-ie10-width
+ */
+@-webkit-viewport { width: device-width; }
+@-moz-viewport    { width: device-width; }
+@-ms-viewport     { width: device-width; }
+@-o-viewport      { width: device-width; }
+@viewport         { width: device-width; }
+```
+
+Delete the static code from `header.php`
+
+Now your `functions.php` file will look like this:
+
+```php
+<?php
+function theme_styles() {
+    wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css' );
+    // IE10 viewport hack for Surface/desktop Windows 8 bug
+    wp_enqueue_style( 'ie10fix_css', get_template_directory_uri() . '/css/ie10-viewport-bug-workaround.css');
+    wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css');
+}
+add_action( 'wp_enqueue_scripts', 'theme_styles' );
+?>
+```
+
+Notice I added a comment for good documenation
+* the path points to my file inside the `css` folder.
+
+## 15. Fonts with Bootstrap
+
+Make sure fonts that came with bootstrap are linked correctly
+
+* copy bootstrap `fonts` folder and paste into bootstrap theme
     * search bootstrap.min.css for `Glyph` and you will see the links are to ../fonts/glyph...
     * if you keep fonts an css as sibling directories than all is well, if you move fonts directory somewhere else, you have to update the path
-21. Delete header.php debugging comment
-22. HTML5 shim and Respond.js IE8 support - how we add in WP
-23. in footer.php we are linking to jQuery and bootstrap.js
-    * WordPress has jQuery built in
+* Delete header.php debugging comment
 
-functions.php
+```html
+<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+```
+
+## 16. HTML5 shim and Respond.js IE8 support - how we add in WP
+In `footer.php` we are linking to `jQuery` and `bootstrap.js`
+
+**Important** WordPress has jQuery built in
+
+`functions.php`
+
 ```php
 /* css function here */
 
@@ -199,12 +378,22 @@ add_action( 'wp_enqueue_scripts', 'theme_js' );
 
 ```
 
-## what is a hook
-change functions.php to this
-* remember that WP comes with jQuery pre-installed
-* we need to include bootstrap min in WP
+Here we are adding JavaScript that will only be used if we have an IE browser that is less than `IE9`
+
+So WordPress gives us a global variable calle $wp_scripts and we use that class and it's add_data() method to called both of these javascript files on the condition that IE is version that is less than 9. More more modern browsers will never see this code.
+
+## 17. Adding other JavaScript files using functions.php
+
+`functions.php`
+
+You'll see this is very similar to what we did with CSS but here we use the `wp_enqueue_script` which has a few different parameters
+
+### Important Parameters in wp_enqueue_script()
+* The 3rd parameter allows us to include dependencies this JavaScript file needs. It can just be one file (like jQuery) or more than one file.
+* The last parameter is boolean which enable you to have the JavaScript file in the HEAD element of our `header.php` (false) or in the footer.php file just before the closing `</body>` tag (true).
+
 ```php
-/* more code here */
+/* our css enqueues here */
 
 function theme_js() {
     global $wp_scripts;
@@ -217,7 +406,6 @@ function theme_js() {
 
     wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.min.js', array('jquery'), '', true );
     wp_enqueue_script( 'ie10_js', get_template_directory_uri() . '/js/ie10-viewport-bug-workaround.js', array('jquery'), '', true );
-
 }
 
 add_action( 'wp_enqueue_scripts', 'theme_js' );
@@ -226,48 +414,114 @@ add_action( 'wp_enqueue_scripts', 'theme_js' );
 ?>
 ```
 
-View source and you won't see included bootstrap.min.js in footer
+## 18. Another hook - wp_footer()
+
+View source and you won't see included `bootstrap.min.js` in footer
 because you forgot to include the footer hook
 
-add the footer hook:
+`footer.php` 
 
-footer.php (writer before </body>)
 ```php
+[more code here]
 <?php wp_footer(); ?>
 
  </body>
 </html>
 ```
 
-how to hide admin bar
+### Delete JavaScript static code
 
-functions.php
+```html
+ <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+```
+
+**Note** I create a new file inside `js` with the ie10 fix
+
+```
+$ touch js/ie10-viewport-bug-workaround.js
+```
+
+`js/ie10-viewport-bug-workaround.js`
+
+```js
+/*!
+ * IE10 viewport hack for Surface/desktop Windows 8 bug
+ * Copyright 2014-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+// See the Getting Started docs for more information:
+// http://getbootstrap.com/getting-started/#support-ie10-width
+
+(function () {
+  'use strict';
+
+  if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+    var msViewportStyle = document.createElement('style')
+    msViewportStyle.appendChild(
+      document.createTextNode(
+        '@-ms-viewport{width:auto!important}'
+      )
+    )
+    document.querySelector('head').appendChild(msViewportStyle)
+  }
+
+})();
+```
+
+## 19. WordPress filters
+
+### Hide admin bar
+
+Sometimes when you are logged in, the WordPress Admin CSS gets in your way. You have the ability to override it.
+
+`functions.php`
 
 ```php
 add_filter( 'show_admin_bar' '__return_false' );
 ```
 
-special body class
+This is a simple filter that hides the admin bar
+
+## 20. WordPress body_class()
+
+This is a very powerful dynamic function that generates a bunch of classes inside the BODY element. You can use these classes to style a WordPress page the way you want depending on the situation.
+
+`header.php`
+
+If you add the following code and then view the source code, you'll see a bunch of classes have been added to the body.
 
 ```php
 <body <?php body_class(); ?>>
 <!-- rest of code -->
 ```
 
-[body class php function output](https://i.imgur.com/5SljR6O.png)
+![body class php function output](https://i.imgur.com/5SljR6O.png)
 
-push down the admin bar when logged in
+### Push down the admin bar when logged in
 
-style.css
+`style.css`
+
+Add this underneath our existing code
+
 ```css
 .admin-bar .navbar-fixed-top {
     margin-top: 30px;
 }
 ```
 
-## Menus
+## 21. Menus
 
-add to bottom of functions.php
+`functions.php`
+
+* add to bottom 
 
 ```php
 add_theme_support( 'menus' );
@@ -288,17 +542,38 @@ Create 3 pages in Dashboard
 * Sample Page
 * Blog
 
+![Menu Dashboard](https://i.imgur.com/LtUqqox.png)
+
+### Delete Form
+
+`header.php`
+
+```html
+<form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+```
+
+## 22. WordPress bloginfo()
 In Dashboard, Menus, Create menu, choose Header Menu as theme location
-in sourcecode change blog name header.php to
+in source code change blog name `header.php` to
+
 ```
 ...<a class="navbar-brand" href="<?php bloginfo( 'url'); ?>"><?php bloginfo( 'name'); ?></a>...
 ```
-* remove login form
 
-inside `collapse section of nav`
+## 23. wp_nav_menu()
+
+`header.php`
 
 ```php
-<div class="navbar-collapse collapse">
+<div id="navbar" class="navbar-collapse collapse">
  <?php
   $args = array(
    'menu'    => 'header-menu',
@@ -310,14 +585,64 @@ inside `collapse section of nav`
 </div>
 ```
 
-* check out wp_nav_menu() on codex
+* check out [wp_nav_menu()](https://developer.wordpress.org/reference/functions/wp_nav_menu/) on codex
 * check out and see pages are showing on nav
 * set front page as Home and Blog as Blog page
 
-style.css
+`style.css`
+
+This will highlight the currently selected page in WordPress. Twitter bootstrap uses different CSS for an active page and this shows you how to alter this code using what class WordPress uses for the current page.
 
 ```css
 .current-menu-item > a {
     background: #000;
 }
 ```
+
+## 24. Dropdown Navigation
+
+Create a new Page `Page With Sidebar`
+Before Publishing it, give it a parent of `Sample Page`
+Create another Page `Full Width Page`, give it a parent of `Sample Page` and Publish.
+Go into Menu and add those pages underneath `Sample Page` like this:
+* Make sure to click `Save Menu`
+
+![Drop Down Setup](https://i.imgur.com/uynTpCC.png)
+
+Our dropdown CSS is not what we want
+
+![bad styled dropdown](https://i.imgur.com/OiwopBB.png)
+
+`style.css`
+
+```css
+@media (min-width: 768px) {
+    .sub-menu {
+        display: none;
+        position: absolute;
+        background: #222;
+        padding: 10px 15px;
+        width: 200px;
+    }
+
+    li:hover .sub-menu {
+        display: block
+    }
+}
+
+.sub-menu li {
+    margin-bottom: 10px;
+    list-style: none;
+}
+```
+
+## 25. Check if Navbar is responsive
+
+## 26. Install Bootstrap Shortcodes
+
+* Kevin Attfield
+* Install and Activate
+* view page and you'll see shortcodes in editor
+
+
+
