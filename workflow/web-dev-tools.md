@@ -155,6 +155,11 @@ Browser Window Management
 
 ## HTML5 boilerplate
 
+## Problems to be aware of if using Google Docs
+**Note:** copy/paste [in google might give you wonky quotations](https://productforums.google.com/forum/#!topic/docs/qMlQPzQNRXY)
 
+**Solution:** [turn off smart quotes in google docs](https://productforums.google.com/forum/#!topic/docs/qMlQPzQNRXY)
+
+![screenshot](https://i.imgur.com/kz6wmFK.png)
 
 

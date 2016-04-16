@@ -392,7 +392,6 @@ Sublime Text > Preferences > Settings - User
   "hot_exit": false,
   "ignored_packages":
   [
-    "CSS",
     "Markdown"
   ],
   "line_padding_bottom": 2,

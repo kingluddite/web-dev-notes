@@ -22,6 +22,16 @@ ls -al ~/.ssh
 
    sop /etc/hosts
 
+## How to Remote SSH terminal
+ 
+```
+$ ssh kingludd@kingluddite.com
+```
+
+* You may have to enable SSH on your host. For example. I use BlueHost. I had to activate SSH in the cpanel. Sometimes you have to email them and request it. Some web hosts do not allow it (if this is the case, time to get a new web host)
+
+When you are logged into SSH on the remote server you can navigate around that server (aka 'navigate around the box').
+
 
 ## Videos
 * [How do I find my SSH Public Key?](https://www.youtube.com/watch?v=NX_IQrQA1FE)
