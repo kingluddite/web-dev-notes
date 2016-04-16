@@ -14,10 +14,10 @@ Show Ajax requests
 * official name: XMLHttpRequest Object
 
 ## What AJAX stands for
-Asynchronous
-JavaScript
-And
-XML
+[A]synchronous
+[J]avaScript
+[A]nd
+[X]ML
 
 (the most common is JSON instead of XML)
 
@@ -90,11 +90,13 @@ Here we use Ajax to grab a file resource, which is just a fragment of HTML and p
 ### Looking under the AJAX hood
 1. Refresh page in Chrome
 2. Open console
+  * `opt` + `cmd` + `j`
 3. Make sure `Log XMLHttpRequests` is checked
 4. Here is the request [AJAX request](https://i.imgur.com/yZU53c4.png)
 
 ### Adding interaction
-1. Add button that when clicked loads function and makes button disappear
+
+Add button that when clicked loads function and makes button disappear
 
 Just replace the script code with this:
 
@@ -105,6 +107,9 @@ Just replace the script code with this:
     // 2. Create a callback function
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
+       // we're using DOM here (Document Object Model)
+       // grab element with id attribute of `ajax`
+       // make it's value = xhr.responseText
        document.getElementById('ajax').innerHTML = xhr.responseText; 
       }
     };
@@ -119,6 +124,17 @@ Just replace the script code with this:
   </script>
 ```
 
+**XHR.onreadystatechange** property contains the event handler to be called when `readystatechange` event is fired, which is every time the `readyState` property of XHR changes.
+
+**xhr.readyState** The XMLHttpRequest.readyState property returns the state an XHR client is in. A value of 4 is what you check for which means `the operation is complete`
+0 - unsent
+1 - opened
+2 - headers_received
+3 - loading
+4 - done
+
+**xhr.responseText** - returns a DOMString that contains the response to the request as text, or null if request is unsuccessful or has yet to be sent.
+
 And add this line under the H1 in `index.html`
 
 ```html
@@ -129,7 +145,7 @@ And add this line under the H1 in `index.html`
 * Use GET when receiving data
 * Use POST when sending data you want saved.
 
-note: POST. Used frequently with web forms to send data to store in a database. Use POST when sending data that will `store`, `delete` or `update` information from a **database**.
+**note:** POST. Used frequently with web forms to send data to store in a database. Use POST when sending data that will `store`, `delete` or `update` information from a **database**.
 
 ### Query String
 example: `http://website.com/employees.php?firstName="Pele"`
@@ -145,17 +161,23 @@ That is a Name/Value pair (`firstName` is the `Name`, `Pele` is the `Value`)
 [URL Encode Site](http://www.url-encode-decode.com/)
 [example](https://i.imgur.com/UIssjAJ.png)
 
-sending lots of information is not good via GET
-POST sends info separate from URL via 'body'
-separate from URL
-more secure
-let's you send additional information
-you also have to send an additional `header`
+Sending lots of information is not good via `GET`
+* POST sends info separate from URL via `body`
+  - separate from URL
+  - more secure
+  - let's you send additional information
+  - you also have to send an additional `header`
 
 ### AJAX Response Formats
-with lots of data have a structured data format
-XML - use tags to store data
-example
+
+With lots of data have a structured data format
+
+`XML` - use tags to store data
+* common format
+* verbose
+
+`XML` example
+
 ```xml
 <contacts>
  <contact>
@@ -171,12 +193,10 @@ example
 
 **parsing** - breaking a file up into easily accessed parts
 
-xml - common format
-using with javascript is not simple, cumbersum
+* Using with javascript is not simple, cumbersome
+* A better way is using `JSON`
 
-a better way is using JSON
-
-JSON
+# JSON
 
 ## AJAX Security Limitations
 Same origin
@@ -184,15 +204,14 @@ Same origin
 * not ok on another server
 * not ok on same server using https
 * not ok on same server using different port number
-* not ok to use different hosts (site.com and my.site.com)
-
+* not ok to use different hosts (`site.com` and `my.site.com`)
 
 ### Ways to circumvent Same origin policy
 * create a Web Proxy
   * set up PHP or Ruby on Rails script on the server to ask for informaton on another server
   * then that script can request info from other site and then share that info with your first site
 
-JSONP - JSON with Padding
+## JSONP - JSON with Padding
 
 New Method (CORS) - Cross-Origin Resource Sharing
 * W3C Recommendation and already implemented in most modern browsers
@@ -204,6 +223,7 @@ AJAX will not work unless you are viewing your page through a web server
 the `status` property
 * number sent from server
 * 200 means ok which means success on sent from service
+
 ```js
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function() {
@@ -235,7 +255,14 @@ xhr.send();
 
 ```
 
+**status 200 means a successful request
+status 300 redirection
+status 400 client error
+status 500 server error
+
 ### statusText property
+
+* text with the status of the response
 
 ```js
 var xhr = new XMLHttpRequest();
@@ -264,8 +291,8 @@ Array - like a shopping list
 ['string', 3, true, [1, 2, 3]];
 con: don't know what the data means (what is string for, why is 3rd item in list true?)
 Object part in JSON (object notation) comes in handy here because it is a set of key, value pairs (also called property value pairs)
-* key -  is a name you can use to identify a property
-* value - value you want to give that property
+* `key` -  is a name you can use to identify a property
+* `value` - value you want to give that property
 
 example of JSON
 ```json
@@ -276,11 +303,11 @@ example of JSON
 
 ```
 
-in regular JSON keys don't have to be quoted
-but VALID JSON requires DOUBLE QUOTES around property name (single quotes won't work)
-strings also require double quotes
+* in regular JSON `key`s DO NOT have to be quoted
+* but VALID JSON **requires** DOUBLE QUOTES around property name (single quotes won't work)
+* strings also require double quotes
 
-data.json
+`data.json`
 
 ```json
 [
@@ -325,23 +352,23 @@ Open JavaScript console
 * JSON.parse takes a string and tries to convert it into a JavaScript object
 * 
 
-rules of JSON formatted data
-must be an array of items or an object filled with `key` : `object` pairs or a combination of those two 
-keys must use double quotes
-strings must use double quotes
-must be an array of objects or a com
+### rules of JSON formatted data
+* must be an array of items or an object filled with `key` : `object` pairs or a combination of those two 
+* keys must use double quotes
+* strings must use double quotes
+* must be an array of objects or a com
 
-what happens if JSON is not formatted as correct JSON
-it won't work
+**What happens if JSON is not formatted as correct JSON?**
+It won't work.
 
-if you try to parse a normal string with JSON.parse you will get a JavaScript error
+If you try to parse a normal string with `JSON.parse()`` you will get a JavaScript error.
 
-what does JSON.parse return
-when it completes it returns a JavaScript object
+**What does JSON.parse return?**
+When it completes it returns a JavaScript object
 
 # Soccer Team Widget
 
-index.html
+`index.html`
 
 ``` html
 <!DOCTYPE html>
