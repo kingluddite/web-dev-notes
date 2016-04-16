@@ -61,7 +61,7 @@ Custom themes can have lots of files. But the only required files are `index.php
 * style.css (required)
 * screenshot.png
 
-Use this code to grab a proper dimensioned screenshot.png to give you a cute example of how to add a screenshot.png using the terminal
+Use this code to grab a proper dimensioned `screenshot.png` to give you a cute example of how to add a `screenshot.png` using the terminal
 
 * make sure you are inside the custom theme folder when entering this code
 
