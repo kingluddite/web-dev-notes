@@ -12,7 +12,7 @@ $ wp db export
 * then pack up into GZ (zipped) file
 
 ```
-# tar -vczf yourbackupfilename.gz .
+$ tar -vczf yourbackupfilename.gz .
 ```
 
 ### Transfer Backups

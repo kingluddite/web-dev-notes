@@ -396,3 +396,14 @@ export PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 ```
+
+How do I switch to the `bash` shell from zsh?
+```
+$ exec bash
+```
+
+How do I switch from bash to zsh shell?
+```
+$ exec zsh
+```
+
