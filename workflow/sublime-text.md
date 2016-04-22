@@ -310,7 +310,7 @@ $ sudo mkdir bin
 
 **Note:** When and when not to use `sudo` will drive you bonkers. On a Mac sometimes you can get away without using `sudo` and sometimes you can't. Never quite figured out the difference as of yet so I just use `sudo` whenever I enter a Terminal command and get a permission error from that command.
 
-Add type this inside iTerm
+Type this inside iTerm2
 
 ```
 $ sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
