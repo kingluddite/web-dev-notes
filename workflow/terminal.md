@@ -141,6 +141,14 @@ Alias are great to use for moving quickly around your files. Lots of other stuff
 
 ```
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+# The following MAMP export stuff is needed when you work with WP-CLI
+# If you don't use it, you will get lots of errors and spend hours of your life trying to fix them. I just save you hours of your life!!! :)
+# Use MAMP version of PHP
+PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+# MAMP and MYSQL
+export PATH="/Applications/MAMP/Library/bin:$PATH"
+
 set -o vi
 
 # =================

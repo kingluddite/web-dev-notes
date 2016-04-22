@@ -53,7 +53,6 @@ Not a required step but a helpful one. This is obviously assuming your are using
 
 Custom themes can have lots of files. But the only required files are `index.php` and `style.css`.
 
-* style.css
 * functions.php
 * header.php
 * footer.php
