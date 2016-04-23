@@ -5,8 +5,8 @@ WP-CLI enables you to update WordPress from the terminal. It is a great improvem
 ## Core Update
 
 ```
-# wp core update
-# wp core update-db
+$ wp core update
+$ wp core update-db
 ```
 
 ## Deactivate all plugins at one time
@@ -133,7 +133,7 @@ This will create the file to connect you to your MySQL databse. The above code i
 If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal. 
 
 ```
-$  wp core install --url=http://localhost/wp-bootstrap --title=WPBootstrap --admin_user=peh2 --admin_password=peh2 --admin_email=howley.phil@gmail.com
+$  wp core install --url=http://localhost/test-wp-site --title=WPTest --admin_user=peh2 --admin_password=password --admin_email=howley.phil@gmail.com
 ```
 
 * sometimes you may have to rename localhost in wp-config.php to 127.0.0.1 to avoid database connection error
