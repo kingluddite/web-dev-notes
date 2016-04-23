@@ -86,6 +86,18 @@ ZSH_THEME="agnoster"
 ## Take the shorter PATH 
 One of the first things that bugged me is the long file paths in the Zsh. It made working in zsh problematic. There is an easy solution where you just show the parent and grandparent directorires only.
 
+This is the function that creates the path you see output in the `zsh`
+
+```bash
+prompt_dir() {
+  prompt_segment blue black '%2/'
+  #echo $(pwd | sed -e "s,^$HOME,~," | sed "s@\(.\)[^/]*/@\1/@g")
+  #echo $(pwd | sed -e "s,^$HOME,~,")
+}
+```
+
+Since I have the number 2, I will only ever see 2 directories
+
 Something that looks like this:
 ![long zsh path](https://i.imgur.com/PvHKlxX.png)
 
@@ -112,18 +124,6 @@ $ cd ~/.oh-my-zsh/themes/
 ```
 
 I'm using the `cobalt2` theme so I opened that theme up and commented out the existing code _(comments are made using #)_
-
-This is the function that creates the pash you see output in the `zsh`
-
-```bash
-prompt_dir() {
-  prompt_segment blue black '%2/'
-  #echo $(pwd | sed -e "s,^$HOME,~," | sed "s@\(.\)[^/]*/@\1/@g")
-  #echo $(pwd | sed -e "s,^$HOME,~,")
-}
-```
-
-Since I have the number 2, I will only ever see 2 directories
 
 ### Some cool alias' and other butes for your .zshrc
 
