@@ -25,10 +25,10 @@ $ take
 [fonts](https://github.com/powerline/fonts/blob/master/Inconsolata/Inconsolata%20for%20Powerline.otf)
 
 This is what the plain Terminal looks like:
-[Terminal](https://i.imgur.com/OTyA3zw.png)
+![Terminal](https://i.imgur.com/OTyA3zw.png)
 
 This is what Zsh looks like:
-[Zsh](https://i.imgur.com/IiHCOfe.png)
+![Zsh](https://i.imgur.com/IiHCOfe.png)
 
 Just based on that alone is cause to use Zsh. But there are tons of other things Zsh give you ability to do. If that doesn't pull you over to the dark side, watch these *[free Videos by Wes Bos](http://commandlinepoweruser.com/).
 
