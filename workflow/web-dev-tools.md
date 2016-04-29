@@ -36,6 +36,11 @@ Then just (from the Dropbox root folder on your mac) type this in the terminal
 $ ln -s ln /Users/philiphowley/Documents/dev/notes/web-dev-notes
 ```
 
+```
+ln -s /path/to/folder/that/you/want/to/sync/ ~/Dropbox/folder/name
+```
+
+
 That's it! Your folders are now linked so that when you make any changes on your file on your Mac (my notes file) it will be updated at the same time in the Dropbox folder. Since that folder will push it up to dropbox. You can easily access the file anywhere there is an internet connection.
 
 [Here is a great video showing you how to do this](https://www.youtube.com/watch?v=yDqinsWS0lA)
