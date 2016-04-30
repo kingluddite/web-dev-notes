@@ -1,4 +1,18 @@
-To set up WordMove in VVV you need to use these instructions:
+# WordMove
+
+## Install on Vagrant
+I got Wordmove installed in my Vagrant box. Here's what Jay did (thanks Jay for the tip):
+
+1. Start with a clean slate and run `$ vagrant destroy`
+2. Change into this directory: `vagrant-local/provision`
+3. Create a file called `provision-pre.sh`
+4. Add the # Rubygems [update code from](https://github.com/welaika/wordmove/wiki/Getting-Wordmove-installed-in-VVV-(or-any-Vagrant)) into your `provision-pre.sh` file
+5. Run `$ vagrant up`
+6. Run `$ vagrant provision`
+7. When nginx is done restarting, run `$ vagrant ssh`
+8. type `wordmove` at the vagrant@vvv:~$ prompt to see the list of commands
+
+### To set up WordMove in VVV you need to use these instructions:
 
 [wordmove in vvv](https://github.com/welaika/wordmove/wiki/Getting-Wordmove-installed-in-VVV-(or-any-Vagrant))
 
