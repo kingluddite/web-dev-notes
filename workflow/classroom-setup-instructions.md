@@ -27,14 +27,26 @@ What Packages do I need to install on Sublime Text 3?
 * HTML-CSS-JS Prettify
 
 ### Iterm 2
-Set these Preferences
-[General](https://i.imgur.com/lRaU1E0.png)
-[Profile > General](https://i.imgur.com/gNK4HXz.png)
-Profile > Colors - If you are using the bash shell, follow these instructions, if you are using the zsh shell, you must be a rock star and you probably know how to set up your ZSH better than me so I'll leave you at it. Back to the Bash shell. First, you need to make the colors look cool so download `Solarized` [download link](http://ethanschoonover.com/solarized). Once you have that, extract the zip file and look for the iTerm2 folder. Import the two themes from the iTerm2 folder into the Profile > Color section of the iTerm2 preference panel. After importing, select [Dark Solarized](https://i.imgur.com/szNQCZ5.png_)
-[Profile Text](https://i.imgur.com/oq5af1P.png)
-[Profile Window](https://i.imgur.com/JmMiOvx.png)
-[Profile Terminal](https://i.imgur.com/HzENjkR.png)
-[Keys](https://i.imgur.com/QBswDmJ.png)
+
+I suggest setting these preferences
+![General](https://i.imgur.com/lRaU1E0.png)
+
+![Profile > General](https://i.imgur.com/gNK4HXz.png)
+
+**Note** `Profile` > `Colors` - If you are using the `bash` shell, follow these instructions, if you are using the `zsh` shell, you must be a rock star and you probably know how to set up your `zsh` better than me so I'll leave you at it. 
+
+Back to the `bash` shell. First, you need to make the colors look cool so download `Solarized` 
+
+[download link](http://ethanschoonover.com/solarized). 
+
+Once you have that, extract the zip file and look for the `iTerm2` folder. Import the two themes from the `iTerm2` folder into the `Profile` > `Color` section of the `iTerm2` **preference** panel. 
+
+After importing, select the following:
+![Dark Solarized](https://i.imgur.com/szNQCZ5.png_)
+![Profile Text](https://i.imgur.com/oq5af1P.png)
+![Profile Window](https://i.imgur.com/JmMiOvx.png)
+![Profile Terminal](https://i.imgur.com/HzENjkR.png)
+![Keys](https://i.imgur.com/QBswDmJ.png)
 
 ### Open Sublime Text 3 from the Terminal
 
