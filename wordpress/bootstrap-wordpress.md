@@ -609,7 +609,7 @@ Before Permalinks
 
 After Permalinks
 
-[After Permalinks](https://i.imgur.com/gRCsfkk.png)
+![After Permalinks](https://i.imgur.com/gRCsfkk.png)
 
 ## 24. Dropdown Navigation
 
