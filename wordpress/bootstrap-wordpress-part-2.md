@@ -31,6 +31,8 @@ to this:
 <link rel="icon" href="<?php bloginfo('template_directory'); ?>/img/favicon.ico">
 ```
 
+[grab a sample favicon](http://www.freefavicon.com/freefavicons/objects/)
+
 ## view your WP site
 
 * refresh and you will see favicon
@@ -45,7 +47,7 @@ Change in `header.php`
 **to**
 
 ```php
-<title><?php wp_title( '|', true, 'right' );</title>
+<title><?php wp_title( '|', true, 'right' ); ?></title>
 ```
 
 `wp_title()`` will display just your WordPress site title by itself if on home page but it will also display title and `|` separate if on another page. The last parameter places separator on `left` or `right`.
