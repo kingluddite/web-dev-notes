@@ -598,6 +598,19 @@ This will highlight the currently selected page in WordPress. Twitter bootstrap 
 }
 ```
 
+## 23.1 Permalinks
+
+* How to change them in the Dashboard
+* Improves SEO
+
+Before Permalinks
+
+![Before Permalinks](https://i.imgur.com/zukfE79.png)
+
+After Permalinks
+
+[After Permalinks](https://i.imgur.com/gRCsfkk.png)
+
 ## 24. Dropdown Navigation
 
 Create a new Page `Page With Sidebar`
