@@ -1,5 +1,43 @@
 #WordPress gotchas
 
+## Permissions on Remote
+
+If you use WordMove and get a strange 500 error you may have a permissions problem. Add `perms.php` to your server root and it will give all your folders for WordPress the correct permissions.
+
+perms.php
+
+```php
+<?php
+file_fix_directory(dirname(__FILE__));
+function file_fix_directory($dir, $nomask = array('.', '..')) {
+  if (is_dir($dir)) {
+     // Try to make each directory world writable.
+     if (@chmod($dir, 0755)) {
+       echo "<p>Made writable: " . $dir . "</p>";
+     }
+  }
+  if (is_dir($dir) && $handle = opendir($dir)) {
+    while (false !== ($file = readdir($handle))) {
+      if (!in_array($file, $nomask) && $file[0] != '.') {
+        if (is_dir("$dir/$file")) {
+          // Recurse into subdirectories
+          file_fix_directory("$dir/$file", $nomask);
+        }
+        else {
+          $filename = "$dir/$file";
+            // Try to make each file world writable.
+            if (@chmod($filename, 0644)) {
+              echo "<p>Made writable: " . $filename . "</p>";
+            }
+        }
+      }
+    }
+    closedir($handle);
+  }
+}
+?>
+```
+
 ## Child Theme not seeing parent
 You must name the theme with the exact (case-sensitive ) name of parent theme folder.
 
