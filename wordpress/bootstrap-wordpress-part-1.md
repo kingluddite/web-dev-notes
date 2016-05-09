@@ -537,6 +537,9 @@ add_action( 'init', 'register_theme_menus' );
 ```
 
 Create 3 pages in Dashboard
+
+We'll create these pages but we won't be able to view them. The reason is because of WordPress' hierarchy. But we will at least be able to get our menu to work.
+
 * Home
 * Sample Page
 * Blog
@@ -599,6 +602,8 @@ This will highlight the currently selected page in WordPress. Twitter bootstrap 
 ```
 
 ## 23.1 Permalinks
+
+This a great feature of WordPress that will greatly improve your SEO with just a few clicks. It makes your URL much more SEO friendly.
 
 * How to change them in the Dashboard
 * Improves SEO

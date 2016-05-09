@@ -2,10 +2,23 @@
 [download](https://wordpress.org/download/)
 
 ## Serialized themes
-[Use this site to manually change serialized them in sql file](http://pixelentity.com/wordpress-search-replace-domain/)
+[Use this site to manually change serialized theme in sql file](http://pixelentity.com/wordpress-search-replace-domain/)
 
 ## Git in WordPress
-So this is an any where lots of people have an opinion. Here's mine. Do you need to keep track of WordPress core files? No. So add them to your `.gitignore`. You need stuff inside `wp-content` but not everything and what you need will change depending on your individual project needs. Most of the time I'm just keeping track of the theme but I may have to start watching some custom plugins so I want the ability to add that. I usually create my README.md in the WordPress root and make sure not to ignore it.
+So this is an area where lots of people have an opinion. Here's mine. 
+
+Instead of the theme I like to put the `.gitignore` in the root of my WordPress project.
+
+Do you need to keep track of WordPress core files? No. 
+So add them to your `.gitignore`.
+
+`wp-content` is content that will change in your WordPress so that's what I push to `github` but I make sure to remove `plugins` and `themes` I don't maintain.
+
+I create the README.md in the WordPress root and make sure not to ignore it.
+
+I then use `WP-CLI` to install my core WordPress files and `wp-config`. I then create my `db` if I haven't yet, and finish off populating the WordPress database and admin user data using `WP-CLI`.
+
+After that, I use `npm` to install my project dependencies and `gulp` to initiate my build tools.
 
 ### Sample .gitignore file
 
@@ -131,162 +144,6 @@ $ wordmove help push
 
 ```
 # history -c && exit
-```
-
-# Gulp
-
-## Install Gulp globally
-
-```
-$ sudo npm install -g gulp
-```
-
-[WordPress Gulp Tutorial](http://code.tutsplus.com/tutorials/using-gulp-for-wordpress-automation--cms-23081)
-
-## Gulp And WordPress
-
-Navigate to WP Theme folder
-
-```
-$ cd Sites/bhs-wp/wp-content/themes/
-```
-
-Create the `gulp-animation` folder and initiate a `npm project` inside it
-
-```
-$ mkdir wp-gulp-automation
-cd wp-gulp-automation 
-npm init
-```
-
-Accept the defaults (yes, yes, yes...)
-
-Your `package.json` file has been created.
-
-### Install Gulp locally to your file
-
-```
-npm install gulp --save-dev
-```
-
-* `node_modules` has been created
-    - all project dependencies are inside that folder
-    - `--save-dev` updates your developer dependencies (stuff you need for development not for production) - gulp is for development environment
-
-### gulpfile.js
-
-```
-var gulp = require('gulp');
- 
-gulp.task('default', function(){
- 
-    console.log('default gulp task...')
- 
-});
-```
-
-### Install Gulp Sass
-
-```
-$ npm install gulp-sass --save-dev
-```
-
-
-`gulpfile.js`
-
-```
-var gulp = require('gulp'),
-    sass = require('gulp-sass');
-
-gulp.task('sass', function () {
- 
-    gulp.src('./css/src/*.scss')
- 
-        .pipe(sass())
- 
-        .pipe(gulp.dest('./css'));
- 
-});
- 
-gulp.task('default', ['sass']);
-```
-
-You can now run with `gulp` or `gulp sass` command in Terminal.
-
-## Lint and Concat JS files
-
-```
-$ npm install gulp-jshint --save-dev
-$ npm install gulp-concat --save-dev
-```
-
-gulpfile.js
-
-```
-...
-    jshint = require('gulp-jshint'),
-    imagemin = require('gulp-imagemin');
-...
-```
-
-Finished File
-
-gulpfile.js
-
-```
-var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    jshint = require('gulp-jshint'),
-    imagemin = require('gulp-imagemin'),
-    plumber = require('gulp-plumber'),
-    notify = require('gulp-notify'),
-    concat = require('gulp-concat'),
-    livereload = require('gulp-livereload');
-
-var plumberErrorHandler = { errorHandler: notify.onError({
-    title: 'Gulp',
-    message: 'Error: <%= error.message %>'
-  })
-};
-
-gulp.task('sass', function () {
-  gulp.src('./css/src/*.scss')
-    .pipe(plumber(plumberErrorHandler))
-    .pipe(sass())
-    .pipe(gulp.dest('./css'))
-    .pipe(livereload());
-});
-
-gulp.task('js', function () {
-    gulp.src('js/src/*.js')
-    .pipe(plumber(plumberErrorHandler))
-    .pipe(jshint())
-    .pipe(jshint.reporter('fail'))
-    .pipe(concat('theme.js'))
-    .pipe(gulp.dest('js'));
-    .pipe(livereload());
-});
-
-gulp.task('img', function() {
-  gulp.src('img/src/*.{png,jpg,gif}')
-    .pipe(plumber(plumberErrorHandler))
-    .pipe(imagemin({
-      optimizationLevel: 7,
-      progressive: true
-    }))
-    .pipe(gulp.dest('img'))
-    .pipe(livereload());
-});
-
-gulp.task('watch', function() {
-  livereload.listen();
-  gulp.watch('css/src/*.scss', ['sass']);
-  gulp.watch('js/src/*.js', ['js']);
-  gulp.watch('img/src/*.{png,jpg,gif}', ['img']);
-});
-
-gulp.task('default', ['sass', 'js', 'img', 'watch']);
-
 ```
 
 
