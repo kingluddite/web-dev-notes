@@ -7,6 +7,16 @@
 
 # Custom Post Types
 
+WordPress comes with these post types
+
+* Post
+* Page
+* Attachment
+* Revision
+* Nav Menu
+
+You can create your own custom post types ([more info](http://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/))
+
 ## Create a Landing Page
 
 ### Custom Post Types
@@ -31,10 +41,10 @@ Use Dashboard to create a new Post Type called `portfolio`
 9. Under `Location` beside `Rules` set `Post Type` `is equal to` `portfolio` and click the `Add rule group` button
 10. Click `Publish` button.
 
-**Do you now see a `portfolios` button on your Dashboard sidebar?**
+**You now see a `portfolios` button on your Dashboard sidebar?**
 ![portfolios button](https://i.imgur.com/EfgqcLo.png)
 
-If yes, success!
+### Add a Portfolio item
 
 Click `portfolios` Dashboard sidebar button and click `Add New` button
 
@@ -42,6 +52,8 @@ Click `portfolios` Dashboard sidebar button and click `Add New` button
 1. Enter Latin Filler text for body content.
 2. For link add: `http://www.absolutearts.com/portfolio3/l/lonvig/pele-1047734135m.jpg`
 3. Publish
+
+### Add Featured Image
 
 Where are `featured images?`
 
@@ -53,17 +65,23 @@ It just doesn't appear. You have to add that option via `functions.php`
 
 ![post-thubmails](https://i.imgur.com/LWE6o9w.png)
 
+### Group Add Images to WordPress
+
 1. Find 5 soccer player paintings and save them to your Downloads folder.
 2. Click `Media` and drag and drop them all in
 3. Create portfolio pages for all 5 of them.
 
-## Create Porfolio page
+## Porfolio page
 
 1. Name it `Portfolio Grid w Custom Posts` 
-2. Set parent as Sample Pages
-and Publish
-3. Create new template based on `page-full-width.php`
-so save page-full-width.php as page-portfolio.php
+2. Set `parent` as `Sample Pages`
+3. Publish
+
+### page-portfolio.php
+
+This will be a new template based on the `page-full-width.php` template
+
+Save `page-full-width.php` as `page-portfolio.php`
 
 `page-portfolio.php`
 
@@ -103,11 +121,9 @@ so save page-full-width.php as page-portfolio.php
 <?php get_footer(); ?>
 ```
 
-Now edit `Portfolio Grid w Custom Posts` to use Page Portfolio Grid Template
-
-See if you can add it to dropdown on our menu
-
-view page and see if link works
+* Now edit `Portfolio Grid w Custom Posts` to use Page Portfolio Grid Template
+* See if you can add it to dropdown on our menu
+* View page and see if link works
 
 In `Settings > Media` _(Dashboard)_, change default size for thumbnails to be `260px` x `260px`
 
@@ -140,6 +156,8 @@ In `Settings > Media` _(Dashboard)_, change default size for thumbnails to be `2
 
 ## Make Portfolio and images more responsive
 
+**note** Bootstrap 4 has a new class called `img-fluid` that does this out of the box
+
 Change the row to this:
 
 ```php
@@ -170,7 +188,7 @@ Change the row to this:
     </div>
 ```
 
-Add some new css
+**Add some new CSS** 
 
 `style.css`
 
@@ -220,7 +238,11 @@ Add some new css
     </div>
 ```
 
+This will automatically add a Bootstrap row when 4 columns have been reached. Makes the layout look much nicer.
+
 ## Link thumbnails to specific portfolio page
+
+When you click on a portfolio thumbnail you want to be taken to the large image of the portfolio piece.
 
 ```php
  <p><a href="<?php the_permalink(); ?>"><img src="<?php echo $thumbnail_url[0]; ?>" alt="<?php the_title(); ?> graphic"></a></p>
@@ -229,7 +251,7 @@ Add some new css
 
 ## Fix wrong link to single.php page
 
-We need it to go to a different single template, one that we will build now. This single.php page will be just for our porfolio section.
+We need it to go to a different single template, one that we will build now. This `single.php` page will be just for our portfolio section.
 
 ## Single Page for Portfolio
 
@@ -238,7 +260,12 @@ Save `page-full-width.php` as `single-portfolio.php`
 * we will remove the template comment at the top. Why
   - because of the naming convention (hierarcy) WordPress uses. The `single-` followed by the name of the page will automatically work
 
-we want our full page to have the large image on the left and meta data about the image on the right
+We want our `full page` to have
+
+* Large image on the left
+* meta data about the image on the right
+
+## Create a single page template just for porfolio pieces
 
 `single-portfolio.php`
 
@@ -280,7 +307,10 @@ we want our full page to have the large image on the left and meta data about th
 <?php get_footer(); ?>
 ```
 
-## Problem with large images
+## Responsive Design Improvements
+
+### Problem with large images
+
 * need to make them responsive
 
 Modify the **.porfolio-piece** CSS rule in `style.css`
@@ -295,20 +325,25 @@ Modify the **.porfolio-piece** CSS rule in `style.css`
 }
 ```
 
-* collapses too soon so change the classes
+* It collapses too soon so change the classes
 
-change in `single-portfolio.php`
+`single-portfolio.php`
+
+**Change**
 
 `<div class="col-md`
 
-to
+**To**
 
 `<div class="col-sm`
 
-## see breakpoints with chrome extension
+## Add Chrome Extension for Breakpoints
+
+See breakpoints with chrome extension
+
 Add `Viewport Dimensions` [link](https://chrome.google.com/webstore/detail/viewport-dimensions/kchdfagjljmhgapoonapmfngpadcjkhk)
 
-## navigation through portfolio
+## Add Navigation for Portfolio
 
 `single-portfolio.php` (code fragment)
 
@@ -352,7 +387,9 @@ Add `Viewport Dimensions` [link](https://chrome.google.com/webstore/detail/viewp
 </div>
 ```
 
-replace contents of `index.php` with `page.php`
+## Convert index.php from static to dynamic page
+
+Replace contents of `index.php` with `page.php`
 
 We are turning a static page into a safe generic loop (remember the index.php is the fallback template for everything in WordPress)
 
