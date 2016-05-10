@@ -9,9 +9,9 @@ if ( true === isLoggedIn ) {
 }
 ```
 
-JsBin
-Run - cmd + enter
-Clean up - ctl + l
+## JsBin Useful Keyboard Shortcuts
+Run - `cmd` + `return`
+Clean up - `ctl` + `l`
 
 # Strings
 
@@ -132,4 +132,135 @@ Math.round()
 Math.min()
 Math.max()
 Number.NEGATIVE_INFINITY
+
+## Object Data Type
+
+[link](http://jsbin.com/dutiyex/edit?js,console)
+
+A data type that allows for a value to have properties
+* think of a variable having its own variables
+
+### Reassigning and adding new properties
+
+* how to get value of a specific property
+* console logging with string
+
+## Symbol Data Type
+
+[link](http://jsbin.com/jevifo/edit?js,console)
+
+Unique unchangeable values often used for naming custom properties
+
+You add a property onto an existing object. 
+post.isPublished
+
+You have a high chance of a conflict with a 3rd party who writes same property.
+A symbol stops this from being a property
+post[IS_PUBLISHED] - this is a unique value even if someone creates same symbol, no chance for conflict
+
+* unique key as symbol
+[link](http://jsbin.com/bolipo/edit?js,output)
+
+## Arrays (not it's own data type... it's technically a type of Object)
+
+Store a collection of values.
+
+* variables store a single value
+* what if we want to store a collection of values? (use arrays!) 
+
+**note** avoid `new` with Array
+```js
+var postIds = new Array(); // bad
+    betterArrayFormat = [];
+```
+
+[link](http://jsbin.com/kawaqo/edit?js,console)
+
+* Array of Object [link](http://jsbin.com/coxete/edit?js,console)
+
+* Nested Arrays [link](http://jsbin.com/fufuja/edit?js,console)
+
+* Nested Arrays vs Objects [link](http://jsbin.com/yadowil/edit?js,console)
+    - objects are easier to decipher because they have names
+
+### Array Index
+
+position or order of a value in an Array
+* Objects store values based on property names
+* Arrays store values based on their order or their `index`
+* first item has an idex of 0 (zero) 
+* Getting array values from their index [link](http://jsbin.com/henewa/edit?js,console)
+
+* reassign a value of an array
+
+```js
+pepBoys[0] = "Charlie";
+```
+
+* add one or many values to Array [link](http://jsbin.com/rerabi/edit?js,console)
+* they get added to `end` of Array
+
+ How do I add a value to the beginning of the Array?
+
+ `someArray.unshift( 'Magic' ); `
+
+* Removing value from Array [link](http://jsbin.com/qefadu/edit?js,console)
+
+Other stuff you can do with Arrays
+
+* [Get number of items in array](http://jsbin.com/dulawa/edit?js,console) - `myArray.length`
+    - get last value in Array
+        + `myArray[ myArray.length];` 
+
+* Join arrays together
+* Get a portion of an array
+* Sort items in an array
+* Loop through items in an array
+* Check if is an Array
+
+### Concatenating Arrays
+[link](http://jsbin.com/wanovu/edit?js,console)
+
+* slice array, select portions of an array
+
+myArray.slice( startIndex, endIndex ); // endIndex is non-inclusive
+[link](http://jsbin.com/gisiva/edit?js,console)
+
+## Sorting Arrays
+
+[link](http://jsbin.com/xuxune/edit?js,console)
+
+sorting numbers doesn't work as we would expect, need to use special functions to sort numbers to be increasing and descreasing
+
+## .forEach
+
+helps us loop through items in an array
+[link](http://jsbin.com/lineweh/edit?js,console)
+
+## .isArray
+
+run before you run a method on an array
+
+[link](http://jsbin.com/tuqoso/edit?js,console)
+
+## Convert Arrays to Strings and Strings to Arrays
+
+[link](http://jsbin.com/xonano/edit?js,console)
+
+## Strong vs Weak Typing
+
+Strong / Strict
+
+* Specifies the data type when declaring a variable
+
+Weak / Loose
+
+* Does not specify data type and can change data types
+
+JavaScript is weakly typed
+assign a variable a number and then reassign it to a string, no problem in JavaScript
+
+although possible it is Best Practice to keep variables to a single data type
+(keep the dat types of variables consistent)
+
 
