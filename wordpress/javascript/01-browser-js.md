@@ -1,9 +1,9 @@
 # JavaScript in the Browser
 
 ## [JSBin](http://jsbin.com)
-* html
-* css
-* js (include libraries you need)
+* `HTML`
+* `CSS`
+* `JS` (include libraries you need)
 * console (shows output)
 
 ## Text Editor
@@ -11,18 +11,18 @@
 [Atom](https://atom.io/)
 * drag folder onto Atom to open them
 
-View in browser (use finder)
+View in browser (_use finder_)
 Console 
 `ctrl` + `i` (`cntl` + `j`)
 
-change theme in Atom in Preferences
+Change theme in Atom in Preferences
 
 ## Statements, Expressions, Keywords
 
 `Statement`: An executable line or block of code
 * many statements end with semi-colon
 
-This is a statement (wrapped in curly braces)
+This is a statement (_wrapped in curly braces_)
 
 ```js
 function myFunction() {
@@ -31,11 +31,14 @@ function myFunction() {
 ```
 
 ## Expression
-Produces a value or is a value. Parts of statements.
+Produces a value or is a value 
+* Parts of statements
 
-example of expressions
-document.getElementById('wrapper')
-you could have `addEventListener` that has a callback function and that function (second argument) is also an expression and is part of a larger statement
+**Example of expressions**
+
+`document.getElementById('wrapper')`
+
+you could have `addEventListener` that has a callback function and that function (_second argument_) is also an expression and is part of a larger statement
 
 * expressions and statements can be nested inside each other
 
@@ -45,18 +48,18 @@ examples: `var`, `function`
 
 ## Data Types & Variables
 
-`Boolean`
-`String`
-`Number`
-`Null` - represents an empty value
-`Undefined` - a data type was set up but no value was assigned to it
-`Objects` - objects that allow for properties
-`Symbols` - (new) allow for unique identifiers
+* `Boolean`
+* `String`
+* `Number`
+* `Null` - represents an empty value
+* `Undefined` - a data type was set up but no value was assigned to it
+* `Objects` - objects that allow for properties
+* `Symbols` - (_new_) allow for unique identifiers
 
 ## Variable
 A generic container for storing data in our JavaScript code
 
-How should I name variables?
+### How should I name variables?
 full words, camel case, first word begins with lowercase letter
 
 `var myName;`

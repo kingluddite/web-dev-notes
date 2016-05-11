@@ -10,8 +10,13 @@ if ( true === isLoggedIn ) {
 ```
 
 ## JsBin Useful Keyboard Shortcuts
-Run - `cmd` + `return`
-Clean up - `ctl` + `l`
+Run the code
+
+* `cmd` + `return`
+
+Clean up the code
+
+* `ctl` + `l`
 
 # Strings
 
@@ -21,7 +26,7 @@ var username = 'pip';
 console.log( username );
 ```
 
- JavaScript Guidelines: use **single** quotes for strings
+ `JavaScript Guidelines`: use **single** quotes for strings
 
 ## Concatenate JavaScript Strings
 
@@ -46,7 +51,8 @@ console.log( fullName );
 ```
 
 ## String Methods
-[reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#Methods_2)
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#Methods_2" target="_blank">reference</a>
+
 ```js
 console.log( firstName.charAt( 1 ) ); // "o"
 console.log( firstName.slice( 0, -1 ) ); // "Joh"
@@ -58,73 +64,102 @@ console.log( firstName.concat( ' ', lastName ) ); // John Doe
 # Number
 
 Data type for numeric values and mathematical operations
-* no quotation marks around them (like Strings)
-add a + b
-subtract a - b
-multiply a * b
-divide a / b
-modulo a % b (remainder)
+* no quotation marks around them (_like we use in Strings_)
 
-**note** variables can later be reassigned to new values
+* `add` a + b
+* `subtract` a - b
+* `multiply` a * b
+* `divide` a / b
+* `modulo` a % b (remainder)
+
+**note:** variables can later be reassigned to new values
+
+```
 var a = 5;
 a = 6;
+```
 
-* + adds with numbers and concatenates with strings
-## Types of Numbers
+* adds with numbers and concatenates with strings
 
-* Integers - whole numbers
-* Floating Point - decimal points
-* Positive & Negative Infinity
+## 3 Types of Numbers
+
+* `Integers` - whole numbers
+* `Floating Point` - decimal points
+* `Positive & Negative` Infinity
 
 * String - numeric values, NOT true numbers
-var detergent = '409'; // string not number
 
-Add a string and a number
+`var detergent = '409'; // string not number`
+
+## Add a string and a number
+```js
 var detergent = '409',
     favNumber = 5,
     bothVariables;
 
 bothVariables = detergent + favNumber;
 console.log( bothVariables ); // "4095"
-* anytime you try to add a number and string a string will always win out
+```
+
+* anytime you try to add a number and string **a string will always win out**
 
 ### Helpful Number functions
 
-* parseInt() - converts string to integer
+#### parseInt()
 
+Converts string to integer
+
+```js
 bothVariables = parseInt(detergent) + favNumber;
 console.log(bothVariables); // 504
-* parseFloat() - converts string to decimal
+```
 
-a float - '1.111'
-so if you want to add that to a number and not concatenat use parseFloat()
-* toFixed( x ) - converts to x number of decimal places, but also converts to string
+#### parseFloat() 
 
+Converts string to decimal
+
+example - `1.111`
+
+So if you want to add that to a number and not concatenat use `parseFloat()`
+
+#### toFixed( x ) 
+
+Converts to x number of decimal places, but also converts to string
+
+```js
 var floatNum = 1.111;
 console.log( floatNum.toFixed( 2 ) ); // "1.11"
 console.log( parseFloat( floatNum.toFixed( 2 ) ) ); // 1.11
+```
 
-* toString() - converts a number to a string
+#### toString() 
 
-## Check what type?
+Converts a number to a string
 
-`typeof`
+#### typeof
 
+Check type of data type with `typeof`
+
+```js
 var firstName = "John",
     favNum = 5;
 
 console.log( typeof firstName ); // "string"
 console.log( typeof favNum ); // "number"
+```
 
-## NaN (this is a data type)
+#### NaN (this is a data type)
 
 Not a Number
 
 Most like returned because of an error
 
+```js
 console.log( parseInt( 'nowayjose' ) ); // NaN
+```
 
-## Math Object
+#### Math Object
+```js
 Math.PI
 Math.sqrt()
 Math.pow()
@@ -132,43 +167,48 @@ Math.round()
 Math.min()
 Math.max()
 Number.NEGATIVE_INFINITY
+```
 
-## Object Data Type
+#### Object Data Type
 
 [link](http://jsbin.com/dutiyex/edit?js,console)
 
 A data type that allows for a value to have properties
+
 * think of a variable having its own variables
 
-### Reassigning and adding new properties
+##### Reassigning and adding new properties
 
 * how to get value of a specific property
 * console logging with string
 
-## Symbol Data Type
+#### Symbol Data Type
 
 [link](http://jsbin.com/jevifo/edit?js,console)
 
 Unique unchangeable values often used for naming custom properties
 
 You add a property onto an existing object. 
-post.isPublished
+
+`post.isPublished`
 
 You have a high chance of a conflict with a 3rd party who writes same property.
 A symbol stops this from being a property
-post[IS_PUBLISHED] - this is a unique value even if someone creates same symbol, no chance for conflict
+
+`post[IS_PUBLISHED]`` - this is a unique value even if someone creates same symbol, no chance for conflict
 
 * unique key as symbol
-[link](http://jsbin.com/bolipo/edit?js,output)
+   + [link](http://jsbin.com/bolipo/edit?js,output)
 
-## Arrays (not it's own data type... it's technically a type of Object)
+#### Arrays (not it's own data type... it's technically a type of Object)
 
 Store a collection of values.
 
 * variables store a single value
 * what if we want to store a collection of values? (use arrays!) 
 
-**note** avoid `new` with Array
+**note:** avoid `new` with Array
+
 ```js
 var postIds = new Array(); // bad
     betterArrayFormat = [];
@@ -176,11 +216,11 @@ var postIds = new Array(); // bad
 
 [link](http://jsbin.com/kawaqo/edit?js,console)
 
-* Array of Object [link](http://jsbin.com/coxete/edit?js,console)
+* Array of Object ([link](http://jsbin.com/coxete/edit?js,console))
 
-* Nested Arrays [link](http://jsbin.com/fufuja/edit?js,console)
+* Nested Arrays ([link](http://jsbin.com/fufuja/edit?js,console))
 
-* Nested Arrays vs Objects [link](http://jsbin.com/yadowil/edit?js,console)
+* Nested Arrays vs Objects ([link](http://jsbin.com/yadowil/edit?js,console))
     - objects are easier to decipher because they have names
 
 ### Array Index
@@ -188,8 +228,8 @@ var postIds = new Array(); // bad
 position or order of a value in an Array
 * Objects store values based on property names
 * Arrays store values based on their order or their `index`
-* first item has an idex of 0 (zero) 
-* Getting array values from their index [link](http://jsbin.com/henewa/edit?js,console)
+* first item has an index of 0 (zero) 
+* Getting array values from their index ([link](http://jsbin.com/henewa/edit?js,console))
 
 * reassign a value of an array
 
@@ -197,14 +237,14 @@ position or order of a value in an Array
 pepBoys[0] = "Charlie";
 ```
 
-* add one or many values to Array [link](http://jsbin.com/rerabi/edit?js,console)
+* add one or many values to Array ([link](http://jsbin.com/rerabi/edit?js,console))
 * they get added to `end` of Array
 
  How do I add a value to the beginning of the Array?
 
  `someArray.unshift( 'Magic' ); `
 
-* Removing value from Array [link](http://jsbin.com/qefadu/edit?js,console)
+* Removing value from Array ([link](http://jsbin.com/qefadu/edit?js,console))
 
 Other stuff you can do with Arrays
 
@@ -249,18 +289,18 @@ run before you run a method on an array
 
 ## Strong vs Weak Typing
 
-Strong / Strict
+### Strong / Strict
 
 * Specifies the data type when declaring a variable
 
-Weak / Loose
+### Weak / Loose
 
 * Does not specify data type and can change data types
 
 JavaScript is weakly typed
 assign a variable a number and then reassign it to a string, no problem in JavaScript
 
-although possible it is Best Practice to keep variables to a single data type
-(keep the dat types of variables consistent)
+**Best Practice** Keep variables to a single data type
+(keep the data types of variables consistent)
 
 
