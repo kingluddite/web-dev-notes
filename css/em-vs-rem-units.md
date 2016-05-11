@@ -1,5 +1,7 @@
 # EM vs REM units
 
+[Great article on this subject](http://webdesign.tutsplus.com/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984)
+
 CSS Data Types
 [link](https://developer.mozilla.org/en-US/docs/tag/CSS%20Data%20Type)
 
