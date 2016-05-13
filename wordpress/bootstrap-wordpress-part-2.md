@@ -520,7 +520,6 @@ The CSS should also be minfied which shouldn't be too hard.
 
 Anyone figure out how to do it?
 
-
 # Blog
 
 What would a WordPress site be without a Blog. Instead of static text in all the pages we have created thus far, now we're going to create some posts and show how we can view them on our Blog page.

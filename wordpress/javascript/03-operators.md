@@ -94,3 +94,46 @@ a little bizarre, it is, to read.
   get used to it, you will.
 ```
 
+# IF Else & Else If
+
+[link](http://jsbin.com/poxifu/edit?js,output)
+
+**Best Practice** Write If/Else If/Else statements so most common scenario runs first
+
+**Best Practice** Do not omit curly braces even if using 1 line
+```js
+// GOOD
+if (condition) {
+ // do something
+}
+
+// BAD
+if (condition) 
+ // do something
+
+```
+
+# Switch Statement
+
+Executes different code based on the value of a single expression, like a variable
+
+* if you omit `break` JavaScript will continue checking until the end of the switch statement. this is inefficient and should be avoided
+
+## Jsbin has jslint built into it.
+
+[link](http://jsbin.com/tirada/edit?js,output)
+
+Switch or Else if?
+
+Use Switch
+* when test values of single expression because they're faster
+
+Use Else If
+* when test multiple expressions because they are more flexible
+
+**Note** Switch statments always check for value and type (`===`)
+
+**Best Practice**
+Switch statements are generally discouraged, but can be useful when multiple cases can be handled by the same block
+
+
