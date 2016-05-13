@@ -506,6 +506,21 @@ View the Full Width Page in the browser and you will see it has no sidebar!
 5. Use WYSIWYG bootstrap plugin to add 3 rows of different columns with sample text
 6. Make sure to add it to your menu _(as a dropdown)_
 
+# Sass and WordPress
+
+## Fun Assignment
+
+[Sass](http://sass-lang.com/)
+
+If you never used Sass before it's very useful at improving your workflow with WordPress.
+
+The trick is how to you get all your `scss` files to output to the root level of the theme's `style.css` file with the all important comment section at the top.
+
+The CSS should also be minfied which shouldn't be too hard.
+
+Anyone figure out how to do it?
+
+
 # Blog
 
 What would a WordPress site be without a Blog. Instead of static text in all the pages we have created thus far, now we're going to create some posts and show how we can view them on our Blog page.
@@ -575,14 +590,21 @@ _(it will automatically look to `home.php` to control our blog page)_
 New stuff to talk about:
 
 * `the_permalink()` - links to the full post
-* `the_author()` - who created the post?
-  + show how to add users to WordPress and their permissions
-* `the_time()` - lots of parameters
+*  `the_time()` - lots of parameters
 * `the_category()`
   + we will soon create categories
 * `comments_link()` - no comments yet
 * `comments_number()` - no comments yet
 * `the_excerpt()` - a short excerpt of the content
+
+#### Users
+* `the_author()` - who created the post?
+  + show how to add users to WordPress and their permissions
+
+The `author` is who created the post.
+
+**How do you create users in WordPress**
+Through the Dashboard. Add the user, add their info and choose their permissions. One you do, they will receive an email with information on how to log into the WordPress Site.
 
 ### To get categories to work
 
