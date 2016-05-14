@@ -43,7 +43,7 @@ You must name the theme with the exact (case-sensitive ) name of parent theme fo
 
 Turn on debug mode
 
-wp-config.php
+`wp-config.php`
 
 * turn on debugging only use in development 
 
@@ -53,7 +53,7 @@ define( 'WP_DEBUG', true );
 
 If you run into a memory error, add this to your wp-config.php
 
-wp-config.php
+`wp-config.php`
 
 ```php
 define( 'WP_MEMORY_LIMIT', '96M' );
