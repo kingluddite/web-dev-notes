@@ -5,7 +5,13 @@
 * [part 3](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-3.md)
 * [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-4.md)
 
-# Full width pages
+## Follow WordPress PHP naming guide
+
+The WordPress community can be snobs about their code. If you work on a team, it will serve you well to follow this guide. If you don't haters are gonna hate.
+
+[link](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/)
+
+## Full width pages
 
 What if I want one template page that has no sidebar _(a full width page)_
 
