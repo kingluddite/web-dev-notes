@@ -79,4 +79,43 @@ Skips to next iteration of a loop
 
 [link](http://jsbin.com/legosi/edit?js,console)
 
+## For In Loop
+
+Iterates through properties of an object
+
+```js
+for ( var prop in obj ) {
+
+    console.log( prop );
+    console.log( post[prop] );
+
+}
+```
+
+[link](http://jsbin.com/xejoji/edit?js,console)
+
+**Notes:**
+
+* you want to use `For In` loops with objects with properties not with arrays
+* you could use `for in` loop with arrays but it is not recommended
+
+## For Of Loop
+
+Iterates through items in a collection, such as an array
+
+```js
+for ( var item of collection ) {
+
+    console.log( item );
+
+}
+```
+
+[link](http://jsbin.com/yofehu/edit?js,console)
+
+jsbin will alert you that this is a ES6/Bable new feature
+so you need to select that from the dropdown in jsbin
+
+pro of using it: much less typing then using the `for loop`
+
 
