@@ -5,7 +5,9 @@
 * [View stuff made with Bootstrap](http://expo.getbootstrap.com/)
 * [Bootstrap Resources](http://expo.getbootstrap.com/resources/)
 
-Install with npm
+## Installation
+
+### Install with npm
 
 * make sure you create your `package.json` first
 
@@ -13,7 +15,7 @@ Install with npm
 $ npm install bootstrap@4.0.0-alpha.2 --save
 ```
 
-CDN Start 
+### CDN Start 
 
 Quick, Easy and Painless
 
