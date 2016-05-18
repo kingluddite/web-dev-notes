@@ -155,13 +155,20 @@ $ npm install gulp --save-dev
 * you will now have info to show what dev dependencies and versions should be installed
 * you never need to install gulp on production servers so that is why we list it as a development only dependency
 
-Gulp was added
+**Gulp was added**
+
 partial of `package.json`
 
 ```
 "devDependencies": {
     "gulp": "^3.9.0"
   }
+```
+
+## How to install multiple gulp packages at one time
+
+```bash
+$ npm install gulp-autoprefixer gulp-changed gulp-imagemin gulp-less --save
 ```
 
 **Note:** Gulp needs to be installed globally and locally in our `package.json`

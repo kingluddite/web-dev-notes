@@ -201,4 +201,3 @@ Copy `index.php` to `single-gallery.php`
 
 Best Practice
 * Keep functionality out of theme
-
