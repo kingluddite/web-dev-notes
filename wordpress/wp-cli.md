@@ -1,5 +1,49 @@
 # WP CLI
 
+## Install WordPress with WP-CLI
+
+### Core download install
+
+This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
+
+```
+$ wp core download
+```
+
+### Create the wp-config.php file
+
+If you were manually installing WordPress through the browser you would be brought to a page where you put in your database connection information. This would in turn create your `wp_config.php` file. WP-CLI speeds this step up with a little terminal magic.
+
+Before you do this step you need to create a database in MySQL. Using the GUI phpMyAdmin is the way most people do this. You can also use the Terminal, sign into MySQL and create a database this way. As you use the terminal more and more the second option may become your first choice.
+
+So now you are ready to create your `wp-config.php` file
+
+```
+$ wp_bootstrap
+```
+
+This will create the file to connect you to your MySQL databse. The above code is assuming you used MAMP and the default username and password for MAMP is root and root. Change the --dbname value to match the name you used when creating the empty database in phpMyAdmin (or MySQL terminal). I recommend using underscores instead of dashes in db names with more than one word (ie my_db instead of my-db). For security reasons you may want to not have db in name so hackers won't find it so easily.
+
+### Finishing Up Core Install
+
+If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal. 
+
+```
+$  wp core install --url=http://localhost/kl-sage-wp --title=KLSageWP --admin_user=admin --admin_password=password --admin_email=howley.phil@gmail.com
+```
+
+* sometimes you may have to rename localhost in wp-config.php to 127.0.0.1 to avoid database connection error
+
+If you get the above error try to change the file permissions:
+
+```
+$ chmod 644 wp-config.php
+```
+
+* If you get success, wordpress has been installed on command line. 
+* Log in with the credentials you just created.
+
+**IMPORTANT:** Manually Check `Discourage search engines from indexing this site`
 WP-CLI enables you to update WordPress from the terminal. It is a great improvement in the traditional way to update WordPress.
 
 ## Core Update
@@ -106,50 +150,7 @@ or if you are on a remote box, the path might be...
 $ cd /var/www/wp-project
 ```
 
-### Core download install
-
-This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
-
-```
-$ wp core download
-```
-
-### Create the wp-config.php file
-
-If you were manually installing WordPress through the browser you would be brought to a page where you put in your database connection information. This would in turn create your `wp_config.php` file. WP-CLI speeds this step up with a little terminal magic.
-
-Before you do this step you need to create a database in MySQL. Using the GUI phpMyAdmin is the way most people do this. You can also use the Terminal, sign into MySQL and create a database this way. As you use the terminal more and more the second option may become your first choice.
-
-So now you are ready to create your `wp-config.php` file
-
-```
-$ wp core config --dbuser=root --dbpass=root --dbname=wp_bootstrap
-```
-
-This will create the file to connect you to your MySQL databse. The above code is assuming you used MAMP and the default username and password for MAMP is root and root. Change the --dbname value to match the name you used when creating the empty database in phpMyAdmin (or MySQL terminal). I recommend using underscores instead of dashes in db names with more than one word (ie my_db instead of my-db). For security reasons you may want to not have db in name so hackers won't find it so easily.
-
-### Finishing Up Core Install
-
-If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal. 
-
-```
-$  wp core install --url=http://localhost/test-wp-site --title=WPTest --admin_user=peh2 --admin_password=password --admin_email=howley.phil@gmail.com
-```
-
-* sometimes you may have to rename localhost in wp-config.php to 127.0.0.1 to avoid database connection error
-
-If you get the above error try to change the file permissions:
-
-```
-$ chmod 644 wp-config.php
-```
-
-* If you get success, wordpress has been installed on command line. 
-* Log in with the credentials you just created.
-
-**IMPORTANT:** Manually Check `Discourage search engines from indexing this site`
-
-Where to get name for theme/plugin?
+Where to get name for `theme/plugin`?
 
 If you want to install a new plugin but you don’t know the slug for it, you can find it as a directory under [WordPress.org](http://wordpress.org)
 
