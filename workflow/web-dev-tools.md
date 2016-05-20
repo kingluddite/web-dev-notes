@@ -167,4 +167,26 @@ Browser Window Management
 
 ![screenshot](https://i.imgur.com/kz6wmFK.png)
 
+## [LICEcap](http://www.cockos.com/licecap/) - simple animated screen captures (free)
+Great for adding to your markdown notes
 
+## [JSBIN](http://jsbin.com/)
+
+Online code editor to practice your JavaScript
+
+## [spectacle](http://jsbin.com/)
+Free app for OSX window management
+
+## RegExr
+Free online way to practice regular expressions
+
+## [Regex Golf](https://regex.alf.nu/)
+Learn regular expressions the fun way
+
+## [RegEx Testing](https://regex101.com/#javascript)
+
+## [Interview Cake](https://www.interviewcake.com/)
+Get prepared for programming interviews
+
+## [Typing.io](https://typing.io/lesson/javascript/jquery/traversing.js/1)
+Practice typing faster (specific to programmers)

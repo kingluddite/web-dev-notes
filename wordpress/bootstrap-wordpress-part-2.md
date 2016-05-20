@@ -184,6 +184,22 @@ You will see the 3 widgets you created for the front Page. Drag and drop `Text` 
 
 In WP Dashboard add a `Text` Widget [looks like this](https://i.imgur.com/4W1IGJf.png)
 
+#### Common Error with `functions.php`
+
+If you have space after the closign `?>` php tag you will get an error. Open `functions.php` and add space after the closing `?>` php tag.
+
+Refresh WordPress site in browser. Do you see an error?
+
+##### White Screen of Death
+
+Usually means you don't have debugging on which is a good thing in production but when developing you [want debugging on](https://codex.wordpress.org/Debugging_in_WordPress).
+
+If you just see the `white screen of death`, turn on [WordPress Debug Mode](https://codex.wordpress.org/Debugging_in_WordPress). You usually set that inside your `wp-config.php` file.
+
+Solutions for common WordPress errors.
+
+[Read this article](https://codex.wordpress.org/FAQ_Troubleshooting) for more debug information on common problems.
+
 `front-page.php`
 
 ```php
@@ -217,6 +233,8 @@ This is a cool plugin that lets you easily add marked up code without writing HT
 
 # Sidebars
 
+Create an empty file called `sidebar.php`
+
 ## Our Page Template (page.php)
 At some point you want to add a sidebar whether it's for advertising or to showcase something cool you on the side of your site.
 
@@ -225,6 +243,8 @@ Save `index.php` as `page.php`
 Make `page.php` look like this:
 
 ### Two column layout
+
+`page.php`
 
 ```php
 <?php get_header(); ?>
@@ -261,11 +281,13 @@ Here we have a sidebar but it is static and not too exciting.
 
 **What we do have that's exciting:**
 
-* we Added the Loop
+* we Added the `WordPress Loop`
   + _allows us to edit our page content in the Dashboard_
-* the_title() function pulls the title of our page
-* the_content() pulls the page content into this page
-* conditional logic to show or hide depending on content or no content
+* `the_title()` function pulls the title of our page
+* `the_content()` pulls the page content into this page
+* **conditional logic** to show or hide depending on content or no content
+
+`page.php`
 
 ```php
 <?php get_header(); ?>
@@ -405,9 +427,9 @@ Drop it down a bit.
 
 Our headings in our widget our `H2`. How can we change them to `H3`?
 
-`functions.php`
-
 * change `H2` to `H3` so new CSS in `style.css` will work
+
+`functions.php`
 
 ```php
 function create_widget($name, $id, $description) {
@@ -455,6 +477,8 @@ Check out the `comment` at the top of this template. This comment has special in
 
 _(remember the special comment instructions our style.css file had?)_
 
+`page-full-width.php`
+
 ```php
 <?php
 /*
@@ -493,9 +517,9 @@ _(remember the special comment instructions our style.css file had?)_
 
 ## Don't forget to select the full-width-page template in the Dashboard
 
-Open the full width page and select under Page Attributes in the Dashboard `Full Width Tempalte` under Template.
+Open the full width page and select under Page Attributes in the Dashboard `Full Width Template` under Template.
 
-View the Full Width Page in the browser and you will see it has no sidebar!
+View the `Full Width Page` in the browser and you will see it has no sidebar!
 
 ## Full width grid using our WYSIWYG
 
@@ -509,6 +533,9 @@ View the Full Width Page in the browser and you will see it has no sidebar!
 # Sass and WordPress
 
 ## Fun Assignment
+
+[check out Jay's solution using Compass](https://github.com/JayJohnson1/dev-notes/blob/master/wp-compass-tips.md)
+(thanks Jay!)
 
 [Sass](http://sass-lang.com/)
 
@@ -746,6 +773,8 @@ Pull in `blog` sidebar
 ```
 
 # Archives
+
+Say you have a category of `cool cats`. That might be super interesting to a cool cat and so he/she might want to see all your articles that have the category of `cool cats`. That's the purpose of the archive page.
 
 ## archive.php
 

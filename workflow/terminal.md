@@ -1,5 +1,6 @@
 # Terminal
 
+[sample osx bash profile article](https://natelandau.com/my-mac-osx-bash_profile/)
 
 ## Terminal Cheatsheet
 [terminal cheatsheet](https://github.com/0nn0/terminal-mac-cheatsheet/wiki/Terminal-Cheatsheet-for-Mac-(-basics-))

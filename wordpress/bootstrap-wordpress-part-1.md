@@ -543,13 +543,15 @@ add_action( 'init', 'register_theme_menus' );
 ?>
 ```
 
-Create 3 pages in Dashboard
+### Create 3 pages in Dashboard
 
 We'll create these pages but we won't be able to view them. The reason is because of WordPress' hierarchy. But we will at least be able to get our menu to work.
 
 * Home
 * Sample Page
 * Blog
+
+note: delete the Home page with a custom link in the WordPress Admin
 
 ![Menu Dashboard](https://i.imgur.com/LtUqqox.png)
 
@@ -663,7 +665,7 @@ Our dropdown CSS is not what we want
 ## 25. Check if Navbar is responsive
 
 ## 26. Install Bootstrap Shortcodes
-
+* [link](https://wordpress.org/plugins/bootstrap-shortcodes/)
 * Kevin Attfield
 * Install and Activate
 * view page and you'll see shortcodes in editor

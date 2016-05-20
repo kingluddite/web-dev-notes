@@ -27,7 +27,8 @@ Install and activate these plugins
 Use Dashboard to create a new Post Type called `portfolio`
 
 ![add custom post type](https://i.imgur.com/OW873Nk.png)
-[add these settings and click `Add Post Type`](https://i.imgur.com/RooEaIK.png)
+
+![add these settings and click `Add Post Type`](https://i.imgur.com/RooEaIK.png)
 
 ### Add New Field Group
 1. Click `Custom Fields` in sidebar of Dashboard
@@ -41,7 +42,7 @@ Use Dashboard to create a new Post Type called `portfolio`
 9. Under `Location` beside `Rules` set `Post Type` `is equal to` `portfolio` and click the `Add rule group` button
 10. Click `Publish` button.
 
-**You now see a `portfolios` button on your Dashboard sidebar?**
+**You now see a `portfolios` button on your Dashboard sidebar**
 ![portfolios button](https://i.imgur.com/EfgqcLo.png)
 
 ### Add a Portfolio item
@@ -65,11 +66,20 @@ It just doesn't appear. You have to add that option via `functions.php`
 
 ![post-thubmails](https://i.imgur.com/LWE6o9w.png)
 
+Now if you create a new post or update an existing post you'll see this in WordPress admin which means you now can add featured images.
+
+~[featured image](https://i.imgur.com/AvID2JS.png)
+
 ### Group Add Images to WordPress
 
 1. Find 5 soccer player paintings and save them to your Downloads folder.
 2. Click `Media` and drag and drop them all in
 3. Create portfolio pages for all 5 of them.
+    * make sure to add the images so they are all featured images of the post
+
+**example of featured image:**
+
+![sample feature image](https://i.imgur.com/nloBufX.png)
 
 ## Porfolio page
 
@@ -121,11 +131,13 @@ Save `page-full-width.php` as `page-portfolio.php`
 <?php get_footer(); ?>
 ```
 
-* Now edit `Portfolio Grid w Custom Posts` to use Page Portfolio Grid Template
+* Now edit `Portfolio Grid w Custom Posts` to use `Page Portfolio Grid Template`
 * See if you can add it to dropdown on our menu
 * View page and see if link works
 
 In `Settings > Media` _(Dashboard)_, change default size for thumbnails to be `260px` x `260px`
+
+![screenshot](https://i.imgur.com/2aNHkcD.png)
 
 `page-portfolio.php`
 
@@ -219,7 +231,7 @@ Change the row to this:
 
       <?php if ( have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 
-      <div class="col-xs-3 portfolio-piece">
+      <div class="col-xs-12 col-md-3 portfolio-piece">
        <?php
          $thumbnail_id = get_post_thumbnail_id();
          $thumbnail_url = wp_get_attachment_image_src( $thumbnail_id, 'thumbnail-size', true );
@@ -229,10 +241,10 @@ Change the row to this:
         <h4><?php the_title(); ?></h4>
       </div>
 
-      **<?php $portfolio_count = $the_query->current_post + 1; ?>
+      <?php $portfolio_count = $the_query->current_post + 1; ?>
       <?php if ( $portfolio_count % 4 === 0): ?>
         </div><div class="row">
-      <?php endif; ?>**
+      <?php endif; ?>
 
     <?php endwhile; endif; ?>
     </div>
@@ -243,6 +255,8 @@ This will automatically add a Bootstrap row when 4 columns have been reached. Ma
 ## Link thumbnails to specific portfolio page
 
 When you click on a portfolio thumbnail you want to be taken to the large image of the portfolio piece.
+
+modify your fragment of code to look like this:
 
 ```php
  <p><a href="<?php the_permalink(); ?>"><img src="<?php echo $thumbnail_url[0]; ?>" alt="<?php the_title(); ?> graphic"></a></p>
@@ -258,7 +272,7 @@ We need it to go to a different single template, one that we will build now. Thi
 Save `page-full-width.php` as `single-portfolio.php`
 
 * we will remove the template comment at the top. Why
-  - because of the naming convention (hierarcy) WordPress uses. The `single-` followed by the name of the page will automatically work
+  - because of the naming convention (hierarchy) WordPress uses. The `single-` followed by the name of the page will automatically work
 
 We want our `full page` to have
 
@@ -366,6 +380,8 @@ Add `Viewport Dimensions` [link](https://chrome.google.com/webstore/detail/viewp
 ```
 
 ## Bootstrap Glyphicons [link](http://getbootstrap.com/components/)
+
+* replace the 3 col navigation with the following code fragment
 
 ```php
 <div class="col-xs-3 prev-next">
