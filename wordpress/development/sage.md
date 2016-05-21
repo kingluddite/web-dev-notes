@@ -201,3 +201,10 @@ Copy `index.php` to `single-gallery.php`
 
 Best Practice
 * Keep functionality out of theme
+
+Trellis Error
+
+[Ansible roles/packages](http://stackoverflow.com/questions/36958125/ansible-roles-packages-ansible-galaxy-error-on-instalation-mac-osx) - Ansible Galaxy - error on instalation MAC OSX
+```
+pip install --upgrade setuptools --user python
+```

@@ -1,7 +1,6 @@
 # WP CLI
 
 ## Install WordPress with WP-CLI
-
 ### Core download install
 
 This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
@@ -19,7 +18,7 @@ Before you do this step you need to create a database in MySQL. Using the GUI ph
 So now you are ready to create your `wp-config.php` file
 
 ```
-$ wp_bootstrap
+$ wp core config --dbuser=root --dbpass=root --dbname=wp_bootstrap
 ```
 
 This will create the file to connect you to your MySQL databse. The above code is assuming you used MAMP and the default username and password for MAMP is root and root. Change the --dbname value to match the name you used when creating the empty database in phpMyAdmin (or MySQL terminal). I recommend using underscores instead of dashes in db names with more than one word (ie my_db instead of my-db). For security reasons you may want to not have db in name so hackers won't find it so easily.
@@ -29,7 +28,7 @@ This will create the file to connect you to your MySQL databse. The above code i
 If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal. 
 
 ```
-$  wp core install --url=http://localhost/kl-sage-wp --title=KLSageWP --admin_user=admin --admin_password=password --admin_email=howley.phil@gmail.com
+$  wp core install --url=http://localhost/luthier-builder --title=WPLuthierBuilder --admin_user=peh2 --admin_password=password --admin_email=howley.phil@gmail.com
 ```
 
 * sometimes you may have to rename localhost in wp-config.php to 127.0.0.1 to avoid database connection error
