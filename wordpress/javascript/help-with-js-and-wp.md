@@ -1,46 +1,48 @@
 # WordPress and JS
 
-Watch Out
+## Handle With Care
 * Conflicts with other JS files
 * Security
 * Performance
 
-don't use link or script
-use wp_enqueue_script instead
-* helps prevent conflicts
-* add WP bundled scripts
-* resolves dependencies
-* allows you to set a version for your JS file
-* only adds a script once
+## Do Not Use Link or Script Tags
+Use wp_enqueue_script instead
 
-wp_enqueue_script();
-* specifies what JS file(s) to load in your plugin or theme
-* WP injects script into either header
-`wp_head();` or footer `wp_footer();`
+### Why the heck not?
+* Helps prevent conflicts
+* Add WordPress bundled scripts
+* Resolves dependencies
+* Allows you to set a version for your JavaScript file
+* Only adds a script once
 
-WP is bundled with:
+`wp_enqueue_script()`
+* specifies what JavaScript file(s) to load in your plugin or theme
+* WordPress injects script into either header
+`wp_head()` or footer `wp_footer()`
+
+WordPress is bundled with:
 * jQuery
 * jQuery UI (dialog, effects...)
 * jcrop
-* Backbone.js (helps structure you JS code)
-* Underscore.js - for useful functions in your JS development
+* `Backbone.js` (helps structure you JS code)
+* `Underscore.js` - for useful functions in your JS development
 
-[WP Code Reference](https://developer.wordpress.org/reference/)
+[WordPress Code Reference](https://developer.wordpress.org/reference/)
 
 ## [Default Scripts Included and Registered by WordPress](https://developer.wordpress.org/reference/functions/wp_enqueue_script/)
 
 By default, WordPress installation includes many popular scripts commonly used by web developers besides the scripts used by WordPress itself. Some of them are listed in the table below.
 
-WP gives you the ability to pass data from your PHP into your JS files using `wp_localize_script` function
+WordPress gives you the ability to pass data from your PHP into your JS files using `wp_localize_script` function
 
 * can pass translations of messages (other languages)
 * any data for your script
 
-When using JS and WP together be sure to use `nonce` (number used once)
+When using JavaScript and WordPress together be sure to use `nonce` (number used once)
 * helps protect against certain types of misuse
 * verify that request is actually coming in from a real user
 
-example:
+### Example:
 form data + nonce gets passed to server
 server can validate that the key is valid for this user and is not expired and if so, allows the form to be processed (if not, it will throw an error and tell the user to bugger off)
 
@@ -59,7 +61,8 @@ wp_enqueue_script(HANDLE, SOURCE, ARRAY of dependencies,Version number, in foote
 ```html
   <script src="http://.../.../js/code.js?ver=1"></script>
 ```
- tip
+ 
+ ### TIP
  rather than hard coding version number use a CONSTANT like at the top of your plugin value
 
 ```php 
@@ -80,18 +83,18 @@ in footer parameter - if `true` script added to footer, `false`, added to header
 
 ## When to call `wp_enqueue_script`
 
-add_action() - basically events that are called during specific points in time during the page load.
+`add_action()` - basically events that are called during specific points in time during the page load.
 
 we can HOOK into an action that is firing at the time we want using `add_action`
 
 ### `add_action( 'action_name', 'our_function_name' );`
 
-action_name - name of action that we want to hook into
+`action_name()` - name of action that we want to hook into
 our_function_name - name of the function we want to be called when this action is fired
 
-example
+### Example
 
-**note** wp_enqueue_script() has to be inside a function
+**note** `wp_enqueue_script()` has to be inside a function
 
 ```php
 <?php
@@ -118,7 +121,7 @@ add_action( 'admin_enqueue_scripts', 'my_example_enqueue_script' );
         + we only want to load our script on the post editing screen
             * admin_enqueue_scripts - gives us a $hook parameter we can use to only load if we are where we want to be
 
-so if our hook is 'wp_enqueue_scripts' this will get called on every front end page which is not what we want, we can run a check before we run the wp_enqueue_script
+so if our hook is `wp_enqueue_scripts()` this will get called on every front end page which is not what we want, we can run a check before we run the wp_enqueue_script
 
 ```php
 // if not home page exit out and not enqueue our script
@@ -131,10 +134,13 @@ function some_function() {
 ```
 
 or this 
+```js
 if ( !is_page( 'about' ) )
     return;
+```
 
-just for login
-login_enqueue_scripts - action 
+**just for login**
 
-only load JS files when you need them (helps prevent conflicts from your scripts or your theme)
+`login_enqueue_scripts()` - action 
+
+only load JavaScript files when you need them (helps prevent conflicts from your scripts or your theme)

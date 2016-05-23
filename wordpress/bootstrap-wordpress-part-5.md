@@ -521,6 +521,13 @@ Here is the fix:
 
 Save changes and test. It should work!
 
+### Off Canvas
+
+off canvas example
+
+* grab the css and paste into `style.css`
+
+
 FIN
 
 * [part 1](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-1.md)

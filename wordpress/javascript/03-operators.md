@@ -6,25 +6,28 @@ Let us perform operations
 
 x = 5;
 username = 'admin';
-[link](http://jsbin.com/lutewo/edit?js,console)
+
+[jsbin example](http://jsbin.com/lutewo/edit?js,console)
 
 ## Comparison operators
 
 Determine if one value is less than, equal to, greater than or not equal to another value.
 
 ## Arithmetic operators
-[link](http://jsbin.com/zoqiga/edit?js,console)
+[jsbin example](http://jsbin.com/zoqiga/edit?js,console)
 
 
 ## Logical operators
 
-Offer AND(&&), OR(||), and NOT(!) when comparing values
-[link](http://jsbin.com/nesolem/edit?js,console)
+Offer AND(`&&`), OR(`||`), and NOT(`!`) when comparing values
+
+[jsbin example](http://jsbin.com/nesolem/edit?js,console)
 
 ## String operators
 
 Concatenate or join strings together
-[link](http://jsbin.com/pozira/edit?js,console)
+
+[jsbin example](http://jsbin.com/pozira/edit?js,console)
 
 ## Conditional (ternary) operator
 
@@ -34,7 +37,7 @@ Lets us assign a value based on a conditional statement. Also called a Ternary O
 variable = ( conditional ) ? true : false;
 ```
 
-[link](http://jsbin.com/gozabud/edit?js,console)
+[jsbin example](http://jsbin.com/gozabud/edit?js,console)
 
 ## If Statements
 
@@ -45,13 +48,16 @@ variable = ( conditional ) ? true : false;
     - curly braces
     - in general, add spaces generously
 
-### === vs ==
+### `===` vs `==`
 
-`===` (checks to make sure same value AND same type)
+#### `===` SAME VALUE AND SAME TYPE
+
+#### `==` JUST SAME VALUE
+
 
 **note:** in JavaScript 0 (zero) will pass as `false` in conditional statements and any other number or value will pass as `true`
 
-[link](http://jsbin.com/conasek/edit?js,output)
+[jsbin example](http://jsbin.com/conasek/edit?js,output)
 
 in above example if we set variable value to 0 and test for it's conditional, it will result in false which will not be what we want
 
@@ -72,7 +78,7 @@ happens a bunch of places in JavaScript
 
 will be true if statement is true
 
-[link](http://jsbin.com/gezimez/edit?js,output)
+[jsbin example](http://jsbin.com/gezimez/edit?js,output)
 
 ### Yoda Style
 
@@ -86,7 +92,7 @@ If yoda username is,
 This helps us avoid assigning instead of comparing.
 if we follow this rule, we'll get a warning instead of assigning a value of true to our condition which could break our code
 
-[link](http://jsbin.com/hifati/edit?js,output)
+[jsbin example](http://jsbin.com/hifati/edit?js,output)
 
 coding standards says
 ```
@@ -96,7 +102,7 @@ a little bizarre, it is, to read.
 
 # IF Else & Else If
 
-[link](http://jsbin.com/poxifu/edit?js,output)
+[jsbin example](http://jsbin.com/poxifu/edit?js,output)
 
 **Best Practice** Write If/Else If/Else statements so most common scenario runs first
 
@@ -121,19 +127,19 @@ Executes different code based on the value of a single expression, like a variab
 
 ## Jsbin has jslint built into it.
 
-[link](http://jsbin.com/tirada/edit?js,output)
+[jsbin example](http://jsbin.com/tirada/edit?js,output)
 
-Switch or Else if?
+### Switch or Else if?
 
-Use Switch
+#### Use Switch... when
 * when test values of single expression because they're faster
 
-Use Else If
+#### Use Else If... when
 * when test multiple expressions because they are more flexible
 
 **Note** Switch statments always check for value and type (`===`)
 
-**Best Practice**
+# Best Practice
 Switch statements are generally discouraged, but can be useful when multiple cases can be handled by the same block
 
 

@@ -3,12 +3,17 @@
 ## [JSBin](http://jsbin.com)
 * `HTML`
 * `CSS`
-* `JS` (include libraries you need)
-* console (shows output)
+* `JS`
+    - include libraries you need
+* console 
+    - shows output
 
 ## Text Editor
 
 [Atom](https://atom.io/)
+
+I free popular text editor created by the people at Github.
+
 * drag folder onto Atom to open them
 
 View in browser (_use finder_)

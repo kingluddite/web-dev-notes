@@ -10,6 +10,9 @@ if ( true === isLoggedIn ) {
 ```
 
 ## JsBin Useful Keyboard Shortcuts
+
+Using jsbin is easy. The two following keyboard shortcuts should get you up and running in no time.
+
 Run the code
 
 * `cmd` + `return`
@@ -65,7 +68,6 @@ console.log( firstName.concat( ' ', lastName ) ); // John Doe
 
 Data type for numeric values and mathematical operations
 * no quotation marks around them (_like we use in Strings_)
-
 * `add` a + b
 * `subtract` a - b
 * `multiply` a * b
@@ -74,7 +76,7 @@ Data type for numeric values and mathematical operations
 
 **note:** variables can later be reassigned to new values
 
-```
+```js
 var a = 5;
 a = 6;
 ```
@@ -82,14 +84,14 @@ a = 6;
 * adds with numbers and concatenates with strings
 
 ## 3 Types of Numbers
-
 * `Integers` - whole numbers
 * `Floating Point` - decimal points
 * `Positive & Negative` Infinity
+    - (_note_) String - numeric values, NOT true numbers
 
-* String - numeric values, NOT true numbers
-
-`var detergent = '409'; // string not number`
+```js
+var detergent = '409'; // string not number`
+```
 
 ## Add a string and a number
 ```js
@@ -230,7 +232,6 @@ position or order of a value in an Array
 * Arrays store values based on their order or their `index`
 * first item has an index of 0 (zero) 
 * Getting array values from their index ([link](http://jsbin.com/henewa/edit?js,console))
-
 * reassign a value of an array
 
 ```js
@@ -240,17 +241,27 @@ pepBoys[0] = "Charlie";
 * add one or many values to Array ([link](http://jsbin.com/rerabi/edit?js,console))
 * they get added to `end` of Array
 
- How do I add a value to the beginning of the Array?
+#### How do I add a value to the beginning of the Array?
 
- `someArray.unshift( 'Magic' ); `
+```js
+someArray.unshift( 'Magic' );
+```
 
 * Removing value from Array ([link](http://jsbin.com/qefadu/edit?js,console))
 
-Other stuff you can do with Arrays
+#### Other stuff you can do with Arrays
 
-* [Get number of items in array](http://jsbin.com/dulawa/edit?js,console) - `myArray.length`
-    - get last value in Array
-        + `myArray[ myArray.length];` 
+#### [Get number of items in array](http://jsbin.com/dulawa/edit?js,console) 
+
+```js
+myArray.length
+```
+
+#### Get last value in Array
+
+```js
+myArray[myArray.length];
+```
 
 * Join arrays together
 * Get a portion of an array
@@ -263,23 +274,28 @@ Other stuff you can do with Arrays
 
 * slice array, select portions of an array
 
+```js
 myArray.slice( startIndex, endIndex ); // endIndex is non-inclusive
+```
+
 [link](http://jsbin.com/gisiva/edit?js,console)
 
 ## Sorting Arrays
 
 [link](http://jsbin.com/xuxune/edit?js,console)
 
-sorting numbers doesn't work as we would expect, need to use special functions to sort numbers to be increasing and descreasing
+* sorting numbers doesn't work as we would expect
+* need to use special functions to sort numbers to be increasing and descreasing
 
 ## .forEach
 
-helps us loop through items in an array
+Helps us loop through items in an array
+
 [link](http://jsbin.com/lineweh/edit?js,console)
 
 ## .isArray
 
-run before you run a method on an array
+Run before you run a method on an array
 
 [link](http://jsbin.com/tuqoso/edit?js,console)
 
@@ -297,10 +313,12 @@ run before you run a method on an array
 
 * Does not specify data type and can change data types
 
-JavaScript is weakly typed
-assign a variable a number and then reassign it to a string, no problem in JavaScript
+#### JavaScript is weakly typed
+* Assign a variable a number and then reassign it to a string, no problem in JavaScript
 
-**Best Practice** Keep variables to a single data type
-(keep the data types of variables consistent)
+**Best Practice**
+
+Keep variables to a single data type
+* keep the data types of variables consistent
 
 
