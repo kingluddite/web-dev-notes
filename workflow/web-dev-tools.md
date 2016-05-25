@@ -49,6 +49,12 @@ That's it! Your folders are now linked so that when you make any changes on your
 For Mac, you need this to install stuff you should have on your mac as a developer
 * Homebrew needs Mac's XCode to be installed. It is a free install but large so when you install it, go grab a cup of coffee.
 
+### Update Homebrew
+
+```
+$ brew update
+```
+
 ### Install Homebrew (Free)
 [homebrew link](http://brew.sh/)
 

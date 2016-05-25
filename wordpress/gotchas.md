@@ -1,5 +1,19 @@
 #WordPress gotchas
 
+## Ack command
+
+Have an error and want to find all occurences in your site?
+
+If you're at all familiar with the command line, this ack command will pinpoint the malformed code:
+
+Here is what I did when I [recently updated to WordPress 4.5 and jquery broke](https://wordpress.org/support/topic/wp-45-and-jquery-syntax-error) my sliders
+
+```
+ack "\[href.?=#"
+```
+
+Just run that at the root of your site via ssh and it'll find the problems to correct.
+
 ## Permissions on Remote
 
 If you use WordMove and get a strange 500 error you may have a permissions problem. Add `perms.php` to your server root and it will give all your folders for WordPress the correct permissions.

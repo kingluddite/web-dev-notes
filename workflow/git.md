@@ -148,3 +148,14 @@ When you fork someone else's repo, you get and exact copy of the repo (think xer
 When changes happen to this forked repo by the creators of it, you can pull down the new modifications only if you add `upstream` capability to your report. This is the direct connection to communicate from them to you and you to them.
 
 [Here is the link to add that capability](https://help.github.com/articles/syncing-a-fork/)
+
+# Git
+
+## Global config
+
+
+
+```
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+```
