@@ -413,3 +413,29 @@ User: root
 Pass: root
 See: Connecting to MySQL from your local machine
 
+## Solutions to common problems
+
+
+### vagrant ssh isn't working
+And you get an error similar to this:
+
+![vagrant ssh error](https://i.imgur.com/FiO8I4v.png)
+
+Just make sure to to run `vagrant up` before you run `vagrant ssh`
+
+### update your vagrant box
+It's a best practice
+![update vagrant box message](https://i.imgur.com/CxuClAh.png)
+
+If you see something like above
+
+Just run this:
+
+```shell
+$ vagrant box update
+```
+
+#### Caution on vagrant box update
+When you run in and then try to `vagrant ssh` your box sometimes forgets about your web site directories. What I do to fix this is open virtual box and manual shut down the vagrant box. I then run `vagrant up` and then when I use `vagrant ssh`, it knows about my web site directories.
+This has happened a few times to me when I updated Vagrant box so just be aware of it if it happens to you.
+(It's pretty scary when you feel all your sites are gone.. the config should be on another computer too... just to be safe)
