@@ -39,6 +39,9 @@ $ gem install compass
 * if you didn't have Sass installed Compass will install it for you
 * if have permissions error use `sude` and enter your mac password when it asks you
 
+Bug fix
+![if compass won't load](https://i.imgur.com/OthZl5H.png)
+[link to bug fix](http://stackoverflow.com/questions/32891965/error-while-executing-gem-errnoeperm-operation-not-permitted)
 ### Check if Compass is installed
 ```
 $ compass --version
@@ -53,7 +56,7 @@ $ compass --version
 ### Create a Compass Project
 
 ```
-$ compass create project-path/project-name
+$ compass create path/project-name
 ```
 
 It will create a folder structure similar to this:
@@ -235,7 +238,7 @@ Most of the time you'll just use global reset.
 
 * we can also just import individual modules if we want (instead of whole module)
 
-Add this to your `style.scss`
+Add this to your `screen.scss`
 
 ```scss
 body {

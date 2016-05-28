@@ -1,6 +1,11 @@
 # WordPress
 [download](https://wordpress.org/download/)
 
+## Disable Pingbacks
+[http://www.wpbeginner.com/wp-tutorials/how-disable-self-pingbacks-in-wordpress/](http://www.wpbeginner.com/wp-tutorials/how-disable-self-pingbacks-in-wordpress/)
+
+
+
 ## Serialized themes
 [Use this site to manually change serialized theme in sql file](http://pixelentity.com/wordpress-search-replace-domain/)
 
