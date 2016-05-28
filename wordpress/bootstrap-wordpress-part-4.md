@@ -16,22 +16,60 @@ WordPress comes with these post types
 * Revision
 * Nav Menu
 
-You can create your own custom post types ([more info](http://www.wpbeginner.com/wp-tutorials/how-to-create-custom-post-types-in-wordpress/))
+## Where are post types stored in the database?
+Open up the `wp_posts` table in the database and you will see a `post_type` field ([screenshot](https://i.imgur.com/293gFsx.png)). This is where all the post types are stored.
 
-## Create a Landing Page
+## What is a Taxonomy
+Big word but just think of it as categories.
+
+## When would I use a Custom Post Type or Taxonomy?
+[Good article with a good answer](http://www.wpbeginner.com/beginners-guide/when-do-you-need-a-custom-post-type-or-taxonomy-in-wordpress/)
+
+## Create a Porfolio Page
+### We'll create a soccer team page.
+A common example and good use of creating a new custom post type is creating a portfolio. You have one page highlighting all your portfolio pieces and one page that shows the singular portfolio piece.
+
+As a take on this concept we'll create a page that shows several famous soccer players. When you click on the player, you go to a page that has their photo and information about them.
 
 ### Custom Post Types
-Install and activate these plugins
-* [Custom Post Types UI](https://wordpress.org/plugins/custom-post-type-ui/)
-* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields)
 
-Use Dashboard to create a new Post Type called `portfolio`
+#### Install Plugins
+**Install and activate these plugins**
+
+* [Custom Post Types UI](https://wordpress.org/plugins/custom-post-type-ui/)
+  - This plugin provides an easy to use interface for creating and administrating custom post types and taxonomies in WordPress. This plugin is created for WordPress 3.0 and higher.
+  - This plugin alone will not display post types or taxonomies data in customized places within your site; it simply registers them for you to use. 
+* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields)
+  - Customise WordPress with powerful, professional and intuitive fields
+
+**Note**: You will need both of these plugins to create and use custom post types
+
+Use the Dashboard to create a new Post Type called `portfolio`
+
+Add a custom post type
 
 ![add custom post type](https://i.imgur.com/OW873Nk.png)
 
+Naming the custom post type properly
+
 ![add these settings and click `Add Post Type`](https://i.imgur.com/RooEaIK.png)
 
+**Important** Code with caution 
+
+Pay attention to how you name the custom post type. The first field is what will be used in the the database.
+
+In one lecture I accidentilly gave the post type the name `portfolios` and all the following code broke because it is referring to the singler `portfolio`.
+
+The fix would be to just go into the `wp_posts` table and rename the `post_type` value from `portfolios` to `portfolio`.
+
+Regardless this error turned out to be a good learning experience and help reduce similar problems from occuring in the future.
+
 ### Add New Field Group
+
+So we are going to add a link field so that people can click on a link that goes to where you found the original image.
+
+This really isn't a great example but it does show you how you can add fields. Maybe a better example would be to enter fields that show the player's number. The team they play for and the position they play. Then whenever a player is added those items could be added to the player and displayed on their page.
+
 1. Click `Custom Fields` in sidebar of Dashboard
 2. Click `Add New` in Field Groups
 3. Enter title under `Add New Field Group` as `Portfolio`
@@ -44,53 +82,72 @@ Use Dashboard to create a new Post Type called `portfolio`
 10. Click `Publish` button.
 
 **You now see a `portfolios` button on your Dashboard sidebar**
+
 ![portfolios button](https://i.imgur.com/EfgqcLo.png)
 
-### Add a Portfolio item
+### Add Portfolio Item
 
-Click `portfolios` Dashboard sidebar button and click `Add New` button
+#### We'll add a Player
 
-**Name 'Pele'**
-1. Enter Latin Filler text for body content.
-2. For link add: `http://www.absolutearts.com/portfolio3/l/lonvig/pele-1047734135m.jpg`
-3. Publish
+So Now let's add `Pele` as an individual player.
 
-### Add Featured Image
+1. Click `portfolios` Dashboard sidebar button
+2. Click `Add New` button
+3. Enter Latin Filler text for body content.
+4. For `link` add: `http://www.absolutearts.com/portfolio3/l/lonvig/pele-1047734135m.jpg`
+3. Click `Publish`
 
-Where are `featured images?`
+### [Add Featured Image](https://codex.wordpress.org/Post_Thumbnails)
 
-It just doesn't appear. You have to add that option via `functions.php`
+Featured Image (used to be called , is an image that is chosen as the representative image for Posts, Pages or Custom Post Types. The display of this image is up to the theme. This is especially useful for "magazine-style" themes where each post has an image.
+
+#### Where are `featured images?`
+
+Out of the box, `a featured image` doesn't appear. You have to add that option to your theme via `functions.php`
 
 `functions.php`
 
-* add this `add_theme_support( 'post-thumbnails' );` under the add_theme_support( 'menus' );
+* add the following code snippet
+  - you should have this already have the 'menus' in your `functions.php`
+
+```php
+/*=============================
+=            Menus            =
+=============================*/
+add_theme_support( 'menus' ); 
+
+/*==========================================
+=            Add Featured Image            =
+==========================================*/
+add_theme_support( 'post-thumbnails' );` 
+```
+
+screenshot of code
 
 ![post-thubmails](https://i.imgur.com/LWE6o9w.png)
 
 Now if you create a new post or update an existing post you'll see this in WordPress admin which means you now can add featured images.
 
-~[featured image](https://i.imgur.com/AvID2JS.png)
+![featured image](https://i.imgur.com/AvID2JS.png)
 
 ### Group Add Images to WordPress
+
+WordPress makes [adding images easy](https://en.support.wordpress.com/add-media/. Just drag and drop.
 
 1. Find 5 soccer player paintings and save them to your Downloads folder.
 2. Click `Media` and drag and drop them all in
 3. Create portfolio pages for all 5 of them.
     * make sure to add the images so they are all featured images of the post
 
-**example of featured image:**
+**Example of featured image:**
 
 ![sample feature image](https://i.imgur.com/nloBufX.png)
 
-## Porfolio page
+## Porfolio Page
 
-1. Name it `Portfolio Grid w Custom Posts` 
-2. Set `parent` as `Sample Pages`
-3. Publish
+Here we are going to create our page that will show all of our soccer players. We need a new layout so we'll use the WPHierarchy to build a page from our `page-full-width.php`.
 
 ### page-portfolio.php
-
-This will be a new template based on the `page-full-width.php` template
 
 Save `page-full-width.php` as `page-portfolio.php`
 
@@ -131,18 +188,38 @@ Save `page-full-width.php` as `page-portfolio.php`
 
 <?php get_footer(); ?>
 ```
+### Create a new page
 
-* Now edit `Portfolio Grid w Custom Posts` to use `Page Portfolio Grid Template`
-* See if you can add it to dropdown on our menu
-* View page and see if link works
+Now we can create a page that follows the above template. We just select that template from the template dropdown and we make sure we add page to our menu in the menu part of the WordPress Admin.
+
+1. Name it `Portfolio Grid w Custom Posts` 
+2. Set `parent` as `Sample Pages`
+3. Select `Page Portfolio Grid Template` as the template
+4. Add it to dropdown on our menu under Sample page
+5. Publish
+6. View page in browser to test if it works.
+
+## How do I change the default image sizes when uploaded.
+
+When a user uploads an image, WordPress saves the original image and also creates three other copies for thumbnail, medium and large image sizes. An administrator can adjust these sizes on this page. [Read More](http://www.wpbeginner.com/glossary/media-settings/)
 
 In `Settings > Media` _(Dashboard)_, change default size for thumbnails to be `260px` x `260px`
 
 ![screenshot](https://i.imgur.com/2aNHkcD.png)
 
-`page-portfolio.php`
+## Create a Single Portfolio Piece Page
 
-* add this chunk of code below the 1st row
+We have our portfolio team page and now we need the single page that will show each individual player.
+
+We need a new page because this will be a new layout that we want to look different from the other pages to highlight our players.
+
+* add this chunk of code **BELOW** the first `ROW`
+
+## WP_Query()
+
+This is a really cool WordPress class that gives you the ability to alter your result from the WordPress loop. Instead of pulling all posts from our database we only want to pull our portfolio pieces. To make this work we create a new instance of the WP_Query() class and pass it our `portfolio` post_type. Then we return our result which will hold an array of all the porfolio pieces (or in our example, all our players).
+
+`page-portfolio.php`
 
 ```php
  <div class="row">
@@ -169,9 +246,14 @@ In `Settings > Media` _(Dashboard)_, change default size for thumbnails to be `2
 
 ## Make Portfolio and images more responsive
 
-**note** Bootstrap 4 has a new class called `img-fluid` that does this out of the box
+* Here we add a class of `portfolio-piece` that we will style our images with CSS.
+* We also use WordPress functions to dynamically create the image URL.
+
+**Note** Bootstrap 4 has a new class called `img-fluid` that does this out of the box
 
 Change the row to this:
+
+`page-portfolio.php`
 
 ```php
 <div class="row">
@@ -201,7 +283,7 @@ Change the row to this:
     </div>
 ```
 
-**Add some new CSS** 
+## Add Responsive Image CSS 
 
 `style.css`
 
@@ -219,6 +301,31 @@ Change the row to this:
 ```
 
 ## Add rows dynamically when we have 4 items
+
+This is a cool trick to help make sure your layout doesn't break. It essentially creates a new row dynamically when the images total 4. So if we have 12 images the HTML will look something like this
+
+```html
+<div class="row">
+ <div class="col-md-3">pic 1</div>
+ <div class="col-md-3">pic 2</div>
+ <div class="col-md-3">pic 3</div>
+ <div class="col-md-3">pic 4</div>
+</div>
+<div class="row">
+ <div class="col-md-3">pic 5</div>
+ <div class="col-md-3">pic 6</div>
+ <div class="col-md-3">pic 7</div>
+ <div class="col-md-3">pic 8</div>
+</div>
+<div class="row">
+ <div class="col-md-3">pic 9</div>
+ <div class="col-md-3">pic 10</div>
+ <div class="col-md-3">pic 11</div>
+ <div class="col-md-3">pic 12</div>
+</div>
+```
+
+`page-portfolio.php`
 
 ```php
 <div class="row">
@@ -257,25 +364,28 @@ This will automatically add a Bootstrap row when 4 columns have been reached. Ma
 
 When you click on a portfolio thumbnail you want to be taken to the large image of the portfolio piece.
 
-modify your fragment of code to look like this:
+So when we click on one of the players on our team page, we will get taken to that player page.
+
+Modify your fragment of code to look like this:
+
+`page-portfolio.php`
 
 ```php
  <p><a href="<?php the_permalink(); ?>"><img src="<?php echo $thumbnail_url[0]; ?>" alt="<?php the_title(); ?> graphic"></a></p>
         <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 ```
+## Single Page for Portfolio
 
-## Fix wrong link to single.php page
+So WordPress is following the WordPress template hierarchy but since we have a different layout for our player page, we need to created a new template.
 
 We need it to go to a different single template, one that we will build now. This `single.php` page will be just for our portfolio section.
-
-## Single Page for Portfolio
 
 Save `page-full-width.php` as `single-portfolio.php`
 
 * we will remove the template comment at the top. Why
   - because of the naming convention (hierarchy) WordPress uses. The `single-` followed by the name of the page will automatically work
 
-We want our `full page` to have
+We want our `full player page` to have
 
 * Large image on the left
 * meta data about the image on the right
@@ -328,7 +438,7 @@ We want our `full page` to have
 
 * need to make them responsive
 
-Modify the **.porfolio-piece** CSS rule in `style.css`
+Modify the **.porfolio-piece** CSS class in `style.css`
 
 `style.css`
 
@@ -360,6 +470,8 @@ Add `Viewport Dimensions` [link](https://chrome.google.com/webstore/detail/viewp
 
 ## Add Navigation for Portfolio
 
+We want the ability from within our player page to navigate to the next and previous player.
+
 `single-portfolio.php` (code fragment)
 
 ```php
@@ -381,6 +493,10 @@ Add `Viewport Dimensions` [link](https://chrome.google.com/webstore/detail/viewp
 ```
 
 ## Bootstrap Glyphicons [link](http://getbootstrap.com/components/)
+
+### Improve our Player Navigation
+
+
 
 * replace the 3 col navigation with the following code fragment
 
@@ -404,7 +520,7 @@ Add `Viewport Dimensions` [link](https://chrome.google.com/webstore/detail/viewp
 </div>
 ```
 
-## Convert index.php from static to dynamic page
+## Convert `index.php` from static to dynamic page
 
 Replace contents of `index.php` with `page.php`
 

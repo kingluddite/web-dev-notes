@@ -159,3 +159,26 @@ When changes happen to this forked repo by the creators of it, you can pull down
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 ```
+
+## Problems
+
+### Can't Push
+
+If you get this error
+
+![ssh permissions error](https://i.imgur.com/TBXPtvt.png)
+
+I get this every now and then. I usually occurs when I for some reason or another delete or change my SSH keys. The solution is just to make sure github has your SSH key in the settings. If not, login and go to your profile on Github. Go to settings and then click the SSH and GPG button. Go the the terminal and quickly copy your SSH key using this command:
+
+```bash
+$ pbcopy < ~/.ssh/id_rsa.pub
+# Copies the contents of the id_rsa.pub file to your clipboard
+```
+
+[link to article](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+
+Add a new SSH key. Give it a name.
+Paste your copied key into the textarea.
+Save.
+
+Try to push again and it should work now.

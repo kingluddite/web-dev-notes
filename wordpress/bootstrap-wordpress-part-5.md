@@ -10,6 +10,8 @@
 
 ### How did we attach our JavaScript?
 
+This is a bit of review.
+
 1. Inside `functions.php`
 2. Inside the `theme_js()` function.
 3. We both conditionally loaded JavaScript files and directly load a file.
