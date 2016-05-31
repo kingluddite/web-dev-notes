@@ -83,12 +83,18 @@ Adding packages is really quick, painless and kind of fun.
   - Window management
 * Bootstrap 3 snippets
   - Quickly grab Twitter Bootstrap snippets for your project
+* [Bootstrap 4 snippets](https://github.com/degouville/sublime-bootstrap4)
 * gist
   - Add token to pull down gists after adding gist plugin
     + Get from github login page
 * AdvancedNewFile
 * Comment-Snippets
 * HTML-CSS-JS Prettify
+  - needs node.js to work (install with brew)
+  - I like to change the following preferences
+    + "format_on_save": true (HTMLPrettify.sublime-settings)
+    + I like spaces around selectors in JavaScript
+      * "space_in_paren": true (in `.jsbeautifyrc`)
 * Sass
 * SassBeautify
 * Vintage Mode
