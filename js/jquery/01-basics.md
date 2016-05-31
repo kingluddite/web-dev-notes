@@ -275,6 +275,8 @@ $( "button" ).click( function() {
 
 [github link](https://github.com/kingluddite/domsters-convert)
 
+branch: `beginning-lightbox`
+
 `js/script.js`
 
 ```js
@@ -535,3 +537,4 @@ $overlay.click(function(){
   $overlay.hide();
 });
 ```
+
