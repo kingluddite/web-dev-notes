@@ -90,7 +90,7 @@ Adding packages is really quick, painless and kind of fun.
 * AdvancedNewFile
 * Comment-Snippets
 * HTML-CSS-JS Prettify
-  - needs node.js to work (install with brew)
+  - needs `node.js` to work (install with brew)
   - I like to change the following preferences
     + "format_on_save": true (HTMLPrettify.sublime-settings)
     + I like spaces around selectors in JavaScript
@@ -118,7 +118,7 @@ Install phplint using homebrew
 ```
 $ brew install homebrew/php/phplint
 ```
-  - SublimeLinter-jshint
+  - [SublimeLinter-jshint video](http://www.kingluddite.com/screencasts/sublime-text-sublimelinter-and-jshint)
 
 * install node.js
 * install jshint globally
@@ -371,15 +371,22 @@ Sublime Text > Preferences > Settings - User
 
 * Found these config setting sprawled out throughout the web. Worth checking out.
 
+**Note** Before you add this to your ST3 Sublime User Settings:
+
+* Install the following packages (if not you will get errors)
+  - Material Theme
+  - Seti UI
+
 ```js
 {
   "bold_folder_labels": true,
-  "caret_extra_width": 2,
   "caret_extra_bottom": 3,
   "caret_extra_top": 3,
+  "caret_extra_width": 2,
   "caret_style": "phase",
   "close_windows_when_empty": true,
-  "color_scheme": "Packages/User/SublimeLinter/base16-ocean.dark (SL).tmTheme",
+  "theme": "Material-Theme.sublime-theme",
+  "color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
   "create_window_at_startup": false,
   "default_line_ending": "LF",
   "drag_text": false,
@@ -387,21 +394,20 @@ Sublime Text > Preferences > Settings - User
   "ensure_newline_at_eof_on_save": true,
   "fade_fold_buttons": false,
   "font_face": "Menlo",
-  "overlay_scroll_bars": "enabled",
   "font_options":
   [
     "subpixel_antialias"
   ],
-  "font_size": 19.0,
+  "font_size": 24.0,
   "highlight_line": true,
   "highlight_modified_tabs": true,
   "hot_exit": false,
   "ignored_packages":
   [
-    "Markdown"
   ],
   "line_padding_bottom": 2,
   "line_padding_top": 2,
+  "overlay_scroll_bars": "enabled",
   "remember_open_files": false,
   "rulers":
   [
@@ -409,7 +415,7 @@ Sublime Text > Preferences > Settings - User
   ],
   "saves_on_focus_lost": true,
   "scroll_past_end": true,
-  "tab_size": 4,
+  "tab_size": 2,
   "theme": "Seti.sublime-theme",
   "translate_tabs_to_spaces": true,
   "trim_trailing_white_space_on_save": true,

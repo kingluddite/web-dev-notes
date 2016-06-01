@@ -526,6 +526,10 @@ Add this underneath our existing code
 
 ## 21. Menus
 
+### The Walker Class
+
+If you want to get Boostrap menus and WordPress to play nice together, [this might be a solution you are looking for](http://code.tutsplus.com/tutorials/how-to-integrate-bootstrap-navbar-into-wordpress-theme--wp-33410) (Thanks Mikhail)
+
 `functions.php`
 
 * add to bottom 
