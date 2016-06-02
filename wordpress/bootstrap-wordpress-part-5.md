@@ -434,6 +434,165 @@ register_nav_menus( array(
 * [Video Tutorial](https://www.youtube.com/watch?v=pGD8Q72ej60)
 * [Article Tutorial](http://code.tutsplus.com/tutorials/how-to-integrate-bootstrap-navbar-into-wordpress-theme--wp-33410)
 
+#### Alter your header.php
+* to include the Bootstrap nav
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link rel="icon" href="<?php bloginfo('template_directory'); ?>/img/favicon.ico">
+
+    <title><?php wp_title( '|', true, 'right' ); ?></title>
+
+    <?php wp_head(); ?>
+  </head>
+
+  <body <?php body_class(); ?>>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="#"><img src="img/logo.jpg" alt="logo"></a> -->
+          <a class="navbar-brand hidden-xs" href="<?php bloginfo( 'url' ); ?>"><img class="navlogo" src="<?php bloginfo('template_url'); ?>/img/logo.png" alt="<?php bloginfo( 'name' ); ?>" /></a>
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <?php
+            $args = array(
+             'menu' => 'top_menu',
+              'depth' => 2,
+              'container' => false,
+              'menu_class' => 'nav navbar-nav',
+              //Process nav menu using our custom nav walker
+              'walker' => new wp_bootstrap_navwalker()
+            );
+
+            wp_nav_menu( $args );
+           ?>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+```
+
+## Grab the navwalker class
+
+Download Edward McIntyre's `wp-bootstrap-navwalker` class from [GitHub](https://github.com/twittem/wp-bootstrap-navwalker.
+
+place the `wp_bootstrap_navwalker.php` in the root of your custom theme.
+
+## Require the navwalker class
+
+* Add this to the top of `functions.php`
+
+`functions.php`
+
+```php
+<?php
+
+// required files
+// Register custom navigation walker
+    require_once('wp_bootstrap_navwalker.php');
+
+[REST OF CODE]
+```
+
+## Enqueue CSS and JS 
+
+### Make sure you have bootstrap css and js enqueued
+
+* I'm just showing the bootstrap necessary code to include
+* Remember that WordPress comes with jQuery so you don't need to enqueue it
+
+```php
+/*===========================
+=            CSS            =
+===========================*/
+
+function theme_styles() {
+    wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css' );
+}
+add_action( 'wp_enqueue_scripts', 'theme_styles' );
+
+/*==================================
+=            JavaScript            =
+==================================*/
+
+function theme_js() {
+    wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.min.js', array('jquery'), '', true );
+}
+add_action( 'wp_enqueue_scripts', 'theme_js' );
+```
+
+## Add Menu to functions.php
+
+```php
+/*=============================
+=            Menus            =
+=============================*/
+
+add_theme_support( 'menus' );
+/* add featured image */
+add_theme_support( 'post-thumbnails' );
+
+function register_theme_menus() {
+    register_nav_menus(
+      array(
+        'header-menu' => __( 'Header Menu' ),
+        'primary', __( 'Primary navigation', 'kl' )
+      )
+    );
+}
+add_action( 'init', 'register_theme_menus' );
+```
+
+## Add the Menu to the Dashboard
+
+* Create a new menu and name it 'Primary'.
+* Make sure to assign the Theme location to `primary`
+
+Should look like this:
+
+![Primary Menu](https://i.imgur.com/fygVz7u.png)
+
+## Review Important code
+
+* The following code is what wires the Twitter Bootstrap menu to work:
+
+```php
+<div id="navbar" class="navbar-collapse collapse">
+          <?php
+            $args = array(
+             'menu' => 'top_menu',
+              'depth' => 2,
+              'container' => false,
+              'menu_class' => 'nav navbar-nav',
+              //Process nav menu using our custom nav walker
+              'walker' => new wp_bootstrap_navwalker()
+            );
+
+            wp_nav_menu( $args );
+           ?>
+        </div><!--/.navbar-collapse -->
+```
+
+## View in Browser
+
+Should look similar to this (and be responsive too!)
+
+![Bootstrap functional Navbar](https://i.imgur.com/LSeK5Cy.png)
+
 ### How to Add Modal Windows
 
 [link to Bootstrap Modals](https://getbootstrap.com/javascript/#modals)

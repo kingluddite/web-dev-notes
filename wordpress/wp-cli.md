@@ -187,6 +187,172 @@ $ source ~/.zshrc
 
 ## WP-CLI
 
+[View On Kingluddite](http://www.kingluddite.com/cms/install-wp-cli-for-wordpress-on-namecheap-com)
+
 I wanted to get WP-CLI working on GoDaddy so this article helped me set that up.
 
 [how to use WP-CLI on godaddy](https://www.godaddy.com/help/how-to-install-wordpress-cli-on-shared-hosting-12363)
+
+# namecheap
+
+[Namecheap.com](http://namecheap.com) offers shared hosting. They give you a cpanel just like godaddy and others
+
+Once you figure out how to `SSH` (this is not enabled by default and you have to use the online chat, provide usernames and passwords to them and they will enable it). It will take 10 minutes before it `SSH` will work once they enable it.
+
+You then need to add your public key to them so you can `SSH`
+
+Now you need to install `WP-CLI`. Here's how.
+SSH into their server, something like:
+
+* you can find the server name by looking at your URL once you are logged into the cpanel
+    - don't forget the port number (-p21098) for shared host
+
+```
+$ ssh codegod@server333.web-hosting.com -p21098
+```
+
+Bam! You're into their box.
+
+## Browse to your home directory
+
+Should be something like
+
+```
+/home/codegod
+```
+
+## Install WP-CLI
+Create a `wp` folder and `cd` into it
+
+```
+$ mkdir wp
+$ cd wp
+```
+
+### Download WP-CLI
+
+```
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+```
+
+Go back to your home directory (where you just were) by using:
+
+```
+$ cd ../
+```
+
+## Add aliases to .bashrc
+
+If you don't see it look for it using 
+
+```
+$ ls -la
+```
+
+### Open .bashrc in vim
+
+```
+$ vi .bashrc
+```
+
+Make `.bashrc` look similar to this (I added the 2 aliases)
+
+```
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# User specific aliases and functions
+alias php='php -d suhosin.executor.include.whitelist=phar'
+alias wp='php ~/wp/wp-cli.phar'
+```
+
+Close and save `.bashrc` using `:wq!`
+
+* write(`w`), quit(`q`), force(`!`)
+
+Refresh `.bashrc`
+
+```
+$ source .bashrc
+```
+
+### Test if WP-CLI works with `wp` shortcut
+
+```
+$ wp
+```
+
+If you get something similar to the following, your `WP-CLI` was successful:
+
+```
+prompt$ wp --info
+(and you should get something like this:)
+PHP binary:     /usr/selector/php-cli
+PHP version:    5.4.35
+php.ini used:   /usr/local/lib/php.ini
+WP-CLI root dir:        phar://wp-cli.phar
+WP-CLI global config:
+WP-CLI project config:
+WP-CLI version: 0.17.1
+```
+
+## Add WP-CLI tab completions
+
+Go back into the `wp` folder you created earlier and download this repo from github.com
+
+```
+curl -O https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash
+```
+
+Then in your home directory add this to your `.bash_profile`
+
+```
+
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
+# Bash completions for wp-cli. (You can not use the ~/ shortcut for $HOME)
+source /home/codegod/wp/wp-completion.bash
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+
+export PATH
+```
+
+* I just added the line above beginning with `source`
+* save with `:wq!`
+* refresh with `$ source .bash_profile`
+
+And that's it. You will have `WP-CLI` and tab completing installed and working.
+
+## Test to make sure
+
+Navigate to a folder you want to install WordPress on your remote namecheap shared hosting server.
+
+Create the folder.
+```
+$ mkdir some-wordpress-project
+```
+
+`cd` into that folder
+
+```
+$ cd some-wordpress-project
+```
+
+Install core WordPress into that project
+
+```
+$ wp core download
+```
+
+If it works, you did it. Congrats!
