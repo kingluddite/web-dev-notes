@@ -34,6 +34,8 @@ In the terminal create a new file: `js/theme.js`
 
 ### Test to see if the file works
 
+#### [What is the DOM](https://css-tricks.com/dom/)
+
 We have used `functions.php` to enqueue our JavaScript files before. We're doing the same thing again but we need to make sure the file is getting injected and we can view it in our page source.
 
 #### Add Comment Test Placeholder

@@ -3,6 +3,15 @@ Version Control. You need to know how this works.
 
 ## Some Useful GIT commands
 
+### How to I grab remote branches?
+
+Let's have a chat about this because it's kind of strange. So you have remote branches on your origin repo. If you use 'git pull' it will pull down that branch but if you type `git branch` you will not see it.
+
+To see all remote branches you use `git branch -a`
+
+With the latest version of git, you can use `git fetch` to grab the remote branches and then you can check into that branch with `git checkout [branch name]`
+
+If you have an older version of git, you'll need to update or use the older syntax.
 ### Stash
 When you want to pull down the latest changes but you are in the middle of working on something. You can temporarily `stash` them with:
 
