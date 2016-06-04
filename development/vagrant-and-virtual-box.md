@@ -87,6 +87,36 @@ But then we have another problem and assuming we are not all sysops people (Syst
 
 
 ## Vagrant
+
+### Useful commands
+* any time you make a change to the configuration you can do the following to stop your vagrant instance.
+
+```
+$ vagrant halt
+```
+
+Then you want to run the following to take into consideration all the changes to the configurations.
+
+```
+$ vagrant up --provision
+```
+
+### SSH into your box
+
+You'll be using this one a heck of a lot
+
+```
+$ vagrant ssh
+```
+
+### Update your vagrant box
+
+```
+$ vagrant box update
+```
+
+
+
 "Create and configure lightweight, reproducible and portable development environments."
 * [Download Vagrant](https://www.vagrantup.com/downloads.html)
 * [Video How to Install and Use Vagrant](https://www.youtube.com/watch?v=PmOMc4zfCSw)

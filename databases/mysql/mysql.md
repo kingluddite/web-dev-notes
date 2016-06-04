@@ -1,5 +1,21 @@
 # MySQL
 
+## Commands
+
+When working with Vagrant you may get a strange MySQL error because you are opening too many files. The solution will be to increase MySQL memory by opening a file, increasing the memory and then halting and running vagrant up --provision. This was a rather troubling problem because it appeared that all my databases were destroyed and I couldn't open them in phpMyAdmin. Several hours spent researching it. Bottom line is memory is by default 1024 so that is too loo and needs to be increased. 
+
+Linux
+
+```
+$ sudo service mysql start
+```
+
+```
+$ sudo /etc/init.d/mysql restart
+```
+
+limits.conf
+
 ## Local db with vagrant
 
 * SSH into Vagrant

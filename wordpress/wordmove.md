@@ -1,5 +1,101 @@
 # WordMove
 
+WordMove is like Capistrano for WordPress. If you are coding a simple static site, you just need to FTP your HTML, CSS JavaScript to your server. But WordPress isn't a static site and it has a database filled with tables.
+
+Moving your WordPress site from place to place has always been a pain. So much of a pain, that it is not out of the realm of possiblity for people to just have a production WordPress site and they make all their changes on the live server. This is known as `cowboy coding` and is considered by the WordPress developer community as a mortal offense.
+
+## So why is cowboy coding so bad?
+Because if your luck is anything like mine, something will break and you nor your client will be very happy. There has to be a better way and there is.
+
+## Introducing environments
+You'll hear a lot about different environments when you enter the world of a developer. You have front end developer and back end developers and these days the worlds have collided so much it is hard to tell the difference.
+
+So the three environments I'll mention today are local, staging and production. Developers names these three things all different types of names but lets keep this simple.
+
+### Local Development Server
+This is on your machine. So my workflow is to have VirtualBox installed with Vagrant and VVV. VVV came from the WordPress community and this helps set up our virtual box with an environment for WordPress. Virtual Machine and Vagrant came around to make improvements from WordPress developers working with MAMP. There is tons of material out there for you to sink your teeth in to learn all about VirtualBox, Vagrant and VVV so I'll leave that as an exercise for you to do.
+
+Turn debugging on and search engines off.
+Update permalinks.
+
+### Staging Server
+So you spend all week working on the coolest WordPress custom theme. You test it and it works on your machine. But you need to show it to your client. That is the purpose of the staging server. Your client can't see your computer unless you bring it to them. Why not make life easier for both you and your client and set up a staging server. That way anyone connected to the internet can browse to your wonderful work of WordPress art.
+
+I usually set the staging server up on my client's shared host. They have a cpanel that I can use to:
+
+#### Enable SSH
+FTP is so old. Been there done that. It is not secure. They have SFTP but SSH is the way to go. Many hosts will require that you email/call them, tell them the secret login info so they know you're not a hacker, and then they say, you are able to SSH. Usually takes 10 minutes.
+
+Once you have that set up you need to create your private and public keys. Private is on your computer and you save the public onto your shared host. That's how the remote server knows you are who you say you are (and not a hacker).
+
+Then if all goes well you will be able to SSH into your remote server Using something like:
+
+```
+$ ssh johndoe@my-shared-host.com
+```
+
+Then you'll see your box.
+
+The next thing I do is set up WP-CLI on my remote host so that I can quickly and easily install WordPress on my remote server.
+
+#### Create A Database
+I create a database
+I name it with no spaces and use underscores instead of spaces or hypens.
+I make sure my password doesn't have any crazy characters as they tend to break wordmove
+I write down in a safe place the following staging info
+DB Name
+DB User
+DB Password
+DB Host
+
+When you create a MySQL database you need to name it properly (you're host will tell you how it should be named), you need to create a user and associate that user with the database and give that user all permissions.
+
+I also write down my WordPress admin login information (username and password) that I created using WP-CLI
+
+Turn debugging on and search engines off.
+
+Update permalinks.
+
+## Production
+Production is your live site. Right down the Database information for production in a safe place. (it will be inside your wp-config.php file). Someone should provide you the WordPress admin login info if you did not create the site. If you are creating it, write it down in a safe place.
+
+## WordMove time
+So now you navigate to your VVV site. I create this using VV create and pass the information I need to create my local site. It usually will take 5 minutes.
+I then browser to my WordPress project root and create my wordmove file with ```wordmove init```
+
+That will create a `Movefile`. This file is in YAML format which means spacing is very important. Things will break if the spacing is off. If you think all the info is correct but it isn't working. Delete the file and recreate it with meticulous detail and attention to the spacing. That has saved my neck a bunch of times.
+
+All that Staging and Production connection info you saved to a safe location is now front and center. Get it and plugin it into your WordMove file into the different environments. Add the SSH and database info for Production and Staging. If all goes well you can begin using WordMove.
+
+I usually start by grabbing the entire production site and pulling it locally
+
+```
+$ wordmove pull -e production --all
+```
+
+### Your Machine or your Virtual Box?
+
+This is a very tricky part and I'll tell you how I navigate this very dangerous waterway.
+
+I don't install WordMove on my local machine. I install it on my virtual box machine. This will prevent lots of problems with path. That way when you accidentilly try to run wordmove from your local machine, you will get command not found.
+
+To get into your vagrant virtual machine you use `vagrant ssh`. After about 3 minutes, you'll be ssh'd into your virtual box. Then you need to navigate to your project.
+
+Where are your sites in vvv?
+
+Usually in the www folder
+
+```
+/srv/www/your-site.com/htdocs
+```
+
+I create zsh for my virtual box and give different themes for my remote site and local site so I can visually know where I am. I also add aliases so I can easily move around.
+
+Once I pull my whole site locally, I update all the plugins. I remove all plugins not being used. I remove all themes not being used. I usually keep the most updated WordPress theme in case I ever need to switch to it to troubleshoot.
+
+I then push site to staging server and tell the client to check out my changes. When they give me the green light I pull down the latest and greatest database and includes from production (so I don't overrite any blog entries or images) and then I push to staging and test. If all good, I push to production and test and make sure I update permalinks and set the production SEO search engines to on. (it updates the robots.txt file).
+
+
 ## Install on Vagrant
 I got Wordmove installed in my Vagrant box. Here's what Jay did (thanks Jay for the tip):
 

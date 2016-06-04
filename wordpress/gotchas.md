@@ -1,5 +1,24 @@
 #WordPress gotchas
 
+## .htaccess for WordPress
+
+I deleted my htaccess and I got all kinds of errors. Make sure you have one. Sometimes you'll need to alter it but I'll leave that for you to figure out. Here is the default
+
+[`.htaccess`](https://codex.wordpress.org/htaccess)
+
+```
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+```
+
 ## Ack command
 
 Have an error and want to find all occurences in your site?
@@ -64,6 +83,34 @@ Turn on debug mode
 ```php
 define( 'WP_DEBUG', true );
 ```
+
+## File Permissions
+
+If you log into your shared hosting cpanel you can go to the File Manager and you will see a column named 'Perms'
+
+![file permissions](https://i.imgur.com/P36sKmH.png)
+
+Sometimes you may get a 500 error page when you try to load your WordPress site in the browser. Many times this has to do with Permission problems on the file.
+
+In the cpanel you can open the server error log and you might see something like:
+
+![permission error](https://i.imgur.com/t06H9QH.png)
+
+You see that the error is 'is writable by group'
+
+I know it's a pretty lame error but it just means you have to change the file permissions on those files. Click on the files in the file manager and click the 'Change Permissions' button. Uncheck the checkbox under Write group and it will change the file from `0664` to `0644`.
+
+Now if you do that for each file in the error log, you should see your WordPress page load up.
+
+## A Faster Solution
+A fast way would be SSH into your remote box and recursively change the folder and file permissions using this magical line of code
+
+```
+chmod -R u+rwX,go+rX,go-w .
+```
+
+## Why does this happen?
+It happens every time I add WordPress using WP-CLI.
 
 Here is a more thorough use of Debugging in WordPress
 

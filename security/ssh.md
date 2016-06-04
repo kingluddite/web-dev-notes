@@ -1,4 +1,74 @@
 # SSH
+
+## How to SSH into your box
+
+```
+$ ssh user@server.com -p1234
+```
+
+* -p is port and is optional
+* usually this will be the cpanel user and you'll have to look at the cpanel to get the URL or IP. If you can't find it, call your hosting support and they can tell you. If you don't have good hosting support, leave them
+
+# SSH Key Generation
+
+## Useful links
+
+[DO - how to set up ssh keys](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
+[DO - connect to a remote](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-to-connect-to-a-remote-server-in-ubuntu)
+
+## How do I copy a key
+
+On `Mac OS` use this:
+
+```
+$ pbcopy < ~/.ssh_rsa.pub
+```
+
+On `Linux` use this:
+
+```
+$ ssh-copy-id id_rsa.pub
+```
+
+## Fast way to generate a key
+
+```
+$ ssh-keygen -t rsa
+# or
+$ ssh-keygen -t rsa -C "doe.johnl@email.com"
+```
+
+## Show what your pub key is?
+```
+$ cat ~/.ssh/id_rsa.pub
+```
+
+## Show all file permissions
+
+```
+$ ls -al ~/.ssh
+```
+
+## copy public key
+
+```
+cat ~/.ssh/id_rsa.pub | ssh cpaneluser@server333.web-hosting.com -p21111 'cat >> .ssh/authorized_keys && echo "Key copied"'
+```
+
+* this will grab your public key from your computer and ssh into your remote server and add it to their authorized keys and then output 'Key copied'
+
+## Install ssh-copy-id on Mac
+
+Makes copying keys so much easier
+
+```
+$ brew install ssh-copy-id
+```
+
+
+
+
+
 * Your login, commands, and text are all encrypted when you use SSH
 * On a remote shared hosting plan you need to check in the cpanel if this is enabled. If not, enable it.
 * SSH allows you to perform secure file transfers and remote logins over an encrypted internet connection. Because you must have the private SSH key in order to authenticate a session, it is almost impossible to perform a brute force attack against an SSH connection. You can use this interface to create new SSH keys, import keys, manage keys, or delete keys in order to allow automated logins to SSH.
