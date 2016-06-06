@@ -154,3 +154,6 @@ $ wordmove help push
 
 ## Starter Themes
 Famous Ones
+
+Databases and WordPress
+[A great series on stuff](http://code.tutsplus.com/series/understanding-and-working-with-data-in-wordpress--cms-670) you should know about WordPress and databases

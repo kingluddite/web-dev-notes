@@ -109,8 +109,30 @@ A fast way would be SSH into your remote box and recursively change the folder a
 chmod -R u+rwX,go+rX,go-w .
 ```
 
+
+Here is a solution I use often:
+
+* After I push everything to staging using WordMove, I inadvertently change the entire sites file and folder permissions. Manually changing 4000+ files and folders would be a huge time suck. Luckily, the two terminal commands below will change them all to what they need to be in less then 2 minutes.
+
+Just navigate to your staging server's root WordPress folder and run the 2 following commands.
+
+To change all the directories to 755 (-rwxr-xr-x):
+
+```
+$ find -type d -exec chmod 755 {} \;
+```
+
+To change all the files to 644 (-rw-r--r--):
+
+```
+$ find -type f -exec chmod 644 {} \;
+```
+
+After running the above two commands your 500 internal error page should turn into your WordPress custom theme live and working. Congratulations for being awesome.
+
 ## Why does this happen?
 It happens every time I add WordPress using WP-CLI.
+
 
 Here is a more thorough use of Debugging in WordPress
 
