@@ -11,6 +11,15 @@ $ ssh user@server.com -p1234
 
 # SSH Key Generation
 
+## How do I create a pub and private key and give it a new name?
+* I like giving it a new name so I don't overwrite the default id_rsa
+
+```
+$ ssh-keygen -f filename
+# example
+$ ssh-keygen -f vvv
+```
+
 ## Useful links
 
 [DO - how to set up ssh keys](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
@@ -95,7 +104,7 @@ ls -al ~/.ssh
 ## How to Remote SSH terminal
  
 ```
-$ ssh kingludd@kingluddite.com
+$ ssh kinglatte@kingluddite.com
 ```
 
 * You may have to enable SSH on your host. For example. I use BlueHost. I had to activate SSH in the cpanel. Sometimes you have to email them and request it. Some web hosts do not allow it (if this is the case, time to get a new web host)
@@ -119,7 +128,7 @@ $ cd ~/.ssh
 generate key
 * replace test with name you want
 ```bash
-$ ssh-keygen -t rsa -C 'test'
+$ ssh-keygen -t rsa -C 'vvv'
 ```
 
 

@@ -344,3 +344,36 @@ access the database (mysql)
 ```
 find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
 ```
+
+WordMove Flags
+
+```
+> wordmove help
+Tasks:
+  wordmove help [TASK]  # Describe available tasks or one specific task
+  wordmove init         # Generates a brand new Movefile
+  wordmove pull         # Pulls WP data from remote host to the local machine
+  wordmove push         # Pushes WP data from local machine to remote host
+```
+
+```
+Options:
+  -w, [--wordpress], [--no-wordpress]
+  -u, [--uploads], [--no-uploads]
+  -t, [--themes], [--no-themes]
+  -p, [--plugins], [--no-plugins]
+  -m, [--mu-plugins], [--no-mu-plugins]
+  -l, [--languages], [--no-languages]
+  -d, [--db], [--no-db]
+  -v, [--verbose], [--no-verbose]
+  -s, [--simulate], [--no-simulate]
+  -e, [--environment=ENVIRONMENT]
+  -c, [--config=CONFIG]
+      [--debug], [--no-debug]
+      [--no-adapt], [--no-no-adapt]
+      [--all], [--no-all]
+
+Pushes WP data from local machine to remote host
+```
+
+**tip** it took me a while to figure out why when I pushed, after pushing -d the database, -t, the theme, -u uploads, and -p the plugins, that the core update wasn't happening until I did --all. What I forgot is -w, which after running wp core update (WP-CLI), I then need to push the core wordpress, which is the -w.

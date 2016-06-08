@@ -77,6 +77,17 @@ Adding packages is really quick, painless and kind of fun.
 * MarkdownEditing
   - Write in markdown
   - If you don't know how to use Markdown, it's easy and now that Github uses it for the README, it's a must to know. I love it for taking notes. Make life easier.
+* [Case Conversion](https://github.com/jdc0589/CaseConversion)
+  - Keybindings
+    + To snake_case: "ctrl+alt+c", "ctrl+alt+s"
+    + To camelCase: "ctrl+alt+c", "ctrl+alt+c"
+    + To PascalCase: "ctrl+alt+c", "ctrl+alt+p"
+    + To dot.case: "ctrl+alt+c", "ctrl+alt+d"
+    + To dash-case: "ctrl+alt+c", "ctrl+alt+h"
+    + To separate words: "ctrl+alt+c", "ctrl+alt+w"
+    + To separate with forward slashes: "ctrl+alt+c", "ctrl+alt+/"
+    + To separate with backslashes: "ctrl+alt+c", "ctrl+alt+b"
+    + To toggle between snake_case, camelCase and PascalCase: "ctrl+shift+-"
 * MarkdownPreview
   - See your markdown in nice readable view
 * Origami
@@ -87,7 +98,9 @@ Adding packages is really quick, painless and kind of fun.
 * gist
   - Add token to pull down gists after adding gist plugin
     + Get from github login page
-* AdvancedNewFile
+* [AdvancedNewFile](https://github.com/skuroda/Sublime-AdvancedNewFile)
+  - faster file folder creation inside ST
+  - `super+alt+n`
 * Comment-Snippets
 * HTML-CSS-JS Prettify
   - needs `node.js` to work (install with brew)
