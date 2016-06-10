@@ -97,3 +97,20 @@ Output
         + MAMP MAC default user is `root` (production different!)
         + MAMP MAC default password is `root` (production different!)
         + permissions on production and how you set it up on a host like godaddy is different
+
+## Creating a Virtual host in MAMP
+
+Tired of using `http://localhost/your-site` instead of something more useful like `http://my-site.dev`?
+
+Real world scenario. You will get a SQL file from a member of your team and they might have the URL point to http://my-site.dev. If you don't change your host you will have to open the SQL file, find and replace their URL with your local URL. Doing this everytime you start working with a site is a bit of a paint. There is a better way and that is Creating a virtual host with MAMP.
+
+[Here is an article](http://foundationphp.com/tutorials/vhosts_mamp.php) with step-by-step instructions.
+
+### Summary of what you'll be doing:
+
+* editings
+    * `/etc/hosts`
+    * `/Applications/MAMP/conf/apache/httpd.conf`
+    * `/Applications/MAMP/conf/apache/extra/httpd-vhosts.conf`
+ 
+After you follow the instructions in the blog post link mentioned above, be sure to stop and restart your apache server from MAMP.

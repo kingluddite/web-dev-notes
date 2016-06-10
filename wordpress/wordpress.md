@@ -1,6 +1,23 @@
 # WordPress
 [download](https://wordpress.org/download/)
 
+## Custom Content Directory
+This is really cool. You can have you WordPress inside a folder called `wp` and outside of that you can have an `app` folder with your themes, plugins and uploads. The following code will point to the app folder so you can just work from there.
+
+`wp-config.php`
+
+```php
+// ========================
+
+// Custom Content Directory
+
+// ========================
+
+define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/app' );
+
+define( 'WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/app' );
+```
+
 ## Disable Pingbacks
 [http://www.wpbeginner.com/wp-tutorials/how-disable-self-pingbacks-in-wordpress/](http://www.wpbeginner.com/wp-tutorials/how-disable-self-pingbacks-in-wordpress/)
 
