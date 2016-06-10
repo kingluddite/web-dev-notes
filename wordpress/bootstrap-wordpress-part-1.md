@@ -675,6 +675,32 @@ Our dropdown CSS is not what we want
 * Install and Activate
 * view page and you'll see shortcodes in editor
 
+## 27. Add Google Fonts
+
+Add this to `functions.php`
+
+`functions.php`
+
+```php
+// activate google fonts
+function tutsplus_add_google_fonts() {
+  wp_register_style( 'googleFonts', 'http://fonts.googleapis.com/css?family=Open+Sans:400,300');
+  wp_enqueue_style( 'googleFonts');
+}
+add_action( 'wp_enqueue_scripts', 'tutsplus_add_google_fonts' );
+```
+
+And here is an example of using it in `style.css`
+
+`style.css`
+
+```css
+/* Headings */
+h1, h2, h3, h4, .site-name {
+  font-family: 'Open Sans', sans-serif;
+}
+```
+
 # WordPress Notes
 
 * [part 1](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-1.md)
