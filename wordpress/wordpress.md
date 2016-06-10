@@ -51,6 +51,7 @@ wp-content/themes/*
 !wp-content/themes/my-awesome-theme/
 
 node_modules
+bower_components
 ```
 
 
