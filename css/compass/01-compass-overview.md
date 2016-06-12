@@ -67,6 +67,26 @@ It will create a folder structure similar to this:
 * File you write your main styles
 * Add comment link provided to connect this pages output CSS to the HTML page
 
+
+#### Quick Side Step - FAQ
+
+How do I create compass inside an existing site? Easy, just create a `config.rb` file and paste the following inside it: (make sure to make sure your folders structure matches this file's structure or it won't work)
+
+```ruby
+project_type = :stand_alone
+# Set this to the root of your project when deployed:
+http_path = "/"
+sass_dir = "scss"
+css_dir = "css"
+images_dir = "img"
+fonts_dir = "fonts"
+javascripts_dir = "js"
+line_comments = false
+preferred_syntax = :scss
+output_style = :expanded
+relative_assets = true
+```
+
 #### Next Steps
 1. Create `HTML` page
 2. Link CSS
