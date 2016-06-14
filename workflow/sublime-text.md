@@ -111,7 +111,23 @@ Adding packages is really quick, painless and kind of fun.
 * Sass
 * SassBeautify
 * Vintage Mode
-* SublimeLinter (JS, CSS, HTML)
+* SublimeLinter (JS, CSS, HTML, PHP)
+  - jslinter
+    + [article with more info on this](https://scotch.io/tutorials/how-to-catch-your-errors-in-sublime-text-3)
+    + things I like my js linter to have
+      * change these in the user settings for sublimelinter
+      * SublimeLinter.subline-settings
+
+```js
+"lint_mode": "background",
+"mark_style": "outline",
+"show_errors_on_save": true,
+```
+* the background option shows the errors in the background and this is the most inobtrusive way to be alerted on errors
+* outline is a great way to point out where errors are in your code
+* show errors on save is key to show you the error of your way on every save
+
+
 * Meteor Snippets
 * Hayaku
   - write CSS faster

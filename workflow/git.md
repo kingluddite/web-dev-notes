@@ -162,8 +162,6 @@ When changes happen to this forked repo by the creators of it, you can pull down
 
 ## Global config
 
-
-
 ```
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
@@ -191,3 +189,32 @@ Paste your copied key into the textarea.
 Save.
 
 Try to push again and it should work now.
+
+## Git Aliases
+These aliases should be in your `.zshrc`
+
+`.zshrc`
+
+```
+# ====================
+# Git Aliases
+# ====================
+alias gs='git status'
+alias gap='git add -p'
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+alias gob='git checkout -b '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+alias glog='git log --pretty=oneline --abbrev-commit'
+alias gitl='git log --pretty=oneline'
+alias lgl='git log --oneline --decorate'
+# when I mispell git commands the following 2 commands help
+alias got='git '
+alias get='git '
+alias glog='git log --pretty=oneline --abbrev-commit'
+alias up='git pull upstream master'
+```
