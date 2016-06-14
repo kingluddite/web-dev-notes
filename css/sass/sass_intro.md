@@ -1,30 +1,57 @@
-# SASS
-**How to start watching sass**
+# Sass
 
-```
-$ sass --watch scss:css
-$ sass --watch app/sass:public/stylesheets
-```
+## What does Sass stand for? 
+Syntatically Awesome Style Sheets
 
-## Stop watching sass keyboard shortcut
+## Spell Sass like Sass
+The creator wants people to spell Sass like Sass and not like SASS or any other variation. Out of respect for [him](https://en.wikipedia.org/wiki/Hampton_Catlin), I'll type the name Sass in all my notes.
 
-```
-ctrl + c
-```
+## Confusion Says or was it Confucious who said that?
+So ready to be confused right out of the gates? The language is called Sass but the most common file extension for Sass files is `.scss`. To make matters worse there is also a version of Sass that has a `.sass` extension. `.sass` files don't use curly braces and is meant to make typing Sass faster. Think of it like the [CoffeeScript](http://coffeescript.org/) for Sass.
 
-## install sass
+## How do I install Sass?
+
+To get Sass working, you first have to install it. Here's how:
 
 ```
 $ gem install sass
 ```
 
-## Refactoring sass
+## Get Sassing with Sass
 
-Partial Files
-* have underscore before name of file
-  * _filename.scss
+You have your `scss` and you want to convert it into css. Just create a `scss` folder.
+
+Now that you have Sass installed, here's how you run it (aka `watching`). 
+
+```
+$ sass --watch scss:css
+$ sass --watch app/sass:public/stylesheets
+```
+What is happening here is Sass is watching for any changes inside the `scss` folder and when anything changes, the all the Sass gets changed into `css` and moved into the `css` folder.
+
+As an added bonus, if you type and `scss` errors, you will be alerted to the fact inside the terminal.
+
+If you want to do other stuff in the terminal, open another tab.
+
+If you need to stop Sass running, follow the next instruction.
+
+## Stop watching Sass keyboard shortcut
+
+```
+ctrl + c
+```
+## Refactoring Sass
+
+I'm not sure how you wroter your `css` but with Sass you should write your code in a modular fashion as it makes it much easier to manage. I'll introduce a modular way to break up your code into logical chunks but if you want to take this to the extreme and get supersonic modular, check out [SMACSS](https://smacss.com/).
+
+## What are Partials?
+
+When you see a file prefaced with an underscore like `_some-freaking-awesome-sass.scss`, that is a partial. It is called a `partial` because it is just a partial piece of code.
 
 ### Folder Structure
+
+Here is an example of what our Sass folder struture will look like. Notice the folder names. Notice all files are `partials` except for `application.scss`. The way this works is all the `partials` will be `imported` into `application.scss`.
+
 * scss
   * base
     * _base.scss
@@ -42,10 +69,16 @@ Partial Files
   * _style.scss
   * application.scss
 
-**Base Folder** - all css that define what elements look like by default
+#### Base Folder
+All `css` that define what elements look like by default
 
 **Note:**
-Each folder has an _index.scss
+* Each folder has an `_index.scss`
+
+`scss/components/_index.scss`
+
+Let's take a peek inside one of the folder's `_index.scss`
+
 ```
 // ========================
 // Component Imports
@@ -55,11 +88,19 @@ Each folder has an _index.scss
 @import 'buttons';
 @import 'icons';
 ```
-**why do this?**
-instead of importing all files into global `application.scss` file, we can just import the index files for each folder
-makes everything a lot more manageable
 
-### comment flag (application.scss)
+##### Why is @import not importing the full file name?
+With Sass, you don't need to add the .scss file name extension. This saves you some type so be happy about it.
+
+##### Why use `_index.scss` partials?
+Instead of importing all files into one global `application.scss` file, we can just import the index files for each folder. This makes everything more modular and a lot more manageable.
+
+### Comment flag
+
+Comments makes the coding team happy.
+
+`scss/application.scss`
+
 ```
 // ==========================================================================
 // Global Imports
@@ -70,16 +111,25 @@ makes everything a lot more manageable
 @import 'components/index';
 ```
 
-**Note:**
-Order is important during css to scss conversion
+* We import files by including their path
+
+### Order Is Important
+
+Order is important during `css` to `scss` conversion. You that the `C` in `CSS` stands for cascade, so if you change the order of the imports, you'll change the cascade effect and this may or may not be what you want. So just pay close attention to the order when you include your imports.
+
+Case in point. If you have a `_variables.scss` partial and you @import that after a file that uses those variables, you'll get an error.
 
 ### Placeholder selectors
-Cool - don't compile to css unless they are extended or called up in another rule
-aka - `placeholders` or `extends`
+Placeholders are useful as they don't compile to css unless they are extended or called up in another rule
+* A.K.A. - `placeholders` or `extends`
 
-**Tip**
+**TIP**
+
 Create an `_extends.scss` file inside each of your scss sub folders
-**Why?** - It improves code manageability
+
+**Why?**
+
+It improves code manageability
 
 #### Helper or utility placeholder rule
 If you see the same rule used repeatedly
@@ -88,7 +138,8 @@ If you see the same rule used repeatedly
 Watch out for **placeholder puke**
 
 In `layout` folder include new `_extends.scss` file
-```
+
+```scss
 // ==========================================================================
 // Layout Imports
 // ==========================================================================
@@ -101,6 +152,7 @@ In `layout` folder include new `_extends.scss` file
 ```
 
 Here are examples of `extends`
+
 ```
 // Center text
 %centered {
@@ -140,7 +192,7 @@ Here's how to use them in a file
 
 `_container.scss`
 
-```
+```scss
 .primary-content {
   @extend %content;
   @extend %top-border;
@@ -183,8 +235,11 @@ a {
 }
 ```
 
-### Another cool `nesting` example
-Turn this in `_typography.scss`
+### Another `nesting` example
+
+Here's what we start out with:
+
+`_typography.scss`
 
 ```
 .main-heading {
@@ -207,7 +262,9 @@ Turn this in `_typography.scss`
 }
 ```
 
-Into this in `_typography.scss`
+And we turn it into this:
+
+`_typography.scss`
 ```
 .main {
    &-heading {

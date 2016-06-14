@@ -217,4 +217,12 @@ alias got='git '
 alias get='git '
 alias glog='git log --pretty=oneline --abbrev-commit'
 alias up='git pull upstream master'
+
+## Starting a fresh project
+
+If you plan on starting a new project with an existing repo, be sure and clear out that repos git data at the start to create a fresh history:
+
 ```
+$ rm -rf .git && git init
+$ git commit -m "Initialize Repo"
+

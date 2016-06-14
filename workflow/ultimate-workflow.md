@@ -8,38 +8,46 @@ You can always use MAMP and get started faster but I highly encourage you to dro
 
 Here are some helpful resources to get you started:
 
-[Video tutorial](https://www.youtube.com/watch?v=IcilQdvqIes) showing install of VirtualBox, Vagrant and VVV
+* [Video tutorial](https://www.youtube.com/watch?v=IcilQdvqIes) showing install of VirtualBox, Vagrant and VVV
+* [Here is the github vv](https://github.com/bradp/vv) site with the README instructions:
 
-[Here is the github vv](https://github.com/bradp/vv) site with the README instructions:
+## VVV-Dashboard
 
 A nice bonus: Install [VVV-Dashboard](https://github.com/leogopal/VVV-Dashboard) for ease of use.
+
+VVV-Dashboard just helps you see all your sites and quickly access phpMyAdmin for each one.
+
+## VV create
+
+How fast can you create a WordPress site? I guarantee you, it won't be faster than this way. Sure you could use WP-CLI to get it set up, but this way is better and faster.
 
 ```
 $ vv create
 ```
-
 So the above command will help you create your WordPress site. You don't have to do anything other than answer the questions below and you'll have your local development copy of WordPress up and running. It takes about 5 minutes. Pretty freaking cool if you ask me.
 
-* `Name of new site`: ultimate-workflow.dev
-  - this will be the name of your folder that holds yoursite
-* `Domain to use`: local.ultimate-workflow.dev
-  - this will be the URL you use to see your site
+### Questions
+
+* `Name of new site` **ultimate-workflow.dev**
+    + this will be the name of your folder that holds your site
+* `Domain to use`: **local.ultimate-workflow.dev**
+    + this will be the URL you use to see your site
     + the cool thing about this is VVV goes into your host file and does all the needed stuff so you don't have to use http://localhost/some-site anymore and you now can just create domain names to browse to on your local machine.
-  - want to do it manually? [Here's how](https://www.tekrevue.com/tip/edit-hosts-file-mac-os-x/). Have at it.
+    * want to do it manually? [Here's how](https://www.tekrevue.com/tip/edit-hosts-file-mac-os-x/). Have at it.
 * `WordPress version to install`: leave blank
-  - Installs the latest and greatest verson of WordPress
+    + Installs the latest and greatest verson of WordPress
 * `Git repo`: enter your repo or leave blank
-  - Point to your github repo
+    + Point to your github repo
 * `Local SQL`:
-  - have data you are already working with? point to it here and your databse will be created with this SQL in mind
+    + have data you are already working with? point to it here and your databse will be created with this SQL in mind
 * `Remove default themes and plugins`: y
-  - Quickly get rid of all the junk files
+    + Quickly get rid of all the junk files
 * `Add sample content`: y
-  - Gives you stuff to work with
+    + Gives you stuff to work with
 * `Enable WP_DEBUG and WP_DEBUG_LOG`: y
-  - Get your debug setup right from the start
+    + Get your debug setup right from the start
 * `Continue`: y
-  - After you type this and hit enter, in 5 minutes you'll have your site created. Pretty awesome, huh?
+    + After you type this and hit enter, in 5 minutes you'll have your site created. Pretty awesome, huh?
 
 ![after vv complete](https://i.imgur.com/zv92KYH.png)
 
@@ -48,13 +56,13 @@ So the above command will help you create your WordPress site. You don't have to
 ![after site create](https://i.imgur.com/2sxzhBs.png)
 
 * So if you browse to: http://local.ultimate-workflow.dev you'll [see your WordPress site](https://i.imgur.com/Jml202y.png)
-  - notice the fake content! Nice touch, right?
+  - notice the fake content? Sweet!
 
 # Starter Theme
 
 We are going to create a WordPress theme but we want to save as much time as possible doing it so here's my suggestion.
 
-I want to use Bootstrap but with Sass. Bootstrap 3 is build with Less and I want to use a Sass Version of Bootstrap 3. Bootstrap 4 is built with Sass but using Grunt as it's build tool. But read [this blog post](http://blog.marcrudkowski.com/using-gulp-with-bootstrap-4/) and it showed me how to use Bootstrap 4 with Gulp.
+I want to use Bootstrap but with Sass. Bootstrap 3 is built with [Less](http://lesscss.org/) and I want to use a Sass Version of Bootstrap 3. Bootstrap 4 is built with Sass but using Grunt as it's build tool. But read [this blog post](http://blog.marcrudkowski.com/using-gulp-with-bootstrap-4/) and it showed me how to use Bootstrap 4 with Gulp.
 
 ## Install Bootstrap 4
 
@@ -271,7 +279,7 @@ src folder
 
 src/scss/style.scss
 
-```
+```scss
 // ==== STYLES ==== //
 
 // Do not declare anything before the metadata block; this first section is solely for variable, function, and mixin definitions
