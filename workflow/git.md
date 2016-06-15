@@ -190,6 +190,7 @@ Save.
 
 Try to push again and it should work now.
 
+<<<<<<< Updated upstream
 ## Git Aliases
 These aliases should be in your `.zshrc`
 
@@ -225,4 +226,4 @@ If you plan on starting a new project with an existing repo, be sure and clear o
 ```
 $ rm -rf .git && git init
 $ git commit -m "Initialize Repo"
-
+```
