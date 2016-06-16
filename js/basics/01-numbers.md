@@ -10,20 +10,25 @@ Integers | Floating Point Numbers | Scientific Notation
 1234 |
 
 ## Assign Number to variable
+```js
 var age = 21;
 var pi = 3.141592
 var kelvinZero = -273.15;
 var bigNumber = 2.33e+222;
+```
 
 ## Don't Do This
+```js
 var myString = '44';
-This is not a number. It is a string made up of the character `4` and `4`.
+```
+
+This is not a number. It is a string made up of the character `4` and the number `4`.
 
 ### Use Caution
 This behavior will cause you problems and you will need to know how to convert a string into a number. 
 
-Math
-concatenation - combining strings
+####Math
+`concatenation` - combining strings
 
 ```js
 // add
@@ -97,7 +102,9 @@ document.write('There are ' + secondsPerDay + ' seconds in a day');
 
 ## Order of Operations
 
+```js
 var myScore = 20 + (90 * 30) / 3;
+```
 
 ## Numbers and Strings
 Whatever you type into the prompty command, it will return a string
@@ -113,8 +120,10 @@ var goalsThisSeason = prompt( 'How many goals did you score this season?' ),
 console.log( 'Goals and Assists Total: ' + totalGoalsAndAssists ); // 1020
 ```
 
-Why is the answer `1020` and not `30`? Because of concatenation.
-Solution: First convert strings into numbers.
+Why is the answer `1020` and not `30`? 
+Because of concatenation.
+
+**Solution**: First convert strings into numbers.
 
 ### parseInt() to the rescue
 ```js
