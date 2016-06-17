@@ -3,6 +3,11 @@ Version Control. You need to know how this works.
 
 ## Some Useful GIT commands
 
+### How do I push all branches to remote?
+```
+$ git push --all origin
+```
+
 ### How to I grab remote branches?
 
 Let's have a chat about this because it's kind of strange. So you have remote branches on your origin repo. If you use 'git pull' it will pull down that branch but if you type `git branch` you will not see it.
