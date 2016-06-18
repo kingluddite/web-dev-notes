@@ -112,3 +112,21 @@ Mozilla Developer Network
 4. Perfect - where refactor the solution
 
 **note**: the DOM is an API for the browser (it is NOT JavaScript!)
+
+### Different function format
+Although they are formatted differently, they are the same
+
+```js
+// one way to format a function
+function addTask() {
+  // do stuff
+}
+
+// another way to format a function
+var addTask = function() {
+  // do stuff
+};
+```
+
+**note**: you call them the same way
+* `addTask();`
