@@ -130,3 +130,146 @@ var addTask = function() {
 
 **note**: you call them the same way
 * `addTask();`
+
+## getElementById( 'someId' )
+* don't need to preface with `#` as it is implied
+* [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
+* note that it is singular because this will only EVER get one element
+
+## getElementsByTagName( 'img' )
+* notice this is plural because it gets a HTMLCollection with is very similar to an Array and you will access it using array syntax `myArray[0]`
+* [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByTagName)
+
+### example
+
+```js
+var taskInput = document.getElementById( 'new-task' ), // new-task
+    addButton = document.getElementsByTagName( 'button' )[0], // first button
+    incompleteTasksHolder = document.getElementById( 'incomplete-task' ), // incomplete-tasks
+    completeTasksHolder = document.getElementById( 'complete-task' ); // completed-tasks
+```
+
+* you can open console to see if this is actually working by typing in the console
+
+```js
+> taskInput
+```
+
+* after adding all 4 items in console you should see this:
+
+![console output](https://i.imgur.com/OJrH6pQ.png)
+
+* if you hover over the returned items stored inside the variables in the console you will see those items highlighted on the browser page (document)
+
+## Events
+
+Think of a race. It will not start until the gun sounds. Web pages work in a similar fashion. When the user interacts with the page with clicks or mousemoves these are events that will trigger functions to be called. These functions are known as `event handlers`.
+
+### Structure of JavaScript Tip
+Variables at top
+Then Functions
+Then Events
+
+#### Click Event
+* [MDN reference for onclick](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick)
+
+```js
+// syntax
+element.onclick = functionRef;
+```
+
+**note**: it says `functionRef` above. This is an important distinction to make. Normally when you first work with JavaScript and functions you'll call function using parentheses but when you are dealing with `functon references` you do not use the parentheses. The difference is if you use the parentheses, you will call the function as soon as that line is called. If you use a function reference instead, the function will not be called until the event triggers the `event handler` to run.
+
+## Traversing Elements with children
+* traverse - "means go from one element to anther"
+
+## We come up with plan
+
+```js
+// cycle over incompleteTasksHolder ul list items
+  // for each list item
+    // select it's children
+    // bind editTask to edit button
+   // bind deleteTask to delete button
+   // bind taskComplete to checkbox
+
+
+// cycle over completeTasksHolder ul list items
+  // for each list item
+    // select it's children
+    // bind editTask to edit button
+   // bind deleteTask to delete button
+   // bind taskIncomplete to checkbox
+```
+
+* we see a lot of redundancy so we decide to come up with a function to keep our code DRY
+
+### After refactoring we get this:
+
+```js
+var bindTaskEvents = function( taskListItem, checkBoxEventHandler ) {
+  // select it's children
+    // bind editTask to edit button
+   // bind deleteTask to delete button
+   // bind checkBoxEventHandler to checkbox
+};
+// cycle over incompleteTasksHolder ul list items
+  // for each list item
+    // bind events to list item's children (taskComplete)
+
+// cycle over completeTasksHolder ul list items
+  // for each list item
+    // bind events to list item's children (taskIncomplete)
+```
+
+* [MDN Reference `children`](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children)
+
+### More refactoring give us:
+
+```js
+var bindTaskEvents = function( taskListItem, checkBoxEventHandler ) {
+  console.log( 'bind list item events' );
+  // select it's children
+    // bind editTask to edit button
+   // bind deleteTask to delete button
+   // bind checkBoxEventHandler to checkbox
+};
+// cycle over incompleteTasksHolder ul list items
+for( var i = 0; i < incompleteTasksHolder.children.length; i++ ) {
+    // bind events to list item's children (taskComplete)
+    bindTaskEvents( incompleteTasksHolder.children[i], taskComplete );
+}
+
+// cycle over completeTasksHolder ul list items
+for ( var i = 0; i < completeTasksHolder.children.length; i++ ) {
+    // bind events to list item's children (taskIncomplete)
+    bindTaskEvents( completeTasksHolder.children[i], taskIncomplete );
+}
+```
+
+* view in browser and you'll see 'bind list item events' output in console
+
+* with checkboxes you can check or uncheck it also with spacebar (and clicking with mouse)
+  - the [global event handler](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers) has [onchange](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onchange)
+* [querySelector() MDN reference](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector)
+
+### Even More refactoring
+
+```js
+var bindTaskEvents = function( taskListItem, checkBoxEventHandler ) {
+  console.log( 'bind list item events' );
+  // select taskListItem's children
+    var editButton = taskListItem.querySelector( 'button.edit' ),
+        deleteButton = taskListItem.querySelector( 'button.delete' ),
+        checkBox = taskListItem.querySelector( 'input[type=checkbox]' );
+
+        // bind checkBoxEventHandler to checkbox
+        checkBox.onchange = checkBoxEventHandler;
+        // bind editTask to edit button
+        editButton.onclick = editTask;
+        // bind deleteTask to delete button
+        deleteButton.onclick = deleteTask;
+};
+```
+
+* view in browser and now you'll see our console logs working when you click checkboxes with mouse or use keyboard (onchange), click add or delete buttons.
