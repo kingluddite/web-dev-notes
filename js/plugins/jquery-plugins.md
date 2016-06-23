@@ -1,10 +1,10 @@
 # jQuery plugins
-jCalculator
-jQuery Adabptive Modal
-jQuery ListNav
-Vide
-Lightbox 2
-jQuery UI
+* jCalculator
+* jQuery Adabptive Modal
+* jQuery ListNav
+* Vide
+* Lightbox 2
+* jQuery UI
 
 ## How to find jQuery plugins
 
@@ -179,3 +179,85 @@ index.html
 </html>
 
 ```
+
+## Add JavaScript and CSS links to HTML for animition and jquery
+
+## Add necessary HTML
+from looking at [online documentation](http://git.blivesta.com/animsition/fade-down-sm/) you see this:
+
+```html
+<body>
+  <div class="animsition">
+    <a href="./page1" class="animsition-link">animsition link 1</a>
+    <a href="./page2" class="animsition-link">animsition link 2</a>
+  </div>
+</body>
+```
+
+* This let's you know to create a parent div tag with `animsition` class
+* each link need a class of `animsition-link`
+
+After connecting css and js for animsition and jquery
+and creating and linking custom js with calling js code from online documentation, you should see `index.html` fade in (others pages don't work because we didn't add code to them yet)
+
+## Exploring Plugin Options
+
+JavaScript Object Literal `{}`
+* a set of property names and propert values
+* plugins use them to receive settings that control how the plugin works
+
+# [Stickyjs Demo](http://stickyjs.com/)
+## [Stickyjs Github](https://github.com/garand/sticky)
+
+### Bug
+I searched for stickyjs through NPM and used it but the code broke.
+I found another stickyjs and manually downloaded it and it worked.
+Viewed in browser and it works fine.
+
+## Plugin Events
+
+# Slick Carousel
+[Github link](https://github.com/kenwheeler/slick/)
+[Demo page](http://kenwheeler.github.io/slick/)
+[settings](http://kenwheeler.github.io/slick/#settings)
+* responsive
+* swipe enabled
+
+### Install slick with npm
+
+```
+$ npm install slick-carousel
+```
+
+#### Add HTML
+
+`index.html` (code fragment)
+
+```html
+[MORE CODE]
+</header><!--/header-->
+        <div class="row">
+          <div class="grid-full">
+           <!-- carousel goes here -->
+           <div class="slides">
+             <div>Slide 1</div>
+             <div>Slide 2</div>
+             <div>Slide 3</div>
+           </div><!-- END .slides -->
+          </div>[MORE CODE]
+```
+
+Since we are only using this on one page we just embed the call to the slick carousel plugin on the page after all our other linked JavaScript files
+
+```html
+<script>
+ $( '.slides' ).slick();
+</script>
+```
+
+## slick css and default theme
+* author broke the two files up so that you could style your own slider effects
+
+# Plugin conflicts
+Working with more than one jquery plugin can cause problems.
+The sticky nav and carousel plugins have problems running together.
