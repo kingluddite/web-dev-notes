@@ -223,7 +223,7 @@ alias got='git '
 alias get='git '
 alias glog='git log --pretty=oneline --abbrev-commit'
 alias up='git pull upstream master'
-
+```
 ## Starting a fresh project
 
 If you plan on starting a new project with an existing repo, be sure and clear out that repos git data at the start to create a fresh history:
@@ -232,3 +232,14 @@ If you plan on starting a new project with an existing repo, be sure and clear o
 $ rm -rf .git && git init
 $ git commit -m "Initialize Repo"
 ```
+
+## Errors
+
+I get this error a lot. If you see something like this and are wondering what is wrong? It means you forgot to add and commit your first repo commit
+
+Usually get it when I first run `git init` and then try to `hub create` and when I `git push origin master` I get the following error.
+
+![common git repo create error](https://i.imgur.com/8dU3F81.png)
+
+Just add and commit and you should be good to go.
+
