@@ -16,6 +16,13 @@ To see all remote branches you use `git branch -a`
 
 With the latest version of git, you can use `git fetch` to grab the remote branches and then you can check into that branch with `git checkout [branch name]`
 
+How to delete a branch?
+
+```
+$ git branch -d {the_local_branch} (use -D instead to force deletion without checking merged status)
+```
+
+
 If you have an older version of git, you'll need to update or use the older syntax.
 ### Stash
 When you want to pull down the latest changes but you are in the middle of working on something. You can temporarily `stash` them with:
