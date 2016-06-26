@@ -250,6 +250,8 @@ alias .3='cd ../../../'                     # Go back 3 directory levels
 alias .4='cd ../../../../'                  # Go back 4 directory levels
 alias .5='cd ../../../../../'               # Go back 5 directory levels
 alias .6='cd ../../../../../../'            # Go back 6 directory levels
+alias open='open .' # opens current folder in finder
+alias src='source ~/.zshrc' # updates zshrc with new edits
 
 # Do you use Dropbox?
 #alias db='cd ~/Dropbox'
@@ -283,6 +285,7 @@ alias show_files="defaults write com.apple.finder AppleShowAllFiles TRUE && kill
 # ================
 # Application Aliases
 # ================
+# alias coda='open -a "/Applications/Coda 2.app"' # use coda?
 
 # http://jorge.fbarr.net/2011/03/24/making-your-bash-history-more-efficient/
 # Larger bash history (allow 32Â³ entries; default is 500)
