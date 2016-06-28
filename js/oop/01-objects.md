@@ -298,3 +298,20 @@ In our example instead of the roll function being defined for every instance whe
 so after we make this change and add `DiceGame.prototype.roll` the JavaScript interpreter tries to call it on the object itself, if it's not there, it will check it's prototype, if the roll is there, it will call the method in the context of that instance
 
 after adding prototype.roll, it still works but this time it's calling the method on the prototype and the console.log test for equality will now return `true`.
+
+# Inheritance
+
+[video tutorial on JavaScript prototype inheritance](https://www.youtube.com/watch?v=7oNWNlMrkpc)
+
+```js
+function Song( title, artist, duration ) {
+  var song = this;
+  Media.call( song, title, duration );
+  this.artist = artist;
+}
+
+// set up prototype chain
+// this is how you create inheritance in JavaScript
+Song.prototype = Object.create( Media.prototype );
+```
+
