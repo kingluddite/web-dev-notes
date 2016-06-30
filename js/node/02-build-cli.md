@@ -140,3 +140,70 @@ try {
 ```
 
 ## try catch
+
+## create our own modules
+and require them in
+
+when you create a module you need to explicitly state what you want to have available to someone when they require it (we need to do this for the `get` function)
+
+bottom of `profile.js`
+
+```js
+module.exports.get = get;
+```
+
+* what we are saying with the above line
+  - with the `profile.js` module we are creating
+    + we want to export a function called `get`
+    + so we are assigning the `get` method on the module.exports to our `get` function in our profile.js module
+
+note:
+
+```js
+var profile = require( './profile.js' );
+```
+
+* the `.js` is optional so you can just write
+
+```js
+var profile = require( './profile' )
+```
+
+**important** the path is mandatory
+
+Question:
+
+Given the following code in `greeting.js`:
+
+```js
+function sayGreeting() {
+  console.log('Hello World');
+}
+
+module.exports.say = sayGreeting;
+```
+
+How would you access the functionality from another file?
+
+a) (answer)
+```js
+var greeting = require('./greeting');
+greeting.say();
+```
+
+b) (wrong)
+```js
+var greeting = require('./greeting');
+greeting.sayGreeting();
+```
+
+the browser has a `window` global object
+
+node has a `process` global object
+
+# Homework
+try an build another command line application of your own
+
+Try either
+* a weather forecast app 
+* a stock price checking app

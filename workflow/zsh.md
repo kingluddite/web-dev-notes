@@ -231,7 +231,7 @@ alias md='mkdir'
 alias zfrash='sublime ~/.zshrc'
 
 # If you want to alias your sass watch
-#alias watch='sass --watch scss:css'
+#alias sasswatch='sass --watch scss:css'
 
 # Our class notes
 alias notes='cd ~/Documents/dev/notes/web-dev-notes'
@@ -280,6 +280,8 @@ alias vkill='vagrant destroy'
 # =================
 # Additional Aliases
 # =================
+# Show all processes running
+alias ps='ps aux'
 
 # Kill Mongo process when it gets hung up
 alias monkill='ps aux | grep mongod'

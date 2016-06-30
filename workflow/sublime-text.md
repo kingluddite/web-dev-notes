@@ -225,6 +225,7 @@ $ defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
 
 ### Sublime Text Useful keyboard shortcuts
 
+[Visual Mode info for copy and paste](http://vim.wikia.com/wiki/Cut/copy_and_paste_using_visual_selection) 
 #### Go to line
 `ctrl` + `g`
 

@@ -53,6 +53,8 @@ For Mac, you need this to install stuff you should have on your mac as a develop
 
 ```
 $ brew update
+#
+$ brew doctor
 ```
 
 ### Install Homebrew (Free)
@@ -196,3 +198,7 @@ Get prepared for programming interviews
 
 ## [Typing.io](https://typing.io/lesson/javascript/jquery/traversing.js/1)
 Practice typing faster (specific to programmers)
+
+## Mac-CLI
+ OS X command line tools for developers – The ultimate tool to manage your Mac. It provides a huge set of command line commands that automatize the usage of your OS X system.
+[link](https://github.com/guarinogabriel/mac-cli)
