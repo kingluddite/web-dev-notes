@@ -64,16 +64,41 @@ Adding packages is really quick, painless and kind of fun.
       + Skuzzy search is a fancy term for you just type some letters in what you are looking for and terms will pop up that contain those letters.
     - When package highlighted, click `RETURN` to install it
 
+# Themes
+* [Wes Bos Colbalt 2](http://wesbos.com/cobalt2-theme-sublime-text-2/?__s=3m6qdsdm1nam29tcfziq)
+
+* [Hopscotch](https://packagecontrol.io/packages/Hopscotch%20Color%20Scheme?__s=3m6qdsdm1nam29tcfziq)
 ## More Useful Packages To Check Out
 [Make your theme look cool with icons](https://packagecontrol.io/packages/Seti_UI)
 
+`sublime user preferences`
+
+To turn this on, simply put this in your settings file:
+
+```js
+
+
+"indent_guide_options":
+    [
+        "draw_normal",
+        "draw_active"
+    ],
+
+```
+
+* [Can I Use](https://packagecontrol.io/packages/Can%20I%20Use?__s=3m6qdsdm1nam29tcfziq)
+  -  find out browser support for various things in CSS3 and HTML5. With this package you can quickly check caniuse without having to leave the editor
 * Emmet
   - Super awesome productivity tool
   - [Video](https://www.youtube.com/watch?v=8n923UBjV9w)
+* [Sublime Gulp](https://packagecontrol.io/packages/Gulp?__s=3m6qdsdm1nam29tcfziq)
+  - let's you run Gulp scripts right from Sublime as well as provides a set of useful snippets. Gives you coloured output you see in the build window.
 * AutoFileName
   - Quickly find files in your project)
 * SidebarEnhancements
   - Give you many more options when right click on sidebar)
+* Style Sorter
+  - helps the messy CSS or SASS user by rearraging the stylesheet attributes based on the type and attribute.
 * MarkdownEditing
   - Write in markdown
   - If you don't know how to use Markdown, it's easy and now that Github uses it for the README, it's a must to know. I love it for taking notes. Make life easier.
@@ -156,7 +181,7 @@ $ brew install homebrew/php/phplint
 $ npm install -g jshint
 ```
 
-Project
+## Project
 
 Adding a project.sublime-project file can help speed up your workflow especially if you are working between multiple projects.
 
