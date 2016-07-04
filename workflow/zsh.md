@@ -316,6 +316,10 @@ export HISTIGNORE="h"
 # ====================
 # Git Aliases
 # ====================
+
+# create a repo on github itself. make sure you follow naming convention. create a authtoken and copy it. run the create alias
+function git_create_repo { curl -H "Authorization: token YOUR-TOKEN-HERE" https://api.github.com/user/repos -d '{ "name":"'"$1"'" }'; }
+
 alias gup='git pull upstream master'
 alias gs='git status'
 alias gap='git add -p'
@@ -330,6 +334,7 @@ alias glog='git log --pretty=oneline --abbrev-commit'
 # when I mispell git commands the following 2 commands help
 alias got='git '
 alias get='git '
+alias create='git_create_repo ' # eg 'create awesome-repo-name-here'
 
 ```
 
