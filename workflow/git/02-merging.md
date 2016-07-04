@@ -98,6 +98,13 @@ and now you should see that you added the remote repo
 ## Git Pull
 pull changes from a remote repo
 
+```
+$ git pull origin name-of-branch
+```
+
+* if you get a merge conflict, handle it normally
+* git assumes you are by default trying to push and pull from origin
+
 ## Git Push
 push changes to a remote repo
 
@@ -108,5 +115,35 @@ $ git push origin name-of-branch
 ```
 
 * first argument needs to be name of remote
-* 
 
+# Github
+
+## Issues
+## Pull Requests
+You have code you want people to `pull` into their projects
+* great tool for collaboration
+
+### Discussion, Commits, Files Changed
+* easy to add comments if we want to contribute to the code ourselves
+
+## Watch the project
+* if any major changes happen to project 
+
+## star project
+add to list of favorite projects
+
+## Fork
+create a clone of project in our own github account
+
+## Workflows
+* [feature branches](http://martinfowler.com/bliki/FeatureBranch.html)
+
+# git-flow
+A collection of Git extensions to provide high-level repository operations for [Vincent Driessen's branching model](http://nvie.com/posts/a-successful-git-branching-model/)
+
+* [github repo](https://github.com/nvie/gitflow)
+* For the best introduction to get started with git flow, please read [Jeff Kreeftmeijer's blog post](http://jeffkreeftmeijer.com/2010/why-arent-you-using-git-flow/):
+* [How to use a scalable Git branching model called git-flow (by Build a Module)](https://buildamodule.com/video/change-management-and-version-control-deploying-releases-features-and-fixes-with-git-how-to-use-a-scalable-git-branching-model-called-gitflow)
+* [A short introduction to git-flow (by Mark Derricutt)](https://vimeo.com/16018419)
+* [On the path with git-flow (by Dave Bock)](https://www.youtube.com/watch?v=7vw1dGHjnOk)
+* [git-flow tab completion](https://github.com/bobthecow/git-flow-completion)
