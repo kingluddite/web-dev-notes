@@ -436,6 +436,9 @@ $ wp --info
 
 If you get php info, success. If not, contact me and I'll help you troubleshoot.
 
+## Atom Install
+If you are more comfortable using Atom, feel free. Here is Mitch's install instructions with a bunch of Atom plugins pre-installed.
+
 # Finished!
 
 

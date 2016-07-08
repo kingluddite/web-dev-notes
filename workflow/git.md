@@ -16,6 +16,13 @@ To see all remote branches you use `git branch -a`
 
 With the latest version of git, you can use `git fetch` to grab the remote branches and then you can check into that branch with `git checkout [branch name]`
 
+How to delete a branch?
+
+```
+$ git branch -d {the_local_branch} (use -D instead to force deletion without checking merged status)
+```
+
+
 If you have an older version of git, you'll need to update or use the older syntax.
 ### Stash
 When you want to pull down the latest changes but you are in the middle of working on something. You can temporarily `stash` them with:
@@ -223,7 +230,7 @@ alias got='git '
 alias get='git '
 alias glog='git log --pretty=oneline --abbrev-commit'
 alias up='git pull upstream master'
-
+```
 ## Starting a fresh project
 
 If you plan on starting a new project with an existing repo, be sure and clear out that repos git data at the start to create a fresh history:
@@ -232,3 +239,14 @@ If you plan on starting a new project with an existing repo, be sure and clear o
 $ rm -rf .git && git init
 $ git commit -m "Initialize Repo"
 ```
+
+## Errors
+
+I get this error a lot. If you see something like this and are wondering what is wrong? It means you forgot to add and commit your first repo commit
+
+Usually get it when I first run `git init` and then try to `hub create` and when I `git push origin master` I get the following error.
+
+![common git repo create error](https://i.imgur.com/8dU3F81.png)
+
+Just add and commit and you should be good to go.
+

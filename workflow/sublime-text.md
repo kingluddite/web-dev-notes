@@ -78,16 +78,41 @@ Adding packages is really quick, painless and kind of fun.
       + Skuzzy search is a fancy term for you just type some letters in what you are looking for and terms will pop up that contain those letters.
     - When package highlighted, click `RETURN` to install it
 
+# Themes
+* [Wes Bos Colbalt 2](http://wesbos.com/cobalt2-theme-sublime-text-2/?__s=3m6qdsdm1nam29tcfziq)
+
+* [Hopscotch](https://packagecontrol.io/packages/Hopscotch%20Color%20Scheme?__s=3m6qdsdm1nam29tcfziq)
 ## More Useful Packages To Check Out
 [Make your theme look cool with icons](https://packagecontrol.io/packages/Seti_UI)
 
+`sublime user preferences`
+
+To turn this on, simply put this in your settings file:
+
+```js
+
+
+"indent_guide_options":
+    [
+        "draw_normal",
+        "draw_active"
+    ],
+
+```
+
+* [Can I Use](https://packagecontrol.io/packages/Can%20I%20Use?__s=3m6qdsdm1nam29tcfziq)
+  -  find out browser support for various things in CSS3 and HTML5. With this package you can quickly check caniuse without having to leave the editor
 * Emmet
   - Super awesome productivity tool
   - [Video](https://www.youtube.com/watch?v=8n923UBjV9w)
+* [Sublime Gulp](https://packagecontrol.io/packages/Gulp?__s=3m6qdsdm1nam29tcfziq)
+  - let's you run Gulp scripts right from Sublime as well as provides a set of useful snippets. Gives you coloured output you see in the build window.
 * AutoFileName
   - Quickly find files in your project)
 * SidebarEnhancements
   - Give you many more options when right click on sidebar)
+* Style Sorter
+  - helps the messy CSS or SASS user by rearraging the stylesheet attributes based on the type and attribute.
 * MarkdownEditing
   - Write in markdown
   - If you don't know how to use Markdown, it's easy and now that Github uses it for the README, it's a must to know. I love it for taking notes. Make life easier.
@@ -170,8 +195,12 @@ $ brew install homebrew/php/phplint
 $ npm install -g jshint
 ```
 
+<<<<<<< HEAD
 ## Vintage Mode
 The best coders I know use Vim and the reason is they've learned to do everything with just their keyboard. If you never use your mouse, you quickly learn that typing and getting stuff done gets easier and faster.
+=======
+## Project
+>>>>>>> eaed1d70651d9fdf5729e29df78b6eb460df1163
 
 You have the option of using Vim mode in Sublime (called `Vintage Mode`). While it doesn't have all the bells and whistles of Vim, it has enough to make you dangerous. If you want to see all the possibilities out there, [check out this link](https://www.maketecheasier.com/vim-keyboard-shortcuts-cheatsheet).
 
@@ -301,7 +330,88 @@ $ defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
 ```
 ## Project File 
 
+<<<<<<< HEAD
 Adding a project.sublime-project file can help speed up your workflow especially if you are working between multiple projects.
+=======
+[more info here](https://gist.github.com/kconragan/2510186)
+
+### Sublime Text Useful keyboard shortcuts
+
+[Visual Mode info for copy and paste](http://vim.wikia.com/wiki/Cut/copy_and_paste_using_visual_selection) 
+#### Go to line
+`ctrl` + `g`
+
+#### Find Packages
+`cmd` + `shift` + `p`
+
+#### Move Line Up/Down
+`cmd` + `ctrl` + up/down arrows
+
+#### Command Mode (Vim)
+`j` + `j`
+
+#### Get out of Command Mode (Vim)
+`esc`
+
+#### Visual Mode (Vim)
+* Command mode first and then `v` to enter visual mode
+
+#### Insert Mode (Vim)
+* When in Command mode type `i` to enter insert mode
+
+### Other ST3 keyboard shortcuts
+
+* sublime text keyboard shortcuts (mac)
+`ctrl` + `w` (wrap)
+
+* join line you are currently on with line below it
+`cmd` + `j`
+
+* duplicate line
+`ctrl` + `shift` + `d`
+
+* open command PALETTE
+`ctrl` + `shift` + `p`
+
+* uppercase
+`cmd + k`, `cmd + u`
+
+* lowercase
+`cmd + k`, `cmd + l`
+
+* alpha sort ignoring capital letters
+    - highlight words, f5
+
+* alpha sort lines starting with capital letters first, then alphabetize lines starting with lowercase letters
+    - highlight words ctrl + f5
+
+* remove duplicates
+Edit > permute lines > unique
+
+* delete current line
+`ctrl` + `shift` + `k`
+
+* goto line
+`ctrl` + `g`
+
+* move line
+`ctrl` + `super` + up/down
+
+* block comment
+`cmd` + `shift` + `/`
+
+* single line comment
+`cmd` + `/`
+
+* show/hide sidebar
+`cmd + k`, `cmd + b`
+
+* paste formatted code
+`cmd` + `shift` + `v`
+
+* multi-cursor
+`cmd` + `click`
+>>>>>>> eaed1d70651d9fdf5729e29df78b6eb460df1163
 
 [more info on ST3 project file settings](http://code.tutsplus.com/tutorials/sublime-text-2-project-bliss--net-27256)
 
