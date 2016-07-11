@@ -254,6 +254,8 @@ alias open='open .' # opens current folder in finder
 alias src='source ~/.zshrc' # updates zshrc with new edits
 alias clr='clear'
 alias hosts='sudo nano /etc/hosts'
+alias sleepdisplay='pmset displaysleepnow'
+alias falias='alias | grep '
 
 # Do you use Dropbox?
 #alias db='cd ~/Dropbox'
@@ -316,6 +318,20 @@ export HISTIGNORE="h"
 # ====================
 # Git Aliases
 # ====================
+
+# create a repo on github itself. make sure you follow naming convention. create a authtoken and copy it.
+function git_create_repo { curl -H "Authorization: token YOUR-TOKEN-HERE" https://api.github.com/user/repos -d '{ "name":"'"$1"'" }'; }
+
+# usage: lazyhub reponame [directory]
+# default will be current directory
+
+function lazyhub {
+    reponame=$1;
+    directory=${2:-.};
+    hub clone $reponame $directory;
+    cd $directory;
+}
+
 alias gup='git pull upstream master'
 alias gs='git status'
 alias gap='git add -p'
@@ -330,6 +346,7 @@ alias glog='git log --pretty=oneline --abbrev-commit'
 # when I mispell git commands the following 2 commands help
 alias got='git '
 alias get='git '
+alias create='git_create_repo ' # eg 'create awesome-repo-name-here'
 
 ```
 
