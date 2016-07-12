@@ -255,7 +255,7 @@ alias src='source ~/.zshrc' # updates zshrc with new edits
 alias clr='clear'
 alias hosts='sudo nano /etc/hosts'
 alias sleepdisplay='pmset displaysleepnow'
-alias falias='alias | grep '
+alias falias='alias | grep ' #useful for finding 
 
 # Do you use Dropbox?
 #alias db='cd ~/Dropbox'
@@ -326,8 +326,9 @@ function git_create_repo { curl -H "Authorization: token YOUR-TOKEN-HERE" https:
 # default will be current directory
 
 function lazyhub {
+    IFS='/' read -r -A array <<< $1
     reponame=$1;
-    directory=${2:-.};
+    directory=${2:-$array[2]};
     hub clone $reponame $directory;
     cd $directory;
 }
@@ -346,6 +347,9 @@ alias glog='git log --pretty=oneline --abbrev-commit'
 # when I mispell git commands the following 2 commands help
 alias got='git '
 alias get='git '
+
+alias push="git push origin master"
+alias pull="git pull origin master"
 alias create='git_create_repo ' # eg 'create awesome-repo-name-here'
 
 ```
