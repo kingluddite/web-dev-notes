@@ -330,88 +330,16 @@ $ defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
 ```
 ## Project File 
 
-<<<<<<< HEAD
 Adding a project.sublime-project file can help speed up your workflow especially if you are working between multiple projects.
-=======
 [more info here](https://gist.github.com/kconragan/2510186)
 
 ### Sublime Text Useful keyboard shortcuts
 
 [Visual Mode info for copy and paste](http://vim.wikia.com/wiki/Cut/copy_and_paste_using_visual_selection) 
-#### Go to line
-`ctrl` + `g`
 
-#### Find Packages
-`cmd` + `shift` + `p`
+Keyboard Shortcut | Function
+--- | --- |
 
-#### Move Line Up/Down
-`cmd` + `ctrl` + up/down arrows
-
-#### Command Mode (Vim)
-`j` + `j`
-
-#### Get out of Command Mode (Vim)
-`esc`
-
-#### Visual Mode (Vim)
-* Command mode first and then `v` to enter visual mode
-
-#### Insert Mode (Vim)
-* When in Command mode type `i` to enter insert mode
-
-### Other ST3 keyboard shortcuts
-
-* sublime text keyboard shortcuts (mac)
-`ctrl` + `w` (wrap)
-
-* join line you are currently on with line below it
-`cmd` + `j`
-
-* duplicate line
-`ctrl` + `shift` + `d`
-
-* open command PALETTE
-`ctrl` + `shift` + `p`
-
-* uppercase
-`cmd + k`, `cmd + u`
-
-* lowercase
-`cmd + k`, `cmd + l`
-
-* alpha sort ignoring capital letters
-    - highlight words, f5
-
-* alpha sort lines starting with capital letters first, then alphabetize lines starting with lowercase letters
-    - highlight words ctrl + f5
-
-* remove duplicates
-Edit > permute lines > unique
-
-* delete current line
-`ctrl` + `shift` + `k`
-
-* goto line
-`ctrl` + `g`
-
-* move line
-`ctrl` + `super` + up/down
-
-* block comment
-`cmd` + `shift` + `/`
-
-* single line comment
-`cmd` + `/`
-
-* show/hide sidebar
-`cmd + k`, `cmd + b`
-
-* paste formatted code
-`cmd` + `shift` + `v`
-
-* multi-cursor
-`cmd` + `click`
->>>>>>> eaed1d70651d9fdf5729e29df78b6eb460df1163
 
 [more info on ST3 project file settings](http://code.tutsplus.com/tutorials/sublime-text-2-project-bliss--net-27256)
 
@@ -452,6 +380,8 @@ $ npm install
 | highlight words, `f5` | alpha sort ignoring capital letters |
 | highlight words ctrl + f5 | alpha sort lines starting with capital letters first, then alphabetize lines starting with lowercase letters |
 | Edit > permute lines > unique | remove duplicates |
+ `ctrl` + `shift` + `k`|delete current line 
+`cmd` + `click` | multi-cursor add one at time
 
 ## Open ST3 from within iTerm
 * This will save you time as it always is a pain to get this working just right.
