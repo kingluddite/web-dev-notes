@@ -12,28 +12,35 @@
 
 [Atom](https://atom.io/)
 
-I free popular text editor created by the people at Github.
+* Free popular text editor created by the people at Github.
 
-* drag folder onto Atom to open them
+### How to use
+* Drag folder onto Atom to open them
+* View in browser (_use finder_)
+* Change theme in Atom in Preferences
 
-View in browser (_use finder_)
-Console 
+## Open Chrome Console 
 `ctrl` + `i` (`cntl` + `j`)
 
-Change theme in Atom in Preferences
 
 ## Statements, Expressions, Keywords
 
-`Statement`: An executable line or block of code
+<dl>
+  <dt>Statement</dt>
+  <dd>An executable line or block of code</dd>
+</dl>
+ 
 * many statements end with semi-colon
 
-This is a statement (_wrapped in curly braces_)
+This is a statement
 
 ```js
 function myFunction() {
     // stuff here
 }
 ```
+
+* {_wrapped in curly braces_}
 
 ## Expression
 Produces a value or is a value 
@@ -65,7 +72,7 @@ examples: `var`, `function`
 A generic container for storing data in our JavaScript code
 
 ### How should I name variables?
-full words, camel case, first word begins with lowercase letter
+Full words, camel case, first word begins with lowercase letter
 
 `var myName;`
 

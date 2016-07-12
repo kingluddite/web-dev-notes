@@ -1,34 +1,48 @@
 # Sublime Text 3
-Is a text editor. There are a lot of [text editors out there](https://en.wikipedia.org/wiki/List_of_text_editors).
+Is a text editor. A few years ago I was using `Dreamweaver` as were many people. There were other popular `Text Editors` like `Text Wranger` and `Coda` but Sublime Text came out of nowhere and took the coding world by storm. It was fast and free (if you could put up with the pop up alert windows or pay the low fee to own a copy yourself). 
+
+Dreamweaver was a full `IDE` but was way too bulky for your average coder. It had a `FTP` program built into it which lots of people loved but the free Filezilla made FTP free and simple. People wanted to know why Sublime Text didn't have FTP baked into it, and it probably was because most developers began to use the more secure SSH. Now people with `SSH` power, could transfer files directly from the `Terminal`, that was faster and more secure.
+
+There are a lot of [text editors out there](https://en.wikipedia.org/wiki/List_of_text_editors).
+
+I like ST3 and use it exclusively. [Atom](https://atom.io/) is also very popular. If you know of an text editor you think is super awesome, let me know.
 
 ## Sublime Project file
 
-When you have a bunch of project files they can be hard to navigate so on a Mac here is how you clear them. Go into the Session of ST3 and find this file
+* this helps you organize your files especially if you are working with WordPress
+
+I really like this option for when I'm working with WordPress. Instead of having to navigate internally in Sublime Text (ST) to get to my `themes`, `core`, and `plugins` folder I can quickly create a Sublime Text Project file. This file gives me the ability to point to several different parts of my site and see the different entry points in the files panel.
+
+If I set this up for all the sites I'm developing, I can use the keyboard shortcut:
+
+`ctrl` + `cmd` + `p` 
+
+to quickly jump between Project files of different projects. A huge time saver.
+
+When you have a bunch of project files they can be hard to navigate so on a Mac here is how you clear them. 
+
+Using the Terminal, go into the Session of ST and find this file
 
 ```
 cd /Users/phowley/Library/Application Support/Sublime Text 3/Local
 ```
 
-Then open this file in Sublime
+Then open this file in Sublime Text
 ```
-sop Session.sublime_session
+$ sop Session.sublime_session
 ```
 
-And manually remove all the history.
+**What the heck is the `sop` command?**
 
-You can also go to Project > open recent > clear all
+It is not a native command and if you get a `command not found` error when you type it, it means you have to open your bash file (or zshrc file) to set your aliases.
 
+And manually remove all the ST Project file history
 
-* this helps you organize your files especially if you are working with WordPress
+You can also go to `Project` > `open recent` > `clear all`
+
 [sublime project bliss](http://code.tutsplus.com/tutorials/sublime-text-2-project-bliss--net-27256)
 
-I like ST3 and use it exclusively. [Atom](https://atom.io/) is also very popular. If you know of an text editor you think is super awesome, let me know.
-
-## Learning Resources for Sublime Text
-* [Free video tutorial on st2](http://code.tutsplus.com/articles/perfect-workflow-in-sublime-text-free-course--net-27293)
-  - a bit outdated but has a lot of great information
-* [More updated book and videos to learn the power of ST3](https://sublimetextbook.com/)
-  - Not Free
+* The above link, although written for ST2, is still a very good resource for working with ST Project files
  
 ## Install Sublime Text 3 (ST3)
 * Cost - It's free. Well, it's not really free but you can download and use it. If you don't [pay the fee ($70)](http://www.sublimetext.com/buy) you can use it for free as long as you want but you will get annoying popups that you can not remove until you pay for the license. The IDE is really cool and if you use it a lot and it helps you make money, you should shell out the cash to help the creators out for creating a great IDE.
@@ -136,6 +150,7 @@ To turn this on, simply put this in your settings file:
 * Sass
 * SassBeautify
 * Vintage Mode
+  - See Vintage Mode Heading below for more info
 * SublimeLinter (JS, CSS, HTML, PHP)
   - jslinter
     + [article with more info on this](https://scotch.io/tutorials/how-to-catch-your-errors-in-sublime-text-3)
@@ -151,7 +166,6 @@ To turn this on, simply put this in your settings file:
 * the background option shows the errors in the background and this is the most inobtrusive way to be alerted on errors
 * outline is a great way to point out where errors are in your code
 * show errors on save is key to show you the error of your way on every save
-
 
 * Meteor Snippets
 * Hayaku
@@ -181,24 +195,24 @@ $ brew install homebrew/php/phplint
 $ npm install -g jshint
 ```
 
+<<<<<<< HEAD
+## Vintage Mode
+The best coders I know use Vim and the reason is they've learned to do everything with just their keyboard. If you never use your mouse, you quickly learn that typing and getting stuff done gets easier and faster.
+=======
 ## Project
+>>>>>>> eaed1d70651d9fdf5729e29df78b6eb460df1163
 
-Adding a project.sublime-project file can help speed up your workflow especially if you are working between multiple projects.
+You have the option of using Vim mode in Sublime (called `Vintage Mode`). While it doesn't have all the bells and whistles of Vim, it has enough to make you dangerous. If you want to see all the possibilities out there, [check out this link](https://www.maketecheasier.com/vim-keyboard-shortcuts-cheatsheet).
 
-[more info on ST3 project file settings](http://code.tutsplus.com/tutorials/sublime-text-2-project-bliss--net-27256)
+I use vintage mode in Sublime Text everytime I use Sublime Text. In order to use this properly, you need to follow several steps and learn several keyboard shortcuts. Here are the steps and the keyboard shortcuts.
 
-before you run gulp you need to install all the dependencies
+### Open the User Preferences file and remove `Vintage` from the ignored files.
 
-```
-$ npm install
-```
-
-   
-## Add Vim Mode to ST3
+#### Open Preferences File
 
 `Preferences` > `Settings - User`
 
-Change this:
+**Change this:**
 
 ```js
 {
@@ -209,9 +223,9 @@ Change this:
 }
 ```
 
-To this:
+**To this:**
 
-* By default Vim mode is turn off, so you are turning it on by making sure it is not ignored.
+**note**: By default Vim mode is turn off, so you are turning it on by making sure it is not ignored.
 
 ```js
 {
@@ -219,12 +233,13 @@ To this:
     []
 }
 ```
+### Enter Vim Mode with keyboard shortcut
 
-**Recommended** Enter Vim Mode with keyboard shortcut
+I like to add a keyboard shortcut to quickly enter Vintage Mode. There is an option to jump right into Vintage Mode when you open Sublime Text but I'm not a fan of that. With the following `key binding` implemented, I can quickly jump into Vintage mode by just typing the `j` + `j` key binding keyboard shortcut. Here's how you set this up.
 
-Sublime Text 3 > Preferences > Key Bindings - User
+`Sublime Text 3` > `Preferences` > `Key Bindings` - `User`
 
-Add this code:
+**Add this code:**
 
 ```js
 
@@ -236,16 +251,88 @@ Add this code:
     ]
 }
 ```
+## Useful Vintage Commands
+Vintage includes most basic actions:
+
+Key | Function
+--- | --- |
+Escape Key |  Gets out of the current mode into the `command mode`  (_All keys are bound of commands_)
+i | `Insert mode` for inserting text (_Keys behave as expected_)
+d | delete
+y | copy
+gu | lower case 
+gU | upper case
+g~ | swap case
+g? | [rot13](https://en.wikipedia.org/wiki/ROT13)
+< | unindent
+> | indent
+h | left
+j | down
+k | up
+l | right
+b | move backward one word (previous alphanumeric word)
+B | move backward one word (delimited by a white space)
+5b | move backwards 5 words
+w | move forward one word (next alphanumeric word)
+W | move forward one word (delimited by a white space)
+5w | move forward 5 words
+G | move to the end of the file
+gg | move to the beginning of the file
+0 | move cursor to beginning of line
+$ | move cursor to end of line
+a | Insert text after the cursor
+A | Insert text at the end of the line
+i | Insert text before cursor
+o | Begin a new line below the cursor
+O | Begin a new line above the cursor
+{ | Jump to previous paragraph
+} | Jump to next paragraph
+dd | delete line
+3dd | delete three lines
+dgg | delete to beginning of file
+d) + return | delete to end of sentence
+dG | delete to end of file
+x | delete charcter
+dw | delete word
+d0 | delete to the beginning of a line
+d$ | delete to end of the line
+d | delete word
+c | change
+y | yank
+> | shift right
+> | shift left
+~ | switch case
+dit | delete inner tag
+di' | delete inside single quote
+v | enter visual mode (must be in command mode first)
+V | enter line in visual mode (must be in command mode first)
+/search_text | search document for search_text going forward
+?search_text | search document for search_text going backward
+n | move to the next instance of the result from the search
+N | move to the previous instance of the result
+u | undo last operation
+ctrl + r | redo the last undo
+yy | copy current line into storage buffer
+p | paste storage buffer after current line
+P | paste storage buffer before current line
+r{text} | Replace the character under the cursor with {text}
+R | Replace characters instead of inserting them
+^ | moves the cursor to the first non-empty character of the line
 
 ### Keyboard key repeat
-When working with Sublime Text 3 you must make this change or you won't be able to uses VIM mode without going insane
+
+When working with Sublime Text 3 you must make this change or you won't be able to uses VIM mode without going insane. So if you are moving around the document with your keyboard you'll want to hold a key down and keep moving up or down your document. By defaut on Macs you'll have to press your keyboard key every time you want to move. The following command will enable you to just hold the key down and it will keep moving the way you want. You would think this setting would be `on` by default but it's not. So make life better and make the following change using your Terminal.
 
 Add this in the terminal
 
 ```
 $ defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
 ```
+## Project File 
 
+<<<<<<< HEAD
+Adding a project.sublime-project file can help speed up your workflow especially if you are working between multiple projects.
+=======
 [more info here](https://gist.github.com/kconragan/2510186)
 
 ### Sublime Text Useful keyboard shortcuts
@@ -324,21 +411,47 @@ Edit > permute lines > unique
 
 * multi-cursor
 `cmd` + `click`
+>>>>>>> eaed1d70651d9fdf5729e29df78b6eb460df1163
 
-* switch project
-`cmd` + `ctrl` + `p`
+[more info on ST3 project file settings](http://code.tutsplus.com/tutorials/sublime-text-2-project-bliss--net-27256)
 
-* multiple cursor and 1
-`cmd` + `d`
+before you run gulp you need to install all the dependencies
 
-* steroids mult cursor
-`ctrl` + `cmd` + `g`
+```
+$ npm install
+```
 
-* goto anything
-`cmd` + `p`
+[more info here](https://gist.github.com/kconragan/2510186)
 
-* switch between open tabs
-`ctrl` + `tab`
+### Sublime Text Useful keyboard shortcuts ()
+
+| Keyboard Shortcut | function  |
+| ----------------- |:-----------------:|
+| `ctrl` + `g`      | Go to line|
+| `cmd` + `shift` + `p`  |  Find Packages |
+| `cmd` + `ctrl` + up/down arrows  | Move Line Up/Down  |
+| `ctrl` + `w` | wrap |
+| `cmd` + `j` | join line you are currently on with line below it|
+| `ctrl` + `shift` + `d` | duplicate line |
+| `ctrl` + `shift` + `p` | open command Palette |
+| `cmd + k`, `cmd + u` | uppercase |
+| `cmd + k`, `cmd + l` | lowercase |
+| `ctrl` + `shift` + `k` | delete current line |
+| `ctrl` + `g` | goto line |
+| `ctrl` + `super` + up/down | move line |
+| `cmd` + `shift` + `/` | block comment |
+| `cmd` + `/` | single line comment |
+| `cmd + k`, `cmd + b`| show/hide sidebar |
+| `cmd` + `shift` + `v` | paste formatted code |
+| `cmd` + `click` | multi-cursor |
+| `cmd` + `ctrl` + `p` | switch project |
+| `cmd` + `d` | multiple cursor and 1 |
+| `ctrl` + `cmd` + `g` |steroids mult cursor |
+| `cmd` + `p` | goto anything |
+| `ctrl` + `tab` |switch between open tabs |
+| highlight words, `f5` | alpha sort ignoring capital letters |
+| highlight words ctrl + f5 | alpha sort lines starting with capital letters first, then alphabetize lines starting with lowercase letters |
+| Edit > permute lines > unique | remove duplicates |
 
 ## Open ST3 from within iTerm
 * This will save you time as it always is a pain to get this working just right.

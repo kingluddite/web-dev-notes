@@ -11,15 +11,13 @@ if ( true === isLoggedIn ) {
 
 ## JsBin Useful Keyboard Shortcuts
 
-Using jsbin is easy. The two following keyboard shortcuts should get you up and running in no time.
+* Using jsbin is easy
+* The two following keyboard shortcuts should get you up and running in no time
 
-Run the code
-
-* `cmd` + `return`
-
-Clean up the code
-
-* `ctl` + `l`
+| Keyboard Shortcut | function  |
+| ----------------- |:-----------------:|
+| `cmd` + `return`  | Run the code      |
+| `ctl` + `l`       | Clean up the code |
 
 # Strings
 
