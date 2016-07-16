@@ -2,6 +2,11 @@
 
 ## Installs
 
+### Spectacle
+Mac Window Management
+
+[Where can I download it?](https://www.spectacleapp.com/)
+
 ### Install Alfred App
 
 [Where can I download it?](https://www.alfredapp.com/)
@@ -13,10 +18,10 @@ Open Preferences and make these changes
 [Features](https://i.imgur.com/vBWiKh6.png)
 
 ### Sublime Text 3
-* Where Can I down Sublime Text 3?
+* [Where Can I download Sublime Text 3?](https://www.sublimetext.com/3)
 
 What do I need to install for Sublime Text 3?
-Package Controller
+[Package Controller](https://packagecontrol.io/installation)
 
 What Packages do I need to install on Sublime Text 3?
 * Emmet
@@ -84,10 +89,10 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 # The following MAMP export stuff is needed when you work with WP-CLI
 # If you don't use it, you will get lots of errors and spend hours of your life trying to fix them. I just save you hours of your life!!! :)
 # Use MAMP version of PHP
-PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
-export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+#PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+#export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
 # MAMP and MYSQL
-export PATH="/Applications/MAMP/Library/bin:$PATH"
+#export PATH="/Applications/MAMP/Library/bin:$PATH"
 
 set -o vi
 
@@ -117,10 +122,7 @@ alias refrash='source ~/.bash_profile'
 # Old Mac OS had it created by default, no you have to create it
 alias sites='cd ~/Sites/'
 alias desk='cd ~/Desktop/'
-alias pup='cd ~/Documents/dev/puphpet'
-alias notes='cd ~/Documents/dev/notes/web-dev-notes'
-alias ..='cd ../'
-alias db='cd ~/Dropbox'
+alias notes='cd ~/Documents/dev/web-dev-notes'
 alias ..='cd ../'                           # go back 1 directory
 alias ...='cd ../../'                       # Go back 2 directory levels
 alias .3='cd ../../../'                     # Go back 3 directory levels
@@ -228,28 +230,6 @@ export HISTIGNORE="h"
 # =================
 # Functions
 # =================
-
-# make and change into directory you made
-function mcd() { [ -n "$1" ] && mkdir -p "$@" && cd "$1"; }
-
-#######################################
-# Start an HTTP server from a directory
-# Arguments:
-#  Port (optional)
-#######################################
-
-server() {
-  local port="${1:-8000}"
-  open "http://localhost:${port}/"
-  # Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-  # And serve everything as UTF-8 (although not technically correct, this doesnâ€™t break anything for binary files)
-
-  # Simple Pythong Server:
-  # python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
-
-  # Simple Ruby Webrick Server:
-  ruby -e "require 'webrick';server = WEBrick::HTTPServer.new(:Port=>${port},:DocumentRoot=>Dir::pwd );trap('INT'){ server.shutdown };server.start"
-}
 
 # =================
 # Tab Improvements
