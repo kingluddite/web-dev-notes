@@ -2,7 +2,7 @@
 
 ## Installs
 
-### Install AfredApp
+### Install Alfred App
 
 [Where can I download it?](https://www.alfredapp.com/)
 
