@@ -14,7 +14,7 @@ It is a robust application framework for node. But, its minimalist structure all
 
 ## Stuff We'll Talk About
 1. Install and set up Express from scratch
-2. Debugg strategies for Node Apps
+2. Debug strategies for Node Apps
 3. Routing in Express
 4. [Jade Template Engine](http://jade-lang.com/)
   * used to have jade render HTML on the frontend
