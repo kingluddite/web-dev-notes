@@ -11,7 +11,7 @@ with
 
 `res.render('blog', XXX);`
 
-currently our data in in an object
+currently our data is in an object
 but usually in JavaScript when a method iterates through a data type, that data type should be an array.
 
 ## Use Debugger to show how to convert an Object into an array
@@ -27,7 +27,7 @@ launch `node-inspector` in another iTerm window
 
 grab the url and paste into chrome browser
 
-set a break point in app.js file (on line `var app = express();`)
+set a break point in `app.js` file (on line `var app = express();`)
 
 Hit play
 until `var app = express();` is highlighted in blue
@@ -85,12 +85,12 @@ app.get( '/blog/:title?', function( req, res ) {
 
 ## create the blog template
 
-`$ touch src/templates/blog.jade`
+`$ touch src/templates/blog.pug`
 
-`blog.jade`
+`blog.pug`
 
 ```
-extends ./layout.jade
+extends ./layout.pug
 
 block content
   each post in posts
@@ -108,7 +108,7 @@ after running server and viewing in browser
 ## add a paragraph with the description
 
 ```
-extends ./layout.jade
+extends ./layout.pug
 
 block content
   each post in posts

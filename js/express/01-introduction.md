@@ -20,6 +20,8 @@ It is a robust application framework for node. But, its minimalist structure all
   * used to have jade render HTML on the frontend
 The Express Static Server
 
+**note** Jade, because of a copyright violation had their name changed to Pug.
+
 * `Express.js` is a web framework for `Node.js`
 * Routing is a core component of express
 
@@ -34,21 +36,19 @@ The Express Static Server
 
 [usestrict](https://teamtreehouse.com/library/the-javascript-use-strict-statement)
 
-### Clone Repo
+### Create an empty project folder
+We will build our Express app inside this folder.
+
+#### Add Git
 
 ```
-$ git clone https://github.com/hdngr/treehouse-express-basics.git express-basics
+$ git init
 ```
 
+## Create `package.json`
 
-* zsh
-* `$ git status`
-* `$ ls`
-
-## run project as node project
 `$ npm init`
-* intializes or creates some key commands for the project
-* diff in package versions
+
 * **caution** express 3 has many differences than express 4
 
 ## Install express
@@ -57,8 +57,9 @@ $ git clone https://github.com/hdngr/treehouse-express-basics.git express-basics
 $ npm install express --save
 ```
 
+* --save saves express to your package.json dependencies
 * git status
-    - you will see that node_modules is being tracked
+    - you will see that `node_modules` is being tracked
 
 ## Add `.gitignore`
 ```

@@ -415,4 +415,38 @@ How do I switch from bash to zsh shell?
 ```
 $ exec zsh
 ```
+iterm2 Preferences
+To jump between words and start/end of lines in iTerm2 follow these steps:
 
+Go to iTerm2 Preferences (⌘,)
+Open the “Keys” tab
+Add the following Global Shortcut Keys
+Jump to beginning of word
+
+Keyboard Combination: ⌥←
+Action: Send Escape Sequence
+Escape: b
+Jump to end of word
+
+Keyboard Combination: ⌥→
+Action: Send Escape Sequence
+Escape: f
+Jump to beginning of line
+
+Keyboard Combination: ⌘←
+Action: Send Hex Code
+Escape: 0x01
+Jump to end of line
+
+Keyboard Combination: ⌘→
+Action: Send Hex Code
+Escape: 0x05
+Don't forget to remove the previous bindings:
+
+Open the “Profiles” tab
+Click the sub-tab ”Keys”
+Remove the mappings for key combinations ⌥← and ⌥→
+
+## Hush login
+remove login at top of Mac terminal
+[how to do it](http://osxdaily.com/2010/06/22/remove-the-last-login-message-from-the-terminal/)

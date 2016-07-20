@@ -15,20 +15,46 @@ Most templating languages resemble `HTML`
 ## Most Popular JavaScript Templating Languages
 * Handlebars
 * EJS (Embedded JavaScript)
-* JADE
+* JADE (now called Pug)
     - By far most popular
     - Most integrated with express
     - Easiest to setup and use with express
     - Has a steeper learning curve (because of its syntax)
 
 ## [Jade](http://jade-lang.com/)
+
+### Caution
+When working with Jade/Pug, you need to turn off a Sublime Text setting. If you don't you will get errors because `|` in Pug needs trailing space after it and the following setting removes trailing spaces automatically
+
+```js
+"trim_trailing_white_space_on_save": false,
+```
+
+### Important
+Jade has been renamed to pug because of copyright violations
+
+So install pug instead of jade:
+
+```
+$ npm install pug --save
+```
+
+**src/app.js**
+
+and change your app.js to the following
+
+```js
+app.set('view engine', 'pug');
+app.set('views', __dirname + '/views');
+```
+
 * One of the most popular templating engines for node
 * Commonly used with Express
-* Jade uses a compiler to transform Jade to HTML
+* Jade/Pug uses a compiler to transform Jade/Pug to HTML
 
-### Practice writing Jade
+### Practice writing Jade/Pug
 
-On Jade site, remove jade in left column and type the following (_line by line_) paying attention to what happens during the conversion
+On Jade/Pug site, remove jade in left column and type the following (_line by line_) paying attention to what happens during the conversion
 
 ```jade
 doctype html
@@ -41,34 +67,26 @@ html
   p(class="phillies") I can also add classes this way
 ```
 
-### Jade Syntax Package available for Sublime Text
+### Jade/Pug Syntax Package available for Sublime Text
 * Install it for proper syntax coloring
-* Package Name: `Jade`
+* Package Name: `Pug`
 
 #### block syntax
 If you indent, jade puts indented tag inside the tag above it
 as long as you indent your code properly, you don't have to add the closing tag (_big time saver_)
 
-## Install Jade
-
-```
-$ npm install jade --save
-```
-
 Make sure it was properly installed by using `package.json`
 
-![jade is installed](https://i.imgur.com/bOVAidq.png)
+## Using Jade/Pug in our application
 
-## Using Jade in our application
+Create a new directory called `views`
 
-Create a new directory called `templates`
-
-`src/templates`
+`src/views`
 
 * After we define it in our app, express will look for templates in this folder
-* We will call it `templates` but we could call it anything, many developers call it `views`
+* We will call it `views` but we could call it anything, many developers call it `views`
 
-`src/templates/index.jade`
+`src/templates/index.pug`
 
 
 ```
@@ -83,7 +101,7 @@ html(lang="en")
 
 Lipsum generated from [hipsum.co](http://hipsum.co/)
 
-## Make our app.js aware of jade
+## Make our app.js aware of jade/pug
 
 `src/app.js`
 
@@ -92,9 +110,9 @@ Lipsum generated from [hipsum.co](http://hipsum.co/)
 var app = express();
 
 // which template engine are we using?
-app.set( 'view engine', 'jade' );
+app.set( 'view engine', 'pug' );
 // where is our template folder located?
-app.set( 'views', __dirname + '/templates' );
+app.set( 'views', __dirname + '/views' );
 [more code]
 ```
 
@@ -106,12 +124,12 @@ Pointing to a path inside node applications
 * This is important because we are starting the server from a different directory
 * We start the server from the root of our project
 * In many cases node directories are going to be relative to the node process, not the file you are working in.
-    - If we used this path `./templates`, express would only find the directory for the templates if the node process was started in the same directory as the `app.js` file but in our app we start our node process one directory up, with the nodemon command with a path to the `app.js` (`nodemon src/app.js`)
+    - If we used this path `./views`, express would only find the directory for the templates if the node process was started in the same directory as the `app.js` file but in our app we start our node process one directory up, with the nodemon command with a path to the `app.js` (`nodemon src/app.js`)
 
 Because we start the process from potentially a different directory, we need to make sure that the templates path, is relative to the file and not to the node process by using `__dirname` parameter
 * Now express can look for templates in the template folder
 
-# Add index.jade to our route
+# Add index.pug to our route
 
 ```js
 app.get( '/', function( req, res ) {
@@ -119,7 +137,7 @@ app.get( '/', function( req, res ) {
 } );
 ```
 
-* We don't need to add `index.jade` because we told express we were using jade so it knows that our template files will have that suffix and this saves us from typing it.
+* We don't need to add `index.pug` because we told express we were using jade so it knows that our template files will have that suffix and this saves us from typing it.
 
 ### Run nodemon
 
@@ -127,15 +145,15 @@ app.get( '/', function( req, res ) {
 $ nodemon src/app
 ```
 
-View `http://localhost:3000` and you should see our that our `HTML` was rendered from our `index.jade` template
+View `http://localhost:3000` and you should see our that our `HTML` was rendered from our `index.pug` template
 
 ## response.render
 * so far we have only been working with static data
 * now we will use variables in our static responses and inject them into our templates during rendering
 
-### Create post.jade
+### Create post.pug
 
-`src/templates/post.jade`
+`src/templates/post.pug`
 
 ```
 doctype html
@@ -159,7 +177,7 @@ html(lang="en")
 ```
 
 * We will use this template when we render a specific blog post
-* If you have a new block in Jade where a tag is not define (like `.container`), than that tag will be a `DIV` tag by default.
+* If you have a new block in Jade/Pug where a tag is not define (like `.container`), than that tag will be a `DIV` tag by default.
 
 `src/app.js`
 
@@ -179,17 +197,17 @@ app.get( '/blog/:title?', function( req, res ) {
 
 * Start up server `$ nodemon src/app.js`
 * View `http://localhost:3000/blog/Civitas FC Wins` in browser
-    - You should see your static post.jade template in browser
+    - You should see your static post.pug template in browser
 
 ## Adding variables to our response
 
-We can access the `post` variable (in the `else` of above app.js) by providing it as an object in the second parameter of the render()
+We can access the `post` variable (in the `else` of above `app.js`) by providing it as an object in the second parameter of the `render()`
 
 ```js
 res.render( 'post', { post: post });
 ```
 
-### update post.jade
+### update `post.pug`
 
 ```
 doctype html
@@ -214,7 +232,7 @@ html(lang="en")
 
 * Notice the new dynamic elements we added to our template
 
-Run and view in browser using `http://localhost/Civitas FC Wins`
+Run and view in browser using `http://localhost:3000:blog/Civitas FC Wins`
 * Then view other blog routes (different blog titles)
 
 ### Problem
@@ -245,25 +263,81 @@ app.get( '/blog/:title?', function( req, res ) {
 * keep a single file at 150 lines maximum (good rule for modular development) when working with them in development
 * after we add the bootstrap navbar to both our jade files, anytime we need to make a change we need to make a change in both our files.
 
+**post.pug** (spacing issue on github)
+
+```
+doctype html
+html(lang="en")
+    head
+        title #{post.title}
+
+    body#page-top
+        nav#mainNav.navbar.navbar-default.navbar-fixed-top
+          .container-fluid
+            // Brand and toggle get grouped for better mobile display
+            .navbar-header
+              button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                span.sr-only Toggle navigation
+                | 
+                span.icon-bar
+                | 
+                span.icon-bar
+                | 
+                span.icon-bar
+              | 
+              a.navbar-brand.page-scroll(href='/') FitLog.io
+            // Collect the nav links, forms, and other content for toggling
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+              ul.nav.navbar-nav.navbar-right
+                li
+                    a(href='/blog') Blog
+                li
+                    a.page-scroll(href='#about') About
+
+                li
+                    a.page-scroll(href='#services') Services
+                | 
+                li
+                    a.page-scroll(href='#portfolio') Portfolio
+                | 
+                li
+                    a.page-scroll(href='#contact') Contact
+                // /.navbar-collapse
+                // /.container-fluid
+      section.post
+        .container.text-right
+        a(href="").text-faded view all
+        .row
+         .col-lg-8.col-lg-offset-2.text-center
+          h2.section-heading #{post.title}
+
+          hr.light
+
+          p.text-faded
+            |  #{post.description}
+          .article
+            |  #{post.description}
+```
+
 ### Solution: Create a layout template
 block content
 * let's jade know any page extending it's content can inject it's content here
 
 * problems
     - spacing, remove sublime text clear end of line (was true set to false)
-    - block content goes on line 2 of index.jade and post.jade and after navbar of layout.jade
-    - indent content that comes after block content in index.jade and post.jade
+    - block content goes on line 2 of index.pug and post.pug and after navbar of layout.pug
+    - indent content that comes after block content in index.pug and post.pug
     - the `|` means text in jade and needs a space character after it, if sublime strips it, you'll get an error
 
 ## Adding 'partials'
 Create a directory called `partials` in the `templates` directory
 * partials is a common naming convention and recommended for you to use in your projects
     - Other developers will know what is going on when they see your application for the first time
-    - also name files with a leading underscore `ie - _nav.jade`
+    - also name files with a leading underscore `ie - _nav.pug`
         + the underscore(_) means this file is not meant to be used on it's own, it is a fragment and will be included from another file
 
-* remove the nav code from `src/templates/layout.jade` and place it inside `src/templates/partials/_nav.jade`
-* use `include ./partials/_nav.jade` to include the nav inside `layout.jade`
+* remove the nav code from `src/templates/layout.pug` and place it inside `src/templates/partials/_nav.pug`
+* use `include ./partials/_nav.pug` to include the nav inside `layout.pug`
 * view in browser and make sure it works just like it did before
 * as a test comment out the include and see if the nav disappears
 

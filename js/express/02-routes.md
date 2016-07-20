@@ -82,6 +82,14 @@ $ npm install -g node-inspector
 $ node-debug src/app.js
 ```
 
+shut down the server
+rerun the server
+make sure you click 'allow for notifications' in chrome but once you do it, it will saved and you won't have to do that again
+chrome will open a new window with the url of the debugger, if not, grab url inside terminal and paste into open window
+hit play to get server to run front end
+if you have localhost:3000 open, refresh and point to new route localhost:3000/bblog (if not, open chrome and add the route localhost:3000)
+a notification pops up from chrome, click that and it will show you the objects you are looking at (req, res and post)
+
 Go to the URL it tells you in terminal to debug
 * The `localhost:3000` does not work
 * hit play in debugger and you will see it works (_might have to click twice_)
@@ -94,6 +102,12 @@ A solution to above note is:
 
 * run `$ node-inspector` on it's on in a tab of Terminal
 * run `$ nodemon --debug src/app`
+
+but if you run nodemon --debug src/app it will never hit the debugger so you can't debug. what you need to do is run this line instead and it will trigger thdebugger. Note that localhost:3000 will not run because no routes are being servered but you do have access the express object at the application level
+
+type this command to ensure `debugger` get's hit
+
+`$ nodemon --debug-brk src/app.js`
 
 Now both node-inspector and nodemon will work together and enable you to debug
 

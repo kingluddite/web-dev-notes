@@ -545,3 +545,9 @@ If you find yourself typing the same stuff over and over again, it might be time
 
 1. Open file
 2. Then... File > New View Into File
+
+## How do you set the default syntax for a file type?
+On my laptop whenever I opened markdown files, they would open with Markdown syntax instead of the MultiMarkdown. I had to manually change all my markdown files to MultiMarkdown and it was time consuming and a pain.
+To change all markdown files, just have one open and then click the main `View Menu` and follow this:
+
+`View` > `Syntax` > `Open all with current extension as` > `MultiMarkdown`

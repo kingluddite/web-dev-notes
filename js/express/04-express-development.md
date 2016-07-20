@@ -20,6 +20,7 @@ Create a `public` folder inside the `src` directory
     - fonts
     - img
     - js
+
 ### app.use()
 use() defines middleware for our application
 
@@ -30,7 +31,11 @@ use() defines middleware for our application
 * one of the few places where we will access the express module directly (in our case we are accessing the module instead of the `app` variable)
 * first parameter is path to static directory
 
+**app.js**
+
 ```js
+var app = express();
+
 app.use( express.static( __dirname + '/public' ) );
 ```
 
@@ -49,7 +54,7 @@ now when you want to view this css file, the URL would be
 
 * the previous URL will no longer work
 
-`src/templates/partials/_head.jade`
+`src/templates/partials/_head.pug`
 
 ```
 head
@@ -59,5 +64,5 @@ head
 
 scripts at bottom so that we know everything is loaded before we try to manipulate it
 
-css in head because everything in head tag is already loaded before body content, we don't want body content to appear without our css styling it
+`CSS` in head because everything in head tag is already loaded before body content, we don't want body content to appear without our css styling it
 
