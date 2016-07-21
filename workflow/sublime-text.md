@@ -147,6 +147,14 @@ To turn this on, simply put this in your settings file:
     + "format_on_save": true (HTMLPrettify.sublime-settings)
     + I like spaces around selectors in JavaScript
       * "space_in_paren": true (in `.jsbeautifyrc`)
+
+If you want to keep spacing in certain areas of text use this:
+/* beautify preserve:start */
+CODE IN HERE WILL NOT BE FORMATTED
+/* beautify preserve:start */
+
+**tip** make the above a snippet for ease of use
+
 * Sass
 * SassBeautify
 * Vintage Mode
