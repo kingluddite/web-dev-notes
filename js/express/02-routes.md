@@ -1,16 +1,20 @@
 # Adding Routes
 
-* naming convention
+* Naming convention
     - `mock`
-        + we name our folder `mock` to show that it is created by us internally
+        + We name our folder `mock` to show that it is created by us internally
 
 [hip lipsum](http://hipsum.co/)
 
+* A cool site for quick, hip and happening lorem ipsum filler text
+
 ## Important
-If you change `app.js`, you need to shut down server and restart it for the changes to take affect. If you don't see your changes and wonder why, this should be what you do to troubleshoot first.
+If you change `app.js`, you need to shut down server and restart it for the changes to take affect. If you don't see your changes and wonder why, this should be what you troubleshoot first.
 
 ## Add a blogs route
-This will pull in the json data onto our `localhost:3000/blog` route
+This will pull in the **json** data onto our `localhost:3000/blog` route
+
+**src/app.js**
 
 ```js
 app.get( '/blog', function( req, res ) {
@@ -39,66 +43,87 @@ app.get( '/blog', function( req, res ) {
 }
 ```
 
+Normally, the data would come from a database or an API but we are just using some mock data here to show how this express works with routing
+
+**src/app.js**
 
 ```js
 var express = require( 'express' ),
     posts   = require( './mock/posts.json' );
 ```
 
+Here we include the file that holds our fake data.
+
 # Debug Express Tools
 
-## [nodemon](https://github.com/remy/nodemon)
-* tool that automatically restarts your node processor when files change
-    - saves you time and typing
-    - you can just keep working on your code without starting and stopping the server everytime you change something
+We need some tools to make working with Express easier to understand what is happening under the hood.
 
-### global install of nodemon
+## [nodemon](https://github.com/remy/nodemon)
+* Tool that automatically restarts your node processor when files change
+    - Saves you time
+    - Saves you typing
+    - You can just keep working on your code without starting and stopping the server everytime you change something. Cool Beans!
+
+### Global install of nodemon
 
 ```
 $ npm install -g nodemon
 ```
 
-## [node-inspector](https://github.com/node-inspector/node-inspector)
-* tool for interactively debugging node processes
-* allows you to explore your application in a browser as your application runs
+Now that we did this we can use **nodemon** on any Express project
 
-### run
+## [node-inspector](https://github.com/node-inspector/node-inspector)
+* Tool for interactively debugging node processes
+* Allows you to explore your application in a browser as your application runs
+
+We will run both these tools at the same time.
+
+### Run the server using nodemon
 
 ```
 $ nodemon src/app
 ```
 
-Try it out. Change the text on the home route and see that it updates in the browser (without a restart. Woohoo!)
+#### Try it out
 
-### global install of node-inspector
+Change the text on the home route and see that it updates in the browser (_And we did it without a restart. Woot! Woot!_)
+
+### Global install of node-inspector
 
 ```
 $ npm install -g node-inspector
 ```
 
-### run
+Now that we did this we can use **node-inspector** on any Express project
+
+### Run the Express server
 
 ```
 $ node-debug src/app.js
 ```
 
-shut down the server
-rerun the server
-make sure you click 'allow for notifications' in chrome but once you do it, it will saved and you won't have to do that again
-chrome will open a new window with the url of the debugger, if not, grab url inside terminal and paste into open window
-hit play to get server to run front end
-if you have localhost:3000 open, refresh and point to new route localhost:3000/bblog (if not, open chrome and add the route localhost:3000)
-a notification pops up from chrome, click that and it will show you the objects you are looking at (req, res and post)
+#### Steps for proper debugging
+1. Shut down the server
+2. Rerun the server
+3. Make sure you click `allow for notifications` in Chrome (some times it doesn't appear and you might find debugging glitchy. You just have to keep trying. Stop the server. Restart.
+4. Chrome will open a new browser window with the URL of the debugger, if not, grab URL inside terminal and paste into an open browser window
+5. Hit `play` to get server to run front end
+6. If you have `localhost:3000` open, refresh and point to new route `localhost:3000/blog` (if not, open Chrome and add the route `localhost:3000`)
+a notification pops up from chrome, click that and it will show you the objects you are looking at (`req`, `res` and `post`)
 
-Go to the URL it tells you in terminal to debug
+Go to the **URL** it tells you in terminal to debug
+
+If you look at the Terminal after running the Express server, it will give you a **URL**. Copy that **URL**, paste it into the Chrome browser.
+
 * The `localhost:3000` does not work
-* hit play in debugger and you will see it works (_might have to click twice_)
-* set breakpoint on blog posts line and you will have access to the `res` and `req` objects
-* use the `console` of the breakpoint to see `req` and `res`
+* Hit play in **debugger** and you will see it works (_might have to click twice_)
+  - working with the debugger is not intuitive and will take practice to get it working the way you expect
+* Set a [breakpoint](https://developers.google.com/web/tools/chrome-devtools/debug/breakpoints/add-breakpoints?hl=en) on blog posts line and you will have access to the `res` and `req` objects
+* Use the `console` of the breakpoint to see `req` and `res`
 
 **important note** `node-inspector` does not restart server when code changes are made
 
-A solution to above note is:
+A solution to above note is to run them both at the same time:
 
 * run `$ node-inspector` on it's on in a tab of Terminal
 * run `$ nodemon --debug src/app`
@@ -111,8 +136,11 @@ type this command to ensure `debugger` get's hit
 
 Now both node-inspector and nodemon will work together and enable you to debug
 
-* set them running is separate tabs
-* add `debugger` to code
+* Set them running is separate tabs
+* Add `debugger` to the code inside `src/app.js`
+  - see below
+
+**src/app.js**
 
 ```js
 'use strict';
@@ -138,40 +166,40 @@ app.listen( 3000, function() {
 
 ```
 
-type this command to ensure `debugger` get's hit
+Type this command to ensure `debugger` get's hit
 
 `$ nodemon --debug-brk src/app.js`
 
-* the server `catches` the HTTP request
-    - any time someone sends a GET request
-        + it then bundles all the data into one easy to use JavaScript object
-            * this object is the `request` object
+* The server `catches` the HTTP request
+    - Any time someone sends a GET request
+        + It then bundles all the data into one easy to use JavaScript object
+            * This object is the `request` object
 
 [documentation on request object of express](http://expressjs.com/en/api.html#req)
 
 ## Responses and the Response Object
-when user makes request to a server
-the server sends back the response
-the response contains info needed to render their request in their browser
+1. When **user** makes `request` to a **server**
+2. The **server** sends back the `response`
+3. The **response** contains info needed to render their `request` in their **browser**
 
-### typically includes
+### Typically includes
 `HTML` and a bunch of other behind the scenes info
-* stuff like
-  - status codes
-  - response headers
+
+#### Stuff like
+  - [status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+  - [response headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields)
 
 **example**: successful status code `200`
 
-[List of status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
-
 [detect if request being made by a human user or machine?](https://github.com/rguerreiro/express-device)
-* and cater response based on the answer
+
+* And cater response based on the answer
 
 [Link to Resource on Response Object](http://expressjs.com/en/api.html#res)
 
-### add debugger to blog page
+### Add debugger to blog page
 
-`app.js`
+**app.js**
 
 ```js
 app.get( '/blog/:title', function( req, res ) {
@@ -182,46 +210,47 @@ app.get( '/blog/:title', function( req, res ) {
 } );
 ```
 
-* now if you go to a route, it will grab what follows `/blog/`, and use that by grabbing it with `req.params.title` and storing it in title.
-* then grab the post with that title inside our mock json file and send it back to the client so you will see only that part of the json file in the browser.
+### Analyzing the blog route
+* Go to a specific `blog` **route**, it will grab **:title** in `/blog/:title`, (by grabbing it with `req.params.title`) and storing it in the variable **title**.
+* Then grab the **post** with that same `title` inside our `mock/posts.json`and send it back to the **client** so you will see only that specific `post` in the browser.
 
-Open two tabs in iTerm
+#### Open two tabs in iTerm
 
-`tab 1`
+**tab 1**
 
 ```
 $ nodemon --debug src/app.js
 ```
 
-`tab 2`
+**tab 2**
 
 ```
 $ node-inspector
 ```
 
-grab the URL output in iTerm and paste into open browser window
+1. Grab the **URL** output in `iTerm` and paste into open browser window
+ a) Something like `http://127.0.0.1:8080/?port=5858`
 
-something like `http://127.0.0.1:8080/?port=5858`
-refresh the page
+2. Refresh the page
+3. Open another browser tab and point to a blog route
+ a) `http://localhost:3000/blog/Civitas FC Wins`
 
-open another browser tab and point to a blog route
+4. Open Chrome Browser console
 
-`http://localhost:3000/blog/Civitas FC Wins`
-
-jump to inspector console
-
-type `res`
+5. type `res`
 
 ![res](https://i.imgur.com/Jz3fs6p.png)
 
-A lot of info and intimidating but it just means `express` is handling a lot for us.
+A lot of info in the above screenshot but it just means `express` is handling a lot for us.
 
-we used send() to send json
-you could use `res.sendFile` to actually send a file to the client
-you can set response headers manually
+We used `send()` to send **json**
 
-we have routes set up for individual blog posts
-but we don't have a route set up for individual landing page
+* You could use `res.sendFile()` to actually send a file to the client
+* You can set `response headers` manually
+
+## Landing Page
+* We have routes set up for individual blog posts
+* But we don't have a route set up for individual landing page
 
 ```js
 app.get( '/blog/:title', function( req, res ) {
@@ -232,15 +261,15 @@ app.get( '/blog/:title', function( req, res ) {
 } );
 ```
 
-if you try to go to this route `localhost:3000/blog` you will get an error
+If you try to go to this route `localhost:3000/blog` you will get an error
 
-to fix this error change this
+To fix this error change this
 
 ```js
 app.get( '/blog/:title', function( req, res ) { ... more code here ... });
 ```
 
-to this
+To this
 
 ```js
 app.get( '/blog/:title?', function( req, res ) { ... more code here ... });
@@ -248,9 +277,9 @@ app.get( '/blog/:title?', function( req, res ) { ... more code here ... });
 
 * the `?` tells express that the parameter is optional
 
-stop the debugger and you will see the route works but the page is blank
+Stop the **debugger** and you will see the **route** works but the page is blank
 
-show text if just blog and show json post if in title of url
+Show text if just blog and show **json** `post` if in title of URL 
 
 ```js
 app.get( '/blog/:title?', function( req, res ) {
@@ -266,38 +295,42 @@ app.get( '/blog/:title?', function( req, res ) {
 ```
 
 ## Troubleshooting Server running already on ports
-* I hate this problem as it always sneaks up at the wrong time and always takes time to fix. The problem is a port that didn't close properly. So you have to find it and kill it. You can never run two processes from one port.
+* I hate this problem as it always sneaks up at the wrong time and always takes time to fix. The problem is a port that didn't close properly. So you have to find it and kill it (stop the process). 
+
+**note:** You can never run two processes simultaneously from one port.
 
 You may run into this problem
 
 If you get this error:
+
 ![port 3000 running already error](https://i.imgur.com/qdntYtd.png)
 
-solve it with this
+Solve it with this
 
 ```
 $ lsof -i:3000
 ```
 
-Find the PID and kill it with:
+Find the `PID` and kill it with:
 
 ```
 $ kill -9 $pid
 ```
 
-* replace $pid with the actual PID number
+* replace `$pid` with the actual `PID` number
 
 I also would get this error
+
 ![error](https://i.imgur.com/0sLlsdj.png)
 
 Solve it the same way but just swap out the different port number.
 
 # Problem
-When we view the /blog page in chrome console tools `Network` tab, it has a status of [200](https://httpstatuses.com/200) (if it is cached you will get [304](https://httpstatuses.com/304) status code)
+When we view the `/blog` page in Chrome console tools `Network` tab, it has a status of [200](https://httpstatuses.com/200) (if it is cached you will get [304](https://httpstatuses.com/304) status code)
 
-we want to tell search engines that this page is not created yet or under construction and should not be watched or followed.
+We want to tell search engines that this page is not created yet or under construction and should not be watched or followed.
 
-How can we tell the Search Engines this page is not ready?
+## How can we tell the Search Engines this page is not ready?
 We can manually change the status code to [503](https://httpstatuses.com/503)
 
 ```js
@@ -317,6 +350,8 @@ app.get( '/blog/:title?', function( req, res ) {
 Refresh your page and you'll now see a status code of 503
 
 ![status code](https://i.imgur.com/5YWX6Xn.png)
+
+___
 
 [Compare Different Template Languages](https://strongloop.com/strongblog/compare-javascript-templates-jade-mustache-dust/)
 

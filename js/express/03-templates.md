@@ -6,9 +6,9 @@
         + variables
         + logic
     - Server will dynamically inject the template with data based on those variables and logic
-        + because of this, templates are often called `views`
+        + Because of this, templates are often called `views`
     - This `response` is then send to the client as HTML
-        + this entire process is known as `Template Rendering`
+        + This entire process is known as `Template Rendering`
 
 Most templating languages resemble `HTML`
 
@@ -54,7 +54,8 @@ app.set('views', __dirname + '/views');
 
 ### Practice writing Jade/Pug
 
-On Jade/Pug site, remove jade in left column and type the following (_line by line_) paying attention to what happens during the conversion
+On Jade/Pug site (_click on Jade link above to get to Jade site_), remove jade in left column and type the following (_line by line_) paying attention to what happens during the conversion
+>>>>>>> clean up Express notes
 
 ```jade
 doctype html
@@ -72,8 +73,8 @@ html
 * Package Name: `Pug`
 
 #### block syntax
-If you indent, jade puts indented tag inside the tag above it
-as long as you indent your code properly, you don't have to add the closing tag (_big time saver_)
+* If you indent, jade puts indented tag inside the tag above it
+* As long as you indent your code properly, you don't have to add the closing tag (_big time saver_)
 
 Make sure it was properly installed by using `package.json`
 
@@ -84,7 +85,7 @@ Create a new directory called `views`
 `src/views`
 
 * After we define it in our app, express will look for templates in this folder
-* We will call it `views` but we could call it anything, many developers call it `views`
+* We will call it **views** but we could call it anything, many developers call it `views`
 
 `src/templates/index.pug`
 
@@ -120,7 +121,7 @@ app.set( 'views', __dirname + '/views' );
 Pointing to a path inside node applications
 
 * Express will look where we tell it for our templates
-* We will use a trick that invokes the dirname variable
+* We will use a trick that invokes the **__dirname** variable
 * This is important because we are starting the server from a different directory
 * We start the server from the root of our project
 * In many cases node directories are going to be relative to the node process, not the file you are working in.
@@ -197,11 +198,12 @@ app.get( '/blog/:title?', function( req, res ) {
 
 * Start up server `$ nodemon src/app.js`
 * View `http://localhost:3000/blog/Civitas FC Wins` in browser
-    - You should see your static post.pug template in browser
 
 ## Adding variables to our response
 
 We can access the `post` variable (in the `else` of above `app.js`) by providing it as an object in the second parameter of the `render()`
+
+* You should see your static `post.pug` template in browser
 
 ```js
 res.render( 'post', { post: post });
@@ -232,12 +234,14 @@ html(lang="en")
 
 * Notice the new dynamic elements we added to our template
 
-Run and view in browser using `http://localhost:3000:blog/Civitas FC Wins`
-* Then view other blog routes (different blog titles)
+### Run and view in browser 
+Using `http://localhost:3000/blog/Civitas FC Wins`
+
+* Then view other blog routes (_different blog titles_)
 
 ### Problem
-When we go to blog routes that do not exist
-We get an error because when we get routed to thoses pages, the variables will be undefined
+* When we go to blog routes that do not exist
+* We get an error because when we get routed to thoses pages, the variables will be undefined
 
 #### Quick solution
 If the post we are looking for does not exist, define it as an empty object
@@ -323,15 +327,15 @@ html(lang="en")
 block content
 * let's jade know any page extending it's content can inject it's content here
 
-* problems
-    - spacing, remove sublime text clear end of line (was true set to false)
-    - block content goes on line 2 of index.pug and post.pug and after navbar of layout.pug
-    - indent content that comes after block content in index.pug and post.pug
-    - the `|` means text in jade and needs a space character after it, if sublime strips it, you'll get an error
+#### problems
+* spacing, remove sublime text clear end of line (was true set to false)
+* block content goes on line 2 of index.pug and post.pug and after navbar of layout.pug
+* indent content that comes after block content in index.pug and post.pug
+* the `|` means text in Jade/Pug and needs a space character after it, if sublime strips it, you'll get an error
 
 ## Adding 'partials'
 Create a directory called `partials` in the `templates` directory
-* partials is a common naming convention and recommended for you to use in your projects
+* `partials` is a common naming convention and recommended for you to use in your projects
     - Other developers will know what is going on when they see your application for the first time
     - also name files with a leading underscore `ie - _nav.pug`
         + the underscore(_) means this file is not meant to be used on it's own, it is a fragment and will be included from another file
