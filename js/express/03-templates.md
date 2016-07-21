@@ -55,7 +55,6 @@ app.set('views', __dirname + '/views');
 ### Practice writing Jade/Pug
 
 On Jade/Pug site (_click on Jade link above to get to Jade site_), remove jade in left column and type the following (_line by line_) paying attention to what happens during the conversion
->>>>>>> clean up Express notes
 
 ```jade
 doctype html

@@ -14,7 +14,6 @@ With
 
 Currently our data in in an object
 But usually in JavaScript when a method iterates through a data type, that data type should be an array.
->>>>>>> clean up Express notes
 
 ## Use Debugger to show how to convert an Object into an array
 We have `posts.json` which is an object and we need to turn it into an array.
@@ -30,7 +29,6 @@ Launch `node-inspector` in another iTerm window
 Grab the **URL** and paste into Chrome browser
 
 Set a break point in `app.js` file (on line `var app = express();`)
->>>>>>> clean up Express notes
 
 Hit play
 Until `var app = express();` is highlighted in blue

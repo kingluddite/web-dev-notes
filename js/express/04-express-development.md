@@ -67,5 +67,4 @@ head
 `JavaScripts` at bottom so that we know DOM is loaded before we try to manipulate it
 
 **note** `CSS` in head because everything in `HEAD` tag is already loaded before `BODY` content, we don't want `BODY` content to appear without our `CSS` styling it
->>>>>>> clean up Express notes
 
