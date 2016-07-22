@@ -450,3 +450,7 @@ Remove the mappings for key combinations ⌥← and ⌥→
 ## Hush login
 remove login at top of Mac terminal
 [how to do it](http://osxdaily.com/2010/06/22/remove-the-last-login-message-from-the-terminal/)
+
+```
+$ touch ~/.hushlogin
+```
