@@ -379,6 +379,27 @@ $ brew install tree
 $ brew install node
 ```
 
+Helpful brew stuff
+
+See if brew is sick
+
+```
+$ brew doctor
+```
+
+Update brew
+
+```
+$ brew update
+```
+
+Upgrade all installed brew packages
+
+```
+$ brew upgrade
+```
+
+
 ### Change MAMP configurations
 
 1. First create a `Sites` folder in your `home directory`
