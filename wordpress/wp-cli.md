@@ -193,6 +193,56 @@ I wanted to get WP-CLI working on GoDaddy so this article helped me set that up.
 
 [how to use WP-CLI on godaddy](https://www.godaddy.com/help/how-to-install-wordpress-cli-on-shared-hosting-12363)
 
+# How to install WordPress CLI on Shared Hosting
+
+WordPress Command-Line Utility, or WP-CLI for short, is an advanced utility for powerusers who wish to rapidly manage and deploy their WordPress sites using bash/SSH. This feature is standard on our Managed WordPress hosting, but is able to be configured for any hosting platform that has the php-cli module installed. The base WP-CLI suite includes an extensive toolbox, and even allows you to make posts to your WordPress site directly through command line. Actions such as updating the WordPress core, clearing the WordPress cache, backup and restore a MySQL database, installing plugins and themes, and managing users is streamlined in WP-CLI.
+
+## Obtaining and Installing the WP-CLI .phar file
+
+Connect to your hosting account via SSH. (more info).
+
+Once logged in, make sure you are in the home directory of your hosting account. You can ensure this by using the command pwd to print the working directory. It should show you as being in /home/username, where username is your primary username for cPanel.
+
+Use the curl command to obtain the wp-cli.phar file which we will use as the executable for wp-cli
+
+```
+$ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+```
+
+Edit the permissions of the wp-cli.phar file to be executable
+
+```
+$ chmod +x wp-cli.phar
+```
+
+You can then check to see if WP-CLI functions by using php to run the executable .phar file. The command below demonstrates how to do this.
+
+```
+$ php wp-cli.phar --info
+```
+
+This should load up information about the php-cli executable, as well as the WP-CLI utility itself.
+
+## Setting the bash alias for WP-CLI
+
+So technically, you could use WP-CLI as-is. You would simply need to type php wp-cli.phar before any command to initialize WP-CLI. Not real user-friendly, right? Luckily, we have ways to change this using a bash alias. This is where we tell bash to alias a specific command to either a different command, or a specific executable. This is done by editing your .bashrc file, which exists in the home directory of your hosting account. The alias we need to add to this .bashrc file is:
+
+`alias wp='~/wp-cli.phar'`
+
+This tells bash that the command 'wp' will call to the wp-cli.phar executable in your home directory. Adding the required alias can be done through this simple command, which simply uses echo to output the required statement, then uses >> to append it to the file.
+
+```
+$ echo "alias wp='~/wp-cli.phar'" >> .bashrc
+```
+
+Then, use the source command to update how bash initializes.
+
+```
+$ source .bashrc
+```
+
+If you have made previous edits to your .bashrc file to establish another alias or install another command-line utility such as Drush, then you may instead want to edit your .bashrc file manually using a text editor such as Notepad++ or vim. However, as long as you are following the standard format and having bash aliases live at the bottom of the .bashrc file, the previous command should still work just fine.
+
 # namecheap
 
 [Namecheap.com](http://namecheap.com) offers shared hosting. They give you a cpanel just like godaddy and others
