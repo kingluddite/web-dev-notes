@@ -84,8 +84,6 @@ The solution is to have your own box to test in and that is where `Vitural Box` 
 
 But then we have another problem and assuming we are not all sysops people (Systems Operations) and have a thorough knowledge about servers and how to configure them that is where Vagrant comes into play. `Vagrant` will make creating our server box easy and dare I say fun.
 
-
-
 ## Vagrant
 
 ### Useful commands
