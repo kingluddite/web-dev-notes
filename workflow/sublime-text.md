@@ -1,4 +1,4 @@
-The $http.get method can take a callback as a parameter.# Sublime Text 3
+# Sublime Text 3
 Is a text editor. A few years ago I was using `Dreamweaver` as were many people. There were other popular `Text Editors` like `Text Wranger` and `Coda` but Sublime Text came out of nowhere and took the coding world by storm. It was fast and free (if you could put up with the pop up alert windows or pay the low fee to own a copy yourself). 
 
 Dreamweaver was a full `IDE` but was way too bulky for your average coder. It had a `FTP` program built into it which lots of people loved but the free Filezilla made FTP free and simple. People wanted to know why Sublime Text didn't have FTP baked into it, and it probably was because most developers began to use the more secure SSH. Now people with `SSH` power, could transfer files directly from the `Terminal`, that was faster and more secure.
@@ -151,7 +151,7 @@ To turn this on, simply put this in your settings file:
 If you want to keep spacing in certain areas of text use this:
 /* beautify preserve:start */
 CODE IN HERE WILL NOT BE FORMATTED
-/* beautify preserve:start */
+/* beautify preserve:end */
 
 **tip** make the above a snippet for ease of use
 
@@ -326,7 +326,7 @@ P | paste storage buffer before current line
 r{text} | Replace the character under the cursor with {text}
 R | Replace characters instead of inserting them
 ^ | moves the cursor to the first non-empty character of the line
-f + CHAR | find next character (super useful!) 
+
 ### Keyboard key repeat
 
 When working with Sublime Text 3 you must make this change or you won't be able to uses VIM mode without going insane. So if you are moving around the document with your keyboard you'll want to hold a key down and keep moving up or down your document. By defaut on Macs you'll have to press your keyboard key every time you want to move. The following command will enable you to just hold the key down and it will keep moving the way you want. You would think this setting would be `on` by default but it's not. So make life better and make the following change using your Terminal.
