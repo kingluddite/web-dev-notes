@@ -110,7 +110,7 @@ input[type="checkbox"]:checked + span {
   </div>
   <!-- END .list -->
   <script src="node_modules/angular/angular.min.js"></script>
-  <script src="js/app.js"></script>
+  <script src="scripts/app.js"></script>
 </body>
 
 </html>
@@ -189,7 +189,7 @@ But if you put it inside our scope it works
 ## How should I think of the concept of `$scope`?
 `$scope` is like the area of operation for a controller.
 
-## ng-inpspector and AngularJS Batarang
+## ng-inspector and AngularJS Batarang
 ### Tools
 1. Explore Scope
 2. Debug Angular applications
@@ -210,7 +210,7 @@ Use the python server by typing this in the Terminal
 $ python -m SimpleHTTPServer 3000
 ```
 
-* Allow pythong to accept incoming network communications when it asks you
+* Allow python to accept incoming network communications when it asks you
 
 Browse to `http://localhost:3000` and then click ng-inspector
 

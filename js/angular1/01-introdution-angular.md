@@ -2,7 +2,7 @@
 
 Here is a famous website showcasing the speed and superior user experience Angular brings to the table:
 
-[True Car Web Site](https://http://www.truecar.com)
+[True Car Web Site](http://www.truecar.com)
 
 1. User types **URL** into browser (aka client)
 2. Request is made to a web server at that **URL**
@@ -86,11 +86,11 @@ Both work in similar ways to Angular
 ## Our First Angular App
 
 [Github Repo](https://github.com/kingluddite/todo-app.git)
-
+RENAME JS to Scripts
 **js/app.js**
 
 ```js
-Angular.module('todoListApp', []);
+angular.module('todoListApp', []);
 ```
 
 ## Angular.module()
@@ -113,7 +113,7 @@ Try to view after removing empty dependencies array and you will see this error
 * Tell Angular to run our Applicationin our Angular template
 
 One way to do it is with a directive
-
+Change Angular to angular the code#######
 **index.html**
 
 ```html
@@ -129,21 +129,22 @@ One way to do it is with a directive
 
 **note** Angular also has a plethora of built-in directives
 
-**js/hello-world.js**
+**scripts/hello-world.js**
 
 * remember to include it in **HTML** after **app.js**
 
-`Angular.module('todoListApp');`
+`angular.module('todoListApp');`
 
 We put this at the top of `hello-world.js` but we don't include dependencies array because we don't want Angular to create another Application, instead we want Angular to look for an already existing Application.
 
 **js/hello-world.js**
 
 ```js
-Angular.module( 'todoListApp' )
+'use strict';
+angular.module( 'todoListApp' )
   .directive( 'helloWorld', function() {
     return {
-      template: "This is the hello world directive"
+      template: 'This is the hello world directive'
     };
   } );
 ```
@@ -178,7 +179,7 @@ Template is injected into our directive
 ```html
 <body ng-app="todoListApp">
   <div hello-world></div>
-  <script src="node_modules/Angular/Angular.min.js"></script>
+  <script src="node_modules/angular/angular.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/hello-world.js"></script>
 </body>
@@ -190,7 +191,7 @@ Same output but this time we are using an attribute directive
 Restricts how the directive will be used
 
 ```js
-Angular.module( 'todoListApp' )
+angular.module( 'todoListApp' )
   .directive( 'helloWorld', function() {
     return {
       template: "This is the hello world directive",
@@ -216,12 +217,14 @@ It will output 2 because they are elements but the attribute is restricted and w
 ## Add another controller
 
 ```js
-Angular.module( 'todoListApp', [] )
-  .controller( 'mainCtrl', function( $scope ) {
-    $scope.helloWorld = function() {
-      console.log( "Hello from the helloWorld controller function, in the mainCtrl" );
-    };
-  } )
+'use strict';
+angular.module( 'todoListApp', [] )
+.controller( 'mainCtrl', function( $scope ) {
+  $scope.helloWorld
+ = function() {
+    console.log( 'Hello from the helloWorld controller function, in the mainCtrl' );
+  };
+} );
 
 .controller( 'coolCtrl', function( $scope ) {
   $scope.whoAmI = function() {
@@ -262,7 +265,7 @@ update **index.html**
   </div>
   <!-- END .list -->
   <script src="node_modules/Angular/Angular.min.js "></script>
-  <script src="js/app.js "></script>
+  <script src="scripts/app.js "></script>
 </body>
 
 </html>
@@ -281,4 +284,5 @@ Try to avoid using anything in the $rootScope. The reason is the same for trying
 
 ## Sibling controllers
 Sibling controllers will not have access to each other's scopes
+
 sibling scopes are completely isolated

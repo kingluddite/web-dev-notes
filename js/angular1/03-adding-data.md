@@ -50,7 +50,7 @@ Comment out the custom css for checkbox
 **style.css**
 
 ```css
-input[type="checkbox"] {
+//input[type="checkbox"] {
 //   display: none;
 // }
 
@@ -111,7 +111,7 @@ To see it work:
 * Click `Edit` multiple times
 * You will see `editing` in ng-inpsector toggle TRUE and FALSE on ever click
 
-`<label ng-hide="editing">`
+`<label ng-hide="editing" class="editing-label">{{todo.name}}</label>`
 
 * When the expression evaluates to TRUE, hide this content
 * Our expression will be a single variable `editing`
@@ -151,7 +151,7 @@ Now when you click **edit**, you'll see the input box and when you click **edit*
 ## array of fake todos
 
 ```js
-Angular.module( 'todoListApp', [] )
+angular.module( 'todoListApp', [] )
   .controller( 'mainCtrl', function( $scope ) {
     $scope.helloWorld = function() {
       console.log( "Hello from the helloWorld controller function, in the mainCtrl" );
@@ -196,20 +196,35 @@ Name the item that you are iterating a singular version of the object you are it
 **index.html**
 
 ```html
-    <h1 ng-click="helloWorld()">My Todos</h1>
+    <!doctype html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <link href='css/style.css' rel='stylesheet'>
+</head>
+
+<body ng-app="todoListApp">
+  <h1>My Todos</h1>
+  <div ng-controller="mainCtrl" class="list">
     <div ng-repeat="todo in todos">
       <input ng-model="todo.completed" type="checkbox" />
-      <label ng-hide="editing" class="editing-label" ng-click="helloWorld()">{{todo.name }}
-      </label>
+      <label ng-hide="editing" class="editing-label">{{todo.name}}</label>
       <input ng-show="editing" ng-model="todo.name" class="editing-label" type="text">
       <div class="actions">
-        <a href="" ng-click=" editing = !editing">Edit</a>
-        <a href="" ng-click="helloWorld()">Save</a>
+        <a href="" ng-click="editing = !editing">Edit</a>>
+        <a href="">Save</a>
         <a href="" class="delete">Delete</a>
       </div>
     </div>
     {{todos}}
   </div>
+  <!-- END .list -->
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+
+</html>
 ```
 
 ![ng-repeat output](https://i.imgur.com/tpyKzMG.png)
@@ -299,7 +314,7 @@ FALSE
 
 ## ng-change to Set Data State
 
-We want to keep track if a user has editing a todo
+We want to keep track if a user is editing a todo
 
 ### Without Angular
 * Keep track of value of page when page loaded

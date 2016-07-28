@@ -127,7 +127,7 @@ Update controller in **app.js**
 
     $scope.helloConsole = dataService.helloConsole;
 
-    $scope.todos = dataService.getTodos();
+    $scope.todos = dataService.getTodos;
 
   } )
 ```
@@ -148,7 +148,7 @@ Running on server and you will see the objects returned in the console but we do
   - But the `response` is being returned after it has already created the **todos** variable
   - So the `$scope.todos` variable is undefined since the data is received after is has been created
 
-We fix this by changing:
+We fix this by changing: THIS IS UNCLEAR. Make more clear!!!
 
 ```js
 this.getTodos = function() {
