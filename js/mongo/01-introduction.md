@@ -14,11 +14,11 @@
 NoSQL DBs store information in a multitude of formats and are generally less tied to schema controls
 
 ## Why should you use Mongo?
-* Quick to get started (no schema)
-* Easy to change and maintain (without a schema to migrate)
+* Quick to get started _(no schema)_
+* Easy to change and maintain _(without a schema to migrate)_
 * Query language easy to use because it is a syntactically simple query language
     - Looks similar to a functional programming language than a query language
-* Rapidly and widely adopted (many developers are using it!)
+* Rapidly and widely adopted _(many developers are using it!)_
 
 **note** Mongo is NOT a relational DB
 
@@ -37,9 +37,9 @@ Example
 }
 ```
 
-* Every document has an _id field and that makes them uniquely identifiable
+* Every document has an **_id** field and that makes them uniquely identifiable
 * Mongo will create and take care of this field when you create new documents
-* The _id is a special type called ObjectId()
+* The **_id** is a special type called **ObjectId()**
 * All other fields can store any type of value
     - Numbers
     - Dates
@@ -107,7 +107,7 @@ $ sudo mkdir -p /data/db
 
 Enter your password
 
-If you installed with homebrew, the following command should work
+If you already installed with homebrew, the following command should work
 
 ## Run Mongo
 
@@ -139,8 +139,9 @@ In new tab type:
 $ mongo
 ```
 
-* mongod (mongodaemon) - runs the mongo database
-* mongo - runs the mongo shell (just an access point to the DB so we can control it)
+* mongod (_mongodaemon_) - runs the mongo database
+* mongo - runs the mongo shell 
+  - Just an access point to the DB so we can control it
 
 ## Show all current DBs
 
@@ -148,20 +149,20 @@ $ mongo
 > show dbs
 ```
 
-### the local DB
+### The local DB
 Used by the mongo instance itself and handles internal process for mongo
 
-### create DB
+### Create DB
 
 ```
 > use mongoNeedFood
 ```
 
-output: `switched to db mongoBasics`
+**Output**: `switched to db mongoBasics`
 
 It means we are now inside the `mongoBasics` mongo DB
 
-**note** if you run `show dbs` you won't see our new DB because it is empty.
+**note** If you run `show dbs` you won't see our new DB because it is empty.
 
 ### Let's add data
 
@@ -169,10 +170,10 @@ It means we are now inside the `mongoBasics` mongo DB
 
 ![sample mongodb](https://i.imgur.com/4t0TbkR.png)
 
-* When we are inside mongodb, we only have to type `db` to represent our current database (we type `use` to switch to the current DB)
+* When we are inside **mongodb**, we only have to type `db` to represent our current database (we type `use` to switch to the current DB)
 * We get insert feedback with number of documents inserted
 * `post` is a collection
-* Once our db has content, it will then show up when we run `> show dbs`
+* Once our DB has content, it will then show up when we run `> show dbs`
 
 ### Show all collections
 

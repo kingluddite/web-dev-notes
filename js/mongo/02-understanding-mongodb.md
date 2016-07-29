@@ -6,62 +6,67 @@
 
 ## Collections
 ### How to see data models in MongoDB terms
-* Users (authors)
+* Users _(authors)_
     - name
     - signupDate
     - email address
-* Posts (organized blog post content)
+* Posts _(organized blog post content)_
     - title
     - description
     - body
     - author
-        + (special field) because it stores a reference to a user from the user collection
+        + _(special field)_ because it stores a reference to a user from the user collection
 
 ## Way to think about collections
 * If you are from a relational database background
-    - think of collections like tables
-        + each document would be a row (record)
-        + but with Mongo is each row might not have all columns (fields)
+    - Think of collections like tables
+        + Each document would be a row _(record)_
+        + But with Mongo is each row might not have all columns _(fields)_
 
-In a relational DB you have to define a schema which sets each column with a specified type.
+In a relational DB you have to define a schema which sets each column with a specified type
 * It is tedious to manage data that is not there
-    - Example: A blog post without a description
-         + In a RDBMS (relational DB management system) you have to store `null` for that column
+    - **Example**: A blog post without a description
+         + In a RDBMS (_relational DB management system_) you have to store `null` for that column
          + But in MongoDB, you don't have to do that and can just leave the field empty 
 
 ## Mongo Blog
 [github repo](https://github.com/hdngr/treehouse-mongo-basics)
 
-Clone the above directory
+* Clone the above directory
 
-Load our data model into mongo using `seed.js`
+## Load our data model into mongo using `seed.js`
 * Move the `seed.js` close to your mongo shell on your file system
     - because you will load the seed file with a relative path to wherever you run the shell from
-
-* run `mongod` (mongo daemon)
-* in another terminal window, run `mongo`
+* Run `mongod` (mongo daemon)
+* In another terminal window, run `mongo`
     - type `ls()` to show what's inside
-* load `seed.js` into mongo with `load(./seed.js')`
+* Load `seed.js` into mongo with `load(./seed.js')`
 
-The load command is relative to the pwd (present working directory) of where you launch the mongo shell from.
+The load command is relative to the `pwd` (present working directory) of where you launch the mongo shell from.
 
-But if you quit with `quit()` mongo
-and moved 2 directories up `cd ../../`
-type `pwd` to see where you are
-then type mongo
-then you need to use load('./Documents/dev/mongo-basics')
+## Quitting Mongo
+* But if you quit with `quit()` mongo
+* And moved 2 directories up `cd ../../`
+* Type `pwd` to see where you are
+* Then type Mongo
+* Then you need to use `load('./Documents/dev/mongo-basics')`
 
 ## Review the seed.js comments
+Lots of goodies in there to see how to create and manipulate data using good ole JavaScript
 
 ## Useful queries
 
-How many users? `> db.users.count()`
+### How many users? 
+`> db.users.count()`
 
-How many posts? `> db.posts.count()`
+### How many posts? 
+`> db.posts.count()`
 
-Show all users `> db.users.find()`
+### Show all users
+`> db.users.find()`
 
-Find an individual user `> db.users.find()[1]`
+### Find an individual user
+`> db.users.find()[1]`
 * Search the collection like it is an array
 
 `ISODate()` format: human readable which is nice
@@ -72,12 +77,15 @@ Find an individual user `> db.users.find()[1]`
 > cls
 ```
 
-Find all posts `> db.posts.find()`
+### Find all posts
+`> db.posts.find()`
 
-Find only 2 posts `> db.posts.find().limit(2)`
+### Find only 2 posts
+`> db.posts.find().limit(2)`
 * It only returns 2 documents
 
-Mongo Pro - It has a nice chaining syntax
+Mongo 
+  Pro - It has a nice chaining syntax
 
 ## Show The title of a post
 
@@ -90,17 +98,17 @@ returns `I love the holidays`
 
 **author** field is a reference field
 
-post.author (will give you and ObjectId)
-* This is called a reference field because it references documents in another collection (users)
+`post.author` _(will give you and ObjectId)_
+* This is called a **reference field** because it references documents in another `collection` _(users)_
 
-How can I use the reference field to find out the user mentioned in the posts collection?
+#### How can I use the reference field to find out the user mentioned in the posts collection?
 
 ```
 > var id = post.author
 > db.users.find(id)
 ```
 
-Outputs (Yours might be different because users were generated randomly)
+**Outputs** _(Yours might be different because users were generated randomly)_
 
 ```
 { "_id" : ObjectId("5796d13c25b1e970624513b9"), "name" : { "first" : "Bill", "last" : "Noor" }, "signupDate" : ISODate("2016-07-26T02:55:56.428Z") }
@@ -127,8 +135,9 @@ The Mongo Shell is great for management and data exploration. However, almost ev
 ]
 ```
 
-There is one index and it is on the _id key
-* mongo automatically created this index to facilitate quick lookups by a documents _id
+## Indexes
+There is one index and it is on the **_id** key
+* Mongo automatically created this index to facilitate quick lookups by a documents **_id**
 
 If we create our own indexes we can boost our performance in a major way
 
@@ -144,7 +153,7 @@ Create an index and and index the documents in ascending order
 > db.posts.createIndex({title: 1})
 ```
 
-or index documents in descending order
+Or index documents in descending order
 
 ```
 > db.posts.createIndex({title: -1})
@@ -161,7 +170,7 @@ Only really matters when you are dealing with multiple index fields to perform a
 
 [index direction matters](http://stackoverflow.com/questions/10329104/why-does-direction-of-index-matter-in-mongodb)
 
-db.posts.getIndexes() to see your new index
+`db.posts.getIndexes()` to see your new index
 
 ## Delete index
 
@@ -169,24 +178,22 @@ db.posts.getIndexes() to see your new index
 > db.posts.dropIndex('title_-1')
 ```
 
-If you drop to drop the `_id_` index, you will get an error because mongo uses that index internally
+If you drop to drop the `_id_` index, you will get an error because **mongo** uses that index internally
 
 ## Mongo Hacker is cool
 [link to Mongo Hacker](https://github.com/TylerBrock/mongo-hacker)
 
 ### Install mongo hacker globally
+This is just a quick way to make the screens inside Mongo look cooler
 
 ```
 $ npm install -g mongo-hacker
 ```
 
-Run mongod and mongo
+## Run mongod and mongo
 
-Use the DB you want to use
-
-When you do your queries, you'll now see some nice syntax highlighting
-
-
+* Use the DB you want to use
+* When you do your queries, you'll now see some nice syntax highlighting
 
 ## RoboMongo is cool
 
@@ -194,7 +201,7 @@ When you do your queries, you'll now see some nice syntax highlighting
 
 ## Query Collections
 
-db.posts.findOne()
+`db.posts.findOne()`
 * returns 1 document
 
 ## query parameters
@@ -203,37 +210,37 @@ db.posts.find({})
 
 ## query projections
 db.posts.find({},{})
-* projections are an object where the keys are fields to return and the values are booleans of whether they should be returned
+* Projections are an object where the keys are fields to return and the values are booleans of whether they should be returned
 
-so...
-don't return the body
-and don't return the description
+## So...
+Don't return the body
+And don't return the description
 
 ```
 > db.posts.find({}, {body: false, description: false})
 ```
 
-we only want the title field
+We only want the title field
 
 ```
 > db.posts.find({}, {title: true});
 ```
 
-* is returns the tiltle (and it includes the _id field because you usually want to use it or see it)
+* Is returns the tiltle (and it includes the _id field because you usually want to use it or see it)
 
-but if you want to not see it
+But if you want to not see it
 
 ```
 > db.posts.find({}, {title: true, _id: false});
 ```
 
-search for a specific title
+Search for a specific title
 
 ```
 > db.posts.find({title: "How to workout"},{title: true, _id: false} )
 ```
 
-* mongo looks for exact matches. If it doesn't find it, it returns 0 documents
+* Mongo looks for exact matches. If it doesn't find it, it returns 0 documents
 
 ## Query Operator
 Search for one specific title OR another specific title
@@ -243,20 +250,20 @@ Search for one specific title OR another specific title
 ```
 
 ## Updating Data
-* you need an _id to update
+* You need an _id to update
 
 db.users.find({}, {_id: true})
 
 ![output](https://i.imgur.com/f2PHwsV.png)
 
 db.posts.find({author:ObjectId("5796d13c25b1e970624513ba")})
-* some authors _id may not work if they don't have posts, keep checking until you find a match
+* Some authors **_id** may not work if they don't have posts, keep checking until you find a match
 
 ```
 > db.posts.update({ author:ObjectId("5796d13c25b1e970624513ba" ) }, { $set: { tags: ['shiny', 'new', 'fun'], title: "Look at me! I'm Updated!" }})
 ```
 
-outputs
+Outputs
 
 ```
 Updated 1 existing record(s) in 2ms
@@ -279,7 +286,7 @@ db.posts.find({}, {title: true})
 db.posts.find({}, {title: true}).limit(2)
 Object.keys(db.posts.find()[0])
 
-output
+## Output
 
 ```
 [
@@ -291,7 +298,7 @@ output
 ]
 ```
 
-* documents don't have to have all fields
+* `documents` don't have to have all fields
 
 ## Advanced Query
 I'd like to get the names of all the keys in a MongoDB collection.
@@ -311,7 +318,7 @@ mr = db.runCommand({
 db[mr.result].distinct("_id")
 ```
 
-output
+**Output**
 
 ```
 [
@@ -330,7 +337,7 @@ output
 > db.posts.find({}, {title: true}).sort({title: 1})
 ```
 
-decending order
+Decending order
 
 ```
 > db.posts.find({}, {title: true}).sort({title: -1})
@@ -356,8 +363,8 @@ You can use pagination with sorting too
 Page 2 Results - db.posts.find({}, {title: true}).limit(2).skip(2).sort({title: -1})
 
 ## Language Drivers
-allow you to work with a given technology directly in the language of your application
-better ways to build applications than using the mongo shell
+Allow you to work with a given technology directly in the language of your application
+Better ways to build applications than using the mongo shell
 
 [list of language drivers for mongo](https://docs.mongodb.com/ecosystem/drivers/)
 
@@ -370,23 +377,23 @@ Most well known framework for mongo
 * binding
 
 ## Sharding
-* all data is stored on one server
-* but as data grows you need to store data across multiple machines
-    - this is called Sharding
+* All data is stored on one server
+* But as data grows you need to store data across multiple machines
+    - This is called Sharding
     - aka `horizontally scaling`
-you also want multiple servers to be able to read and write data
+You also want multiple servers to be able to read and write data
 
-mongodb has a big advantage with this over relational databases
-* mongodb can spread read and write operations across as many machines as it needs to
+Mongodb has a big advantage with this over relational databases
+* Mongodb can spread read and write operations across as many machines as it needs to
 
-* mongodb can store portions of its datasets across as many different instances as it wants
+* Mongodb can store portions of its datasets across as many different instances as it wants
 * RDBMS can store data on as many databases as they want however each DB contains an entire copy of the dataset (which means they can only write to one of them)
 
 ## Master Slave architecture
-one DB, the master excepts all write operations
-the master is a big powerful DB, it then spreads the results of it's write operations to the slaves (usually smaller machines) 
+One DB, the master excepts all write operations
+The master is a big powerful DB, it then spreads the results of it's write Operations to the slaves (usually smaller machines) 
 
-hardware is always getting more and more powerful
-but it is not happening always at a rate that certain applications need it to
+Hardware is always getting more and more powerful
+But it is not happening always at a rate that certain applications need it to
 
-from a performance standpoint this is why many applications choose mongo
+From a performance standpoint this is why many applications choose mongo
