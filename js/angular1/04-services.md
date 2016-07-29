@@ -61,7 +61,7 @@ angular.module( 'todoListApp', [] )
 
 **index.html**
 
-Apply helloConsole() method to the save button
+Apply `helloConsole()` method to the save button
 
 `<a href="" ng-click="helloConsole()">Save</a>`
 
@@ -76,8 +76,8 @@ Set a breakpoint in the Sources **js/app.js** file at `line 20`. If you click th
 * We will use the service to require `fake data` from the server
 
 * Create folder called `mock` in Application root
-* Create file inside mock called todos.json
-* Grab todos array from app.js and paste into todos.json
+* Create file inside mock called `todos.json`
+* Grab todos array from `app.js` and paste into `todos.json`
 
 **/mock/todos.json**
 
@@ -101,9 +101,10 @@ Set a breakpoint in the Sources **js/app.js** file at `line 20`. If you click th
 ### $http provider
 [documentation](https://docs.angularjs.org/api/ng/service/$http)
 
-Update service in **app.js**
+Update service in **scripts/app.js**
 
 ```js
+// more code
 .service( 'dataService', function($http) {
     this.helloConsole = function() {
       console.log( 'This is the hello console service' );
@@ -117,9 +118,10 @@ Update service in **app.js**
   } );
 ```
 
-Update controller in **app.js**
+Update controller in **scripts/app.js**
 
 ```js
+// more code
 .controller( 'mainCtrl', function( $scope, dataService ) {
     $scope.learningNgChange = function() {
       console.log( "An input changed!" );
@@ -130,9 +132,10 @@ Update controller in **app.js**
     $scope.todos = dataService.getTodos;
 
   } )
+// more code
 ```
 
-* An http provider can be used to handle all http requests
+* An **http** provider can be used to handle all **http** requests
 * It has shortcut methods
 * Angular has built in methods to help with other parts of the application (most of built ins are called providers and you can include them in any controller or service)
 
@@ -150,42 +153,63 @@ Running on server and you will see the objects returned in the console but we do
 
 We fix this by changing: THIS IS UNCLEAR. Make more clear!!!
 
+Here is our current getTodos
+
+```js
+this.getTodos = $http.get('mock/todos.json')
+.then(function(respone) {
+  console.log(response.data);
+  return response.data;
+  })
+```
+
+We first turn getTodos into a function:
+
 ```js
 this.getTodos = function() {
-      $http.get( 'mock/todos.json' )
-        .then( function( response ) {
-          console.log( response.data );
-          return response.data;
-        } );
-    };
+  $http.get('mock/todos.json')
+  .then(function(response) {
+    console.log(response.data);
+    return response.data;
+    });
+  }
 ```
 
-Then
+so everything inside the .then(), we are going to wait to run this until we are back inside the $scope, so we cut it and replace it with a `callback` function and then pass a `callback` into the function
 
 ```js
-this.getTodos = function( callback ) {
-      $http.get( 'mock/todos.json' )
-        .then( callback);
-    };
+this.getTodos = function(callback) {
+  $http.get('mock/todos.json')
+  .then( callback );
+  }
 ```
 
-Then
+then in the controller
+
+we change this
+
+`$scope.todos = dataService.getTodos;`
+
+to this
+
+`dataService.getTodos;`
+
+Now we'll run the **getTodos()** function but we'll put our **callback** function inside it like this:
 
 ```js
-$scope.todos = dataService.getTodos( this.getTodos = function( callback ) {
-      $http.get( 'mock/todos.json' )
-        .then( callback );
-    } );
+dataService.getTodos(function(response) {
+    console.log(response.data);
+    return response.data;
+    });
 ```
 
-And finally change:
+But this time instead of trying to return the `response.data`, we'll attach the `response` to the `todos` inside the `$scope` with this:
 
 ```js
-$scope.todos = dataService.getTodos( function( response ) {
-      console.log( response.data );
-      // return response.data;
-      $scope.todos = response.data;
-    } );
+dataService.getTodos(function(response) {
+    console.log(response.data);
+    $scope.todos = response.data;
+    });
 ```
 
 ## View in browser
@@ -194,23 +218,27 @@ $scope.todos = dataService.getTodos( function( response ) {
 
 ## Using services to save and delete data
 
-## Delete
+### Delete
 
-Add to service **app.js**
+Add to service **scripts/app.js**
 
 ```js
+// more code
 this.deleteTodo = function( todo ) {
       console.log( "The " + todo.name + " todo has been deleted!" );
       // other logic
     };
+// more code
 ```
 
 Add to controller in **app.js**
 
 ```js
+// more code
 $scope.deleteTodo = function( todo ) {
       dataService.deleteTodo( todo );
     };
+// more code
 ```
 
 Add to **delete** button in `index.html`
@@ -222,7 +250,7 @@ Add to **delete** button in `index.html`
 ## Test in browser
 Click delete and see output in console but the task not deleted.
 
-Why was the task not deleted?
+### Why was the task not deleted?
 
 ### Let's fix this
 For each todo there is a `local variable` called **$index**
@@ -232,10 +260,12 @@ For each todo there is a `local variable` called **$index**
 Change the controller to this:
 
 ```js
+// more code
 $scope.deleteTodo = function( todo, $index ) {
       dataService.deleteTodo( todo );
       $scope.todos.splice( $index, 1 );
     };
+// more code
 ```
 
 ## Test in browser
@@ -243,16 +273,18 @@ You can now delete todos.
 
 ### Saving
 
-Add to service
+Add to **service**
 
 ```js
+// more code
 this.saveTodo = function( todo ) {
       console.log( "The " + todo.name + " todo has been saved!" );
       // other logic
     };
+// more code
 ```
 
-Add to controller
+Add to **controller**
 
 ```js
 $scope.saveTodo = function( todo ) {
@@ -265,6 +297,8 @@ Add to **index.html** (view)
 ```html
 <a href="" ng-click="saveTodo(todo)">Save</a>
 ```
+
+## Remember, we don't have a Database
 
 Angular does not persist, so all data is lost after refreshing
 

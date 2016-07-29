@@ -134,19 +134,21 @@ The current mode of the application
   - state where editing is `false`
 
 User may not know what state the application is in or that application state has changed
+
 * The best user interfaces are subtle
 * But the application logic can be different based on the state
 
 ## Naming convention for controllers
-When naming controllers it is recommended to use camelCase notation.
+When naming controllers it is recommended to use **camelCase** notation.
 
 **Example:**
 
 `someNameCtrl`
 
-**app.js**
+**scripts/app.js**
 
 ```js
+'use strict';
 angular.module( 'todoListApp', [] )
   .controller( 'mainCtrl', function( $scope ) {
     $scope.helloWorld = function() {
@@ -198,13 +200,15 @@ But if you put it inside our scope it works
 * ng-inspector for AngularJS
 * AngularJS Batarang
 
-Click the ng-inspector icon at the top of the Chrome browser
+Click the **ng-inspector** icon at the top of the Chrome browser
 
 ![ng-inspector on Chrome](https://i.imgur.com/h5Qh3wd.png)
 
+## Let's Use the Python Server
+
 ## Caution - Does not work locally (file:///)
 
-Use the python server by typing this in the Terminal
+Use the **python server** by typing this in the Terminal
 
 ```
 $ python -m SimpleHTTPServer 3000
@@ -212,7 +216,7 @@ $ python -m SimpleHTTPServer 3000
 
 * Allow python to accept incoming network communications when it asks you
 
-Browse to `http://localhost:3000` and then click ng-inspector
+Browse to `http://localhost:3000` and then click **ng-inspector**
 
 If all goes well, you should see something like this showing you the different scopes
 
@@ -223,6 +227,7 @@ After you install AngularJS Batarang, you'll have a new tab in your chrome dev c
 ## Sibling scope
 
 ```js
+// more code
 .controller( 'coolCtrl', function( $scope ) {
     $scope.whoAmI = function() {
       console.log( "hello from coolCtrl funtion!" );
@@ -235,6 +240,7 @@ After you install AngularJS Batarang, you'll have a new tab in your chrome dev c
   .controller( 'iAmSibling', function( $scope ) {
     $scope.foobar = 1234;
   } );
+// more code
 ```
 
 **index.html**
@@ -246,7 +252,7 @@ After you install AngularJS Batarang, you'll have a new tab in your chrome dev c
   </div>
 ```
 
-* View in browser
+## View in browser
 * Will see the string 1234 on page
 
 ![sibling $scope](https://i.imgur.com/dPrUuj0.png)
