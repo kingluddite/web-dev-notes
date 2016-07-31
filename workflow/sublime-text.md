@@ -111,6 +111,9 @@ To turn this on, simply put this in your settings file:
   - Quickly find files in your project)
 * SidebarEnhancements
   - Give you many more options when right click on sidebar)
+* editorconfig
+  - helps developers define and maintain consistent coding styles between different editors and IDEs [editorconfig.org](http://editorconfig.org)
+    + [videos (3 parts)](https://www.youtube.com/watch?v=YbHw1VdjWbA) 
 * Style Sorter
   - helps the messy CSS or SASS user by rearraging the stylesheet attributes based on the type and attribute.
 * MarkdownEditing
