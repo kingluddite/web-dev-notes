@@ -9,7 +9,6 @@
 
 Make the adjustments to create the following scaffolding for our Application
 
-* rename js to scripts
 * create `controllers` and `services` folders inside the `scripts` folder
 * create `main.js` inside the `controllers` folder
 * create `data.js` inside the `services` folder
@@ -33,7 +32,7 @@ Point to all these files in the View
 
 ## The configuration file
 
-**app.js**
+**scripts/app.js**
 ```js
 angular.module( 'todoListApp', [] );
 ```
@@ -164,7 +163,7 @@ Add the following lines and comment them out
   // }
 ```
 
-We will eventually use 2 svg images to show a checkbox and a checked checkbox.
+We will eventually use 2 SVG images to show a checkbox and a checked checkbox.
 
 ## View in browser
 Check tasks and watch the line through appear on that item

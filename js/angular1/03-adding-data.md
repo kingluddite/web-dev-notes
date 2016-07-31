@@ -24,11 +24,13 @@ Let's see that in action
 **index.html**
 
 ```html
+<!-- more code -->
 <input type="checkbox" />
     <label class="editing-label" ng-click="helloWorld()">A sample todo</label>
     <input ng-model="todo" class="editing-label" type="text">
     <div class="actions" ng-controller="coolCtrl">
       <a href="" ng-click="whoAmI()">Edit</a>
+<!-- more code -->
 ```
 
 ## Refresh page, and view **ng-inspector**
@@ -45,9 +47,9 @@ Now let's ad `ng-model` to our checkbox
 
 `<input ng-model="todo.completed" type="checkbox" />`
 
-Comment out the custom css for checkbox
-
 **style.css**
+
+Comment out the custom **CSS** for checkbox
 
 ```css
 //input[type="checkbox"] {
@@ -75,11 +77,11 @@ You will see checkbox
 * Open **ng-inspector** and then check the checkbox in browser
 * You will see the todo object inside the **ng-inspector** and completed is true, uncheck it and it will be set to false
 
-Change this
+**Change this**
 
 `<label class="editing-label" ng-click="helloWorld()">A sample todo</label>`
 
-To this
+**To this**
 
 `<label class="editing-label" ng-click="helloWorld()">{{todo.name}}</label>`
 
@@ -106,6 +108,7 @@ Inside a directive like `ng-click="helloWorld()"` Angular knows to evaluate an e
 * If editing is set to false, set it to TRUE
 
 To see it work:
+
 * Save **index.html**
 * View in browser running on simple python server and use **ng-inspector**
 * Click `Edit` multiple times
@@ -118,6 +121,7 @@ To see it work:
 * I removed the following code from `app.js`
 
 ```js
+// more code
 .controller( 'coolCtrl', function( $scope ) {
     $scope.whoAmI = function() {
       console.log( "hello from coolCtrl funtion!" );
@@ -130,20 +134,29 @@ To see it work:
   .controller( 'iAmSibling', function( $scope ) {
     $scope.foobar = 1234;
   } );
+// more code
 ```
 
 * Also remove `coolCtrl`, `whoAmI` and `iAmSibling` references from `index.html`
 
-Now if you refresh `index.html` in browser
-add some text in input, it will simultaneously add to label, click edit multiple times and you will see it toggle between showing and hiding the label because of our `ng-hide` directive that sets `editing` (the `ng-click` toggles the editing variable to true or false with every click)
+## Now if you refresh `index.html` in browser
+
+1. Add some text into the `input`
+2. It will simultaneously add to label
+3. Click edit multiple times
+4. You will see it toggle between showing and hiding the label 
+  * Because of our `ng-hide` directive that sets `editing` 
+    - The `ng-click` toggles the editing variable to **true** or **false** with every click
 
 ## ng-show directive
-* opposite of ng-hide
+* Opposite of ng-hide
 
 ```html
+<!-- more code here -->
 <label ng-hide="editing" class="editing-label" ng-click="helloWorld()">{{todo.name }}
     </label>
     <input ng-show="editing" ng-model="todo.name" class="editing-label" type="text">
+<!-- more code here -->
 ```
 
 Now when you click **edit**, you'll see the input box and when you click **edit** again, you'll see the label.
@@ -151,6 +164,7 @@ Now when you click **edit**, you'll see the input box and when you click **edit*
 ## array of fake todos
 
 ```js
+'use strict';
 angular.module( 'todoListApp', [] )
   .controller( 'mainCtrl', function( $scope ) {
     $scope.helloWorld = function() {
@@ -270,7 +284,7 @@ Now if you click **edit** and change any task input, you'll see the array of obj
 
 Use conditional expressions to conditionally apply **CSS** classes to **HTML** elements
 
-* The **style.css** will move our buttons down 17px when the `editing-item` is dynamically applied to our `DIV`
+* The **style.css** will move our buttons down `17px` when the `editing-item` is dynamically applied to our `DIV`
 
 ```css
 .list .item.editing-item .actions {
@@ -286,7 +300,7 @@ Use conditional expressions to conditionally apply **CSS** classes to **HTML** e
 </div>
 ```
 
-* Expressions for ng-class can be confusing
+* Expressions for **ng-class** can be confusing
 * We pass in an object where the `key` is the class we want to apply
 
 `<div class="item" ng-class="{'editing-item': ???}`
@@ -299,13 +313,15 @@ Use conditional expressions to conditionally apply **CSS** classes to **HTML** e
 
 ![applied class](https://i.imgur.com/KLXbvZr.png)
 
-* If it evaluates to true, the class is then passed to the element
+* If it evaluates to **true**, the class is then passed to the element
 
 ![off](https://i.imgur.com/k1bMnJ5.png)
     - If it evaluates to false, the class WILL NOT be passed to the element
 
+**Question:**
 In the following directive, `<div ng-repeat="foo in foobar">` you can access **"foo"** for each element in the iterable however, you cannot access properties of foo. (e.g. `foo.title`, `foo.anyProp`, etc.)
-FALSE
+
+**ANSWER**: FALSE
 
 ## The ng-class directive
 * Can evaluate functions to apply CSS classes
@@ -335,7 +351,7 @@ We want to keep track if a user is editing a todo
 **app.js**
 
 ```js
-Angular.module( 'todoListApp', [] )
+angular.module( 'todoListApp', [] )
   .controller( 'mainCtrl', function( $scope ) {
     $scope.learningNgChange = function() {
       console.log( "An input changed!" );
@@ -352,13 +368,13 @@ Angular.module( 'todoListApp', [] )
   } );
 ```
 
-* The learningNgChange() function will be fired any time the value of the input changes
+* The `learningNgChange()` function will be fired any time the value of the input changes
 
 * Refresh browser
 * Edit and make changes
 * With every change the **console.log()** message is fired!
 
-Now we'll change our html to fit in with our todo app
+Now we'll change our HTML to fit in with our todo app
 
 ```html
 <input ng-change="todo.edited = true" ng-blur="editing = false;" ng-show="editing" ng-model="todo.name" class="editing-label" type="text">

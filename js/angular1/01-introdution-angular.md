@@ -54,8 +54,8 @@ Because Angular runs completely on the **client** we can call it a `Client Side 
 
 ## Other Client Site Application Frameworks
 Both work in similar ways to Angular
-* Backbone
-* Ember
+* [Backbone](http://backbonejs.org/)
+* [Ember](http://emberjs.com/)
 
 ## Core Components of Angular
 
@@ -76,7 +76,7 @@ Both work in similar ways to Angular
             + What data should be displayed on a button click
             + What elements should be displayed in a list
         - Controllers are like the **glue** of the Application
-4. Scope ($scope)
+4. Scope (_$scope_)
   * Hardest part to undertand with Angular
     - Also the most important
   * The Scope is the part of the Application that allows you to manipulate data and make changes to the user interface
@@ -87,13 +87,13 @@ Both work in similar ways to Angular
 
 [Github Repo](https://github.com/kingluddite/todo-app.git)
 RENAME JS to Scripts
-**js/app.js**
+**scripts/app.js**
 
 ```js
 angular.module('todoListApp', []);
 ```
 
-## Angular.module()
+## angular.module()
 * First parameter:
   - The name of the Application
 * Second parameter:
@@ -110,16 +110,16 @@ Try to view after removing empty dependencies array and you will see this error
 
 ## Bootstrap Our Angular App
 
-* Tell Angular to run our Applicationin our Angular template
+* Tell Angular to run our Application inside our Angular template
 
 One way to do it is with a directive
-Change Angular to angular the code#######
+
 **index.html**
 
 ```html
 <body ng-app="todoListApp">
-  <script src="node_modules/Angular/Angular.min.js"></script>
-  <script src="js/app.js"></script>
+  <script src="node_modules/angular/angular.min.js"></script>
+  <script src="scripts/app.js"></script>
 </body>
 ```
 
@@ -137,7 +137,7 @@ Change Angular to angular the code#######
 
 We put this at the top of `hello-world.js` but we don't include dependencies array because we don't want Angular to create another Application, instead we want Angular to look for an already existing Application.
 
-**js/hello-world.js**
+**scripts/hello-world.js**
 
 ```js
 'use strict';
@@ -155,8 +155,8 @@ angular.module( 'todoListApp' )
 <body ng-app="todoListApp">
   <hello-world></hello-world>
   <script src="node_modules/Angular/Angular.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/hello-world.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/hello-world.js"></script>
 </body>
 ```
 
@@ -180,8 +180,8 @@ Template is injected into our directive
 <body ng-app="todoListApp">
   <div hello-world></div>
   <script src="node_modules/angular/angular.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/hello-world.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/hello-world.js"></script>
 </body>
 ```
 
@@ -212,7 +212,7 @@ angular.module( 'todoListApp' )
 
 It will output 2 because they are elements but the attribute is restricted and won't be output
 
-**app.js**
+**scripts/app.js**
 
 ## Add another controller
 
@@ -264,7 +264,7 @@ update **index.html**
     </div>
   </div>
   <!-- END .list -->
-  <script src="node_modules/Angular/Angular.min.js "></script>
+  <script src="node_modules/angular/angular.min.js "></script>
   <script src="scripts/app.js "></script>
 </body>
 
@@ -275,7 +275,7 @@ update **index.html**
 
 ![new scope](https://i.imgur.com/OzNmw92.png)
 
-Try to avoid using anything in the $rootScope. The reason is the same for trying to not pollute the global scope which is a general concept in all programming. If you pollute the global scope, lots of bad things can happen because you increase the chance of a naming conflict with a function or variable.
+Try to avoid using anything in the **$rootScope**. The reason is the same for trying to not pollute the global scope which is a general concept in all programming. If you pollute the global scope, lots of bad things can happen because you increase the chance of a naming conflict with a function or variable.
 
 ## Children scope
 * Children in scope have access to their parents ctrls
@@ -285,4 +285,4 @@ Try to avoid using anything in the $rootScope. The reason is the same for trying
 ## Sibling controllers
 Sibling controllers will not have access to each other's scopes
 
-sibling scopes are completely isolated
+Sibling scopes are completely isolated
