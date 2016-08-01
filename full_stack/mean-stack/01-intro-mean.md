@@ -13,15 +13,21 @@ Express reads requests and asks MongoDB for data
 Express gets the data and sends to client
 client then displays it to the user
 
-Why MEAN stack?
-* widely adopted
-* powerful and flexible
-* modular (node and angular)
-    - code can be lean and easily managable
+## Why MEAN stack?
+* Widely adopted
+* Powerful and flexible
+* Modular (node and angular)
+    - Code can be lean and easily managable
 
 ## Build a Todo App in MEAN Stack
 
-* install node and mongo
+* Install node and MongoDB
+
+### Install Node
+
+```
+$ brew install node
+```
 
 ### Quick way to generate a MEAN stack app
 
