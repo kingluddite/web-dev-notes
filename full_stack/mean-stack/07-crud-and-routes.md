@@ -3,33 +3,33 @@
 ## Creating Data with POST Routes in Express
 
 ### POST
-Used to send new data to the API
+Used to send new data to the **API**
 
-Make sure mongod and nodemon are running in your terminal tabs
+Make sure **mongod** and **nodemon** are running in your terminal tabs
 
 **src/app/index.js**
 
 We are updating this: `// TODO: Add POST route to create new entries`
 
-We are using our /todos route twice? Is this correct?
-Yes. When a request is made to the /todos url with GET method, Express knows to run the router.get() logic
-When a request is made with the http POST method, Express knows to run the router.post() logic
-* the post() method is typically used to send post data to the server
-* by default, Express does not have a `body` parser
-* what this means is without a body parser installed when we post data to the /todos route, even though our logic is correct, we will probably get back an empty response body
+### We are using our `/todos` route twice? Is this correct?
+Yes. When a request is made to the `/todos` **URL** with **GET** method, Express knows to run the `router.get()` logic
+When a `request` is made with the **HTTP** **POST** method, Express knows to run the `router.post()` logic
+* The `post()` method is typically used to send post data to the server
+* By default, Express does not have a `body parser`
+* What this means is without a **body parser** installed when we post data to the `/todos` route, even though our logic is correct, we will probably get back an empty **response body**
 
-lets test it out with postman
-
-open postman
-change GET to POST (dropdown)
-put in URL `localhost:3000/api/todos`
-Select Body
-Click `Raw`
+## Test it out with postman
+* Open postman
+* Change **GET** to **POST** (dropdown)
+* put in URL `localhost:3000/api/todos`
+* Select **Body**
+* Click `Raw`
 
 ![Post data in Postman](https://i.imgur.com/p67M0Sm.png)
 
-**note**
-I had problems inserting raw text. The reason is I did not switch from Authorization to Body
+**note: Common Problem to Avoid**
+* I had problems inserting raw text
+  - The reason is I did not switch from Authorization to Body
 
 This is what loads up by default in Postman
 
@@ -43,10 +43,10 @@ Also don't forget to change Text to JSON(application/json) in the dropdown
 
 ![Switch to JSON](https://i.imgur.com/FblxNUg.png)
 
-When you hit Send, you get back a Status 200 OK but the response is empty
+When you hit **Send**, you get back a **Status 200 OK** but the `response` is empty
 
 ## Body-Parser module
-In order to parse request bodies, we use the body-parser module
+In order to parse request bodies, we use the **body-parser** module
 
 ### Install the body-parser module
 
@@ -54,8 +54,9 @@ In order to parse request bodies, we use the body-parser module
 $ npm install body-parser --save -E
 ```
 
-Restart our server
-Check to make sure body-parser has been installed (by looking inside our package.json file for:)
+#### Restart our server
+Check to make sure **body-parser** has been installed
+  * By looking inside our `package.json` file
 
 ```json
 "dependencies": {
@@ -66,7 +67,7 @@ Check to make sure body-parser has been installed (by looking inside our package
   }
 ```
 
-Now we need to tell Express to use body-parser's json() method
+Now we need to tell Express to use **body-parser**'s `json()` method
 
 **src/app.js**
 
@@ -99,7 +100,7 @@ app.listen( 3000, function() {
 } );
 ```
 
-Now if you run Postman again, you will see it shows the JSON data in the respose body
+Now if you run Postman again, you will see it shows the **JSON** data in the **respose body**
 
 Wahoo!
 
@@ -125,8 +126,8 @@ router.post( '/todos', function( req, res ) {
 ```
 
 `return res.status(500).json({err: err.message});`
-* returns a generic 500 error
-* also returns a Mongoose error
+* Returns a generic 500 error
+* Also returns a Mongoose error
 
 Now if you use Postman to create 3 todos.
 
@@ -138,20 +139,25 @@ Then switch to GET to see all your todos (and the 3 todos you just created)
 
 ## Edit Data with PUT Routes in Express
 
-The Put route will look similar to the Post route with a couple key differences
-so you can start by copying the Post route and pasting it below the Post route and renaming `post()` to `put()`
+The **Put route** will look similar to the **Post route** with a couple key differences:
 
-add a parameter using this syntax `/:name-of-parameter` (example `/todos/:id`)
+1. So you can start by copying the Post route and pasting it below the Post route and renaming `post()` to `put()`
+2. Add a parameter using this syntax `/:name-of-parameter`
+  + example: `/todos/:id`
 
-how do we get the id parameter?
-Using `req.params` (**req.params.id**) This is all handled by Express
-We need to make sure the todo exists and the todo's id equals the id in the request
+### How do we get the id parameter?
+Using `req.params` (**req.params.id**)
+
+This is all handled by Express
+
+We need to make sure the `todo` exists and the `todo`'s *id* equals the **id** in the `request`
 
 ```js
 if (todo && todo._id !== id) {}
 ```
 
-Mongoose has a findByIdAndUpdate(id, new data we are sending to MongoDB, callback) method
+## findByIdAndUpdate()
+Mongoose has a `findByIdAndUpdate(id, new data we are sending to MongoDB, callback)` method
 * Very convenient
 
 **src/api/index.js**
@@ -173,18 +179,19 @@ router.put( '/todos/:id', function( req, res ) {
 } );
 ```
 
-
-Run nodemon
-Check Postmon
-Switch to Put
-Use this test URL `localhost:3000/api/todos/bogus`
+1. Run `nodemon`
+2. Check **Postmon**
+3. Switch to **PUT**
+4. Use this test **URL**: `localhost:3000/api/todos/bogus`
 
 **Output:** `{"err": "Ids don't match!"}`
 
-Now copy to your clipboard an id from a todo (use GET or Postman's history)
-Use put
-add that id to your URL
-example: `localhost:3000/api/todos/579e7792feb4335a66ade912`
+5. Now copy to your clipboard an **id** from a **todo**
+  * (_use GET or Postman's history_)
+6. Use **PUT**
+7. Add that **id** to your **URL**
+
+Example: `localhost:3000/api/todos/579e7792feb4335a66ade912`
 
 ```json
 {
@@ -200,13 +207,13 @@ You just updated MongoDB.
 
 Wahoo!
 
-We sent our data as "completed": true but it came back false. Why?
-By default Mongoose is sending back old data. We need to specifically tell it to send back new data.
+## We sent our data as "completed": true but it came back false. Why?
+By default Mongoose is sending back **old data**. We need to specifically tell it to send back **new data**.
 
 ## {new: true} option
 `new` option by default is `false`
 
-Easy to do just pass findByIdAndUpdate() method the {} options object
+Easy to do just pass `findByIdAndUpdate()` method the `{}` options Object
 
 ```js
 Todo.findByIdAndUpdate( id, todo, {new: true}, function( err, todo ) {
@@ -220,10 +227,10 @@ Todo.findByIdAndUpdate( id, todo, {new: true}, function( err, todo ) {
 
 Send your put data again and this time you will see completed is set to `true`
 
-Make sure mongod and nodemon are running
+Make sure `mongod` and `nodemon` are running
 
-Make webpack watch for changes
-* and rebuilds bundles
+## Make webpack watch for changes
+* Rebuilds bundles
 
 ```
 $ webpack --watch
@@ -231,6 +238,7 @@ $ webpack --watch
 
 ## $q
 [link to documentation of $q](https://docs.angularjs.org/api/ng/service/$q)
+
 A service that helps you run functions asynchronously, and use their return values (or exceptions) when they are done processing.
 
 **/app/scripts/services/data.js**
@@ -253,14 +261,14 @@ this.saveTodos = function( todos ) {
     };
 ```
 
-jump into your controller
+## Jump into your controller
 
 **app/scripts/controllers/todo.js**
 
-Lets look at the saveTodos() method
-Currently we filter a list of todos and then sends those todos to the dataService saveTodos method (that we just edited above)
+* Lets look at the **saveTodos()** method
+* Currently we filter a list of **todos** and then sends those **todos** to the **dataService** `saveTodos()` method (_That we just edited above_)
 
-because dataService.Todos() returns a promise, we can do something when the save is complete
+Because `dataService.Todos()` returns a **promise**, we can do something when the save is complete
 
 ## resetTodoState()
 
@@ -285,13 +293,13 @@ $scope.saveTodos = function() {
 // more code
 ```
 
-Run in browser
-We run and it tells us how many todos were saved
-but our service is not returning the promise
+## Run in browser
+* We run and it tells us how many todos were saved
+* But our service is not returning the promise
 
-![error not returning](https://i.imgur.com/fSaRVPG.png
+![error not returning](https://i.imgur.com/fSaRVPG.png)
 
-Update app/scripts/services/data.js to:
+Update **app/scripts/services/data.js** to:
 
 ```js
 return $q.all( queue ).then( function( results ) {
@@ -299,9 +307,10 @@ return $q.all( queue ).then( function( results ) {
       } );
 ```
 
-View again and it works when you edit and save
+## View again
+It works when you edit and save
 
-let's update the same todos method to also use the PUT route when an existing todo is edited
+Let's update the same **todos** method to also use the **PUT** route when an existing **todo** is edited
 
 ```js
 this.saveTodos = function( todos ) {
@@ -323,16 +332,16 @@ this.saveTodos = function( todos ) {
       };
 ```
 
-edit an existing todo
-save it
-you will see that it now persists!
+1. Edit an existing todo
+2. Save it
+3. You will see that it now persists!
 
 ## ngInclude
-Make sure mongod and nodemon are running
+Make sure `mongod` and `nodemon` are running
 
-create `navbar.html` inside `templates`
+Create `navbar.html` inside `templates`
 
-navbar.html
+**navbar.html**
 
 ```html
 <nav>
@@ -361,15 +370,15 @@ Include it inside our **public/index.html**
 ```
 
 * Don't forget double quotes and single quotes together!
-    - src attribute takes an expression
-    - the express should result in a path to the template, in our example above the expression is just a string which will result in the contents of the string (you could also pass a function)
+    - `src` attribute takes an expression
+    - The express should result in a path to the template, in our example above the expression is just a string which will result in the contents of the string (you could also pass a function)
     - `<ng-include src="foobar()">`
-        + that results in a path to the template
-        + you could also do `src="'/path/' + someScopeVariable + '/template.html'"></ng-include>`
+        + That results in a path to the template
+        + You could also do `src="'/path/' + someScopeVariable + '/template.html'"></ng-include>`
 * When you request a template
-* Angular first looks inside $templateCache
+* Angular first looks inside **$templateCache**
 * If not found, Angular fetches the template from the server
-* Then Angular stores the template in the $templateCache for future requests
+* Then Angular stores the template in the **$templateCache** for future requests
 
 [nginclude documentation](https://docs.angularjs.org/api/ng/directive/ngInclude)
 
@@ -405,8 +414,9 @@ $interval($scope.counter, 1000, 10);
 });
 ```
 
-2nd param - 1 second
-3rd param - # times called (0 is infinite)
+* 2nd param - 1 second
+* 3rd param - # times called (0 is infinite)
+
 ## Complete App
 [github](https://github.com/treehouse-projects/mean-todo/tree/master/public)
 

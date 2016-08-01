@@ -4,7 +4,7 @@ Make sure `mongod` and `mongo` are running
 
 Remember to remove the debugger line in your code
 
-src/app.js
+**src/app.js**
 
 ```js
 'use strict';
@@ -12,7 +12,7 @@ src/app.js
 debugger; // REMOVE THIS LINE
 ```
 
-also remove this debugger
+Also remove this debugger
 
 **src/api/index.js**
 
@@ -132,7 +132,7 @@ todos.forEach( function( todo, index ) {
 } );
 ```
 
-* We don't need to export anything from seed.js
+* We don't need to export anything from **seed.js**
 
 ## Require it inside our app.js
 
@@ -146,9 +146,9 @@ require( './seed' ); // ADD THIS LINE
 ```
 
 The above added line will run everytime our app starts
-* that is why we checked for the existance of todos in our seed.js code, if we didn't have that, the todo list would be created every time but once we have todos, it won't be created.
+* that is why we checked for the existance of todos in our `seed.js` code, if we didn't have that, the **todo** list would be created every time but once we have **todos**, it won't be created.
 
-Run mongod and nodemon and check the same Postman route we ran before and you will now see our seed.js data has populated our MongoDB database.
+Run `mongod` and `nodemon` and check the same **Postman** route we ran before and you will now see our **seed.js** data has populated our **MongoDB** database.
 
 Wahoo!
 

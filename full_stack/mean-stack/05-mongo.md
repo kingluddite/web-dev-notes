@@ -84,7 +84,8 @@ app.listen( 3000, function() {
 ## Mongoose is a singleton
 Means when you do something with Mongoose in one file, those changes happen with files across your node process
 
-* We are not doing anything with the **./database** file, we are just making sure it is required and run
+* We are not doing anything with the **./database** file
+* We are just making sure it is required and run
 
 ### The Terminal is not telling us about MongoDB yet
 
@@ -135,10 +136,11 @@ module.exports = model;
 
 Says what data types are required for our fields.
 
-Because Mongoose is a **Singleton**, the `Todo` model is registered with Mongoose, wherever you require Mongoose
+Because Mongoose is a **Singleton**, the `Todo` model is registered with Mongoose wherever you require Mongoose
 
 ### Best Practice
-But it is a best practice to export the model itself _(in case you are using more advanced configurations)_
+But it is a best practice to export the model itself
+* _(in case you are using more advanced configurations)_
 
 ## Debugging Refresher
 Tools to help us debug our application
@@ -213,22 +215,24 @@ Do this in the iron-node console
 
 ![set breakpoint in iron-node](https://i.imgur.com/YiNzgzD.png)
 
-* You can edit code directly inside iron-node
+* You can edit code directly inside `iron-node`
 * Most developer do most of their debugging inside their editor
-* After making changes in iron-node console, save the file
+* After making changes in `iron-node` **console**, save the file
     - You hit first debugger statement
-    - Hit play
+    - Hit `play`
     - Server will be running
     - Visit landing page `http://localhost:3000`
-    - GET request will run
-    - Todos will not show up
-        + Because debugger stopped in the middle of your GET request
+    - **GET request** will run
+    - `Todos` will not show up
+        + Because debugger stopped in the middle of your **GET request**
 
-**note:** There are 2 versions of your file loaded into iron-node
-* Virtual file loaded into memory (allows you to interactively set breakpoints) they are called `temporary breakpoints`
-* You can set these breakpoints on any line
-*  In the console you can check them on or off
-*  Or use this key to turn all of them off or on
+**note:** There are 2 versions of your file loaded into `iron-node`
+* Virtual file loaded into memory
+  - Allows you to interactively set breakpoints
+    + They are called `temporary breakpoints`
+    + You can set these breakpoints on any line
+    + In the console you can check them on or off
+    + Or use this key to turn all of them off or on
 
 ![turn all breakpoints off/on](https://i.imgur.com/uTeYtLh.png)
 
@@ -249,8 +253,14 @@ Do this in the iron-node console
 Final way to work with variables locally is through the **console**
 
 `> todos`
-`> res` for the response object
-`> res.status(500)` you can even run functions
+
+`> res`
+
+* For the response object
+
+`> res.status(500)` 
+
+You can even run functions
 
 The console allows you to interactively explore your application
 as if you were inside the JavaScript interpreter
@@ -258,7 +268,7 @@ as if you were inside the JavaScript interpreter
 ## Stop iron-node
 `ctrl` + `c`
 
-**note** Most of the time you'll be using `nodemone` and you'll only use iron-node when you need to check on an internal process
+**note** Most of the time you'll be using `nodemon` and you'll only use iron-node when you need to check on an internal process
 
 
 
