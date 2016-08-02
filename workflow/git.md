@@ -3,6 +3,11 @@ Version Control. You need to know how this works.
 
 ## Some Useful GIT commands
 
+### Undo last commit
+```
+$ git reset HEAD~
+```
+
 ### How do I push all branches to remote?
 ```
 $ git push --all origin
