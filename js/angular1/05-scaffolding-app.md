@@ -321,7 +321,7 @@ This is how we do that.
 angular.module( 'todoListApp' )
   .directive( 'todos', function() {
     return {
-      templateURL: 'templates/todos.html'
+      templateUrl: 'templates/todos.html'
     };
   } );
 ```
@@ -334,7 +334,7 @@ angular.module( 'todoListApp' )
 angular.module( 'todoListApp' )
   .directive( 'todos', function() {
     return {
-      templateURL: 'templates/todos.html'
+      templateUrl: 'templates/todos.html'
     };
   } );
 ```
@@ -401,7 +401,7 @@ this.saveTodos = function( todos ) {
 **index.html**
 
 ```html
-<a href="" ng-click='saveTodos(todo)()'>save</a>
+<a href="" ng-click='saveTodos(todo)'>save</a>
 ```
 
 ## Improve UI of editing
@@ -417,3 +417,5 @@ And comment out editing button
 <!-- <a href="" ng-click=" editing = !editing">edit</a>
  -->
 ```
+
+[Finished Code Github Rep](http://kingluddite/angular-todo-app.git)
