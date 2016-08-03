@@ -1,7 +1,8 @@
 #Cascade
-
+[float tutorial](http://css.maxdesign.com.au/floatutorial/)
+[css nav code](http://css.maxdesign.com.au/listamatic)
 Order styles are followed
-
+[css positioning](http://www.w3schools.com/css/css_positioning.asp)
 ## Importance
 * User Agent style sheet
   * each browser has its own user agent style sheet
