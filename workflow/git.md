@@ -1,7 +1,14 @@
 # GIT
 Version Control. You need to know how this works.
 
+## Generate a .gitignore
+[gitignore.io](https://www.gitignore.io/)
 ## Some Useful GIT commands
+
+### Undo last commit
+```
+$ git reset HEAD~
+```
 
 ### How do I push all branches to remote?
 ```

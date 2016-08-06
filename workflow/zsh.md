@@ -517,5 +517,6 @@ $ source ~/.bash_profile
 
 https://github.com/rupa/z
 
-
+## Useful plugins
+* [alias-tips](https://github.com/djui/alias-tips)
 

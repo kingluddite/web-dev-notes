@@ -111,6 +111,9 @@ To turn this on, simply put this in your settings file:
   - Quickly find files in your project)
 * SidebarEnhancements
   - Give you many more options when right click on sidebar)
+* Glue
+  - add your terminal inside Sublime Text
+  - [link](http://sweetme.at/2014/04/07/glue-a-terminal-for-sublime-text/)
 * editorconfig
   - helps developers define and maintain consistent coding styles between different editors and IDEs [editorconfig.org](http://editorconfig.org)
     + [videos (3 parts)](https://www.youtube.com/watch?v=YbHw1VdjWbA) 

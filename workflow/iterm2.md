@@ -23,4 +23,9 @@ Preference recommendations
 
 [adamwadeharris](http://www.adamwadeharris.com/my-iterm-2-setup/)
 
+Problems seeing text in iTerm
+Change Minimum contrast and it will make invisible text no so invisible
+![min contrast](https://i.imgur.com/8hZX0Ut.png)
+
+
 
