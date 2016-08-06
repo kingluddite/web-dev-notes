@@ -1,7 +1,7 @@
 # Controllers
 
 ## API directory
-Create a new API called `api` inside `src`
+Create a new directory called `api` inside `src`
 
 * Create `api/index.js`
     - This will be our API module

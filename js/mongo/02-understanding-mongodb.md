@@ -40,7 +40,7 @@ In a relational DB you have to define a schema which sets each column with a spe
 * Run `mongod` (mongo daemon)
 * In another terminal window, run `mongo`
     - type `ls()` to show what's inside
-* Load `seed.js` into mongo with `load(./seed.js')`
+* Load `seed.js` into mongo with `load('./seed.js')`
 
 The load command is relative to the `pwd` (present working directory) of where you launch the mongo shell from.
 
@@ -143,7 +143,7 @@ If we create our own indexes we can boost our performance in a major way
 
 With our blog we may want to create an index on post title, since people may search posts by their title
 
-[createIndex documenation](https://docs.mongodb.com/v3.0/reference/method/db.collection.createIndex/#db.collection.createIndex)
+[createIndex documentation](https://docs.mongodb.com/v3.0/reference/method/db.collection.createIndex/#db.collection.createIndex)
 
 ## Create an index
 
@@ -205,8 +205,8 @@ $ npm install -g mongo-hacker
 * returns 1 document
 
 ## query parameters
-db.posts.findOne({})
-db.posts.find({})
+* db.posts.findOne({})
+* db.posts.find({})
 
 ## query projections
 db.posts.find({},{})
@@ -260,7 +260,7 @@ db.posts.find({author:ObjectId("5796d13c25b1e970624513ba")})
 * Some authors **_id** may not work if they don't have posts, keep checking until you find a match
 
 ```
-> db.posts.update({ author:ObjectId("5796d13c25b1e970624513ba" ) }, { $set: { tags: ['shiny', 'new', 'fun'], title: "Look at me! I'm Updated!" }})
+> db.posts.update({ author:ObjectId("5796d13c25b1e970624513ba" ) }, { $set: { tags: ['shiny', 'happy', 'people'], title: "Look at me! I'm Updated!" }})
 ```
 
 Outputs
@@ -282,9 +282,9 @@ If a document is not found with your query, a document will be created with your
 ## Aggregation
 way to sort filter and return results for optimal performance and ease of use for other developers on your team
 
-db.posts.find({}, {title: true})
-db.posts.find({}, {title: true}).limit(2)
-Object.keys(db.posts.find()[0])
+* db.posts.find({}, {title: true})
+* db.posts.find({}, {title: true}).limit(2)
+* Object.keys(db.posts.find()[0])
 
 ## Output
 
@@ -304,7 +304,7 @@ Object.keys(db.posts.find()[0])
 I'd like to get the names of all the keys in a MongoDB collection.
 
 ```
-mr = db.runCommand({
+var mr = db.runCommand({
   "mapreduce" : "posts",
   "map" : function() {
     for (var key in this) { emit(key, null); }
@@ -345,9 +345,9 @@ Decending order
 
 ## Paginate results
 
-Page 1 Results - db.posts.find({}, {title: true}).limit(2)
-Page 2 Results - db.posts.find({}, {title: true}).limit(2).skip(2)
-Page 3 Results - db.posts.find({}, {title: true}).limit(2).skip(4)
+1. Page 1 Results - db.posts.find({}, {title: true}).limit(2)
+2. Page 2 Results - db.posts.find({}, {title: true}).limit(2).skip(2)
+3. Page 3 Results - db.posts.find({}, {title: true}).limit(2).skip(4)
 
 ### Pagination Formula
 Pagination formula: limit = number of records on each page, skip = number of records on each page * page number - 1

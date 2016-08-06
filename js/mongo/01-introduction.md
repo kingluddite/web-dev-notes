@@ -1,5 +1,9 @@
 # [MongoDB](https://www.mongodb.com/collateral/mongodb-3-2-whats-new?jmp=search&utm_source=google&utm_campaign=Americas-US-Brand-Alpha&utm_keyword=mongodb&utm_device=c&utm_network=g&utm_medium=cpc&utm_creative=101973226603&utm_matchtype=e&gclid=CjwKEAjw8da8BRDssvyH8uPEgnoSJABJmwYohk-GDN3gQ3kiH7ZlRSgLV9l3B7Uou1gVCWF-4vF9ABoCT77w_wcB) Introduction
 
+[NBA & Mongo](https://thecodebarbarian.wordpress.com/2014/02/14/crunching-30-years-of-nba-data-with-mongodb-aggregation/)
+
+
+
 * A DB to store persistant data for Applications
 
 ## NoSQL database
@@ -11,6 +15,7 @@
 * Store information in tables and have a schema
 * Have a standard, mostly unified language that they are named for
     - SQL -----> Structured Query Language
+    
 NoSQL DBs store information in a multitude of formats and are generally less tied to schema controls
 
 ## Why should you use Mongo?

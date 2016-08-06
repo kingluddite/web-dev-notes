@@ -7,11 +7,11 @@
 * `A`ngular - client side application
 * `N`ode.js - run by node.js
 
-All documents stored in MongoDb
-Client requests info through Express
-Express reads requests and asks MongoDB for data
-Express gets the data and sends to client
-client then displays it to the user
+* All documents stored in MongoDb
+* Client requests info through Express
+* Express reads requests and asks MongoDB for data
+* Express gets the data and sends to client
+* Client then displays it to the user
 
 ## Why MEAN stack?
 * Widely adopted
@@ -129,7 +129,10 @@ $ rm -rf .git
 ```
 
 ## Final Code
+
+If you want the final code, fork it. If not continue on.
 [Fork this repo](https://github.com/treehouse-projects/mean-todo)
+
 ```
 $ npm init --yes (no questions)
 ```
@@ -137,7 +140,7 @@ $ npm init --yes (no questions)
 specify engines key with current version of node (node -v)
 ```js
   "engines": {
-    "node": "6.2.2"
+    "node": "6.3.1"
   }
 ```
 
@@ -168,6 +171,12 @@ create our app file
 $ touch src/app.js
 ```
 
+## Intialize git
+
+```
+$ git init
+```
+
 ignore our node_modules
 
 ```
@@ -175,11 +184,6 @@ $ touch .gitignore
 $ echo 'node_modules' >> .gitignore
 ```
 
-## Intialize git
-
-```
-$ git init
-```
 
 ### Add and commit
 
@@ -234,8 +238,8 @@ You see the terminal and it let's us know it is running on port 3000.
 
 ```js
 MORE CODE
-// tell express to server static files from public folder
-app.use( '\', express.static( 'public' ) );
+// tell express to serve static files from public folder
+app.use( '/', express.static( 'public' ) );
 
 app.listen( 3000, function() {
   console.log( 'Server is listening on port 3000' );
