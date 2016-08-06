@@ -155,3 +155,302 @@ describe( 'Mocha', function() {
 
 What is a sanity check?
 A trivial function or test that proves we set things up correctly
+
+## Add another .describe
+
+**test/ship-test.js**
+
+```js
+describe( 'damageShip', function() {
+  var damageShip = require( '../game-logic/ship-methods.js' ).damageShip;
+
+  it( 'should register damage on a given ship at a given location', function() {
+    var ship = {
+      locations: [ [ 0, 0 ] ],
+      damage: []
+    };
+
+    damageShip( ship, [ 0, 0 ] );
+
+       expect( ship.damage ).to.not.be.empty;
+  } );
+} );
+```
+
+## run `$ npm test`
+1 failing; TypeError: damageShip is not a function
+
+## Add to game logic
+
+**game-logic/ship-method.js**
+
+```js
+function damageShip( ship, coordinates ) {
+
+}
+
+module.exports.checkForShip = checkForShip;
+module.exports.damageShip = damageShip;
+```
+
+**note**: remember that without the `module.exports` statements, the test files won't have access to the functions we wrote and they'll fail when we run the tests
+
+## Run $ npm test
+
+Now we get: AssertionError: expected [] not to be empty
+
+### Alter the damageShip function
+
+```js
+function damageShip( ship, coordinates ) {
+  ship.damage.push( coordinates );
+}
+```
+
+And now our test passes!
+
+* [chai bdd](http://chaijs.com/api/bdd/)
+* .not
+* `.empty`
+    - Chai's **.empty** method checks for empty objects, arrays, or strings
+    - **.empty** makes it easy to write expectations without worrying about how the real code will work
+* .deep
+    - The .deep method allows you to make deep equality comparisons
+    - deeply equal values
+        + You call arrays that look the same “deeply equal”, because their “deep” internal values are equal
+
+Add this line in **ship-test.js**
+
+```js
+expect( ship.damage ).to.not.be.empty;
+expect( ship.damage ).to.include( [ 0, 0 ] ); // ADD THIS LINE
+```
+
+Run $ node test
+
+AssertionError: expected [ [ 0, 0 ] ] to include [ 0, 0 ]
+
+Modify this line:
+
+```js
+expect( ship.damage ).to.not.be.empty;
+expect( ship.damage[ 0 ] ).to.deep.equal( [ 0, 0 ] ); // MODIFY THIS LINE
+```
+
+ship-test.js
+
+```js
+describe( 'fire', function() {
+  var fire = require( '../game-logic/ship-methods.js' ).fire;
+
+  it( 'should record damage on the given players ship at a given coordinate', function() {
+    var player = {
+      ships: [
+        {
+          locations: [ [ 0, 0 ] ],
+          damage: []
+          }
+        ]
+    };
+
+    fire( player, [ 0, 0 ] );
+
+    expect( player.ships[ 0 ].damage[ 0 ] ).to.deep.equal( [ 0, 0 ] );
+  } );
+} );
+```
+
+$ node test
+
+1 failing: TypeError: fire is not a function
+
+ship-methods.js
+
+```js
+function fire( player, coordinates ) {
+
+}
+
+module.exports.fire = fire;
+```
+
+AssertionError: expected undefined to deeply equal [0, 0]
+
+```js
+// accepts player and coordinates parameters
+function checkForShip( player, coordinates ) {
+  var shipPresent, ship;
+
+  // loop through all ships in ships array
+  // and check each one with the coordinates we are given in the function
+  for ( var i = 0; i < player.ships.length; i++ ) {
+    // save current ship inside the loop
+    // to make things easier to read
+    ship = player.ships[ i ];
+
+    // filter the current ships location array down
+    // by comparing each value to the given coordinates
+    shipPresent = ship.locations.filter( function( actualCoordinate ) {
+      // this will filter the current ships location array for matches against
+      // a given coordinate
+      // both the x and y numbers should match
+      // will return an array containing only coordinates that are a match
+      // if nothing is a match the array will be empty
+      return ( actualCoordinate[ 0 ] === coordinates[ 0 ] ) && ( actualCoordinate[ 1 ] === coordinates[ 1 ] );
+    } )[ 0 ];
+
+    // check if a ship is present at a given coordinate
+    if ( shipPresent ) {
+      return ship;
+    }
+  }
+
+  return false;
+}
+
+function damageShip( ship, coordinates ) {
+  ship.damage.push( coordinates );
+}
+
+function fire( player, coordinates ) {
+  var ship = checkForShip( player, coordinates );
+
+  if ( ship ) {
+    damageShip( ship, coordinates );
+  }
+}
+
+module.exports.checkForShip = checkForShip;
+module.exports.damageShip = damageShip;
+module.exports.fire = fire;
+```
+
+lots of broken code
+
+fixes the fails
+
+```js
+var expect = require( 'chai' ).expect;
+
+describe( 'checkForShip', function() {
+  var checkForShip = require( '../game-logic/ship-methods' ).checkForShip;
+
+  it( 'should correctly report no ship at a given player\' coordinate', function() {
+
+    player = {
+      ships: [
+        {
+          locations: [ [ 0, 0 ] ]
+          }
+        ]
+    };
+
+    expect( checkForShip( player, [ 9, 9 ] ) ).to.be.false;
+  } );
+
+  it( 'should correctly report a ship located at the given coordinates', function() {
+
+    player = {
+      ships: [
+        {
+          locations: [ [ 0, 0 ] ]
+          }
+        ]
+    };
+
+    expect( checkForShip( player, [ 0, 0 ] ) ).to.deep.equal( player.ships[ 0 ] );
+  } );
+
+  it( 'should handle ships located at more than one coordinate', function() {
+
+    player = {
+      ships: [
+        {
+          locations: [ [ 0, 0 ], [ 0, 1 ] ]
+          }
+        ]
+    };
+
+    expect( checkForShip( player, [ 0, 0 ] ) ).to.deep.equal( player.ships[ 0 ] );
+    expect( checkForShip( player, [ 0, 1 ] ) ).to.deep.equal( player.ships[ 0 ] );
+    expect( checkForShip( player, [ 9, 9 ] ) ).to.be.false;
+  } );
+
+  it( 'should handle checking multiple ships', function() {
+
+    player = {
+      ships: [
+        {
+          locations: [ [ 0, 0 ], [ 0, 1 ] ]
+        },
+        {
+          locations: [ [ 1, 0 ], [ 1, 1 ] ]
+        },
+        {
+          locations: [ [ 2, 0 ], [ 2, 1 ], [ 2, 2 ], [ 2, 3 ] ]
+        }
+      ]
+    };
+
+    expect( checkForShip( player, [ 0, 0 ] ) ).to.deep.equal( player.ships[ 0 ] );
+    expect( checkForShip( player, [ 0, 1 ] ) ).to.deep.equal( player.ships[ 0 ] );
+    expect( checkForShip( player, [ 1, 0 ] ) ).to.deep.equal( player.ships[ 1 ] );
+    expect( checkForShip( player, [ 1, 1 ] ) ).to.deep.equal( player.ships[ 1 ] );
+    expect( checkForShip( player, [ 2, 3 ] ) ).to.deep.equal( player.ships[ 2 ] );
+    expect( checkForShip( player, [ 9, 9 ] ) ).to.be.false;
+  } );
+} );
+
+describe( 'damageShip', function() {
+  var damageShip = require( '../game-logic/ship-methods.js' ).damageShip;
+
+  it( 'should register damage on a given ship at a given location', function() {
+    var ship = {
+      locations: [ [ 0, 0 ] ],
+      damage: []
+    };
+
+    damageShip( ship, [ 0, 0 ] );
+
+    expect( ship.damage ).to.not.be.empty;
+    expect( ship.damage[ 0 ] ).to.deep.equal( [ 0, 0 ] );
+  } );
+} );
+
+describe( 'fire', function() {
+  var fire = require( '../game-logic/ship-methods.js' ).fire;
+
+  it( 'should record damage on the given players ship at a given coordinate', function() {
+    var player = {
+      ships: [
+        {
+          locations: [ [ 0, 0 ] ],
+          damage: []
+          }
+        ]
+    };
+
+    fire( player, [ 0, 0 ] );
+
+    expect( player.ships[ 0 ].damage[ 0 ] ).to.deep.equal( [ 0, 0 ] );
+  } );
+
+  it( 'should NOT record damage if ther is no ship at my coordinates', function() {
+    var player = {
+      ships: [
+        {
+          locations: [ [ 0, 0 ] ],
+          damage: []
+          }
+        ]
+    };
+
+    fire( player, [ 9, 9 ] );
+
+    expect( player.ships[ 0 ].damage ).to.be.empty;
+  } );
+} );
+```
+
+![all passing](https://i.imgur.com/oO55Yxv.png)
+
