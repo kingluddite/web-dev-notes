@@ -1,6 +1,8 @@
 # GIT
 Version Control. You need to know how this works.
 
+## Generate a .gitignore
+[gitignore.io](https://www.gitignore.io/)
 ## Some Useful GIT commands
 
 ### Undo last commit
