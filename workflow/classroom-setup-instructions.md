@@ -17,6 +17,11 @@ Open Preferences and make these changes
 [General](https://i.imgur.com/F1Ou3aL.png)
 [Features](https://i.imgur.com/vBWiKh6.png)
 
+### Install Sass
+```
+$ sudo gem install sass
+```
+
 ### Sublime Text 3
 * [Where Can I download Sublime Text 3?](https://www.sublimetext.com/3)
 
