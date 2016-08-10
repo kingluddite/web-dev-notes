@@ -36,6 +36,22 @@ What Packages do I need to install on Sublime Text 3?
 * MarkdownPreview
 * HTML-CSS-JS Prettify
 
+**note**: You will install node (see below). Once that is installed you will set HTML-CSS-JS Prettify to format on save by opening the command palette (`cmd` + `shift` + `p`) and typing `option` and choosing this:
+
+![prettify options](https://i.imgur.com/1DFfbgL.png)
+
+That will open the `HTMLPrettify.sublime-settings` file and make this change:
+
+```js
+  // Automatically format when a file is saved.
+  "format_on_save": true,
+```
+
+Now (_if you have installed node_) all your **CSS**, **JS** and **HTML** will autoformat on save.
+
+You can alter the formatting options inside the `.jsbeautifyrc` file
+* Open command palette and type `pretty pref`
+
 ### Iterm 2
 
 I suggest setting these preferences

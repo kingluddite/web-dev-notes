@@ -12,7 +12,7 @@
 * make sure you create your `package.json` first
 
 ```
-$ npm install bootstrap@4.0.0-alpha.2 --save
+$ npm install bootstrap@4.0.0-alpha.3 --save
 ```
 
 ### CDN Start 

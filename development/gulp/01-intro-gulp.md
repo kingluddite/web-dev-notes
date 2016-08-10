@@ -1,11 +1,12 @@
 # Gulp
 JavaScript task runner
 
-* Task set in JavaScript file. They are compiled and run.
+* Task set in JavaScript file. 
+* They are compiled and run.
 * Tasks can run one after the other
 * Some tasks can depend on other tasks
 
-Example
+**Example**
 
 1. Task - Concatenate JavaScript
 2. Task - Minify JavaScript
@@ -19,21 +20,21 @@ The file that gulp looks for defined tasks in
 * Node
 * NPM (node package manager)
 
-How can I tell if Node is node installed?
+## How can I tell if Node is node installed?
 
 ```
 $ which node
 ```
 
-How can I tell if `npm` is intstalled?
+## How can I tell if `npm` is installed?
 
 ```
 $ which npm
 ```
 
-**Note:** When you install `node`, npm is installed too.
+**Note:** When you install `node`, **npm** is installed too.
 
-Install `gulp` and `http-server` globally
+## Install `gulp` and `http-server` globally
 
 ```
 # Install gulp globally
@@ -43,42 +44,64 @@ $ npm install -g gulp
 $ npm install -g http-server
 ```
 
-## Installing Node Dependencies
+## Installing Node devDependencies
 
-1 ) Clone this repo
+### Difference between dependencies and dev dependencies
+
+This is an app with a **package.json**. That file has information inside it with stuff we need to use for our app.
+
+First we need to get the app. We can do this by cloning the github repo.
+
+1. Clone this repo
 
 ```
-$ git clone https://github.com/hdngr/treehouse-gulp-basics.git
+$ git clone https://github.com/kingluddite/gulp-basics-test.git
 ```
 
-2 ) Navigate into the directory
+2. Navigate into the directory
 
 ```
-$ cd treehouse-gulp-basics
+$ cd gulp-basics-test
 ```
 
-3 ) Install the project's node dependencies
+3. Remove git from this repo
+
+```
+$ rm -rf .git
+```
+
+4. Add git to your project
+
+```
+$ git init
+```
+
+5. Install the project's node dependencies
 
 ```
 $ npm install
 ```
 
+* This installs all the devDependencies
+
 ## Some Git tips
 
-1) Checkout the branch for the video you want to follow along with
+* Checkout the branch for the video you want to follow along with
 
 ```
-$ git checkout <some-video>
+$ git checkout <some-branch>
 ```
 
-2) You can also checkout particular files from another branch in git like so:
+* You can also checkout particular files from another branch in git like so:
 
 ```
 $ git checkout master -- package.json
 ```
 
+## We need a server
+Change Server Ports
 
-## Change Server Ports
+We need a server to serve some pages. Node provides us a great solution and we even can choose the port we want to use.
 
 **How do I change http-server to port 3000 instead of 8080?**
 
@@ -90,7 +113,7 @@ $ http-server -p 3000
 
 ## --global vs -g
 
-This
+This:
 
 ```
 $ npm install --global http-server
@@ -111,7 +134,7 @@ $ http-server
 ## package.json
 In order to add gulp to our project we have to use `package.json` which lists the packages node dependencies
 
-Sample package.json
+Sample **package.json**
 
 ```json
 {
@@ -127,84 +150,111 @@ Sample package.json
 }
 ```
 
-**Tip**: If you use `git init` before `npm init` it will point to your git repo when creating your package.json file.
+**Useful Tip**: If you use `git init` before `npm init` it will point to your git repo when creating your `package.json` file.
 
-## Kill Server
+We cloned a repo and inside that repo there is an existing package.json with some devDependencies. Eventually, our package.json file will look like this but we will add the devDependencies one by one and talk about them as we add them. Before we delete `package.json` take note of this part of that file. We will be adding these modules one by one.
+
+```js
+"devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0"
+  }
+```
+
+## Delete **package.json**
+
+`$ rm -rf package.json`
+
+## How do I kill the server?
 `ctrl` + `c`
 
 ## Create package.json
+
 ```
 $ npm init
 ```
 
-You can fill in the answer to the question if deploying
+**tip:** fast way to create **package.json** 
+
+`$ npm init -y`
+
+You can fill in all the answers to the questions if deploying to production
+
 Or if you are testing for fun just accept all defaults and type `yes` to generate the `package.json` file
 
 ## Add Gulp
+
 ```
 $ npm install gulp
 ```
 
+## Install vs dependency install
 That just installs gulp but we want to do more.
+
 We want to also add gulp to our development dependencies so type this:
 
 ```
 $ npm install gulp --save-dev
 ```
 
-* you will now have info to show what dev dependencies and versions should be installed
-* you never need to install gulp on production servers so that is why we list it as a development only dependency
+* You will now have info to show what **dev dependencies** and **versions** should be installed
+* You never need to install gulp on **production servers** so that is why we list it as a development only dependency
 
 **Gulp was added**
 
-partial of `package.json`
+`package.json` (_code fragment_)
 
-```
+```js
 "devDependencies": {
     "gulp": "^3.9.0"
   }
 ```
 
-## How to install multiple gulp packages at one time
+* The version number may be different (depending on how old my notes are :) )
+
+## Multiple npm installs 
 
 ```bash
-$ npm install gulp-autoprefixer gulp-changed gulp-imagemin gulp-less --save
+$ npm install gulp-autoprefixer gulp-changed gulp-imagemin gulp-less --save-dev
 ```
 
 **Note:** Gulp needs to be installed globally and locally in our `package.json`
 
 ## The gulpfile
-if you type this
+
+### Open final-gulpfile.js
+This is what our finished gulpfile.js will look like. Take a quick glance to see if you can figure out what this file is trying to accomplish.
+
+Now we are going to built this step-by-step.
+
+If you type this
+
 ```
 $ gulp
 ```
 
-and get this error
+And get this error:
+
 ![no gulpfile error](https://i.imgur.com/qd4x94L.png)
 
-**Productivity Tip**
-Add the ability to open files from the Terminal inside ST3
-How?
-[TODO] Add instructions here
-Browse to root of your project. I want to create a gulpfile.js.
+Then you need to browse to root of your project and create `gulpfile.js`.
 
-When added you can do this to open a file inside ST3 with this command:
-
-```
-$ sop gulpfile.js
-```
-
-Then save (`cmd` + s) and the file is saved in the root of my project. Cool!
+`$ touch gulpfile.js`
 
 ## `use strict`
 Causes the node engine to run the file in a strict interpretation of the JavaScript
 
-[use strict workshop](https://teamtreehouse.com/library/the-javascript-use-strict-statement)
+(_see my `use strict` notes in web-dev-notes_)
 
 ## Coding gulpfile.js
 
-```
-'use strict'
+```js
+'use strict';
 
 var gulp = require('gulp');
 
@@ -213,9 +263,10 @@ gulp.task("hello", function() {
 });
 ```
 
-* task(name, callback)
+* `task(name, callback)`
 
 Then to run that task:
+
 ```
 $ gulp hello
 ```
@@ -224,13 +275,14 @@ $ gulp hello
 ![output](https://i.imgur.com/luacgqv.png)
 
 ## Default task
-So we just have to type `gulp` and gulp will run all the tasks and we don't have to name them all to run them all. Cool!
 
-```
+```js
 gulp.task("default", ["hello"], function() {
   console.log("This is the default task");
 });
 ```
+
+So we just have to type `gulp` and gulp will run all the tasks and we don't have to name them all to run them all. Cool!
 
 This will run all the dependencies (second parameter of task()) before running the default task and all we have to do is type `gulp` in the Terminal. Cool!
 
@@ -240,6 +292,7 @@ This will run all the dependencies (second parameter of task()) before running t
 
 ### Gulp concat
 combines multiple files into 1 file
+
 ```
 $ npm install gulp-concat --save-dev
 ```
@@ -254,7 +307,8 @@ It will be added as a dev dependency to `package.json`
 ```
 
 Turn 3 into 1 files
-```
+
+```html
 <script src="js/jquery.js"></script>
 <script src="js/sticky/jquery.sticky.js"></script>
 <script src="js/main.js"></script>
@@ -262,7 +316,7 @@ Turn 3 into 1 files
 
 Convert into `app.js` (one single file) Cool!
 
-```
+```js
 'use strict'
 
 var gulp   = require('gulp'),
@@ -282,14 +336,14 @@ gulp.task("default", ["hello"], function() {
 });
 ```
 
-* Add the gulp-concat require
+* Add the **gulp-concat** require
 * Can't use `-` because JavaScript will think it is math operator
-    - that is why we name the variable `gulp` and not `gulp-concat`
+    - That is why we name the variable `gulp` and not `gulp-concat`
 * We first grab the source files using `gulp.src()` method
     - This method creates `readable stream of data`
-        + in memory piece of data that can be used by the application
-        + streams are a node thing
-            * there are huge benefits to running streams in memory verses writing to disk
+        + In memory piece of data that can be used by the application
+        + Streams are a node thing
+            * There are huge benefits to running streams in memory verses writing to disk
 * We use `.pipe` to get `readable stream of data` to our next method
     - `.pipe(concat("app.js"))`
         + We pipe the stream of data to the `concat()` method and give the name of the file we are going to create
@@ -303,7 +357,7 @@ gulp.task("default", ["hello"], function() {
 $ gulp concatScripts
 ```
 
-* Gulp plugins are installed with npm
+* Gulp plugins are installed with **npm**
 
 # Minifying JavaScript Files
 * Compresses file and eliminates space
@@ -326,7 +380,7 @@ Good to doublecheck package was installed so you know team members can install t
 
 Add require for gulp-uglify and here is the task
 
-```
+```js
 gulp.task("minifyScripts", function() {
   gulp.src("js/app.js")
       .pipe(uglify())
@@ -337,9 +391,9 @@ gulp.task("minifyScripts", function() {
 ## gulp-rename
 You don't want to overwrite your concatenated file so this enables you to create a new file name for your minimized file.
 
-Add the require variable for gulp-rename
+Add the require variable for **gulp-rename**
 
-```
+```js
 gulp.task("minifyScripts", function() {
   gulp.src("js/app.js")
       .pipe(uglify())
@@ -350,6 +404,7 @@ gulp.task("minifyScripts", function() {
 
 **Tip**
 You can't debug minified code so you need both files.
+
 1. Minified for production
 2. Concatenated and uncompressed for debugging
 
