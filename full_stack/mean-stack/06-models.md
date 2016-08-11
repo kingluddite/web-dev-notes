@@ -48,7 +48,6 @@ We also comment out our mock data
 
 var express = require( 'express' );
 var Todo = require( '../models/todo' );
-var todos = require( '../../mock/todos.json' );
 
 var router = express.Router();
 

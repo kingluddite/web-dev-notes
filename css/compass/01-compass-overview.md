@@ -12,19 +12,23 @@
 * css3
     - don't need to write vender prefixes
 
-## Installing Compass
-* compass is a Ruby gem
+## Before installing Compass
+Here are some useful information for you to be aware of:
 
-Before We install make sure ruby is updated and you have Sass installed
+* Compass is a `Ruby gem`
+* We need to make sure **ruby** is updated
+* You have **Sass** installed
 
 ### Update Ruby
 ```
 $ gem update --system
 ```
 
-* Compass requires that Sass be installed on your machine
+* Compass **requires** that Sass be installed on your machine
 
 ### Which Sass Version
+
+Find out which version of sass you currently have installed
 
 ```
 $ sass --version
@@ -36,19 +40,24 @@ $ sass --version
 $ gem install compass
 ```
 
-* if you didn't have Sass installed Compass will install it for you
-* if have permissions error use `sude` and enter your mac password when it asks you
+* If you didn't have **Sass** installed **Compass** will install it for you
+* If have permissions error use `sudo` 
+    - Enter your Mac password when it asks you
 
-Bug fix
+## Bug fix
 ![if compass won't load](https://i.imgur.com/OthZl5H.png)
+
 [link to bug fix](http://stackoverflow.com/questions/32891965/error-while-executing-gem-errnoeperm-operation-not-permitted)
+
 ### Check if Compass is installed
+
 ```
 $ compass --version
 ```
 
-
 ### Premium Ways to use compass
+You don't need to pay money to use Compass but there are premium options available
+
 * [compass.app](http://compass.kkbox.com/) 
 * [scout](https://mhs.github.io/scout-app/)
 * [codekit](https://incident57.com/codekit/)
@@ -64,13 +73,22 @@ It will create a folder structure similar to this:
 ![compass project folder structure](https://i.imgur.com/PQU037H.png)
 
 #### `screen.scss`
-* File you write your main styles
+* This is the file that you write your main styles inside
 * Add comment link provided to connect this pages output CSS to the HTML page
-
 
 #### Quick Side Step - FAQ
 
-How do I create compass inside an existing site? Easy, just create a `config.rb` file and paste the following inside it: (make sure to make sure your folders structure matches this file's structure or it won't work)
+##### How do I create compass inside an existing site? 
+Easy, just create a `config.rb` file and paste the following inside it: 
+(_make sure to make sure your folders structure matches this file's structure or it won't work_)
+
+**config.rb**
+
+This is how I like to set up my site structure using Compass
+* I like my Sass folder to be called `scss` and my syntax style of sass to be `scss` instead of `sass`
+* My images to be named `img`
+* My JavaScript to be named `js`a
+* But if you don't like this setup, feel free to use whatever structure you feel comfortable 
 
 ```ruby
 project_type = :stand_alone
@@ -115,7 +133,7 @@ relative_assets = true
 
 #### After changes
 
-`index.html`
+*index.html*
 
 ```html
 <!DOCTYPE html>
@@ -133,8 +151,8 @@ relative_assets = true
 
 ### Compass reset
 * By default compass imports a global `reset`
-    - based on Eric Meyers reset (with minor adjustments)
-        + can preview reset output in `screen.css` as compass comes precompiled
+    - Based on Eric Meyers reset (with minor adjustments)
+        + Can preview reset output in `screen.css` as compass comes precompiled
 
 ### Sass watch
 * [not this guy](http://image.oregonlive.com/home/olive-media/width960/img/oregonian/photo/2015/11/11/-8b3b3d4bdff831f9.JPG)
@@ -145,7 +163,7 @@ $ sass --watch scss:css
 
 ### Compass watch
 
-* make sure you are inside your compass project directory
+* Make sure you are inside your compass project directory
 
 ```
 $ compass watch
@@ -154,7 +172,8 @@ $ compass watch
 * Test by adding some `CSS` to `style.scss` and view the output in `style.css`
 
 ### Configure Compass Project
-You have a workflow and name your folders a certain way. Compass let's you follow your own naming rules.
+* You have a workflow and name your folders a certain way
+* Compass let's you follow your own naming rules.
 
 #### config.rb
 This is the config file you change to follow your own structure naming guide
@@ -184,7 +203,9 @@ javascripts_dir = "js"
 ```
 
 * make the necessary adjustments to your site:
-index.html
+
+**index.html**
+
 ```html
 <link href="css/screen.css" rel="stylesheet" />
 ```
@@ -192,9 +213,12 @@ index.html
 ![new folder structure](https://i.imgur.com/xK2OjFc.png)
 
 ### What is http_path?
-It currently is set to relative to the path of our project so we'll keep that as is
+It currently is set to relative to the path of our project so we'll keep that as it is
 
-**Note**: any changes to config file, stop and rerun compass
+**Note**: 
+1. Any changes to config file
+2. Stop
+3. Rerun compass
 
 * [ruby-based config](http://compass-style.org/help/documentation/configuration-reference/)
 * [sass-based config](http://compass-style.org/help/documentation/sass-based-configuration-options/)
@@ -205,7 +229,7 @@ It currently is set to relative to the path of our project so we'll keep that as
 
 If you want to modify your resets import the utilities into your project
 
-`style.scss`
+**style.scss**
 
 ```scss
 // Compass Modules
@@ -220,7 +244,7 @@ If you want to modify your resets import the utilities into your project
 
 `sass/_reset.scss`
 
-```scss
+```css
 // CSS Resets
 
 @include reset-html5;
@@ -252,15 +276,15 @@ Most of the time you'll just use global reset.
 
 1. Import the compass [CSS3 module](http://compass-style.org/reference/compass/css3/)
 
-```scss
-@import "compass/css3"
+```css
+@import "compass/css3";
 ```
 
 * we can also just import individual modules if we want (instead of whole module)
 
 Add this to your `screen.scss`
 
-```scss
+```css
 body {
     background: #1e5799; /* Old browsers */
     background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6-15 */
@@ -268,12 +292,11 @@ body {
     background: linear-gradient(to bottom,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */    
 }
-
 ```
 
 Replace with 
 
-```scss
+```css
 body {
     @include background(linear-gradient(top, #1e5799, #207cca));
 }
@@ -284,7 +307,8 @@ body {
 
 ### Box sizing
 This changes
-```scss
+
+```css
 // box-sizing
 * {
     @include box-sizing(border-box);
@@ -303,7 +327,7 @@ to this
 
 ### Transform
 
-```scss
+```css
 .box {
   @include rotate(7deg);
   @include transform(translateX(100px) rotate(7deg));
@@ -345,7 +369,7 @@ Use variables to clean it up more
 
 * should put them all in a global variables page
 
-```scss
+```css
 // transforms
 
 $default-transition-duration: 2s;

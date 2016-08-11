@@ -9,6 +9,12 @@ Make sure **mongod** and **nodemon** are running in your terminal tabs
 
 **src/app/index.js**
 
+```js
+router.post( '/todos', function( req, res ) {
+  res.json( req.body );
+} );
+```
+
 We are updating this: `// TODO: Add POST route to create new entries`
 
 ### We are using our `/todos` route twice? Is this correct?
@@ -173,7 +179,7 @@ router.put( '/todos/:id', function( req, res ) {
     if ( err ) {
       return res.status( 500 ).json( { err: err.message } );
     } else {
-      res.json( { 'todo': todo, message: 'Todo Created' } );
+      res.json( { 'todo': todo, message: 'Todo Updated' } );
     }
   } );
 } );
@@ -229,6 +235,37 @@ Send your put data again and this time you will see completed is set to `true`
 
 Make sure `mongod` and `nodemon` are running
 
+## Delete todos
+
+**scripts/services/data.js** (fragment)
+
+```js
+this.deleteTodo = function( todo ) {
+      if ( !todo._id ) {
+        return $q.resolve();
+      }
+      return $http.delete( '/api/todos/' + todo._id ).then( function() {
+        console.log( "I deleted the " + todo.name + " todo!" );
+      } );
+    };
+```
+
+and update the route
+
+```js
+router.delete( '/todos/:id', function( req, res ) {
+  var id = req.params.id;
+  Todo.findByIdAndRemove( id, function( err, result ) {
+    if ( err ) {
+      return res.status( 500 ).json( { err: err.message } );
+    }
+    res.json( { message: 'Todo Deleted' } );
+  } );
+} );
+```
+
+Now you should be able to delete todos
+
 ## Make webpack watch for changes
 * Rebuilds bundles
 
@@ -242,6 +279,19 @@ $ webpack --watch
 A service that helps you run functions asynchronously, and use their return values (or exceptions) when they are done processing.
 
 **/app/scripts/services/data.js**
+
+Add $q
+
+```js
+angular.module( 'todoListApp' )
+  .service( 'dataService', function( $http, $q ) {
+    this.getTodos = function( cb ) {
+      $http.get( '/api/todos' ).then( cb );
+    };
+
+    // code here
+});
+```
 
 ```js
 this.saveTodos = function( todos ) {

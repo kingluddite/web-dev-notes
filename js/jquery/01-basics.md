@@ -10,21 +10,18 @@
 
 ## [JavaScript Style Guide](https://contribute.jquery.org/style-guide/js/)
 
-* use quotes for strings
-
+* **Naming Convention** Use quotes for strings
 
 ## What is Unobtrusive JavaScript
 
 ## jQuery is JavaScript
 
-[Helpful jQuery Learning Resource](http://blog.teamtreehouse.com/beginners-guide-to-jquery)
-
 ## [jQuery Documentation](http://api.jquery.com/)
 
-tips
-* use search box for quick finds
-* click through for more detail
-* most people ignore all and jump straight to code examples at bottom
+**tips**
+* Use search box for quick finds
+* Click through for more detail
+* Most people ignore all and jump straight to code examples at bottom
 
 ## Questions
 What's wrong with this?
@@ -36,7 +33,8 @@ jQuery('.warning').hide();
 jQuery('warning').show(); // oops... I forgot the class '.' (rookie mistake)
 ```
 
-* don't forget the preceding `.` if you're selecting a `class` or a `#` if you selecting an `id`
+* Don't forget the preceding `.` if you're selecting a `class` or a `#` if you selecting an `id`
+
 **Problem:** It will hide and show instantaneously
 
 ```js
@@ -46,7 +44,10 @@ jQuery(".warning").hide();
 jQuery("warning").show();
 ```
 
-* use quotations in jQuery, not single quotes
+[Single or Double Quotes](https://www.codecademy.com/en/forum_questions/53a9e63b8c1ccc54b80006fb)
+
+* I prefer single quotes in JavaScript and jQuery
+* And double quotes for **HTML**
 
 ## Shorthand and $
 

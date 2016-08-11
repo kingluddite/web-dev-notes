@@ -171,7 +171,7 @@ Here is our main template HTML
 
 ## Directives
 * **public/scripts/directives/todo.js**
-    - This is where our code pionts to the templates folder that houses our todo template
+    - This is where our code points to the templates folder that houses our todo template
     - Directives
         + `ng-class` - add classes
         + `ng-click`, `ng-hide`, `ng-show`, `ng-blur`

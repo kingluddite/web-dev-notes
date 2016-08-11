@@ -34,6 +34,8 @@ Install it globally.
 $ npm i -g webpack
 ```
 
+If that doesn't work, [check this out](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md) (it changes the path where you install packages and you need to add this path to to your ZSH)
+
 If you will work with webpack, install webpack-dev-server too
 
 ```
@@ -56,6 +58,15 @@ With webpack our browser won't be loading our JavaScript directly
 * To a new folder called app
 
 Move **public/scripts** into **app/scripts**
+
+### Caution
+When you move all these you need to also move app.js outside `scripts` but inside `app`
+
+![file structure](https://i.imgur.com/ot0v3QF.png)
+
+### Debug webpack
+
+`$ webpack --display-error-details`
 
 ## Research git mv vs mv by itself
 

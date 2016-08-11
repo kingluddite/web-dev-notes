@@ -18,38 +18,39 @@ jQuery Plugin Registry (shutdown)
 * Find Plugins You Need
 * Clear documentation
 * Actively developed
-    - how old it is and if they're still working on it
-    - if it has a github page, you can tell if they are working on, how often and for how long
+    - How old it is and if they're still working on it
+    - If it has a github page, you can tell if they are working on, how often and for how long
 * Responsive
 * Mobile friendly
-    - touch gestures (finger swipe or pinch)
+    - Touch gestures (_finger swipe or pinch_)
 * [FSVS](http://luke.sno.wden.co.uk/full-screen-vertical-scroll)
     - Full Screen Vertical Slider using CSS3 transitions followed up by a jQuery fallback.
 
 ## What do jQuery plugins include?
-* A CSS file (optional)
-* a JS file (required)
-* Images (optional)
+* A CSS file (_optional_)
+* a JS file (_required_)
+* Images (_optional_)
 
 ## Animsition
 [demo link](http://git.blivesta.com/animsition/)
 
-jQuery plugin that helps you animate between pages
-
-### How to download Animsition
+* jQuery plugin that helps you animate between pages
 * It's on github
-* How to use github
 * Files you need and don't need
-* `Dist` folder
-    - files author is distributing
-* download vs git clone
-* maps vs min files
-* rename `dist` the name of plugin (animsition), move all the `css` and `js` files into the `animsition` folder and delete the `css` and `js` empty folders.
-* download jQuery
+* `dist` folder
+    - Files author is distributing
+* Download vs git clone
+* `maps` vs `min` files
+
+#### Steps to Download Animsition
+Rename `dist` the name of plugin (animsition)
+Move all the `css` and `js` files into the `animsition` folder
+Delete the `css` and `js` empty folders.
+Download jQuery (use npm to make process quick and efficient)
 
 1. Position of plugin `css` file
-    * add link to html
-    * put before your custom `css` file
+    * Add link to **HTML**
+    * Put before your custom `css` file
 
 ```html
 <link rel="stylesheet" href="js/animsition/animsition.min.css">
@@ -57,7 +58,7 @@ jQuery plugin that helps you animate between pages
 ```
 
 2. Add jQuery file
-    - put at bottom of html (before `</body>`)
+    - Put at bottom of html (before `</body>`)
 
 ```html
 <script src="js/jquery-1.11.2.min.js"></script>
@@ -70,14 +71,18 @@ jQuery plugin that helps you animate between pages
 <script src="js/animsition/jquery.animsition.min.js"></script>
 ```
 
-4. Use documentation to structure HTML a certain way
+## Do the same thing but replace with `npm`
+
+### Documentation
+Use documentation to structure HTML a certain way
 
 ```html
 <div class="animsition">[rest of code]</div>
 ```
 
-5. Add your custom js
-    - to make program work you'll need to add your own js either externally (preferred) or just a set of `<script>` tags on a page
+### Custom JavaScript
+Add your custom js
+* To make program work you'll need to add your own js either externally (_preferred_) or just a set of `<script>` tags on a page
 
 ```html
 <script>
@@ -85,7 +90,8 @@ jQuery plugin that helps you animate between pages
 </script>
 ```
 
-6. Select element on page using jQuery
+### Selecting jQuery elements
+Select element on page using jQuery
 
 ```html
 <script>
@@ -93,7 +99,8 @@ $('.animsition' )
 </script>
 ```
 
-7. Call the plugin function
+### Calling jQuery function
+Call the plugin function
 
 ```html
 <script>
@@ -103,7 +110,7 @@ $('.animsition' ).animsition();
 
 ## Practice with a plugin
 
-index.html
+**index.html**
 
 ```html
 <!DOCTYPE html>
@@ -174,16 +181,15 @@ index.html
           </div>
         </footer><!--/footer-->
         </div>
-        
     </body>
 </html>
-
 ```
 
-## Add JavaScript and CSS links to HTML for animition and jquery
+## Add JavaScript and CSS
+Add JavaScript and CSS links to HTML for animition and jquery
 
 ## Add necessary HTML
-from looking at [online documentation](http://git.blivesta.com/animsition/fade-down-sm/) you see this:
+From looking at [online documentation](http://git.blivesta.com/animsition/fade-down-sm/) you see this:
 
 ```html
 <body>
@@ -195,24 +201,24 @@ from looking at [online documentation](http://git.blivesta.com/animsition/fade-d
 ```
 
 * This let's you know to create a parent div tag with `animsition` class
-* each link need a class of `animsition-link`
-
-After connecting css and js for animsition and jquery
-and creating and linking custom js with calling js code from online documentation, you should see `index.html` fade in (others pages don't work because we didn't add code to them yet)
+* Each link need a class of `animsition-link`
+* After connecting CSS and JS for animsition and jQuery
+and creating and linking custom JS with calling JS code from online documentation, you should see `index.html` fade in
+* Others pages don't work because we didn't add code to them yet)
 
 ## Exploring Plugin Options
 
 JavaScript Object Literal `{}`
-* a set of property names and propert values
-* plugins use them to receive settings that control how the plugin works
+* A set of property names and property values
+* Plugins use them to receive settings that control how the plugin works
 
 # [Stickyjs Demo](http://stickyjs.com/)
 ## [Stickyjs Github](https://github.com/garand/sticky)
 
 ### Bug
-I searched for stickyjs through NPM and used it but the code broke.
-I found another stickyjs and manually downloaded it and it worked.
-Viewed in browser and it works fine.
+* I searched for `stickyjs` through NPM and used it but the code broke.
+* I found another `stickyjs` and **manually downloaded** it and it worked.
+* Viewed in browser and it works fine.
 
 ## Plugin Events
 
@@ -220,8 +226,8 @@ Viewed in browser and it works fine.
 [Github link](https://github.com/kenwheeler/slick/)
 [Demo page](http://kenwheeler.github.io/slick/)
 [settings](http://kenwheeler.github.io/slick/#settings)
-* responsive
-* swipe enabled
+* Responsive
+* Swipe enabled
 
 ### Install slick with npm
 
@@ -231,7 +237,7 @@ $ npm install slick-carousel
 
 #### Add HTML
 
-`index.html` (code fragment)
+**index.html** (_code fragment_)
 
 ```html
 [MORE CODE]
@@ -255,9 +261,9 @@ Since we are only using this on one page we just embed the call to the slick car
 </script>
 ```
 
-## slick css and default theme
-* author broke the two files up so that you could style your own slider effects
+## Slick css and default theme
+* Author broke the two files up so that you could style your own slider effects
 
 # Plugin conflicts
-Working with more than one jquery plugin can cause problems.
-The sticky nav and carousel plugins have problems running together.
+Working with more than one jQuery plugin can cause problems.
+The **sticky nav** and **carousel** plugins have problems running together.
