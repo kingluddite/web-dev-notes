@@ -70,6 +70,9 @@ import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc5
 * You now have the ability to add other packages to ST3
 * Make sure you are installing the code for ST3 and not ST2 or you will run into problems down the road.
 
+## Snippets and Scopes
+[Link to all scopes in Sublime Text 3](https://gist.github.com/J2TeaM/a54bafb082f90c0f20c9)
+
 ## Adding Packages
 Adding packages is really quick, painless and kind of fun.
 * Type this keyboard shortcut
@@ -111,9 +114,10 @@ To turn this on, simply put this in your settings file:
   - Quickly find files in your project)
 * SidebarEnhancements
   - Give you many more options when right click on sidebar)
-* Glue
+* Glue (_I installed this and after trying it out, uninstalled it_)
   - add your terminal inside Sublime Text
   - [link](http://sweetme.at/2014/04/07/glue-a-terminal-for-sublime-text/)
+* **JavaScript & Node JS Snippets** provide snippets for some of the most used JavaScript functions and methods.
 * editorconfig
   - helps developers define and maintain consistent coding styles between different editors and IDEs [editorconfig.org](http://editorconfig.org)
     + [videos (3 parts)](https://www.youtube.com/watch?v=YbHw1VdjWbA) 
@@ -160,6 +164,14 @@ CODE IN HERE WILL NOT BE FORMATTED
 /* beautify preserve:end */
 
 **tip** make the above a snippet for ease of use
+
+[How to add snippets](http://www.millwardesque.com/speed-development-using-keyboard-triggered-snippets-sublime-text-2/)
+
+quickly add keybinding to add new snippet
+
+`  { "keys": ["ctrl+n", "ctrl+s"], "command": "new_snippet"},`
+
+[link to list of sublime text 3 commands](http://codezag.com/list-sublime-text-3-commands/)
 
 * Sass
 * SassBeautify
@@ -209,12 +221,28 @@ $ brew install homebrew/php/phplint
 $ npm install -g jshint
 ```
 
-<<<<<<< HEAD
 ## Vintage Mode
 The best coders I know use Vim and the reason is they've learned to do everything with just their keyboard. If you never use your mouse, you quickly learn that typing and getting stuff done gets easier and faster.
-=======
+
+## Excluding Files & Folders From Search
+There may be files or folders that you do not want to see in your Goto Anything searches. Things like compiled JavaScript from CoffeeScript, compiled CSS from Sass or any other assets. If you'd like to exclude specific files you can by modifying your user settings file (_Preferences → Settings - User_) and defining the binary_file_patterns property.
+
+`"binary_file_patterns": [".DS_Store", ".gitignore", "*.psd"]`
+
+The example above ignores any .DS_Store, .gitignore or .psd files. To exclude entire folders, you can append a forward slash / to the end of a folder name.
+
+"binary_file_patterns": ["node_modules/", "vendor/", "tmp/"]
+
+**Note:** You may be tempted to use the `file_exclude_patterns` or folder_exclude_patterns properties to exclude files from Goto Anything instead of `binary_file_patterns`; While these both do the job, they also happen to remove those files and folders from the sidebar - which may not be a desirable outcome.
+
+### Some useful ideas to ponder with how you could use this info:
+
+```
+  "file_exclude_patterns": [".pyc", ".pyo", ".exe", ".dll", ".obj",".o", ".a", ".lib", ".so", ".dylib", ".ncb", ".sdf", ".suo", ".pdb", ".idb", ".DS_Store", ".class", ".psd", ".db"],
+  "binary_file_patterns": [".jpg", ".jpeg", ".png", ".gif", ".ttf", ".tga", ".dds", ".ico", ".eot", ".pdf", ".swf", ".jar", "*.zip"],
+```
+
 ## Project
->>>>>>> eaed1d70651d9fdf5729e29df78b6eb460df1163
 
 You have the option of using Vim mode in Sublime (called `Vintage Mode`). While it doesn't have all the bells and whistles of Vim, it has enough to make you dangerous. If you want to see all the possibilities out there, [check out this link](https://www.maketecheasier.com/vim-keyboard-shortcuts-cheatsheet).
 

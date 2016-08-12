@@ -65,3 +65,182 @@ But in most cases its used to authenticate a user
 
 **Oauth** can request info for **create**, **reading**, **update**, **deleting** all sorts of info on a provider's website
 * Valid profile with a trusted provider
+
+## [Github Starter](kingluddite/passport-oauth-workshop-start.git)
+Click to download starter files
+
+* built with Express
+* install dependencies `$ npm install`
+* start with `$ npm start` or `$ node ./bin/www`
+
+## Current State of app
+* our app will save user info to mongodb
+* user model defines user data we want to save
+    - email
+    - name
+    - favoriteBook
+    - photo
+    - we do not have a password field
+        + this is because we'll be using a user's profile info returned from eiter github or facebook to authenticate the user
+
+## Our `routes` folder
+* index.js
+*   home (root rout `/`)
+*   about /about
+*   contact /contact
+*   profile /profile
+*   login /login
+
+Passport makes the user object available to the request object
+so all of our routes and views have access to that data
+pay attention the the /profile handler
+    * if there is a user, the profile page will render
+        + if no user, it will redirect to the login page (/login)
+
+## Views
+* in profile view, it also checks if the user exists
+
+**views/profile.pug**
+
+`if(user)`
+
+* if it does, it will show the photo and the name
+
+**views/navbar.pug**
+
+* it checks for a user too
+    - if we don't have a user, we'll display login links
+    - if user is present, the logout button will appear
+
+## Install Passport
+`$ npm install passport --save`
+
+## Install express-session
+
+`$ npm install express-session --save`
+
+## Install connect-mongo
+
+`$ npm install connect-mongo --save`
+* store the user while the browser session is still open
+* we will be using a persistant session store with mongodb
+* this will allow user to remain logged in when they return to the site
+
+**app.js**
+
+require passport, express-session, connect-mongo and passing in the session
+
+(code fragment app.js)
+
+```js
+var mongoose = require( 'mongoose' );
+var passport = require( 'passport' );
+var session = require( 'express-session' );
+var MongoStore = require( 'connect-mongo' )( session );
+var User = require( "./models/user" );
+```
+
+* we need to initialize the express session install
+* do this just after the DB connection
+
+(code fragment app.js)
+
+```js
+// mongodb connection
+mongoose.connect( "mongodb://localhost:27017/bookworm-oauth" );
+var db = mongoose.connection;
+
+// Session config for Passport and MongoDB
+var sessionOptions = {
+  secret: "this is a super secret hooha!",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore( {
+    mongooseConnection: db
+  } )
+};
+```
+
+* now that we have our session set up as middleware
+* it will be available to the passport middleware
+
+## Initialize Passport
+
+(code fragment app.js)
+
+```js
+app.use( session( sessionOptions ) );
+
+// Initialize Passport
+app.use(passport.initialize());
+```
+
+## Restore the Passport session
+* this restores the user's previous session
+    - if a user was previously signed in, they still will be when they return to the site
+
+```js
+app.use(passport.initialize());
+
+// Restore Session
+app.use(passport.session());
+```
+
+Passport doesn't require sessions to work (which is fine if you want a temporary authorization for a one-off request)
+
+In order for Passport to handle sessions, you need to implement two methods
+1. passport.serializeUser()
+    * to serialize something is to translate a data structure for storage
+        - in our case (a session storage)
+        - requires a function with 2 arguments
+            + user and done
+2. passport.deserializeUser()
+
+```js
+passport.deserializeUser(function(value, done) {
+
+});
+```
+
+* the value in our case is a user id
+
+```js
+passport.deserializeUser( function( userId, done ) {
+  User.findById( userId, function( err, user ) {
+    done( err, user );
+  } );
+} );
+```
+
+* findById() will find a user's id
+* we can then call `done` when the user is found
+    - the done callback will either pass an error to the express middleware that handles errors, or the user model that will be added to the request object so that its accessible to the route handlers and views
+
+    * to read the data again you need to deserialize
+        - aka reconstruct the stored data
+    * we can pass the done as a callback, since the done's function parameters are the same as Mongoose's callback parameters (err, document returned)
+
+so this:
+
+```js
+passport.deserializeUser( function( userId, done ) {
+  User.findById( userId, function( err, user ) {
+    done( err, user );
+  } );
+} );
+```
+
+becomes this:
+
+```js
+passport.deserializeUser( function( userId, done ) {
+  User.findById( userId, done );
+} );
+```
+
+## Documentation
+* [Passport.js Sessions](http://passportjs.org/docs#sessions)
+* [Express Session](https://github.com/expressjs/session)
+* [connect-mongo Express Integration](https://github.com/jdesboeufs/connect-mongo#express-or-connect-integration)
+* [Mongoose findById](http://mongoosejs.com/docs/api.html#model_Model.findById)
+
