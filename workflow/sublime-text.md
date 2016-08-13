@@ -1,3 +1,4 @@
+
 # Sublime Text 3
 Is a text editor. A few years ago I was using `Dreamweaver` as were many people. There were other popular `Text Editors` like `Text Wranger` and `Coda` but Sublime Text came out of nowhere and took the coding world by storm. It was fast and free (if you could put up with the pop up alert windows or pay the low fee to own a copy yourself). 
 
@@ -182,7 +183,7 @@ quickly add keybinding to add new snippet
     + [article with more info on this](https://scotch.io/tutorials/how-to-catch-your-errors-in-sublime-text-3)
     + things I like my js linter to have
       * change these in the user settings for sublimelinter
-      * SublimeLinter.subline-settings
+      * SublimeLinter.sublime-settings
 
 ```js
 "lint_mode": "background",
