@@ -16,7 +16,7 @@ If you want to easily migrate sites, I hear that many people love [DesktopServer
 `.bash_profile` (at top)
 
 ```
-export MAMP_PHP=/Applications/MAMP/bin/php/php5.3.6/bin/php 
+export MAMP_PHP=/Applications/MAMP/bin/php/php5.6.10/bin/php 
 export PATH="$MAMP_PHP:$PATH"
 ```
 

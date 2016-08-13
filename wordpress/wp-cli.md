@@ -1,7 +1,34 @@
-# WP CLI
+# [WP CLI](http://wp-cli.org/)
 
 ## Install WordPress with WP-CLI
 ### Core download install
+download the `wp-cli.phar` file using curl:
+
+`$ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+`
+Next, check if it is working:
+
+`$ php wp-cli.phar --info`
+
+To use WP-CLI from the command line by typing `wp`, make the file executable and move it to somewhere in your PATH. For example:
+
+```
+$ chmod +x wp-cli.phar
+$ sudo mv wp-cli.phar /usr/local/bin/wp
+```
+
+```
+$ wp --info
+PHP binary:    /usr/bin/php5
+PHP version:    5.5.9-1ubuntu4.14
+php.ini used:   /etc/php5/cli/php.ini
+WP-CLI root dir:        /home/wp-cli/.wp-cli
+WP-CLI packages dir:    /home/wp-cli/.wp-cli/packages/
+WP-CLI global config:   /home/wp-cli/.wp-cli/config.yml
+WP-CLI project config:
+WP-CLI version: 0.23.0
+```
+
 
 This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
 
@@ -18,7 +45,7 @@ Before you do this step you need to create a database in MySQL. Using the GUI ph
 So now you are ready to create your `wp-config.php` file
 
 ```
-$ wp core config --dbuser=root --dbpass=root --dbname=wp_bootstrap
+$ wp core config --dbuser=root --dbpass=root --dbname=stranger_things_wp
 ```
 
 This will create the file to connect you to your MySQL databse. The above code is assuming you used MAMP and the default username and password for MAMP is root and root. Change the --dbname value to match the name you used when creating the empty database in phpMyAdmin (or MySQL terminal). I recommend using underscores instead of dashes in db names with more than one word (ie my_db instead of my-db). For security reasons you may want to not have db in name so hackers won't find it so easily.
@@ -28,10 +55,10 @@ This will create the file to connect you to your MySQL databse. The above code i
 If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal. 
 
 ```
-$  wp core install --url=http://localhost/luthier-builder --title=WPLuthierBuilder --admin_user=peh2 --admin_password=password --admin_email=howley.phil@gmail.com
+$  wp core install --url=http://localhost/stranger-things --title=StrangerThings --admin_user=admin --admin_password=password --admin_email=howley.phil@gmail.com
 ```
 
-* sometimes you may have to rename localhost in wp-config.php to 127.0.0.1 to avoid database connection error
+* sometimes you may have to rename localhost in wp-config.php to 127.0.0.1 to avoid database connection error (see trouble shooting tips at the bottom of this file for more tips/suggestions)
 
 If you get the above error try to change the file permissions:
 
@@ -406,3 +433,12 @@ $ wp core download
 ```
 
 If it works, you did it. Congrats!
+
+## Troubleshooting
+If you get `mysql command not found` error, add this to your .zshrc and refresh that file.
+
+`export path=$PATH:/Applications/MAMP/Library/bin`
+
+If you get error establishing connection, add this sym link
+
+`$ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /tmp/mysql.sock`
