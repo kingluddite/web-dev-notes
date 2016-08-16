@@ -141,7 +141,7 @@ $(".warning");
 * [Dimensions](http://api.jquery.com/category/dimensions/)
 * [Effects](http://api.jquery.com/category/effects/)
     - animations over time
-* [Events] - when user interacts with a thing, and you can do something when the event occurs (user triggered or computer triggered)
+* [Events](http://api.jquery.com/category/events/) - when user interacts with a thing, and you can do something when the event occurs (user triggered or computer triggered)
     - Browser Events
     - Document Loading
     - Event Handler Attachment
