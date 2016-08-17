@@ -1,9 +1,10 @@
 # Resets
 ## [Eric Meyers Reset]CSS(http://meyerweb.com/eric/tools/css/reset/)
 * Zeroes out every elements default (0 or none)
-show how it works
-index.html
-```
+
+**index.html**
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +33,10 @@ index.html
 ```
 
 ## Add reset.css
-`css/styles.css`
-```
+
+**css/styles.css**
+
+```css
 /**
  *
  * Reset
@@ -89,17 +92,23 @@ table {
 }
 
 ```
-You will see how it works (all default spaces removed)
-* You can customize reset.css, you don't have to use all of it
 
+## Test it out
+You will see how it works (_all default spaces are removed_)
+
+* You can customize `reset.css`
+* You don't have to use all of it
 
 ### `normalize.css`
-http://necolas.github.io/normalize.css/
-* if we are building a large project, we don't want to rewrite all the defaults, that is where normalize.css becomes a better solution
+[link to normalize.css](http://necolas.github.io/normalize.css)
 
-*You Can Add On To Normalize
-Here Is A Common Rule Added For Lists
-```
+* If we are building a large project, we don't want to rewrite all the defaults, that is where `normalize.css` becomes a better solution
+
+* You Can Add On To Normalize
+
+##Common Rule Added For Lists
+
+```css
 /* Lists
    ========================================================================== */
 
@@ -113,5 +122,6 @@ ul {
   list-style: none;
 }
 ```
+
 **Tip** use resets as a starting point
 
