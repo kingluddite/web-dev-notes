@@ -225,6 +225,8 @@ UserSchema.statics.authenticate = function( email, password, callback ) {
       } );
     } );
 };
+
+// hash password before saving to DB
 ```
 
 ## Test
@@ -266,11 +268,21 @@ router.post( '/login', function( req, res, next ) {
         var err = new Error( 'Wrong email or password' );
         err.status = 401;
         return next( err );
+      } else {
+        req.session.userId = user._id;
+        return res.redirect( '/profile' );
       }
     } );
-}
-// more code
-});
+  } else {
+    var err = new Error( 'Email and password are required' );
+    err.status = 401; // unauthorized
+    return next( err );
+  }
+} );
+
+
+// GET /register
+
 ```
 
 * Conveniently Express adds session data to the request object, so anywhere you can request the request object, like any route, you can set and read session data, and Express also creates the cookie for us automatically
