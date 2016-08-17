@@ -333,6 +333,8 @@ block content
 
 **routes/index.js**
 
+without middleware ...
+
 ```js
 // GET /profile
 route.get( '/profile', function( req, res, next ) {
@@ -351,7 +353,22 @@ route.get( '/profile', function( req, res, next ) {
     } );
 } );
 ```
-Check if user is logged in
+
+but if we user our custom middleware, our route become more efficient (and less code, and it is reusable)
+
+```js
+// GET /profile
+router.get( '/profile', mid.requiresLogin, function( req, res, next ) {
+  User.findById( req.session.userId )
+    .exec( function( error, user ) {
+      if ( error ) {
+        return next( error );
+      } else {
+        return res.render( 'profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook } );
+      }
+    } );
+} );
+```
 Status code 403 - page is forbidden or offlimits unless you are logged in
 `user.name` - pulls from database
 `name:` is template variable
