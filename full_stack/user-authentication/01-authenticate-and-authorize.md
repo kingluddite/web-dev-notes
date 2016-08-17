@@ -11,7 +11,7 @@ Websites authenticate user by validating the credentials the user provides
 * using email address and password
 
 ## Authorization
-When site determines who the user it, it can determine which parts of the site the user will have access to
+When site determines who the user is, it can determine which parts of the site the user will have access to
 
 * Means you are allowed to:
     - See certain information
@@ -19,7 +19,7 @@ When site determines who the user it, it can determine which parts of the site t
 
 **example**
 
-* After siging into facebook you can:
+* After signing into facebook you can:
     - View your friends statuses
     - Update your own status
 

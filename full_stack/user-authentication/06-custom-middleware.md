@@ -7,7 +7,7 @@ Middleware is software that sits in the "middle" of other parts of your applicat
 * Add logic to template files so they display different information based on if a user is logged in or not
 * Add a logout feature
     - feel safe that someone won't jump on their computer and impersonate them
-* Add write custom middleware adds two simple methods that let you control routes based on whether a user is logged in or not
+* Write custom middleware adds two simple methods that let you control routes based on whether a user is logged in or not
 * Use mongodb to create a production ready session storage system
     - one that can handle thousands of simultaneous users
 
@@ -76,16 +76,106 @@ app.use( function( req, res, next ) {
         a.btn.btn-info.pull-md-right(href='login') Login
 ```
 
+## Now you need to attach the session to the user
+So we are going to attach the session to the user when their profile is created.
+
+You will need this line added to your route
+
+```js
+// use schema's `create` method to insert document into Mongo
+    User.create( userData, function( error, user ) {
+      if ( error ) {
+        return next( error );
+      } else {
+        req.session.userId = user._id; // ADD THIS LINE
+        return res.redirect( '/profile' );
+      }
+    } );
+```
+
+## profile route
+
+```js
+// GET /profile
+router.get( '/profile', mid.requiresLogin, function( req, res, next ) {
+  User.findById( req.session.userId )
+    .exec( function( error, user ) {
+      if ( error ) {
+        return next( error );
+      } else {
+        return res.render( 'profile', { title: 'Profile', name: user.name, favorite: user.favoriteBook } );
+      }
+    } );
+} );
+```
+
+## profile view
+
+views/profile.pug
+
+```
+extends layout
+
+block content
+  .main.container.clearfix
+    .row
+      .col-md-8.col-md-offset-2
+        h1.display-4
+          img.avatar.img-circle.hidden-xs-down(src='/images/avatar.png', alt='avatar')
+          | #{name}
+        h2.favorite-book Favorite Book
+        | #{favorite}
+Contact GitHub API Training Shop Blog About
+
+```
+
+So now when you register, your user id will be added to the session.
+
+In order to use sessions you need to add `npm install express-session --save` and require it at the top of `app.js`
+
+app.js
+
+```js
+'use strict';
+var express = require( 'express' );
+var bodyParser = require( 'body-parser' );
+var mongoose = require( 'mongoose' );
+var session = require( 'express-session' );
+var app = express();
+```
+
+## Login view
+views/login.pug
+
+```
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Log In
+        form(method='POST' action='/login')
+          div.form-group
+            label(for='email') Email
+            input.form-control(type='text' id='email' placeholder='email' name='email')
+          div.form-group
+            label(for='password') Password
+            input.form-control(type='password' id='password' placeholder='password' name='password')
+          button.btn.btn-primary(type='submit') Log in 
+```
+
 ## Test
 
 `$ nodemon`
 `http://localhost:3000`
-Login
+Click Login
 You'll see LOGIN, changes to LOG OUT
 SIGN IN button is hidden
 But logout button is a broken link because we didn't create that route yet
 
 ## Log Out
+Destroying the session -- which was tracking the user -- is the easiest way to log the user out of the site.
 
 **routes/index.js**
 
@@ -111,18 +201,20 @@ router.get( '/logout', function( req, res, next ) {
 
 ## Test
 
-Login and then try to log out. It should now work.
+Click logout and then it will destroy the session and use the logic in navbar.pug to remove logout and replace it with login and bring back 'Sign up'
 
-Destroying the session -- which was tracking the user -- is the easiest way to log the user out of the site.
+but we can't got to the login route because we have not created login.pug or created the login route yet.
+
+
 
 ## Express Middleware
 Express is known as a routing and middleware framework
 
 ### Routes
-Routing lets our app do different things and display different information based on which URL the browser requests and how it request it
+Routing lets our app do different things and display different information based on which URL the browser requests and how it requests it
 
 So sending a GET request to the /login route leads to the login form
-While a PUT request to /login tells the app to authenticate the user by comparing the form data against records in the database
+While a PUT request to /login route tells the app to authenticate the user by comparing the form data against records in the database
 
 ## Middleware
 Software that sits in the middle of other parts of your app

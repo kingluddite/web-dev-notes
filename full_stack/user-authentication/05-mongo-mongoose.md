@@ -319,9 +319,9 @@ Use `bcrypt`, a hashing algorithm that converts a password to a fixed length, st
 5. If they match, the user is authenticated and logged in
 
 ### Hashing is a 1-way process
-* You can not unhash or decrypt a hash value
+* It is very hard to unhash or decrypt a hash value
 * If someone gets a hold of DB they only have password hashed values
-Very hard to unhash or figure out password even if you have the hashed password from the DB
+Very hard to unhash or figure out the password even if you have the hashed password from the DB
 But with enough computer power even hashed values are not secure
 someone can reverse engineer a hash to get to the original password
 
@@ -375,8 +375,8 @@ UserSchema.pre( 'save', function( next ) {
         - The bigger the number, the slower the process, the greater the security
         - **10** is a good number to provide security without hurting our server performance
     + **callback function** that's run once the hash is generated
-    + **user** contains document Mongoose is about to pass into Mongo
-    + **password** is plain text password supplied by user
+    + **user** contains the document Mongoose is about to pass into Mongo
+    + **password** is the plain text password supplied by user
 
 ```js
 // hash password before saving to DB
