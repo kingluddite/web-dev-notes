@@ -15,7 +15,7 @@ As users click from page to page in our site, we'll use cookies and sessions to 
 * Log in form
 * A post route
     - Makes sure user supplies values for email and password
-    - Makes ure supplied email and password match a user in DB
+    - Makes sure supplied email and password match a user in DB
     - It authenticates users so they can visit the profile page so they can see information specific to them
 
 We'll need to add a new behind the scenes feature to deal with the HTTP stateless protocol
@@ -201,6 +201,31 @@ router.post( '/login', function( req, res, next ) {
 ```
 
 401 status code - unauthorized, use it to indicate missing or bad authentication
+
+## Update your models/user.js
+
+```js
+// authenticate input against database documents
+UserSchema.statics.authenticate = function( email, password, callback ) {
+  User.findOne( { email: email } )
+    .exec( function( error, user ) {
+      if ( error ) {
+        return callback( error );
+      } else if ( !user ) {
+        var err = new Error( 'User not found.' );
+        err.status = 401;
+        return callback( err );
+      }
+      bcrypt.compare( password, user.password, function( error, result ) {
+        if ( result === true ) {
+          return callback( null, user );
+        } else {
+          return callback();
+        }
+      } );
+    } );
+};
+```
 
 ## Test
 Should make you enter email and password if you go to http://localhost:3000/login and just hit login button

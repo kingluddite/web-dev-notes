@@ -125,8 +125,6 @@ block content
           | #{name}
         h2.favorite-book Favorite Book
         | #{favorite}
-Contact GitHub API Training Shop Blog About
-
 ```
 
 So now when you register, your user id will be added to the session.
@@ -446,7 +444,7 @@ var express = require( 'express' );
 var bodyParser = require( 'body-parser' );
 var mongoose = require( 'mongoose' );
 var session = require( 'express-session' );
-var MongoStore = requie( 'connect-mongo' )(session); // ADD THIS LINE
+var MongoStore = require( 'connect-mongo' )(session); // ADD THIS LINE
 var app = express();
 ```
 
@@ -468,8 +466,8 @@ app.use( session( {
 } ) );
 ```
 
-* We are using `db` here but we had defined it later in the code
-* So cut all our session code and place it after the MongoDB connection
+
+* **note** session code comes after the MongoDB connection
 
 Final **app.js**
 
@@ -567,6 +565,7 @@ When user logs in you don't want their email and password from their browser to 
 * You need to aquire a certificate signed by a trusted source to verify the security of the website
 * You can get a certificate for free from [Let's Encrypt](https://letsencrypt.org/)
     - It requires some set up on your server to use your free certificate
+    - This makes it easier [certbot](https://certbot.eff.org/)
 
 [Getting Started with Let's Encrypt](https://letsencrypt.org/getting-started/)
 [Let's Encrypt Middleware](https://github.com/Daplie/letsencrypt-express)
