@@ -8,7 +8,7 @@
 * Shorthand for writing **HTML** tags
 * Express reads **Pug** and expands into complete **HTML**
 
-## Other pub benefits
+## Other Pug benefits
 * You can use multiple templates to assemble a web page
     - Enables you to share similar components between pages
         + Without writing extra **HTML**
@@ -174,6 +174,6 @@ router.get( '/register', function( req, res, next ) {
 ```
 
 * `{ title: 'Sign Up'}` is an object containing one key and one value
-    + that will pass the string **Register Today!** into the `layout.pug` template (_using `#{title}`_) that is extended at the beginning of the `register.pug` template 
+    + that will pass the string **Sign Up!** into the `layout.pug` template (_using `#{title}`_) that is extended at the beginning of the `register.pug` template 
 
 

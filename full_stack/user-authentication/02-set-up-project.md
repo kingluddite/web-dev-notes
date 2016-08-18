@@ -9,7 +9,7 @@
 
 FYI: pug aka jade
 
-[Starting Express site](https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet)
+[Starting Express site](https://github.com/kingluddite/js-auth-with-express-and-mongo.git)
 
 ## The routes we have already
 * GET route to `/` (aka the root)

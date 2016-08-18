@@ -1,4 +1,4 @@
-#Positioning
+# Positioning
 
 ## Parent container relative value
 ```
@@ -7,12 +7,11 @@
 }
 ```
 
-A child element with `bottom: 20px` will move up from the bottom (of the parent element) 20px
+A child element with `bottom: 20px` will move up from the bottom (_of the parent element_) 20px
 
-* can move it also with left or right too
-* 
+* You can also move it with `left` or `right` 
 
-```
+```css
 .main-logo {
     width: 150px;
     top: 20px;
@@ -24,23 +23,26 @@ A child element with `bottom: 20px` will move up from the bottom (of the parent 
   }
 ```
 
-**BAD from above**
-* gives us horizontal scrollbar
-* large white space on right
-**Fix**
-```
+## BAD IDEA
+* Gives us horizontal scrollbar
+* Large white space on right
+
+## GOOD IDEA
+* Gets rid of white gap and scrollbar
+
+```css
 .main-header {
     padding: 15px;
     min-height: 100px;
     overflow: hidden;
   }
 ```
-* gets rid of white gap and scrollbar
+
 
 ## Absolute Position
-if no element has relative, the browser will suffice
+If no element has relative position, the browser will suffice
 
-```
+```css
 .main-header {
     position: relative;
   }
@@ -54,13 +56,14 @@ if no element has relative, the browser will suffice
 
 ### Collapse Bug with Positioning
 No Clearfix solution
-So?
+
+#### So what. Who cares?
 Make sure there is always a height for the containing element
 
 ## Make columns with positioning
-* normally we would not use positioning to lay out comments
+Normally we would not use positioning to lay out columns
 
-```
+```css
 .content-row {
     position: relative;
   }
@@ -76,12 +79,14 @@ Make sure there is always a height for the containing element
     right: 0;
   }
 ```
-**Problem**
+
+## BAD IDEA
 Need to give containing element `height` of 100% otherwise the content-row will collapse
 
 ## Fixed Positioning
-common is a fixed header
-```
+Common is a fixed header
+
+```css
 .main-header {
     position: fixed;
     width: 100%;
@@ -89,9 +94,12 @@ common is a fixed header
   }
 ```
 
-* when you scroll up the z-index is messed up (common problem)
-**Fix** - give main-header a z-index of 999
-```
+* When you scroll up the `z-index` is messed up (_common problem_)
+
+## GOOD IDEA
+Give main-header a `z-index` of 999
+
+```css
 .main-header {
     position: fixed;
     width: 100%;
@@ -99,10 +107,12 @@ common is a fixed header
     z-index: 999;
   }
 ```
-**note:** elements positioned absolutely have a higher z-index then elements positioned fixed
 
-what if we wanted our header fixed to the bottom of our page?
-```
+**note:** Elements positioned absolutely have a higher `z-index` then elements positioned fixed
+
+## What if we wanted our header fixed to the bottom of our page?
+
+```css
 .main-header {
     position: fixed;
     width: 100%;
@@ -112,7 +122,8 @@ what if we wanted our header fixed to the bottom of our page?
 ```
 
 ## Absolute Centering of icon
-```
+
+```css
 .icon {
   background-color: #39add1;
   margin-top: 34px;
@@ -135,6 +146,7 @@ what if we wanted our header fixed to the bottom of our page?
   margin: auto;
 }
 ```
+
 * Must include `margin: auto`
-* must zero-out TRBL box model of positioning properties
+* Must zero-out TRBL box model of positioning properties
 

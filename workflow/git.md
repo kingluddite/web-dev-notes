@@ -221,7 +221,7 @@ Save.
 
 Try to push again and it should work now.
 
-<<<<<<< Updated upstream
+
 ## Git Aliases
 These aliases should be in your `.zshrc`
 
@@ -275,5 +275,40 @@ I ran into this issue when I tried to run `$ git rebase --continue` and git was 
 [This article explains why](http://wholemeal.co.nz/blog/2010/06/11/no-changes-did-you-forget-to-use-git-add/) and offers a solution:
 `$ git rebase --skip`
 
+
 remove everything from staging
 `$ git reset HEAD -- .`
+
+## List remote branches
+[source](http://gitready.com/intermediate/2009/02/13/list-remote-branches.html)
+Sometimes you may need to figure out what branches exist on a remote repository so you can pull them down and check them out, merge them into your local branches, etc. If you’re using GitHub or gitweb to host your repository it’s usually easy to determine the branch names, but if you need to get them in general or for scripts it’s not exactly clear.
+
+The easiest way is just to use the git branch commands’ various options. -a shows all local and remote branches, while -r shows only remote branches.
+`$ git branch`
+
+* master
+
+`$ git branch -a`
+
+* master
+  origin/1-2-stable
+  origin/3-0-unstable
+  origin/HEAD
+  origin/master
+
+`$ git branch -r`
+
+  origin/1-2-stable
+  origin/2-0-stable
+  origin/2-1-stable
+  origin/HEAD
+  origin/master
+
+So, once you know the name of the branch it’s quite simple to check them out. If you have color options on it’s also quite easy to tell which branches aren’t pulled down since they’re listed in red.
+
+`$ git remote show origin`
+
+The `ls-remote` command returns the SHA1 hash of the latest commit for that reference, so it is quite easy to parse out and get to the exact commit you need if you’re doing some scripting. The --heads option lists only branch names since the command can list tags too.
+If you have any other uses for these commands or an easier way to figure out branches that live on a remote, comment away!
+
+`$ git ls-remote --heads origin`

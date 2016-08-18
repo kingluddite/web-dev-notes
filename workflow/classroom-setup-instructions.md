@@ -35,6 +35,8 @@ What Packages do I need to install on Sublime Text 3?
 * MarkdownEditing
 * MarkdownPreview
 * HTML-CSS-JS Prettify
+* Sass
+    - for Sass Syntax
 
 **note**: You will install node (see below). Once that is installed you will set HTML-CSS-JS Prettify to format on save by opening the command palette (`cmd` + `shift` + `p`) and typing `option` and choosing this:
 
