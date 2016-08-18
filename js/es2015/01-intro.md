@@ -62,3 +62,84 @@ can be a:
 ## immediately invoked function
 
 `(function someFunc() {})()`
+
+## Template Strings
+Concatenating strings in JavaScript has lead to a lot of confusion. With Template Strings we can safely construct strings with ease.
+
+* Problems with:
+  - concatenating strings
+  - interpolating values
+
+```
+'use strict';
+
+const student = { name: 'James', followerCount: 34 };
+
+let tableHtml = BACKTICK
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Followers</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>${student.name}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>BACKTICK;
+
+console.log( tableHtml );
+```
+
+## String Search Methods
+o long `String.indexOf()`! Now we can get a boolean value if a string contains our search text.
+
+### startsWith()
+
+```js
+'use strict';
+
+let strToSearch = 'a-really-long-hypenated-string';
+
+console.log( /^a-really/.test( strToSearch ) ); // test string w/ regular expression
+
+console.log( strToSearch.indexOf( 'a-really' ) === 0 ); // indexOf
+
+console.log( strToSearch.startsWith( 'a-really' ) ); // startsWith
+// second optional argument is starting index
+console.log( strToSearch.startsWith( 'a-really', 5 ) ); // false
+console.log( strToSearch.startsWith( 'y', 7 ) ); // true
+```
+
+### endsWith()
+
+```js
+'use strict';
+
+let strToSearch = 'a-really-long-hyphenated-string';
+
+console.log( /hypenated-string$/.test( strToSearch ) ); // test string w/ regular expression
+
+console.log( strToSearch.indexOf( 'hypenated-string' ) === strToSearch.length - 'hypenated-string'.length ); // indexOf
+
+console.log( strToSearch.endsWith( 'hyphenated-string' ) ); // endsWith
+// 2nd optional argument is max character number for search
+console.log( strToSearch.endsWith( 'hyphenated-string', 21 ) ); //false
+```
+
+### includes()
+
+```js
+'use strict';
+
+let strToSearch = 'a=really-long-hyphenated-string';
+
+console.log( /long/.test( strToSearch ) ); // test string w/ reg exp
+
+console.log( strToSearch.indexOf( 'long' ) > -1 ); // indexOf
+
+console.log( strToSearch.includes( 'long' ) ); // includes
+```

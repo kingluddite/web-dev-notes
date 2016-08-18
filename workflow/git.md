@@ -274,3 +274,6 @@ I ran into this issue when I tried to run `$ git rebase --continue` and git was 
 
 [This article explains why](http://wholemeal.co.nz/blog/2010/06/11/no-changes-did-you-forget-to-use-git-add/) and offers a solution:
 `$ git rebase --skip`
+
+remove everything from staging
+`$ git reset HEAD -- .`
