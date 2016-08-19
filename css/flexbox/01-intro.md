@@ -35,7 +35,7 @@ index.html
 /* Box-size border-box */
 
 * {
-  border-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .box {
@@ -121,5 +121,145 @@ Viewport height
 
 [complete guide to flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
+## flex direction
+style.css
 
+```css
+.container {
+  display: flex;
+  border: 10px solid goldenrod;
+  height: 100vh;
+  flex-direction: row;
+}
+```
 
+* nothing happens because that is the default of any flex container
+    + will stack next to each other
+    + span vertically to hit the height of the container 
+
+#### Row
+* **MAIN AXIS** in row is left to right
+* **CROSS AXIS** goes from top to bottom
+ 
+### flex-direction: column
+* stack them vertically on top of each other
+
+####
+* **MAIN AXIS** goes from top to bottom
+* **CROSS AXIS** goes from left to right
+
+## row-reverse 
+
+```css
+.container {
+  display: flex;
+  border: 10px solid goldenrod;
+  /* change this */
+  min-height: 100vh;
+  /* add this */
+  flex-direction: row-reverse;
+}
+```
+
+row goes in reverse direction
+MAIN AXIS goes from right to left
+
+## column-reverse
+
+```css
+.container {
+  display: flex;
+  border: 10px solid goldenrod;
+  /* change this */
+  min-height: 100vh;
+  /* add this */
+  flex-direction: column-reverse;
+}
+```
+
+Main Axis goes from bottom to top
+
+ask yourself what is my main axis? row is default
+
+## Wrapping Elements with Flexbox
+
+throw your knowledge of float out the window for a moment
+
+```css
+.container {
+  display: flex;
+  border: 10px solid goldenrod;
+  /* change this */
+  min-height: 100vh;
+  /* add this */
+  flex-wrap: nowrap; // default value
+}
+
+.box {
+  width: 300px;
+}
+```
+
+* nothing happens
+
+* flexbox is flexible
+* more forgiving than floats
+* flex container and inside is the flex items
+* add flex-wrap to flex container
+    - default value is `nowrap`
+
+### flex-wrap: wrap
+
+```css
+.container {
+  display: flex;
+  border: 10px solid goldenrod;
+  /* change this */
+  min-height: 100vh;
+  /* add this */
+  flex-wrap: wrap;
+}
+
+.box {
+  width: 300px;
+}
+```
+
+* wrap-reverse
+
+## fill in space
+
+```css
+.container {
+  display: flex;
+  border: 10px solid goldenrod;
+  /* change this */
+  height: 100vh;
+  /* add this */
+  flex-wrap: wrap;
+}
+
+.box {
+  width: 33.33333333%;
+}
+```
+
+change to column
+
+```css
+.container {
+  display: flex;
+  border: 10px solid goldenrod;
+  /* change this */
+  height: 100vh;
+  /* add this */
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+```
+
+![flex-direction column](https://i.imgur.com/rkFfhi6.png)
+
+* have 100vh as height
+* goes down until #7 and has no more space so goes to next column
+* if you change to min-height: 100vh, it doesn't wrap to next column because it never hits min height
