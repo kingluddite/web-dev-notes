@@ -128,7 +128,7 @@ A solution to above note is to run them both at the same time:
 * run `$ node-inspector` on it's on in a tab of Terminal
 * run `$ nodemon --debug src/app`
 
-but if you run nodemon --debug src/app it will never hit the debugger so you can't debug. what you need to do is run this line instead and it will trigger thdebugger. Note that localhost:3000 will not run because no routes are being servered but you do have access the express object at the application level
+but if you run nodemon --debug src/app it will never hit the debugger so you can't debug. what you need to do is run this line instead and it will trigger the debugger. Note that localhost:3000 will not run because no routes are being served but you do have access the express object at the application level
 
 type this command to ensure `debugger` get's hit
 

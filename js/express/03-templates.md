@@ -86,7 +86,7 @@ Create a new directory called `views`
 * After we define it in our app, express will look for templates in this folder
 * We will call it **views** but we could call it anything, many developers call it `views`
 
-`src/templates/index.pug`
+`src/views/index.pug`
 
 
 ```
@@ -333,13 +333,13 @@ block content
 * the `|` means text in Jade/Pug and needs a space character after it, if sublime strips it, you'll get an error
 
 ## Adding 'partials'
-Create a directory called `partials` in the `templates` directory
+Create a directory called `partials` in the `view` directory
 * `partials` is a common naming convention and recommended for you to use in your projects
     - Other developers will know what is going on when they see your application for the first time
     - also name files with a leading underscore `ie - _nav.pug`
         + the underscore(_) means this file is not meant to be used on it's own, it is a fragment and will be included from another file
 
-* remove the nav code from `src/templates/layout.pug` and place it inside `src/templates/partials/_nav.pug`
+* remove the nav code from `src/views/layout.pug` and place it inside `src/views/partials/_nav.pug`
 * use `include ./partials/_nav.pug` to include the nav inside `layout.pug`
 * view in browser and make sure it works just like it did before
 * as a test comment out the include and see if the nav disappears

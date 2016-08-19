@@ -81,7 +81,7 @@ node_modules
 * Place application files in a folder called `src`
   - `src` is a great place to let your team know where to look first how the app works. 
 * They don't need to look in `node_modules` because you are not editing to it
-* Any JavaScript file add `'usestrict'` statement, will save you from really common mistakes if you make one
+* Any JavaScript file add `'use strict'` statement, will save you from really common mistakes if you make one
 * `app.js` will be main file of application
 * In order to use express you must add it using node's require statement
 
@@ -175,10 +175,10 @@ app.get('/', function( request, response ) {
 ```
 
 * 1st param
-  - location parameter
+    + location parameter
 * 2nd param
-  - anonymous **callback function**
-    + _takes request and response parameters_
+    + anonymous **callback function**
+        - _takes request and response parameters_
 
 ### Question
 
