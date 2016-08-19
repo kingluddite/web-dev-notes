@@ -295,6 +295,11 @@ I like to add a keyboard shortcut to quickly enter Vintage Mode. There is an opt
 }
 ```
 ## Useful Vintage Commands
+
+If you want to copy your vintage to the machine clipboard
+
+`"*y`
+
 Vintage includes most basic actions:
 
 Key | Function
@@ -594,3 +599,11 @@ On my laptop whenever I opened markdown files, they would open with Markdown syn
 To change all markdown files, just have one open and then click the main `View Menu` and follow this:
 
 `View` > `Syntax` > `Open all with current extension as` > `MultiMarkdown`
+
+## My default user settings for sublime text
+
+[link to gist](https://gist.github.com/kingluddite/0bd73f49cedeb95402436767ddbcdbfd)
+
+## Key bindings
+
+[link to gist](https://gist.github.com/kingluddite/8dfe308886e7b3876ac40eb246f74f99)

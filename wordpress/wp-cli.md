@@ -442,3 +442,7 @@ If you get `mysql command not found` error, add this to your .zshrc and refresh 
 If you get error establishing connection, add this sym link
 
 `$ sudo ln -s /Applications/MAMP/tmp/mysql/mysql.sock /tmp/mysql.sock`
+
+Wordpress update to 4.6 bug Fatal Error call to undefined function apply_filters
+
+[link to solution](http://ryanbenhase.com/solved-plugin-updates-fail-using-wp-cli-wordpress-4-6-upgrade/)
