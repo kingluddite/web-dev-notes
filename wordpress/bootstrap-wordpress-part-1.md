@@ -144,7 +144,13 @@ View page in browser to test if `footer.php` include is working
 
 ## 10. Custom CSS
 
-Create a `css` folder and put `bootstrap.min.css` (from when you downloaded Twitter Bootstrap) inside it
+Create a `css` folder and put `bootstrap.min.css` (from when you downloaded Twitter Bootstrap) inside it.
+
+This would be if you were downloading bootstrap the traditional way but a better way is to install bootstrap using `npm`.
+
+But if you want to use your own custom `css`, you should create a file and inside `css`.
+
+In these notes, we are first just putting all our custom CSS inside the style.css file in the root of our theme. But that is not where you would put it in a real site. You would put in `css/application.css`.
 
 ## 11. Proper Way to Include CSS in WordPress
 
@@ -157,7 +163,7 @@ Add this to `functions.php`
 ```php
 <?php
 function theme_styles() {
-    wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/css/bootstrap.min.css' );
+    wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css' );
 }
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ?>

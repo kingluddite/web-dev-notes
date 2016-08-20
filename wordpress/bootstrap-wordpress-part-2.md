@@ -63,6 +63,8 @@ _note:_ 404 error is gone from console
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 ```
 
+* bug - doesn't show title on static home page???
+
 `wp_title()` will display just your WordPress site title by itself if on home page 
 * It will also display title and `|` separate if on another page. 
 * The last parameter places separator on `left` or `right`.
@@ -79,6 +81,10 @@ _note:_ 404 error is gone from console
 [more code here]
 ```
 
+## If you need to update WordPress
+Use WP-CLI
+
+if you get an error using WP-CLI after updating, [try this link out](http://ryanbenhase.com/solved-plugin-updates-fail-using-wp-cli-wordpress-4-6-upgrade/).
 
 # The WordPress Hierarchy
 
@@ -331,7 +337,7 @@ View page in browser and you'll see it's empty
 
 * time saving tool
 
-Add this Chrome extension - [Yet Another Lorem Ipsum Generator](https://chrome.google.com/webstore/detail/yet-another-lorem-ipsum-g/jffcmkkfbampimhpimhofhhkanhflfce?hl=en)
+Add this Chrome extension - add lorem ipsum to chrome (find one)
 
 Install it and use it to add some Lorem Ipsum to your `page-with-sidebar` while using the Chrome browser.
 
@@ -452,7 +458,7 @@ function create_widget($name, $id, $description) {
   + example: Recent Posts
 
 **How do I do this?**
-Just drag and drop it into our Page Sidebar wiget. It will go under our Visual Editor section. 
+Just drag and drop it into our Page Sidebar widget. It will go under our Visual Editor section. 
 
 The widgets are to close together. Need to add some padding between them.
 
