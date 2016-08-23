@@ -56,7 +56,7 @@ Now when you want to view this css file, the **URL** would be
 
 * The previous URL will no longer work
 
-`src/templates/partials/_head.pug`
+**src/templates/partials/_head.pug**
 
 ```
 head
