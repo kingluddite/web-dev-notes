@@ -1,31 +1,47 @@
 # Transpiling
 
 ## What is transpiling?
-taking one language and converting it to another
+Taking one language and converting it to another
 
-You probably already transpiled Sass into CSS
-Or CoffeeScript to transpile JavaScript
+## Been there done that
+You probably already transpiled:
 
-Are transpiling and compiling the same thing?
-No.
-Compiling converts one language to another at a lower abstraction level like Java to byte code
+* Sass into CSS
+* CoffeeScript to JavaScript
 
-Transpiling converts one language to another at the same abstraction level (Sass to CSS)
-* both are high level languages that serve the same purpose
+## Are transpiling and compiling the same thing?
+### Compiling
+No. Compiling converts one language to another at a lower abstraction level
 
-compatibility
+* Like Java to byte code
+
+### Transpiling
+Transpiling converts one language to another at the same abstraction level
+
+* Like Sass to CSS
+    - Both are high level languages that serve the same purpose
+
+## ES 2015 Compatibility
 ES2015 is current version of JavaScript
-Not all browsers have fully implemented it's features
+
+* Not all browsers have fully implemented it's features
 
 [ES6 compatibility chart](https://kangax.github.io/compat-table/es6/)
-Safari currently 8/17/2016 only supports 54% of ES6
+Safari currently (_as of 8/17/2016_) only supports 54% of ES6
 
-so many browsers don't fully support es6
-that's were babel comes in
-we can write our apps with ES2015 and transpile them into ES5
+## A name is just a name
+ES6 and ES2015 can be used interchangably
+
+## Where is the browser Love?
+So many browsers don't fully support es6
+
+That's were babel comes in!
+
+* We can write our apps with ES2015 and transpile them into ES5
 
 [babeljs.io](http://babeljs.io/)
-Click 'Try it out' link
+
+Click `Try it out` link
 
 Type this on the left:
 
@@ -33,7 +49,7 @@ Type this on the left:
 var myArrowFunction = () => "Hello, ES2015";
 ```
 
-you will see it transpiled on the write as:
+You will see it transpiled on the write as:
 
 ```js
 "use strict";
@@ -45,31 +61,30 @@ var myArrowFunction = function myArrowFunction() {
 
 The Babel Command Line Tool ([CLI](http://babeljs.io/docs/usage/cli/))
 
-[clone this repo](git clone https://github.com/treehouse-projects/babel-workshop.git)
+1. [clone this repo](git clone https://github.com/treehouse-projects/babel-workshop.git)
 
-`$ cd babel-workshop`
+2. Change into that repo's directory: `$ cd babel-workshop`
 
-checkout a branch
-`$ git checkout cli-lesson`
+3. Checkout a branch: `$ git checkout cli-lesson`
 
-npm install babel
+4. Install babel: `$ npm install babel`
 
-`$ npm install --save-dev babel-cli`
+5. Install the babel CLI: `$ npm install --save-dev babel-cli`
 
-install babel preset 2015
+6. Install babel preset 2015 `$ npm install --save-dev babel-preset-es2015`
 
-`$ npm install --save-dev babel-preset-es2015`
-
-Two important files to look at
+## Two important files to look at
 1. `.babelrc`
-    * tells babel how we want our code transpiled
-        - two most important properties
-            + presets (defining each plugin is tedious, with presets you can bundle multiple plugins together)
-            + plugins (tell features you want babel to provide)
+    * Tells babel how we want our code transpiled
+        - Two most important properties
+            + Presets
+                - Defining each plugin is tedious
+                - With presets you can bundle multiple plugins together
+            + Plugins
+                - Tell features you want babel to provide
 2. `src/index.js`
 
-
-preset - babel-preset-es2015
+## preset - babel-preset-es2015
 * includes all finalized ES2015 features
 
 **src/index.js**
@@ -81,10 +96,12 @@ console.log("What is 1337 x 2?");
 console.log(double(1337));
 ```
 
-define a build command in the script section
--d flat - we are working with directories (not individual files)
+## Package a build
+Define a build command in the script section
 
-.babelrc (in sublime text set syntax to JSON)
+`-d` flag - we are working with directories (_not individual files_)
+
+`.babelrc` (_in sublime text set syntax to JSON_)
 
 ```js
 {
@@ -95,11 +112,12 @@ define a build command in the script section
 }
 ```
 
+### Run that build!
 `$ npm run build`
 
-creates a build folder and `index.js` inside it
+Creates a `build` folder and `index.js` inside it
 
-it has been transpiled into ES5
+It has been transpiled into ES5
 
 ```js
 "use strict";
@@ -112,7 +130,7 @@ console.log("What is 1337 x 2?");
 console.log(double(1337));
 ```
 
-run the file we just created
+Run the file we just created
 
 `$ node build/index.js`
 
@@ -126,22 +144,30 @@ What is 1337 x 2?
 
 `$ touch .gitignore`
 
-Add node_modules to gitignore
+Add `node_modules` to **.gitignore**
 
-add and commit changes
+Add, Commit changes with Git
 
 ## Babel and Webpack
 
 `$ git checkout webpack-lesson`
 
-in order to use babel with webpack you need to install 4 dependencies
+In order to use babel with webpack you need to install 4 dependencies
+
+1. babel-core
+2. babel-preset-es2015
+3. webpack
+4. babel-loader
+
+And here's how to install all 4 at one time:
 
 `$ npm install --save-dev babel-core babel-preset-es2015 webpack babel-loader`
 
-how do we tell webpack to use babel when building our app?
-webpack uses extensions called loaders to transform files
-(think of loaders like tasks are used in gulp)
-* each one is responsible for carrying out a specific type of transformation
+## How do we tell webpack to use babel when building our app?
+webpack uses extensions called **loaders** to transform files
+
+* Think of **loaders** like **tasks** are used in `gulp`)
+* Each one is responsible for carrying out a specific type of transformation
 
 **webpack.config.js**
 
@@ -166,24 +192,26 @@ var webpackConfig = {
 module.exports = webpackConfig;
 ```
 
-loader for:
-* transforming Sass to CSS
-* minifying files
-* many more
+**loader** for:
 
-we will use the babel loader
-* it will translate our ES2015 to ES5
+* Transforming Sass to CSS
+* Minifying files
+* And Many more!
 
-loader - which loader are you using
-test - which file to pipe into loader
-    * we want to use a regular expression that match all files that end in .js
+We will use the babel loader
+
+* It will translate our ES2015 to ES5
+
+**loader** - Which loader are you using
+**test** - Which file to pipe into loader
+    * We want to use a regular expression that match all files that end in `.js`
         - `/.js$/,`
-excludes - which files should not be processed
+**excludes** - which files should not be processed
     * `node_modules`
 
-## add a build command in script section
+## Add a build command in script section
 
-package.json
+**package.json**
 
 ```js
 "scripts": {
@@ -191,7 +219,7 @@ package.json
   },
 ```
 
-run build script
+## Run build script
 
 `$ npm run build`
 
@@ -201,28 +229,32 @@ Now run `$ node build/index.js`
 
 ## New ES features and babel
 
-http://babeljs.io/
-click plugins
+[http://babeljs.io/](http://babeljs.io/)
+
+### Click `plugins`
 
 The TC39 categorises proposals into 4 stages:
 
-stage-0 - Strawman: just an idea, possible Babel plugin.
-stage-1 - Proposal: this is worth working on.
-stage-2 - Draft: initial spec.
-stage-3 - Candidate: complete spec and initial browser implementations.
-stage-4 - Finished: will be added to the next yearly release.
+1. stage-0 - **Strawman**: just an idea, possible Babel plugin.
+2. stage-1 - **Proposal**: this is worth working on.
+3. stage-2 - **Draft**: initial spec.
+4. stage-3 - **Candidate**: complete spec and initial browser implementations.
+5. stage-4 - **Finished**: will be added to the next yearly release.
 
-click stage-3 link
+### Click stage-3 link
 
 * stages are cumulative
 
-$ touch .gitignore
-add node_modules to .gitignore
-save and commit changes
+Create a .gitignore
 
-$ git checkout es2016-lesson
+`$ touch .gitignore`
 
-here is our package.json
+Add `node_modules` to **.gitignore**
+Save and commit changes
+
+`$ git checkout es2016-lesson`
+
+Here is our `package.json`
 
 ```js
 {
@@ -243,11 +275,11 @@ here is our package.json
 }
 ```
 
-install dependencies
+## Install dependencies
 
-$ npm install
+`$ npm install`
 
-.babelrc
+**.babelrc**
 
 ```js
 {
@@ -258,7 +290,7 @@ $ npm install
 }
 ```
 
-src/index.js
+**src/index.js**
 
 ```js
 require( "babel-polyfill" );
@@ -278,8 +310,8 @@ async function myAsyncFunction() {
 myAsyncFunction();
 ```
 
-$ npm run build
+`$ npm run build`
 
-$ node build/index.js
+`$ node build/index.js`
 
-after 3 seconds it prints `2674`
+* After 3 seconds it prints `2674`
