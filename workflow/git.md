@@ -312,3 +312,7 @@ The `ls-remote` command returns the SHA1 hash of the latest commit for that refe
 If you have any other uses for these commands or an easier way to figure out branches that live on a remote, comment away!
 
 `$ git ls-remote --heads origin`
+
+# How to fetch all remote branches
+`$ git fetch --all`
+
