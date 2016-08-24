@@ -1,5 +1,9 @@
 # What is [Express](http://expressjs.com/)?
-Express is the most popular web server for `Node.js`. Self described as a “Fast, un-opinionated, minimalist web framework for node.js.”
+Express is the most popular web server for `Node.js`. 
+
+Self described as a 
+
+> “Fast, un-opinionated, minimalist web framework for node.js.”
 
 Express is open and flexible, allowing you to write only the code that you need, and nothing more.
 
@@ -14,16 +18,14 @@ It is a robust application framework for node. But, its minimalist structure all
 
 ## Stuff We'll Talk About
 1. Install and set up Express from scratch
+  * `Express.js` is a web framework for `Node.js`
 2. Debug strategies for Node Apps
 3. Routing in Express
-4. [Jade Template Engine](http://jade-lang.com/)
-  * used to have jade render HTML on the frontend
-The Express Static Server
-
-**note** Jade, because of a copyright violation had their name changed to Pug.
-
-* `Express.js` is a web framework for `Node.js`
-* Routing is a core component of express
+  * Routing is a core component of express
+4. [Pug Template Engine](http://jade-lang.com/)
+  * used to have Pug render HTML on the frontend
+  * **note** Jade, because of a copyright violation had their name changed to Pug.
+5. The Express Static Server
 
 ## Install Express.js
 
@@ -34,12 +36,27 @@ The Express Static Server
 4. Browser
 5. [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc)
 
-[use strict](https://teamtreehouse.com/library/the-javascript-use-strict-statement)
+#### What is `strict mode` in JavaScript?
+[use strict - article by jQuery creator John Resig](http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/)
+
+> Strict Mode is a new feature in ECMAScript 5 that allows you to place a program, or a function, in a "strict" operating context. This strict context prevents certain actions from being taken and throws more exceptions.
+> Strict mode helps out in a couple ways:
+
+> * It catches some common coding bloopers, throwing exceptions.
+* It prevents, or throws errors, when relatively "unsafe" actions are taken (such as gaining access to the global object).
+* It disables features that are confusing or poorly thought out.
+> 
 
 ### Create an empty project folder
 We will build our Express app inside this folder.
 
+`$ mkdir express-javation`
+
+> coffee is my salvation
+
 #### Add Git
+
+Now you want to get Git to start following all your changes.
 
 ```
 $ git init
@@ -47,7 +64,11 @@ $ git init
 
 ## Create `package.json`
 
-`$ npm init`
+You want to add a bunch of modules so create a `package.json` file.
+
+`$ npm init -y`
+
+* `-y` flag prevents you from answering the default npm package.json questions
 
 * **caution** express 3 has many differences than express 4
 
@@ -57,18 +78,21 @@ $ git init
 $ npm install express --save
 ```
 
-* --save saves express to your package.json dependencies
-* git status
-    - you will see that `node_modules` is being tracked
+* `--save` saves express to your `package.json` dependencies
+* `$ git status`
+    - You will see that `node_modules` is being tracked
+    - Get in the good habit of always checking the status of your project
 
 ## Add `.gitignore`
+We don't want to track node_modules as we aren't the creators so we need to ignore it
+
 ```
 $ touch `.gitignore`
 ```
 
 `.gitignore`
 
-We need to make sure we don't track `node_modules` so add this inside your `.gitignore`
+* We need to make sure we don't track `node_modules` so add this inside your `.gitignore`
 
 ```
 node_modules
@@ -76,6 +100,14 @@ node_modules
 
 * `$ git status`
     - You will see that `node_modules` is now not being tracked. Good work!
+
+## README.md is important
+Everyone Github repo you create should have a clear and well-written README
+
+* It should be written in Markdown
+* Is should have a meaning name
+* Two or three sentence description
+* Installation instructions
 
 ## The `src` folder
 * Place application files in a folder called `src`
@@ -85,6 +117,10 @@ node_modules
 * `app.js` will be main file of application
 * In order to use express you must add it using node's require statement
 
+`$ mkdir src`
+
+`$ touch src/app.js`
+
 ```js
 var express = require('express');
 ```
@@ -93,28 +129,27 @@ var express = require('express');
 
 In order to use node modules in a file, they need to be required using the `require()` method
 
-##Set up express app from scratch
+## Set up express app from scratch
 * Set up application server
 * and basic route
-    - routes are common to express and many other web frameworks
+    - `routes` are common to express and many other web frameworks
 
 ### From user's perspective
 * a route is just a URL
-    - examples
+    - Examples
         + `mysite.com/home`
         + `mysite.com/about`
 
-* it is called a route because it is the path the user takes to access data on the server
+* It is called a `route` because it is the path the user takes to access data on the server
 
 ### From the application's perspective a route (aka `endpoint`)
-* provides the instructions to trigger a set of programming
-    - examples
+* Provides the instructions to trigger a set of programming
+    - Examples
         + `mysite.com/about` - tells application to load content for the about page
         + `mysite.com/home` route loads content for the home page
 
 ## Client
 * the device that's used to visit the home page is sometimes called `the client`
-
   - Let's think of the `client` as a `web browser`
   - And the `routes` are just the `URLs` you type in the `browser`
 
@@ -150,6 +185,7 @@ var app = express();
 app.listen(3000);
 ```
 
+## Run the server
 Run the server by typing:
 
 ```
@@ -200,7 +236,7 @@ app.listen( 3000 );
 
 **Important thing to remember about routes**
 
-* A route is where a server is set up to respond to a `request` from a client
+* A `route` is where a server is set up to respond to a `request` from a client
 
 ## Abbreviated Naming Convention
 Instead of request and response, this is more common
@@ -239,6 +275,12 @@ app.listen( 3000, function() {
 
 Now whenever we run the server we get a message on which port it is running.
 ____
+
+## Did you know you will typically run multiple Express apps
 * One express app could run a frontend app
 * One express app that runs a **REST API**
 * And another that runs an admin panel
+
+## Complete Files for introduction
+
+`$ git clone https://github.com/kingluddite/express-salvation.git`

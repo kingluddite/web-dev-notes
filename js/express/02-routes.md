@@ -1,30 +1,23 @@
 # Adding Routes
 
-* Naming convention
-    - `mock`
-        + We name our folder `mock` to show that it is created by us internally
+Now we are going to jump into Express Routes
 
-[hip lipsum](http://hipsum.co/)
+## Fake Data
 
-* A cool site for quick, hip and happening lorem ipsum filler text
+We need to work with data but for now we won't use a database and we'll just use some fake data we store in a .json file.
 
-## Important
-If you change `app.js`, you need to shut down server and restart it for the changes to take affect. If you don't see your changes and wonder why, this should be what you troubleshoot first.
+## Are you mocking me?
+We want to create a folder called `mock` inside our `src` folder. This is where we will put our fake data.
 
-## Add a blogs route
-This will pull in the **json** data onto our `localhost:3000/blog` route
+`$ mkdir src/mock`
 
-**src/app.js**
+### Naming convention
+- `mock`
+  + We name our folder `mock` to show that it is created by us internally
 
-```js
-app.get( '/blog', function( req, res ) {
-  res.send( posts );
-} );
-```
+`$ touch src/mock/posts.json`
 
-* Don't forget to require the necessary data (see below)
-
-`src/mock/posts.json`
+**src/mock/posts.json**
 
 ```json
 {
@@ -45,6 +38,28 @@ app.get( '/blog', function( req, res ) {
 
 Normally, the data would come from a database or an API but we are just using some mock data here to show how this express works with routing
 
+#### Sometimes you'll need fake placeholder text
+[hip lipsum](http://hipsum.co/) - A cool site for quick, hip and happening lorem ipsum filler text
+
+We will use this placeholder text later when we work with Pug templates
+
+## Important fact about our server
+If you change `app.js`, you need to shut down server and restart it for the changes to take affect. If you don't see your changes and wonder why, this should be what you troubleshoot first.
+
+### A pain in the server!
+* Starting and stopping the server every time we make a change will get old very fast. Luckily, we will learn about a better way very soon.
+
+## Add a blogs route
+This will pull in the **json** data onto our `localhost:3000/blog` route
+
+**src/app.js**
+
+```js
+app.get( '/blog', function( req, res ) {
+  res.send( posts );
+} );
+```
+
 **src/app.js**
 
 ```js
@@ -59,10 +74,10 @@ Here we include the file that holds our fake data.
 We need some tools to make working with Express easier to understand what is happening under the hood.
 
 ## [nodemon](https://github.com/remy/nodemon)
-* Tool that automatically restarts your node processor when files change
-    - Saves you time
-    - Saves you typing
-    - You can just keep working on your code without starting and stopping the server everytime you change something. Cool Beans!
++ Tool that automatically restarts your node processor when files change
+  * Saves you time
+  * Saves you typing
+  * You can just keep working on your code without starting and stopping the server everytime you change something. Cool Beans!
 
 ### Global install of nodemon
 
@@ -134,7 +149,7 @@ type this command to ensure `debugger` get's hit
 
 `$ nodemon --debug-brk src/app.js`
 
-Now both node-inspector and nodemon will work together and enable you to debug
+Now both `node-inspector` and nodemon will work together and enable you to debug
 
 * Set them running is separate tabs
 * Add `debugger` to the code inside `src/app.js`
@@ -355,3 +370,5 @@ ___
 
 [Compare Different Template Languages](https://strongloop.com/strongblog/compare-javascript-templates-jade-mustache-dust/)
 
+## Completed Files
+`$ git checkout lesson-02-routes`

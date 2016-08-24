@@ -1,4 +1,61 @@
 # GIT
+remote
+/var/repo/thm.com.git
+cd in /var/repo/thm.com.git
+apt-get install git
+git init --bare
+ls (you will see a bunch of folder git created)
+will create a repo but it won't contain any source code pushed to it
+just the different versions each of the times you push to it
+all of our actual remote site files are in /srv/www
+cd hooks
+vi post-receive
+* location of where we want to deploy our code
+* inside the vim file you will add the following
+
+```
+#!/bin/sh
+git --work-tree=/var/www/thehollywoodmoguls.com --git-dir=/var/repo/thehollywoodmoguls.com.git checkout -f
+```
+
+`:wq!` - this will write, quit and force your last code which will create the file and save it at the same time
+
+now you need to give it executable permissions
+
+`chmod +x post-receive`
+
+now the post-receive will be able to be executed by the operating system
+* we now can push code from our server or any server that has access permissions to access it
+
+now exit out of remote server
+[add notes on remote user on DO vs super-user]
+
+[how do I add a subdomain on digital ocean that points to a different folder using node]
+
+`exit`
+
+you are now on your local machine
+`git add -A`
+
+`git commit -m 'something super great`
+
+`git remote add live ssh://root@192.241.235.95/var/repo/thehollywoodmoguls.com.git`
+
+`git push live master`
+
+our files will get pushed live to our git and the post-receive hook will fire and move the files to /var/www/thm.com
+
+now if you push a commit you don't like
+git log to find sha on local machine (super long unique key)
+`e922cd7273ed37bc2574d44803ccaae50acff3a3`
+
+copy and past it
+`$ git revert e922cd7273ed37bc2574d44803ccaae50acff3a3`
+
+
+when we push from git it will push it into the var/www/thehollywoodmoguls.com directory (this should be where you site is on the remote site. if it's not there, create it now)
+* every time we push it, it will checkout the last copy into the var/www/thm.com folder
+
 Version Control. You need to know how this works.
 
 ## Generate a .gitignore
@@ -316,3 +373,9 @@ If you have any other uses for these commands or an easier way to figure out bra
 # How to fetch all remote branches
 `$ git fetch --all`
 
+
+## Push all branches to remote
+
+`$ git push REMOTE --all`
+
+example: if your remote is `origin` than `$ git push origin --all`
