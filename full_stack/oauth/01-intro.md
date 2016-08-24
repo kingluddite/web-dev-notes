@@ -27,10 +27,10 @@ What you can do?
 1. We have an app and we want users to log in with their Facebook profile
 2. We need to register our app with Facebook
 3. They'll give us a couple of tokens (_aka unique identifiers_) that will give our app access to their **API**
-    * normally tokens come in the form of **ID** and key or **secret**
-    - Think of it as a username and password specifically for our app
+    * Normally tokens come in the form of **ID** and key or **secret**
+    - Think of it as a `username` and `password` specifically for our app
     - This allow Facebook the ability to remove users who are abusing their information
-        + Like using data for unauthorized purposes (like spam)
+        + Like using data for unauthorized purposes (_like spam_)
 4. We use the **ID** and **secret** in our application
 5. When user wants to use our app, they are redirected to Facebook's page
 6. The user authenticates on Facebook with their **username** and **password**
@@ -50,67 +50,68 @@ But in most cases its used to authenticate a user
 
 ### 3 ways to authenticate someone
 1. What they know
-    * password for logging in or secret phrase to reset a password
+    * **password** for logging in or **secret phrase** to reset a password
 2. What they are
     * Using biometric scanners to recognize fingerprints, faces or irises
         - Apple uses touch id to read fingerprints to authenticate people
         - Microsoft uses face detection in Windows Hello to allow people to log in without a password
 3. What someone has
-    * Slack allows you to sign in via magic links sent to an email address
+    * Slack allows you to sign in via **magic links** sent to an email address
     * Other apps send a text message with a unique code
-        - to prove that you have access to that telephone number
+        - To prove that you have access to that telephone number
     * 2-factor authentication
-        - you have an app installed on your phone
-        - that generates secret codes to prove that you have the device and you are who you say you are
+        - You have an app installed on your phone
+        - That generates secret codes to prove that you have the device and you are who you say you are
 
-**Oauth** can request info for **create**, **reading**, **update**, **deleting** all sorts of info on a provider's website
+**Oauth** can request info for **creating**, **reading**, **updating**, **deleting** all sorts of info on a provider's website
+
 * Valid profile with a trusted provider
 
 ## [Github Starter](kingluddite/passport-oauth-workshop-start.git)
 Click to download starter files
 
-* built with Express
-* install dependencies `$ npm install`
-* start with `$ npm start` or `$ node ./bin/www`
+* Built with Express
+* Install dependencies `$ npm install`
+* Start with `$ npm start` or `$ node ./bin/www`
 
 ## Current State of app
-* our app will save user info to mongodb
-* user model defines user data we want to save
+* Our app will save user info to mongodb
+* User model defines user data we want to save
     - email
     - name
     - favoriteBook
     - photo
     - we do not have a password field
-        + this is because we'll be using a user's profile info returned from eiter github or facebook to authenticate the user
+        + this is because we'll be using a user's profile info returned from either GitHub or Facebook to authenticate the user
 
 ## Our `routes` folder
 * index.js
 *   home (root rout `/`)
-*   about /about
-*   contact /contact
-*   profile /profile
-*   login /login
+*   about `/about`
+*   contact `/contact`
+*   profile `/profile`
+*   login `/login`
 
 Passport makes the user object available to the request object
-so all of our routes and views have access to that data
-pay attention the the /profile handler
-    * if there is a user, the profile page will render
-        + if no user, it will redirect to the login page (/login)
+* So all of our routes and views have access to that data
+* Pay attention to the /profile handler
+    - If there is a user, the profile page will render
+        + If no user, it will redirect to the login page (**/login**)
 
 ## Views
-* in profile view, it also checks if the user exists
+* In `profile` view, it also checks if the user exists
 
 **views/profile.pug**
 
 `if(user)`
 
-* if it does, it will show the photo and the name
+* If it does, it will show the photo and the name
 
 **views/navbar.pug**
 
-* it checks for a user too
-    - if we don't have a user, we'll display login links
-    - if user is present, the logout button will appear
+* It checks for a user too
+    - If we don't have a user, we'll `display login links`
+    - If user is present, the `logout button will appear`
 
 ## Install Passport
 `$ npm install passport --save`
@@ -122,15 +123,20 @@ pay attention the the /profile handler
 ## Install connect-mongo
 
 `$ npm install connect-mongo --save`
-* store the user while the browser session is still open
-* we will be using a persistant session store with mongodb
-* this will allow user to remain logged in when they return to the site
+
+* Store the user while the browser session is still open
+* We will be using a persistant session store with mongodb
+* This will allow user to remain logged in when they return to the site
 
 **app.js**
 
-require passport, express-session, connect-mongo and passing in the session
+## Require
+* passport
+* express-session
+* connect-mongo
+* passing in the session
 
-(code fragment app.js)
+(**code fragment app.js**)
 
 ```js
 var mongoose = require( 'mongoose' );
@@ -140,10 +146,10 @@ var MongoStore = require( 'connect-mongo' )( session );
 var User = require( "./models/user" );
 ```
 
-* we need to initialize the express session install
-* do this just after the DB connection
+* We need to initialize the express session install
+* Do this just after the DB connection
 
-(code fragment app.js)
+(**code fragment app.js**)
 
 ```js
 // mongodb connection
@@ -161,12 +167,12 @@ var sessionOptions = {
 };
 ```
 
-* now that we have our session set up as middleware
-* it will be available to the passport middleware
+* Now that we have our session set up as middleware
+* It will be available to the passport middleware
 
 ## Initialize Passport
 
-(code fragment app.js)
+(**code fragment app.js**)
 
 ```js
 app.use( session( sessionOptions ) );
@@ -176,8 +182,8 @@ app.use(passport.initialize());
 ```
 
 ## Restore the Passport session
-* this restores the user's previous session
-    - if a user was previously signed in, they still will be when they return to the site
+* This restores the user's previous session
+    - If a user was previously signed in, they still will be when they return to the site
 
 ```js
 app.use(passport.initialize());
@@ -188,12 +194,13 @@ app.use(passport.session());
 
 Passport doesn't require sessions to work (which is fine if you want a temporary authorization for a one-off request)
 
-In order for Passport to handle sessions, you need to implement two methods
+In order for Passport to handle sessions, you need to implement two methods:
+
 1. passport.serializeUser()
-    * to serialize something is to translate a data structure for storage
-        - in our case (a session storage)
-        - requires a function with 2 arguments
-            + user and done
+    * To serialize something is to translate a data structure for storage
+        - In our case (_a session storage_)
+        - Requires a function with two arguments
+            + `user` and `done`
 2. passport.deserializeUser()
 
 ```js
@@ -202,7 +209,7 @@ passport.deserializeUser(function(value, done) {
 });
 ```
 
-* the value in our case is a user id
+* The value in our case is a `user id`
 
 ```js
 passport.deserializeUser( function( userId, done ) {
@@ -212,15 +219,17 @@ passport.deserializeUser( function( userId, done ) {
 } );
 ```
 
-* findById() will find a user's id
-* we can then call `done` when the user is found
-    - the done callback will either pass an error to the express middleware that handles errors, or the user model that will be added to the request object so that its accessible to the route handlers and views
+* `findById()` will find a user's **id**
+* We can then call `done` when the **user** is found
+    - The `done` **callback** will either:
+        + Pass an error to the express middleware that handles errors
+        + Or the user model that will be added to the request object so that its accessible to the route handlers and views
 
-    * to read the data again you need to deserialize
-        - aka reconstruct the stored data
-    * we can pass the done as a callback, since the done's function parameters are the same as Mongoose's callback parameters (err, document returned)
+    * To read the data again you need to deserialize
+        - AKA reconstruct the stored data
+    * We can pass the done as a callback, since the done's function parameters are the same as Mongoose's callback parameters (err, document returned)
 
-so this:
+### So this:
 
 ```js
 passport.deserializeUser( function( userId, done ) {
@@ -230,7 +239,7 @@ passport.deserializeUser( function( userId, done ) {
 } );
 ```
 
-becomes this:
+### Becomes this:
 
 ```js
 passport.deserializeUser( function( userId, done ) {

@@ -14,22 +14,24 @@
 1. Go to [http://github.com/username](http://github.com/username)
 2. Click on `account settings`
 3. Click on `oAuth applications`
-  * You will see all apps that have oAuth from github
-  * You can revoke them anytime
+    * You will see all apps that have oAuth from github
+    * You can revoke them anytime
 4. Click on developer applications
 5. Register a new application
-  * **app name** - bookworm - development
-  * **homepage url** - http://localhost:3000
+    * **app name** - bookworm - development
+    * **homepage url** - http://localhost:3000
 
 ## In the Real World Of App Development
 Generally you will have multiple oAuth apps
-* One for development
-* One for staging
-* One for production
+
+    * One for development
+    * One for staging
+    * One for production
 
   * **callback url** - the route where your app will handle the return call from the oAuth provider containing the profile information
     - `http://localhost:3000/auth/github/return`
-6. submit form
+
+### submit form
 
 ## Use passport
 **app.js** (_fragment_)
@@ -175,6 +177,7 @@ router.get( '/logout', function( req, res ) {
 
 module.exports = router;
 ```
+
 * Passport middleware not only adds the user property to the request object, it also adds a logout() method
 
 ## Before you start the app, first start the mongodb server
