@@ -1,6 +1,6 @@
 # Flex Intro
 
-index.html
+**index.html**
 
 ```html
 <!DOCTYPE html>
@@ -80,9 +80,13 @@ index.html
 }
 ```
 
-use npm to install normalize.css
+## use npm to install normalize.css
+`$ npm init -y`
 
-view page. see a bunch of block colors
+`$ npm install --save normalize.css`
+
+## View page. 
+You will see a bunch of block colors
 
 ## Start using flexbox
 
@@ -94,16 +98,15 @@ view page. see a bunch of block colors
 }
 ```
 
-view page and see how it changed
-comment out flex and try inline-flex to see the difference
+## View page and see how it changed
+Comment out flex and try inline-flex to see the difference
 
-when you define the container as flex, the items inside become flex items
+When you define the container as flex, the items inside become flex items
 
-## vh
-Viewport height
-* makes the container stretch the entire height
-* kind of like height 100% but a new way of doing it
-* nothing to do with flexbox and you should not ever set height for dynamic content but for showing how flexbox works it helps so add this:
+## vh - Viewport height
+* Makes the container stretch the entire height
+* Kind of like height 100% but a new way of doing it
+* Nothing to do with flexbox and you should not ever set height for dynamic content but for showing how flexbox works it helps so add this:
 
 ```css
 .container {
@@ -116,13 +119,14 @@ Viewport height
 
 ## Flex direction
 * axis
-    - main
-    - cross
+    - Main
+    - Cross
 
 [complete guide to flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 ## flex direction
-style.css
+
+**style.css**
 
 ```css
 .container {
@@ -133,16 +137,16 @@ style.css
 }
 ```
 
-* nothing happens because that is the default of any flex container
-    + will stack next to each other
-    + span vertically to hit the height of the container 
+* Nothing happens because that is the default of any flex container
+    + Will stack next to each other
+    + Span vertically to hit the height of the container 
 
 #### Row
 * **MAIN AXIS** in row is left to right
 * **CROSS AXIS** goes from top to bottom
  
 ### flex-direction: column
-* stack them vertically on top of each other
+* Stack them vertically on top of each other
 
 ####
 * **MAIN AXIS** goes from top to bottom
@@ -161,7 +165,8 @@ style.css
 }
 ```
 
-row goes in reverse direction
+Row goes in reverse direction
+
 MAIN AXIS goes from right to left
 
 ## column-reverse
@@ -179,11 +184,13 @@ MAIN AXIS goes from right to left
 
 Main Axis goes from bottom to top
 
-ask yourself what is my main axis? row is default
+Ask yourself what is my main axis? 
+
+* `row` is default
 
 ## Wrapping Elements with Flexbox
 
-throw your knowledge of float out the window for a moment
+Throw your knowledge of float out the window for a moment
 
 ```css
 .container {
@@ -200,12 +207,13 @@ throw your knowledge of float out the window for a moment
 }
 ```
 
-* nothing happens
+* Nothing happens
 
-* flexbox is flexible
-* more forgiving than floats
-* flex container and inside is the flex items
-* add flex-wrap to flex container
+* `flexbox` is flexible
+* More forgiving than floats
+* flex container
+    + And inside is the flex items
+* Add flex-wrap to flex container
     - default value is `nowrap`
 
 ### flex-wrap: wrap
@@ -225,9 +233,9 @@ throw your knowledge of float out the window for a moment
 }
 ```
 
-* wrap-reverse
+### wrap-reverse
 
-## fill in space
+### fill in space
 
 ```css
 .container {
@@ -244,7 +252,7 @@ throw your knowledge of float out the window for a moment
 }
 ```
 
-change to column
+### Change to column
 
 ```css
 .container {
@@ -260,6 +268,6 @@ change to column
 
 ![flex-direction column](https://i.imgur.com/rkFfhi6.png)
 
-* have 100vh as height
-* goes down until #7 and has no more space so goes to next column
-* if you change to min-height: 100vh, it doesn't wrap to next column because it never hits min height
+* Have `100vh` as height
+* Goes down until #7 and has no more space so goes to next column
+* If you change to min-height: 100vh, it doesn't wrap to next column because it never hits min height

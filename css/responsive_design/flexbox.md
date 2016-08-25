@@ -4,27 +4,29 @@ Need to establish a Flex formatting context
 ## HTML structure change
 `index.html`
 Move H1 inside `main-nav` as a LI
-```
+```html
 <header class="main-header group">
-        <ul class="main-nav">
-          <li class="main-logo"><h1><a href="#">Logo</a><h1></li>
-          <li><a href="#">Link 1</a></li>
-          <li><a href="#">Link 2</a></li>
-          <li><a href="#">Link 3</a></li>
-          <li><a href="#">Link 4</a></li>
-        </ul>
-      </header>
+<ul class="main-nav">
+  <li class="main-logo"><h1><a href="#">Logo</a><h1></li>
+  <li><a href="#">Link 1</a></li>
+  <li><a href="#">Link 2</a></li>
+  <li><a href="#">Link 3</a></li>
+  <li><a href="#">Link 4</a></li>
+</ul>
+</header>
 ```
 
 ## CSS changes
 This will adjust to our HTML structure change
-```
+
+```css
 .main-nav a       { background-color: #3f8abf; }
 .main-logo a        { background-color: #5fcf80; }
 ```
 
 ## Add Flex
-```
+
+```css
 @media (min-width: 769px) {
   .main-nav {
     display: -webkit-flex;
@@ -43,7 +45,7 @@ This will adjust to our HTML structure change
 ```
 **Tip** What if you want to place your navigation all the way to the right?
 
-```
+```css
 .main-logo:first-child {
     margin-right: auto;
   }
@@ -52,7 +54,8 @@ This will adjust to our HTML structure change
 ## Flex Grow Property
 Control the amount of space a flex item takes up
 We want all our links to be equal width and equally distributed
-```
+
+```css
 .main-logo:first-child {
     margin-right: 50px;
     flex-grow: 1.5;
@@ -66,13 +69,16 @@ We want all our links to be equal width and equally distributed
     margin-right: 8px;
   }
 ```
-The `flex-grow` value of 1 means have items take up the same space
-The `flex-grow` value of `1.5` means have item take up 1 and a half times space.
+
+* The `flex-grow` value of 1 means have items take up the same space
+* The `flex-grow` value of `1.5` means have item take up 1 and a half times space.
+
 ![Flex-grow example](https://i.imgur.com/0f9Gr89.png)
 
 ## Animate Flex items
 We changed the NAV
-```
+
+```html
 <ul class="main-nav">
           <li class="main-logo"><h1><a href="#">Logo</a><h1></li>
           <li><a href="#" data-icon="&#xe602;">Link 1</a></li>
@@ -81,13 +87,20 @@ We changed the NAV
           <li><a href="#" data-icon="&#xe600;">Link 4</a></li>
         </ul>
 ```
+
 We added data-icon and unicode values to display glyphs from this site:
+
 [Icomoon.io](https://icomoon.io)
+
 [Select the fonts you want](https://icomoon.io/app/#/select)
+
 Download and put inside a `fonts` folder
+
 Get the html entity from icomoon site by selected icon and copying html entity
+
 Add this to the CSS
-```
+
+```css
 .main-nav a::before {
   font-family: 'icomoon';
   content: attr(data-icon);
@@ -96,13 +109,14 @@ Add this to the CSS
   top: 10px;
 }
 ```
+
 Will look similar to this:
 ![icomoon icons](https://i.imgur.com/BssAUqG.png)
 
 But we want the links inside the nav links
 simple add `position: relative` here:
 
-```
+```css
 .main-logo a,
 .main-nav a {
   display: block;
@@ -118,7 +132,7 @@ simple add `position: relative` here:
 We want to hide the icons initially so we set the margin to -30% on the left
 and hide the overflow like:
 
-```
+```css
 .main-logo a,
 .main-nav a {
   display: block;
@@ -142,7 +156,8 @@ and hide the overflow like:
 
 ## Nice Animation for icons
 The transition property is all we need to add this
-```
+
+```css
 .main-nav a::before {
   font-family: 'icomoon';
   content: attr(data-icon);
@@ -156,7 +171,8 @@ The transition property is all we need to add this
 
 ## Flex Grow
 Enables you to create quick and easy animations
-```
+
+```css
 .main-nav li {
     margin-left: 8px;
     margin-right: 8px;
@@ -172,7 +188,7 @@ Enables you to create quick and easy animations
 ```
 
 ## Add columns with Flex
-```
+```css
 /* Column Layout */
 
   .content-row {
@@ -184,14 +200,15 @@ Enables you to create quick and easy animations
 ```
 
 What if we want the `primary-content` to take up 2 columns?
-```
+```css
 .primary-content {
     flex: 2;
 }
 ```
 
 ## Change order of flex item
-```
+
+```css
 .primary-content {
     flex: 2;
     order: -1; /* moves primary content to be the first column */
@@ -205,7 +222,7 @@ What if we want the `primary-content` to take up 2 columns?
 
 ## Make flex work in Safari
 * Add prefixes
-```
+```css
 .content-row {
     display: -webkit-flex;
     display: flex;
@@ -236,15 +253,17 @@ If not, falls back to conditional CSS you write in the stylesheet
 ### Just testing with Flex
 Grab Modernizr with Flex script
 Add to HTML at top in HEAD
-```
+```html
 <script src="js/modernizr-custom.js"></script>
 ```
 
-Is it working?
+#### Is it working?
 If you see this, yes
+
 ![Flexbox is working](https://i.imgur.com/ScsayCG.png)
 Image means JavaScript is enabled and the browser supports flexbox
-If it does not support flexbox it will display no-flex in HTML element class.
+
+* If it does not support flexbox it will display no-flex in HTML element class.
 
 ![IE9 no flexbox support](https://i.imgur.com/aA7zDoj.png)
 
@@ -252,7 +271,7 @@ If it does not support flexbox it will display no-flex in HTML element class.
 **Note:** If browser doesn't support flexbox it will simple ignore the flexbox CSS rules
 
 ### Fallback for the nav
-```
+```css
 .main-nav li {
     margin-left: 8px;
     margin-right: 8px;
@@ -262,40 +281,44 @@ If it does not support flexbox it will display no-flex in HTML element class.
     flex-grow: 1;
     transition: .5s;
   }
-      .no-flexbox .main-nav li {
-        display: block;
-        margin-top: 12px;
-        width: 150px;
-      }
+.no-flexbox .main-nav li {
+ display: block;
+ margin-top: 12px;
+ width: 150px;
+}
 ```
+
 **Tip** indenting no-flexbox makes it easy to see (comment might help too)
 
 ### Fallback for the columns
-```
+
+```css
  .col {
     -webkit-flex: 1;
     flex: 1;
   }
-      .no-flexbox .col {
-        float: left;
-        width: 33.3%;
-      }
+.no-flexbox .col {
+ float: left;
+ width: 33.3%;
+}
 ```
 
 ### Fallback for the icon placement
-```
+
+```css
 .main-nav a:hover::before {
   left: 28%;
 }
-    .no-flexbox a:hover::before {
-      left: 18px;
-    }
+.no-flexbox a:hover::before {
+ left: 18px;
+}
 ```
 
 ## IE10 Flexbox different notation
+
 [IE10 Flexbox Documentation](https://msdn.microsoft.com/library/hh673531(v=vs.85).aspx)
 
-```
+```css
 #myFlexbox {
   display: -ms-flexbox;
   background: gray;

@@ -34,8 +34,8 @@ Move DOM elements without moving them in your DOM
 }
 ```
 
-* default is 0
-* for responsive design so you can order items any way you want
-* you can also use negative numbers
-* works like z-index, no units
-* caveat - selecting will be in the natural order
+* Default is 0
+* For responsive design so you can order items any way you want
+* You can also use negative numbers
+* Works like `z-index`, no units
+* Caveat - selecting will be in the natural order
