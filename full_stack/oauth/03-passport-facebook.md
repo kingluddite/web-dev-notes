@@ -1,5 +1,5 @@
 # Passport Facebook
-Each strategy differs slightly because each provider implements oAuth slightly and have different privacy settings for users
+Each strategy differs slightly because each provider implements oAuth slightly different and have different privacy settings for users
 
 ## [Passport Facebook Documentation](https://github.com/jaredhanson/passport-facebook)
 
@@ -39,10 +39,10 @@ clientSecret: process.env.FACEBOOK_APP_SECRET,
 
 Change this line
 
-`callbackURL: "http://localhost:3000/auth/facebook/callback"`
+`callbackURL: 'http://localhost:3000/auth/facebook/callback'`
 To this:
 
-`callbackURL: 'http://localhost:3000/auth/facebook/callback'`
+`callbackURL: 'http://localhost:3000/auth/facebook/return'`
 
 Add profile fields
 
@@ -56,7 +56,7 @@ Since we will be use the same function twice, grab the function we used for gith
 ```js
 function( accessToken, refreshToken, profile, done ) {
   if ( profile.emails[ 0 ] ) {
-    // ideal place to find our create a user document in the database
+    // ideal place to find or create a user document in the database
     User.findOneAndUpdate( {
         email: profile.emails[ 0 ].value
       }, {

@@ -61,13 +61,14 @@ var myArrowFunction = function myArrowFunction() {
 
 The Babel Command Line Tool ([CLI](http://babeljs.io/docs/usage/cli/))
 
-1. [clone this repo](git clone https://github.com/treehouse-projects/babel-workshop.git)
+1. clone this repo
+    * `$ git clone https://github.com/treehouse-projects/babel-workshop.git`
 
 2. Change into that repo's directory: `$ cd babel-workshop`
 
 3. Checkout a branch: `$ git checkout cli-lesson`
 
-4. Install babel: `$ npm install babel`
+4. Install babel: `$ npm install babel` (you may not need this? check)
 
 5. Install the babel CLI: `$ npm install --save-dev babel-cli`
 
@@ -98,6 +99,14 @@ console.log(double(1337));
 
 ## Package a build
 Define a build command in the script section
+
+**package.json**
+
+```
+ "scripts": {
+    "build": "babel src -d build"
+  },
+```
 
 `-d` flag - we are working with directories (_not individual files_)
 

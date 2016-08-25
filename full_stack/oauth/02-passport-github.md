@@ -11,7 +11,7 @@
 
 `$ npm install passport-github --save`
 
-1. Go to [http://github.com/username](http://github.com/username)
+1. Go to [http://github.com/username](http://github.com/YOURUSERNAME)
 2. Click on `account settings`
 3. Click on `oAuth applications`
     * You will see all apps that have oAuth from github
@@ -37,8 +37,9 @@ Generally you will have multiple oAuth apps
 **app.js** (_fragment_)
 
 ```js
-passport.use(); // ADD THIS LINE
+app.use(); 
 
+// ADD THIS ENTIRE SECTION BEFORE DESERIALIZE
 passport.serializeUser( function( user, done ) {
   done( null, user._id );
 } );
@@ -56,14 +57,15 @@ var passport = require( 'passport' );
 var GitHubStrategy = require( 'passport-github' ).Strategy;
 ```
 
-## Now configure out github strategy
+## Now configure our github strategy
 
 **app.js**
+Paste your GitHub ID an Secret below (I am using fake numbers)
 
 ```js
 var User = require( "./models/user" );
 
-// MODIFY passport.user() as seen below
+// MODIFY passport.use() as seen below
 
 // Configure GitHub Strategy
 passport.use( new GitHubStrategy( {
@@ -77,7 +79,7 @@ passport.use( new GitHubStrategy( {
 * We leave `clientID` and `clientSecret` blank on purpose for security reasons
     - You don't want to add this sensative info to version control
     - You don't want your development credentials deployed to staging and production
-        + You don't want to mix up your development and stating users with your actual user base
+        + You don't want to mix up your development and staging users with your actual user base
     - If developer leaves your team, you want to revoke that development environment without effecting your production users
     - It is good practice to separate **IDs** and **secrets** from all environments
 
@@ -85,19 +87,19 @@ passport.use( new GitHubStrategy( {
 Allow us to not show our **ID** and **Secrets** to anyone we don't want to:
 
 ```
-clientID: process.env.GITHUB_CLIENT_ID
-clientSecret: process.env.GITHUB_CLIENT_SECRET
+clientID: process.env.5b251c08ea9acf0b130d
+clientSecret: process.env.404622344738370b8c4eb0853c1015688e289867
 ```
 
 ```js
 // Configure GitHub Strategy
 passport.use( new GitHubStrategy( {
-  clientID: process.env.GITHUB_CLIENT_ID,
-  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  clientID: process.env.5b251c08ea9acf0b130d,
+  clientSecret: process.env.404622344738370b8c4eb0853c1015688e289867,
   callbackURL: 'http://localhost:3000/auth/github/return'
 }, function( accessToken, refreshToken, profile, done ) {
   if ( profile.emails[ 0 ] ) {
-    // ideal place to find our create a user document in the database
+    // ideal place to find or create a user document in the database
     User.findOneAndUpdate( {
         email: profile.emails[ 0 ].value
       }, {
@@ -133,6 +135,8 @@ passport.use( new GitHubStrategy( {
             * Check if email was collected, if not, error and let user know
 
 ## Working on our Auth Route
+
+**app.js**
 
 ```js
 var routes = require( './routes/index' );
@@ -183,12 +187,30 @@ module.exports = router;
 ## Before you start the app, first start the mongodb server
 $ mongod
 
+### Did you get an error like Jacob and I got?
+
+Something like this?
+
+`errno:48 Address already in use for socket: 0.0.0.0:27017`
+
+Here's one solution:
+
+Find the mongod that is running with:
+
+`$ ps wuax | grep mongo`
+
+Then kill all the id number you find
+
+Here is a sample way to kill a mongod running:
+
+![mongo id killed](https://i.imgur.com/KQ4ZhJr.png)
+
 ## Start the app with environmental variables
 Open Github to copy the Client ID and Client Secret
 
 Add this to the terminal immediatly before you use the start command
 
-`$ GITHUB_CLIENT_ID=5b251c08ea9acf0b130d GITHUB_CLIENT_SECRET=df59cec05aac059dda568abfdb86a26346f2938b ./bin/www`
+`$ GITHUB_CLIENT_ID=ff19550b155abd3f9c82 GITHUB_CLIENT_SECRET=404622344738370b8c4eb0853c1015688e289867 ./bin/www`
 
 ## Test
 

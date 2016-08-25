@@ -67,7 +67,7 @@ But in most cases its used to authenticate a user
 
 * Valid profile with a trusted provider
 
-## [Github Starter](kingluddite/passport-oauth-workshop-start.git)
+## [Github Starter](http://github.com/kingluddite/passport-oauth-workshop-start.git)
 Click to download starter files
 
 * Built with Express
@@ -175,10 +175,20 @@ var sessionOptions = {
 (**code fragment app.js**)
 
 ```js
-app.use( session( sessionOptions ) );
+// Session config for Passport and MongoDB
+var sessionOptions = {
+  secret: "this is a super secret hooha!",
+  resave: true,
+  saveUninitialized: true,
+  store: new MongoStore( {
+    mongooseConnection: db
+  } )
+};
+
+app.use( session( sessionOptions ) ); // ADD THIS
 
 // Initialize Passport
-app.use(passport.initialize());
+app.use(passport.initialize()); // ADD THIS
 ```
 
 ## Restore the Passport session
