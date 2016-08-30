@@ -37,10 +37,10 @@ As a take on this concept we'll create a page that shows several famous soccer p
 **Install and activate these plugins**
 
 * [Custom Post Types UI](https://wordpress.org/plugins/custom-post-type-ui/)
-  - This plugin provides an easy to use interface for creating and administrating custom post types and taxonomies in WordPress. This plugin is created for WordPress 3.0 and higher.
-  - This plugin alone will not display post types or taxonomies data in customized places within your site; it simply registers them for you to use. 
+    - This plugin provides an easy to use interface for creating and administrating custom post types and taxonomies in WordPress. This plugin is created for WordPress 3.0 and higher.
+    - This plugin alone will not display post types or taxonomy data in customized places within your site; it simply registers them for you to use. 
 * [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields)
-  - Customise WordPress with powerful, professional and intuitive fields
+    - Customise WordPress with powerful, professional and intuitive fields
 
 **Note**: You will need both of these plugins to create and use custom post types
 
@@ -119,7 +119,7 @@ add_theme_support( 'menus' );
 /*==========================================
 =            Add Featured Image            =
 ==========================================*/
-add_theme_support( 'post-thumbnails' );` 
+add_theme_support( 'post-thumbnails' ); 
 ```
 
 screenshot of code
@@ -198,6 +198,10 @@ Now we can create a page that follows the above template. We just select that te
 4. Add it to dropdown on our menu under Sample page
 5. Publish
 6. View page in browser to test if it works.
+
+Ok. So now you have a page but there are no images. Why? The reason is the very power WordPress loop is not in this page yet. The WP Loop, by default pulls in all posts and pages. But we only want to pull in our portfolio pieces. In order to manipulate the WP loop it ony filter in our portfolio pieces, we need to use `WP_Query()`.
+
+But before we do that, let's show you how to manipulate the defaults sizes of the your uploaded images. When you upload one image, WordPress creates 3 images of that image, the thumbnail, the medium size and the large size.
 
 ## How do I change the default image sizes when uploaded.
 

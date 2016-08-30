@@ -379,3 +379,12 @@ If you have any other uses for these commands or an easier way to figure out bra
 `$ git push REMOTE --all`
 
 example: if your remote is `origin` than `$ git push origin --all`
+
+## What if a student, and I won't mention any names, wanted to delete all the images in a folder and typed `$ rm -rf * .png`. This would delete all the files in that directory and all directories inside that directory.
+
+How would that student get the files back?
+Hopefully, the student is using git because this command (as long as they have not added to staging yet) will bring all the deleted files back.
+
+`$ git checkout .`
+
+

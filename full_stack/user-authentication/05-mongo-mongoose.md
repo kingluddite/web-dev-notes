@@ -92,12 +92,13 @@ This is how we tell Mongoose about the data
 * Mongo is a document database
     - each user we add to the database will be called a document
     - and is stored in a JSON like object
-    - **Model**
-        * Describes what that document should contain
-            + names used to identify each piece of info
-                * name, email, password, etc.
-            + type of information
-                * string, number, date, etc.   
+## Model
+Describes what that document should contain
+
+* names used to identify each piece of info
+    - name, email, password, etc.
+* type of information
+    - string, number, date, etc.   
 
 ## Create a `models` folder in the root of your app
 * We are using one schema but you could add more schemas to store info about books, form discussions etc
