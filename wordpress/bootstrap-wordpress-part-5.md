@@ -62,7 +62,7 @@ But nothing is really happening right now. Let's change that.
 Features
 * easy navigation
 * text description of each image
-* links to specif page per slide
+* links to specific page per slide
 
 ### What page are we going to add this component to?
 Blog Page
