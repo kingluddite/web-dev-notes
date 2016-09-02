@@ -6,5 +6,6 @@
 * [EmbedResponsively](http://embedresponsively.com/)
     - Embed stuff like youtube videos (generates the code for you)
         - (Thanks Jay!)
-
-
+* [uiGradients - great css3 color gradients](http://uigradients.com/)
+* [free videos for your homepage](http://coverr.co)
+* 

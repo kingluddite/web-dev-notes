@@ -1,5 +1,7 @@
 # Flex Intro
 
+[github repo](https://github.com/kingluddite/flexbox-videos.git)
+
 **index.html**
 
 ```html
