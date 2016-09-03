@@ -1,5 +1,20 @@
 # SSH
 
+**I want to copy my machines ssh public key and add it to my virtual machine's authorized_keys file. How can I do this?**
+
+Lots of ways. I like this way.
+You can have multiple keys in your authorized_keys file. I heard the max is 30 but double check on that.
+
+There is a very cool command that you can install with `brew`
+
+`$ brew install ssh-copy-id`
+
+Then
+
+`$ ssh-copy-id root@193.241.235.95`
+
+And that will add your SSH public key from your machine to the authorized_keys file on your virtual machine located at your IP (193.241.235.95 in my example). Also I am using the `root` user here but you can substitute whatever user you want.
+
 ## copy your id_rsa.pub
 
 `$ cat ~/.ssh/id_rsa.pub | pbcopy`
