@@ -40,6 +40,10 @@ Just based on that alone is cause to use Zsh. But there are tons of other things
 
 Great people got together to make working with zsh great.
 
+Install ZSH first
+
+`$ sudo apt-get install zsh`
+
 ### Install oh-my-zsh
 
 ```
