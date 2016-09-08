@@ -387,4 +387,31 @@ Hopefully, the student is using git because this command (as long as they have n
 
 `$ git checkout .`
 
+## Commit only part of a file in Git
 
+You can do `git add --patch filename.x` (**or -p for short**), and git will begin breaking down your file in what it thinks are sensible "hunks" (portions of the file). You will then be prompted with this question:
+
+Stage this hunk [y,n,q,a,d,/,j,J,g,s,e,?]?
+
+And here the meaning of each option:
+
+* `y` stage this hunk for the next commit
+* `n` do not stage this hunk for the next commit
+* `q` quit; do not stage this hunk or any of the remaining hunks
+* `a` stage this hunk and all later hunks in the file
+* `d` do not stage this hunk or any of the later hunks in the file
+* `g` select a hunk to go to
+* `/` search for a hunk matching the given regex
+* `j` leave this hunk undecided, see next undecided hunk
+* `J` leave this hunk undecided, see next hunk
+* `k` leave this hunk undecided, see previous undecided hunk
+* `K` leave this hunk undecided, see previous hunk
+* `s` split the current hunk into smaller hunks
+* `e` manually edit the current hunk
+* `?` print hunk help
+
+If the file is not in the repository yet, do first git add `-N filename.x`. Afterwards you can go on with git add `-p filename.x`.
+
+You can use than: `git diff --staged` afterwards to check that you staged the correct ones `git reset -p` to unstage incorrect hunks `git commit -v` to view your commit while you edit the commit message.
+
+Note this is a far different than the `git format-patch` command, which is entirely different.
