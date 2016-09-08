@@ -8,4 +8,4 @@
         - (Thanks Jay!)
 * [uiGradients - great css3 color gradients](http://uigradients.com/)
 * [free videos for your homepage](http://coverr.co)
-* 
+* [awesome links](https://github.com/sindresorhus/awesome)
