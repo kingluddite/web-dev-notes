@@ -14,6 +14,7 @@ Then
 `$ ssh-copy-id root@193.241.235.95`
 
 And that will add your SSH public key from your machine to the authorized_keys file on your virtual machine located at your IP (193.241.235.95 in my example). Also I am using the `root` user here but you can substitute whatever user you want.
+>>>>>>> mystuff
 
 ## copy your id_rsa.pub
 
@@ -28,21 +29,24 @@ And that will add your SSH public key from your machine to the authorized_keys f
 `$ cd .ssh`
 `$ nano authorized_keys`
 
-past into that file your id_rsa.pub
-ctrl x - to exit
-y - to save
-enter
+1. paste into that file your `id_rsa.pub`
+2. `ctrl` + `x` - to exit
+3. `y` - to save
+4. press enter
 
-ls - you should see a file authorized_keys with up to 30 different keys
+`ls` - you should see a file authorized_keys with up to 30 different keys
 
-###SSH into a remote machine###
+###SSH into a remote machine
+
 ```
 ssh user@mydomain.com
 #or by ip address
 ssh user@192.168.1.1
 ```
+
 __exit:__ `exit`
-###Install Something###
+###Install Something
+
 ```
 #If it's a new server, update apt-get first thing
 sudo apt-get update
@@ -50,14 +54,16 @@ sudo apt-get update
 sudo apt-get install git
 ```
 
-###Copy/Deploy files###
+###Copy/Deploy files
+
 ```
 #copy all of the files in this directory to the /home/will/newapp directory
 rsync -av . will@domain.com:~/newapp
 #delete a file and run rsync again, and it only copies the one mising file
 ```
 
-###Generate an SSH keypair for passwordless SSH###
+###Generate an SSH keypair for passwordless SSH
+
 ```
 #on your computer
 cd ~/.ssh
@@ -81,12 +87,13 @@ nano authorized_keys
 
 
 ## How to SSH into your box
+```
 
 ```
 $ ssh user@server.com -p1234
 ```
 
-* -p is port and is optional
+* `-p` is port and is optional
 * usually this will be the cpanel user and you'll have to look at the cpanel to get the URL or IP. If you can't find it, call your hosting support and they can tell you. If you don't have good hosting support, leave them
 
 # SSH Key Generation
@@ -154,10 +161,6 @@ Makes copying keys so much easier
 $ brew install ssh-copy-id
 ```
 
-
-
-
-
 * Your login, commands, and text are all encrypted when you use SSH
 * On a remote shared hosting plan you need to check in the cpanel if this is enabled. If not, enable it.
 * SSH allows you to perform secure file transfers and remote logins over an encrypted internet connection. Because you must have the private SSH key in order to authenticate a session, it is almost impossible to perform a brute force attack against an SSH connection. You can use this interface to create new SSH keys, import keys, manage keys, or delete keys in order to allow automated logins to SSH.
@@ -191,7 +194,6 @@ $ ssh kinglatte@kingluddite.com
 
 When you are logged into SSH on the remote server you can navigate around that server (aka 'navigate around the box').
 
-
 ## Videos
 * [How do I find my SSH Public Key?](https://www.youtube.com/watch?v=NX_IQrQA1FE)
 
@@ -202,19 +204,20 @@ I had problems wrapping my head around how to do this and how it works and my in
 When I try to push my commit to Github I get a request to enter my email and password. Doing this once is fine but when you are committing a lot, this gets old fast. The faster way is to generate a key. The long story short is this key will somehow reside on your computer and on the site you are trying to push to (in our case, Github). When Github sees our push request and our SSH key matches the key we set on our Github repo, the push can go through without an email and password because they know we are who we say we are.
 
 how to get to folder
+
 ```bash
 $ cd ~/.ssh
 ```
+
 generate key
+
 * replace test with name you want
+
 ```bash
 $ ssh-keygen -t rsa -C 'vvv'
 ```
 
-
 Here's how we do it:
-
-
 
 **Note:**
 The following information was gathered from this great [link](https://help.github.com/articles/generating-an-ssh-key/)
@@ -246,7 +249,7 @@ But don't get too excited because we still have unfinished business. You still n
 ## Add an SSH Agent
 What the heck is an [ssh-agent](https://en.wikipedia.org/wiki/Ssh-agent)?
 A lot of techno mumbo jumpo but important mumbo jumbo that conserns security. Here's an excerpt from wikipedia (taken from the link above)
->The most secure place to store the unencrypted key is in program memory, and in Unix-like operating systems, memory is normally associated with a process. A normal SSH client process cannot be used to store the unencrypted key because SSH client processes only last the duration of a remote login session. Therefore, users run a program called ssh-agent that runs the duration of a local login session, stores unencrypted keys in memory, and communicates with SSH clients using a Unix domain socket.
+The most secure place to store the unencrypted key is in program memory, and in Unix-like operating systems, memory is normally associated with a process. A normal SSH client process cannot be used to store the unencrypted key because SSH client processes only last the duration of a remote login session. Therefore, users run a program called ssh-agent that runs the duration of a local login session, stores unencrypted keys in memory, and communicates with SSH clients using a Unix domain socket.
 
 To add an ssh-agent it is a two-step process:
 1. Enable the ssh-agent

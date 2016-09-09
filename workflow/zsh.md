@@ -40,6 +40,10 @@ Just based on that alone is cause to use Zsh. But there are tons of other things
 
 Great people got together to make working with zsh great.
 
+Install ZSH first
+
+`$ sudo apt-get install zsh`
+
 ### Install oh-my-zsh
 
 ```
@@ -131,13 +135,171 @@ I'm using the `cobalt2` theme so I opened that theme up and commented out the ex
 
 ```
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=/Users/philiphowley/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="cobalt2"
+
+#source ~/.rvm/scrips/rvm
+#rvm use 2.2.2 --default
+
+# include Z, yo
+. ~/z.sh
+
+# =================
+# Aliases
+# =================
+
+# =================
+# Writing Stuff
+# =================
+alias thm='cd ~/Documents/writing/thm/episodes'
+alias hank='cd ~/Documents/writing/thm/episodes/the-handkerchief-party'
+
+# =================
+# Learning Stuff
+# =================
+alias wbn='cd ~/Documents/dev/web-dev-notes/js/es6'
+alias wbc='cd ~/Documents/dev/experiments/es6/'
+alias zn='cd ~/Documents/dev/web-dev-notes/wordpress/javascript'
+alias zc='cd ~/Documents/dev/experiments/zach-js'
+
+# JavaScript unit test practice
+alias exercise='cd ~/exercism/'
+alias eun='exercism unsubmit'
+
+# =================
+# Web Dev Tools
+# =================
+
+#hub create
+#alias editVhosts='sublime /etc/apache2/extra/httpd-vhosts.conf'
+#alias restartApache="sudo apachectl restart"
+#alias editHosts='sublime /etc/hosts'
+# open bash config file (.bash_profile)
+alias bsh='sublime ~/.bash_profile'
+
+# vvv
+alias vup="vagrant up && vagrant provision && vagrant ssh"
+
+# open zsh config file (.zshrc)
+alias zash='sublime ~/.zshrc'
+
+# refresh the bash
+alias refrash='source ~/.bash_profile'
+
+# refrash the zsh
+alias zfrash='source ~/.zshrc'
+
+# sass
+alias sasswatch='sass --watch scss:css'
+alias notes='cd ~/Documents/dev/web-dev-notes'
+alias md='mkdir'
+
+# unbounce site files
+alias unbounce=' cd ~/Documents/dev/unbounce'
+
+# =================
+# WordPress Sites
+# =================
+
+alias fair='cd ~/Documents/dev/vvv/vagrant-local/www/fairprogram.org/htdocs'
+alias elem='cd ~/Documents/dev/vvv/vagrant-local/www/elementsre.com/htdocs'
+alias cre='cd ~/Documents/dev/vvv/vagrant-local/www/createre.com/htdocs'
+alias cont='cd ~/Documents/dev/vvv/vagrant-local/www/contmpodesign.com/htdocs'
+alias king='cd ~/Documents/dev/vvv/vagrant-local/www/kingluddite.com/htdocs'
+alias vvv='cd ~/Documents/dev/vvv/vagrant-local/'
+alias exp='cd ~/Documents/dev/experiments'
+alias matt='cd ~/Documents/dev/vvv/vagrant-local/www/mattrohde.com/htdocs'
+
+# navigation files
+alias sites='cd ~/Sites/'
+alias dev='cd ~/Documents/dev'
+alias desk='cd ~/Desktop'
+alias ..='cd ../'
+# go back one directory
+alias b='cd ..'
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+alias .6='cd ../../../../../../'            # Go back 6 dir
+
+# History lists your previously entered commands
+alias h='history'
+
+# confirm before executing and be verbose
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias mkdir='mkdir -pv'
+
+# ================
+# OS Aliases
+# ================
+
+# Show all processes running
+alias ps='ps aux'
+
+# Hide/show all desktop icons (useful when presenting)
+alias hide_desktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias show_desktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# Hide/show hidden files in Finder
+alias hide_files="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
+alias show_files="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
+
+# ================
+# Application Aliases
+# ================
+alias chrome='open -a "Google Chrome"'
+alias db='cd ~/Dropbox'
+alias sop='sublime .'
+alias phub='hub browse .'
+
+
+# Kill Mongo process when it gets hung up
+alias monkill='ps aux | grep mongod'
+alias fm='ps aux | grep mongo'
+
+# http://jorge.fbarr.net/2011/03/24/making-your-bash-history-more-efficient/
+# Larger bash history (allow 32Â³ entries; default is 500)
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+
+# don't put duplicate lines in the history.
+export HISTCONTROL=ignoredups
+
+# ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+
+# Make some commands not show up in history
+export HISTIGNORE="h"
+
+# ====================
+# Git Aliases
+# ====================
+alias gs='git status'
+alias gap='git add -p'
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+alias gob='git checkout -b '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+alias glog='git log --pretty=oneline --abbrev-commit'
+alias gitl='git log --pretty=oneline'
+alias lgl='git log --oneline --decorate'
+# when I mispell git commands the following 2 commands help
+alias got='git '
+alias get='git '
+alias glog='git log --pretty=oneline --abbrev-commit'
+alias up='git pull upstream master'
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -181,15 +343,16 @@ ZSH_THEME="cobalt2"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git node npm alias-tips)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/git/bin"
+export PATH=/usr/local/share/npm/bin:$PATH
+export PATH="$HOME/.node/bin:$PATH"
+export GEM_HOME=$HOME/.gem
+export GEM_PATH=$HOME/.gem
 # export MANPATH="/usr/local/man:$MANPATH"
-
-# If you are using MAMP set up your php and mysql config in your bash shell and just switch to that when you need it
-# I recommend using zsh for your Vagrant VVV stuff and keep MAMP out of .zshrc
 
 source $ZSH/oh-my-zsh.sh
 
@@ -217,141 +380,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# LS lists information about files.
-# show slashes for directories.
-alias ls='ls -laF'
-# long list format including hidden files and include unit size
-alias ll='ls -la'
-
-# if you ever want to alias your ssh
 #alias server='ssh ph@10.0.1.201'
+#exorcism stuff
+# current emerging technologies project site
+#elements re wp sites
 
-alias md='mkdir'
-alias zfrash='sublime ~/.zshrc'
-
-# If you want to alias your sass watch
-#alias sasswatch='sass --watch scss:css'
-
-# Our class notes
-alias notes='cd ~/Documents/dev/notes/web-dev-notes'
-
-#finding folders fast
-alias sites='cd ~/Sites/'
-alias chrome='open -a "Google Chrome"'
-alias desk='cd ~/Desktop/'
-alias gitl='git log --pretty=oneline'
-alias lgl='git log --oneline --decorate'
-alias ..='cd ../'
-# go back one directory
-alias b='cd ..'
-alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 directory levels
-alias open='open .' # opens current folder in finder
-alias src='source ~/.zshrc' # updates zshrc with new edits
-alias clr='clear'
-alias hosts='sudo nano /etc/hosts'
-alias sleepdisplay='pmset displaysleepnow'
-alias falias='alias | grep ' #useful for finding 
-
-# Do you use Dropbox?
-#alias db='cd ~/Dropbox'
-alias glog='git log --pretty=oneline --abbrev-commit'
-alias sop='sublime .'
-
-# History lists your previously entered commands
-alias h='history'
-
-# confirm before executing and be verbose
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias rm='rm -iv'
-alias mkdir='mkdir -pv'
-
-# Vagrant
-alias v='vagrant version && vagrant global-status'
-alias vst='vagrant status'
-alias vup='vagrant up'
-alias vdo='vagrant halt'
-alias vssh='vagrant ssh'
-alias vkill='vagrant destroy'
-
-# =================
-# Additional Aliases
-# =================
-# Show all processes running
-alias ps='ps aux'
-
-# Kill Mongo process when it gets hung up
-alias monkill='ps aux | grep mongod'
-
-# Hide/show all desktop icons (useful when presenting)
-alias hide_desktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias show_desktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-# Hide/show hidden files in Finder
-alias hide_files="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
-alias show_files="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
-
-# ================
-# Application Aliases
-# ================
-# alias coda='open -a "/Applications/Coda 2.app"' # use coda?
-
-# http://jorge.fbarr.net/2011/03/24/making-your-bash-history-more-efficient/
-# Larger bash history (allow 32Â³ entries; default is 500)
-export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
-
-# don't put duplicate lines in the history.
-export HISTCONTROL=ignoredups
-
-# ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
-
-# Make some commands not show up in history
-export HISTIGNORE="h"
-
-# ====================
-# Git Aliases
-# ====================
-
-# create a repo on github itself. make sure you follow naming convention. create a authtoken and copy it.
-function git_create_repo { curl -H "Authorization: token YOUR-TOKEN-HERE" https://api.github.com/user/repos -d '{ "name":"'"$1"'" }'; }
-
-# usage: lazyhub reponame [directory]
-# default will be current directory
-
-function lazyhub {
-    IFS='/' read -r -A array <<< $1
-    reponame=$1;
-    directory=${2:-$array[2]};
-    hub clone $reponame $directory;
-    cd $directory;
-}
-
-alias gup='git pull upstream master'
-alias gs='git status'
-alias gap='git add -p'
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
-alias gd='git diff'
-alias go='git checkout '
-alias gk='gitk --all&'
-alias gx='gitx --all'
-alias glog='git log --pretty=oneline --abbrev-commit'
-# when I mispell git commands the following 2 commands help
-alias got='git '
-alias get='git '
-
-alias push="git push origin master"
-alias pull="git pull origin master"
-alias create='git_create_repo ' # eg 'create awesome-repo-name-here'
-
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 ```
 
 ## Keyboard shortcuts
@@ -520,3 +554,9 @@ https://github.com/rupa/z
 ## Useful plugins
 * [alias-tips](https://github.com/djui/alias-tips)
 
+## ag
+Z is great when you’re moving to a specific directory, but what if you want to find a certain file or line of code? That’s where the silver searcher comes in. The silver search, aka ag, is great. It is an improvement over the many tools there are for searching on the command line. The biggest thing is that it is SUPER FAST. There are a lot of technical things in does in the background to get that speed, but the thing you should know is that it is fast.
+
+You can easily search your entire codebase for a certain function call, or for a file you can’t remember where it was, anything you want. To put it in perspective, I just searched the entire WordPress codebase for wp_insert_post(), and it returned all the results in less than 1/10 of a second. And this is on a four year old machine. Pretty good.
+
+To install `ag`, simply do `$ brew install the_silver_searcher`, and you’re all good to go.

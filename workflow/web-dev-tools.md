@@ -1,5 +1,7 @@
 # Essential Web Dev Tools
 
+[beginners guide to best command line tools](https://webdevstudios.com/2015/02/10/a-beginners-guide-to-the-best-command-line-tools/)
+
 * homebrew (mac) install
 * iterm2 (mac)
 * MAMP (mac)
