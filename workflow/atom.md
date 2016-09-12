@@ -34,3 +34,25 @@ Now j+j works just like the key binding in Sublime Text
 ## Open atom beautifier and add proper spacing in settings
 change to see .gitignored files/folders
 
+Preferences
+* Core Settings
+  - Check close empty windows
+  - Project Home
+    + Change to the location where you store your projects
+* Editor
+  - Scroll Past End
+  - key bindings - searchable
+  - tab type - soft
+  - tab length - 4
+  - soft wrap
+  - show invisibles
+* Packages
+  - built into Atom
+
+Tips
+* if you drag a file into atom it opens up the entire folder inside atom
+* click empty tab to quickly create a new file
+* cmd + \ (toggle sidebar)
+* split /right/left/top/bottom
+* open files (cmd + t or cmd + p)
+* 
