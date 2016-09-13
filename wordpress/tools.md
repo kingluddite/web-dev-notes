@@ -22,3 +22,9 @@ sudo python serverpilot-installer.py \
 
 4. press return
 
+## Plugins
+
+WP Migrate DB
+This works great when you also need to change URLS in serialized Data
+Will save you hours and it's free.
+
