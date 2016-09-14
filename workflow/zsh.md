@@ -293,13 +293,11 @@ alias gob='git checkout -b '
 alias gk='gitk --all&'
 alias gx='gitx --all'
 alias glog='git log --pretty=oneline --abbrev-commit'
-alias gitl='git log --pretty=oneline'
-alias lgl='git log --oneline --decorate'
+alias up='git pull upstream master'
+alias upandaway='git pull upstream master && git push origin master'
 # when I mispell git commands the following 2 commands help
 alias got='git '
 alias get='git '
-alias glog='git log --pretty=oneline --abbrev-commit'
-alias up='git pull upstream master'
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
