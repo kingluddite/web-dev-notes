@@ -55,4 +55,7 @@ Tips
 * cmd + \ (toggle sidebar)
 * split /right/left/top/bottom
 * open files (cmd + t or cmd + p)
-* 
+
+
+## How to add snippets
+[add snippets in atom](https://www.sitepoint.com/use-code-snippets-atom/)
