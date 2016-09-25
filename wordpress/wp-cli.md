@@ -446,3 +446,9 @@ If you get error establishing connection, add this sym link
 Wordpress update to 4.6 bug Fatal Error call to undefined function apply_filters
 
 [link to solution](http://ryanbenhase.com/solved-plugin-updates-fail-using-wp-cli-wordpress-4-6-upgrade/)
+
+`$ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar`
+
+`chmod +x wp-cli.phar`
+
+`sudo mv wp-cli.phar /usr/local/bin/wp`
