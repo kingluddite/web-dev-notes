@@ -31,3 +31,74 @@ how does react router fit into reacts declarative and modular style of building 
 install node.js and npm on your computer
 
 [start files](https://github.com/ReactTraining/react-router)
+
+$ npm install
+$ npm start
+by default starts on http://localhost:8080
+
+$ npm install --save react-router
+
+## React Router
+provides 2 components to get you started
+1. Router
+    * the main component, keeps your UI and URL in sync
+2. Route
+3.  * maps routes to your applications components
+
+`src/index.js`
+
+```js
+// Libs
+import React from 'react';
+import { render } from 'react-dom';
+import { Router, Route } from 'react-router' // add this line
+```
+
+add our route
+
+```js
+// Libs
+import React from 'react';
+import { render } from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router'
+
+// CSS
+import './css/style.css';
+
+// Components
+import App from './components/App';
+
+// Render
+render(
+  <Router history={hashHistory}>
+      <Route path="/" component={Home} />
+  </Router>,
+  document.getElementById('root')
+);
+```
+
+when you run
+$ npm start
+
+output: green page with error `Home is not defined`
+
+Add this component
+
+`src/index.js`
+
+```js
+// Components
+import App from './components/App';
+import Home from './components/Home'; // add this line
+```
+
+And now you will see the home page
+
+[hash history](https://i.imgur.com/f8CLFMU.png)
+
+not the cleanest url but necessary for back and forward browser buttons to work
+
+there is a clean URL with browser history (instead of hash history)
+
+## Declarning Multiple Routes
+
