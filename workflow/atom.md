@@ -83,7 +83,10 @@ Tips
 * cmd + \ (toggle sidebar)
 * split /right/left/top/bottom
 * open files (cmd + t or cmd + p)
-*
+
+
+## How to add snippets
+[add snippets in atom](https://www.sitepoint.com/use-code-snippets-atom/)
 
 ## Scrolling in Vim Mode using Atom
 If you are getting strange characters popping up, this will help remove it and you can scroll without a problem (does it globally).
