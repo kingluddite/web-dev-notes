@@ -52,7 +52,8 @@ For Mac, you need this to install stuff you should have on your mac as a develop
 * Homebrew needs Mac's XCode to be installed. It is a free install but large so when you install it, go grab a cup of coffee.
 
 ### Update Homebrew
-
+* sometimes you will need to agree to Xcode update
+* you may need to update permissions with `$ sudo chown -R $(whoami) /usr/local`
 ```
 $ brew update
 #
@@ -97,6 +98,15 @@ $ tree
 ```
 $ brew install (whatever you want to install)
 ```
+
+## How do I update node?
+```
+$ brew update
+$ brew doctor
+$ brew upgrade node
+```
+
+Now you have installed updated version of node, and it's probably not linked. If it's not, then just type: `$ brew link node` or `$ brew link --overwrite node`
 
 ## imagemagick
 * free software to create, edit, compose or convert bitmap images
