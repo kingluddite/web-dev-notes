@@ -1,5 +1,32 @@
 # Atom Text editor
 
+**Tip** in vim-mode preferences, check the `Start In Insert Mode` checkbox
+
+Add tab completion for emmet
+
+keymap.cson
+```
+'atom-text-editor[data-grammar~="jsx"]:not([mini])':
+  'tab': 'emmet:expand-abbreviation-with-tab'
+```
+
+self closing html tags
+cmd + option + j
+
+for jsx files
+
+```js
+"jsx": {
+    "tag_case": "lower",
+    "attr_quotes": "double",
+    "self_closing_tag": "xhtml"
+  }
+```
+
+sel_closing_tag (value can be `true`, `false` or `xhtml`)
+
+
+
 ## Problems opening Atom from terminal
 I had to move my destop install into the Applications folder but the `$ $atom .` command would not work. I renamed my atom to atom.app and it still did not work. I received a zsh Atom command not found error. My fix was to remove the existing sym link by deleting it, `$ rm -rf /usr/local/bin/atom` and then adding it again with `$ ln -s /Applications/Atom.app/Contents/Resources/app/atom.sh /usr/local/bin/atom`. And then `$ atom .` worked like a charm!
 
@@ -47,6 +74,7 @@ Preferences
   - soft wrap
   - show invisibles
 * Packages
+  - atom-wrap-in-tag
   - built into Atom
 
 Tips
@@ -59,3 +87,10 @@ Tips
 
 ## How to add snippets
 [add snippets in atom](https://www.sitepoint.com/use-code-snippets-atom/)
+
+## Scrolling in Vim Mode using Atom
+If you are getting strange characters popping up, this will help remove it and you can scroll without a problem (does it globally).
+
+```
+$ defaults write -g ApplePressAndHoldEnabled -bool false
+```
