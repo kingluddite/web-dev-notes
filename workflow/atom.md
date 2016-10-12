@@ -1,5 +1,11 @@
 # Atom Text editor
 
+## How do I hide files like .DS_STORE?
+[here's how](https://discuss.atom.io/t/a-way-to-hide-the-ds-store-files-in-the-tree-view/1431/4)
+
+# terrible beep sound when ctrl + cmd + down arrow fix
+[fix for beep sound](https://github.com/atom/atom/issues/1669)
+
 **Tip** in vim-mode preferences, check the `Start In Insert Mode` checkbox
 
 Add tab completion for emmet
@@ -94,3 +100,6 @@ If you are getting strange characters popping up, this will help remove it and y
 ```
 $ defaults write -g ApplePressAndHoldEnabled -bool false
 ```
+
+
+
