@@ -1,4 +1,20 @@
 # GIT
+
+## How to clone a repo without the folder itself
+`$ git clone git@github:me/name.git .`
+
+If the folder is not empty
+
+```
+git init
+git remote add origin git@github.com:me/name.git
+git pull origin master
+```
+
+* remove .git after you're done and any files you don't want like the README
+
+[source for cloning without folder](http://stackoverflow.com/questions/6224626/github-clone-contents-of-a-repo-without-folder-itself)
+
 remote
 /var/repo/thm.com.git
 cd in /var/repo/thm.com.git
