@@ -2,6 +2,8 @@
 
 **I want to copy my machines ssh public key and add it to my virtual machine's authorized_keys file. How can I do this?**
 
+this is if you are using a virutal box or a linux server
+
 Lots of ways. I like this way.
 You can have multiple keys in your authorized_keys file. I heard the max is 30 but double check on that.
 
@@ -185,7 +187,7 @@ ls -al ~/.ssh
    sop /etc/hosts
 
 ## How to Remote SSH terminal
- 
+
 ```
 $ ssh kinglatte@kingluddite.com
 ```
@@ -233,7 +235,7 @@ $ ls -al ~/.ssh
 If you don't have one, time to generate it.
 
 ## Generate SSH key
-1. Open a terminal on your local computer and enter the following: 
+1. Open a terminal on your local computer and enter the following:
 
 ```bash
 ssh-keygen -t rsa -C "your_email@example.com"
