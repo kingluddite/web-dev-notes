@@ -1,5 +1,9 @@
 # WordMove
 
+## Gotchas
+the WordFence security plugin
+It broke wordfence because of database type. It uses Latin. Just unintalling won't work. In addition, you have to go into the database and remove all wp_wf table names. Once you do that it will work. I used the all in one security plugin instead.
+
 [WordMove](https://github.com/welaika/wordmove) is like [Capistrano](http://capistranorb.com/#) for [WordPress](https://wordpress.org/). If you are coding a simple static site, you just need to `FTP` your `HTML`, `CSS` `` to your server. But WordPress isn't a static site and it has a database filled with tables.
 
 Moving your WordPress site from place to place has always been a pain. So much of a pain, that it is for people to make all their changes on the `live` server. This is known as `[cowboy coding](https://en.wikipedia.org/wiki/Cowboy_coding)` and is a bad practice. Don't do it.
@@ -302,8 +306,8 @@ found out you need to use linuxbrew
 to install linuxbrew you need to make sure you pathe this in the terminal
 
 ```
-export PATH="$HOME/.linuxbrew/bin:$PATH" 
-   export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH" 
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+   export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
    export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 ```
 
