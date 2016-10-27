@@ -6,9 +6,13 @@
 * [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-4.md)
 * [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-5.md)
 
-# Bootstrap & WordPress
+# WordPress - Building a Custom Theme
+
+There are two ways to install WordPress. The traditional and long way and WP-CLI and the short way. Obviously, the shorter, the better but let's just show you the long way for thoroughness.
+
+## The Traditional Way to Install WordPress
  
-## 1. Install WordPress locally
+### Install WordPress locally
 
 ### If you use MAMP remember to:
 * [download WordPress](https://wordpress.org/download/)
@@ -42,22 +46,158 @@
         + **page 7** - ![You will see this page](https://i.imgur.com/VFjF4CV.png). Use your login credentials to login to the admin Dashboard.
             * **note** To login in the future go to `http://localhost/your-wordpress-site/wp-admin`
 
+## Install WordPress Using WP-CLI (recommended)
 
-## 2. Download Bootstrap
+Use my WP-CLI notes for install instructions (or use the [WP-CLI page](http://wp-cli.org/) for easy to follow instructions)
+
+This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
+
+```
+$ wp core download
+```
+
+### Create the wp-config.php file
+
+If you were manually installing WordPress through the browser you would be brought to a page where you put in your database connection information. This would in turn create your `wp_config.php` file. WP-CLI speeds this step up with a little terminal magic.
+
+Before you do this step you need to create a database in MySQL. Using the GUI phpMyAdmin is the way most people do this. You can also use the Terminal, sign into MySQL and create a database this way. As you use the terminal more and more the second option may become your first choice.
+
+So now you are ready to create your `wp-config.php` file
+
+```
+$ wp core config --dbuser=root --dbpass=root --dbname=stranger_things_wp
+```
+
+This will create the file to connect you to your MySQL databse. The above code is assuming you used MAMP and the default username and password for MAMP is root and root. Change the --dbname value to match the name you used when creating the empty database in phpMyAdmin (or MySQL terminal). I recommend using underscores instead of dashes in db names with more than one word (ie my_db instead of my-db). For security reasons you may want to not have db in name so hackers won't find it so easily.
+
+### Finishing Up Core Install
+
+If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal. 
+
+```
+$  wp core install --url=http://localhost/stranger-things --title=StrangerThings --admin_user=admin --admin_password=password --admin_email=howley.phil@gmail.com
+```
+
+### Troubleshooting
+Lots of bugs/problems can happen when trying to use WP-CLI with MAMP.
+
+### Problems with MAMP and WP-CLI
+* Check out [mamp.md](https://github.com/kingluddite/web_dev_notes/blob/master/workflow/development/mamp.md)
+
+This is a common error. I've run into a bunch of different ones and spend more time then I would have liked to troubleshoot and resolve them. The main error has to do with something like `database connection`. MAMP is usually the problem. I think because I moved from MAMP to virtual box, vagrant, vvv I ran into problems because I first started with MAMP and set my .zshrc to be working with MAMP and then when I moved to virtualbox and went back and forth between MAMP and virtual box, I think I just had to update my .zshrc with the correct info. Just make sure whatever you are using the PHP and MySQL are pointing to the right place.
+
+add this to your `.zshrc` file
+
+**note** I use oh-my-zsh instead of bash. Lots of developers love oh-my-zsh and so I moved from bash to the zsh. I highly recommend Wes Bos 10 free videos on getting up and running with zsh.
+
+`.zshrc`
+
+* make sure your php version is the correct folder
+
+```
+##
+# WP-CLI / MAMP compat
+##
+export MAMP_PHP=/Applications/MAMP/bin/php/php5.5.10/bin
+export PATH="$MAMP_PHP:$PATH:/Applications/MAMP/Library/bin"
+```
+
+[ref](http://laurenpittenger.com/wpcli-error-establishing-database-connection-mamp/)
+
+**IMPORTANT:** Remember to refresh bash or zshr with:
+```
+$ source ~/.bash_profile
+# or
+$ source ~/.zshrc 
+```
+
+I've also notice that if you follow all of the aforementioned troubleshooting techniques, it still may not work. The problem is that your computer is not pointing to the MAMP install of PHP or MySQL. The reason is Mac computers come preinstalled with their own MySQL and PHP and you most likely are pointing to those installs. I have noticed that when people switch to the .zsh shell, this problem happens a lot. I have students switch to the bash shell using:
+
+`$ exec bash` and then refreshing the `~/.bash_profile` with `$ source ~/.bash_profile`
+
+That seems to be a short term solution.
+
+It should be noted this was one of the main reasons I stopped using MAMP at home and Use VVV, Vagrant and Virtual Box.
+
+To switch back to the .zsh shell is as simple as `exec zsh`
+
+You can refresh the `~/.zshrc` file with `$ source ~/.zshrc`
+
+You now can jump back and forth between shells if you need to. Not a great solution but a solution nevertheless
+
+### Download Bootstrap
 [Download Bootstrap](http://getbootstrap.com/getting-started/)
 
-## 3. Create new custom theme
+First we are now going to use bootstrap 4 (instead of bootstrap 3)
+We are also going to install with node and it's npm (node package manager). This is way faster than manually downloading it.
 
-What WordPress directory do you put your custom theme?
+### Where will our custom theme be located?
+In the themes folder `wp-content/themes`
 
-`wp-content/themes/wp-bootstrap`
+So create your custom theme inside this `themes` folder. For the sake of this example, let's call it `thunder-tube-theme`.
 
-## 4. Add folder to project in Sublime Text
+`$ mkdir wp-content/themes/thunder-tube-theme`
 
-Not a required step but a helpful one. This is obviously assuming your are using Sublime Text as your text editor. Sublime makes working with WordPress easier with it's project functionality. [This link shows you the power of control you can have with projects](http://code.tutsplus.com/tutorials/sublime-text-2-project-bliss--net-27256). I just like to create a folder for CORE WordPress and for my custom theme. If you are also developing a plugin, you could add a folder for your plugin too.
-    * save project as and create CORE and wp-bootstrap project folders
+Change into that directory
 
-## 5. Add these files to your custom theme folder
+`$ cd wp-content/themems/thunder-tube-theme`
+
+This is the folder you need to be inside because this is where all your custom theme stuff goes.
+
+## Get Git!
+Inside your theme you need to start listening with Git (and add version control to your theme)
+
+`$ git init`
+
+### Which text editor do you currently recommend?
+I like Atom. I have used Sublime Text for years and find Atom to be a superior product.
+
+### Create package.json in the root of your custom theme
+
+`$ npm init -y`
+
+**note** the -y flag is a way to save you from answering all the questions npm usually asks you when it creates package.json.
+
+### Grab Bootstrap 4
+
+This code may change so this is the site where you can the most updated npm code.
+
+`$ npm install bootstrap@4.0.0-alpha.5 --save`
+
+**note** the --save flag saves this to your `package.json`
+
+Bootstrap 4 requires the `tether` and `jquery` dependencies
+
+You don't need to grab jquery because it comes bundled with WordPress.
+
+`$ npm install tether --save`
+
+Check out your package.json and you should see bootstrap 4 and tether are now listed in the `dependencies` portion of the JSON file.
+
+## Sample package.json
+
+After installing bootstrap and saving it, `package.json` will look something like this:
+
+```js
+{
+    "name": "thunder-tube-theme",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "peh2",
+    "license": "ISC",
+    "dependencies": {
+        "bootstrap": "^4.0.0-alpha.5",
+        "tether": "^1.3.7"
+    }
+}
+```
+
+## Add these files to your custom theme folder
 
 Custom themes can have lots of files. But the only required files are `index.php` and `style.css`.
 
@@ -66,7 +206,90 @@ Custom themes can have lots of files. But the only required files are `index.php
 * footer.php
 * index.php (required)
 * style.css (required)
-* screenshot.png
+
+## Add with Git
+
+First check your site with `$ git status`
+
+You will see `node_modules` and that we are tracking it. We don't want to as this code we never edit because it's 3rd party code. We use it but it is not ours so therefore we don't need to add it to our git repo. If we added node_modules to all our repos, we would waste space needlessly. Give a hoot. Don't pollute! :)
+
+### .gitignore
+
+This file will allow git to ignore `node_modules`
+
+Add it to the root of your custom theme.
+
+`$ touch .gitignore`
+
+And add `node_modules` to that file. You can do that through the terminal with:
+
+`$ echo "node_modules >> .gitignore`
+
+Save and check the status with
+
+`$ git status`
+
+And you will see `node_modules` is no longer being watched by git.
+
+#### Now we are ready to add our new stuff to gits staging area.
+
+`$ git add -A`
+
+## Commit with Git
+
+`$ git commit -m 'initialize repo'`
+
+## Never work in the master branch
+
+The master branch is for your production code.
+
+Whenever you are working on a new feature you should create a feature branch.
+
+## Create a feature branch
+
+`$ git checkout -b my-first-feature-branch`
+
+Now you just created a new branch named `my-first-feature-branch` and switched into it (that's what the -b flag did)
+
+This branch has everything the master branch had but you now can add new stuff without worrying it will mess up the master branch.
+
+Let's add a background color to our site.
+
+`style.css`
+
+```
+body {
+  background-color: red;
+}
+```
+
+Save and commit.
+
+`$ git add style.css`
+
+`$ git commit -m 'add background color'`
+
+## Switch back to the master branch
+`$ git checkout master`
+
+Notice how we don't see our new style in the master branch? This is because branches don't see each other. They are self contained. When you create a branch, it takes a copy of the branch you are in and puts it inside the new branch.
+
+## Merge Branch
+We want to take the code we had in our `my-first-feature-branch` branch and merge it into the master branch. We can do that with:
+
+`$ git merge my-first-feature-branch`
+
+Now the master branch will have the new body background.
+
+I won't keep adding branches in my notes but you should get into this habit. Never work with new stuff in the master branch. Create a new branch and when you know it works and it is what you want. Add, commit and switch back to the master branch and merge your changes.
+
+## Add images with Terminal
+
+**Question**
+
+_Can we grab images from the internet directly from the internet?_
+
+Heck yes!
 
 Use this code to grab a proper dimensioned `screenshot.png` to give you a cute example of how to add a `screenshot.png` using the terminal
 
@@ -76,7 +299,9 @@ Use this code to grab a proper dimensioned `screenshot.png` to give you a cute e
 $ curl -O https://make.wordpress.org/training/files/2013/10/screenshot.png
 ```
 
-## 6. Add special css comment to style.css
+You now have `screenshot.png` inside your theme and WordPress will use this to show a screenshot of your theme. You are supposed to take a screenshot of your finished theme. The dimensions of the image you add are the recommended dimensions for all your screenshots.
+
+## Add special css comment to style.css
 
 Some may find this strange but WordPress using comments to give itself special instructions. The `style.css` file is a perfect example of this. Here you see a comment that adds meta information about the theme to the Dashboard. You can put all your CSS in this file but there is a better way to break up your CSS with help from the `functions.php` file.
 
@@ -94,19 +319,23 @@ Code and take over the world line-by-line
 */
 ```
 
-## 7. Activate Your Theme
+## Activate Your Theme
 
 So if you are logged into your WordPress Dashboard and you navigation to `Appearance > Themes` you should see your theme. If you don't you may have created a `broken theme` and you'll have to troubleshoot to get it working. WordPress usually will give you a broken theme notice and let you know what the problem may be. If you added a screenshot.png to your theme, you will see that image in the themes page of your Dashboard. Click Activate and your theme will now be live. Click `Visit Site` in Dashboard to view your live site. Don't get too excited because it will blank.
 
-## 8. Our Bootstrap Starter Template
+## A Better way to activate your theme using WP-CLI
+
+`$ wp themes activate thunder-tube-theme`
+
+## Our Bootstrap 4 Starter Template
 
 We'll use this template and convert it so it looks the same in our WordPress custom theme.
 
-[Our BS template](http://getbootstrap.com/examples/jumbotron/)
+[Our BS template](http://v4-alpha.getbootstrap.com/examples/jumbotron/)
 
 * View the page in Chrome and view the source of the page. Copy the source and paste it into `index.php`. The CSS won't be working but you will see the content.
 
-## 9. Break up our page into pieces
+## Break up our page into pieces
 
 ### header.php
 
@@ -142,17 +371,7 @@ Replace cut code in `index.php` with the following PHP code:
 
 View page in browser to test if `footer.php` include is working
 
-## 10. Custom CSS
-
-Create a `css` folder and put `bootstrap.min.css` (from when you downloaded Twitter Bootstrap) inside it.
-
-This would be if you were downloading bootstrap the traditional way but a better way is to install bootstrap using `npm`.
-
-But if you want to use your own custom `css`, you should create a file and inside `css`.
-
-In these notes, we are first just putting all our custom CSS inside the style.css file in the root of our theme. But that is not where you would put it in a real site. You would put in `css/application.css`.
-
-## 11. Proper Way to Include CSS in WordPress
+## Proper Way to Include CSS in WordPress
 
 In a static HTML page, you use LINK elements to point to the CSS files. In WordPress the proper (and secure) way to include CSS is through the `functions.php` page.
 
@@ -169,69 +388,7 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ?>
 ```
 
-## 11.1 Homebrew
-
-[Homebrew](http://brew.sh/) is great for Mac computers.
-
-Install it with this code:
-
-```
-$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
-
-## 11.2 Install Node using Homebrew
-
-```
-$ brew install node
-```
-
-Now you have `npm` (node package manager) and this gives you some cool abilities
-
-## 11.3 package.json
-
-```
-$ npm init
-```
-
-This will create a simple package.json file that will be used a lot when you are using git and github. We are using it here so we can easily install bootstrap. (Otherwise we would have to find a CDN link or manually download it). package.json is a file modern web developers use to spead up their workflow when building web applications.
-
-## 11.4 Install Twitter Bootstrap with npm
-
-```
-$ npm install bootstrap --save
-```
-
-## 11.5 Sample package.json
-
-After installing bootstrap and saving it, `package.json` will look something like this:
-
-```js
-{
-  "name": "kl-wordwrap",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bootstrap": "^3.3.6"
-  }
-}
-```
-
-The really cool thing about this file is that you can save all the dependencies your custom theme needs to github and then when you, or someone else, clones it to another computer, it can easily install all your application dependencies with this simple command:
-
-```
-$ npm install
-```
-
-**What is an application dependency?**
-If your site is using `jQuery` and `bootstrap`, they are application dependencies and you would have to manually download them every time you clone the site. You don't want to add `jQuery` and `bootstrap` to git (and github) because you are not maintaining these files. But you do need these files for your site to work. So the modern workflow for web developers is to add `node_modules` to your .gitignore file in `git` and then they won't be in your git or github repositories. But when you clone them you can easily (and quickly) add them with `$ npm install`. This is an advanced topic that may confuse you but it is just introduced here to simple introduce you to a very important web development tool.
-
-## 12. Hooks in WordPress
+## Hooks in WordPress
 
 There will be times where you need to inject code at a certain part of your custom theme. That is where hooks come in. In a standard static HTML site, you would put LINK elements to point to your CSS. In WordPress we use the `wp_head()` **hook** to inject the CSS we have line up (or a better WordPress word to use here would be **enqueued**). Once you do this and view your WordPress site, you will see that the CSS from Twitter Bootstrap's Jumbo sample page is now working.
 
@@ -242,7 +399,7 @@ In `header.php` add this php to just before closing HEAD element
 </head>
 ```
 
-## 13. View Source Code
+## View Source Code
 
 ### 404 Errors
 
@@ -257,16 +414,14 @@ You will see that `bootstrap.min.css` is included
 
 * Delete unused old link to `bootstrap.min.css`
 
-## 14. Add our style.css using our functions.php page
+## Add our style.css using our functions.php page
 What about link to `jumbotron.css`? How can we add that?
 
 On the original static source if you click on the link it will take you to jumbotron.css and show you this code:
 
 ```css
-/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
-  padding-bottom: 20px;
+  padding-bottom: 2rem;
 }
 ```
 
@@ -275,18 +430,21 @@ Copy that code and put it at the bottom of `style.css`
 To enqueue it (add it to our list of needed css files) just adjust our `functions.php` file to look like the following:
 
 ```php
-<?php
+/* add css */
 function theme_styles() {
-    wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/css/bootstrap.min.css' );
-    wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css'); 
+    wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css' );
+    wp_enqueue_style( 'jumbotron_css', get_template_directory_uri() . '/css/jumbotron.css' );
+    wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ?>
 ```
 
-**Notice** we just add another **wp_enqueue_style()** call but this time we point to our custom theme `style.css`
+Above shows you how we can point to our node_modules version of bootstrap 4, as well as a custom css file `jumbotron.css` and we also can point to the style.css file located in the root of our WordPress theme. Now you know how to include any time of css inside WordPress.
 
-View our source for our WordPress site and you'll see the style code is working. Delete the static reference to 
+You can now delete the `hardcoded` link tag inside your `header.php` file that points to `jumbotron.css`
+
+
 
 ```html
     <!-- Custom styles for this template -->
@@ -302,132 +460,32 @@ If you view the source you should now see that our custom theme `style.css` file
 
 ![style.css in source code](https://i.imgur.com/9QSoFEG.png)
 
-## 14.1 Adding Custom CSS
-
-Add a new file inside our `css` folder
-
-```
-$ touch css/ie10-viewport-bug-workaround.css
-```
-
-This is another file in our sample jumbotron bootstrap template.
-
-In that file grab the code from the original static template:
-
-```css
-/*!
- * IE10 viewport hack for Surface/desktop Windows 8 bug
- * Copyright 2014-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
-/*
- * See the Getting Started docs for more information:
- * http://getbootstrap.com/getting-started/#support-ie10-width
- */
-@-webkit-viewport { width: device-width; }
-@-moz-viewport    { width: device-width; }
-@-ms-viewport     { width: device-width; }
-@-o-viewport      { width: device-width; }
-@viewport         { width: device-width; }
-```
-
-Delete the static code from `header.php`
-
-Now your `functions.php` file will look like this:
-
-```php
-<?php
-function theme_styles() {
-    wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css' );
-    // IE10 viewport hack for Surface/desktop Windows 8 bug
-    wp_enqueue_style( 'ie10fix_css', get_template_directory_uri() . '/css/ie10-viewport-bug-workaround.css');
-    wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css');
-}
-add_action( 'wp_enqueue_scripts', 'theme_styles' );
-?>
-```
-
-Notice I added a comment for good documenation
-* the path points to my file inside the `css` folder.
-
-## 15. Fonts with Bootstrap
-
-Make sure fonts that came with bootstrap are linked correctly
-
-* copy bootstrap `fonts` folder and paste into bootstrap theme
-    * search bootstrap.min.css for `Glyph` and you will see the links are to ../fonts/glyph...
-    * if you keep fonts an css as sibling directories than all is well, if you move fonts directory somewhere else, you have to update the path
-* Delete header.php debugging comment
-
-```html
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-```
-
-## 16. HTML5 shim and Respond.js IE8 support - how we add in WP
-In `footer.php` we are linking to `jQuery` and `bootstrap.js`
-
 **Important** WordPress has jQuery built in
 
-`functions.php`
-
-```php
-/* css function here */
-
-function theme_js() {
-    global $wp_scripts;
-
-    wp_register_script( 'html5_shiv', 'http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js', '', '', false);
-    wp_register_script( 'respond_js', 'http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js', '', '', false);
-
-    $wp_scripts->add_data( 'html5_shiv', 'conditional', 'lt IE 9' );
-    $wp_scripts->add_data( 'respond_js', 'conditional', 'lt IE 9' );
-
-}
-
-add_action( 'wp_enqueue_scripts', 'theme_js' );
-
-```
-
-Here we are adding JavaScript that will only be used if we have an IE browser that is less than `IE9`
-
-So WordPress gives us a global variable calle $wp_scripts and we use that class and it's add_data() method to called both of these javascript files on the condition that IE is version that is less than 9. More more modern browsers will never see this code.
-
-## 17. Adding other JavaScript files using functions.php
+## Adding JavaScript files using functions.php
 
 `functions.php`
 
 You'll see this is very similar to what we did with CSS but here we use the `wp_enqueue_script` which has a few different parameters
 
-### Important Parameters in wp_enqueue_script()
+### Important parameters in wp_enqueue_script()
 * The 3rd parameter allows us to include dependencies this JavaScript file needs. It can just be one file (like jQuery) or more than one file.
 * The last parameter is boolean which enable you to have the JavaScript file in the HEAD element of our `header.php` (false) or in the footer.php file just before the closing `</body>` tag (true).
 
 ```php
-/* our css enqueues here */
+<?
+/* our css enqueues here (the code we did before) */
 
+/* add JavaScript */
 function theme_js() {
-    global $wp_scripts;
-
-    wp_register_script( 'html5_shiv', 'http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js', '', '', false);
-    wp_register_script( 'respond_js', 'http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js', '', '', false);
-
-    $wp_scripts->add_data( 'html5_shiv', 'conditional', 'lt IE 9' );
-    $wp_scripts->add_data( 'respond_js', 'conditional', 'lt IE 9' );
-
-    wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.min.js', array('jquery'), '', true );
+    wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.min.js', array('jquery, tether'), '', true );
     wp_enqueue_script( 'ie10_js', get_template_directory_uri() . '/js/ie10-viewport-bug-workaround.js', array('jquery'), '', true );
 }
-
 add_action( 'wp_enqueue_scripts', 'theme_js' );
-
-
 ?>
 ```
 
-## 18. Another hook - wp_footer()
+## Another hook - wp_footer()
 
 View source and you won't see included `bootstrap.min.js` in footer
 because you forgot to include the footer hook
@@ -442,7 +500,9 @@ because you forgot to include the footer hook
 </html>
 ```
 
-### Delete JavaScript static code
+### Delete JavaScript static code located in `footer.php`
+
+**note** your code may be slightly different but just make sure you delete any hardcoded links to JavaScript.
 
 ```html
  <!-- Bootstrap core JavaScript
@@ -455,6 +515,8 @@ because you forgot to include the footer hook
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 ```
 
+### Add a `js` folder inside your theme
+
 **Note** I create a new file inside `js` with the ie10 fix
 
 ```
@@ -466,12 +528,13 @@ $ touch js/ie10-viewport-bug-workaround.js
 ```js
 /*!
  * IE10 viewport hack for Surface/desktop Windows 8 bug
+ * Copyright 2014-2015 The Bootstrap Authors
  * Copyright 2014-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 // See the Getting Started docs for more information:
-// http://getbootstrap.com/getting-started/#support-ie10-width
+// https://getbootstrap.com/getting-started/#support-ie10-width
 
 (function () {
   'use strict';
@@ -483,13 +546,13 @@ $ touch js/ie10-viewport-bug-workaround.js
         '@-ms-viewport{width:auto!important}'
       )
     )
-    document.querySelector('head').appendChild(msViewportStyle)
+    document.head.appendChild(msViewportStyle)
   }
 
 })();
 ```
 
-## 19. WordPress filters
+## WordPress filters
 
 ### Hide admin bar
 
@@ -498,7 +561,7 @@ Sometimes when you are logged in, the WordPress Admin CSS gets in your way. You 
 `functions.php`
 
 ```php
-add_filter( 'show_admin_bar' '__return_false' );
+add_filter( 'show_admin_bar', '__return_false' );
 ```
 
 This is a simple filter that hides the admin bar
@@ -530,28 +593,59 @@ Add this underneath our existing code
 }
 ```
 
-## 21. Menus
+## Menus (new)
+
+You can add a menu using the dashboard. It involves multiple steps. You need to add your menu items. Create a new menu, name it and save it. Then you need to point to the location of where the menu you will go.
+
+But a much [easier way](https://wp-cli.org/commands/menu/) it to use WP-CLI
+
+```
+# Create a new menu
+$ wp menu create "Primary"
+Success: Created menu 200.
+
+# List existing menus
+$ wp menu list
++---------+----------+----------+-----------+-------+
+| term_id | name     | slug     | locations | count |
++---------+----------+----------+-----------+-------+
+| 177     | Primary  | primary  | primary   | 7     |
++---------+----------+----------+-----------+-------+
+
+# Create a new menu link item
+$ wp menu item add-custom my-menu Apple http://apple.com --porcelain
+1922
+
+# Assign the 'my-menu' menu to the 'primary' location
+$ wp menu location assign my-menu primary
+Success: Assigned location to menu.
+```
 
 ### The Walker Class
 
-If you want to get Boostrap menus and WordPress to play nice together, [this might be a solution you are looking for](http://code.tutsplus.com/tutorials/how-to-integrate-bootstrap-navbar-into-wordpress-theme--wp-33410) (Thanks Mikhail)
+This part is in a little transition because the walker class was for Bootstrap 3 and we need to find code that was updated to Bootstrap 4. [A developer forked](https://github.com/sebakerckhof/wp-bootstrap-navwalker/blob/580e114965778a495464c6755a202c07cdbbb58d/README.md) the code and updated it but the pull request has yet to be merged.
+
+[Here is the current code](https://github.com/sebakerckhof/wp-bootstrap-navwalker/blob/580e114965778a495464c6755a202c07cdbbb58d/wp_bootstrap_navwalker.php). Create a file called `wp_bootstrap_navwalker.php` and add the current code to it.
 
 `functions.php`
 
-* add to bottom 
+* add this code to the top of your functions.php
 
 ```php
+<?php
+// Register Custom Navigation Walker
+require_once('wp_bootstrap_navwalker.php');
+/* menus */
 add_theme_support( 'menus' );
-
 function register_theme_menus() {
     register_nav_menus(
       array(
-        'header-menu' => __( 'Header Menu' )
+        'primary' => __( 'Primary', 'thunder-tube-theme' )
       )
     );
 }
 add_action( 'init', 'register_theme_menus' );
-?>
+/* add css */
 ```
 
 ### Create 3 pages in Dashboard
@@ -562,27 +656,11 @@ We'll create these pages but we won't be able to view them. The reason is becaus
 * Sample Page
 * Blog
 
-note: delete the Home page with a custom link in the WordPress Admin
+note: delete the Home page with a custom link in the WordPress Admin `Menus` section
 
 ![Menu Dashboard](https://i.imgur.com/LtUqqox.png)
 
-### Delete Form
-
-`header.php`
-
-```html
-<form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
-```
-
-## 22. WordPress bloginfo()
+## WordPress bloginfo()
 In Dashboard, Menus, Create menu, choose Header Menu as theme location
 in source code change blog name `header.php` to
 
@@ -590,21 +668,44 @@ in source code change blog name `header.php` to
 ...<a class="navbar-brand" href="<?php bloginfo( 'url'); ?>"><?php bloginfo( 'name'); ?></a>...
 ```
 
-## 23. wp_nav_menu()
+## wp_nav_menu()
 
 `header.php`
 
 ```php
-<div id="navbar" class="navbar-collapse collapse">
- <?php
-  $args = array(
-   'menu'    => 'header-menu',
-   'menu_class' => 'nav navbar-nav',
-   'container' => 'false'
-  );
-  wp_nav_menu( $args );
- ?>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <?php wp_head(); ?>
+  </head>
+
+  <body <?php body_class(); ?>>
+
+
+      <a class="navbar-brand" href="#">Project name</a>
+      <?php
+            wp_nav_menu( array(
+                'menu'              => 'primary',
+                'theme_location'    => 'primary',
+                'depth'             => 2,
+                'container'         => 'nav',
+                'container_class'   => 'navbar navbar-static-top navbar-dark bg-inverse',
+        'container_id'      => 'bs-example-navbar-collapse-1',
+                'menu_class'        => 'nav navbar-nav',
+                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                'walker'            => new wp_bootstrap_navwalker())
+            );
+        ?>
 ```
 
 * check out [wp_nav_menu()](https://developer.wordpress.org/reference/functions/wp_nav_menu/) on codex
@@ -621,7 +722,7 @@ This will highlight the currently selected page in WordPress. Twitter bootstrap 
 }
 ```
 
-## 23.1 Permalinks
+## Permalinks
 
 This a great feature of WordPress that will greatly improve your SEO with just a few clicks. It makes your URL much more SEO friendly.
 
@@ -635,45 +736,6 @@ Before Permalinks
 After Permalinks
 
 ![After Permalinks](https://i.imgur.com/gRCsfkk.png)
-
-## 24. Dropdown Navigation
-
-Create a new Page `Page With Sidebar`
-Before Publishing it, give it a parent of `Sample Page`
-Create another Page `Full Width Page`, give it a parent of `Sample Page` and Publish.
-Go into Menu and add those pages underneath `Sample Page` like this:
-* Make sure to click `Save Menu`
-
-![Drop Down Setup](https://i.imgur.com/uynTpCC.png)
-
-Our dropdown CSS is not what we want
-
-![bad styled dropdown](https://i.imgur.com/OiwopBB.png)
-
-`style.css`
-
-```css
-@media (min-width: 768px) {
-    .sub-menu {
-        display: none;
-        position: absolute;
-        background: #222;
-        padding: 10px 15px;
-        width: 200px;
-    }
-
-    li:hover .sub-menu {
-        display: block
-    }
-}
-
-.sub-menu li {
-    margin-bottom: 10px;
-    list-style: none;
-}
-```
-
-## 25. Check if Navbar is responsive
 
 ## 26. Install Bootstrap Shortcodes
 * [link](https://wordpress.org/plugins/bootstrap-shortcodes/)
