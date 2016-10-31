@@ -1,4 +1,6 @@
 # Atom Text editor
+wrap in tag keyboard shortcut - alt + shift - w
+
 ## toggle active file or tree view (to navigate through)
 `ctrl` + `0` (use to toggle between tree view and active file)
 
