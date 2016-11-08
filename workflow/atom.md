@@ -1,6 +1,21 @@
 # Atom Text editor
 wrap in tag keyboard shortcut - alt + shift - w
+create new folder - shift + a
+toggle tree view - ctrl + 0
+open folder - press enter when on folder
+new file in tree - a
 
+## Easy move files across panes
+
+```js
+'atom-workspace atom-text-editor:not([mini])':
+  'ctrl-alt-]': 'window:move-active-item-to-pane-on-right'
+  'ctrl-alt-[': 'window:move-active-item-to-pane-on-left'
+```
+
+## install these packages
+pigments - shows the colors you are using
+tree view package - use ctrl + 0 to toggle focus
 ## toggle active file or tree view (to navigate through)
 `ctrl` + `0` (use to toggle between tree view and active file)
 

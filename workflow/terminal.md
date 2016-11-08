@@ -1,5 +1,11 @@
 # Terminal
 
+## select beginning of line
+`ctrl` + `a`
+## select end of line
+`ctrl` + `e`
+## kill to end-of-line
+`ctrl` + `shift` + k
 [sample osx bash profile article](https://natelandau.com/my-mac-osx-bash_profile/)
 
 ## Terminal Cheatsheet
@@ -134,7 +140,7 @@ gunzip archivename.gz
 
 ### Sample .bash_profile
 
-This is your user configuration file. 
+This is your user configuration file.
 
 Moving from one folder to the next can be time consuming and cumbersome. The GUI Finder is what most people use on their Macs but once you get comfortable with the Terminal you will quickly start using Aliases and these will improve your workflow. They are just short keys you time that will take you to a location on your computer you go to a lot. You add these inside your user configuration file which is usually the `.bash_profile`
 
