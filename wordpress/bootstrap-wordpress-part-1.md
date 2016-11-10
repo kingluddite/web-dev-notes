@@ -11,13 +11,13 @@
 There are two ways to install WordPress. The traditional and long way and WP-CLI and the short way. Obviously, the shorter, the better but let's just show you the long way for thoroughness.
 
 ## The Traditional Way to Install WordPress
- 
+
 ### Install WordPress locally
 
 ### If you use MAMP remember to:
 * [download WordPress](https://wordpress.org/download/)
 * Extract and rename `wordpress` folder after your project
-    + follow my rules of 
+    + follow my rules of
         * files and folder lowercase (file.jpg of some-folder)
         * no spaces, use dashes for multiple words (file-name.jpg or folder-name)
         * only use underscores when naming a database
@@ -72,7 +72,7 @@ This will create the file to connect you to your MySQL databse. The above code i
 
 ### Finishing Up Core Install
 
-If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal. 
+If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal.
 
 ```
 $  wp core install --url=http://localhost/stranger-things --title=StrangerThings --admin_user=admin --admin_password=password --admin_email=howley.phil@gmail.com
@@ -108,7 +108,7 @@ export PATH="$MAMP_PHP:$PATH:/Applications/MAMP/Library/bin"
 ```
 $ source ~/.bash_profile
 # or
-$ source ~/.zshrc 
+$ source ~/.zshrc
 ```
 
 I've also notice that if you follow all of the aforementioned troubleshooting techniques, it still may not work. The problem is that your computer is not pointing to the MAMP install of PHP or MySQL. The reason is Mac computers come preinstalled with their own MySQL and PHP and you most likely are pointing to those installs. I have noticed that when people switch to the .zsh shell, this problem happens a lot. I have students switch to the bash shell using:
@@ -140,7 +140,7 @@ So create your custom theme inside this `themes` folder. For the sake of this ex
 
 Change into that directory
 
-`$ cd wp-content/themems/thunder-tube-theme`
+`$ cd wp-content/themes/thunder-tube-theme`
 
 This is the folder you need to be inside because this is where all your custom theme stuff goes.
 
@@ -490,7 +490,7 @@ add_action( 'wp_enqueue_scripts', 'theme_js' );
 View source and you won't see included `bootstrap.min.js` in footer
 because you forgot to include the footer hook
 
-`footer.php` 
+`footer.php`
 
 ```php
 [more code here]
@@ -768,6 +768,13 @@ h1, h2, h3, h4, .site-name {
   font-family: 'Open Sans', sans-serif;
 }
 ```
+
+### WordPress Tip
+install and activate in one line with WP-CLI
+
+`$wp plugin install activate seo-yoast`
+
+* Thanks Lauren!
 
 # WordPress Notes
 
