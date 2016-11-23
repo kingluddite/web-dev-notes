@@ -92,6 +92,13 @@ There is [a template hierarchy in WordPress](https://wphierarchy.com/). This dia
 
 ## Static Front Page
 
+Use the WordPress Dashboard to create a new page and call it home.
+
+### Permalinks
+Use the WordPress `Dashboard` > `Settings` > `Permalinks`
+
+And choose the `Post name` radio button. This will make your URL `SEO friendly`.
+
 By default, WordPress shows your most recent posts in reverse chronological order on the front page of your site. But some people like to have their Blog on a different page and a static home page. Use front-page.php if you want a static home page.
 
 Use `Administration` > `Settings` > `Reading` in the Dashboard to assign your `home` page and `blog` page.
@@ -207,6 +214,26 @@ Solutions for common WordPress errors.
 
 [Read this article](https://codex.wordpress.org/FAQ_Troubleshooting) for more debug information on common problems.
 
+### Turn on debug mode
+Add debug code to your `wp-config.php`
+
+* turn on debugging only use in development 
+
+`wp-config.php`
+
+```php
+define( 'WP_DEBUG', true );
+```
+
+## Susy
+[link](http://susy.oddbird.net/)
+
+[video](https://vimeo.com/93045089)
+
+
+
+### Add Widgets to Home Page
+
 `front-page.php`
 
 ```php
@@ -237,6 +264,10 @@ This is a cool plugin that lets you easily add marked up code without writing HT
 [Black Studio TinyMCE Widget](https://wordpress.org/plugins/black-studio-tinymce-widget/)
 
 * Plugin for those that don't like or understand HTML
+
+**tip** activate and install at the same time
+
+`$ wp plugin install black-studio-tinymce-widget --activate`
 
 # Sidebars
 
@@ -646,6 +677,11 @@ Through the Dashboard. Add the user, add their info and choose their permissions
 * add a second category on 1 post to see how multiple categories are displayed
 
 **Why is comments broken?**
+
+comments is a way to allow people to add comments. We did not activate that template.
+
+**Why is the link broken when you click on an individual post?**
+We have not created a `single.php` page yet.
 
 `index.php` is overriding `single.php` which is what the comments links should be going to.
 

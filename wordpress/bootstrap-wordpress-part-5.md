@@ -6,6 +6,101 @@
 * [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-4.md)
 * [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-5.md)
 
+## Backup your files and database using `backup.sh`
+This is a shell script. What it will do is when you type run this shell command
+`$ . backup.sh`
+
+It will place create a gzip of your database in sql and it will also create a backup of your entire site. As you use it, it will also delete backups that are older than 3 days old.
+
+Now I am using MAMP so my path to MySQL becomes important. You may also have to give write permissions to your backup.sh file. This file has important information inside it like db username and password so it should not be made available to github (add to gitignore)
+
+Here is [the gist I found](https://gist.github.com/smajda/202995) that I tweaked to get my version
+
+* Point it to where your site is located (BLODDIR)
+* Point it to your backup folder (BUDIR)
+* Enter your db info (name of db, username, password)
+* I use homebrew and MAMP so since I'm using cron, I needed to add this to the file
+* Save backup.sh in your theme folder (or anywhere in your site)
+* Run `$ . backup.sh`
+* Then check your backup folder to make sure your db and files are all there. It might take about 30 seconds for it to run or longer if your site is very large.
+
+```sh
+
+#!/bin/sh
+# backs up wordpress database and files
+
+set -e
+
+###### set your variables
+BLOGDIR="/users/YOURUSERNAME/sites/ws-dom-final" ## location of blog on server
+BUDIR="/users/YOURUSERNAME/blogbu" ## location of backups on server
+DBNAME='ws_dom_final' ## name of your blog's database
+DBUSER='root' ## database username
+DBPW='root' ## database password
+### cron is funky about its PATH, so add paths to all commands here:
+# Path for homebrew (/usr/local/[s]bin)
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# Use MAMP version of PHP
+PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+export PATH=/Applications/MAMP/Library/bin:$PATH
+
+### set date & time
+datetime=`date "+%Y%m%d-%H%M"`
+echo $datetime
+
+### Backup database in BUDIR
+echo "Creating db backup..."
+mysqldump --user $DBUSER --password=$DBPW $DBNAME | gzip > $BUDIR/wpdb-$datetime.sql.gz
+echo "Done with db backup"
+
+### Backup files into BUDIR
+echo "Creating wp file backup..."
+tar -czf $BUDIR/wpfiles-$datetime.tar.gz $BLOGDIR 
+echo "Done with wp file backup"
+
+### Delete backups over three days old (adjust depending on need/space)
+echo "Deleting backups over three days old..."
+find $BUDIR -mtime +3 -exec rm -f {} \;
+echo "All Done";
+```
+
+## What version are you on in WordPress?
+`$ wp core version`
+
+## Update your db
+`$ wp core update-db`
+
+## Compare your site verse the core site on WordPress.org
+This lets us know no files have been manipulated or changed for any reason
+`$ wp core verify-checksums`
+
+## write PHP with wp-cli
+`$ wp eval 'echo get_option("siteurl")."\n";'`
+returns your site URL (from the db)
+
+`$ wp option get siteurl`
+
+## wp-cli shell
+```
+wp> echo get_option('siteurl')."\n";
+http://localhost/ws-dom-final
+wp> exit
+```
+
+* remember to exit after using the shell
+
+## query the database from the terminal
+
+`$ wp db query "select option_value from wp_options where option_name='siteurl'"`
+
+This is a huge timesaver. Here is an example. I want to find the id's of my pages so I can add them to conditional statements to enqueue them and only use them when the page that needs them is loaded.
+
+`$ wp db query "select post_title, id, post_type from wp_posts"`
+
+[more about the WordPress database](https://www.sitepoint.com/the-wordpress-database-demystified/) 
+
 ## JavaScript Components With Bootstrap
 
 ### How did we attach our JavaScript?

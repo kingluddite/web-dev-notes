@@ -78,7 +78,7 @@ This really isn't a great example but it does show you how you can add fields. M
 6. Select from `Style` dropdown `Standard (WP metabox)`
 7. Click `Hide / Show All` at top of checkboxes
 8. Then uncheck (to show) Permalink, Content Editor, Featured Image
-9. Under `Location` beside `Rules` set `Post Type` `is equal to` `portfolio` and click the `Add rule group` button
+9. Under `Location` beside `Rules` set `Post Type` `is equal to` `portfolio` and click the `Add rule group` button (if you want to add more rules) otherwise just go to #10 instruction
 10. Click `Publish` button.
 
 **You now see a `portfolios` button on your Dashboard sidebar**

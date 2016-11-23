@@ -257,7 +257,7 @@ Let's add a background color to our site.
 
 `style.css`
 
-```
+```css
 body {
   background-color: red;
 }
@@ -387,6 +387,11 @@ function theme_styles() {
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ?>
 ```
+
+### Conditional Enqueue Stuff
+If you enqueue everything you don't want to load everything on every page. Wouldn't it be great if you could say when on the home page, only load the home JavaScript? You can. This makes your sites more efficient and load faster. This becomes really important as your sites grow in scale and for mobile sites.
+
+[resource to learn more about conditional enqueue](http://dobsondev.com/2015/06/05/conditionally-enqueue-stylesheet-into-wordpress-for-certain-page/)
 
 ## Hooks in WordPress
 
@@ -613,12 +618,46 @@ $ wp menu list
 +---------+----------+----------+-----------+-------+
 
 # Create a new menu link item
-$ wp menu item add-custom my-menu Apple http://apple.com --porcelain
-1922
+$ wp menu item add-custom primary Apple http://apple.com
 
 # Assign the 'my-menu' menu to the 'primary' location
 $ wp menu location assign my-menu primary
 Success: Assigned location to menu.
+```
+
+You may have problems with this. One thing you need to make sure is that you add themes to your functions.php
+
+So you need to create a menu location using this:
+
+```php
+/*=============================
+=            Menus            =
+=============================*/
+add_theme_support( 'menus' );
+
+function domsters_register_menu() {
+  register_nav_menu('main-menu', __( 'Main Menu') );
+}
+
+add_action('init', 'domsters_register_menu');
+```
+
+Now you will see Main Menu in your WordPress dashboard.
+
+### Assign Menu to location
+
+`$ wp menu location assign primary main-menu`
+
+Then use the dashboard to drag your current pages to the menu that has a location.
+
+To check menus and locations use:
+
+`$ wp menu list`
+
+Now if you go into header.php and add this:
+
+```php
+<?php wp_nav_menu( array( 'theme_location' => 'main-menu' ) ); ?>
 ```
 
 ### The Walker Class
@@ -664,7 +703,7 @@ note: delete the Home page with a custom link in the WordPress Admin `Menus` sec
 In Dashboard, Menus, Create menu, choose Header Menu as theme location
 in source code change blog name `header.php` to
 
-```
+```php
 ...<a class="navbar-brand" href="<?php bloginfo( 'url'); ?>"><?php bloginfo( 'name'); ?></a>...
 ```
 

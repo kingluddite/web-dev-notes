@@ -5,6 +5,9 @@ toggle tree view - ctrl + 0
 open folder - press enter when on folder
 new file in tree - a
 
+## working with javascript
+atom beautify causes proplems when working with React and Meteor. I had to disable the javascript language and use JSX or JavaScript meteor. But when just working with JavaScript I needed to turn back on the JavaScript syntax to get the linter to work.
+
 ## Easy move files across panes
 
 ```js

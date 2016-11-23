@@ -1,17 +1,18 @@
 # The project
 
-## package management
+## Package management
 
-remove the following packages
+Remove the following packages from Meteor
+
 * autopublish
 * insecure
 
 ```
 autopublish@1.0.7             # Publish all data to the clients (for prototyping)
-insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+@1.0.7                # Allow all DB writes from clients (for prototyping)
 ```
 
-add these packages:
+Add these packages:
 
 ```
 kadira:flow-router
@@ -34,30 +35,35 @@ gwendall:auth-client-callbacks
 
 * note `versions` is automatically generated with current version of all packages
 
-# project structure
+* also add bcrypt but not to Meteor packages. Use npm to install it and add it to your packages.json file.
 
-for atom: If you'd like to permanently make all javascript default to the Javascript (Meteor) grammar, disable the language-javascript package!
+`$ meteor npm install --save bcrypt`
+
+## Project Structure
+
+**For atom**: If you'd like to permanently make all javascript default to the Javascript (Meteor) grammar, disable the language-javascript package!
 
 * client
   + layouts
   + partials
   + recipes
-  init.js
-  main.styl
+  + init.js
+  + main.styl
 
 * collections
-  +
+  + recipes.js
+* lib
+  + routes.js
 * server
   + init.js
   + main.js
 
 ## Basic Layouts
-delete everything from main.html execept <HEAD> stuff
+Delete everything from `main.html` except `<HEAD>` stuff
 
-delete index.js
-and all of main.js (delete file)
+Delete `index.js` and `main.js` 
 
-`main.html`
+`client/main.html`
 
 ```html
 <head>
@@ -95,7 +101,8 @@ and all of main.js (delete file)
   </main>
 </template>
 ```
-we have no routes so we have a route error
+
+We have no routes so we have a route error
 
 ## routes
 
@@ -110,9 +117,9 @@ FlowRouter.route('/', {
 });
 ```
 
-you should now see your home page
+You should now see your home page
 
-update our router with:
+Update our router with:
 
 ```js
 FlowRouter.route('/', {
@@ -130,9 +137,9 @@ FlowRouter.route('/test', {
 });
 ```
 
-and update our dynamic layout in MainLayout with:
+And update our dynamic layout in `MainLayout` with:
 
-```js
+```html
 <template name="MainLayout">
   <header>
     <h1>My Recipe Book</h1>
@@ -149,9 +156,9 @@ and update our dynamic layout in MainLayout with:
 ```
 
 ## Defining a Schema
-we are using collection2 and autoform installed as packages
+we are using `collection2` and autoform installed as packages
 
-we will be using simpleschema (part of collection2)
+we will be using `simpleschema` (part of `collection2`)
 
 `collections/recipes.js`
 
@@ -188,7 +195,7 @@ Recipes.attachSchema( RecipeSchema );
 
 ## Easy forms
 
-delete from `MainLayout.html`
+Delete from `MainLayout.html`
 
 ```html
 <template name="Test">
@@ -196,15 +203,15 @@ delete from `MainLayout.html`
 </template>
 ```
 
-create `client/recipes/recipes.js`
+Create `client/recipes/recipes.js`
 
-```js
+```html
 <template name="Recipes">
   Test  
 </template>
 ```
 
-update `lib/routes.js`
+Update `lib/routes.js`
 
 ```js
 FlowRouter.route('/recipe-book', {
@@ -235,13 +242,15 @@ FlowRouter.route('/recipe-book', {
 </template>
 ```
 
-will give us an automatically generated form based on our schema
+Will give us an automatically generated form based on our schema
+
+You just need to browse to the new route `http://localhost:3000/recipe-book`
 
 ![auto generated form](https://i.imgur.com/obcp40O.png)
 
-we want to hide the author and createdAt fields
+We want to hide the author and createdAt fields
 
-update `collections/recipes.js`
+Update `collections/recipes.js`
 
 ```js
 Recipes = new Mongo.Collection( 'recipes' );

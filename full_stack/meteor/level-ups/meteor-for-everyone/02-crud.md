@@ -2,7 +2,7 @@
 
 ## Deleting records
 
-main.html
+`main.html`
 
 ```html
 <head>
@@ -20,7 +20,9 @@ main.html
       <!-- /.new-resolution -->
     </header>
     <ul>
-      {{#each resolutions}} {{> resolution}} {{/each}}
+      {{#each resolutions}} 
+        {{> resolution}} 
+      {{/each}}
     </ul>
   </div>
   <!-- /.container -->
@@ -32,7 +34,7 @@ main.html
 </template>
 ```
 
-main.js
+`main.js`
 
 ```js
 Template.body.helpers({
@@ -72,7 +74,7 @@ hava a status of checked or not checked
 inside template are list of objects, you need a comma in-between each one
 
 
-'main.html'
+`main.html`
 
 ```html
 <template name="resolution">

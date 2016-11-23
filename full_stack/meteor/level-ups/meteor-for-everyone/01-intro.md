@@ -33,9 +33,10 @@ Simple resolutions (todo app)
 
 `$ cd resolutions`
 
-run meteor with `$ meteor`
+## run meteor
+`$ meteor`
 
-that creates first project, view <http://localhost:3000>
+That creates first project, view <http://localhost:3000>
 
 ## Default meteor files
 
@@ -48,9 +49,11 @@ that creates first project, view <http://localhost:3000>
 
 ### css in meteor
 
+```css
 body { background-color: red; }
+```
 
-meteor autoupdates so you can work in css or css preprocessors and meteor takes care of the rest
+Meteor autoupdates so you can work in css or css preprocessors and meteor takes care of the rest
 
 helpers, events,
 
@@ -201,23 +204,30 @@ Resolutions = new Mongo.Collection( 'resolutions' );
   }
 });
 ```
-html stays the same and then when we view in the browser, we see no resolutions because our collection is empty
 
-let's add some resolutions
+HTML stays the same and then when we view in the browser, we see no resolutions because our collection is empty
 
-we could add these resolutions client side using the console with:
+## Let's add some resolutions
 
-or via mongo with the terminal
-$ meteor mongo
+### Add Client side?
+We could add these resolutions client side using the console with:
 
-and we will see something like:
+### Add via MongoDB?
+Via mongo with the terminal
 
+`$ meteor mongo`
+
+And we should see something like:
+
+```
 MongoDB shell version: 3.2.6
 connecting to: 127.0.0.1:3001/meteor
 Mongo-Hacker 0.0.13
 philips-iMac(mongod-3.2.6)[PRIMARY:meteor] meteor>
+```
 
-Now we are in mongod. So let's insert a record
+### Insert records using MongoDB
+Now we are in `mongod`. So let's insert a record
 
 `> db.resolutions.insert({ title: "Buy Eggs"});`
 
@@ -284,13 +294,6 @@ we have access to our collection via the client. this is cool but also a major s
 <template name="resolution">
   <li>{{title}}</li>
 </template>
-```
-
-`client/main.js`
-
-```js
-
-
 ```
 
 **note** why are we using `Template.body` and not `Template.resolution`?
