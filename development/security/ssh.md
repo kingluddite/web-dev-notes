@@ -16,6 +16,7 @@ Then
 `$ ssh-copy-id root@193.241.235.95`
 
 And that will add your SSH public key from your machine to the authorized_keys file on your virtual machine located at your IP (193.241.235.95 in my example). Also I am using the `root` user here but you can substitute whatever user you want.
+>>>>>>> mystuff
 
 ## copy your id_rsa.pub
 
