@@ -119,7 +119,7 @@ That seems to be a short term solution.
 
 It should be noted this was one of the main reasons I stopped using MAMP at home and Use VVV, Vagrant and Virtual Box.
 
-To switch back to the .zsh shell is as simple as `exec zsh`
+To switch back to the `.zsh` shell is as simple as `exec zsh`
 
 You can refresh the `~/.zshrc` file with `$ source ~/.zshrc`
 
@@ -223,7 +223,7 @@ Add it to the root of your custom theme.
 
 And add `node_modules` to that file. You can do that through the terminal with:
 
-`$ echo "node_modules >> .gitignore`
+`$ echo "node_modules" >> .gitignore`
 
 Save and check the status with
 
