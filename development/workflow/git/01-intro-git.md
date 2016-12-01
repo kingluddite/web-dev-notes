@@ -11,103 +11,107 @@ Version Control System
     - source control
 
 ## Repository
-aka Repo
-
 A collection of all the versions of a project
-* what order changes occured in
-* description of each change
-* who was responsible for each change
 
-Each Project should have its own repo
-* you have to explicitly tell VCS when version is finished
-    - called "committing"
-        + just like you commit something to memory you also commit changes to your repo
-        + versions are often referred to as commits
+* What order changes occured in
+* Description of each change
+* Who was responsible for each change
 
-VCS give you a set of tools to review your project history
-* you can view and review the full list of commits
-* or switch which version your current project folder is displaying
-* you can share you repo with others for better collaboration
+## Each Project should have its own repo
+* You have to explicitly tell VCS when version is finished
+    - It is called "committing"
+        + Just like you commit something to memory you also commit changes to your repo
+        + Versions are often referred to as commits
+
+## VCS give you a set of tools to review your project history
+* You can view and review the full list of commits
+* Or switch which version your current project folder is displaying
+* You can share you repo with others for better collaboration
 
 ## Why use Git?
 And not one of the other types of version control systems
 
-* git was invented by [Linus Torvalds](https://www.youtube.com/watch?v=NKkvPxYNh9A)
-    - father of Linux OS
-    - still maintains the Linux kernel
-        + heart of every linux system
+* Git was invented by [Linus Torvalds](https://www.youtube.com/watch?v=NKkvPxYNh9A)
+    - Father of Linux OS
+    - Still maintains the Linux kernel
+        + Heart of every linux system
 
 ## Distributed Version Control System (DVCS)
 Git is a distributed version control system, which means that there is no "central" repository for any given project; everyone has their own copy of the project repository that they can work with directly.
 
 * Git is a DVCS
-* no centralized repo 
-* everyone who works on a project has their own repo
-    - don't need a network connection to interact with repo
-* collaboration is easy
+* No centralized repo 
+* Everyone who works on a project has their own repo
+    - Don't need a network connection to interact with repo
+* Collaboration is easy
 
-## some VCS are centralized
+## Some VCS are centralized
 * 
-    - 1 repo
-    - if you work on that repo, you do it over a network
-        + con
-            * hard to work on project without network connection
-            * if anything happens to that repo you could lose all or some of repo history
-            * hinder collaboration by requiring everything to go through that server
+    - Only one repo
+    - If you work on that repo, you do it over a network
+        + Con
+            * Hard to work on project without network connection
+            * If anything happens to that repo you could lose all or some of repo history
+            * Hinder collaboration by requiring everything to go through that server
 
 ## Github
 [github web site](http://github.com)
-* most popular git collaborating site
-* like a social network for your repos
-* share you projects publically or privately
-    - people can view your history or make pull requests
+* Most popular git collaborating site
+* Like a social network for your repos
+* Share you projects publically or privately
+    - People can view your history or make pull requests
 
 ## How to install Git
-* comes installed on Mac by default
+* Comes installed on Mac by default
 
-Install on your own server
+## Install on your own server
 
 ```
 $ sudo apt-get install git
 ```
 
-
-### Which version of Git am I running
+### Which version of Git am I running?
 
 ```
 $ git --version
 ```
 
 ### Create your first repo
-* this will create a folder and add the .git folder inside it which is the folder that has all the Git magic inside it
-* you can create a git repo any time
-* if you are inside a project already, just run `git init` without a project name and git will be added to your existing project
+* This will create a folder and add the `.git` folder inside it which is the folder that has all the Git magic inside it
+* You can create a git repo any time
+* If you are inside a project already, just run `git init` without a project name and git will be added to your existing project
 
 ```
 $ git init my-first-repo
 ```
 
-remove .git folder
+## How do I remove th .git folder?
 
 ```
 $ rm -rf .git
 ```
 
-when you create files/folders you need to add them
+## Add to Staging
+When you create files/folders you need to add them
 
 ```
 $ git add filename
 ```
 
-* you can use -A to add all files/folders
+* You can use `-A` flag to add all files/folders
 
-you also have to commit and leave a clear, meaningful and short message
+```
+$ git add -A
+```
+
+## Commit
+You also have to commit and leave a clear, meaningful and short message
 
 ```
 $ git commit -m 'add README '
 ```
 
-## Make sure you info is correct
+## Make sure your info is correct
 
 ```
 $ git config --global user.name "John Doe"
@@ -122,9 +126,9 @@ Is there a good commit message to use?
 $ git commit -a -m
 ```
 
-* the `-a` flag will commit everything
-* the `-m` flag prevents you from going to `NANO` editor, and you can type your commit message directly from the terminal
-    - just make sure the commit message is inside quotes ''
+* The `-A` flag will commit everything
+* The `-m` flag prevents you from going to `NANO` editor, and you can type your commit message directly from the terminal
+    - Just make sure the commit message is inside quotes ''
 
 ## The Staging Area
 
@@ -134,31 +138,31 @@ $ git commit -a -m
 $ git status
 ```
 
-* show us the current version control status of our project
+* Show us the current version control status of our project
 
 The staging area are files/directories ready for commits
 
-* you can add one file by naming, more than one file, by naming them, or all  files with the -A flag
-* when you add and commit all, the status will be empty
+* You can add one file by naming, more than one file, by naming them, or all  files with the `-A` flag
+* When you add and commit all, the status will be empty
 
-### changes not staged for commit
+### Changes not staged for commit
 git lets us know files have changed
 
 * git will give us hints like in a case when we made changes and didn't add yet
-    - we can `git add` or we can `git commit -a` to commit all files that have changed
-* you can add and commit separate files
-    - sometimes you did not want all your changes to be labeled under one commit
-        + if you want to break apart commits, just add them in the chunks you want and individually commmit those chunks with meaningful commit messages
+    - We can `git add` or we can `git commit -a` to commit all files that have changed
+* You can add and commit separate files
+    - Sometimes you did not want all your changes to be labeled under one commit
+        + If you want to break apart commits, just add them in the chunks you want and individually commmit those chunks with meaningful commit messages
 
 ## Review our commits
 
 ### git log
-shows us a log of all our commits
+Shows us a log of all our commits
 
 #### info in log
-* top will be most recent commits
-* unique id - aka hash
-    - virtually guaranteed to be unique
+* Top will be most recent commits
+* Unique `id` - aka hash
+    - Virtually guaranteed to be unique
 * author info
 * date/time code committed
 * commit message
@@ -171,11 +175,12 @@ $ git checkout 4cb4e
 ## What is `detached HEAD` state
 git is telling you that you checked out an earlier version of your code and if you make any changes right now, things could get messed up
 
-* think it is like the librarian not wanting you to write in the book you checked out
-* when you checkout a commit, it is like you are in a time machine and went back in time, your project will be in the exact state it was when you made that commit
-* think of commits like snapshot taking at family reunions
-    - each year you can take a different snapshot of your family and it will show who was in the family that year
-## check what is inside a file
+* Think it is like the librarian not wanting you to write in the book you checked out
+* When you checkout a commit, it is like you are in a time machine and went back in time, your project will be in the exact state it was when you made that commit
+* Think of commits like snapshot taking at family reunions
+    - Each year you can take a different snapshot of your family and it will show who was in the family that year
+
+## Check what is inside a file
 
 ## how to get back to you current project commit
 
@@ -186,22 +191,22 @@ $ git checkout master
 * master is your branch name
 
 ## git diff
-the difference of changes between 2 versions of your project
+The difference of changes between 2 versions of your project
 
-show the difference between 2 commits
+Show the difference between 2 commits
 
 ```
 $ git diff 1221f 7ad75
 ```
 
 # What are branches
-think of them like alternate realities for your repos
+Think of them like alternate realities for your repos
 
-* you can do different courses of action on your project in parallel
-* start with one trunk but as time goes on you'll start to `branch` off the main version
+* You can do different courses of action on your project in parallel
+* Start with one trunk but as time goes on you'll start to `branch` off the main version
 
 ## the master branch
-the default branch or the trunk of your repo
+The default branch or the trunk of your repo
 
 * `git status` will tell you what branch you are on
 * master should be representative of your code that is deployed in production
@@ -220,15 +225,15 @@ $ git checkout branch new-navbar
 ```
 
 * git will checkout the latest commit for that branch and that will be the starting point for your branch
-    - this commit is know as the HEAD commit for that branch
+    - This commit is know as the HEAD commit for that branch
 
 ```
 $ git status
 ```
 
-* should now tell you that you are on the `new-navbar` branch
-* make a change to a file
-    - add and commit with
+* Should now tell you that you are on the `new-navbar` branch
+* Make a change to a file
+    - Add and commit with
 
 ```
 $ git commit -a -m 'add navbar' 
@@ -240,9 +245,9 @@ $ git commit -a -m 'add navbar'
         + git knows that commit is only relevant to the branch we created it on
 
 ## git checkout -b branch-name
-this will let you create a branch and move to it in one line
+This will let you create a branch and move to it in one line
 
-**note**: when you create a new branch it starts off as a copy of the branch you were in when you created the new branch
+**note**: When you create a new branch it starts off as a copy of the branch you were in when you created the new branch
 
 ## show all branch
 
@@ -250,7 +255,7 @@ this will let you create a branch and move to it in one line
 $ git branch
 ```
 
-* asterisk will show you which branch you are currently on
+**note**  asterisk `*` will show you which branch you are currently on
  
 ## delete a branch
 
@@ -258,18 +263,12 @@ $ git branch
 $ git branch -D branch-name-here
 ```
 
-* you can not delete a branch if you are inside it
-
-
+* You can not delete a branch if you are inside it
 
 ## Tip
 
-See what content is inside a file
+## See what content is inside a file
 
 ```
 $ cat file1
 ```
-
-
-
-

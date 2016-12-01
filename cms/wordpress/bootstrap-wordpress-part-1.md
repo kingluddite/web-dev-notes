@@ -668,6 +668,67 @@ in source code change blog name `header.php` to
 ...<a class="navbar-brand" href="<?php bloginfo( 'url'); ?>"><?php bloginfo( 'name'); ?></a>...
 ```
 
+# Menu's in WordPress
+You have choices when making menus. You can do it the simpleway for a basic Menu that is built on your existing pages in WordPress. Or you can create a custom menu that only shows certain pages that you choose. You also need to select a location. Or you can create a complex navigation using Twitter Bootstrap with the Walker class.
+
+Lete's start with a simple menu.
+
+## Simple Menu
+This is a three step process.
+
+1. Create your pages in WordPress that you want to be in your navigation. Let's say for the sake of simplicity. You create three pages home, about, contact.
+2. Add this code to your `functions.php`
+
+```php
+/*=============================
+=            Menus            =
+=============================*/
+add_theme_support( 'menus' );
+function domsters_register_menu() {
+  register_nav_menu('main-menu', __( 'Main Menu') );
+}
+add_action('init', 'domsters_register_menu');
+```
+
+3. In the WP Dashboard, you select `Menus`
+4. Create a New Menu by clicking `create a new menu`. Give it a name. Let's call it 'Primary'. Drag and drop your pages to your new `Primary` window. Then click `Save Menu`
+5. Choose the location by selecing the `Main Menu`
+6. Add your navigation to your code. For my simple navigation, I am adding it to the `header.php`. So drop this code inside `header.php`
+
+**note** you may have to change some of the values of the array properties depending on the structure of your navigation.
+
+`header.php`
+
+```php
+  <?php
+  $defaults = array(
+    'theme_location'  => 'main-menu',
+    'menu'            => '',
+    'container'       => 'nav',
+    'container_class' => '',
+    'container_id'    => '',
+    'menu_class'      => 'main-nav',
+    'menu_id'         => '',
+    'echo'            => true,
+    'fallback_cb'     => 'wp_page_menu',
+    'before'          => '',
+    'after'           => '',
+    'link_before'     => '',
+    'link_after'      => '',
+    'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+    'depth'           => 0,
+    'walker'          => ''
+  );
+  wp_nav_menu( $defaults );
+   ?>
+```
+
+### The Walker Class
+If you want to try and tackle the Bootstrap 4 navigation follow these instructions:
+
+### Add your menu to your site page
+
+
 ## wp_nav_menu()
 
 `header.php`

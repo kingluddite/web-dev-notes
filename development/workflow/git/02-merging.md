@@ -1,15 +1,15 @@
 # Merging with Git
 
-* think of merging like the opposite of branching
-* branching gives you a separate timeline to work on
-    - merging takes 2 separate timelines and merges them together
-    - also combines the commits into one cohesive timeline
+* Think of merging like the opposite of branching
+* Branching gives you a separate timeline to work on
+    - Merging takes two separate timelines and merges them together
+    - Also combines the commits into one cohesive timeline
 
 ## Merge conflict
-when you merge two branches and the same files in each branch were worked on and changed
+When you merge two branches and the same files in each branch were worked on and changed
 
 * git tries to resolve the merge conflicts on its own but if not, you will have to manually merge them by saying which code to keep and which code to delete
-* if you merge code that does not involve the same file, the merge will be a simple command
+* If you merge code that does not involve the same file, the merge will be a simple command
 
 ## how to merge
 
@@ -17,19 +17,19 @@ when you merge two branches and the same files in each branch were worked on and
 $ git merge new-navbar
 ```
 
-* make sure you are on the `master` branch and use `git branch` to ensure this and to know the name of which branch you want to merge
+* Make sure you are on the `master` branch and use `git branch` to ensure this and to know the name of which branch you want to merge
 
-* the merge will only affect the master branch
-    - you'll see that git has added a merge to the commit history
-    - but if you got to new-navbar branch, the merge is not there
+* The merge will only affect the master branch
+    - You'll see that git has added a merge to the commit history
+    - But if you got to new-navbar branch, the merge is not there
 
 ## Hard Conflict
-making change to same line of same file
+Making change to same line of same file
 * error message - "Automatic merge failed; fix conflicts and then commit the result"
 
 You will follow git's instructions to open the file with the conflict
 
-you will see something like:
+You will see something like:
 
 ```
 <<<<<< HEAD
@@ -39,13 +39,14 @@ This is file1, bam!
 ```
 
 The `conflict markers` show us where the conflict occurred during the merge and also lets us compare both versions of the change to decide what we want to do with the file
-the angle brackets show us whole area of conflict and the ===== shows us the separation between the two versions (labels to right of brackets show us which version is which)
 
-note: `HEAD` the name for the latest commit in the current branch.
+The `angle brackets`(<<<< and >>>>) show us whole area of conflict and the `=====` shows us the separation between the two versions (labels to right of brackets show us which version is which)
 
-remove the conflict markers and make the change you feel is correct by either choosing one change over the other or combining them or even removing them both
+**note:** `HEAD` the name for the latest commit in the current branch.
 
-now the conflict has been resolved but we need to let git know
+Remove the conflict markers and make the change you feel is correct by either choosing one change over the other or combining them or even removing them both
+
+Now the conflict has been resolved but we need to let git know
 
 ```
 $ git add
@@ -57,83 +58,87 @@ $ git commit
 # Remote Repos
 
 ## cloning
-create a copy of your repo on their computer
+Create a copy of your repo on their computer
 
 ```
 $ git clone ~/my-git-project my-new-git-project-name
 ```
 
-* will create a perfect copy of original repo
+* Will create a perfect copy of original repo
 * git also created a remote repo when it created this one
+
+# Shows a list of all remotes available
 
 ```
 $ git remote
 ```
 
-shows a list of all remotes available
-* when you clone a repo, git automatically creates a remote named `origin` for you
+* When you clone a repo, git automatically creates a remote named `origin` for you
 
-why origin?
-because your repo originated as a copy of that particular code
+## Why is the name `origin`?
+Because your repo originated as a copy of that particular code
 
-* your origin repo is not affected at all by the clone
-* cloning creates a copy of the original without changing it in any way (non destructive copy)
+* Your origin repo is not affected at all by the clone
+* Cloning creates a copy of the original without changing it in any way (non destructive copy)
 
-but how can we get our local and remote repos to talk to each other
 
 ## Manually adding a remote repo
+How can we get our local and remote repos to talk to each other
 
 ```
 git remote add our-clone ~/path/to/your/new/clone/project
 ```
 
-list remotes with
+## List remotes with
 
 ```
 $ git remote
 ```
 
-and now you should see that you added the remote repo
+And now you should see that you added the remote repo
 
 ## Git Pull
-pull changes from a remote repo
+Pull changes from a remote repo
 
 ```
 $ git pull origin name-of-branch
 ```
 
-* if you get a merge conflict, handle it normally
+* If you get a merge conflict, handle it normally
 * git assumes you are by default trying to push and pull from origin
 
 ## Git Push
-push changes to a remote repo
+Push changes to a remote repo
 
-You create a branch. add and make commits. then you want to push to remote
+1. You create a branch
+2. Add and make commits
+3. Then you want to push to remote
 
 ```
 $ git push origin name-of-branch
 ```
 
-* first argument needs to be name of remote
+* First argument needs to be name of remote
 
 # Github
 
 ## Issues
 ## Pull Requests
 You have code you want people to `pull` into their projects
-* great tool for collaboration
+
+* Great tool for collaboration
 
 ### Discussion, Commits, Files Changed
-* easy to add comments if we want to contribute to the code ourselves
+* Easy to add comments if we want to contribute to the code ourselves
 
 ## Watch the project
-* if any major changes happen to project 
+* If any major changes happen to project 
 
 ## star project
-add to list of favorite projects
+Add to list of favorite projects
 
 ## Fork
-create a clone of project in our own github account
+Create a clone of project in our own github account
 
 ## Workflows
 * [feature branches](http://martinfowler.com/bliki/FeatureBranch.html)
