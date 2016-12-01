@@ -1,10 +1,10 @@
 # WordPress Notes
 
-* [part 1](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-1.md)
-* [part 2](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-2.md)
-* [part 3](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-3.md)
-* [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-4.md)
-* [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-5.md)
+* [part 1](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-1.md)
+* [part 2](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-2.md)
+* [part 3](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-3.md)
+* [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-4.md)
+* [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-5.md)
 
 # WordPress - Building a Custom Theme
 
@@ -832,8 +832,8 @@ h1, h2, h3, h4, .site-name {
 
 # WordPress Notes
 
-* [part 1](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-1.md)
-* [part 2](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-2.md)
-* [part 3](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-3.md)
-* [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-4.md)
-* [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/wordpress/bootstrap-wordpress-part-5.md)
+* [part 1](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-1.md)
+* [part 2](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-2.md)
+* [part 3](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-3.md)
+* [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-4.md)
+* [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-5.md)
