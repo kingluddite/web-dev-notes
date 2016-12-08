@@ -575,7 +575,7 @@ Click `Save Menu`.
 ### The Walker Class
 If you want to plug the Bootstrap 4 menu into WordPress, it won't be straightforward but it is possible.
 
-#### [Check out out and see if you can get it to work](the-walker-class.md)
+#### [Check out out and see if you can get it to work](walker-class.md)
 You can add a menu using the dashboard. It involves multiple steps. 
 
 ## WordPress `bloginfo()`
