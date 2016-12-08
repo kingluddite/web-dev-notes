@@ -60,6 +60,8 @@
 </html>
 ```
 
+Here is a [gist to the CSS](https://gist.github.com/kingluddite/13f343175756a0b342ae3dba8b7a93d9) code to be placed in `css/style.css`
+
 Add some calls to external code:
 
 #### Order is very important
@@ -77,9 +79,13 @@ Add some calls to external code:
 <script src="js/app.js"></script>
 ```
 
-Create those files
+Create those files in the the terminal:
+
+Change into the `js` folder.
 
 `$ cd js`
+
+Create all the `js` files we will need.
 
 `$ touch helpers.js model.js router.js view.js`
 
@@ -93,12 +99,13 @@ Create those files
 */
 ```
 
-* getting pieces of the DOM
-* or building out different nodes
-* building out links
-* stuff like that
+* Getting pieces of the DOM
+* Building out different nodes
+* Building out links
+* And various other things like that
 
 ### model
+The model is going to be our data layer, the layer that interacts directly with our data. We are going to have our data stored in `data.js` and our model will interact with that data.
 
 `js/model.js`
 
@@ -108,14 +115,15 @@ Create those files
  */
 ```
 
-* getting all posts
-* get single post
-* getting page
-* saving content
-* localStorage stuff will go here too
-* getting and saving data goes here
+* Getting all posts
+* Get single post
+* Getting page
+* Saving content
+* `localStorage` stuff will go here too
+* Getting and saving data goes here
 
 ### router
+Moving from page to page and the URL in the browser. How can we use these events and browser string to change what our application does.
 
 `js/router.js`
 
@@ -125,12 +133,21 @@ Create those files
  */  
 ```
 
-* listening for page changes
-* figuring out what the new URL is and then grabbing that and then loading different content depending on what the URL is
-* figuring out what comes after the hash tag and then breaking that apart because we will be using the hashtag primary at this point
-* making sure the correct content is loaded on each page depending on the URL
+* Listening for page changes
+* Figuring out what the new URL is and then grabbing that and then loading different content depending on what the URL is
+* Figuring out what comes after the hash tag and then breaking that apart because we will be using the hashtag primary at this point
+* Making sure the correct content is loaded on each page depending on the URL
+
+Sample URLs
+
+`http://mysite.com/about` vs `http://mysite.com/contact`
+
+Hashtags in the URL (FIX THIS LATER)
+
+`http://mysite.com/about#`
 
 ### view
+This is the UI of your site. The stuff people see. The stuff your app displays.
 
 `js/view.js`
 
@@ -140,12 +157,19 @@ Create those files
  */ 
 ```
 
-* the front end facing of our app
-* deal with everything for displaying the content
-* we get the posts from our model but we display them out here, in the view
-* we may need to build out nodes, text nodes, element nodes, load those onto the page, append them to page, set them
+* The front end facing of our app
+* Deal with everything for displaying the content
+* We get the posts from our model but we display them out here, in the view
+* We may need to build out things like:
+  - **nodes**
+  - **text nodes**
+  - **element nodes** 
+* And then load those things we created onto the page
+  - We can also append them to page
+  - Or set them to a page
 
-**note** - using model, view, helpers and router is used a lot in different languages and is very common. It will help us scale our app
+**note** - Using model, view, helpers and router is used a lot but how it is used is can vary in different languages but it is very common. It will help us scale our app.
 
-* known as MVC architecture (Model View Controller)
+* Using model, views and controllers is known as MVC architecture (_Model View Controller_)
+
 

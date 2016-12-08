@@ -1,5 +1,7 @@
 # GIT
 
+[Hot tips for Git](http://wesbos.com/git-hot-tips/)
+
 ## How to pull down a remote branch from Github
 When you git clone a repo with multiple branches you will not see all those branches, only the master. But if you use:
 

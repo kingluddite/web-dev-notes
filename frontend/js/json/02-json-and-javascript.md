@@ -69,10 +69,10 @@ console.log( oneLineJSON.title );
 ```
 
 * `\` lets us go to the next line of a string in JavaScript
-* if you use the console and grab the section of code it will be valid JSON
-    - but if you try and copy the pure JavaScript code with backslashes you will get an error in the JSONLint (it doesn't like the backslashes)
-* the second line is valid JSON in the JavaScript. to write valid JSON inside JavaScript you must do it on one line
-* How do you pull in external JSON files? (later we will tackle that topic as it adds some more complexity)
+* If you use the console and grab the section of code it will be valid JSON
+    - But if you try and copy the pure JavaScript code with backslashes you will get an error in the JSONLint (it doesn't like the backslashes)
+* The second line is valid JSON in the JavaScript. To write valid JSON inside JavaScript you must do it on one line
+* How do you pull in external JSON files? (_later we will tackle that topic as it adds some more complexity_)
 
 Let's look at the last two lines again:
 
@@ -94,12 +94,12 @@ Native object in JavaScript
 ### Has two methods built in
 1. `JSON.parse()`
 
-Allows us to take a JSON object and convert it (aka parse it) into
+Allows us to take a JSON object and convert it (_aka parse it_) into
 a native JavaScript object.
 
 2. `JSON.stringify()`
 
-Take a native JavaScript object and convert it (aka stringify it) into a JSON string or a JSON object
+Take a native JavaScript object and convert it (_aka stringify it_) into a JSON string or a JSON object
 
 With these two methods we can easily do the things we want to do with JSON whether we're generating it and pushing it out (using `JSON.stringify()`) or we're parsing it and bringing it into our application (using `JSON.parse()` )
 
@@ -125,20 +125,20 @@ console.log( parsedJSON );
 console.log( parsedJSON.title );
 ```
 
-* when we first try to access title, we can't
-* But when we use JSON.parse() and pass it `oneLineJSON`
-    - we can convert to a JSON object
-    - we can access the title property
+* When we first try to access title, we can't
+* But when we use `JSON.parse()` and pass it `oneLineJSON`
+    - We can convert to a JSON object
+    - We can access the `title` property
 
 ## revivor
 
 `JSON.parse( JSONobj, revivor )`
 
-JSON takes 2 parameters
-1. is the JSON object
-2. is the `revivor`
-    * this is a function that allows you to modify the object as it is being parsed.
-    * at one time you will want to modify your object before you pull it in so you don't have to do it in a second step
+JSON takes two parameters
+1. Is the JSON object
+2. Is the `revivor`
+    * This is a function that allows you to modify the object as it is being parsed.
+    * At one time you will want to modify your object before you pull it in so you don't have to do it in a second step
 
 ```js
 var oneLineJSON = '{ "id":1, "title":"hello world","content":"Welcome to WordPress" }',
@@ -158,15 +158,15 @@ console.log( parsedJSON.title );
 ```
 
 * We could call `revivor` whatever we want but the documentation calls it `revivor`
-* `revivor` needs to be mapped to a function and it takes the `key` and `value` from the JSON (we don't have to pass in the key and value - that will happen automatically but you need to have the key, value arguments in the revivor function)
-* this function will look for a number in the value and if it finds it it will add 1 to it and multiply that by 2 (will give us an id=4)
-* if revivor doesn't return anything, you will get an error
+* `revivor` needs to be mapped to a function and it takes the `key` and `value` from the JSON (_we don't have to pass in the key and value - that will happen automatically but you need to have the key, value arguments in the revivor function_)
+* This function will look for a number in the value and if it finds it it will add 1 to it and multiply that by 2 (_will give us an `id=4`_)
+* If revivor doesn't return anything, you will get an error
 
 ## eval()
-Do not use `eval()` for parsing JSON
-* you may see older code using eval()
-* it has potential security risks so don't use it
-* instead of eval() use JSON.parse()
+DO NOT USE `eval()` for parsing JSON
+* You may see older code using eval()
+* It has potential security risks so don't use it
+* Instead of `eval()` use `JSON.parse()`
 
 ## JSON.stringify()
 
@@ -190,7 +190,7 @@ console.log( JSONObj.title );
 
 * I can tell from the inspector that I am working with an object
     - `hello world` is the output
-    - if I remove the `title` property and refresh the page
+    - If I remove the `title` property and refresh the page
         + `console.log( postObj );`
             * I will get:
                 - `Object {id: 1, title: "hello world", content: "welcome to WordPress"}`
@@ -206,7 +206,7 @@ console.log( JSONObj.title );
 
 I see I turn my JavaScript object into JSON. It is valid JSON. I could copy it into the JSONLint and see it is valid JSON.
 
-* also see that I know longer can access the `title` property which let's me know this is now JSON.
+* Also see that I know longer can access the `title` property which let's me know this is now JSON.
 
 ## replacer
 
@@ -235,7 +235,7 @@ console.log( JSONObj );
 ```
 
 * So this will remove the `id` if it is a number. So `replacer` gives you the value to remove items from JSON if you need to before converting it into a JSON object.
-* the `' '` is a space and just helps format your JSON
+* The `' '` is a space and just helps format your JSON
     - you may also use `'\t'` for tabs
 
 ## JSON and JavaScript Review

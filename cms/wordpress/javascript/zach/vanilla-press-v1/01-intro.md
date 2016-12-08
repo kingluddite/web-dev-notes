@@ -3,7 +3,7 @@
 Walk through the finished app.
 
 * Display post titles and content on page from JSON
-* Make post titles link to #slug-name
+* Make post titles link to `#slug-name`
 * When click on post title
     - Clear content
     - Display post content

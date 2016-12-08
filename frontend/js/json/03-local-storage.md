@@ -1,7 +1,7 @@
 # Local Storage
 Let us save date to be stored in the browser even when a user refreshed or closes a page.
 
-* options could change from device to device
+* Options could change from device to device
 * Depending on device can hold ~ 2-100MB+ of data
 * Data must be stored in a string(JSON) format
 * Useful for web interface data
@@ -21,7 +21,7 @@ localStorage.removeItem()
 When something is saved in localStorage it is referred to as an `item`
 
 ## setItem( name, object)
-* object (or string of text that we will be saving)
+* Object (or string of text that we will be saving)
 
 ```js
 var siteName = 'My Site';
@@ -31,11 +31,11 @@ localStorage.setItem( 'siteName', siteName );
 
 View in inspector and select the `Application` tabl and look under `Local Storage` and you will see a `Key` of `siteName` and a `Value` of `My Site`
 
-* note the first parameter of setItem() is `name` and this name must be unique and we will reference this name when we use `getItem()`
+* **note** the first parameter of setItem() is `name` and this name must be unique and we will reference this name when we use `getItem()`
 * `Resources` tab in Google Chrome Inspector is now called `Application`
 * Even if you refresh the page, the key, value is still there
     - working with JavaScript data, you know it all goes away after refresh so having a way to have persistent data is very useful
-* jump to your local version built by Desktop server and you'll see it changes from `file://` to `http://www.learndesktopserver.dev/` and your localStorage key/value is gone. This let's you know that localStorage is domain specific
+* Jump to your local version built by Desktop server and you'll see it changes from `file://` to `http://www.learndesktopserver.dev/` and your localStorage key/value is gone. This let's you know that localStorage is domain specific
 
 ## Get Local Storage
 
@@ -76,7 +76,7 @@ View in the browser and you will see your h1 nested inside your HEADER element h
 
 On every page refresh it is getting the localStorage value
 
-If you comment out this line
+If you comment out this line:
 
 `// localStorage.setItem( 'siteName', 'My Site' );`
 
@@ -96,7 +96,7 @@ header.innerHTML = siteName;
 localStorage.removeItem( 'siteName' );
 ```
 
-you will see that there are no values in localStorage because it was removed with that last line of code `localStorage.removeItem( 'siteName' );`
+You will see that there are no values in localStorage because it was removed with that last line of code `localStorage.removeItem( 'siteName' );`
 
 But it still replaces the h1 before it is removed so you will see `My Site` on the page.
 
@@ -135,9 +135,9 @@ header.innerHTML = localData.siteName;
 The first thing we do is turn the JavaScript into a JSON string and then store it in localStorage.
 We then store the object (after turning it back into an Object) in the localData variable. So we access the JSON in localStorage, parse it to turn it back into an object and that lets us change the siteName and siteDescription.
 
-we output localData and see it is an object
-we out the JSON and see we correctly stringified the object
-We change the h1 with the content from inside 
+* We output localData and see it is an object
+* We out the JSON and see we correctly stringified the object
+* We change the h1 with the content from inside 
 
 **index.html**
 

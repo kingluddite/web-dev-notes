@@ -32,21 +32,21 @@ An easy way of passing information as text.
 ]
 ```
 
-* [] means we are working with an array of data
-* {} mean we have an object
-    - the comma `,` separates each object
-        + there is NO comma at the end of the last object
-            * adding a comma at the end will break the JSON format
-* we are using KEY/VALUE pairs
-    - we have the key on the left side
-    - we have the value on the right side
-    - KEY:Value - a colon seperates the two and a comma at the end
-        + no comma after the last key:value pair
-* strings are enclosed in double quotes `"this is a string"`
-    - you MUST USE DOUBLE QUOTES IN JSON
-* if you are only passing a single object you do not need `[]`
+* `[]` means we are working with an array of data
+* `{}` mean we have an object
+    - The comma `,` separates each object
+        + There is NO comma at the end of the last object
+            * Adding a comma at the end will break the JSON format
+* We are using KEY/VALUE pairs
+    - We have the key on the left side
+    - We have the value on the right side
+    - `KEY:Value` - a colon seperates the two and a comma at the end
+        + No comma after the last key:value pair
+* Strings are enclosed in double quotes `"this is a string"`
+    - You MUST USE DOUBLE QUOTES IN JSON
+* If you are only passing a single object you do not need `[]`
 
-single-object-example.json
+`single-object-example.json`
 
 ```json
 {
@@ -69,7 +69,7 @@ Grab your JSON, copy and paste it into the JSON validator site and you will be a
 ## Desktop Server
 [Download the free version](https://serverpress.com)
 
-* if you have MAMP running, you must stop it (Apache and MySQL)
+* If you have MAMP running, you must stop it (Apache and MySQL)
 * [instructions for installing Desktop Server](https://premium.wpmudev.org/blog/set-up-wordpress-locally-with-desktopserver/)
 * Is there a free version of DesktopServer? Yes
 * Does it use MAMP? No, it uses XAMP.
@@ -97,7 +97,7 @@ Now if you change the URL to
 
 You will see the pages in the same format at the posts.
 
-* you will see an array of objects and nested inside some objects might be other array of objects and so JSON is allowing us to pass very complex tag across the wire
+* You will see an array of objects and nested inside some objects might be other array of objects and so JSON is allowing us to pass very complex tag across the wire
 
 ## JSON Review
 * Easy to read and write (more favorable to XML)

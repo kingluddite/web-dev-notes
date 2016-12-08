@@ -144,7 +144,7 @@ If you add content into the about page (assuming we are working on the About pag
  };
 ```
 
-add this line
+Add this line
 
 ```js
 /**
@@ -162,8 +162,8 @@ view.updateContentFromForm = function () {
 };
 ```
 
-* so now when we update the title or content, the `> editor.currentContent` will update.
-* we have a problem in that now we have editor stuff inside our view page. This is not good OOP design and we will fix this later. For now we will keep it and if you test it, it should work
+* So now when we update the title or content, the `> editor.currentContent` will update.
+* We have a problem in that now we have editor stuff inside our view page. This is not good OOP design and we will fix this later. For now we will keep it and if you test it, it should work
 
 ## Next problem
 When we click the update button we get a quick error before it sends us to the next page. The reason is in `editor.js` we are calling `model.updateContent()` method which we did not write yet.
@@ -192,8 +192,34 @@ editor.listenEditorToggle = function( ) {
 ```
 
 ### Did not get Save content form to work
-it should update in object and it was not.
-in video the update button when clicked wasn't closing editor form but mine was. Moving on to see if it is fixed in next video.
+It should update in object and it was not.
+In video the update button when clicked wasn't closing editor form but mine was. Moving on to see if it is fixed in next video.
+
+#### Update on Update form closing when clicking update
+Found in video 1.6.18 - Protecting Unsaved Content
+
+`js/editor.js`
+
+Change this:
+
+```js
+editor.updateContent = function( event ) {
+
+  model.updateContent( editor.currentContent );
+
+};
+```
+
+To this:
+
+```js
+editor.saveContent = function( event ) {
+
+  event.preventDefault();
+  model.updateContent( editor.currentContent );
+
+};
+```
 
 # Load from local Store
 Add the functionality where if local storage already exists, our app will load that instead of wiping the current local storage and replacing it with the data file
@@ -249,7 +275,9 @@ model.init = function( ) {
 };
 ```
 
+## Problems
+1. When we click on another page, the form does not update with that page's data inside the editor form. So we need to add code that if they click on a new page that should repopulate the editor form with the new page data.
+2. If we are editing a page and then click on another page but haven't saved our current edit, we should be alerted that we are about to leave a page and lose unsaved data.
 
- 
 
 

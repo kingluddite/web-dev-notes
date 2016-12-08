@@ -1,5 +1,10 @@
 # Atom Text editor
 
+Add package
+`language-gitignore`
+
+So atom won't autodect .gitignore as text file and format it wrong
+
 ## Autocomplete Plus
 This problem drove me nuts. Every keystroke I received autocomplete tips. Easy fix is to open the setting of the Autocomplete Plus package and uncheck the `Show Suggestions On Keystroke` checkbox.
 

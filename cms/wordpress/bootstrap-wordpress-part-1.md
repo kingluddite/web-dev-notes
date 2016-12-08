@@ -7,6 +7,7 @@
 * [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-5.md
 # WordPress - Building a Custom Theme
 
+<<<<<<< 7637fb5132baa5061aa22390681d76d9b17492aa
 There are two ways to install WordPress. The traditional (long way) and the WP-CLI (short way). Obviously, the shorter, the better but let's just show you the long way for thoroughness.
 
 ## [The Traditional Way to Install WordPress](how-to-install-wordpress.md)
@@ -43,58 +44,14 @@ This will create the file to connect you to your MySQL databse. The above code i
 
 ### Finishing Up Core Install
 
-If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal. 
+If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal.
 
 ```
 $  wp core install --url=http://localhost/stranger-things --title=StrangerThings --admin_user=admin --admin_password=password --admin_email=howley.phil@gmail.com
 ```
 
-### Troubleshooting
-Lots of bugs/problems can happen when trying to use WP-CLI with MAMP.
-
-### Problems with MAMP and WP-CLI
-* Check out [mamp.md](https://github.com/kingluddite/web_dev_notes/blob/master/workflow/development/mamp.md)
-
-This is a common error. I've run into a bunch of different ones and spend more time then I would have liked to troubleshoot and resolve them. The main error has to do with something like `database connection`. MAMP is usually the problem. I think because I moved from MAMP to virtual box, vagrant, vvv I ran into problems because I first started with MAMP and set my .zshrc to be working with MAMP and then when I moved to virtualbox and went back and forth between MAMP and virtual box, I think I just had to update my .zshrc with the correct info. Just make sure whatever you are using the PHP and MySQL are pointing to the right place.
-
-add this to your `.zshrc` file
-
-**note** I use oh-my-zsh instead of bash. Lots of developers love oh-my-zsh and so I moved from bash to the zsh. I highly recommend Wes Bos 10 free videos on getting up and running with zsh.
-
-`.zshrc`
-
-* make sure your php version is the correct folder
-
-```
-##
-# WP-CLI / MAMP compat
-##
-export MAMP_PHP=/Applications/MAMP/bin/php/php5.5.10/bin
-export PATH="$MAMP_PHP:$PATH:/Applications/MAMP/Library/bin"
-```
-
-[ref](http://laurenpittenger.com/wpcli-error-establishing-database-connection-mamp/)
-
-**IMPORTANT:** Remember to refresh bash or zshr with:
-```
-$ source ~/.bash_profile
-# or
-$ source ~/.zshrc 
-```
-
-I've also notice that if you follow all of the aforementioned troubleshooting techniques, it still may not work. The problem is that your computer is not pointing to the MAMP install of PHP or MySQL. The reason is Mac computers come preinstalled with their own MySQL and PHP and you most likely are pointing to those installs. I have noticed that when people switch to the .zsh shell, this problem happens a lot. I have students switch to the bash shell using:
-
-`$ exec bash` and then refreshing the `~/.bash_profile` with `$ source ~/.bash_profile`
-
-That seems to be a short term solution.
-
-It should be noted this was one of the main reasons I stopped using MAMP at home and Use VVV, Vagrant and Virtual Box.
-
-To switch back to the `.zsh` shell is as simple as `exec zsh`
-
-You can refresh the `~/.zshrc` file with `$ source ~/.zshrc`
-
-You now can jump back and forth between shells if you need to. Not a great solution but a solution nevertheless
+## Bootstrap
+For this project we will use Bootstrap 4. It is currently the most popular framework. The great thing is it gives you responsiveness and grid layouts right out of the box.
 
 ### Download Bootstrap
 [Download Bootstrap](http://getbootstrap.com/getting-started/)
@@ -123,19 +80,21 @@ Inside your theme you need to start listening with Git (and add version control 
 ### Which text editor do you currently recommend?
 I like Atom. I have used Sublime Text for years and find Atom to be a superior product.
 
-### Create package.json in the root of your custom theme
+But I do find Atom slow at times and I jump back to Sublime Text from time-to-time.
+
+### Create `package.json` in the root of your custom theme
 
 `$ npm init -y`
 
-**note** the -y flag is a way to save you from answering all the questions npm usually asks you when it creates package.json.
+**note** the `-y` flag is a way to save you from answering all the questions npm usually asks you when it creates `package.json`.
 
 ### Grab Bootstrap 4
 
-This code may change so this is the site where you can the most updated npm code.
+**note** This code may change so this is the site where you can the most updated `npm` code.
 
 `$ npm install bootstrap@4.0.0-alpha.5 --save`
 
-**note** the --save flag saves this to your `package.json`
+**note** the `--save` flag saves this to your `package.json`
 
 Bootstrap 4 requires the `tether` and `jquery` dependencies
 
@@ -143,7 +102,7 @@ You don't need to grab jquery because it comes bundled with WordPress.
 
 `$ npm install tether --save`
 
-Check out your package.json and you should see bootstrap 4 and tether are now listed in the `dependencies` portion of the JSON file.
+Check out your `package.json` and you should see bootstrap 4 and tether are now listed in the `dependencies` portion of the JSON file.
 
 ## Sample package.json
 
@@ -182,7 +141,7 @@ Custom themes can have lots of files. But the only required files are `index.php
 
 First check your site with `$ git status`
 
-You will see `node_modules` and that we are tracking it. We don't want to as this code we never edit because it's 3rd party code. We use it but it is not ours so therefore we don't need to add it to our git repo. If we added node_modules to all our repos, we would waste space needlessly. Give a hoot. Don't pollute! :)
+You will see `node_modules` and that we are tracking it. We don't want to as this code we never edit because it's 3rd party code. We use it but it is not ours so therefore we don't need to add it to our git repo. If we added `node_modules` to all our repos, we would waste space needlessly. Give a hoot. Don't pollute! `:)`
 
 ### .gitignore
 
@@ -228,7 +187,7 @@ Let's add a background color to our site.
 
 `style.css`
 
-```
+```css
 body {
   background-color: red;
 }
@@ -255,6 +214,7 @@ Now the master branch will have the new body background.
 I won't keep adding branches in my notes but you should get into this habit. Never work with new stuff in the master branch. Create a new branch and when you know it works and it is what you want. Add, commit and switch back to the master branch and merge your changes.
 
 ## Add images with Terminal
+In the root of every WordPress custom theme you need an image named `screenshot.png`. This image is what will be used to show a snapshot of what your custom theme looks like.
 
 **Question**
 
@@ -264,7 +224,7 @@ Heck yes!
 
 Use this code to grab a proper dimensioned `screenshot.png` to give you a cute example of how to add a `screenshot.png` using the terminal
 
-* make sure you are inside the custom theme folder when entering this code
+* Make sure you are inside the custom theme folder when entering this code
 
 ```
 $ curl -O https://make.wordpress.org/training/files/2013/10/screenshot.png
@@ -275,6 +235,8 @@ You now have `screenshot.png` inside your theme and WordPress will use this to s
 ## Add special css comment to style.css
 
 Some may find this strange but WordPress using comments to give itself special instructions. The `style.css` file is a perfect example of this. Here you see a comment that adds meta information about the theme to the Dashboard. You can put all your CSS in this file but there is a better way to break up your CSS with help from the `functions.php` file.
+
+Add the following comment code to the top of `style.css`. It is important to name it `style.css`. If you name it something different like `styles.css` you will break your theme.
 
 ```css
 /*
@@ -461,7 +423,7 @@ add_action( 'wp_enqueue_scripts', 'theme_js' );
 View source and you won't see included `bootstrap.min.js` in footer
 because you forgot to include the footer hook
 
-`footer.php` 
+`footer.php`
 
 ```php
 [more code here]

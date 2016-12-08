@@ -225,3 +225,54 @@ Now when you press a button, it correctly tells you the number of that button.
 don't use var
 start with const and use let when you need it
 
+## Temporal dead zone
+* Where you can not access a variable before it is defined
+
+This works:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>let and const real world</title>
+</head>
+<body>
+<script>
+  var pizza = 'Deep Dish';
+  console.log(pizza);
+</script>
+</body>
+</html>
+```
+
+this does not:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>let and const real world</title>
+</head>
+<body>
+<script>
+  console.log(pizza);
+  var pizza = 'Deep Dish';
+</script>
+</body>
+</html>
+```
+
+Pizza will be undefined here but if you change it to const or let it will be not defined (error).
+
+## Is `var` dead?
+Hot discussion topic
+
+Here is one recommended way:
+
+* use `const` by default
+* only use `let` if rebinding is needed
+  - only if you need to update the value of your variable
+    + example: score would be a variable you would need to update for a game
+* `var` should not ever be used in ES6
