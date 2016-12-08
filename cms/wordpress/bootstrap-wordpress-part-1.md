@@ -7,7 +7,6 @@
 * [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-5.md
 # WordPress - Building a Custom Theme
 
-<<<<<<< 7637fb5132baa5061aa22390681d76d9b17492aa
 There are two ways to install WordPress. The traditional (long way) and the WP-CLI (short way). Obviously, the shorter, the better but let's just show you the long way for thoroughness.
 
 ## [The Traditional Way to Install WordPress](how-to-install-wordpress.md)
@@ -18,37 +17,12 @@ There are two ways to install WordPress. The traditional (long way) and the WP-C
     - Desktop Server
     - VVV, Virtual Box and Vagrant
 
-## Install WordPress Using WP-CLI (recommended)
+## [WP-CLI](how-to-install-wp-cli.md)
+Install WordPress the fast way using WP-CLI
 
-Use my WP-CLI notes for install instructions (or use the [WP-CLI page](http://wp-cli.org/) for easy to follow instructions)
+After you install WordPress more than 10 times you will get tired of installing it the long way. WP-CLI is a command line interface for making installing WordPress less painful.
 
-This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
-
-```
-$ wp core download
-```
-
-### Create the wp-config.php file
-
-If you were manually installing WordPress through the browser you would be brought to a page where you put in your database connection information. This would in turn create your `wp_config.php` file. WP-CLI speeds this step up with a little terminal magic.
-
-Before you do this step you need to create a database in MySQL. Using the GUI phpMyAdmin is the way most people do this. You can also use the Terminal, sign into MySQL and create a database this way. As you use the terminal more and more the second option may become your first choice.
-
-So now you are ready to create your `wp-config.php` file
-
-```
-$ wp core config --dbuser=root --dbpass=root --dbname=stranger_things_wp
-```
-
-This will create the file to connect you to your MySQL databse. The above code is assuming you used MAMP and the default username and password for MAMP is root and root. Change the --dbname value to match the name you used when creating the empty database in phpMyAdmin (or MySQL terminal). I recommend using underscores instead of dashes in db names with more than one word (ie my_db instead of my-db). For security reasons you may want to not have db in name so hackers won't find it so easily.
-
-### Finishing Up Core Install
-
-If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal.
-
-```
-$  wp core install --url=http://localhost/stranger-things --title=StrangerThings --admin_user=admin --admin_password=password --admin_email=howley.phil@gmail.com
-```
+## [Troubleshoot MAMP/WP-CLI install problems](troubleshoot-mamp-wpcli-install-problems.md)
 
 ## Bootstrap
 For this project we will use Bootstrap 4. It is currently the most popular framework. The great thing is it gives you responsiveness and grid layouts right out of the box.

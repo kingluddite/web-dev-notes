@@ -1,5 +1,8 @@
 # [WP CLI](http://wp-cli.org/)
 
+## Query the database with WP-CLI
+`$ wp db query 'SELECT id, post_type, post_name FROM wp_posts'`
+
 ## Install WordPress with WP-CLI
 ### Core download install
 download the `wp-cli.phar` file using curl:
