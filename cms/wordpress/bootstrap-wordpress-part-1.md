@@ -4,47 +4,18 @@
 * [part 2](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-2.md)
 * [part 3](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-3.md)
 * [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-4.md)
-* [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-5.md)
-
+* [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-5.md
 # WordPress - Building a Custom Theme
 
-There are two ways to install WordPress. The traditional and long way and WP-CLI and the short way. Obviously, the shorter, the better but let's just show you the long way for thoroughness.
+There are two ways to install WordPress. The traditional (long way) and the WP-CLI (short way). Obviously, the shorter, the better but let's just show you the long way for thoroughness.
 
-## The Traditional Way to Install WordPress
- 
-### Install WordPress locally
-
-### If you use MAMP remember to:
-* [download WordPress](https://wordpress.org/download/)
-* Extract and rename `wordpress` folder after your project
-    + follow my rules of 
-        * files and folder lowercase (file.jpg of some-folder)
-        * no spaces, use dashes for multiple words (file-name.jpg or folder-name)
-        * only use underscores when naming a database
-        * once extracted, delete zip file for good computer house cleaning
-* Change MAMP settings. By default the port is :8888. Change the port to 80
-[screenshot of MAMP settings for port](https://i.imgur.com/LTKCIiJ.png)
-* Change the Document root to `Sites`
-    - This is an exception to the folder name rule because this used to be an out of the box feature of IOS but they removed it with recent IOS systems. I name it with a capital letter out of tradition.
-    - [screenshot of Sites Document Root](https://i.imgur.com/ivxdIvE.png)
-* **Note** Stop and start MAMP servers
-    - Mac IOS will ask you to enter your password to stop and start servers
-    - You will know if it is working if you when you click on 'Open WebStart page' you see a path of `http://localhost` and not `http://localhost:8888`
-* use `phpMyAdmin` to create a new empty database
-    - use lowercase only and if multiple words use underscores
-    - name the database without saying db or database in name (for better security)
-* place your new, extracted, renamed WordPress folder inside your new `Sites` folder
-* if you browse to `http://localhost` you should now see your new WordPress project
-    - click project and you will now walk through browser pages to install wordpress
-        + **page 1** ![choose language](https://i.imgur.com/AXvxvU6.png)
-        + **page 2** tells you that you are about to populate your database with the [WordPress tables](https://codex.wordpress.org/Database_Description). Click the `Let's go!` button [screenshot](https://i.imgur.com/EvJnTnI.png)
-        + **page 3** - This is your database connection info. When you enter this, WordPress will be able to connect to your database and populate the database you just created with the WordPress database tables. It will also create a `wp-config.php` file and put your database info in that file. This file is important to keep safe because if someone gets a hold of it, they can access and delete your database. The MAMP default username is `root` and the default password is `root`. This is fine for local development but when deploying to production you obviously want a more secure user name and password. In production your Database Host is usually `localhost` but some hosts use a different URL. They will let you know if they do in their cpanel. It is also a good security practice to rename the Table prefix to something other than `wp_`. Click `Submit` button when your Database info is correctly entered.![screenshot of WordPress sample database info](https://i.imgur.com/ea6NPKb.png_)
-        + ![error database page](https://i.imgur.com/MDpJ69B.png) - you'll get this is you typed any of the info incorrectly. It's a good idea to write down and store all your connection information in a safe place. Click `Try again` to take another stab at putting in the correct info.
-        + **page 4** - ![run install](https://i.imgur.com/fdDKsrF.png) - If all is well, you'll get this. Click `Run the install`.
-        + **page 5** - This will start to add info to specific WordPress database tables. Put your Site Title in (great SEO boost right out of the gate). Enter a username (Never use `admin` as the password as most hackers try that first because most people use it.). For local development you can put an easy password like `password` as you are the only one that has access to this. But when you put it live, you obviously want a better password. It should be noted that the username and password here are to enable you to login to the WordPress Admin Dashboard with Admin privlidges. Check `confirm use of weak password` checkbox if you use a weak password. Enter your email. This is important if you ever forget your password as WordPress will send you an email when you request to reset your password. When working locally or on a staging server, you obviously don't want SEO engines to see your site so check `Discourage search engines from indexing this site`. Make sure to uncheck it when in production or else your site will be invisible to all search engines which is obviously bad for business. ![page 5 screenshot](https://i.imgur.com/CDAK5Ol.png). Finally, click `Install WordPress`.
-        + **page 6** - if all goes well you ![will see this page](https://i.imgur.com/SMipiMU.png). If not, troubleshoot and try and find the error of your ways. Click the `Log In` button.
-        + **page 7** - ![You will see this page](https://i.imgur.com/VFjF4CV.png). Use your login credentials to login to the admin Dashboard.
-            * **note** To login in the future go to `http://localhost/your-wordpress-site/wp-admin`
+## [The Traditional Way to Install WordPress](how-to-install-wordpress.md)
+* We assume you are using MAMP
+* Other Dev Server Setups
+    - XAMPP
+    - WAMP
+    - Desktop Server
+    - VVV, Virtual Box and Vagrant
 
 ## Install WordPress Using WP-CLI (recommended)
 
