@@ -24,82 +24,38 @@ After you install WordPress more than 10 times you will get tired of installing 
 
 ## [Troubleshoot MAMP/WP-CLI install problems](troubleshoot-mamp-wpcli-install-problems.md)
 
-## Bootstrap
-For this project we will use Bootstrap 4. It is currently the most popular framework. The great thing is it gives you responsiveness and grid layouts right out of the box.
-
-### Download Bootstrap
-[Download Bootstrap](http://getbootstrap.com/getting-started/)
-
-First we are now going to use bootstrap 4 (instead of bootstrap 3)
-We are also going to install with node and it's npm (node package manager). This is way faster than manually downloading it.
-
-### Where will our custom theme be located?
+### Where will our WordPress custom theme be located?
 In the themes folder `wp-content/themes`
 
-So create your custom theme inside this `themes` folder. For the sake of this example, let's call it `thunder-tube-theme`.
+#### So create your custom theme inside this `themes` folder. 
+For the sake of this example, let's call it `thunder-tube-theme`.
 
 `$ mkdir wp-content/themes/thunder-tube-theme`
 
-Change into that directory
+#### Change into that directory
 
 `$ cd wp-content/themems/thunder-tube-theme`
 
-This is the folder you need to be inside because this is where all your custom theme stuff goes.
+This folder is where all your custom theme stuff goes.
 
-## Get Git!
-Inside your theme you need to start listening with Git (and add version control to your theme)
+## Which version of Bootstrap will we use?
+For this project we will use Bootstrap 4. It is currently the most popular framework. The great thing is it gives you responsiveness and grid layouts right out of the box.
 
-`$ git init`
+For our final project, you have the choice of using Bootstrap 4 or using your own code.
 
-### Which text editor do you currently recommend?
-I like Atom. I have used Sublime Text for years and find Atom to be a superior product.
+#### [Bootstrap 4](https://v4-alpha.getbootstrap.com/)
 
-But I do find Atom slow at times and I jump back to Sublime Text from time-to-time.
+### Install Node
+You will need to install node. [Follow these instructions to install node](how-to-install-node.md)
 
-### Create `package.json` in the root of your custom theme
+## [How to Use Git with WordPress](how-to-use-git-with-wordpress.md)
+Git and GitHub are used for version control. You should make sure you use git so that you don't lose any of your changes. A large percentage of modern web development jobs are using Git and Github.
 
-`$ npm init -y`
+### Grabbing Bootstrap with npm
 
-**note** the `-y` flag is a way to save you from answering all the questions npm usually asks you when it creates `package.json`.
+#### You need to create `package.json` using npm
 
-### Grab Bootstrap 4
-
-**note** This code may change so this is the site where you can the most updated `npm` code.
-
-`$ npm install bootstrap@4.0.0-alpha.5 --save`
-
-**note** the `--save` flag saves this to your `package.json`
-
-Bootstrap 4 requires the `tether` and `jquery` dependencies
-
-You don't need to grab jquery because it comes bundled with WordPress.
-
-`$ npm install tether --save`
-
-Check out your `package.json` and you should see bootstrap 4 and tether are now listed in the `dependencies` portion of the JSON file.
-
-## Sample package.json
-
-After installing bootstrap and saving it, `package.json` will look something like this:
-
-```js
-{
-    "name": "thunder-tube-theme",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "peh2",
-    "license": "ISC",
-    "dependencies": {
-        "bootstrap": "^4.0.0-alpha.5",
-        "tether": "^1.3.7"
-    }
-}
-```
+[How to create package.json](how-to-create-package-json)
 
 ## Add these files to your custom theme folder
 
@@ -111,52 +67,6 @@ Custom themes can have lots of files. But the only required files are `index.php
 * index.php (required)
 * style.css (required)
 
-## Add with Git
-
-First check your site with `$ git status`
-
-You will see `node_modules` and that we are tracking it. We don't want to as this code we never edit because it's 3rd party code. We use it but it is not ours so therefore we don't need to add it to our git repo. If we added `node_modules` to all our repos, we would waste space needlessly. Give a hoot. Don't pollute! `:)`
-
-### .gitignore
-
-This file will allow git to ignore `node_modules`
-
-Add it to the root of your custom theme.
-
-`$ touch .gitignore`
-
-And add `node_modules` to that file. You can do that through the terminal with:
-
-`$ echo "node_modules" >> .gitignore`
-
-Save and check the status with
-
-`$ git status`
-
-And you will see `node_modules` is no longer being watched by git.
-
-#### Now we are ready to add our new stuff to gits staging area.
-
-`$ git add -A`
-
-## Commit with Git
-
-`$ git commit -m 'initialize repo'`
-
-## Never work in the master branch
-
-The master branch is for your production code.
-
-Whenever you are working on a new feature you should create a feature branch.
-
-## Create a feature branch
-
-`$ git checkout -b my-first-feature-branch`
-
-Now you just created a new branch named `my-first-feature-branch` and switched into it (that's what the -b flag did)
-
-This branch has everything the master branch had but you now can add new stuff without worrying it will mess up the master branch.
-
 Let's add a background color to our site.
 
 `style.css`
@@ -166,26 +76,6 @@ body {
   background-color: red;
 }
 ```
-
-Save and commit.
-
-`$ git add style.css`
-
-`$ git commit -m 'add background color'`
-
-## Switch back to the master branch
-`$ git checkout master`
-
-Notice how we don't see our new style in the master branch? This is because branches don't see each other. They are self contained. When you create a branch, it takes a copy of the branch you are in and puts it inside the new branch.
-
-## Merge Branch
-We want to take the code we had in our `my-first-feature-branch` branch and merge it into the master branch. We can do that with:
-
-`$ git merge my-first-feature-branch`
-
-Now the master branch will have the new body background.
-
-I won't keep adding branches in my notes but you should get into this habit. Never work with new stuff in the master branch. Create a new branch and when you know it works and it is what you want. Add, commit and switch back to the master branch and merge your changes.
 
 ## Add images with Terminal
 In the root of every WordPress custom theme you need an image named `screenshot.png`. This image is what will be used to show a snapshot of what your custom theme looks like.
