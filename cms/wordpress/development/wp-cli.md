@@ -455,3 +455,6 @@ Wordpress update to 4.6 bug Fatal Error call to undefined function apply_filters
 `chmod +x wp-cli.phar`
 
 `sudo mv wp-cli.phar /usr/local/bin/wp`
+
+### Problem updating core WordPress with WP-CLI
+if you get an error using WP-CLI after updating, [try this link out](http://ryanbenhase.com/solved-plugin-updates-fail-using-wp-cli-wordpress-4-6-upgrade/).

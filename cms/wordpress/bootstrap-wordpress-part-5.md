@@ -1,10 +1,10 @@
 # WordPress Notes
 
-* [part 1](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-1.md)
-* [part 2](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-2.md)
-* [part 3](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-3.md)
-* [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-4.md)
-* [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-5.md)
+* [part 1](bootstrap-wordpress-part-1.md)
+* [part 2](bootstrap-wordpress-part-2.md)
+* [part 3](bootstrap-wordpress-part-3.md)
+* [part 4](bootstrap-wordpress-part-4.md)
+* [part 5](bootstrap-wordpress-part-5.md)
 
 ## JavaScript Components With Bootstrap
 
@@ -693,8 +693,8 @@ off canvas example
 
 FIN
 
-* [part 1](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-1.md)
-* [part 2](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-2.md)
-* [part 3](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-3.md)
-* [part 4](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-4.md)
-* [part 5](https://github.com/kingluddite/web-dev-notes/blob/master/cms/wordpress/bootstrap-wordpress-part-5.md)
+* [part 1](bootstrap-wordpress-part-1.md)
+* [part 2](bootstrap-wordpress-part-2.md)
+* [part 3](bootstrap-wordpress-part-3.md)
+* [part 4](bootstrap-wordpress-part-4.md)
+* [part 5](bootstrap-wordpress-part-5.md)
