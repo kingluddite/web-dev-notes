@@ -12,79 +12,16 @@ The WordPress community can be snobs about their code. If you work on a team, it
 
 [link](https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/)
 
-## Full width pages
-
-What if I want one template page that has no sidebar _(a full width page)_
-
-Save `page.php` as `page-full-width.php`
-
-`page-full-width.php`
-
-Check out the `comment` at the top of this template. This comment has special instructions for our template 
-
-_(remember the special comment instructions our style.css file had?)_
-
-```php
-<?php
-/*
-  Template Name: Full Width Template
- */
-?>
-<?php get_header(); ?>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-          <!-- tbs class for headers -->
-          <div class="page-header">
-            <!-- the_title() is WP function that shows the title of the post -->
-            <h1><?php the_title(); ?></h1>
-          </div>
-          <!-- WP function that outputs post content -->
-          <?php the_content(); ?>
-
-        <?php endwhile; else: ?>
-           <!-- we run this else if there is no content -->
-          <div class="page-header">
-            <h1>Wups!</h1>
-          </div>
-
-          <p>Looks like we have no content for this page?</p>
-
-        <?php endif; ?>
-      </div>
-
-    </div><!-- END .row -->
-
-<?php get_footer(); ?>
-```
-
-## Don't forget to select the full-width-page template in the Dashboard
-
-Open the full width page and select under Page Attributes in the Dashboard `Full Width Tempalte` under Template.
-
-View the Full Width Page in the browser and you will see it has no sidebar!
-
-## Full width grid using our WYSIWYG
-
-1. Create a new page
-2. Name it
-3. From Sample Page
-4. Choose full page template
-5. Use WYSIWYG bootstrap plugin to add 3 rows of different columns with sample text
-6. Make sure to add it to your menu _(as a dropdown)_
-
 # Blog
-
 What would a WordPress site be without a Blog. Instead of static text in all the pages we have created thus far, now we're going to create some posts and show how we can view them on our Blog page.
 
 ## Let's create some posts!
-
-Create 3 sample posts in WordPress
+Create 3 sample posts using the WP Dashboard.
 
 ### Oh no! Our Blog is Broken!
-But when we navigation to our Blog WordPress page. We still only see static content.
+But when we navigation to our Blog WordPress page. We still only see static content. The solution to our problem can be found by viewing the WordPress Template Hierarchy.
+
+The blog in WordPress is based on a template that must be named `home.php`.
 
 Save `page.php` as `home.php`
 
@@ -144,28 +81,16 @@ _(it will automatically look to `home.php` to control our blog page)_
 New stuff to talk about:
 
 * `the_permalink()` - links to the full post
-* `the_author()` - who created the post?
-  + show how to add users to WordPress and their permissions
-* `the_time()` - lots of parameters
+*  `the_time()` - lots of parameters
 * `the_category()`
   + we will soon create categories
 * `comments_link()` - no comments yet
 * `comments_number()` - no comments yet
 * `the_excerpt()` - a short excerpt of the content
-
-### To get categories to work
-
-* add 3 categories 
-  + use 1 category on each post
-* add a second category on 1 post to see how multiple categories are displayed
-
-**Why is comments broken?**
-
-`index.php` is overriding `single.php` which is what the comments links should be going to.
+* `the_content();` - all of that post's content
 
 ### Just show the excerpt()
-
-Remove `<?php the_content(); ?>` as we are using `the_excerpt()`
+On the blog page we only want to show a truncated version of the post. So we need to delete `the_content()` and just keep `the_excerpt()`.
 
 **change this:**
 
@@ -190,14 +115,15 @@ Remove `<?php the_content(); ?>` as we are using `the_excerpt()`
 ```
 
 ### Style the post
-
-* give article a class of post
+We can easily style the posts but just giving them a class of `post`
 
 ```html
 <article class="post">...
 ```
 
-Add this CSS to `style.css`
+Then we just add the necessary CSS to `css/style.css`
+
+**note** If you are using Sass, just make the necessary adjustments to make your CSS work properly.
 
 ```css
 article.post {
@@ -205,9 +131,12 @@ article.post {
 }
 ```
 
-# Create a sidebar just for blog
+## Create a sidebar just for blog
+Right now we can only use one sidebar for all of our pages. We can use many different sidebars we just create files named `sidebar-SOMENAME.php`.
 
-In `home.php`
+So let's add a different sidebar for our blog page.
+
+`home.php`
 
 Change `<?php get_sidebar(); ?>`
 
@@ -216,6 +145,8 @@ To this `<?php get_sidebar( 'blog' ); ?>`
 Save `sidebar.php` as `sidebar-blog.php`
 
 `sidebar-blog.php`
+
+And put this code inside your new sidebar.
 
 ```php
 <aside class="col-md-3 sidebar">
@@ -230,19 +161,21 @@ Save `sidebar.php` as `sidebar-blog.php`
 
 `functions.php`
 
+Of course we have to create a new instance of our widget so that we can have access to our new blog widget sidebar.
+
 ```php
 create_widget( 'Blog Sidebar', 'blog', 'Displays on side of pages in blog section');
 ```
 
-In Dashboard add by dragging and dropping `recent posts` and `recent comments` in blog sidebar widget
+For a little variety, in our Dashboard, add `recent posts` and `recent comments` in blog sidebar widget by simply dragging them into our new blog sidebar widget.
 
-## View your cool new Blog with unique Sidebar in the browser
+View your cool new Blog with unique blog Sidebar widget in the browser
 
-### small stylistic improvement to home.php
+### Update home.php
 
 `home.php`
 
-Make this subtle change for purely aesthetic purposes
+Make this subtle change for purely aesthetic purposes:
 
 ```php
 <article class="post">
@@ -260,6 +193,13 @@ Make this subtle change for purely aesthetic purposes
 ```
 
 # How do we create a single page?
+
+## Link to individual posts is broken
+What good is a blog if you can't click on one of the posts to read more about that individual post?
+
+The reason this is not working once again has to do with the WordPress Hierarchy. Single posts page will only be see if you create a `single.php` template.
+
+**note** If you don't create the correct template, WordPress will always use the `index.php` layout as the case of last resort. `index.php` is overriding `single.php` because `single.php` does not exist yet.
 
 ## single.php
 
@@ -287,20 +227,34 @@ From `home.php` take add this to `single.php` underneath H1 title
 [more code]
 ```
 
-Pull in `blog` sidebar
+Pull in `blog` sidebar. Just showing that we can easily add different sidebars. New sidebars or ones we used before on other pages.
 
 ```php
 <?php get_sidebar('blog'); ?>
 ```
 
-# Archives
+#### Adding Users
+You can add users and give them specific permissions. Maybe one user can only write posts and one user can have full access to everything on the site.
 
-## archive.php
+* `the_author()` - who created the post?
+  + The `author` is who created the post.
+  + Research how to add users to WordPress and give them various permissions
 
-* listing page for categories
-* great if we are searching a particular date
+**How do you create users in WordPress**
+Through the Dashboard. Add the user, add their info and choose their permissions. One you do, they will receive an email with information on how to log into the WordPress Site.
 
 ### Categories
+Right now, the categories isn't working like we would like. In the WP Dashboard, add 3 categories. If you don't know how to do this, Google 'How to add categories in WordPress' and see if you can find a solution.
+
+* Use one category on each of the three posts you created.
+* Add a second category on one post
+  + This will let you see how multiple categories are displayed in WordPress
+
+## archive.php
+Archives lets you see and sort by older posts
+
+* Listing page for categories
+* Great if we are searching a particular date
 
 Click on category and you are taken to a `category/news` page _(uses template of `index.php`)_
 
