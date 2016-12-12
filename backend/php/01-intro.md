@@ -61,3 +61,19 @@ string | combines any number of characters | $myString = "Hello World";
 Array
 Object
 
+How do I upgrade to the latest version
+[Grab a site to get the latest version of php](https://coolestguidesontheplanet.com/upgrade-php-on-osx/)
+
+But you won't see the latest version of php [because you need to add it to your path](http://apple.stackexchange.com/questions/107230/why-does-my-os-x-still-run-older-php-even-though-i-updated-it)
+
+php-osx doesn't overwrite the php binaries installed by Apple, but installs everyting in /usr/local/php5. The new php binary is therefore in /usr/local/php5/bin/php.
+
+I am using zsh so in my .zshrc
+
+I add this line
+`export PATH=/usr/local/php5/bin:$PATH`
+
+I then `$ source ~/.zshrc`
+
+run `$ php -v` and you should now see the latest version
+

@@ -1,5 +1,14 @@
 # Terminal
 
+##iTerm2
+Add visor
+preferences > keys > Hotkey
+* check Hotkeytoggle a dedicated window with profile
+* Choose Hotkey Window from dropdown
+* [more info](http://apple.stackexchange.com/questions/48796/iterm-as-a-slide-out-terminal-from-the-top-of-the-screen)
+* remove animation
+  - `defaults write com.googlecode.iterm2 HotkeyTermAnimationDuration -float 0.00001`
+
 ## select beginning of line
 `ctrl` + `a`
 ## select end of line
