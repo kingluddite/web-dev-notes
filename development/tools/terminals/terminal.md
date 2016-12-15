@@ -1,5 +1,20 @@
 # Terminal
 
+# curl command would open Sublime and can't write to body error in terminal.
+I had to jump into `.bashrc` `.zshrc` and `.bash_profile`. I found out that if you type `alias` in the terminal it will list all your alias' in alphabetical order and which file they are in. Turns out I used a reserved word for an alias which was `bash`. I need to find and comment out all of them to get curl to work again. the curl command was using the `bash` word in the script
+
+`curl -s https://php-osx.liip.ch/install.sh | bash -s 7.1`
+
+* I was trying to download the latest version of PHP
+
+And when it got to `bash` in that command, it would open Sublime Text and the bash file.
+
+Here was my alias that caused the problem (I also had the alias in both .bash_profile and .zshrc so I had to comment them both out)
+
+`alias bash='sublime ~/.bash_profile'`
+ 
+I just commented it out and, refreshed with `source ~/.bash_profile` and it worked again. But I wasted two hours trying to figure this out.
+
 ##iTerm2
 Add visor
 preferences > keys > Hotkey
