@@ -1,17 +1,23 @@
 # The Router
 
 * Works as the Controller (in MVC pattern)
-    - this means it is controlling when a user makes an input into our app (changing the URL), what other functions should be called
+    - this means it is controlling when a user makes an 
+    input into our app (changing the URL), what other 
+    functions should be called
 * Find our current page
     - getting the current page using the hashtag
 * Determining what content should be loaded
     - if nothing is there, the home page should be loaded
     - if its on a certain page, it should look up that URL
-    - if the blog page is showing it should show all of the content
+    - if the blog page is showing it should show all of 
+    the content
 * Listen for URL changes (not link clicks)
-    - we are going to look for URL changes at the `window` level
-    - we won't attach event listeners onto specific links (like links of the blog posts) using `preventDefault()` and then loading the content based off of that
-        + we are actually going to be listening for the URL changes itself
+    - we are going to look for URL changes at the `window` 
+    level
+    - we won't attach event listeners onto specific links 
+    (like links of the blog posts) using `preventDefault()` and then loading the content based off of that
+        + we are actually going to be listening for the URL
+        changes itself
         + this is a common thing for the router to do
 
 `js/router.js`
@@ -42,7 +48,8 @@ router.init = function( ) {};
    */
 ```
 
-Make sure to add the script pointing to router in `index.html`
+Make sure to add the script pointing to router in 
+`index.html`
 
 `index.html`
 
@@ -113,8 +120,11 @@ init: function( ) {
 
 ```
 
-CLick on a link and then refresh the page. After refreshing you will see the console populate with the `#learning-javascript` (or whatever link you clicked)
+CLick on a link and then refresh the page. After refreshing
+you will see the **console** populate with the 
+`#learning-javascript` (or whatever link you clicked)
 
+## Get rid of the the hash
 Why is there a `#` (hash)?
 
 `js/router.js`
@@ -167,15 +177,22 @@ router.getSlug = function( ) {
  */
 ```
 
-we update the comment to say it is returning something and that it is a string and the string will be content (post) we keep in generic so that it can handle posts or pages
+We update the comment to say it is returning something and
+that it is a string and the string will be content (post) 
+we keep in generic so that it can handle posts or pages
 
-* since we do not console.log() in the router.getSlug() method, we use the console.log() in the call to `router.init()`
+* since we do not `console.log()` in the `router.getSlug()` 
+method, we use the `console.log()` in the call to 
+`router.init()`
 
-Now when we refresh the browser the console shows us the URL after the # but it does not have the `#` since we used the JavaScript string method `substring(1)` to remove the first character `#`
+Now when we refresh the browser the console shows us the 
+URL after the # but it does not have the `#` since we used
+the JavaScript string method `substring(1)` to remove 
+the first character `#`
 
 ### Next
 
-Remove the loadBlogPosts() from this
+Remove the `loadBlogPosts()` from this
 
 `js/view.js`
 
@@ -187,9 +204,9 @@ Remove the loadBlogPosts() from this
 view.init = function( ) {};
 ```
 
-We don't need it there, so we move it into our router.
+We don't need it there, so we move it into:
 
-we update our router.js code
+`router.js`
 
 ```js
 /**
@@ -266,7 +283,10 @@ router.loadContent = function( ) {
 };
 ```
 
-But our page is blank until we click something. That is because our listener is waiting for a hash change. We need to call our router as soon as the page loads so add this:
+But our page is blank until we click something. 
+That is because our listener is waiting for a hash 
+change. We need to call our router as soon as the page 
+loads so add this:
 
 `js/router.js`
 
@@ -280,11 +300,14 @@ router.init = function( ) {
 };
 ```
 
-Now when you view the page in the browser you get a slug console message telling which page to load but we need more.
+Now when you view the page in the browser you get a 
+slug console message telling which page to load but 
+we need more.
 
 ## Wipe the page
 
-all the pages should load (if there is no #something in the URL)
+all the pages should load (if there is no #something 
+in the URL)
 
 Now we want to clear the page when a link is clicked
 
@@ -308,7 +331,8 @@ view.clearContent = function( ) {
 };
 ```
 
-Then we want to call this before the logic in `route.loadContent()` method of the router.js
+Then we want to call this before the logic in 
+`route.loadContent()` method of the `router.js`
 
 ```js
 /**
@@ -337,4 +361,5 @@ router.loadContent = function( ) {
 
 ```
 
-Now when no hash URL we see all posts but when you click on any post link, the page is wiped.
+Now when no hash URL we see all posts but when you click 
+on any post link, the page is wiped.

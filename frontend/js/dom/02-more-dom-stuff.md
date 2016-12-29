@@ -1,6 +1,6 @@
 # Create Elements
 
-## createElement() methdo
+## createElement() method
 * [link reference](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
 
 ```js
@@ -55,9 +55,11 @@ var addTask = function() {
 
 ![add item button](https://i.imgur.com/5HjUHhT.png)
 
-* view in browser and under `ADD ITEM` section, add an item in the input box and click the `Add` button. You will see that something happens and we can tell that stuff has been appended to our document but it doesn't look pretty.
+## View in browser
+Under `ADD ITEM` section, add an item in the input box and click the `Add` button. 
 
-If you view the DOM elements we added in the browser console you will see something like this
+* You will see that something happens and we can tell that stuff has been appended to our document but it doesn't look pretty.
+* If you view the DOM elements we added in the browser console you will see something like this:
 
 ![dom elements created](https://i.imgur.com/53ftBGT.png)
 
@@ -153,14 +155,14 @@ var createNewTaskElement = function( taskString ) {
 
 ```
 
-* view in browser and now you'll see we have successfully modified elements
-* click the `Add` button under `ADD ITEM` and by default it will add an li with a bunch of stuff nested inside it where the attributes have been modified
+* View in browser and now you'll see we have successfully modified elements
+* Click the `Add` button under `ADD ITEM` and by default it will add an `<LI>` with a bunch of stuff nested inside it where the attributes have been modified
 
-![modified elements of added li](https://i.imgur.com/JMy0iKQ.png)
+![modified elements of added the LI element](https://i.imgur.com/JMy0iKQ.png)
 
 # innerText and Firefox
 
-Mozilla didn't implement innerText but has implemented textContent.
+Mozilla didn't implement `innerText` but has implemented `textContent`.
 
 Here's some cross-browser compatible code for the edit button:
 
@@ -219,11 +221,10 @@ var editTask = function() {
 ```
 
 ## Add a class
-
 Quick exercise:
 
-* Use the `classList` property on the `anchor` to add a new class of "selected" to it
-* use classList to toggle the "live" class on the anchor element
+* Use the `classList` property on the `anchor` to add a new class of **"selected"** to it
+* Use classList to toggle the **"live"** class on the anchor element
 
 ```js
 var anchor = document.querySelector("a");
@@ -255,7 +256,7 @@ var addTask = function() {
 };
 ```
 
-* setting taskInput.value = '' is all we need to do to clear out input box
+* Setting `taskInput.value = ''` is all we need to do to clear out input box
 
 ### EventTarget
 
@@ -265,23 +266,22 @@ var addTask = function() {
 
 [MDN link resource](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
 
-syntax
+Syntax
 
 ```js
 target.addEventListener(type, listenener)
 ```
 
-* type - a string representing the `event type`
-* listener - a function we want to add
+* Type - a string representing the `event type`
+* Listener - a function we want to add
 
 ##### Why use addEventListener?
 * It allows adding more than a single handler for an event
 
-currently if we try to add more than one event using `.onclick` it will only add the last event
+Currently if we try to add more than one event using `.onclick` it will only add the last event
 
 ## ToDo Assignment
-* prevent creation of empty tasks
-* alter the Edit Button so that it says 'Save' when the text input is showing and Edit when the label is
-* when edit is clicked, give it a grey background
-* 
+* Prevent creation of empty tasks
+* Alter the Edit Button so that it says 'Save' when the text input is showing and Edit when the label is
+* When edit is clicked, give it a grey background
 

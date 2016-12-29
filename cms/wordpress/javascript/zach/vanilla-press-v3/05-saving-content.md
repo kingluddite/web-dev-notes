@@ -3,14 +3,22 @@ Saving to localStorage when the update button is clicked
 
 * Add event listener to Update button
 * Add an editor.currentContent property
-    - save the latest updates to the post or page while it is being updated and this will be used when ever we need reference that
-        + in the past we just grabbed the form element itself, grabbed it's value, but now we'll create something slightly different which will be a store of the latest current content (post or page)
+    - save the latest updates to the post or page 
+    while it is being updated and this will be used 
+    when ever we need reference that
+        + In the past we just grabbed the form element 
+        itself, grabbed it's value, but now we'll create 
+        something slightly different which will be a 
+        store of the latest current content (post or page)
 * Add updateContent method in our Model
     - to actually do the saving for us
-    - the main logic will be here to find out the current post or page we are working with editing and make sure we make the updates and save them
+    - the main logic will be here to find out the
+    current post or page we are working with editing 
+    and make sure we make the updates and save them
 
 ## Grab the editor's update button
-Since we may need to use this several times, let's make it a helper
+Since we may need to use this several times, let's 
+make it a helper
 
 `js/helpers.js`
 
@@ -41,7 +49,9 @@ editor.currentContent = '';
 ```
 
 ## create the updateContent() method
-When this is called we need to call the method we defined `model.updateContent()` and we pass that method the value inside `editor.currentContent`
+When this is called we need to call the method we 
+defined `model.updateContent()` and we pass that 
+method the value inside `editor.currentContent`
 
 ## Add listener to update button
 
@@ -81,10 +91,12 @@ editor.addFormListeners = function( ) {
 ```
 
 * We use our helper to grab the update button
-* We add a `click` listener to that button that will call `editorContent` method when that event occurs
+* We add a `click` listener to that button that will 
+call `editorContent` method when that event occurs
 
 ## Set the currentContent property
-We set this to what the `model.getCurrentContent()` method gives us
+We set this to what the `model.getCurrentContent()` 
+method gives us
 
 `js/editor.js`
 
@@ -99,7 +111,8 @@ editor.toggle = function( ) {
         toggleEl = helpers.getEditorToggleEl( );
 
   // ADD THIS
-  // when toggle is clicked we grab the current content and store it inside this property
+  // when toggle is clicked we grab the current content 
+  // and store it inside this property
   editor.currentContent = model.getCurrentContent();
 
     editorEl.classList.toggle( 'hidden' );
@@ -117,11 +130,18 @@ editor.toggle = function( ) {
 };
 ```
 
-* So no if you test this in the browser and you are on the home page. Open the editor and then in the Chrome console, type `> editor.currentContent`. You shoud see an Object returned with the home page data inside it.
-* If you click to the About page and refresh the browser and type this in the Chrome console `> editor.currentContent`, you will now see an Object with the About page data.
+* So no if you test this in the browser and you are on 
+the home page. Open the editor and then in the Chrome 
+console, type `> editor.currentContent`. You shoud see 
+an Object returned with the home page data inside it.
+* If you click to the About page and refresh the browser 
+and type this in the Chrome 
+console `> editor.currentContent`, you will now see 
+an Object with the About page data.
 
 ### Fix problem
-If you add content into the about page (assuming we are working on the About page and we just tested that the About page data was returned when we typed `> editor.currentContent` in the Chrome console), the content you added will not appear in the Object if you type `> editor.currentContent` again.
+If you add content into the about page (assuming we are working on the About page and we just tested that the About page data was returned when we typed `> editor.currentContent` in the Chrome console), the content you added will not appear in the Object if you type `> editor.currentContent` 
+again.
 
 #### Solution to the problem
 
@@ -162,11 +182,18 @@ view.updateContentFromForm = function () {
 };
 ```
 
-* So now when we update the title or content, the `> editor.currentContent` will update.
-* We have a problem in that now we have editor stuff inside our view page. This is not good OOP design and we will fix this later. For now we will keep it and if you test it, it should work
+* So now when we update the title or content, 
+the `> editor.currentContent` will update.
+* We have a problem in that now we have editor stuff 
+inside our view page. This is not good OOP design and 
+we will fix this later. For now we will keep it and if 
+you test it, it should work
 
 ## Next problem
-When we click the update button we get a quick error before it sends us to the next page. The reason is in `editor.js` we are calling `model.updateContent()` method which we did not write yet.
+When we click the update button we get a quick error 
+before it sends us to the next page. The reason is 
+in `editor.js` we are calling `model.updateContent()` 
+method which we did not write yet.
 
 ### Found code change
 Not sure when this code was added but it was
@@ -193,7 +220,9 @@ editor.listenEditorToggle = function( ) {
 
 ### Did not get Save content form to work
 It should update in object and it was not.
-In video the update button when clicked wasn't closing editor form but mine was. Moving on to see if it is fixed in next video.
+In video the update button when clicked wasn't 
+closing editor form but mine was. Moving on to see if 
+it is fixed in next video.
 
 #### Update on Update form closing when clicking update
 Found in video 1.6.18 - Protecting Unsaved Content

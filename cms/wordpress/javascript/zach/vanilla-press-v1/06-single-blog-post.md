@@ -36,7 +36,7 @@ model.getPost = function( slug ) {
 
 ```
 
-* assume that all our slugs are unique
+* Assume that all our slugs are unique
 
 ## Update our View
 
@@ -91,7 +91,8 @@ router.loadContent = function( ) {
 };
 ```
 
-Now if you click on the list of blog titles you will be taken to that individual blog post.
+Now if you click on the list of blog titles you will be 
+taken to that individual blog post.
 
 #### Update our app.js
 
@@ -125,6 +126,8 @@ init: function( ) {
 }
 ```
 
-Our router is taking control of initializing the view so we don't need this `view.init()` anymore.
+Our router is taking control of initializing the view 
+so we don't need this `view.init()` anymore.
 
-* **note** - if you refresh the page, it figures out what it needs based on the current URL and it loads it.
+* **note** - If you refresh the page, it figures out 
+what it needs based on the current URL and it loads it.

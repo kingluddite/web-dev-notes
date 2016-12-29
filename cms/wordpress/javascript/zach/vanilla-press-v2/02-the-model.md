@@ -174,7 +174,8 @@ model.getPost = function( slug ) {
 /**
   * Gets content from local store
   *
-  * @return store {object} Native JavaScript object from local store
+  * @return store {object} Native JavaScript object 
+  * from local store
   */
 
 model.getLocalStore = function( ) {
@@ -188,7 +189,8 @@ model.getLocalStore = function( ) {
 /**
   * Saves temporary store to local storage.
   *
-  * @param store {object} Native JavaScript object with site data
+  * @param store {object} Native JavaScript object 
+  * with site data
   */
 
 model.updateLocalStore = function( store ) {
@@ -216,15 +218,20 @@ This is cool
 
 `jsonData = JSON.stringify( { "posts": posts, "pages": pages } );`
 
-It has an object that has page and posts properties. Inside the page and posts properties are and array of posts objects and pages objects. This needed to be added to from our vanilla V1 project.
+It has an object that has **pages** and **posts** 
+properties. 
+
+Inside the **page** and **posts** properties are and array 
+of `posts` objects and `pages` objects. This needed to be 
+added to `data.js` from our vanilla V1 project.
 
 ## Problems
-We are stringinfying our data twice.
-We are parsing our data twice
+* We are stringinfying our data twice.
+* We are parsing our data twice
 
 ### Stringifying dupes
-* once at the bottom of our `js/data.js` file
-* and once here in our `js/model.js` file
+* Once at the bottom of our `js/data.js` file
+* And once here in our `js/model.js` file
 
 ```js
 model.updateLocalStore = function( store ) {
@@ -235,7 +242,7 @@ model.updateLocalStore = function( store ) {
 ```
 
 ## Parsing Dupes
-* we are actually parsing three times!
+* We are actually parsing three times!
 
 `js/model.js`
 
@@ -389,7 +396,7 @@ model.getPost = function( slug ) {
 };
 ```
 
-and keep it here
+And keep it here
 
 ```js
 model.getLocalStore = function( ) {
@@ -472,7 +479,8 @@ model.getPage = function( slug ) {
 };
 ```
 
-Note since this code looks almost identical, this is not DRY and should be refactored.
+Note since this code looks almost identical, this is 
+not DRY and should be refactored.
 
 Test to see if it is working by adding this:
 
@@ -488,9 +496,13 @@ model.init = function( ) {
 ```
 
 ## Bug
-Zach has a function in router.js that is not defined `view.loadSingleContent()`, so temporarily comment it out until you get to the router.js code
+Zach has a function in `router.js` that is not defined 
+`view.loadSingleContent()`, so temporarily comment it out 
+until you get to the `router.js` code
 
 `js/router.js`
+
+This is the code Zach had:
 
 ```js
 /**
@@ -522,6 +534,33 @@ router.loadContent = function( ) {
 };
 ```
 
+This is the existing code:
+
+```js
+/**
+ * Determines what to load in the view
+ */
+router.loadContent = function loadContent() {
+  const slug = router.getSlug();
+
+  view.clearContent();
+
+  if ( slug === null ) {
+    view.loadBlogPosts();
+  } else {
+    view.loadBlogPost( slug );
+  }
+};
+
+export default router;
+```
+
 ![output from test from console](https://i.imgur.com/FJ8Cbnb.png)
 
-**tip** - start from model and work from there
+## Yoda code
+Yoda code is a technique used before tools like ESLinter 
+were used. You can safely not use Yoda code if using
+ESLinter because it will catch the errors using Yoda
+code is meant to prevent.
+
+**tip** - Start from model and work from there

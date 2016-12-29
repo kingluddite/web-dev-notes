@@ -50,7 +50,7 @@ What versions are available?
 
 Gives you a list of all npm versions but it truncates them. We need all of them so use this command:
 
-`$ npm info webpack versions --json`
+    `$ npm info webpack versions --json`
 
 * That will give you the full list
 * Grab the latest version

@@ -1,5 +1,13 @@
 # [WP CLI](http://wp-cli.org/)
 
+## How to update WP-CLI in vvv
+```
+cd /srw/www/wp-cli
+git checkout -- .
+git pull origin master
+composer update
+```
+
 ## Query the database with WP-CLI
 `$ wp db query 'SELECT id, post_type, post_name FROM wp_posts'`
 

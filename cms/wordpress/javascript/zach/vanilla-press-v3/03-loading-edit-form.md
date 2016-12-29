@@ -1,5 +1,6 @@
 # Loading the Edit Form
-Learn how to load the content from the current page into the edit form so that we can customize and change it.
+Learn how to load the content from the current page into 
+the edit form so that we can customize and change it.
 
 * New model methods for getting generic content
 * Helpers for getting form elements
@@ -9,41 +10,11 @@ Learn how to load the content from the current page into the edit form so that w
 
 `js/view.js`
 
-```js
-/**
- * Displays a single post or page based on slug
- *
- */
-
-view.loadSingleContent = function( slug ) {
-
-    var contentObj = model.getPost( slug ),
-        titleEl = helpers.getPageTitleEl( ),
-        contentEl = helpers.getPageContentEl( );
-
-    // if null we must be dealing with a page
-    // so grab its slug using the getPage() method in models.js
-    if ( null === contentObj ) {
-        contentObj = model.getPage( slug );
-    }
-
-    // if contentObj is still null, then we will create
-    // our own 404 object to return to the view
-    if ( null === contentObj ) {
-        contentObj = {
-            title: '404 Error',
-            content: 'Content not found'
-        };
-    }
-
-    titleEl.innerHTML = contentObj.title;
-    contentEl.innerHTML = contentObj.content;
-
-};
-
-```
+`loadSingleContent() method`
 
 We are going to create a new method in `js/model.js` and we are going to take this chunk of code:
+
+Not a good idea to have logic code in `view`
 
 `js/view.js`
 
@@ -64,7 +35,9 @@ We are going to create a new method in `js/model.js` and we are going to take th
 }
 ```
 
-And in `js/model.js` we are going to create a new method and take the above chunk of code and move it into the new method
+And in `js/model.js` we are going to create a new method 
+and take the above chunk of code and move it into the 
+new method
 
 `js/model.js`
 
@@ -94,13 +67,14 @@ model.getContent = function( slug ) {
             content: 'Content not found'
         };
     }
-
+    // ADD THIS LINE
     return contentObj;
 
 };
 ```
 
-Now we can go back to `js/view.js` and make the following update:
+Now we can go back to `js/view.js` and make the 
+following update:
 
 `js/view.js`
 
@@ -122,7 +96,9 @@ view.loadSingleContent = function( slug ) {
 };
 ```
 
-Now our code is more DRY since we refactored. If we didn't do what we did, we would have the same code checking in two different places.
+Now our code is more DRY since we refactored. If we 
+didn't do what we did, we would have the same 
+code checking in two different places.
 
 ### Test
 Site should work just like it did before
@@ -221,7 +197,10 @@ editor.toggle = function( ) {
 };
 ```
 
-The above conditonal checks if the toggleEl does NOT have a hidden class which means it is open. If is is open we fill the form (or load it) with the data from the current page
+The above conditonal checks if the **toggleEl** does NOT 
+have a hidden class which means it is open. If is is 
+open we fill the form (or load it) with the data from 
+the current page
 
 ### Fix a 404 problem on the home page
 
@@ -254,8 +233,9 @@ model.getCurrentContent = function( ) {
     var slug = router.getSlug( ),
         contentObj;
 
-    if ( null === slug )
+    if ( null === slug ) {
         slug = 'home';
+    }
     
     contentObj = model.getContent( slug );
 
@@ -263,6 +243,7 @@ model.getCurrentContent = function( ) {
 };
 ```
 
-Now check and the 404/Content not found error is no longer on the home page.
+Now check and the 404/Content not found 
+error is no longer on the home page.
 
 

@@ -1,6 +1,7 @@
 # Why JavaScript?
 
 In modern Front-End Web Development 3 main components:
+
 1. Content
   * HTML and markup
 2. Style
@@ -8,15 +9,15 @@ In modern Front-End Web Development 3 main components:
 3. Interactivity
   * JavaScript and interactivity and behavior
       - JavaScript can work with the `window` object (HTML and CSS can not)
-          + everything you do with JavaScript in the browser happens inside the `window`
-          + a browser has a special object called the `window object`
+          + Everything you do with JavaScript in the browser happens inside the `window`
+          + A browser has a special object called the `window object`
 
 ## Window Object
 Contains lots of information
 
-* current location URL
-* web page or the `document` you have open
-* the application code you've written
+* Current location URL
+* Web page or the `document` you have open
+* The application code you've written
 
 ## What happens when the browser loads a web page?
 It creates TWO things:
@@ -24,13 +25,14 @@ It creates TWO things:
 1. Window
 2. Document
 
-* both window and document are objects
-    - objects are containers for data and can perform specific actions for that particular object
-    - many objects built into the browser environment and JavaScript itself
-    - you can create `custom` objects using JavaScript
+* Both window and document are objects
+    - Objects are containers for data and can perform specific actions for that particular object
+    - Many objects built into the browser environment and JavaScript itself
+    - You can create `custom` objects using JavaScript
 
 ## Example
 dog
+
 Properties | Methods  
 --- | ---
 name | bark()
@@ -40,52 +42,55 @@ numberOfLegs |
 * you can acess methods or properties on any object using dot notation
     - `dog.name`, `dog.owner`
 
-Window Object
-chrome console
-tip: ignore all faded purple colors
-it can look very daunting when you open it up
+## Window Object
+* chrome console
+* **tip:** ignore all faded purple colors
+* It can look very daunting when you open it up
 
-let's check out `window.location`
+Let's check out `window.location`
 
 ```js
 > window.location
 > window.location.host
 ```
 
-save a variable
+Save a variable
+
 ```js
 > var name = "kingluddite";
 ```
 
 ![window.name](https://i.imgur.com/u9oErru.png)
 
-* window is the global scope of your JavaScript program
-alert is `window.alert`
-
-* also `window.document`
+* Window is the global scope of your JavaScript program
+* alert is `window.alert`
+* Also `window.document`
 `window.document.body`
-document.head
-window.document.images (returns and array, an empty array if no images)
-window.document.forms (array of forms)
-window.document.scripts
+* `document.head`
+* `window.document.images`
+    - returns and array, an empty array if no images
+* `window.document.forms`
+    - array of forms
+* `window.document.scripts`
 
 ## DOM
-Document Object Model
-when browser reads an HTML file it creates a treelike structure of nodes
+* Document Object Model
+* When the browser reads an HTML file it creates a treelike structure of nodes
 node is a branching point that reveals more nodes
-* each node is an HTML element or a JavaScript object that has properties and methods that can be accessed and used
+* Each node is an HTML element or a JavaScript object that has properties and methods that can be accessed and used
 
-tree nodes is top down structure (not traditional tree structure with root on bottom)
+Tree nodes is top down structure
+* Not like the traditional tree structure with root on bottom
 
 The tree structure is the DOM tree or the Document Object Model
 
 ## MDN
 Mozilla Developer Network
 [link to MDN](https://developer.mozilla.org/en-US/)
-* we don't want to jump straight to JavaScript
-    - we want to access and click on `[Web APIs & DOM](https://developer.mozilla.org/en-US/docs/Web/Reference/API)`
+* We don't want to jump straight to JavaScript
+    - We want to access and click on `[Web APIs & DOM](https://developer.mozilla.org/en-US/docs/Web/Reference/API)`
 
-**note**: the DOM is NOT JavaScript but it is an interface that we can interact with the programming langauge JavaScript
+**note**: The DOM is NOT JavaScript but it is an interface that we can interact with the programming langauge JavaScript
 
 [Document Object Model](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) - "The DOM is an API that allows access to and modification of the current document. It allows manipulation of document Node and Element. HTML, XML and SVG have extended it to manipulate their specific elements."
 
@@ -94,11 +99,11 @@ Mozilla Developer Network
 ### 3 Types of Actions We Can Do to the DOM
 * Manipulation
     - where we manipulate elements
-* Traveral
-    - selecting an element based on the relationship with another element.
-        + example: select a child element of a known parent element like a list item child of an undordered list
+* Traversal
+    - Selecting an element based on the relationship with another element.
+        + Example: select a child element of a known parent element like a `<Li>` child of an `<UL>`
 * Events
-    - listening to a specific event, like a mouse click or a key press, and having something execute.
+    - Listening to a specific event, like a mouse click or a key press, and having something execute
 
 ### DOM interfaces
 * [document](https://developer.mozilla.org/en-US/docs/Web/API/Document)
@@ -106,7 +111,7 @@ Mozilla Developer Network
 * [node](https://developer.mozilla.org/en-US/docs/Web/API/Node)
 
 ### 4 P's of Problem Solving
-1. Preparation - where we understand the problem and think of a high level solution
+1. Preparation - Where we understand the problem and think of a high level solution
 2. Plan - where we plan out the solution
 3. Perform - where we perform what's required in our proposed solution
 4. Perfect - where refactor the solution
@@ -128,19 +133,19 @@ var addTask = function() {
 };
 ```
 
-**note**: you call them the same way
+**note**: you call both functions the same way
 * `addTask();`
 
 ## getElementById( 'someId' )
-* don't need to preface with `#` as it is implied
+* Don't need to preface with `#` as it is implied
 * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
-* note that it is singular because this will only EVER get one element
+* Note that it is singular because this will only EVER get one element
 
 ## getElementsByTagName( 'img' )
-* notice this is plural because it gets a HTMLCollection with is very similar to an Array and you will access it using array syntax `myArray[0]`
+* Notice this is plural because it gets a HTMLCollection with is very similar to an Array and you will access it using array syntax `myArray[0]`
 * [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByTagName)
 
-### example
+### Example
 
 ```js
 var taskInput = document.getElementById( 'new-task' ), // new-task
@@ -149,26 +154,26 @@ var taskInput = document.getElementById( 'new-task' ), // new-task
     completeTasksHolder = document.getElementById( 'complete-task' ); // completed-tasks
 ```
 
-* you can open console to see if this is actually working by typing in the console
+* You can open the console and see if this is actually working by typing: 
 
 ```js
 > taskInput
 ```
 
-* after adding all 4 items in console you should see this:
+* After adding all 4 items in console you should see this:
 
 ![console output](https://i.imgur.com/OJrH6pQ.png)
 
-* if you hover over the returned items stored inside the variables in the console you will see those items highlighted on the browser page (document)
+* If you hover over the returned items stored inside the variables in the console you will see those items highlighted on the browser page (document)
 
 ## Events
 
 Think of a race. It will not start until the gun sounds. Web pages work in a similar fashion. When the user interacts with the page with clicks or mousemoves these are events that will trigger functions to be called. These functions are known as `event handlers`.
 
 ### Structure of JavaScript Tip
-Variables at top
-Then Functions
-Then Events
+1. Variables at top
+2. Then Functions
+3. Then Events
 
 #### Click Event
 * [MDN reference for onclick](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick)
@@ -178,12 +183,13 @@ Then Events
 element.onclick = functionRef;
 ```
 
-**note**: it says `functionRef` above. This is an important distinction to make. Normally when you first work with JavaScript and functions you'll call function using parentheses but when you are dealing with `functon references` you do not use the parentheses. The difference is if you use the parentheses, you will call the function as soon as that line is called. If you use a function reference instead, the function will not be called until the event triggers the `event handler` to run.
+**note**: It says `functionRef` above. This is an important distinction to make. Normally when you first work with JavaScript and functions you'll call function using parentheses but when you are dealing with `functon references` you **DO NOT** use the parentheses. The difference is if you use the parentheses, you will call the function as soon as that line is called. If you use a function reference instead, the function will not be called until the event triggers the `event handler` to run.
 
 ## Traversing Elements with children
-* traverse - "means go from one element to anther"
+* Traverse - "means go from one element to another"
 
 ## We come up with plan
+It is a good practice to layout out with comments what you plan on building
 
 ```js
 // cycle over incompleteTasksHolder ul list items
@@ -202,9 +208,9 @@ element.onclick = functionRef;
    // bind taskIncomplete to checkbox
 ```
 
-* we see a lot of redundancy so we decide to come up with a function to keep our code DRY
+* We see a lot of redundancy so we decide to come up with a function to keep our code DRY
 
-### After refactoring we get this:
+### Let's start coding!
 
 ```js
 var bindTaskEvents = function( taskListItem, checkBoxEventHandler ) {
@@ -247,10 +253,10 @@ for ( var i = 0; i < completeTasksHolder.children.length; i++ ) {
 }
 ```
 
-* view in browser and you'll see 'bind list item events' output in console
+* View in browser and you'll see 'bind list item events' output in console
 
-* with checkboxes you can check or uncheck it also with spacebar (and clicking with mouse)
-  - the [global event handler](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers) has [onchange](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onchange)
+* With checkboxes you can check or uncheck it also with spacebar (and clicking with mouse)
+  - The [global event handler](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers) has [onchange](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onchange)
 * [querySelector() MDN reference](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector)
 
 ### Even More refactoring
@@ -272,4 +278,4 @@ var bindTaskEvents = function( taskListItem, checkBoxEventHandler ) {
 };
 ```
 
-* view in browser and now you'll see our console logs working when you click checkboxes with mouse or use keyboard (onchange), click add or delete buttons.
+* View in browser and now you'll see our console logs working when you click checkboxes with mouse or use keyboard (onchange), click add or delete buttons.

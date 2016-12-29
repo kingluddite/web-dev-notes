@@ -295,7 +295,11 @@ We need to find it and it will show how to add it to `.eslintrc`
 }
 ```
 
+## eslint-plugin-html
+
 * install `eslint-plugin-html` globally
+
+`npm install -g eslint eslint-plugin-html`
 
 `code-in-html`
 
@@ -318,7 +322,7 @@ We need to find it and it will show how to add it to `.eslintrc`
 </html>
 ```
 
-I removed `.eslintrc` and that was using the global eslint file `~/eslintrc`
+I removed `.eslintrc` and that was using the global eslint file `~/.eslintrc`
 
 Do the same for markdown
 
@@ -452,3 +456,56 @@ If your hook is not running, fix it's permissions
 In the root of your project:
 
 `$ chmod +x .git/hooks/commit-msg`
+
+## had problems installing it
+
+Addded a `package.json`
+
+`$ npm init -y`
+
+I installed
+
+```
+$ (
+  export PKG=eslint-config-airbnb;
+  npm info "$PKG@latest" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install --save-dev "$PKG@latest"
+)
+```
+
+Added airbnb, 
+
+`npm install --save eslint-config-airbnb`
+
+and also add 
+
+`$ npm install --save-dev eslint eslint-plugin-markdown, eslint-plugin-html`
+
+and then add it to `~/.eslintrc`
+
+```js
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": "true",
+    "node": "true",
+    "jquery": "true"
+  },
+  "rules": {
+    "no-unused-vars": [1, { "argsIgnorePattern": "res|next|^err" }],
+    "arrow-body-style": [2, "as-needed"],
+    "no-param-reassign": [2, { "props": false }],
+    "no-console": 0,
+    "import": 0,
+    "func-names": 0,
+    "space-before-function-paren": 0,
+    "comma-dangle": 0,
+    "max-len": 0,
+    "no-underscore-dangle": 0,
+    "consistent-return": 0,
+    "react/prefer-es6-class": 0,
+    "radix": 0
+  },
+  "plugins": ["html", "markdown"]
+}
+```
+

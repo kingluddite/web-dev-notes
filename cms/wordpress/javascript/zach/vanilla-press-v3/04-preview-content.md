@@ -1,17 +1,27 @@
 # Preview Content
-How we can update the main content area or the view with the changes we make in our editor.
+How we can update the main content area or the view 
+with the changes we make in our editor.
 
 * Helpers for getting the form elements
 * Attach Event listeners to the various form element
-    - so that we can call View methods for updating content
-    - we will place them in the view because that makes sense for where code should go to update what the main view is doing
-    - some of our code will go in the `editor.js` (like the event listeners)
-    - but code for updating actual content will go in our view
+    - So that we can call View methods for updating 
+    content
+    - We will place them in the view because that 
+    makes sense for where code should go to update 
+    what the main view is doing
+    - Some of our code will go in the `editor.js` 
+    (_like the event listeners_) but code for updating 
+    actual content will go in our view
 
+## Update form name
 `js/editor.js`
 
-* change name of method from `loadEditForm()` to `fillEditForm()`
-    - The reason is fillEditForm makes a little more sense. Your are filling out the form and not loading it. The form is already loaded and we are just filling it out with content
+* Change name of method from `loadEditForm()` to 
+`fillEditForm()`
+    - The reason is **fillEditForm** makes a little 
+    more sense. Your are filling out the form and 
+    not loading it. The form is already loaded 
+    and we are just filling it out with content
 
 `js/view.js`
 
@@ -43,7 +53,10 @@ view.updateContentFromForm = function () {
 };
 ```
 
-So we just user our helpers to find the title and content on the page and also grab the editor's title and content and when it is changed, listen for that change and update the page with those changes
+So we just user our helpers to find the title and 
+content on the page and also grab the editor's 
+title and content and when it is changed, listen for 
+that change and update the page with those changes
 
 ## Listen for changes in the editor title and content
 
@@ -73,7 +86,8 @@ editor.addFormListeners = function( ) {
 };
 ```
 
-### Update method name with more symantic name and add listener 
+### Update method name 
+With more symantic name and add listener 
 
 `js/editor.js`
 
@@ -95,7 +109,12 @@ editor.fillEditForm = function( contentObj ) {
 };
 ```
 
-* So when the `fillEditForm()` method is called and the `contentObj` is passed (_page or post slug_) we grab the editor title and content fields and set their value to the slug title and content. After that is done, we call the `addFormListener()` method to listen for any changes to the edit fields
+* So when the `fillEditForm()` method is called and the 
+`contentObj` is passed (_page or post slug_) we grab the 
+editor title and content fields and set their value to 
+the slug title and content. After that is done, we 
+call the `addFormListener()` method to listen for any 
+changes to the edit fields
 
 
 

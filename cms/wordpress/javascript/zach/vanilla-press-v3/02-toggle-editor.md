@@ -3,8 +3,9 @@ How to toggle the editor open and closed
 
 * Add event listener to toggle
 * Toggle hidden class on toggle
-* Update the event.init method
-    - make sure it is always listening to see if this toggle is clicked
+* Update the `event.init()` method
+    - Make sure it is always listening to see if this
+    toggle is clicked
 
 ## Starting code with comments
 

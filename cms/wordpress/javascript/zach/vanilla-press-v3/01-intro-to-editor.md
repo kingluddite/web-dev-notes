@@ -1,17 +1,24 @@
 # The Editor
-Allow us to edit the post and page content of the site and save it to local storage.
+Allow us to edit the **post** and **page** content of the 
+site and save it to local storage.
 
 ## Basic Functionality
 *  Updates to `index.html`
 *  Adding a new `editor.js`
-    -  some would say that it all should go inside the view
-    -  but since editor functionality is slightly different we will use separate file
-        +  we are going to break the MVC pattern because some view stuff, some controller stuff all inside the editor
+    -  Some would say that it all should go inside the view
+    -  But since editor functionality is slightly different
+    we will use separate file
+        +  We are going to break the MVC pattern because 
+        some view stuff, some controller stuff all inside 
+        the editor
 *  Toggle functionality
-    -  open and close our editor
-*  Create the ability to preview content changes in the editor on the page itself, live as we are changing it
+    -  Open and close our editor
+*  Create the ability to preview content changes in the 
+editor on the page itself, live as we are changing it
 *  Save updates to local storage (_when we click update_)
-*  Add a few refinements and reload our site from local storage by default, rather than loading the default `data.js` file, just in case we made any changes
+*  Add a few refinements and reload our site from local 
+storage by default, rather than loading the default
+`data.js` file, just in case we made any changes
 
 ## Updated index.html
 We add the form and the toggle button

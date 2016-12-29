@@ -1,12 +1,13 @@
 # The Menu
-Build a dynamic menu that will display pages from our data file as a menu at the top of our page
+Build a dynamic menu that will display pages from our data
+file as a menu at the top of our page
 
-* Use the `model.getPages`
+* Use the `model.getPages()` method
 * A new View method to build the menu
 * Several new helper functions
-    - includes
-        + building individual link
-        + building a list item with a link inside of it
+    - Includes
+        + Building individual link
+        + Building a list item with a link inside of it
 
 We want to build a menu of all our pages.
 
@@ -19,7 +20,7 @@ This is the code we will be targeting:
 </nav>
 ```
 
-So we need to grab that and we use helpers to do that:
+So we need to grab that and we use `helpers.js` to do that:
 
 `js/helpers.js`
 
@@ -35,7 +36,8 @@ helpers.getMainMenuEl = function( ) {
 };
 ```
 
-Since we want to drop `li` elements inside the UL of #mainNav we use this querySelector.
+Since we want to drop `li` elements inside the UL of 
+`#mainNav` we use this **querySelector**.
 
 ## Create a link
 
@@ -66,9 +68,11 @@ helpers.createLink = function( contentObj ) {
 };
 ```
 
-* We create an 'A' element and we also grab the title from our data
+* We create an 'A' element and we also grab the title from
+our data
 * We append the title to our 'A' element.
-* We check if it is the home page, then we just link to '#' else we link to '#' + the slug in our data
+* We check if it is the home page, then we just link to 
+`#` else we link to `#` + `the slug` in our data
 * We return our self made link
 
 ## Create our List Items
@@ -92,9 +96,11 @@ helpers.createMenuItem = function( contentObj ) {
 };
 ```
 
-* We create a LI element
-* We call our createLink() method and pass it our content object so that we can use it to access data properties like the slug or the title
-* We append our link to the LI element
+* We create a `LI` element
+* We call our `createLink()` method and pass it our 
+content object so that we can use it to access data 
+properties like the **slug** or the *title*
+* We append our link to the `LI` element
 
 ## Building our menu
 Now that we have our helpers we can build our menu
@@ -124,11 +130,16 @@ view.createMainMenu = function( ) {
 };
 ```
 
-* we get our data and store it inside pages variable
-* we create a document fragment
-* we grab our document hook that we are going to attach our menu items to
-* we loop through all our pages and for each page we append each piece of page data ( pages[i] ) and build our menu with that object.
-    - Since menuMarkup is our fragment it will be appended after the loop is completed to `mainMenuEl` and this is what that will look like:
+* We get our data and store it inside pages variable
+* We create a document fragment
+* We grab our document hook that we are going to 
+attach our menu items to
+* We loop through all our pages and for each page we 
+append each piece of page data `pages[i]` and build our 
+menu with that object.
+    - Since **menuMarkup** is our fragment it will be 
+    appended after the loop is completed to `mainMenuEl` 
+    and this is what that will look like:
 
 ```html
 <ul>
@@ -139,7 +150,8 @@ view.createMainMenu = function( ) {
 </ul>
 ```
 
-In order to get this to load as the `js/app.js` loads we need to temporarily add this line back in:
+In order to get this to load as the `js/app.js` loads 
+we need to temporarily add this line back in:
 
 `js/app.js`
 
@@ -156,7 +168,8 @@ init: function( ) {
 }
 ```
 
-We also need to call the createMainMenu() method as soon as the view is initialized:
+We also need to call the `createMainMenu()` method 
+as soon as the view is initialized:
 
 `js/view.js`
 
@@ -169,7 +182,9 @@ view.init = function( ) {
 };
 ```
 
-Now when all this is completed you will see that the menu is created. The links don't work but that will be added when we work on the next changes.
+Now when all this is completed you will see that the 
+menu is created. The links don't work but that will 
+be added when we work on the next changes.
 
 ![menu is working](https://i.imgur.com/HCh8ya1.png)
 

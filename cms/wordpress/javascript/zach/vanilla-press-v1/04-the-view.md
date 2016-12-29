@@ -14,7 +14,7 @@ The part that is displayed in the browser.
 * We add the `helpers.js` after data because we may want to use the functions inside it on the following `js` files.
 * The `view.js` is after `model.js` because it may use data from the model file.
 
-Let's run view.init:
+Let's run `view.init`:
 
 `js/app.js`
 
@@ -79,7 +79,7 @@ view.loadBlogPosts = function( ) {
 
 ## js/helpers.js
 
-We need to have a method that grabs the #pageContent
+We need to have a method that grabs the **#pageContent**
 
 ```js
 /**
@@ -145,7 +145,7 @@ init: function( ) {
 }
 ```
 
-* remove console.log() tests when you know they work
+* Remove `console.log()` tests when you know they work
 
 `js/view.js`
 
@@ -204,6 +204,7 @@ view.createPostMarkup = function( post ) {
 
 View the page in the browser and you will see in the console that we see one post but we do get an error on the second post because it is not a node. Our code is working enough to move forward. But we will need to fix this in the future.
 
+## Show our JSON!
 Now let's finally get our JSON data on the page.
 
 `js/view.js`
@@ -279,7 +280,12 @@ view.createPostMarkup = function( post ) {
 };
 ```
 
-View the page in the browser and you will see our JSON parsed and manipulate using JavaScript and the DOM. But what's with the HTML not being rendered properly? This is more complex data than we need to deal with right now. So for now just go into data.js and manually remove all our HTML.
+View the page in the browser and you will see our JSON 
+parsed and manipulate using JavaScript and the DOM. 
+But what's with the HTML not being rendered properly? 
+This is more complex data than we need to deal with 
+right now. So jor now just go into `data.js` and 
+manually remove all our HTML.
 
 `js/data.js`
 
@@ -333,7 +339,8 @@ var posts = [
     jsonData = JSON.stringify( posts );
 ```
 
-Note if after refreshing the browser you still see the unparsed `<p>` tags, make sure you have:
+Note if after refreshing the browser you still see the 
+unparsed `<p>` tags, make sure you have:
 
 `js/model.js`
 
@@ -345,7 +352,8 @@ model.init = function( ) {
 };
 ```
 
-That line of code will update our localStorage so that it is not using a cached version of our JSON data.
+That line of code will update our localStorage so that it 
+is not using a cached version of our JSON data.
 
 
 
