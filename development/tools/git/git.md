@@ -6,6 +6,11 @@
 
 ## [Merging with git](02-merging.md)
 
+## How to add upstream to git
+Specify a new remote upstream repository that will be synced with the fork.
+
+`$ git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git`
+
 ## How to pull down a remote branch from Github
 When you git clone a repo with multiple branches you will not see all those branches, only the master. But if you use:
 

@@ -1,3 +1,8 @@
+install Atom
+shell commands
+google hangouts
+watch wes bos terminal videos (homework)
+
 # How to set up your computer before class begins.
 
 ## Installs
@@ -61,13 +66,13 @@ I suggest setting these preferences
 
 ![Profile > General](https://i.imgur.com/gNK4HXz.png)
 
-**Note** `Profile` > `Colors` - If you are using the `bash` shell, follow these instructions, if you are using the `zsh` shell, you must be a rock star and you probably know how to set up your `zsh` better than me so I'll leave you at it. 
+**Note** `Profile` > `Colors` - If you are using the `bash` shell, follow these instructions, if you are using the `zsh` shell, you must be a rock star and you probably know how to set up your `zsh` better than me so I'll leave you at it.
 
-Back to the `bash` shell. First, you need to make the colors look cool so download `Solarized` 
+Back to the `bash` shell. First, you need to make the colors look cool so download `Solarized`
 
-[download link](http://ethanschoonover.com/solarized). 
+[download link](http://ethanschoonover.com/solarized).
 
-Once you have that, extract the zip file and look for the `iTerm2` folder. Import the two themes from the `iTerm2` folder into the `Profile` > `Color` section of the `iTerm2` **preference** panel. 
+Once you have that, extract the zip file and look for the `iTerm2` folder. Import the two themes from the `iTerm2` folder into the `Profile` > `Color` section of the `iTerm2` **preference** panel.
 
 After importing, select the following:
 ![Dark Solarized](https://i.imgur.com/szNQCZ5.png_)
@@ -517,8 +522,3 @@ If you get php info, success. If not, contact me and I'll help you troubleshoot.
 If you are more comfortable using Atom, feel free. Here is Mitch's install instructions with a bunch of Atom plugins pre-installed.
 
 # Finished!
-
-
-
-
-
