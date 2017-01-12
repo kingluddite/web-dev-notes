@@ -10,18 +10,58 @@ This is a common error. I've run into a bunch of different ones and spend more t
 
 add this to your `.zshrc` file
 
-**note** I use oh-my-zsh instead of bash. Lots of developers love oh-my-zsh and so I moved from bash to the zsh. I highly recommend Wes Bos 10 free videos on getting up and running with zsh.
+**note** I use `oh-my-zsh` instead of bash. Lots of developers love oh-my-zsh and so I moved from bash to the zsh. I highly recommend [Wes Bos 10 free videos](http://wesbos.com/command-line-video-tutorials/) on getting up and running with zsh.
+
+## If you are not using ZSH
+But if you have not watched the videos then you will be using the Terminal and Bash.
+
+To get WP-CLI playing nice with MAMP, you need to create your `.bash_profile`. [This is just a configuration file](http://www.joshstaiger.org/archives/2005/07/bash_profile_vs.html).
+
+`$ touch ~/.bash_profile`
+
+Open that file inside atom and you should see it is empty (I'm assuming you never created one before). Just add this code inside `.bash_profile` and save it.
+
+`.bash_profile` (make sure it is located in your home directory)
+
+```
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+# The following MAMP export stuff is needed when you work with WP-CLI
+# If you don't use it, you will get lots of errors and spend hours of your life trying to fix them. I just save you hours of your life!!! :)
+# Use MAMP version of PHP
+PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+# MAMP and MYSQL
+export PATH="/Applications/MAMP/Library/bin:$PATH"
+```
+
+### Time to refresh
+You then need to refresh this config file to make the changes take affect.
+
+`$ source ~/.bash_profile`
+
+Now if you type:
+
+`$ which php` and `$ which mysql` you should see paths to both PHP and MySQL (where they are located on your Mac) and this lets you know WP-CLI and MAMP will play nice together.
+
+## If you are using the ZSH shell...
+Follow these instructions
 
 `.zshrc`
 
-* make sure your php version is the correct folder
+* Make sure your php version is the correct folder
 
 ```
 ##
 # WP-CLI / MAMP compat
 ##
-export MAMP_PHP=/Applications/MAMP/bin/php/php5.5.10/bin
-export PATH="$MAMP_PHP:$PATH:/Applications/MAMP/Library/bin"
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+# The following MAMP export stuff is needed when you work with WP-CLI
+# If you don't use it, you will get lots of errors and spend hours of your life trying to fix them. I just save you hours of your life!!! :)
+# Use MAMP version of PHP
+PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+# MAMP and MYSQL
+export PATH="/Applications/MAMP/Library/bin:$PATH"
 ```
 
 [ref](http://laurenpittenger.com/wpcli-error-establishing-database-connection-mamp/)

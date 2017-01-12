@@ -10,7 +10,7 @@
 
 There are two ways to install WordPress. The traditional (long way) and the WP-CLI (short way). Obviously, the shorter, the better but let's just show you the long way for thoroughness.
 
-## [The Traditional Way to Install WordPress](how-to-install-wordpress.md)
+## [The Traditional Way to Install WordPress](../how-to-install-wordpress.md)
 * We assume you are using MAMP
 * Other Dev Server Setups
     - XAMPP
@@ -18,12 +18,21 @@ There are two ways to install WordPress. The traditional (long way) and the WP-C
     - Desktop Server
     - VVV, Virtual Box and Vagrant
 
-## [WP-CLI](how-to-install-wp-cli.md)
+## The Sites folder
+Where do we put all our WordPress sites?
+
+`$ touch ~/Sites`
+
+We will create the `Sites` folder in our home directory. This is not mandatory but it will help if we all put our sites in the same location. Sites was the traditional folder for older Mac OS systems but they removed it in recent OS systems. I normally never name folders with a capital letter but this is an exception to that rule and I make it just to follow how the folder was traditionally named.
+
+Remember when using MAMP you need to alter your configuration by changing the Server Root to point to `Sites`. You also can change the ports so you won't have to add the default `:8888` port after your URLS. Read my MAMP notes to learn how to do this (seach my notes for `mamp.md`)
+
+## [WP-CLI](../how-to-install-wp-cli.md)
 Install WordPress the fast way using WP-CLI
 
 After you install WordPress more than 10 times you will get tired of installing it the long way. WP-CLI is a command line interface for making installing WordPress less painful.
 
-## [Troubleshoot MAMP/WP-CLI install problems](troubleshoot-mamp-wpcli-install-problems.md)
+## [Troubleshoot MAMP/WP-CLI install problems](../troubleshoot-mamp-wpcli-install-problems.md)
 
 ### Where will our WordPress custom theme be located?
 In the themes folder `wp-content/themes`
@@ -49,12 +58,12 @@ For our final project, you have the choice of using Bootstrap 4 or using your ow
 ### Install Node
 You will need to install node. The reason is to save time. In the old days people would grab resources they need for a site (ie Bootstrap). They would manually download it and then add the necessary `script` and `link` HTML tags to include those resources. Node and more specifically `npm` will help us speed up this process. But before we can use node we must install it.
 
-[Follow these instructions to install node](how-to-install-node.md)
+[Follow these instructions to install node](../how-to-install-node.md)
 
 ## Version Control
 Coding without a net is scary. What if you lose something you were working days, weeks or months? That would not be good. Git and Github is a way to make sure you don't lose your stuff. Check the link below to get up and running with Git.
 
-## [How to Use Git with WordPress](how-to-use-git-with-wordpress.md)
+## [How to Use Git with WordPress](../how-to-use-git-with-wordpress.md)
 A large percentage of modern web development jobs are using Git and Github.
 
 You will need to use Git and Github for your final project. You need to create a Github rebo and push your final project to it. Email me your github final project repo URL.
@@ -63,7 +72,7 @@ You will need to use Git and Github for your final project. You need to create a
 
 #### You need to create `package.json` using npm
 
-[How to create package.json](../../development/tools/node/how-to-create-package-json.md)
+[How to create package.json](../../../development/tools/node/how-to-create-package-json.md)
 
 ## Add these files to your custom theme folder
 
@@ -91,7 +100,7 @@ Each WordPress theme has a special image file named `screenshot.png`. It needs t
 Add images with Terminal
 In the root of every WordPress custom theme you need an image named `screenshot.png`. This image is what will be used to show a snapshot of what your custom theme looks like.
 
-[Grab Images with the termial](add-images-with-terminal.md)
+[Grab Images with the termial](../add-images-with-terminal.md)
 
 ## Add special css comment to style.css
 
