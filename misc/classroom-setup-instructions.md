@@ -1,4 +1,12 @@
 # For Web Standards
+create a dev folder inside Documents
+git clone your web-dev-notes repo from github
+
+add my repo as upstream
+`$ git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git`
+
+pull my latest notes from github
+`$ git pull upstream master`
 install Atom and shell commands
 google hangouts
 install wp-cli (follow site instructions)
