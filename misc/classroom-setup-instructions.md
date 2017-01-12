@@ -1,7 +1,32 @@
-install Atom
-shell commands
+# For Web Standards
+install Atom and shell commands
 google hangouts
+install wp-cli (follow site instructions)
+install alfred app
+## homework day 1:
+install spectacle app at home
 watch wes bos terminal videos (homework)
+
+create .bash_profile in your home directory
+
+`$ touch ~/.bash_profile`
+
+Add the following code to your `.bash_profile`
+
+`~/.bash_profile`
+
+```
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+#export PATH=/usr/local/php5/bin:$PATH
+#export MANPATH="/usr/local/man:$MANPATH"
+
+PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+# MAMP and MYSQL
+export PATH="/Applications/MAMP/Library/bin:$PATH"
+```
+
+
 
 # How to set up your computer before class begins.
 

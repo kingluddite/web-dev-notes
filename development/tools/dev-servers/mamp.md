@@ -114,3 +114,6 @@ Real world scenario. You will get a SQL file from a member of your team and they
     * `/Applications/MAMP/conf/apache/extra/httpd-vhosts.conf`
  
 After you follow the instructions in the blog post link mentioned above, be sure to stop and restart your apache server from MAMP.
+
+## Manually stop MAMP MySQL
+`$ /Applications/MAMP/bin/stopMysql.sh`
