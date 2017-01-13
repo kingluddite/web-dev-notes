@@ -1,7 +1,21 @@
 # Atom Text editor
 
 Add package
-`language-gitignore`
+* language-gitignore
+* atom-beautify
+* color-picker
+* emmet
+* pigments
+* file-icons
+* javascript snippets
+* language-babel
+* linter-eslint
+* markdown-preview-plus
+* open-in-browser
+* vim-mode
+* autoclose-html
+* fold-comments
+* linter
 
 So atom won't autodect .gitignore as text file and format it wrong
 
@@ -149,10 +163,10 @@ for jsx files
   }
 ```
 
-sel_closing_tag (value can be `true`, `false` or `xhtml`)
+self_closing_tag (value can be `true`, `false` or `xhtml`)
 
 ## Problems opening Atom from terminal
-I had to move my destop install into the Applications folder but the `$ $atom .` command would not work. I renamed my atom to atom.app and it still did not work. I received a zsh Atom command not found error. My fix was to remove the existing sym link by deleting it, `$ rm -rf /usr/local/bin/atom` and then adding it again with `$ ln -s /Applications/Atom.app/Contents/Resources/app/atom.sh /usr/local/bin/atom`. And then `$ atom .` worked like a charm!
+I had to move my desktop install into the Applications folder but the `$ $atom .` command would not work. I renamed my atom to `atom.app` and it still did not work. I received a zsh Atom command not found error. My fix was to remove the existing sym link by deleting it, `$ rm -rf /usr/local/bin/atom` and then adding it again with `$ ln -s /Applications/Atom.app/Contents/Resources/app/atom.sh /usr/local/bin/atom`. And then `$ atom .` worked like a charm!
 
 ### add vim-mode
 
@@ -186,7 +200,7 @@ Now j+j works just like the key binding in Sublime Text
 ## Open atom beautifier and add proper spacing in settings
 change to see .gitignored files/folders
 
-Preferences
+## Preferences
 * Core Settings
   - Check close empty windows
   - Project Home
@@ -202,7 +216,7 @@ Preferences
   - atom-wrap-in-tag
   - built into Atom
 
-Tips
+## Tips
 * if you drag a file into atom it opens up the entire folder inside atom
 * click empty tab to quickly create a new file
 * cmd + \ (toggle sidebar)
