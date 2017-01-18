@@ -1,5 +1,6 @@
 .DS_Store
 my-conn-info.md
 conn/
+npm-debug.log
 # don't track any generated html files
 *.html
