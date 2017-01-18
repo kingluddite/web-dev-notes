@@ -18,16 +18,17 @@ What would a WordPress site be without a Blog. Instead of static text in all the
 ## Let's create some posts!
 Create 3 sample posts using the WP Dashboard.
 
-### Oh no! Our Blog is Broken!
-But when we navigation to our Blog WordPress page. We still only see static content. The solution to our problem can be found by viewing the WordPress Template Hierarchy.
+### Broken Blog
+But when we navigation to our Blog WordPress page. We still see static content. The WordPress Template Hierarchy helps us find the solution to our problem.
 
-The blog in WordPress is based on a template that must be named `home.php`.
+## home.php
+The template used to create the WordPress blog.
 
 Save `page.php` as `home.php`
 
 WP automatically uses `home.php` to display the blog listing page
 
-Remember Dashboard in `Settings > Reading` we chose [Blog as our Posts Page](https://i.imgur.com/4ETSzoQ.png). 
+Remember Dashboard in `Settings > Reading` we chose [Blog as our Posts Page](https://i.imgur.com/4ETSzoQ.png).
 
 _(it will automatically look to `home.php` to control our blog page)_
 
@@ -77,20 +78,19 @@ _(it will automatically look to `home.php` to control our blog page)_
 
 <?php get_footer(); ?>
 ```
+### New items we have yet to discuss:
 
-New stuff to talk about:
-
-* `the_permalink()` - links to the full post
-*  `the_time()` - lots of parameters
+* `the_permalink()` - Links to the full post
+*  `the_time()` - Lots of parameters
 * `the_category()`
   + we will soon create categories
-* `comments_link()` - no comments yet
-* `comments_number()` - no comments yet
-* `the_excerpt()` - a short excerpt of the content
-* `the_content();` - all of that post's content
+* `comments_link()` - We have comments yet
+* `comments_number()` - We have comments yet
+* `the_excerpt()` - A short excerpt of the content
+* `the_content();` - That post's content
 
-### Just show the excerpt()
-On the blog page we only want to show a truncated version of the post. So we need to delete `the_content()` and just keep `the_excerpt()`.
+### excerpt()
+On the blog page show a truncated version of the post. Delete `the_content()` and keep `the_excerpt()`.
 
 **change this:**
 
@@ -115,15 +115,15 @@ On the blog page we only want to show a truncated version of the post. So we nee
 ```
 
 ### Style the post
-We can easily style the posts but just giving them a class of `post`
+Style the posts using a class of `post`
 
 ```html
 <article class="post">...
 ```
 
-Then we just add the necessary CSS to `css/style.css`
+Add the necessary CSS to `css/style.css`
 
-**note** If you are using Sass, just make the necessary adjustments to make your CSS work properly.
+**note** If you are using Sass, make the necessary adjustments to make your CSS work properly.
 
 ```css
 article.post {
@@ -131,10 +131,10 @@ article.post {
 }
 ```
 
-## Create a sidebar just for blog
-Right now we can only use one sidebar for all of our pages. We can use many different sidebars we just create files named `sidebar-SOMENAME.php`.
+## Create a blog sidebar
+Right now we use one sidebar on all our pages. We can use different sidebars if we name them  `sidebar-SOMENAME.php`.
 
-So let's add a different sidebar for our blog page.
+Add a different sidebar for our blog page.
 
 `home.php`
 
@@ -144,16 +144,12 @@ To this `<?php get_sidebar( 'blog' ); ?>`
 
 Save `sidebar.php` as `sidebar-blog.php`
 
-`sidebar-blog.php`
-
-And put this code inside your new sidebar.
-
 ```php
 <aside class="col-md-3 sidebar">
     <?php if ( ! dynamic_sidebar( 'blog' ) ): ?>
     <!-- if no sidebar, show this content -->
     <h3>Set Up this sidebar</h3>
-    <p>Drag stuff here so your BLOG sidebar wont be empty</p>
+    <p>Drag content here so your BLOG sidebar wont be empty</p>
 
     <?php endif; ?>
 </aside>
@@ -167,7 +163,7 @@ Of course we have to create a new instance of our widget so that we can have acc
 create_widget( 'Blog Sidebar', 'blog', 'Displays on side of pages in blog section');
 ```
 
-For a little variety, in our Dashboard, add `recent posts` and `recent comments` in blog sidebar widget by simply dragging them into our new blog sidebar widget.
+For a little variety, in our Dashboard, add `recent posts` and `recent comments` in blog sidebar widget by dragging them into our new blog sidebar widget.
 
 View your cool new Blog with unique blog Sidebar widget in the browser
 
@@ -194,10 +190,10 @@ Make this subtle change for purely aesthetic purposes:
 
 # How do we create a single page?
 
-## Link to individual posts is broken
+## Fix broken links
 What good is a blog if you can't click on one of the posts to read more about that individual post?
 
-The reason this is not working once again has to do with the WordPress Hierarchy. Single posts page will only be see if you create a `single.php` template.
+The reason this is not working once again has to do with the WordPress Hierarchy. Single posts page will be see if you create a `single.php` template.
 
 **note** If you don't create the correct template, WordPress will always use the `index.php` layout as the case of last resort. `index.php` is overriding `single.php` because `single.php` does not exist yet.
 
@@ -227,18 +223,18 @@ From `home.php` take add this to `single.php` underneath H1 title
 [more code]
 ```
 
-Pull in `blog` sidebar. Just showing that we can easily add different sidebars. New sidebars or ones we used before on other pages.
+Pull in `blog` sidebar.
 
 ```php
 <?php get_sidebar('blog'); ?>
 ```
 
 #### Adding Users
-You can add users and give them specific permissions. Maybe one user can only write posts and one user can have full access to everything on the site.
+You can add users and give them specific permissions.
 
 * `the_author()` - who created the post?
   + The `author` is who created the post.
-  + Research how to add users to WordPress and give them various permissions
+  + Research how to add users to WordPress and give them different permissions
 
 **How do you create users in WordPress**
 Through the Dashboard. Add the user, add their info and choose their permissions. One you do, they will receive an email with information on how to log into the WordPress Site.
@@ -248,7 +244,6 @@ Right now, the categories isn't working like we would like. In the WP Dashboard,
 
 * Use one category on each of the three posts you created.
 * Add a second category on one post
-  + This will let you see how multiple categories are displayed in WordPress
 
 ## archive.php
 Archives lets you see and sort by older posts
@@ -256,7 +251,7 @@ Archives lets you see and sort by older posts
 * Listing page for categories
 * Great if we are searching a particular date
 
-Click on category and you are taken to a `category/news` page _(uses template of `index.php`)_
+Click on a category. Your new path is `category/news`. That page _(uses template of `index.php`)_
 
 Save `home.php` as `archive.php`
 

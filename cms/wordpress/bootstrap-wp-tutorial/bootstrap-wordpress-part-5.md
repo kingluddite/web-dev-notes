@@ -26,11 +26,11 @@ In the terminal create a new file: `js/theme.js`
 
 **noted items**
 
-* add a handle so we can call it when we need to add a dependency
-* we point to the path where our new JavaScript file resides inside our theme (`theme.js`)
-* we add a dependency of `bootstrap_js` (using the handle), so we want to make sure jQuery and bootstrap are both loaded before our theme.js
-* we add true as last parameter to make sure JavaScript gets injected into the footer hook
-  - bottom of our page where JavaScript should be inserted
+* Add a handle so we can call it when we need to add a dependency
+* We point to the path where our new JavaScript file resides inside our theme (`theme.js`)
+* We add a dependency of `bootstrap_js` (using the handle), so we want to make sure jQuery and bootstrap are both loaded before our theme.js
+* We add true as last parameter to make sure JavaScript gets injected into the footer hook
+  - Check bottom of page for JavaScript external links
 
 ### Test to see if the file works
 
@@ -39,7 +39,7 @@ In the terminal create a new file: `js/theme.js`
 We have used `functions.php` to enqueue our JavaScript files before. We're doing the same thing again but we need to make sure the file is getting injected and we can view it in our page source.
 
 #### Add Comment Test Placeholder
-Add this comment to your `theme.js`
+Add this comment:
 
 `theme.js`
 
@@ -53,7 +53,7 @@ View your site in the browser, check the source for `theme.js`
 
 * click on the file in the source code and the link will take you to the file an the browser will show you the comment. Nice!
 
-But nothing is really happening right now. Let's change that.
+But nothing is happening right now. Let's change that.
 
 ## JavaScript components on Bootstrap
 [link to all Bootstrap JavaScript components](http://getbootstrap.com/javascript/)
@@ -75,17 +75,17 @@ Blog Page
 [Add 3 categories screenshot](https://i.imgur.com/ZJq0pdY.png) of `Featured`, `Soccer`, `Video`
 
 ### Todo Tasks for you to complete
-* Add `(3)` posts, `(1)` with each category. 
+* Add `(3)` posts, `(1)` with each category.
 * Add a youtube video inside the post with the `video` category.
 * Make sure `(2)` posts have a category of 'Featured'
 
 ### Copying some bootstrap code
 
-Bootstrap has chunks of code you can easily copy and paste into your projects. 
+Bootstrap has chunks of code you can copy and paste into your projects.
 
 #### Copy the carousel code
 
-[here is the code](https://getbootstrap.com/javascript/#carousel) 
+[here is the code](https://getbootstrap.com/javascript/#carousel)
 [code screenshot](https://i.imgur.com/UwUUKNm.png)
 
 `home.php`
@@ -110,7 +110,7 @@ We will build this piece by piece:
 * we pass those parameters into `WP_Query()`
 
 ```php
-[ADD this just below the closing div of .page-header]
+[ADD this chunk of code below the closing div of .page-header]
 
 <?php
 
@@ -128,7 +128,7 @@ We will build this piece by piece:
 Under that code we need to run our test to see if we can see our titles
 
 * we used that `if` statement before so we copy and paste it here
-* we just grab our title
+* we grab our title
 * we end our while and if
 
 ```php
@@ -145,7 +145,7 @@ Test it out in the browser. You should see the text from the two posts with the 
 Slide show is trying to work but it's broken. No Images yet but we are seeing the titles from our posts so it's kind of working but we still have work to do.
 
 ### Add dynamic slide numbers
-If Test was successful just wrap the li inside the if loop
+Wrap the LI inside the `if` loop
 
 Delete this line because we don't need it any more. Our test is complete.
 
@@ -174,9 +174,9 @@ It should look like this:
 ```
 
 * we need to replace the data-slide-to="0" with dynamic code
-* we set class to active if it is the first slide
+* we set class to active if the first slide
 
-Test and inspect and you should see that it is working
+## Test and inspect
 
 ![dynamic code is working](https://i.imgur.com/f3GorJQ.png)
 
@@ -197,9 +197,9 @@ When a loop runs and gets to the end it stops and can't run again unless we spec
   - does not blow up the loop, it restarts it from the beginning
   - there are some resets that blow up the loop
 
-So now we can reuse our loop again.
-* this time we want to spit out carousel items
-* our caption will just be the post title
+Reuse our loop again.
+* This time we want to spit out carousel items
+* Our caption will be the post title
 
 ```php
 <?php rewind_posts(); ?>
@@ -216,7 +216,7 @@ So now we can reuse our loop again.
           <?php endwhile; endif; ?>
 ```
 
-If we view our page it doesn't look too great but if we view our source things look a bit more promising.
+If we view our page we see:
 
 ![source code of carousel items working](https://i.imgur.com/dg2z5kd.png)
 
@@ -262,7 +262,7 @@ And grab the image tag code too
 </div>
 ```
 
-When we inspect we'll see something similar to this:
+When we inspect we should see this:
 
 ![carousel image source code](https://i.imgur.com/6qR8RN2.png)
 
@@ -310,17 +310,17 @@ Make sure you delete this code as we don't need it
 
 ```html
 <div class="item">
-              <img src="..." alt="...">
-              <div class="carousel-caption">
-                ...
-              </div>
-            </div>
+  <img src="..." alt="...">
+  <div class="carousel-caption">
+    ..
+  </div>
+</div>
             ...
 ```
 
 ## Make images appear on `single.php`
 
-Just copy the code from `home.php` and past under the title
+Copy the code from `home.php` and past under the title
 * also remove the link as it's not needed
 
 `single.php`
@@ -368,7 +368,7 @@ update `styles.css`
 
 `single.php`
 
-Pure aestetic improvement. Just move the `<?php the_title(); ?>` below the image.
+Pure aestetic improvement. Move the `<?php the_title(); ?>` below the image.
 
 We can add a slideshow anywhere (even in our sidebar)
 
@@ -378,7 +378,7 @@ We can add a slideshow anywhere (even in our sidebar)
 
 ## Why do they not work out of the box in WordPress?
 
-They require additional markup.
+They require markup.
 
 ## The Walker Class
 
@@ -388,14 +388,14 @@ In order for WordPress to use Bootstrap Dropdowns properly, we have to use the W
 In WordPress the Walker Class allows the developer to deconstruct all the main navigation elements that appear for a specific menu and restylize or reformat them or logically reformat them as needed.
 
 [link to wp-bootstrap-navwalker](https://github.com/twittem/wp-bootstrap-navwalker)
-* it is a single `PHP` file `wp_bootstrap_navwalker.php` that you include and link to in your `functions.php` file that will enable you to:
+* A single `PHP` file `wp_bootstrap_navwalker.php` that you include and link to in your `functions.php` file that will enable you to:
   - add custom dropdown menus
   - add glyphicons to the menu links
 
 #### The Walker Class Instructions
 1. Grab wp_bootstrap_navwalker.php from the repo (link above)
 2. Save into root of your custom theme
-3. Add this to `functions.php`
+3. Add this to code:
 
 `functions.php`
 
@@ -496,7 +496,7 @@ place the `wp_bootstrap_navwalker.php` in the root of your custom theme.
 
 ## Require the navwalker class
 
-* Add this to the top of `functions.php`
+* Add this to the top of your file:
 
 `functions.php`
 
@@ -510,11 +510,11 @@ place the `wp_bootstrap_navwalker.php` in the root of your custom theme.
 [REST OF CODE]
 ```
 
-## Enqueue CSS and JS 
+## Enqueue CSS and JS
 
 ### Make sure you have bootstrap css and js enqueued
 
-* I'm just showing the bootstrap necessary code to include
+* The bootstrap code to include
 * Remember that WordPress comes with jQuery so you don't need to enqueue it
 
 ```php
@@ -590,8 +590,7 @@ Should look like this:
 ```
 
 ## View in Browser
-
-Should look similar to this (and be responsive too!)
+It should be responsive too.
 
 ![Bootstrap functional Navbar](https://i.imgur.com/LSeK5Cy.png)
 
@@ -600,7 +599,7 @@ Should look similar to this (and be responsive too!)
 [link to Bootstrap Modals](https://getbootstrap.com/javascript/#modals)
 
 ### Add Ninja Forms Plugin
-* I like this form plugin because it doesn't just email, it also allows you to see all the submissions which are stored in a db table.
+* This form plugin allows you to see all the submissions stored in a db table.
 
 [link to ninja forms plugin](https://wordpress.org/plugins/ninja-forms/)
 

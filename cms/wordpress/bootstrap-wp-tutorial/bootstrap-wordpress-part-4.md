@@ -16,10 +16,12 @@ WordPress comes with these post types
 * Nav Menu
 
 ## Where are post types stored in the database?
-Open up the `wp_posts` table in the database and you will see a `post_type` field ([screenshot](https://i.imgur.com/293gFsx.png)). This is where all the post types are stored.
+Open up the `wp_posts` table in the database and you will see a `post_type` field ([screenshot](https://i.imgur.com/293gFsx.png)).
+
+All post types located here.
 
 ## What is a Taxonomy?
-Big word but just think of it as categories.
+Think of it as categories.
 
 ## When would I use a Custom Post Type or Taxonomy?
 [Good article with a good answer](http://www.wpbeginner.com/beginners-guide/when-do-you-need-a-custom-post-type-or-taxonomy-in-wordpress/)
@@ -28,7 +30,7 @@ Big word but just think of it as categories.
 ### We'll create a soccer team page.
 A common example and good use of creating a new custom post type is creating a portfolio. You have one page highlighting all your portfolio pieces and one page that shows the singular portfolio piece.
 
-As a take on this concept we'll create a page that shows several famous soccer players. When you click on the player, you go to a page that has their photo and information about them.
+As a take on this concept we'll create a page that shows famous soccer players. When you click on the player, you go to a page that has their photo and information about them.
 
 ### Custom Post Types
 
@@ -36,8 +38,8 @@ As a take on this concept we'll create a page that shows several famous soccer p
 **Install and activate these plugins**
 
 * [Custom Post Types UI](https://wordpress.org/plugins/custom-post-type-ui/)
-    - This plugin provides an easy to use interface for creating and administrating custom post types and taxonomies in WordPress. This plugin is created for WordPress 3.0 and higher.
-    - This plugin alone will not display post types or taxonomy data in customized places within your site; it simply registers them for you to use. 
+    - This plugin provides an easy to use interface for creating and administrating custom post types and taxonomies in WordPress. This plugin is for WordPress 3.0 and higher.
+    - This plugin alone will not display post types or taxonomy data in customized places within your site; it registers them for you to use.
     - Customise WordPress with powerful, professional and intuitive fields
 
 **Note**: You will need both of these plugins to create and use custom post types
@@ -52,20 +54,22 @@ Use the Dashboard to create a new Post Type called `portfolio`
 
 ![add these settings and click `Add Post Type`](https://i.imgur.com/RooEaIK.png)
 
-**Important** Code with caution 
+**Important** Code with caution
 
-Pay attention to how you name the custom post type. The first field is what will be used in the the database.
+Pay attention to how you name the custom post type because the database stores custom post types.
 
-In one lecture I accidentilly gave the post type the name `portfolios` and all the following code broke because it is referring to the singler `portfolio`.
+In one lecture I accidentilly gave the post type the name `portfolios` and all the following code broke.
+Why?
+Because instead of referring to `porfolfios` it reffered to the singler `portfolio`.
 
-The fix would be to just go into the `wp_posts` table and rename the `post_type` value from `portfolios` to `portfolio`.
+The fix would be to go into the `wp_posts` table and rename the `post_type` value from `portfolios` to `portfolio`.
 
 Regardless this error turned out to be a good learning experience and help reduce similar problems from occuring in the future.
 
 ### Add New Field Group
-So we are going to add a link field so that people can click on a link that goes to where you found the original image.
+We are going to add a link field so that people can click on a link that goes to where you found the original image.
 
-This really isn't a great example but it does show you how you can add fields. Maybe a better example would be to enter fields that show the player's number. The team they play for and the position they play. Then whenever a player is added those items could be added to the player and displayed on their page.
+This isn't a great example but it does show you how you can add fields. A better example would be to enter fields that show the player's number. The team they play for and the position they play. When you add a player you can then display their attributes on the page.
 
 1. Click `Custom Fields` in sidebar of Dashboard
 2. Click `Add New` in Field Groups
@@ -83,7 +87,7 @@ This really isn't a great example but it does show you how you can add fields. M
 ![portfolios button](https://i.imgur.com/EfgqcLo.png)
 
 #### Add Portfolio Item
-We'll add a Player. So Now let's add `Pele` as an individual player.
+Add `Pele` as an individual player.
 
 1. Click `portfolios` Dashboard sidebar button
 2. Click `Add New` button
@@ -93,10 +97,10 @@ We'll add a Player. So Now let's add `Pele` as an individual player.
 
 ### [Add Featured Image](https://codex.wordpress.org/Post_Thumbnails)
 
-Featured Image is an image that is chosen as the representative image for Posts, Pages or Custom Post Types. The display of this image is up to the theme. This is especially useful for "magazine-style" themes where each post has an image.
+Featured Image is an image chosen as the representative image for Posts, Pages or Custom Post Types. The display of this image is up to the theme. This is useful for "magazine-style" themes where each post has an image.
 
 #### How do I start using featured images?
-Out of the box, `a featured image` doesn't appear. You have to add that option to your theme via `functions.php`
+Out of the box, `a featured image` doesn't appear. You have to add that option to your theme via:
 
 `functions.php`
 
@@ -104,7 +108,7 @@ Out of the box, `a featured image` doesn't appear. You have to add that option t
 /*==========================================
 =            Add Featured Image            =
 ==========================================*/
-add_theme_support( 'post-thumbnails' ); 
+add_theme_support( 'post-thumbnails' );
 ```
 
 ![post-thubmails](https://i.imgur.com/LWE6o9w.png)
@@ -114,9 +118,9 @@ Now if you create a new post or update an existing post you'll see this in the W
 ![featured image](https://i.imgur.com/AvID2JS.png)
 
 ### Group Add Images to WordPress
-To add groups of images, just drag and drop.
+To add groups of images, drag and drop.
 
-[adding images](https://en.support.wordpress.com/add-media/. 
+[adding images](https://en.support.wordpress.com/add-media/.
 
 1. Find 5 soccer player paintings and save them to your Downloads folder.
 2. Click `Media` and drag and drop them all in
@@ -129,13 +133,11 @@ To add groups of images, just drag and drop.
 
 ## Porfolio Page
 
-Here we are going to create our page that will show all of our soccer players. We need a new layout so we'll use the [WPHierarchy](https://wphierarchy.com/) to build a page from our `page-full-width.php`.
+Here we are going to create our page that will show our soccer players. We need a new layout so we'll use the [WPHierarchy](https://wphierarchy.com/) to build a page from our `page-full-width.php`.
 
 ### page-portfolio.php
 
-Save `page-full-width.php` as `page-portfolio.php`
-
-`page-portfolio.php`
+Save `page-full-width.php` as `page-portfolio.php` and add this code:
 
 ```php
 <?php
@@ -175,18 +177,24 @@ Save `page-full-width.php` as `page-portfolio.php`
 
 ### Create a new page
 
-Now we can create a page that follows the above template. We just select that template from the template dropdown and we make sure we add page to our menu in the menu part of the WordPress Admin.
+Now we can create a page that follows the above template. Select that template from the template dropdown and we make sure we add page to our menu in the menu part of the WordPress Admin.
 
-1. Name it `Portfolio Grid w Custom Posts` 
+1. Name it `Portfolio Grid w Custom Posts`
 2. Set `parent` as `Sample Pages`
 3. Select `Page Portfolio Grid Template` as the template
 4. Add it to dropdown on our menu under Sample page
 5. Publish
 6. View page in browser to test if it works.
 
-Ok. So now you have a page but there are no images. Why? 
+Ok. You have a page but there are no images. Why?
 
-The reason is the very power WordPress loop is not in this page yet. The [WP Loop](https://codex.wordpress.org/The_Loop) by default pulls in all posts and pages. But we only want to pull in our portfolio pieces. In order to manipulate the WP loop it ony filter in our portfolio pieces, we need to use `[WP_Query()](https://www.smashingmagazine.com/2013/01/using-wp_query-wordpress/)`.
+The WordPress loop is not in this page yet.
+
+[What is the WordPress Loop](https://codex.wordpress.org/The_Loop)
+The WP Loop by default pulls in all posts and pages. Can we manipulate the loop to filter the result?
+Yes and you do this using WP Query.
+
+`[WP_Query()](https://www.smashingmagazine.com/2013/01/using-wp_query-wordpress/)`.
 
 But before we do that, let's show you how to manipulate the defaults sizes of the your uploaded images.
 
@@ -203,9 +211,9 @@ We have our portfolio team page and now we need the single page that will show e
 We need a new page because this will be a new layout that we want to look different from the other pages to highlight our players.
 
 ## [WP_Query()](https://codex.wordpress.org/Class_Reference/WP_Queryv)
-This is a really cool WordPress class that gives you the ability to alter your result from the WordPress Loop. 
+This WordPress class gives you the ability to alter your result from the WordPress Loop.
 
-Instead of pulling all posts from our database we only want to pull our portfolio pieces. To make this work we create a new instance of the `WP_Query()` class and pass it our `portfolio` post_type. Then we return our result which will hold an array of all the porfolio pieces (_or in our example, all our players_).
+Instead of pulling all posts from our database we want to pull a subset which includes our portfolio pieces. To make this work we create a new instance of the `WP_Query()` class and pass it our `portfolio` post_type. Then we return our result which will hold an array of all the porfolio pieces (_or in our example, all our players_).
 
 `page-portfolio.php`
 
@@ -275,7 +283,7 @@ Change the row to this:
     </div>
 ```
 
-## Add Responsive Image CSS 
+## Add Responsive Image CSS
 
 `style.css`
 
@@ -350,15 +358,15 @@ This is a cool trick to help make sure your layout doesn't break. It essentially
     </div>
 ```
 
-This will automatically add a Bootstrap row when 4 columns have been reached. Makes the layout look much nicer.
+After 4 columns build, a row will be dynamicaly generated. Makes the layout look much nicer.
 
 ## Link thumbnails to specific portfolio page
 
-When you click on a portfolio thumbnail you want to be taken to the large image of the portfolio piece.
+Click on a portfolio thumbnail and you will see the large image.
 
-So when we click on one of the players on our team page, we will get taken to that player page.
+When we click on one of the players on our team page, we will get taken to that player page.
 
-Modify your fragment of code to look like this:
+Make the following change to your code:
 
 `page-portfolio.php`
 
@@ -368,12 +376,12 @@ Modify your fragment of code to look like this:
 ```
 
 ## Single Page for Portfolio
-So WordPress is following the WordPress template hierarchy but since we have a different layout for our player page, we need to created a new template.
+WordPress is following the WordPress template hierarchy but since we have a different layout for our player page, we need to created a new template.
 
-We need it to go to a different single template, one that we will build now. This `single.php` page will be just for our portfolio section.
+We need it to go to a different single template, one that we will build now.
 
 ### single-portfolio.php
-Create a single page template just for porfolio pieces
+Create a single page template for porfolio pieces
 
 Save `page-full-width.php` as `single-portfolio.php`
 
@@ -429,8 +437,6 @@ We want our `full player page` to have
 
 ### Problem with large images
 Weed to make them responsive
-
-Modify the **.porfolio-piece** CSS class in `style.css`
 
 `style.css`
 
@@ -489,7 +495,7 @@ Bootstrap 3 shipped with Glypicons but Bootstrap 4 does not. Since we are using 
 
 [Here is a great article using Gulp instead of Grunt for Bootstrap 4](http://blog.marcrudkowski.com/using-gulp-with-bootstrap-4/)
 
-Bootstrap 4 switched from the LESS CSS preprocessor to the Sass CSS preprocessor. Bootstrap 4 still uses Grunt as a build tool. I prefer Gulp to Grunt just because the syntax seems to make more sense to me. These days Gulp is a popular tool but there is also a build tool gaining popularity called Webpack. 
+Bootstrap 4 switched from the LESS CSS preprocessor to the Sass CSS preprocessor. Bootstrap 4 still uses Grunt as a build tool. I prefer Gulp to Grunt because the syntax seems to make more sense to me. These days Gulp is a popular tool but there is also a build tool gaining popularity called Webpack.
 
 I like this article because it shows you how to set up Gulp and Bootstrap 4. It grabs all Bootstrap `.scss` file and `.js` and compresses them all. It also adds useful gulp packages like Browser-sync, autoprex, sourcemaps, babel (for ES6 code).
 
