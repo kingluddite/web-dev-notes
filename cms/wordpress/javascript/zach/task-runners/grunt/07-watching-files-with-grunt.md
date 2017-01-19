@@ -74,3 +74,5 @@ watch {
   }
 // MORE CODE
 ```
+
+If you make changes to gruntfile.js. You need to stop the watch and restart it.
