@@ -23,18 +23,22 @@ To build out a `gruntfile.js` use this order:
 
 ## SASS
 Sample `sass` directory
+
+* You will install bourbon and neat
+
 * src/
-    - bourban/
-    - forms/
-    - layout/
-        + _layout.scss
-        + _navigation.scss
-        + _view.scss
-    - mixins/
-    - neat/
-    - typography/
-    - variables/
-    - style.scss
+    - sass/
+        + bourban/ (don't create)
+        + forms/
+        + layout/
+            * _layout.scss
+            * _navigation.scss
+            * _view.scss
+        + mixins/
+        + neat/ (don't create)
+        + typography/
+        + variables/
+        + style.scss
 
 ## Sample `style.scss`
 
@@ -57,7 +61,7 @@ Inside `src/sass/`
 `$ sudo gem install bourbon`
 
 ### Create bourbon folder for your project
-`$ install bourbon`
+`$ bourbon install`
 
 ## Install neat
 Inside `src/sass/`

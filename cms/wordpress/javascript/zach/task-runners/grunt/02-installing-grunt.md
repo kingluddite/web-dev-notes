@@ -1,9 +1,9 @@
 ## Installing Grunt
 1. Grunt as dev dependency
 2. Install Grunt CLI installed globally
-    * Will enable us to type in grunt commands in our command line to call things and get everything kicked off that we can figure in our main grunt file
+    * Will enable us to type in grunt commands in our command line to call methods
     * Since we install this globally it won't get registered in our NPM package
-    * Since it is global we can use Grunt for any project if there is a grunt config file set up and it is all working
+    * Since global we can use Grunt for any project if there is a working grunt config file set up
 
 ### Install Grunt globally
 `$ npm i -g grunt-cli`
@@ -20,7 +20,7 @@
   - Keyboard Shortcuts
     + Open new terminal tab
       * `cmd` + `shift` + `t`
-    + Navigate multiple tabs
+    + Navigate tabs
       * `cmd` + `shift` + `k` (or `j`)
         - navigate to right `k` or left `j`
     + Toggle open/closed
@@ -29,7 +29,7 @@
       * `cmd` + `shift` + `x`
 
 ### gruntfile.js
-* Must be named this
+* required named
 
 `$ touch gruntfile.js`
 
@@ -68,4 +68,3 @@ We pull in `package.json` and then we load all tasks with `loadNpmTasks('')`
 The default at startup. Will hold an array of all tasks.
 
 Each time we load an npm task, we add it to our array of tasks
-

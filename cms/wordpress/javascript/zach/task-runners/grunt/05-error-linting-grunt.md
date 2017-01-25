@@ -30,7 +30,7 @@ jshint: {
 
 * The above code is perfectly acceptable
 * But let's use another method that will also include our `gruntfile.js` so we can check errors on that file as well. If we the above code it will not find errors in `gruntfile.js`.
-* Can we add g`runtfile.js` to our array of JavaScript file?
+* Can we add `gruntfile.js` to our array of JavaScript file?
     - No because it will pull in that file with all our other files and we don't want that because our `gruntfile.js` is for development only and our JavaScript is for production.
 
 ## A better solution to include `gruntfile.js`

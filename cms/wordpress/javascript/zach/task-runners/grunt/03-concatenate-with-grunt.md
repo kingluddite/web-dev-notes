@@ -4,14 +4,14 @@
 `"string one" + "string two"`
 
 ## Concatenate with files
-Take multiple files and combine them into one file
+Take files and combine them into one file
 
 * Helpful for performance
-* Minimizing how many calls we make to the server
+* Minimizing calls we make to the server
 
 ### [grunt-contrib-concat()](https://www.npmjs.com/package/grunt-contrib-concat)
 * Code concatenates files
-* In addition, has hooks it needs to be set up and configured in with grunt
+* Has hooks required for set up and configuration with grunt
 
 ### set up and configure grunt-contrib-concat()
 
@@ -182,7 +182,7 @@ If we build our app using more modular JavaScript, we can avoid having to write 
 ### `defaults` object
 This will hold an array of all our JavaScript files
 
-`grunt.js`
+`gruntfile.js`
 
 ```js
 module.exports = function( grunt ) {
@@ -244,7 +244,7 @@ dist: {
 // MORE CODE
 ```
 
-## run the concat task 
+## run the concat task
 As soon as the grunt command is executed we want to run concat
 
 `gruntfile.js`
