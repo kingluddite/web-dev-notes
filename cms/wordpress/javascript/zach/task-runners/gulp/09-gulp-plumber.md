@@ -5,10 +5,10 @@ When error from linter occurs, gulp stops stream and server. This is unique to g
 
 Makes sure errors that occur do not stop everything else from running.
 
-## Install gulp-plummer
+## Install gulp-plumber
 `$ npm i -D gulp-plumber`
 
-## Require gulp-plummer
+## Require gulp-plumber
 
 `gulpfile.js`
 
@@ -25,6 +25,7 @@ plumber = require('gulp-plumber'),
 ```js
 gulp.task('bundlejs', function() {
     gulp.src(paths.js.all)
+        .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('bundle.js'))
         .pipe(sourcemaps.write())

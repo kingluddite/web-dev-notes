@@ -307,14 +307,10 @@ If you view the source you should now see that our custom theme `style.css` file
 
 ```php
 <?
-/* our css enqueues here (the code we did before) */
-
-/* add JavaScript */
 function theme_js() {
-    wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.min.js', array('jquery, tether'), '', true );
-    wp_enqueue_script( 'ie10_js', get_template_directory_uri() . '/js/ie10-viewport-bug-workaround.js', array('jquery'), '', true );
+  wp_enqueue_script( 'tether_js', get_template_directory_uri() . '/assets/js/tether.min.js', '', '', true );
+    wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '', true );
 }
-add_action( 'wp_enqueue_scripts', 'theme_js' );
 ?>
 ```
 
