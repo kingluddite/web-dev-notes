@@ -16,7 +16,7 @@ eslint = require('gulp-eslint'),
 ### Where do we use eslint in our current bundle process?
 At the beginning of `bundlejs` because we want to make sure our code is correct before we do anything with it
 
-## Update babeljs task
+## Update bundlejs task
 
 `gulpfile.js`
 

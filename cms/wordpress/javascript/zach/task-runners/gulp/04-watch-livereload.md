@@ -160,7 +160,9 @@ We can run with `$ gulp` or use `$ npm start` if we set that up with `scripts` i
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  
+  "scripts": {
+    "start": "gulp"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

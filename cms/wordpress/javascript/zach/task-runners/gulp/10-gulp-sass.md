@@ -38,7 +38,7 @@ gulp.task('bundlejs', function() {
 
 ## Update `paths` object to include all SASS and html
 
-`gruntfile.js`
+`gulpfile.js`
 
 ```js
 // MORE CODE
