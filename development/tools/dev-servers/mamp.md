@@ -8,7 +8,6 @@ I also don't like how you can mimick the box your prod site is on. If this is so
 
 If you want to easily migrate sites, I hear that many people love [DesktopServer](https://serverpress.com/get-desktopserver/)
 
-
 ### MAMP local testing causes problems
 * Upgrade to using latest php
 * Change this in `.bash_profile` (keep version up to date of PHP!)
@@ -16,8 +15,15 @@ If you want to easily migrate sites, I hear that many people love [DesktopServer
 `.bash_profile` (at top)
 
 ```
-export MAMP_PHP=/Applications/MAMP/bin/php/php5.6.10/bin/php 
-export PATH="$MAMP_PHP:$PATH"
+# MAMP STUFF (COMMENT OUT BEGIN to END if not using MAMP)
+# BEGIN
+# MAMP PHP
+PHP_VERSION="ls /Applications/MAMP/bin/php/ | sort -n | tail -1"
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+# MYSQL
+export PATH="/Applications/MAMP/Library/bin:$PATH"
+# END 
+source $ZSH/oh-my-zsh.sh
 ```
 
 Test with
@@ -40,15 +46,6 @@ Output:
 
 ![screenshot](https://i.imgur.com/HOnRQ4t.png)
 
-You will then (using MAMP) have more problems with `mysql`
-make these changes to `.bash_profile`
-
-```
-PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
-export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
-[source for this code:](http://stackoverflow.com/questions/4145667/how-to-override-the-path-of-php-to-use-the-mamp-path)
-```
-
 You know this is all good for local development when your following queries both point to MAMP mysql and php
 
 ```
@@ -58,27 +55,16 @@ $ which mysql
 Output
 /Applications/MAMP/Library/bin/mysql
 
-if you don't get out it means the program doesn't see mysql, so to see this you need to go into your `.bash_profile` or `.zshrc` and make it see it throught the PATH environment variable with this:
-
-```
-export PATH=$PATH:/Applications/MAMP/Library/bin
-```
+if you don't get out it means the program doesn't see mysql
 
 ## Troubleshooting
-if you have mysql command not found, open up your .zshrc file
+if you have mysql command not found, open up your `~.zshrc` file
 
 can't connect through socket error
 try this sym link solution
 ```
 sudo ln -s /Applications/MAMP/Library/bin/mysql /usr/local/bin/mysql
 ```
-
-```
-$ which php
-```
-
-Output
-/Applications/MAMP/bin/php/php5.6.10/bin/php
 
 ## Local Environment
 * Use MAMP

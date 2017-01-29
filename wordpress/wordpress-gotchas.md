@@ -81,6 +81,7 @@ Turn on debug mode
 * turn on debugging only use in development 
 
 ```php
+// Set to false when in Production
 define( 'WP_DEBUG', true );
 ```
 

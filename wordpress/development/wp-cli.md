@@ -40,7 +40,6 @@ WP-CLI project config:
 WP-CLI version: 0.23.0
 ```
 
-
 This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
 
 ```
@@ -198,9 +197,7 @@ Of course, take care to only install plugins and themes from trusted sources bec
 
 This is a common error. I've run into a bunch of different ones and spend more time then I would have liked to troubleshoot and resolve them. The main error has to do with something like `database connection`. MAMP is usually the problem. I think because I moved from MAMP to virtual box, vagrant, vvv I ran into problems because I first started with MAMP and set my .zshrc to be working with MAMP and then when I moved to virtualbox and went back and forth between MAMP and virtual box, I think I just had to update my .zshrc with the correct info. Just make sure whatever you are using the PHP and MySQL are pointing to the right place.
 
-add this to your `.zshrc` file
-
-**note** I use oh-my-zsh instead of bash. Lots of developers love oh-my-zsh and so I moved from bash to the zsh. I highly recommend Wes Bos 10 free videos on getting up and running with zsh.
+**note** I use `oh-my-zsh` instead of bash. Lots of developers love oh-my-zsh and so I moved from bash to the zsh. I highly recommend **Wes Bos 10 free videos** on getting up and running with zsh.
 
 `.zshrc`
 
@@ -213,6 +210,9 @@ add this to your `.zshrc` file
 export MAMP_PHP=/Applications/MAMP/bin/php/php5.5.10/bin
 export PATH="$MAMP_PHP:$PATH:/Applications/MAMP/Library/bin"
 ```
+
+## HUGE problems with database can't connect and MAMP
+The solution will be found by typing `$ which php` and `$ which mysql`. If you type it and you don't see MAMP somewhere in the paths for both, then you are not pointing to the MAMP install of php or mysql respectively. So you need to type something similar to the above code inside your `~/.bash_profile` or `~/.zhrc` files. Make sure you are using the latest PHP in your MAMP install. You can find the latest versions here: `$ cd /Applications/MAMP/bin/php/`. Chose the latest and greatest and substitute that php version with `php.5.5.10` from above code snippet. Then refresh `~/.bash_profile` or `~/.zshrc` with `$ source ~/.bash_profile` or `$ source ~/.zshrc`
 
 [ref](http://laurenpittenger.com/wpcli-error-establishing-database-connection-mamp/)
 
