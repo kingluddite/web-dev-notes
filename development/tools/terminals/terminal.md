@@ -1,5 +1,7 @@
 # Terminal
 
+[10 Terminal Commands that will bost your productivity](https://code.tutsplus.com/articles/10-terminal-commands-that-will-boost-your-productivity--net-14105)
+
 ## How to DNS lookup with Mac Terminal
 `$ dig ns www.domain.com`
 
@@ -761,6 +763,37 @@ or
 `$ chsh -s /bin/zsh`
 enter password
 restart terminal window
+
+## scp
+Transfer files from local to remote and vice versa
+
+The syntax for scp is:
+
+If you are on the computer from which you want to send file to a remote computer:
+
+scp /file/to/send username@remote:/where/to/put
+Here the remote can be a FQDN or an IP address.
+
+On the other hand if you are on the computer wanting to receive file from a remote computer:
+
+scp username@remote:/file/to/send /where/to/put
+scp can also send files between two remote hosts:
+
+scp username@remote_1:/file/to/send username@remote_2:/where/to/put
+So the basic syntax is:
+
+scp username@source:/location/to/file username@destination:/where/to/put
+You can read man scp to get more ideas on this.
+
+### example
+on local computer and grabbing remote file and placing on desktop
+
+```$ scp myusername@1.2.3.4:/home/myusername/public_html/staging/dev_myusername.com/myusername.sql ~/Desktop
+myusername.sql
+```
+
+Look on your desktop and there it shall be. And no FTP needed!
+
 
 
 
