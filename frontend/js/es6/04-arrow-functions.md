@@ -1,10 +1,10 @@
 # Arrow Functions
 
-## Benefits
-* More precise
-* Have implicit returns
+## 3 Main Benefits
+1. More concise
+2. Have implicit returns
     - Allows us to write one liners
-* It doesn't rebind the value of `this` when you use an arrow function inside of another function
+3. It doesn't rebind the value of `this` when you use an arrow function inside of another function
     - Helpful when you are doing things like `click` handlers
 
 ```html

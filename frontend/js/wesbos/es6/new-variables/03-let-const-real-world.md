@@ -86,6 +86,4 @@ for (let i = 0; i < 10; i++) {
 
 And now since `let` is blocked scope we now can get the values inside the `setTimeout()`
 
-
-
 * **note** you can't use `const` inside the `for` loop because you can't override variable values when using `const`
