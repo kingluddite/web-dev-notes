@@ -422,7 +422,7 @@ If you add the following code and then view the source code, you'll see a bunch 
 Add this underneath our existing code
 
 ```css
-.admin-bar .navbar-fixed-top {
+.admin-bar .navbar.fixed-top {
     margin-top: 30px;
 }
 ```
