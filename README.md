@@ -1,4 +1,4 @@
-# test comment
+# test comment (update this)
 # Emerging Technologies Final Project
 This is the a group project where all four of you will participate as a team to complete the following tasks.
 
