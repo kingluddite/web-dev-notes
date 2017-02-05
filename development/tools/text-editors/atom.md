@@ -12,7 +12,28 @@
 * linter-eslint
 * markdown-preview-plus
 * open-in-browser
-* vim-mode
+  - `ctrl` + `alt` + `q`
+* vim-mode-plus
+
+## add this to `keymap.cson` so you can type `j` + `j` to enter normal mode
+
+```
+'atom-text-editor.vim-mode-plus.insert-mode':
+  'j j': 'vim-mode-plus:activate-normal-mode'
+```
+
+## add this to get vim-surround to work
+Add to `keymap.cson`
+
+No need to add vim-surround as package it is built into vim-mode-plus but is not activated by default since it is not a default feature of Vim
+
+```
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'y s': 'vim-mode-plus:surround'
+  'y s w': 'vim-mode-plus:surround-word'
+  'd s': 'vim-mode-plus:delete-surround'
+  'c s': 'vim-mode-plus:change-surround'
+```
 * autoclose-html
 * fold-comments
 * linter
