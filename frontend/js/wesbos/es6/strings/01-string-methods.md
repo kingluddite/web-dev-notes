@@ -62,4 +62,48 @@ flightNumber.endsWith(`-jz`)
 accountNumber.endsWith('RT', 11);
 ```
 
-Stopped with 'includes' @ 3:25 of New String Methods - 17 of 66
+## `includes()`
+Checks if that string is anywhere inside it
+
+Search for `242` in accountNumber
+
+Type in console:
+`accountNumber.includes('242'); // true`
+
+* It is not case sensative
+* It was supposed to be called `.contains()` but was changed to `.includes()`
+
+## `repeat()`
+Allows you to take a string and repeat it `n` times
+
+`Snake.repeat(20);`
+
+Outputs:
+
+`"SnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnakeSnake"`
+
+## Align different length string to align to right
+```js
+const make = 'BMW';
+const model = 'x5BMW';
+const color = 'Royal Blue';
+
+function leftPad(str, length = 20) {
+  return `▶️ ${' '.repeat(length - str.length)}${str}`;
+}
+
+console.log(leftPad(make));
+console.log(leftPad(model));
+console.log(leftPad(color));
+```
+
+![left padding in console](https://i.imgur.com/5Rntlvo.png)
+
+[Where did I get that emoji?](http://matthewpalmer.net/rocket/)
+
+Batman joke
+Type in console
+
+``${'some string' * 5}`.repeat(10) + ' Batman!';``
+
+![Batman joke](https://i.imgur.com/03Tm9Qq.png)
