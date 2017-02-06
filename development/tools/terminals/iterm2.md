@@ -1,5 +1,14 @@
 # iTerm2
 
+## Change keyboard shortcuts to move faster by words left and right
+[stackoverflow](http://stackoverflow.com/questions/81272/is-there-any-way-in-the-os-x-terminal-to-move-the-cursor-word-by-word/8250989#8250989)
+I used the above tutorial to make `cmd` + `left arrow` move left one word and `cmd` + `right arrow` move right one word
+
+`ctrl` + `a` - moves you to front of line
+`ctrl` + `e` - moves you to end of line
+`ctrl` + `u` - clears line (oh-my-zsh)
+`take` - better than `mkdir folder-name` because it creates the folder and moves you into it (oh-my-zsh)
+
 [Wes Bos Tutorial](https://www.youtube.com/watch?v=jnLA6yAZkaY)
 
 windows uses [cygwin](http:/www.cygwin)
