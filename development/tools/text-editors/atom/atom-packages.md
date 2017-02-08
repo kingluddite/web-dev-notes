@@ -1,5 +1,9 @@
 # Atom Packages I Use Often
 
+## Install packages with:
+
+`$ apm install NAMEOFPACKAGEHERE`
+
 ## Various Packages
 
 I use the following packages a lot:
@@ -7,6 +11,7 @@ I use the following packages a lot:
 | Package | Purpose | Link
 | ------- | -------- | -------- |
 | Color Picker | Enables you to easily get color information from your code | [Link](https://atom.io/packages/color-picker) |
+| Platformio | Use terminal inside Atom | [Link](https://github.com/platformio/platformio-atom-ide-terminal) |
 | Pigments| Shows Color in Code | [Link](https://github.com/abe33/atom-pigments) |
 | File Icons | Makes your Editor looks cook with icons | [Link](https://atom.io/packages/file-icons) |
 | JavaScript Snippets | Help you type JavaScript fast | [Link](https://atom.io/packages/javascript-snippets) |
@@ -46,7 +51,7 @@ change to see .gitignored files/folders
 * [hyperclick](https://leveluptutorials.com/tutorials/react-tips/quickly-navigating-components-with-hyperclick)
 * js-hyperclick
 * linter-write-good
-* [platformio-atom-ide-terminal](https://github.com/platformio/platformio-atom-ide-terminal)
+
 
 ## Problems With Packages
 ### Autocomplete Plus
@@ -72,6 +77,9 @@ $ defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 
 # Atom Packages and Themes
+
+## Vim-Mode-Plus
+In settings check `Use clipboard as default Register` and then you can use vim and what you copy with yank `y` is saved to your clipboard so you can paste into other applications with `cmd-p`
 
 Packages are to Atom what Plugins are to WordPress
 
@@ -153,7 +161,6 @@ Highlights other instances of selected element, variable...
 * Git-plus
 
 # Atom Styling Packages
-* File icons
 * Copy as RTF
     - if you wanted to copy code and format it for a slide in a presentation
     - highlight code, right click, select copy as RTF

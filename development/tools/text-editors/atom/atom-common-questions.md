@@ -1,5 +1,15 @@
 # Common Atom Questions, Tips and Default Setup
 
+## What is a good font to use?
+[fira font](https://www.youtube.com/watch?v=-aI4l2sSwV0)
+
+[download fira](https://github.com/tonsky/FiraCode)
+
+* Download and grab OTFs from `dist` folder
+* Install all the fonts
+* In Atom preferences > Editor > for Font Family put `Fira Code`
+* Instantly it works
+
 ## How do I hide files like .DS_STORE?
 [here's how](https://discuss.atom.io/t/a-way-to-hide-the-ds-store-files-in-the-tree-view/1431/4)
 

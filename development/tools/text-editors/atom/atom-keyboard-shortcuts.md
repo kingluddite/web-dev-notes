@@ -1,23 +1,36 @@
 # Atom Keyboard Shortcuts I Use Often
 
-## General
+## Most Used
+
+
 
 Some general keyboard shortcuts that I use frequently.
 
 | Command | Mac OS X | Windows | Linux | Description |
 | ------- | -------- | ------- | ----- | ----------- |
 | Open Browser | `ctrl-alt-q` |   |  | Opens browser window (need to install Open in Browser package) |
+| Toggle iterm | `ctrl` + `~` |   |  | User terminal inside Atom requires install of Platformio package) |
+| Wrap tag | `alt-shift-w` |   |  | Wraps tag around highlighted content |
+| New File in tree | `a` |   |  | Creates new file in the tree where you currently are |
+| New Folder in tree | `shift-a` |   |  | Creates new folder in the tree where you currently are |
+| Open folder | `return` |   |  | Move to folder with content and press `return` |
+| Toggle tree focus | `ctrl-0` |   |  | Toggle focus on tree or code panel |
+| Toggle Tree View | `cmd-k cmd-b`<br/>or<br/>`cmd-\` | `ctrl-k ctrl-b`<br/>or<br/>`ctrl-\` | `ctrl-k ctrl-b`<br/>or<br/>`ctrl-\`| Toggles Atom's file Tree View |
 | Preferences/Settings | `cmd-,` | `ctrl-,`  | `ctrl-,` | Opens the Preferences/Settings view |
 | Command Palette | `shift-cmd-p` | `shift-ctrl-p`  | `ctrl-shift-p` | Opens & closes the command palette |
+| Key Binding Resolver | `cmd-.` | `ctrl-.`  | `ctrl-.` | Shows what keybindings the pressed key combination resolves to |
+| Toggle Developer Tools | `alt-cmd-i` | `ctrl-alt-i`  | `ctrl-shift-i` | Opens up the Chrome Developer Tools/Console |
 | Open File (Fuzzy) | `cmd-p` | `ctrl-p`<br/>or<br/>`ctrl-t`  | `ctrl-p` | Opens the Fuzzy Finder palette in which you can search and open files  |
+| Reload Atom | `ctrl-alt-cmd-l` | `alt-ctrl-r` | `alt-ctrl-r` | Reloads the Editor  |
+
+## General
+
+| Command | Mac OS X | Windows | Linux | Description |
+| ------- | -------- | ------- | ----- | ----------- |
 | Browse Open Files | `cmd-b` | `ctrl-b`  | `ctrl-b` | Browse tabs within the window  |
 | Grammar Selector | `ctrl-shift-l` | `ctrl-shift-l`  | `ctrl-shift-l` | Selects the language the file is in  |
 | Markdown Preview | `ctrl-shift-m` | `ctrl-shift-m`  | `ctrl-shift-m` | Previews the file in the Markdown format |
-| Key Binding Resolver | `cmd-.` | `ctrl-.`  | `ctrl-.` | Shows what keybindings the pressed key combination resolves to |
-| Toggle Tree View | `cmd-k cmd-b`<br/>or<br/>`cmd-\` | `ctrl-k ctrl-b`<br/>or<br/>`ctrl-\` | `ctrl-k ctrl-b`<br/>or<br/>`ctrl-\`| Toggles Atom's file Tree View |
-| Reload Atom | `ctrl-alt-cmd-l` | `alt-ctrl-r` | `alt-ctrl-r` | Reloads the Editor  |
 | Open Link | `ctrl-shift-o` |  |  | Opens up a HTTP or HTTPS link |
-| Toggle Developer Tools | `alt-cmd-i` | `ctrl-alt-i`  | `ctrl-shift-i` | Opens up the Chrome Developer Tools/Console |
 | Show Available Snippets | `alt-shift-s` | `alt-shift-s`  | `alt-shift-s` | Shows the snippets available to Atom  |
 
 ## Window Management
@@ -116,12 +129,6 @@ Reload Atom - `ctrl` + `alt` + `cmd` + `L`
 + click on tabs after opening files and split up/down/left/right
 + `cmd` + `shift` + `p` (type Panes) and keep typing to create that pane
 
-## Misc keyboard shortcuts
-+ Wrap in tag keyboard shortcut - `alt` + `shift` + `w`
-+ Create new folder - `shift` + `a`
-+ Toggle tree view - `ctrl` + `0`
-+ Open folder - press enter when on folder
-+ New file in tree - `a`
 
 + **tree view package** - use ctrl + 0 to toggle focus
 
