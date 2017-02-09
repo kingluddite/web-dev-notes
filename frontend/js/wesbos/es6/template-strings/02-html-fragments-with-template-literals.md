@@ -254,7 +254,7 @@ const song = {
 
 You will get `Under Pressure - Queen (Featuring undefined)`
 
-## Enter the ternary operator
+## Enter the [ternary operator](http://stackoverflow.com/questions/6259982/how-do-you-use-the-conditional-operator-in-javascript)
 
 ```js
 const markup = `

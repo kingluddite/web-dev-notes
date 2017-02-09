@@ -226,7 +226,7 @@ In WP Dashboard add a `Text` Widget [looks like this](https://i.imgur.com/4W1IGJ
 
 #### Common Error with `functions.php`
 
-If you have space after the closign `?>` php tag you will get an error. Open `functions.php` and add space after the closing `?>` php tag.
+If you have space after the closing `?>` php tag you will get an error. Open `functions.php` and add space after the closing `?>` php tag.
 
 Refresh WordPress site in browser. Do you see an error?
 
@@ -334,7 +334,7 @@ Think of them like cookie cutters. You don't view the actual templates, you view
 <?php get_footer(); ?>
 ```
 
-#### WWe Added the `WordPress Loop`
+#### We Added the `WordPress Loop`
 The Loop enables us to edit our page content in the Dashboard
 
 * `the_title()` function pulls the title of our page
