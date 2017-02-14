@@ -17,6 +17,7 @@ I use the following packages a lot:
 | JavaScript Snippets | Help you type JavaScript fast | [Link](https://atom.io/packages/javascript-snippets) |
 | Language Babel | ES6 syntax | [Link](https://atom.io/packages/language-babel)
 | Linter es6lint | Essential code checker for ES6 | [Link](https://atom.io/packages/linter-eslint) |
+| Stylel | Essential code checker for ES6 | [Link](https://atom.io/packages/linter-eslint) |
 | Vim Mode Plus | Super Productivity Mode | [Link](https://atom.io/packages/vim-mode-plus) |
 | Language Gitignore | syntax checker for gitignore | [Link](https://atom.io/packages/language-gitignore) |
 | Markdown Preview Plus | See Markdown in Atom | [Link](https://atom.io/packages/markdown-preview-plus)
@@ -178,3 +179,24 @@ Atom has two types of themes
 
 Checkout a bunch of atom themes here [atomthemes.io](http://atomthemes.io/)
 * this is the best way to scroll to find a theme you like
+
+## linter-stylelint
+[stylelint website](https://stylelint.io/)
+[css-tricks article on stylelint](https://css-tricks.com/stylelint/)
+
+You'll need to convert all px to rem ([use a sass mixin](https://css-tricks.com/snippets/css/less-mixin-for-rem-font-sizing/))
+
+https://webdesign.tutsplus.com/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984
+
+## atom-csscomb
+Sort CSS properties with [csscomb](http://csscomb.com/)
+Has an awesome step-by-step walkthrough to create your config file
+
+[How to use CSSComb](http://www.hongkiat.com/blog/css-sorting-with-csscomb/)
+eslint-plugin-jsx-a11y
+
+## [Perfectionist](https://github.com/ben-eb/perfectionist)
+[atom perfectionist](https://github.com/sindresorhus/atom-perfectionist)
+
+## [stylefmt](https://github.com/morishitter/stylefmt)
+A tool that automatically formates stylesheets
