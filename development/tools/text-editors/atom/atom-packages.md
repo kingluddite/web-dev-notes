@@ -24,6 +24,20 @@ I use the following packages a lot:
 
 **Tip** in **vim-mode-plus** preferences, check the `Start In Insert Mode` checkbox
 
+### Use Vim to add characters to the end of multiple lines
+
+1. On a character in the first line, press `Ctrl-V` (or `Ctrl-Q` if `Ctrl-V` is paste).
+2. Press `jj` to extend the visual block over three lines.
+3. Press `$` to extend the visual block to the end of each line. Press `A` then space then `type the character you want` then `Esc`.
+
+### Use Vim to add characters to the beginning of multiple lines
+
+1. Use `Ctrl` + `V` to enter visual block mode.
+2. `Move Up / Down` to select the columns of text in the lines you want to comment.
+3. Then hit `Shift` + `i` and type the text you want to insert.
+4. Then hit `Esc` , **wait 1 second** and the inserted text will appear on every line.
+
+
 These are some packages I find useful, and their most useful key bindings. A list of my favorite packages can be found [here](https://atom.io/users/nwinkler/stars).
 
 | Command | Mac OS X | Windows | Linux | Package |
