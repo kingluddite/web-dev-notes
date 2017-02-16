@@ -311,6 +311,7 @@ function theme_js() {
   wp_enqueue_script( 'tether_js', get_template_directory_uri() . '/assets/js/tether.min.js', '', '', true );
     wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '', true );
 }
+add_action( 'wp_enqueue_scripts', 'theme_js' );
 ?>
 ```
 
