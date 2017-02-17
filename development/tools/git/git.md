@@ -459,3 +459,11 @@ If the file is not in the repository yet, do first git add `-N filename.x`. Afte
 You can use than: `git diff --staged` afterwards to check that you staged the correct ones `git reset -p` to unstage incorrect hunks `git commit -v` to view your commit while you edit the commit message.
 
 Note this is a far different than the `git format-patch` command, which is entirely different.
+
+## How can you keep an empty folder in git?
+Use `.gitkeep`
+
+Add a comment just so people know
+
+`// this is just an empty file so the empty folder will stay in git`
+

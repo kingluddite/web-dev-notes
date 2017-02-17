@@ -107,7 +107,7 @@ If you get spacing errors, eslint will fix them automatically
 #### Fix that
 eslint will fix automatically errors it can with:
 
-`$ eslint bad-code.js 
+`$ eslint bad-code.js --fix`
 
 And it fixes most errors
 
@@ -121,11 +121,12 @@ If you don't have a local eslint config file, it will be the default rules
 
 Lots of people like this so they don't have to create an eslint file for every project especially if you are using the same config settings
 
-Global lives in your home directory
-Home directory? That is `~` (aka tilde)
-That is the folder with your username on your computer
+Global lives in your `home` directory
 
-(on windows it would be c:/Users/YOURUSERNAME)
+## Home directory? 
+That is `~` (aka tilde). That is the folder with your username on your computer
+
+(on windows it would be `c:/Users/YOURUSERNAME`)
 
 ## Create your global .eslintrc file
 `$ touch ~/.eslintrc`

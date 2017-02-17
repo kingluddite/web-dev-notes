@@ -57,31 +57,6 @@ And you will see errors like:
 
 ![errors on eslint and html](https://i.imgur.com/LA4Gd2h.png)
 
-## Install htmlhint globally
-
-`$ npm install htmlhint -g`
-
-In atom install `linter-htmlhint`
-
-Add this to the root of your site:
-
-```json
-{
-    "tagname-lowercase": true,
-    "attr-lowercase": true,
-    "attr-value-double-quotes": true,
-    "doctype-first": true,
-    "tag-pair": true,
-    "spec-char-escape": true,
-    "id-unique": true,
-    "src-not-empty": true,
-    "attr-no-duplication": true,
-    "title-require": true
-}
-```
-
-**note** it will not lint until you save. So just `cmd` + `s` and you will see the linter if you have any errors
-
 # Install Markdown plugin for eslint
 Now to lint JavaScript inside your Markdown
 
