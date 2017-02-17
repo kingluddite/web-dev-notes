@@ -108,7 +108,7 @@ All it does is copy our code into the new file. Why? Babel by default is just a 
 ## Add a `.babelrc` file
 We could have told it to run our preset on the command line but a better way is to create a config file called `.babelrc` in the root of your project. It is very similar to an `.eslintrc` file where it will check that file for your specific settings
 
-.files are hidden and some people don't like to use it and instead they put their .babelrc file inside their `package.json`
+.files are hidden and some people don't like to use it and instead they put their `.babelrc` file inside their `package.json`
 
 ```json
 {
