@@ -29,7 +29,7 @@ The great thing is you have all these balls in the air but you don't have to id 
 ## Adding the player form
 We will create a new Component called `src/components/AddPlayerForm.js`
 
-## Save Inventory.js as Roster.js
+## Update Roster.js
 ```
 import React from 'react';
 import AddPlayerForm from './AddPlayerForm';
@@ -162,7 +162,7 @@ class App extends React.Component {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
-          <Header tagline="Fresh Fish" />
+          <Header tagline="Soccer Stars" />
         </div>
         <Lineup />
         <Roster />
@@ -172,22 +172,6 @@ class App extends React.Component {
 }
 
 export default App;
-```
-
-**note** Change Order.js to Lineup.js and update App.js as seen above and Lineup.js should look like:
-
-```
-import React from 'react';
-
-class Lineup extends React.Component {
-  render() {
-    return (
-      <p>Lineup</p>
-    )
-  }
-}
-
-export default Lineup;
 ```
 
 View in browser and search React tab for App and you will see 
