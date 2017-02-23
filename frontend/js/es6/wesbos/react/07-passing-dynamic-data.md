@@ -17,18 +17,18 @@ In React if you want to pass information to a tag, you pass it via a `prop`
 ```
 import React from 'react';
 import Header from './Header';
-import Order from './Order';
-import Inventory from './Inventory';
+import Lineup from './Lineup';
+import Roster from './Roster';
 
 class App extends React.Component {
   render() {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
-          <Header tagline="Super Fresh Fish" />
+          <Header tagline="Soccer Stars" />
         </div>
-        <Order />
-        <Inventory />
+        <Lineup />
+        <Roster />
       </div>
     )
   }
@@ -45,7 +45,7 @@ class Header extends React.Component {
   render() {
     return (
       <header className="top">
-        <h1>Catch of the Day</h1>
+        <h1>Soccer Stars</h1>
         <h3 className="tagline">Static Text Here</h3>
       </header>
     )
@@ -58,16 +58,16 @@ export default Header;
 Now we have our HTML and we have included our `tagline` prop but it has a static value that we will eventually make dynamic
 
 ## View in browser
-You'll see `Catch of the Day` is styled and the `tagline` says `Static Text Here`
+You'll see `Soccer Stars` is styled and the `tagline` says `Static Text Here`
 
 ### View React tab in Dev Tools
-You'll see Header has a tagline and on the right panel we see `Props` and `tagline: Super Fresh Fish` (_which is the value we gave `tagline` in `App.js`_)
+You'll see Header has a tagline and on the right panel we see `Props` and `tagline: Soccer Stars` (_which is the value we gave `tagline` in `App.js`_)
 
 **note** You can name your props whatever you want
 
 All the attributes you give the Component, they are all all listed under `Props` in React tab of Dev tools
 
-`<Header tagline="Super Fresh Fish" color="blue" hitpoints="100" />`
+`<Header tagline="Soccer Stars" color="blue" hitpoints="100" />`
 
 ![props in react tab dev tools](https://i.imgur.com/yWcnN9r.png)
 
@@ -81,7 +81,7 @@ class Header extends React.Component {
   render() {
     return (
       <header className="top">
-        <h1>Catch of the Day</h1>
+        <h1>Soccer Stars</h1>
         <h3 className="tagline">{this.props.tagline}</h3>
       </header>
     )
@@ -109,7 +109,7 @@ class Header extends React.Component {
     console.log(this);
     return (
       <header className="top">
-        <h1>Catch of the Day</h1>
+        <h1>Soccer Stars</h1>
         <h3 className="tagline">{this.props.tagline}</h3>
       </header>
     )
@@ -138,7 +138,7 @@ class Header extends React.Component {
 ## Update App.js
 To this:
 
-`<Header tagline="Fresh Fish" />`
+`<Header tagline="Soccer Stars" />`
 
 ## What are prop types?
 They allow you to validate that data has been passed and that data passed is the correct type
@@ -151,7 +151,7 @@ class Header extends React.Component {
     return (
       <header className="top">
         <h1>
-          Catch
+          Team
           <span className="ofThe">
             <span className="of">of</span>
             <span className="the">the</span>

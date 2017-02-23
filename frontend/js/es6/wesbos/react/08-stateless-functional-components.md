@@ -12,7 +12,7 @@ class Header extends React.Component {
     return (
       <header className="top">
         <h1>
-          Catch
+          Team
           <span className="ofThe">
             <span className="of">of</span>
             <span className="the">the</span>
@@ -37,7 +37,7 @@ const Header = (props) => {
   return (
     <header className="top">
       <h1>
-        Catch
+        Team
         <span className="ofThe">
           <span className="of">of</span>
           <span className="the">the</span>

@@ -13,8 +13,8 @@ class App extends React.Component {
         <div className="menu">
           <Header />
         </div>
-        <Order />
-        <Inventory />
+        <Lineup />
+        <Roster />
       </div>
     )
   }
@@ -81,41 +81,41 @@ export default App;
 
 ## View in browser and you'll see our `Header`
 
-## Add Order and Inventory Components
+## Add Lineup and Roster Components
 ### Steps
-1. Create the Components inside the `components` folder by saving `App.js` as each Component (`Order.js` and `Inventory.js`) and rename the class name and export default name for both.
+1. Create the Components inside the `components` folder by saving `App.js` as each Component (Lineup.js` and Roster.js`) and rename the class name and export default name for both.
 2. Add the module imports for each Component to top of the `App.js` file
 
-`src/components/Order.js`
+`src/components/Lineup.js`
 
 ```
 import React from 'react';
 
-class Order extends React.Component {
+class Lineup extends React.Component {
   render() {
     return (
-      <p>Order</p>
+      <p>Lineup</p>
     )
   }
 }
 
-export default Order;
+export default Lineup;
 ```
 
-`src/components/Inventory.js`
+`src/components/Roster.js`
 
 ```
 import React from 'react';
 
-class Inventory extends React.Component {
+class Roster extends React.Component {
   render() {
     return (
-      <p>Inventory</p>
+      <p>Roster</p>
     )
   }
 }
 
-export default Inventory;
+export default Roster;
 ```
 
 ## Update `src/components/App.js`
@@ -123,8 +123,8 @@ export default Inventory;
 ```
 import React from 'react';
 import Header from './Header';
-import Order from './Order';
-import Inventory from './Inventory';
+import Lineup from './Lineup';
+import Roster from './Roster';
 
 class App extends React.Component {
   render() {
@@ -133,8 +133,8 @@ class App extends React.Component {
         <div className="menu">
           <Header />
         </div>
-        <Order />
-        <Inventory />
+        <Lineup />
+        <Roster />
       </div>
     )
   }

@@ -1,9 +1,8 @@
 # Tooling & Editor Setup
 
 ## Tooling Needed
-### Node
-You need Node
-node -v (must be > 6)
+### You need Node
+`$ node -v` (_must be > 6_)
 
 ### React Dev Tools
 You need [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) for Chrome
@@ -44,6 +43,31 @@ Simplifies all the tooling you need to get up and running
 **note**
 
 `index.html` is located inside `/public/`. You can put images and other css that you'd like to have public
+
+```html
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Soccer Store</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Place favicon.ico in the root directory -->
+
+    </head>
+    <body>
+
+      <input type="checkbox" id="fold">
+      <label for="fold">Fold</label>
+
+      <div id="main">
+        <!-- Main React app goes here -->
+      </div>
+      <!-- /#main -->
+    </body>
+</html>
+```
 
 All of our code will be written in `index.js` and all the components we'll be creating and we'll import all of the libraries as we need them. We'll import `react`, `reactDOM`, and all others we need
 
@@ -105,111 +129,232 @@ All of our code will be written in `index.js` and all the components we'll be cr
 
 ## Sample data
 
-`src/sample-fishes.js`
+`src/sample-players.js`
 
 ```js
 // This is just some sample data so you don't have to think of your own!
 module.exports = {
-  fish1: {
-    name: 'Pacific Halibut',
-    image: 'http://i.istockimg.com/file_thumbview_approve/36248396/5/stock-photo-36248396-blackened-cajun-sea-bass.jpg',
-    desc: 'Everyones favorite white fish. We will cut it to the size you need and ship it.',
-    price: 1724,
-    status: 'available'
-  },
-
-  fish2: {
-    name: 'Lobster',
-    image: 'http://i.istockimg.com/file_thumbview_approve/32135274/5/stock-photo-32135274-cooked-lobster.jpg',
-    desc: 'These tender, mouth-watering beauties are a fantastic hit at any dinner party.',
-    price: 3200,
-    status: 'available'
-  },
-
-  fish3: {
-    name: 'Sea Scallops',
-    image: 'http://i.istockimg.com/file_thumbview_approve/58624176/5/stock-photo-58624176-scallops-on-black-stone-plate.jpg',
-    desc: 'Big, sweet and tender. True dry-pack scallops from the icey waters of Alaska. About 8-10 per pound',
-    price: 1684,
-    status: 'unavailable'
-  },
-
-  fish4: {
-    name: 'Mahi Mahi',
-    image: 'http://i.istockimg.com/file_thumbview_approve/12556651/5/stock-photo-12556651-mahimahi.jpg',
-    desc: 'Lean flesh with a mild, sweet flavor profile, moderately firm texture and large, moist flakes. ',
-    price: 1129,
-    status: 'available'
-  },
-
-  fish5: {
-    name: 'King Crab',
-    image: 'http://i.istockimg.com/file_thumbview_approve/18294110/5/stock-photo-18294110-king-crab-legs.jpg',
-    desc: 'Crack these open and enjoy them plain or with one of our cocktail sauces',
-    price: 4234,
-    status: 'available'
-  },
-
-  fish6: {
-    name: 'Atlantic Salmon',
-    image: 'http://i.istockimg.com/file_thumbview_approve/56241842/5/stock-photo-56241842-salmon-fish.jpg',
-    desc: 'This flaky, oily salmon is truly the king of the sea. Bake it, grill it, broil it...as good as it gets!',
-    price: 1453,
-    status: 'available'
-  },
-
-  fish7: {
-    name: 'Oysters',
-    image: 'http://i.istockimg.com/file_thumbview_approve/58626682/5/stock-photo-58626682-fresh-oysters-on-a-black-stone-plate-top-view.jpg',
-    desc: 'A soft plump oyster with a sweet salty flavor and a clean finish.',
-    price: 2543,
-    status: 'available'
-  },
-
-  fish8: {
-    name: 'Mussels',
-    image: 'http://i.istockimg.com/file_thumbview_approve/40450406/5/stock-photo-40450406-steamed-mussels.jpg',
-    desc: 'The best mussels from the Pacific Northwest with a full-flavored and complex taste.',
-    price: 425,
-    status: 'available'
-  },
-
-  fish9: {
-    name: 'Jumbo Prawns',
-    image: 'http://i.istockimg.com/file_thumbview_approve/67121439/5/stock-photo-67121439-fresh-tiger-shrimp-on-ice-on-a-black-stone-table.jpg',
-    desc: 'With 21-25 two bite prawns in each pound, these sweet morsels are perfect for shish-kabobs.',
-    price: 2250,
-    status: 'available'
-  }
+   player1:{
+      firstName: "Philip",
+      lastName: "Nguyen",
+      email: "pnguyen0@cnet.com",
+      position: "defender",
+      fee: 1000,
+      number: null,
+      comments:"Duis bibendum, felis sed interdum venenatis",
+      image: "http://dummyimage.com/182x226.bmp/dddddd/000000",
+      status: "injured"
+   },
+   player2:{
+      firstName: "Walter",
+      lastName: "Hicks",
+      email: "whicks1@senate.gov",
+      position: "defender",
+      fee: 1002,
+      number: null,
+      comments:"Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
+      image: "http://dummyimage.com/250x219.png/5fa2dd/ffffff",
+      status: "injured"
+   },
+   player3:{
+      firstName: "Roy",
+      lastName: "Morales",
+      email: "rmorales2@jugem.jp",
+      position: "goalie",
+      fee: 1004,
+      number: null,
+      comments:"Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
+      image: "http://dummyimage.com/227x179.bmp/5fa2dd/ffffff",
+      status: "injured"
+   },
+   player4:{
+      firstName: "Bobby",
+      lastName: "Austin",
+      email: "baustin3@indiegogo.com",
+      position: "midfielder",
+      fee: 1005,
+      number: null,
+      comments:"Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae",
+      image: "http://dummyimage.com/146x169.png/ff4444/ffffff",
+      status: "active"
+   },
+   player5:{
+      firstName: "Jason",
+      lastName: "Garrett",
+      email: "jgarrett4@bigcartel.com",
+      position: "forward",
+      fee: 1000,
+      number: null,
+      comments:"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",
+      image: "http://dummyimage.com/114x133.bmp/dddddd/000000",
+      status: "inactive"
+   },
+   player6:{
+      firstName: "Frank",
+      lastName: "Ramirez",
+      email: "framirez5@histats.com",
+      position: "midfielder",
+      fee: 1006,
+      number: null,
+      comments:"Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus",
+      image: "http://dummyimage.com/209x117.png/5fa2dd/ffffff",
+      status: "inactive"
+   },
+   player7:{
+      firstName: "Terry",
+      lastName: "Gilbert",
+      email: "tgilbert6@storify.com",
+      position: "midfielder",
+      fee: 1002,
+      number: null,
+      comments:"Sed ante. Vivamus tortor. Duis mattis egestas metus",
+      image: "http://dummyimage.com/113x122.jpg/cc0000/ffffff",
+      status: "injured"
+   },
+   player8:{
+      firstName: "Barbara",
+      lastName: "Medina",
+      email: "bmedina7@youtu.be",
+      position: "defender",
+      fee: 1009,
+      number: null,
+      comments:"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+      image: "http://dummyimage.com/218x104.png/ff4444/ffffff",
+      status: "active"
+   },
+   player9:{
+      firstName: "Raymond",
+      lastName: "Woods",
+      email: "rwoods8@uol.com.br",
+      position: "midfielder",
+      fee: 1002,
+      number: null,
+      comments:"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa",
+      image: "http://dummyimage.com/126x101.png/5fa2dd/ffffff",
+      status: "active"
+   },
+   player10:{
+      firstName: "Deborah",
+      lastName: "Kelly",
+      email: "dkelly9@sbwire.com",
+      position: "midfielder",
+      fee: 1008,
+      number: null,
+      comments:"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis",
+      image: "http://dummyimage.com/121x189.png/5fa2dd/ffffff",
+      status: "active"
+   },
+   player11:{
+      firstName: "Russell",
+      lastName: "Olson",
+      email: "rolsona@dyndns.org",
+      position: "defender",
+      fee: 1007,
+      number: null,
+      comments:"Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
+      image: "http://dummyimage.com/240x216.jpg/dddddd/000000",
+      status: "active"
+   },
+   player12:{
+      firstName: "Laura",
+      lastName: "Phillips",
+      email: "lphillipsb@t.co",
+      position: "forward",
+      fee: 1003,
+      number: null,
+      comments:"Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
+      image: "http://dummyimage.com/179x239.jpg/cc0000/ffffff",
+      status: "injured"
+   },
+   player13:{
+      firstName: "Alan",
+      lastName: "Martin",
+      email: "amartinc@statcounter.com",
+      position: "midfielder",
+      fee: 1003,
+      number: null,
+      comments:"In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.",
+      image: "http://dummyimage.com/114x248.bmp/ff4444/ffffff",
+      status: "inactive"
+   },
+   player14:{
+      firstName: "Emily",
+      lastName: "Brooks",
+      email: "ebrooksd@virginia.edu",
+      position: "forward",
+      fee: 1003,
+      number: null,
+      comments:"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere",
+      image: "http://dummyimage.com/108x219.jpg/5fa2dd/ffffff",
+      status: "injured"
+   },
+   player15:{
+      firstName: "Judith",
+      lastName: "Carroll",
+      email: "jcarrolle@hao123.com",
+      position: "midfielder",
+      fee: 1006,
+      number: null,
+      comments:"Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae",
+      image: "http://dummyimage.com/149x244.jpg/5fa2dd/ffffff",
+      status: "inactive"
+   },
+   player16:{
+      firstName: "Mildred",
+      lastName: "Harvey",
+      email: "mharveyf@un.org",
+      position: "defender",
+      fee: 1004,
+      number: null,
+      comments:"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
+      image: "http://dummyimage.com/179x209.png/ff4444/ffffff",
+      status: "injured"
+   },
+   player17:{
+      firstName: "Jessica",
+      lastName: "Harper",
+      email: "jharperg@yelp.com",
+      position: "goalie",
+      fee: 1009,
+      number: null,
+      comments:"In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus",
+      image: "http://dummyimage.com/133x190.png/dddddd/000000",
+      status: "injured"
+   },
+   player18:{
+      firstName: "Beverly",
+      lastName: "Diaz",
+      email: "bdiazh@bluehost.com",
+      position: "midfielder",
+      fee: 1000,
+      number: null,
+      comments:"Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
+      image: "http://dummyimage.com/169x116.bmp/5fa2dd/ffffff",
+      status: "injured"
+   },
+   player19:{
+      firstName: "Ruth",
+      lastName: "Tucker",
+      email: "rtuckeri@purevolume.com",
+      position: "forward",
+      fee: 1008,
+      number: null,
+      comments:"Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
+      image: "http://dummyimage.com/248x129.png/dddddd/000000",
+      status: "injured"
+   },
+   player20:{
+      firstName: "Douglas",
+      lastName: "Murphy",
+      email: "dmurphyj@google.pl",
+      position: "defender",
+      fee: 1006,
+      number: null,
+      comments:"Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+      image: "http://dummyimage.com/211x235.jpg/5fa2dd/ffffff",
+      status: "active"
+   }
 };
-```
-
-## Create `public/index.html`
-
-```html
-<!doctype html>
-<html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Soccer Store</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Place favicon.ico in the root directory -->
-
-    </head>
-    <body>
-
-      <input type="checkbox" id="fold">
-      <label for="fold">Fold</label>
-
-      <div id="main">
-        <!-- Main React app goes here -->
-      </div>
-      <!-- /#main -->
-    </body>
-</html>
 ```
 
 ## Create `src/components` folder
