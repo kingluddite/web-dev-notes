@@ -15,6 +15,12 @@ Video 1.7.14 IN TITLE should say 'Getting Started with Gulp' instead of 'Getting
 git@github.com:kingluddite/install-grunt.git
 :18 seconds into video
 
+Webpack Errata
+![Webpack title error](https://i.imgur.com/28GSDtZ.png)
+
+* Should say Getting Started with webpack
+
+
 
 
 
