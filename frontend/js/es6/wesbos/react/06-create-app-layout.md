@@ -1,6 +1,7 @@
 # Create application layout with components
 
 ## `src/components/App.js`
+
 Save `StorePicker.js` as `App.js`
 
 ```
@@ -143,8 +144,8 @@ class App extends React.Component {
 export default App;
 ```
 
-### View in browser and you'll see Header, Order and Inventory
+### View in browser and you'll see Header, Lineup and Roster
 
-#### Use React in Dev Tools to see the App, Header, Order and Inventory Components
+#### Use React in Dev Tools to see the App, Header, Lineup and Roster Components
 
 

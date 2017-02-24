@@ -7,6 +7,8 @@
 ### React Dev Tools
 You need [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) for Chrome
 
+Click `Add To Chrome` to add it to your Chrome browser
+
 * Enables you to look at the components, state, props
 * It will add another tab to the inspector called `React`
 
@@ -75,7 +77,7 @@ All of our code will be written in `index.js` and all the components we'll be cr
 
 ```json
 {
-  "name": "cotd",
+  "name": "soccer-stars-react",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
@@ -111,7 +113,7 @@ All of our code will be written in `index.js` and all the components we'll be cr
 }
 ```
 
-* react-scripts - what create-react-app uses
+* `react-scripts` - what create-react-app uses
 
 ### Install with npm
 `$ npm install`

@@ -143,6 +143,8 @@ To this:
 ## What are prop types?
 They allow you to validate that data has been passed and that data passed is the correct type
 
+Header.js`
+
 ## Add HTML to make our Heading look nicer
 ```
 class Header extends React.Component {

@@ -118,7 +118,7 @@ render(
 // This is a functional ref
 render(
  return (
-   <input type="text" required placeholder="Store Name" defaultValue={getFunName()} ref="{(input) => { this.storeInput = input }}"/>
+   <input type="text" required placeholder="Store Name" defaultValue={getFunName()} ref={(input) => { this.storeInput = input }} />
  )
 )
 ```
@@ -143,7 +143,7 @@ Old way
 
 ```
 var storePicker = React.createClass({
-    gotoStor() {
+    gotoStore() {
         // `this` would work here because this would always equal the Component itself
         console.log(this);
     }

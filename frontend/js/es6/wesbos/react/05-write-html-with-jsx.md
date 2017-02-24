@@ -158,3 +158,6 @@ Emmet makes this super easy!
 ```
 
 The reason is it violates the `only return one parent rule`
+
+### Add comments in Atom
+* Have React and language-babel activated and you can comment out JSX code and your tab for emmet should work to (_if you added keybindings above for tab_)

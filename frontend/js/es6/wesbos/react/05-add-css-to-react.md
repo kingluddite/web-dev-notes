@@ -10,6 +10,8 @@ No problem if you just want to have `link` element and point to your CSS
 ## Load CSS using Webpack
 Don't add `link` tag to `index.html` manually. Import the css into the `index.js` file like this:
 
+`index.js`
+
 ```
 import React from 'react';
 import { render } from 'react-dom';
