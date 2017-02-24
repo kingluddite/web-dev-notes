@@ -41,13 +41,15 @@ and we'll create a base which is a connection to our Firebase database (put your
 import Rebase from 're-base';
 
 const base = Rebase.createClass({
-  apiKey: "AIzaSyB_KnM0lbHGaHA",
+  apiKey: "AIzaSyB_KnM0lbHGaHAAIzaSyB_KnM0lbHGaHA",
     authDomain: "soccer-stars-ba8f",
     databaseURL: "https://soccer-stars"
 });
 
 export default base;
 ```
+
+**note** your numbers will be different
 
 `App.js`
 
