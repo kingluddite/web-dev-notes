@@ -33,217 +33,237 @@ Some people create CSS files for every single Component that they work on and th
 
 ```css
 .order-enter {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: .5s;
+          transition: .5s;
   -webkit-transform: translateX(-120%);
           transform: translateX(-120%);
   max-height: 0;
   padding: 0 !important;
 }
+
 .order-enter.order-enter-active {
   -webkit-transform: translateX(0);
           transform: translateX(0);
   max-height: 60px;
   padding: 2rem 0 !important;
 }
+
 .order-leave {
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all .5s;
+          transition: all .5s;
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }
+
 .order-leave.order-leave-active {
   max-height: 0;
   padding: 0;
   -webkit-transform: translateX(120%);
           transform: translateX(120%);
 }
+
 .count-enter {
-  -webkit-transition: all 0.25s;
-  transition: all 0.25s;
+  -webkit-transition: all .25s;
+          transition: all .25s;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
 }
+
 .count-enter.count-enter-active {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
+
 .count-leave {
-  -webkit-transition: all 0.25s;
-  transition: all 0.25s;
+  -webkit-transition: all .25s;
+          transition: all .25s;
   position: absolute;
   left: 0;
   bottom: 0;
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
+
 .count-leave.count-leave-active {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
 }
+
 @font-face {
   font-family: "haymakerregular";
-  src: url("./fonts/haymaker-webfont.eot");
-  src: url("./fonts/haymaker-webfont.eot?#iefix") format("embedded-opentype"), url("./fonts/haymaker-webfont.woff") format("woff"), url("./fonts/haymaker-webfont.ttf") format("truetype"), url("./fonts/haymaker-webfont.svg#haymakerregular") format("svg");
+  src: url("/fonts/haymaker-webfont.eot");
+  src: url("/fonts/haymaker-webfont.eot?#iefix") format("embedded-opentype"),
+         url("/fonts/haymaker-webfont.woff") format("woff"),
+         url("/fonts/haymaker-webfont.ttf") format("truetype"),
+         url("/fonts/haymaker-webfont.svg#haymakerregular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'blanchcaps_inline';
-  src: url("./fonts/blanch_caps_inline-webfont.eot");
-  src: url("./fonts/blanch_caps_inline-webfont.eot?#iefix") format('embedded-opentype'), url("./fonts/blanch_caps_inline-webfont.woff") format('woff'), url("./fonts/blanch_caps_inline-webfont.ttf") format('truetype'), url("./fonts/blanch_caps_inline-webfont.svg#blanchcaps_inline") format('svg');
+  src: url("/fonts/blanch_caps_inline-webfont.eot");
+  src: url("/fonts/blanch_caps_inline-webfont.eot?#iefix") format('embedded-opentype'),
+         url("/fonts/blanch_caps_inline-webfont.woff") format('woff'),
+         url("/fonts/blanch_caps_inline-webfont.ttf") format('truetype'),
+         url("/fonts/blanch_caps_inline-webfont.svg#blanchcaps_inline") format('svg');
   font-weight: normal;
   font-style: normal;
 }
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section,
-summary {
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav,
+section, summary {
   display: block;
 }
-audio,
-canvas,
-video {
+
+audio, canvas, video {
   display: inline-block;
 }
+
 audio:not([controls]) {
   display: none;
   height: 0;
 }
+
 [hidden] {
   display: none;
 }
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
 }
+
 a:focus {
   outline: thin dotted;
 }
-a:active,
-a:hover {
+
+a:active, a:hover {
   outline: 0;
 }
+
 h1 {
   font-size: 2em;
 }
+
 abbr[title] {
   border-bottom: 1px dotted;
 }
-b,
-strong {
+
+b, strong {
   font-weight: 700;
 }
+
 dfn {
   font-style: italic;
 }
+
 mark {
   background: #ff0;
   color: #000;
 }
-code,
-kbd,
-pre,
-samp {
+
+code, kbd, pre, samp {
   font-family: monospace, serif;
   font-size: 1em;
 }
+
 pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+
 q {
   quotes: 2 1C 2 1D 2 18 2 19;
 }
+
 small {
   font-size: 80%;
 }
-sub,
-sup {
+
+sub, sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
+
 sup {
   top: -0.5em;
 }
+
 sub {
   bottom: -0.25em;
 }
+
 img {
   border: 0;
 }
+
 svg:not(:root) {
   overflow: hidden;
 }
+
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
+  padding: .35em .625em .75em;
 }
-button,
-input,
-select,
-textarea {
+
+button, input, select, textarea {
   font-family: inherit;
   font-size: 100%;
   margin: 0;
 }
-button,
-input {
+
+button, input {
   line-height: normal;
 }
-button,
-html input[type=button],
-input[type=reset],
-input[type=submit] {
+
+button, html input[type=button], input[type=reset], input[type=submit] {
   -webkit-appearance: button;
   cursor: pointer;
 }
-button[disabled],
-input[disabled] {
+
+button[disabled], input[disabled] {
   cursor: default;
 }
-input[type=checkbox],
-input[type=radio] {
+
+input[type=checkbox], input[type=radio] {
   box-sizing: border-box;
   padding: 0;
 }
+
 input[type=search] {
   -webkit-appearance: textfield;
   box-sizing: content-box;
 }
+
 input[type=search]::-webkit-search-cancel-button,
 input[type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
+
 textarea {
   overflow: auto;
   vertical-align: top;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-body,
-figure {
+
+body, figure {
   margin: 0;
 }
-legend,
-button::-moz-focus-inner,
-input::-moz-focus-inner {
+
+legend, button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
+
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -252,12 +272,15 @@ input::-moz-focus-inner {
   clear: both;
   height: 0;
 }
+
 * {
   box-sizing: border-box;
 }
+
 html {
   font-size: 62.5%;
 }
+
 body {
   background: #d4d4d4;
   -webkit-font-smoothing: antialiased;
@@ -265,62 +288,67 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 2rem;
 }
+
 h1 {
   font-family: 'blanchcaps_inline', sans-serif;
   text-align: center;
   font-weight: normal;
   margin: 0;
 }
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+h2, h3, h4, h5, h6 {
   font-weight: normal;
   font-family: 'haymakerregular', sans-serif;
 }
+
 h2 {
   text-align: center;
   margin-top: 0;
   margin-bottom: 2rem;
 }
+
 h3 {
   font-size: 3rem;
 }
+
 header.top {
   text-align: center;
 }
+
 header.top h1 {
   font-size: 14.4rem;
-  line-height: 0.7;
+  line-height: .7;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
-header.top h1 .ofThe {
+
+header.top h1 .of-the {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   font-size: 3rem;
   color: #f5a623;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: url("images/anchor.svg") center no-repeat;
+  -ms-flex-align: center;
+  align-items: center;
+  background: url("/images/anchor.svg") center no-repeat;
   background-size: cover;
   padding: 0 1rem;
 }
-header.top h1 .ofThe .of {
+
+header.top h1 .of-the .of {
   padding-right: 2rem;
   position: relative;
   right: -0.5rem;
 }
+
 header.top h3 {
   margin: 0;
   font-size: 2rem;
@@ -328,6 +356,7 @@ header.top h3 {
   position: relative;
   display: inline-block;
 }
+
 header.top h3 span {
   background: #fff;
   position: relative;
@@ -335,8 +364,8 @@ header.top h3 span {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-header.top h3:before,
-header.top h3:after {
+
+header.top h3:before, header.top h3:after {
   display: block;
   z-index: 1;
   background: #000;
@@ -347,11 +376,13 @@ header.top h3:after {
   top: 5px;
   margin-left: -15%;
 }
+
 header.top h3:after {
   top: auto;
   bottom: 7px;
 }
-.catch-of-the-day {
+
+.team-of-the-day {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -364,46 +395,52 @@ header.top h3:after {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
-.catch-of-the-day > * {
+
+.team-of-the-day > * {
   -webkit-box-flex: 1;
-      -ms-flex: 1 4 auto;
-          flex: 1 4 auto;
+  -ms-flex: 1 4 auto;
+      flex: 1 4 auto;
   padding: 2rem;
   border: 1rem double #1a1a1a;
   position: relative;
   background: #fff;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+  -webkit-transition: all .3s;
+          transition: all .3s;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
   overflow: scroll;
 }
-.catch-of-the-day > *:first-child {
+
+.team-of-the-day > *:first-child {
   -ms-flex-negative: 1;
-      flex-shrink: 1;
+  flex-shrink: 1;
   -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+  flex-basis: 50%;
   -webkit-transform: translateX(50%) rotateY(6deg) translateX(-50%);
           transform: translateX(50%) rotateY(6deg) translateX(-50%);
 }
-.catch-of-the-day > *:nth-child(2) {
+
+.team-of-the-day > *:nth-child(2) {
   -webkit-transform: translateX(-50%) rotateY(-14deg) translateX(50%);
           transform: translateX(-50%) rotateY(-14deg) translateX(50%);
   border-left: 0;
   border-right: 0;
   min-width: 300px;
 }
-.catch-of-the-day > *:last-child {
+
+.team-of-the-day > *:last-child {
   -ms-flex-negative: 1;
-      flex-shrink: 1;
+  flex-shrink: 1;
   -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+  flex-basis: 50%;
   -webkit-transform: translateX(-50%) rotateY(10deg) translateX(50%) scale(1.08) translateX(24px);
           transform: translateX(-50%) rotateY(10deg) translateX(50%) scale(1.08) translateX(24px);
 }
-input#fold:not(:checked) ~ #main .catch-of-the-day > * {
+
+input#fold:not(:checked) ~ #main .team-of-the-day > * {
   -webkit-transform: none;
           transform: none;
 }
+
 label[for="fold"] {
   position: absolute;
   top: 1rem;
@@ -414,21 +451,25 @@ label[for="fold"] {
   color: #fff;
   border: 2px solid #000;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
 }
+
 input#fold {
   display: none;
 }
+
 input#fold:checked + label {
   background: #fff;
   color: #000;
 }
+
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-ul.order li {
+
+ul.lineup li {
   border-bottom: 1px solid #000;
   padding: 2rem 0;
   display: -webkit-box;
@@ -436,45 +477,54 @@ ul.order li {
   display: flex;
   font-size: 1.4rem;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
-ul.order li:hover button {
+
+ul.lineup li:hover button {
   display: inline;
 }
-ul.order li button {
+
+ul.lineup li button {
   border: 0;
   display: none;
   line-height: 1;
   padding: 0;
 }
-ul.order li.total {
+
+ul.lineup li.total {
   font-weight: 600;
   border-bottom: 3px solid #000;
   border-top: 3px double #000;
 }
-ul.order li.unavailable {
+
+ul.lineup li.unavailable {
   text-decoration: line-through;
   background: #f8d0d2;
 }
-ul.order li .price {
+
+ul.lineup li .price {
   font-size: 1.2rem;
 }
-ul.order li span.count {
+
+ul.lineup li span.count {
   position: relative;
   overflow: hidden;
   float: left;
 }
-ul.order li span.count span {
+
+ul.lineup li span.count span {
   display: inline-block;
 }
+
 .order-title {
   text-align: center;
 }
-.fish-edit {
+
+.player-edit {
   margin-bottom: 20px;
   border: 2px solid #000;
   overflow: hidden;
@@ -484,9 +534,8 @@ ul.order li span.count span {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
-.fish-edit input,
-.fish-edit textarea,
-.fish-edit select {
+
+.player-edit input, .player-edit textarea, .player-edit select {
   width: 33.33%;
   padding: 10px;
   line-height: 1;
@@ -500,22 +549,25 @@ ul.order li span.count span {
   border-radius: 0;
   background: #fff;
 }
-.fish-edit input:focus,
-.fish-edit textarea:focus,
-.fish-edit select:focus {
+
+.player-edit input:focus, .player-edit textarea:focus, .player-edit select:focus {
   outline: 0;
   background: #fef2de;
 }
-.fish-edit textarea {
+
+.player-edit textarea {
   width: 100%;
 }
-.fish-edit input:last-of-type {
+
+.player-edit input:last-of-type {
   width: 100%;
 }
-.fish-edit button {
+
+.player-edit button {
   width: 100%;
   border: 0;
 }
+
 .list-of-fish {
   border-top: 2px solid #000;
   border-bottom: 1px solid #000;
@@ -524,7 +576,8 @@ ul.order li span.count span {
   -webkit-transform: translateZ(0);
           transform: translateZ(0);
 }
-.menu-fish {
+
+.menu-player {
   border-bottom: 2px solid #000;
   border-top: 1px solid #000;
   padding-bottom: 2rem;
@@ -533,65 +586,69 @@ ul.order li span.count span {
   clear: both;
   overflow: hidden;
 }
-.menu-fish p {
+
+.menu-player p {
   margin: 0;
   font-size: 1.8rem;
 }
-.menu-fish .fish-name {
+
+.menu-player .player-name {
   margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
-.menu-fish .price {
+
+.menu-player .price {
   font-size: 1.4rem;
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
-.menu-fish img {
+
+.menu-player img {
   float: left;
   width: 150px;
   margin-right: 1rem;
 }
-button,
-input[type=submit] {
+
+button, input[type=submit] {
   text-transform: uppercase;
   background: none;
   border: 1px solid #000;
   font-weight: 600;
   font-size: 1.5rem;
   font-family: 'Open Sans';
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
+  -webkit-transition: all .2s;
+          transition: all .2s;
   position: relative;
   z-index: 2;
 }
-button[disabled],
-input[type=submit][disabled] {
+
+button[disabled], input[type=submit][disabled] {
   color: #d12028;
   background: #fff;
   border-color: #d12028;
   -webkit-transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
           transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
 }
-button[disabled]:hover,
-input[type=submit][disabled]:hover {
+
+button[disabled]:hover, input[type=submit][disabled]:hover {
   color: #d12028;
   cursor: not-allowed;
 }
-button[disabled]:after,
-input[type=submit][disabled]:after {
+
+button[disabled]:after, input[type=submit][disabled]:after {
   display: none;
 }
-button:after,
-input[type=submit]:after {
+
+button:after, input[type=submit]:after {
   content: '';
   z-index: -1;
   display: block;
@@ -601,36 +658,30 @@ input[type=submit]:after {
   height: 0%;
   left: 0;
   top: 0;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
+  -webkit-transition: all .2s;
+          transition: all .2s;
 }
-button:hover,
-input[type=submit]:hover,
-button:focus,
-input[type=submit]:focus {
+
+button:hover, input[type=submit]:hover, button:focus, input[type=submit]:focus {
   color: #fff;
   outline: 0;
 }
-button:hover:after,
-input[type=submit]:hover:after,
-button:focus:after,
+
+button:hover:after, input[type=submit]:hover:after, button:focus:after,
 input[type=submit]:focus:after {
   height: 100%;
 }
-button.warning:after,
-input[type=submit].warning:after {
+
+button.warning:after, input[type=submit].warning:after {
   background: #d12028;
 }
-button.success:after,
-input[type=submit].success:after {
+
+button.success:after, input[type=submit].success:after {
   background: #2dc22d;
 }
-button.github,
-input[type=submit].github,
-button.facebook,
-input[type=submit].facebook,
-button.twitter,
-input[type=submit].twitter {
+
+button.github, input[type=submit].github, button.facebook,
+input[type=submit].facebook, button.twitter, input[type=submit].twitter {
   border: 0;
   display: block;
   margin-bottom: 2rem;
@@ -638,43 +689,44 @@ input[type=submit].twitter {
   color: #fff;
   padding: 2rem;
 }
-button.github,
-input[type=submit].github {
+
+button.github, input[type=submit].github {
   background: #82d465;
 }
-button.github:after,
-input[type=submit].github:after {
+
+button.github:after, input[type=submit].github:after {
   background: #5cc437;
 }
-button.facebook,
-input[type=submit].facebook {
+
+button.facebook, input[type=submit].facebook {
   background: #3864a3;
 }
-button.facebook:after,
-input[type=submit].facebook:after {
+
+button.facebook:after, input[type=submit].facebook:after {
   background: #2d5082;
 }
-button.twitter,
-input[type=submit].twitter {
+
+button.twitter, input[type=submit].twitter {
   background: #5ea9dd;
 }
-button.twitter:after,
-input[type=submit].twitter:after {
+
+button.twitter:after, input[type=submit].twitter:after {
   background: #2c8dd0;
 }
-.store-selector {
+
+.team-selector {
   background: #fff;
   max-width: 500px;
   margin: 50px auto;
   padding: 2rem;
   border: 2px solid #000;
 }
-.store-selector input,
-.store-selector button {
+
+.team-selector input, .team-selector button {
   width: 100%;
 }
-.store-selector input[type="text"],
-.store-selector button[type="text"] {
+
+.team-selector input[type="text"], .team-selector button[type="text"] {
   text-align: center;
   font-size: 3rem;
 }

@@ -1,5 +1,5 @@
 # Our first Component
-## The StorePicker
+## The TeamPicker
 You can type in the name of a store or it autofills with one and there will be a button that when you click it, it will take you to that individual store
 
 ## Getting started
@@ -22,7 +22,7 @@ That will import the React library (we downloaded into `node_modules`) into the 
 
 These pop up to let you know stuff you should think about fixing in your JavaScript
 
-**note** Create React App - comes with minimal eslint rules. We can eject out of that and use our own eslint rules if we want
+**note** [Create React App](https://github.com/facebookincubator/create-react-app) - comes with minimal eslint rules. We can eject out of that and use our own eslint rules if we want
 
 ## View the `Elements` tab of the inspector
 * A bundled script has been added. If you [view that in the browser](http://localhost:3000/static/js/bundle.js), all that code is React. If you comment out our React import all the React code will be removed. Try it and you still will see a ton of code. That is just Webpack code that is just for development and will be stripped out for production. If you add `alert('yo');` into `index.js` and check for it, you will see where it gets added
@@ -39,9 +39,9 @@ They can be used more than once
 ```
 import React from 'react';
 
-class StorePicker extends React.Component {
+class TeamPicker extends React.Component {
   render() {
-    return <p>Hello from the Store Picker Component</p>
+    return <p>Hello from the Team Picker Component</p>
   }
 }
 ```
@@ -106,36 +106,38 @@ Use this syntax when just importing one method from a Package. This is ES6 synta
 
 `render(What component would we like to render?, What element should it render out?`
 
-`render(<StorePicker/>, document.querySelector('#main'));`
+`render(<TeamPicker/>, document.querySelector('#main'));`
 
-**note** `<StorePicker/>` is `JSX`
+**note** `<TeamPicker/>` is `JSX`
 
 ## Browser Updates
-You will see `Hello from the Store Picker Component`
+You will see `Hello from the TeamPicker Component`
 
 ### React Dev Tools
-Shows the `<StorePicker>` Component
+Shows the `<TeamPicker>` Component
 
 **best practice** - Put each of your Components into a separate file. The main benefit of this best practice is it makes our code much easier to maintain
 
 ## Moving our Component to it's own file
-Create a new file called `Components/StorePicker.js`. Copy class from `index.js` to this new file
+Create a new file called `Components/TeamPicker.js`. Copy class from `index.js` to this new file
 
-`Components/StorePicker.js`
+`Components/TeamPicker.js`
 
 ```
-class StorePicker extends React.Component {
+class TeamPicker extends React.Component {
   render() {
-    return <p>Hello from the Store Picker component</p>
+    return <p>Hello from the TeamPicker component</p>
   }
 }
 ```
 
-Are we done? Nope. 
+### Are we done?
+Nope
 
-What Else do we need to do?
+### What Else do we need to do?
 
-#### Import React, export module and import Component to file that will be using it
+#### Import React, export module and import Component
+To file that will be using it
 
 ##### Import React
 We need to import React. You will have to do this on top of every single Component. React is not like jquery where you load on page and it is available to all. With ES6 Modules, if you need something inside a js module you need to import it inside every single file that needs it 
@@ -143,9 +145,9 @@ We need to import React. You will have to do this on top of every single Compone
 ```
 import React from 'react'; // add this line
 
-class StorePicker extends React.Component {
+class TeamPicker extends React.Component {
   render() {
-    return <p>Hello from the Store Picker component</p>
+    return <p>Hello from the TeamPicker component</p>
   }
 }
 ```
@@ -155,13 +157,13 @@ class StorePicker extends React.Component {
 ```
 import React from 'react';
 
-class StorePicker extends React.Component {
+class TeamPicker extends React.Component {
   render() {
-    return <p>Hello from the Store Picker component</p>
+    return <p>Hello from the TeamPicker component</p>
   }
 }
 
-export default StorePicker; // Add this line
+export default TeamPicker; // Add this line
 ```
 
 ##### Import Component to file that will be using it
@@ -169,14 +171,14 @@ export default StorePicker; // Add this line
 import React from 'react';
 import { render } from 'react-dom';
 
-import StorePicker from './components/StorePicker'; // add this line
+import TeamPicker from './components/TeamPicker'; // add this line
 
-render(<StorePicker/>, document.querySelector('#main'));
+render(<TeamPicker/>, document.querySelector('#main'));
 ```
 
 **note** 
 
 * Path is important here. You need to point where the Component is relative to the file you are importing it into
-* If our import is just a string `StorePicker`, Webpack thinks it is inside the `node_modules` directory. StorePicker is not of `node_modules` it is a module that we created so with custom Components we need to supply a relative path
+* If our import is just a string `TeamPicker`, Webpack thinks it is inside the `node_modules` directory. TeamPicker is not of `node_modules` it is a module that we created so with custom Components we need to supply a relative path
 * You do not to append the `.js` suffix. It is assumed
 

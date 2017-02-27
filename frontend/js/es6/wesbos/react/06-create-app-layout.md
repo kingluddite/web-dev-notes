@@ -2,7 +2,7 @@
 
 ## `src/components/App.js`
 
-Save `StorePicker.js` as `App.js`
+Save `TeamPicker.js` as `App.js`
 
 ```
 import React from 'react';
@@ -10,7 +10,7 @@ import React from 'react';
 class App extends React.Component {
   render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
           <Header />
         </div>
@@ -24,7 +24,7 @@ class App extends React.Component {
 export default App;
 ```
 
-View in browser. Nothing changes because `index.js` is still rendering `<StorePicker />`
+View in browser. Nothing changes because `index.js` is still rendering `<TeamPicker />`
 
 ## Update `index.js`
 
@@ -34,7 +34,7 @@ import { render } from 'react-dom';
 import './css/style.css';
 import App from './components/App';
 
-import StorePicker from './components/StorePicker';
+import TeamPicker from './components/TeamPicker';
 
 render(<App/>, document.querySelector('#main'));
 ```
@@ -68,7 +68,7 @@ import Header from './Header';
 class App extends React.Component {
   render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
           <Header />
         </div>
@@ -84,7 +84,7 @@ export default App;
 
 ## Add Lineup and Roster Components
 ### Steps
-1. Create the Components inside the `components` folder by saving `App.js` as each Component (Lineup.js` and Roster.js`) and rename the class name and export default name for both.
+1. Create the Components inside the `components` folder by saving `App.js` as each Component (`Lineup.js` and Roster.js`) and rename the class name and export default name for both.
 2. Add the module imports for each Component to top of the `App.js` file
 
 `src/components/Lineup.js`
@@ -130,7 +130,7 @@ import Roster from './Roster';
 class App extends React.Component {
   render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
           <Header />
         </div>

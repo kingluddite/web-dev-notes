@@ -1,7 +1,5 @@
-# Helper and Utility Functions
-Things you need to use throughout your app. Not a module. Not big enough but are useful and can be used anywhere
-
-`src/helpers.js`
+# Create `src/helpers.js`
+Used to solve common problems
 
 ```js
 export function formatPrice(cents) {
@@ -29,36 +27,4 @@ export function getFunName() {
   return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
 }
 ```
-
-## TeamPicker
-We don't want to set a `value` attribute of the `input` because that would be tied to something called `state`. We just want a default value when we load the page
-
-We are using a `named export` from `helpers.js`
-
-`TeamPicker.js`
-
-```
-import React from 'react';
-import { getFunName } from '../helpers';
-
-class TeamPicker extends React.Component {
-  render() {
-    return (
-      <form className="team-selector">
-        {/* Look here */}
-        <h2>Please Enter a Team</h2>
-        <input type="text" required placeholder="Team Name" defaultValue={getFunName()} />
-        <button type="submit">Visit Team</button>
-      </form>
-    )
-  }
-}
-
-export default TeamPicker;
-```
-
-* Notice how we import the `getFunName()` named `export`
-* We set a `defaultValue={getFunName()}` and that will call the function and if you view in the browser you will see it randomly generates a fun name
-* Every time you refresh a new random fun name will appear on the home page
-
 

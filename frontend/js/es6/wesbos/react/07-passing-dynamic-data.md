@@ -23,7 +23,7 @@ import Roster from './Roster';
 class App extends React.Component {
   render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
           <Header tagline="Soccer Stars" />
         </div>
@@ -143,7 +143,7 @@ To this:
 ## What are prop types?
 They allow you to validate that data has been passed and that data passed is the correct type
 
-Header.js`
+`Header.js`
 
 ## Add HTML to make our Heading look nicer
 ```

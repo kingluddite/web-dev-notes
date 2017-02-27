@@ -5,10 +5,10 @@ We need to update our App to hold our list of players
 ```
 render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
-          <Header tagline="Fresh Fish" />
-          <ul className="list-of-fishes">
+          <Header tagline="Great Players" />
+          <ul className="list-of-players">
             <Player />
           </ul>
         </div>
@@ -29,7 +29,7 @@ import React from 'react';
 class Player extends React.Component {
   render() {
     return (
-        <li className="menu-fish">player 1</li>
+        <li className="menu-player">player 1</li>
     )
   }
 }
@@ -65,10 +65,10 @@ If we `Object.keys($r.state.players)` - it will give us an array of all our play
 ```
 render() {
   return (
-    <div className="catch-of-the-day">
+    <div className="team-of-the-day">
       <div className="menu">
-        <Header tagline="Fresh Fish" />
-        <ul className="list-of-fishes">
+        <Header tagline="Great Players" />
+        <ul className="list-of-players">
           {
             Object
             .keys(this.state.players)
@@ -102,7 +102,7 @@ Use `details` attribute
 Update the `ul` to:
 
 ```
-<ul className="list-of-fishes">
+<ul className="list-of-players">
     {
       Object
       .keys(this.state.players)
@@ -137,7 +137,7 @@ We just added a new prop called `details`. It is an object that holds all the de
 ```
 render() {
     return (
-        <li className="menu-fish">
+        <li className="menu-player">
           <img src={this.props.details.image} alt={this.props.details.firstName} />
         {this.props.details.firstName} {this.props.details.lastName}
         </li>
@@ -153,7 +153,7 @@ Takes too long. We need a better way.
 render() {
 const details = this.props.details;
 return (
-    <li className="menu-fish">
+    <li className="menu-player">
       <img src={details.image} alt={details.firstName} />
     {details.firstName} {details.lastName}
     </li>
@@ -168,7 +168,7 @@ We can do the same thing but using ES6 Destructuring
 render() {
     const { details } = this.props;
     return (
-        <li className="menu-fish">
+        <li className="menu-player">
           <img src={details.image} alt={details.firstName} />
         {details.firstName} {details.lastName}
         </li>
@@ -185,7 +185,7 @@ class Player extends React.Component {
   render() {
     const { details } = this.props;
     return (
-        <li className="menu-fish">
+        <li className="menu-player">
           <img src={details.image} alt={details.firstName} />
           <h3 className="fish-name">
             <span>{details.firstName}</span> <span>{details.lastName}</span>

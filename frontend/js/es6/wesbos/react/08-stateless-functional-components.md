@@ -13,7 +13,7 @@ class Header extends React.Component {
       <header className="top">
         <h1>
           Team
-          <span className="ofThe">
+          <span className="of-the">
             <span className="of">of</span>
             <span className="the">the</span>
           </span>
@@ -38,7 +38,7 @@ const Header = (props) => {
     <header className="top">
       <h1>
         Team
-        <span className="ofThe">
+        <span className="of-the">
           <span className="of">of</span>
           <span className="the">the</span>
         </span>
@@ -72,5 +72,5 @@ function Header() {
 export default Header;
 ```
 
-## eslint StorePicker warning
+## eslint TeamPicker warning
 You should use all Components you have defined. We will use it soon. 

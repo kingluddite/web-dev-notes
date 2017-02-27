@@ -3,11 +3,11 @@
 ## What is routing?
 When you change the URL, the page that is rendered changes
 
-React Router 4 - Allows you to show and hide items depending on what you want the user to see
+[React Router 4](https://reacttraining.com/react-router/) - Allows you to show and hide items depending on what you want the user to see
 
 `index.js`
 
-We will create logic that says if I'm on the store page, show me the App Component, if I'm on the home page, show me the StorePicker Component and if no matches show the 404 (which is the NotFound Component)
+We will create logic that says if I'm on the store page, show me the App Component, if I'm on the home page, show me the TeamPicker Component and if no matches show the 404 (which is the NotFound Component)
 
 **note** Everything in React is a Component. Even the Router is a Component
 
@@ -26,14 +26,14 @@ import { BrowserRouter, Match, Miss } from 'react-router';
 
 import './css/style.css';
 import App from './components/App';
-import StorePicker from './components/StorePicker';
+import TeamPicker from './components/TeamPicker';
 import NotFound from './components/NotFound';
 
 const Root = () => {
   return (
     <BrowserRouter>
       <div>
-        <Match exactly pattern="/" component={StorePicker} />
+        <Match exactly pattern="/" component={TeamPicker} />
         <Match pattern="/store/:storeId" component={App} />
         <Miss component={NotFound} />
       </div>
