@@ -365,3 +365,84 @@ componentDidMount() {
 Now when you refresh you don't see the log in buttons (you actually do see them for a second but then they disapper - you could use alternate Lifecycle to prevent the flash of login buttons ( same issue with refreshing the lineup))
 
 ## Hook up Log Out button on client side
+`Roster.js`
+
+```js
+authenticate(provider) {
+  base.authWithOAuthPopup(provider, this.authHandler);
+}
+// add this to logout
+logout() {
+  base.unauth();
+  this.setState({ uid: null })
+}
+```
+
+* We just use base's `unauth()` method to sever any ties to the database
+* We remove the user `uid` from the state
+
+### Don't forget to bind this new method to the Component so we can use `this`
+`Roster.js`
+
+`this.logout = this.logout.bind(this);`
+
+### Add handler to our Log Out button
+
+`Roster.js`
+
+```
+// more code here
+render() {
+    const logout = <button onClick={() => this.logout}>Log Out</button>;
+    // more code here
+```
+
+#### We can refactor it
+Since we are not passing any arguments, we can rewrite it like this:
+
+```
+// more code here
+render() {
+    const logout = <button onClick={this.logout}>Log Out</button>;
+    // more code here
+```
+
+### Test in Browser
+Login in and click log out button and you'll see the log in buttons again. when logged it, page refresh and you're still logged in
+
+### Make Firebase secure
+```json
+// These are your firebase security rules - put then in the "Security & Rules" tab of your 
+{
+    "rules": {
+        // won't let people delete an existing room
+        ".write": "!data.exists()",
+        ".read": true,
+        "$room" : {
+          // only the store owner can edit the data
+          ".write" : "newData.child('owner').val() === auth.uid",
+          ".read" : true
+        }
+    }
+}
+```
+
+**note** comments can't exist inside a JSON file so remove them inside Firebase
+
+```json 
+{
+    "rules": {
+        ".write": "!data.exists()",
+        ".read": true,
+        "$team" : {
+          ".write" : "newData.child('owner').val() === auth.uid",
+          ".read" : true
+        }
+    }
+}
+```
+
+* You only can write if data doesn't exist
+* Anyone can read
+* Inside the team
+  - when new data comes into Firebase if the owner does not equal the current authenticated `uid`, then don't allow them to write but anyone can read
