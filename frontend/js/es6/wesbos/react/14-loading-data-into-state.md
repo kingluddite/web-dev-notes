@@ -22,12 +22,13 @@ export default Roster;
 ```
 
 ### Where do we put our `loadSamples()` method?
-Not in Roster.js. We need to include it where our `state` lives and that lives in our `App` Component
+Not in `Roster.js`. We need to include it where our `state` lives and that lives in our `App` Component
 
 ## Open App.js
 We need to import our `sample-players.js` file into App
 
 `import samplePlayers from '../sample-players';`
+
 ### Bind `this`
 Inside our `loadSample()` method we need to bind this to our App Component
 
@@ -59,9 +60,9 @@ loadSample() {
 ```
 render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
-          <Header tagline="Fresh Fish" />
+          <Header tagline="Great Players" />
         </div>
         <Lineup />
         <Roster addPlayer={this.addPlayer} loadSamples={this.loadSamples}/>
@@ -70,7 +71,7 @@ render() {
   }
 ```
 
-We just need to give the Roster Component our loadSamples method
+We just need to give the `Roster` Component our `loadSamples()` method
 
 ### Update Roster.js render()
 ```

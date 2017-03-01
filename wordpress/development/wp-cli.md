@@ -1,5 +1,82 @@
 # [WP CLI](http://wp-cli.org/)
 
+## 5 steps to installing WordPress with MAMP and WP-CLI
+This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
+
+### Step One - Create Your WordPress Project folder
+
+Inside your MAMP server root (I like to set my MAMP server root to be `~/Sites`) create a folder that will hold your WordPress project.
+
+`$ mkdir ~/Sites/my-wordpress-project`
+
+### Step Two - Pull down latest WordPress copy
+
+```
+$ wp core download
+```
+
+So now you are ready to create your `wp-config.php` file
+
+### Step Three - Create `wp-config.php` file
+
+```
+$ wp core config --dbuser=root --dbpass=root --dbname=my_wordpress_project
+```
+
+This will create the file to connect you to your MySQL databse. The above code is assuming you used MAMP and the default username and password for MAMP is `root` and `root`. Change the `--dbname` value to match your database name. I recommend using snake case to name your database `this_is_snake_case`
+
+**important** Make sure you remember this is the name of your database. It needs to exactly match your database name that you will create in the next step.
+
+### Step Four - Create your empty database
+Open phpMyAdmin and create a database making sure your database matches the name you used in the previous step (In my example I used `my_wordpress_project` so I would created a database with that name. Substitute your database name for my database name)
+
+### Step Five - Populate your database
+With the default WordPress tables and content
+
+```
+$  wp core install --url=http://localhost/my-wordpress-project --title=MyWordPressProject --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com
+```
+
+**important** - Many people make mistakes at this point. This is what to watch out for to ensure you don't make the same mistakes
+
+* **Make sure your port is correct**
+    - Did you use an Apache port of `8888` (default MAMP port) or did you change your MAMP port to be `80`? If you used `8888` as your port your wp-cli command should be:
+
+```
+wp core install --url=http://localhost:8888/my-wordpress-project --title=MyWordPressProject --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com
+```
+
+* **Is the email correct?** That email should be an email that you can use because this email is the admin email of the site and any problems (like getting locked out of WordPress) get resets sent to this email
+
+* **Is the URL correct?** What is the name of your folder your project is in? Does it match the URL in your wp-cli command `--url=http://localhost:8888/my-wordpress-project`? If it doesn't your site won't work and you'll have to redo everything from the start or do a find and replace in the exported SQL form your database.
+
+* If you get a can't connect to database use `which php` and `which mysql` in your terminal to find out if your MAC OS knows about the MAMP php and MAMP mysql. If you don't see MAMP in what is returned from these commands, your path needs to be updated with something like this in your `~/.bash_profile`
+
+`~/.bash_profile`
+
+```
+# The following MAMP export stuff is needed when you work with WP-CLI
+# Use MAMP version of PHP
+PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+# MAMP and MYSQL
+export PATH="/Applications/MAMP/Library/bin:$PATH"
+```
+
+Update your `~/.bash_profile` with `$ source ~/.bash_profile` and you now should see the `MAMP` string somewhere in the output from `$ which php` and `$ which mysql`
+
+## Make sure you turn debugging on
+This will help you track down errors in WordPress. By default all error notices are turned off in WordPress so if problems arise you will only see a white screen commonly referred to as the [`white screen of death`](https://codex.wordpress.org/Common_WordPress_Errors#The_White_Screen_of_Death). Turning this option on in `wp-config.php` will prevent the `white screen of death` from ruining your day.
+
+`wp-config.php`
+
+```
+// Set to false when in Production
+define( 'WP_DEBUG', true );
+```
+
+Happy coding!
+
 ## How to update WP-CLI in vvv
 ```
 cd /srw/www/wp-cli
@@ -40,35 +117,9 @@ WP-CLI project config:
 WP-CLI version: 0.23.0
 ```
 
-This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
 
-```
-$ wp core download
-```
 
-### Create the wp-config.php file
-
-If you were manually installing WordPress through the browser you would be brought to a page where you put in your database connection information. This would in turn create your `wp_config.php` file. WP-CLI speeds this step up with a little terminal magic.
-
-Before you do this step you need to create a database in MySQL. Using the GUI phpMyAdmin is the way most people do this. You can also use the Terminal, sign into MySQL and create a database this way. As you use the terminal more and more the second option may become your first choice.
-
-So now you are ready to create your `wp-config.php` file
-
-```
-$ wp core config --dbuser=root --dbpass=root --dbname=stranger_things_wp
-```
-
-This will create the file to connect you to your MySQL databse. The above code is assuming you used MAMP and the default username and password for MAMP is root and root. Change the --dbname value to match the name you used when creating the empty database in phpMyAdmin (or MySQL terminal). I recommend using underscores instead of dashes in db names with more than one word (ie my_db instead of my-db). For security reasons you may want to not have db in name so hackers won't find it so easily.
-
-### Finishing Up Core Install
-
-If you were manually installing WordPress through the browser you would be brought to a page asking you for your username and password, title of the page, email and URL of your WordPress site (local, staging or production depending on the environment you are working in). WP-CLI speeds this step up with the magic of the terminal. 
-
-```
-$  wp core install --url=http://localhost/stranger-things --title=StrangerThings --admin_user=admin --admin_password=password --admin_email=howley.phil@gmail.com
-```
-
-* sometimes you may have to rename localhost in wp-config.php to 127.0.0.1 to avoid database connection error (see trouble shooting tips at the bottom of this file for more tips/suggestions)
+* sometimes you may have to rename localhost in wp-config.php to `127.0.0.1` to avoid database connection error (see trouble shooting tips at the bottom of this file for more tips/suggestions)
 
 If you get the above error try to change the file permissions:
 

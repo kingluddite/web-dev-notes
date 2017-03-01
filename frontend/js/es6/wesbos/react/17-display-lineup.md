@@ -22,7 +22,7 @@ class Lineup extends React.Component {
   render() {
     const lineupIds = Object.keys(this.props.lineup);
     return (
-      <div className="order-wrap">
+      <div className="lineup-wrap">
         <h2>Your Starting Lineup</h2>
         <p>{lineupIds}</p>
       </div>
@@ -82,7 +82,7 @@ class Lineup extends React.Component {
       return prevTotal;
     }, 0);
     return (
-      <div className="order-wrap">
+      <div className="lineup-wrap">
         <h2>Your Starting Lineup</h2>
         <p>{lineupIds}</p>
         {formatPrice(total)}
@@ -100,9 +100,9 @@ export default Lineup;
 
 ```
 return (
-      <div className="order-wrap">
+      <div className="lineup-wrap">
         <h2>Your Starting Lineup</h2>
-        <ul className="order">
+        <ul className="lineup">
           <li className="total">
             <strong>Total:</strong>
             {formatPrice(total)}
@@ -120,9 +120,9 @@ You can have multiple `render()` functions inside your Component. They need diff
 
 ```
 return (
-    <div className="order-wrap">
+    <div className="lineup-wrap">
       <h2>Your Starting Lineup</h2>
-      <ul className="order">
+      <ul className="lineup">
         {lineupIds.map(this.renderLineup)}
         <li className="total">
           <strong>Total:</strong>
@@ -145,7 +145,7 @@ renderLineup(key) {
   const player = this.props.players[key];
   const count = this.props.lineup[key]
 
-  if(!player || player.status === 'unavailable') {
+  if(!player || player.status !== 'active') {
     return <li key={key}>Sorry, {player ? player.firstName : 'player'} is no longer available</li>
   }
 

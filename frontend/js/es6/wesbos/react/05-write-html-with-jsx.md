@@ -8,7 +8,7 @@ The ability to write JSX inside our JavaScript
 Then your code would look like this and it will work.
 
 ```
-class StorePicker extends React.Component {
+class TeamPicker extends React.Component {
   render() {
     return React.createElement('p', {className: 'Testing'}, 'This is a test');
   }
@@ -66,10 +66,10 @@ What does this rule mean? Easy
 
 ```
 // this is good
-class StorePicker extends React.Component {
+class TeamPicker extends React.Component {
   render() {
     return (
-      <form className="store-selector">
+      <form className="team-selector">
         <p>This is Good</p>
       </form>
     )
@@ -77,10 +77,10 @@ class StorePicker extends React.Component {
 }
 
 // this is bad (had 2 parents)
-class StorePicker extends React.Component {
+class TeamPicker extends React.Component {
   render() {
     return (
-      <form className="store-selector">
+      <form className="team-selector">
       </form>
       <p>This is Bad</p>
     )
@@ -110,19 +110,19 @@ The second bad option above will generate a `Syntax error: Adjacent JSX elements
 ```
 import React from 'react';
 
-class StorePicker extends React.Component {
+class TeamPicker extends React.Component {
   render() {
     return (
-      <form className="store-selector">
-        <h2>Please Enter a Store</h2>
-        <input type="text" required placeholder="Store Name" />
-        <button type="submit">Visit Store</button>
+      <form className="team-selector">
+        <h2>Please Enter a Team Name</h2>
+        <input type="text" required placeholder="Team Name" />
+        <button type="submit">Visit Team</button>
       </form>
     )
   }
 }
 
-export default StorePicker;
+export default TeamPicker;
 ```
 
 ### What it looks like in the browser
@@ -134,11 +134,11 @@ No CSS yet but it is what it is
 Use this syntax
 
 ```
-<form className="store-selector">
+<form className="team-selector">
     {/* Look here */}
-    <h2>Please Enter a Store</h2>
-    <input type="text" required placeholder="Store Name" />
-    <button type="submit">Visit Store</button>
+    <h2>Please Enter a Team</h2>
+    <input type="text" required placeholder="Team Name" />
+    <button type="submit">Visit Team</button>
 </form>
 ```
 
@@ -150,10 +150,10 @@ Emmet makes this super easy!
 
 ```
 {/* Look here */}
-<form className="store-selector">
-    <h2>Please Enter a Store</h2>
-    <input type="text" required placeholder="Store Name" />
-    <button type="submit">Visit Store</button>
+<form className="team-selector">
+    <h2>Please Enter a Team</h2>
+    <input type="text" required placeholder="Team Name" />
+    <button type="submit">Visit Team</button>
 </form>
 ```
 

@@ -76,10 +76,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
-          <Header tagline="Fresh Fish" />
-          <ul className="list-of-fishes">
+          <Header tagline="Great Players" />
+          <ul className="list-of-players">
             {
               Object
               .keys(this.state.players)
@@ -106,15 +106,15 @@ export default App;
 
 ## View in browser
 Load sample players
-React tab > look for Player > And you will see that `addToLineup` method is bound to it
+React tab > look for Player > And you will see that `addToLineup()` method is bound to it
 
 ## Update Player.js
 
 ```
 return (
-        <li className="menu-fish">
+        <li className="menu-players">
           <img src={details.image} alt={details.firstName} />
-          <h3 className="fish-name">
+          <h3 className="player-name">
             <span>{details.firstName}</span> <span>{details.lastName}</span>
             <span className="price">{formatPrice(details.fee)}</span>
           </h3>
@@ -131,7 +131,7 @@ We don't want the `addToLineup` to fire on page load but when they click the but
 
 `<button disabled={!isAvailable} onClick={() =>this.props.addToLineup('player-1')}>{buttonText}</button>`
 
-Now if you view in browser > React tab > Search for App > Look at lineup state > click `Add to Lineup` and you will see it increases every time
+Now if you view in browser > `React` tab > Search for App > Look at lineup state > click `Add to Lineup` and you will see it increases every time
 
 ## Passing a dynamic argument
 We don't want to hardcode `player-1`, `player-2`...
@@ -140,7 +140,7 @@ Can we access the Player instance key inside a Component? No. Not right now.
 If you need to access the `key` attribute, you need to explicitly pass it down. They make it hard because the `key` is not for us, but if we do need it, we have to pass it down ourselves. To get around this we create another attribute called `index` that will pass the same `key` value. Something like this:
 
 ```
-<ul className="list-of-fishes">
+<ul className="list-of-players">
             {
               Object
               .keys(this.state.players)
@@ -188,9 +188,9 @@ render() {
     const isAvailable = details.status === 'active';
     const buttonText = isAvailable ? 'Add To Lineup' : 'Out!';
     return (
-        <li className="menu-fish">
+        <li className="menu-players">
           <img src={details.image} alt={details.firstName} />
-          <h3 className="fish-name">
+          <h3 className="player-name">
             <span>{details.firstName}</span> <span>{details.lastName}</span>
             <span className="price">{formatPrice(details.fee)}</span>
           </h3>
@@ -207,4 +207,58 @@ In `App.js` change this: `lineup[key] = lineup[key] + 1 || 1;`
 
 To this: ``lineup[key] = 1;``
 
-Now we need to update our UI to display our Lineup
+Now we need to update our UI to display our `Lineup`
+
+### Update AddPlayerForm Component
+Add all fields
+
+```
+import React from 'react';
+
+class AddPlayerForm extends React.Component {
+  constructor() {
+    super();
+    this.createPlayer = this.createPlayer.bind(this);
+  }
+  createPlayer(e) {
+    e.preventDefault();
+    const player = {
+      firstName: this.firstName.value,
+      lastName: this.lastName.value,
+      status: this.status.value,
+      fieldPosition: this.fieldPosition.value,
+      fee: this.fee.value,
+      jerseyNumber: this.jerseyNumber.value,
+      email: this.email.value,
+      comments: this.comments.value,
+      imageURL: this.imageURL.value
+    }
+    this.props.addPlayer(player);
+    this.playerForm.reset();
+  }
+  render() {
+    return (
+      <form ref={(input) => this.playerForm = input} className="player-edit" onSubmit={this.createPlayer}>
+      <input ref={(input) => this.firstName = input} type="text" placeholder="Player First Name" />
+      <input ref={(input) => this.lastName = input} type="text" placeholder="Player Last name" />
+      <select ref={(input) => this.status = input}>
+        <option value="active">Active</option>
+        <option value="injured">Injured</option>
+        <option value="excused">Excused Absence</option>
+        <option value="unexcused">Unexcused Absence</option>
+      </select>
+      <input ref={(input) => this.fieldPosition = input} type="text" placeholder="Field Position" />
+      <input ref={(input) => this.fee= input} type="text" placeholder="Player Fee" />
+      <input ref={(input) => this.jerseyNumber = input} type="text" placeholder="Jersey Number" />
+      <input ref={(input) => this.email = input} type="text" placeholder="Email" />
+      <input ref={(input) => this.imageURL = input} type="text" placeholder="Player Photo URL" />
+      <textarea ref={(input) => this.comments = input} placeholder="Comments"></textarea>
+      <button type="submit">+ Add Player</button>
+      </form>
+
+    )
+  }
+}
+
+export default AddPlayerForm;
+```

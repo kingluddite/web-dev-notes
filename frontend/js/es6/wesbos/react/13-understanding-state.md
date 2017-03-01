@@ -8,8 +8,8 @@ Each Component can have its own state
 
 Think of `state` as one object that holds the data of all of our application or a piece of our application
 
-### state in catch of the day app
-We have state with how many fish we have.
+### `state` in team of the day app
+We have state with how many players we have.
 How many orders we have
 
 ### state in jQuery
@@ -22,7 +22,7 @@ In React you store all of your data in this master object called `state`. And wh
 Coming from HTML directly you may want to touch the HTML. In React, you edit the data and React will edit the HTML
 
 ### Huge idea behind `state`
-If you view a website made with React in the browser and you change the state inside one of it's component, that will change everyone that state is pulled from and React will update the html
+If you view a website made with React in the browser and you change the `state` inside one of it's component, that will change everyone that state is pulled from and React will update the html
 
 The great thing is you have all these balls in the air but you don't have to id them, grab their contents and change them all. Just change the state and React handles the rest
 
@@ -56,7 +56,7 @@ import React from 'react';
 class AddPlayerForm extends React.Component {
   render() {
     return (
-      <form className="fish-edit">
+      <form className="player-edit">
       <input type="text" placeholder="Player First Name" />
       <input type="text" placeholder="Player Last name" />
       <select>
@@ -80,7 +80,7 @@ export default AddPlayerForm
 ```
 
 ### Test form
-Update the code and see if you submit form does it console.log() `test`
+Update the code and see if you submit form does it `console.log()` **test**
 
 ```
 import React from 'react';
@@ -96,7 +96,7 @@ class AddPlayerForm extends React.Component {
   }
   render() {
     return (
-      <form className="fish-edit" onSubmit={this.createPlayer}>
+      <form className="players-edit" onSubmit={this.createPlayer}>
       // MORE CODE
 ```
 
@@ -139,7 +139,7 @@ React needs to know:
 When our App Component initializes we will tell App we will have a Players State and a Lineup state. We do that using a ES6 class constructor method
 
 ## Constructor methods to state
-**note** You can not use the keyword `this` until you use `super()` and that is because the React.Component we are extending needs to be initialized
+**note** You can not use the keyword `this` until you use `super()` and that is because the **React.Component** we are extending needs to be initialized
 
 ```
 import React from 'react';
@@ -160,7 +160,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
           <Header tagline="Soccer Stars" />
         </div>
@@ -174,7 +174,7 @@ class App extends React.Component {
 export default App;
 ```
 
-View in browser and search React tab for App and you will see 
+View in browser and search React tab for `App` and you will see 
 
 ![state in App Component](https://i.imgur.com/vaNZYjR.png)
 
@@ -212,7 +212,7 @@ to this
 `this.setState({ players })`
 
 ## View in browser
-You will not see our `addPlayer()` method yet and that is because we did not yet bind it to our class/Component
+You will not see our `addPlayer()` method yet and that is because we did not yet bind it to our `class/Component`
 
 ```
 import React from 'react';
@@ -245,9 +245,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
-          <Header tagline="Fresh Fish" />
+          <Header tagline="Great players" />
         </div>
         <Lineup />
         <Roster />
@@ -259,7 +259,7 @@ class App extends React.Component {
 export default App;
 ```
 
-After we bind the `addPlayer()` method to our App Component and view in browser, use React tab to find `App` Component. Select the App Component in the selector. Switch to the Console tab and type `$r` and you will see the `addPlayer` method
+After we bind the `addPlayer()` method to our App Component and view in browser, use React tab to find `App` Component. Select the App Component in the selector. Switch to the console tab and type `$r` and you will see the `addPlayer` method
 
 We can call `addPlayer` directory and pass in a first and last name to test it out
 
@@ -282,9 +282,9 @@ In `App.js` we pass the function down to that Component like this:
 ```
 render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
-          <Header tagline="Fresh Fish" />
+          <Header tagline="Great players" />
         </div>
         <Lineup />
         <Roster addPlayer={this.addPlayer} />
@@ -321,7 +321,7 @@ export default Roster;
 `this.props.addPlayer` - The way that you pass things down whether it is data or reference to methods in child Components is through `props`
 
 ### View in browser
-In React tab search for AddPlayerForm and you will see that `addPlayer` is now available under `props`
+In **React** tab search for `AddPlayerForm` and you will see that `addPlayer` is now available under `props`
 
 ![addPlayer under props in AddPlayerForm](https://i.imgur.com/B1TVBxM.png)
 
@@ -346,7 +346,7 @@ createPlayer(e) {
   }
 ```
 
-Test form out and then Check the App state and you should see something like:
+Test form out and then Check the `App` state and you should see something like:
 
 ![player added](https://i.imgur.com/Tcblo6r.png)
 
@@ -359,7 +359,7 @@ Now try the form again. Fill it in and when submitted the form fields clear
 
 We add this line: `this.playerForm.reset();`
 
-And modifiy this line: `<form ref={(input) => this.playerForm = input} className="fish-edit" onSubmit={this.createPlayer}>`
+And modifiy this line: `<form ref={(input) => this.playerForm = input} className="players-edit" onSubmit={this.createPlayer}>`
 
 Ending code for `AddPlayerForm.js`
 
@@ -389,7 +389,7 @@ class AddPlayerForm extends React.Component {
   }
   render() {
     return (
-      <form ref={(input) => this.playerForm = input} className="fish-edit" onSubmit={this.createPlayer}>
+      <form ref={(input) => this.playerForm = input} className="players-edit" onSubmit={this.createPlayer}>
       <input ref={(input) => this.firstName = input} type="text" placeholder="Player First Name" />
       <input ref={(input) => this.lastName = input} type="text" placeholder="Player Last name" />
       <select ref={(input) => this.status = input}>
