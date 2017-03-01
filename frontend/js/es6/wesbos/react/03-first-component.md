@@ -18,7 +18,7 @@ That will import the React library (we downloaded into `node_modules`) into the 
 ## Run app, view in browser
 
 ## eslint Warnings in the inspector 'Console' tab
-![eslint waring](https://i.imgur.com/Ij15mCV.png)
+![eslint warning](https://i.imgur.com/Ij15mCV.png)
 
 These pop up to let you know stuff you should think about fixing in your JavaScript
 
@@ -29,8 +29,7 @@ These pop up to let you know stuff you should think about fixing in your JavaScr
 
 Remove the `alert('yo');` and comment in our React import
 
-**rule** - Components are always Capitalized
-They can be used more than once
+**rule** - Components are always Capitalized and they can be used more than once
 
 **rule** - Every Component needs at least one method and that is the `render()` method. When a Component gets rendered to a page, it will ask that Component what HTML should I display
 
@@ -99,12 +98,28 @@ import ReactDOM from 'react-dom';
 ReactDOM.render();
 ```
 
-But we use the first import case because we don't need the entire ReactDOM package, we just need one render() method of ReactDom
+But we use the first import case because we don't need the entire ReactDOM package, we just need one `render()` method of ReactDom
 
 #### { method }
 Use this syntax when just importing one method from a Package. This is ES6 syntax
 
+## Add class
+```
+import React from 'react';
+import { render } from 'react-dom';
+
+class TeamPicker extends React.Component {
+  render() {
+    return <p>Hello from the Team Picker Component</p>
+  }
+}
+```
+
+## `render()` it
+
 `render(What component would we like to render?, What element should it render out?`
+
+Add this code to the bottom of `index.js`:
 
 `render(<TeamPicker/>, document.querySelector('#main'));`
 
@@ -116,10 +131,10 @@ You will see `Hello from the TeamPicker Component`
 ### React Dev Tools
 Shows the `<TeamPicker>` Component
 
-**best practice** - Put each of your Components into a separate file. The main benefit of this best practice is it makes our code much easier to maintain
-
 ## Moving our Component to it's own file
 Create a new file called `Components/TeamPicker.js`. Copy class from `index.js` to this new file
+
+**best practice** - Put each of your Components into a separate file. The main benefit of this best practice is it makes our code much easier to maintain
 
 `Components/TeamPicker.js`
 
@@ -140,7 +155,7 @@ Nope
 To file that will be using it
 
 ##### Import React
-We need to import React. You will have to do this on top of every single Component. React is not like jquery where you load on page and it is available to all. With ES6 Modules, if you need something inside a js module you need to import it inside every single file that needs it 
+We need to import React. You will have to do this on top of every single Component. React is not like jquery where you load on page and it is available to all. With ES6 Modules, if you need something inside a `js` module you need to import it inside every single file that needs it 
 
 ```
 import React from 'react'; // add this line

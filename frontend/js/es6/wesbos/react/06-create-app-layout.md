@@ -84,7 +84,7 @@ export default App;
 
 ## Add Lineup and Roster Components
 ### Steps
-1. Create the Components inside the `components` folder by saving `App.js` as each Component (`Lineup.js` and Roster.js`) and rename the class name and export default name for both.
+1. Create the Components inside the `components` folder by saving `App.js` as each Component (`Lineup.js` and `Roster.js`) and rename the class name and export default name for both.
 2. Add the module imports for each Component to top of the `App.js` file
 
 `src/components/Lineup.js`

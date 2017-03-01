@@ -7,106 +7,42 @@ Can be loaded many different ways:
 
 No problem if you just want to have `link` element and point to your CSS
 
-## Load CSS using Webpack
-Don't add `link` tag to `index.html` manually. Import the css into the `index.js` file like this:
-
-`index.js`
-
-```
-import React from 'react';
-import { render } from 'react-dom';
-import './css/style.css'; // Add this line
-```
-
-**note** We don't say the name of the package we are loading for style.css because there is no package. We are just loading the file
-
-**note** Move `fonts/` and `images/` and change their path in `style.css` from `./` to `/` for all fonts and images
-
-**important** Remove in `index.html` the `<link href="css/style.css >` and add the import line above to let webpack import all the css. You won't see a css file but if you search the `bundle.min.js` you will see the css is inside that JavaScript file!
-
 ## Styles for CSS and Components
 Some people create CSS files for every single Component that they work on and that enables them to scope the CSS to that specific Component
 
-### Add your style
+### First, grab our starting assets
+Images, Fonts and CSS
 
-`src/css/style.css`
+[github assets for this react project](https://github.com/kingluddite/starting-react-assets)
+
+Make sure you are inside the `src` folder of your project and clone the folder without the repo name:
+
+`$ git clone https://github.com/kingluddite/starting-react-assets.git .`
+
+**note** When cloning, you can use `.` to say grab the repo and put all the files inside where I currently am and don't put them inside a containing folder (which is the default behavior)
+
+### Add your style
+Create `src/css/style.css` and copy and paste the following code inside that file:
 
 ```css
-.order-enter {
-  -webkit-transition: .5s;
-          transition: .5s;
-  -webkit-transform: translateX(-120%);
-          transform: translateX(-120%);
-  max-height: 0;
-  padding: 0 !important;
-}
-
-.order-enter.order-enter-active {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
-  max-height: 60px;
-  padding: 2rem 0 !important;
-}
-
-.order-leave {
-  -webkit-transition: all .5s;
-          transition: all .5s;
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
-}
-
-.order-leave.order-leave-active {
-  max-height: 0;
-  padding: 0;
-  -webkit-transform: translateX(120%);
-          transform: translateX(120%);
-}
-
-.count-enter {
-  -webkit-transition: all .25s;
-          transition: all .25s;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
-}
-
-.count-enter.count-enter-active {
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
-}
-
-.count-leave {
-  -webkit-transition: all .25s;
-          transition: all .25s;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
-}
-
-.count-leave.count-leave-active {
-  -webkit-transform: translateY(-100%);
-          transform: translateY(-100%);
-}
-
 @font-face {
   font-family: "haymakerregular";
-  src: url("/fonts/haymaker-webfont.eot");
-  src: url("/fonts/haymaker-webfont.eot?#iefix") format("embedded-opentype"),
-         url("/fonts/haymaker-webfont.woff") format("woff"),
-         url("/fonts/haymaker-webfont.ttf") format("truetype"),
-         url("/fonts/haymaker-webfont.svg#haymakerregular") format("svg");
+  src: url("./fonts/haymaker-webfont.eot");
+  src: url("./fonts/haymaker-webfont.eot?#iefix") format("embedded-opentype"),
+         url("./fonts/haymaker-webfont.woff") format("woff"),
+         url("./fonts/haymaker-webfont.ttf") format("truetype"),
+         url("./fonts/haymaker-webfont.svg#haymakerregular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'blanchcaps_inline';
-  src: url("/fonts/blanch_caps_inline-webfont.eot");
-  src: url("/fonts/blanch_caps_inline-webfont.eot?#iefix") format('embedded-opentype'),
-         url("/fonts/blanch_caps_inline-webfont.woff") format('woff'),
-         url("/fonts/blanch_caps_inline-webfont.ttf") format('truetype'),
-         url("/fonts/blanch_caps_inline-webfont.svg#blanchcaps_inline") format('svg');
+  src: url("./fonts/blanch_caps_inline-webfont.eot");
+  src: url("./fonts/blanch_caps_inline-webfont.eot?#iefix") format('embedded-opentype'),
+         url("./fonts/blanch_caps_inline-webfont.woff") format('woff'),
+         url("./fonts/blanch_caps_inline-webfont.ttf") format('truetype'),
+         url("./fonts/blanch_caps_inline-webfont.svg#blanchcaps_inline") format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -338,7 +274,7 @@ header.top h1 .of-the {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: url("/images/anchor.svg") center no-repeat;
+  background: url("./images/anchor.svg") center no-repeat;
   background-size: cover;
   padding: 0 1rem;
 }
@@ -731,3 +667,18 @@ button.twitter:after, input[type=submit].twitter:after {
   font-size: 3rem;
 }
 ```
+
+## Load CSS using Webpack
+Don't add `link` tag to `index.html` manually. Import the css into the `index.js` file like this:
+
+`index.js`
+
+```
+import React from 'react';
+import { render } from 'react-dom';
+import './css/style.css'; // Add this line
+```
+
+**note** We don't say the name of the package we are loading for `style.css` because there is no package. We are just loading the file
+
+**important** Remove in `index.html` the `<link href="css/style.css >` and add the import line above to let webpack import all the css. You won't see a css file but if you search the `bundle.min.js` you will see the css is inside that JavaScript file!
