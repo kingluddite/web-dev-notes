@@ -148,4 +148,7 @@ export default App;
 
 #### Use React in Dev Tools to see the App, Header, Lineup and Roster Components
 
+### Warning Will Rogers
+You will see this annoying light yellow colored eslint TeamPicker warning in the console. Eslint is telling you you have a Component imported and you are not using it. This is a `no-no` in React. You only import what you will use. We will use this Component soon. I promise.
+
 

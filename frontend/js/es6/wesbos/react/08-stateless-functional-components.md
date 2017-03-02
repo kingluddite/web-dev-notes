@@ -1,7 +1,8 @@
 # Stateless Functional Components
-Sometimes we have Components that are complex and have lots going on but sometimes our Components are simple and only do one thing and that is render out HTML to the DOM
+Sometimes we have Components that are complex and have lots going on but sometimes our Components are simple and only do one thing and that is to just render out HTML to the DOM
 
-Turn this
+## Time to Convert!
+Let's convert a standard Component in a Stateless Functional Component
 
 `Header.js`
 
@@ -54,9 +55,13 @@ export default Header;
 
 * We use the ES6
 * We pass the arrow function the `props`
-* We change `{this.props.tagline}` to `{props.tagline}` because since we are not using a class we are no longer using `this`
+* **important** We change `{this.props.tagline}` to `{props.tagline}` because since we are not using a class we are no longer using `this`
+* **important** We remove the `render()` method
+  - This means we no longer have access to `this` because it is no longer bound to the Component because we are now using a stateless functional Component
 
-You could also change it to:
+**note** You could also code a stateless functional component like this: 
+
+(_but that would be old school and you would not be using the awesome powers of ES6_)
 
 ```
 import React from 'react';
@@ -71,6 +76,3 @@ function Header() {
 
 export default Header;
 ```
-
-## eslint TeamPicker warning
-You should use all Components you have defined. We will use it soon. 

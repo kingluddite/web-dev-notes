@@ -73,6 +73,11 @@ All the attributes you give the Component, they are all all listed under `Props`
 
 All the props we added are now listed under `Props`
 
+## Update App.js
+We are done playing with attributes. You get it. You can add as many props as you want. Remove them all and just keep tagline by updating our code to just have the following `prop`:
+
+`<Header tagline="Soccer Stars" />`
+
 ### Accessing Prop Values from inside Component
 ```
 import React from 'react';
@@ -94,6 +99,11 @@ export default Header;
 #### How do you put variables into JSX?
 `{this.props.tagline}`
 
+### Improve the tagline in Header.js
+Wrap the tagline in a `span`
+
+`<h3 className="tagline"><span>{this.props.tagline}</span></h3>`
+
 #### What is `this.props`?
 
 `this` will refer to the Component and `props` is an Object that we can use to gain access to all the `Props` available to it
@@ -102,6 +112,8 @@ export default Header;
 You will now see our h3 is populated by data we suplied to the `<Header>` component inside `App.js`. If you change the text for `tagline` in `App.js`, and save, the text will update with your change
 
 ![props value showing](https://i.imgur.com/imso8Ty.png)
+
+### Let's talk about `this`
 
 ```
 class Header extends React.Component {
@@ -119,29 +131,23 @@ class Header extends React.Component {
 
 * `this` when viewed in console will show you the `Header`. Expand and you'll see `props` and that it is an Object that has 3 items
 
+**note** `this` is inside the `render()` method. This is an important thing to notice and understand because when we start creating custom methods inside this component, we will have to manually bind `this` to the component so we can use `this` inside our custom methods
+
 ![props is an Object](https://i.imgur.com/tMGRkbK.png)
 
-## Debug Component in console
+## Debug Component in console with `$r`
 1. Select Component in React tab of dev tools
 2. Switch to console
 3. Type `$r` in console and you'll see Component
 4. Type `$r.props` and you'll see all the props on that Component
 
-**Debug** Elements in Elements tab of dev tools
+**Debug** Elements in Elements tab of dev tools with `$0`
 
 1. Just select element you want to inspect
 2. Switch to console tab 
 3. Type `$0` and you can start debugging that element
 4. Let's say you select a `<div class="menu">...</div>`
 5. Then type `$0.classList` and you will see `["menu"]`
-
-## Update App.js
-To this:
-
-`<Header tagline="Soccer Stars" />`
-
-## What are prop types?
-They allow you to validate that data has been passed and that data passed is the correct type
 
 `Header.js`
 
