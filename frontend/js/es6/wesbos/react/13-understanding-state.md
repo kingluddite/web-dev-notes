@@ -1,30 +1,42 @@
-# Understanding State
-Core fundamental concept
+# Understanding State - Core fundamental concept!
 
 ## What is state?
 The representation of all of the data in our application
 
-Each Component can have its own state
-
-Think of `state` as one object that holds the data of all of our application or a piece of our application
+* Each Component can have its own state
+* Think of `state` as one object that holds the data of all of our application or a piece of our application
 
 ### `state` in team of the day app
-We have state with how many players we have.
-How many orders we have
+We have state with: 
 
-### state in jQuery
-You could save data in attributes. Save data in the DOM, and then pull it out and put it back in and do this back and forth. And where the application is currently at is done in the DOM
+* How many players we have
+* How many orders we have
 
-With React it is totally different!
+### `state` in jQuery
+You could save **data** in `attributes`. 
 
-In React you store all of your data in this master object called `state`. And whenever you want to change anything on the page, you edit your state and you let React handle updating the DOM
+1. Save data in the DOM
+2. Then pull it out
+3. Then put it back in
+4. Rince and repeat
+5. And where the application is currently at is done entirely in the DOM
 
-Coming from HTML directly you may want to touch the HTML. In React, you edit the data and React will edit the HTML
+### React is different!
+
+In React you store all of your data in this master object called `state`. 
+
+* Whenever you want to change anything on the page
+  - You edit your state
+  - React will handle updating the DOM
+
+Coming from HTML directly you may want to touch the HTML. 
+
+In React, you edit the data and React will edit the HTML
 
 ### Huge idea behind `state`
-If you view a website made with React in the browser and you change the `state` inside one of it's component, that will change everyone that state is pulled from and React will update the html
+If you view a website made with React in the browser and you change the `state` inside one of it's component, that will change everyone that state is pulled from and React will update the HTML
 
-The great thing is you have all these balls in the air but you don't have to id them, grab their contents and change them all. Just change the state and React handles the rest
+The great thing is you have all these balls in the air but you don't have to id them, grab their contents and change them all. Just change the state and React handles the rest. It really is a great concept.
 
 ## Adding the player form
 We will create a new Component called `src/components/AddPlayerForm.js`

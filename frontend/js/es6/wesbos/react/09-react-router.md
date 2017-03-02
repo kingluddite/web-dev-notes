@@ -34,7 +34,7 @@ const Root = () => {
     <BrowserRouter>
       <div>
         <Match exactly pattern="/" component={TeamPicker} />
-        <Match pattern="/store/:storeId" component={App} />
+        <Match pattern="/team/:teamId" component={App} />
         <Miss component={NotFound} />
       </div>
     </BrowserRouter>
@@ -45,7 +45,10 @@ render(<Root/>, document.querySelector('#main'));
 ```
 
 * We use `Match` to find patterns that match and when they do, send to that Component
-* We can set a dynamic URL in the pattern `/store/133434` would match the pattern
+* We added a `div` parent element inside `BrowserRouter` because we will get an error. Usually all rendered JSX needs one parent. You would think that BrowserRouter is one parent but it does not count as a parent in this particuluar case and you need to add a nested `div`
+* We can set a dynamic URL in the pattern `/team/133434` would match the pattern
+  - What the heck is `:teamId`?
+    + That is how we create a dynamic route
 * If the pattern doesn't match, we send them to our 404
     - We make the NotFound Component. I made it a stateless functional component
     - We use `Miss` and point it to our NotFound Component

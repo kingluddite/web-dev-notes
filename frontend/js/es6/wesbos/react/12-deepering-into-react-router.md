@@ -98,6 +98,13 @@ goToTeam(e) {
 }
 ```
 
+### No more warning!
+Once we add this line:
+
+``this.context.router.transitionTo(`/team/${teamId})``
+
+We finally get rid of of the `TeamPicker` Component not being used because now our router is using either App or TeamPicker depending on the URL
+
 ## View in browser
 Click button and the **URL** will change to Team Name in our text field and our **Router** will take that **URL** and route us from the `TeamPicker` Component to the `App` Component
 
