@@ -160,7 +160,7 @@ class Header extends React.Component {
       <header className="top">
         <h1>
           Team
-          <span className="ofThe">
+          <span className="of-the">
             <span className="of">of</span>
             <span className="the">the</span>
           </span>

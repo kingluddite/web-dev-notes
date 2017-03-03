@@ -97,7 +97,7 @@ goToTeam(e) {
 
 ## Can't Touch This... The DOM that is
 ### Grabbing the input text value
-We can't use jQuery with something like `const value = $('input').val();` but in React you want to avoid touching the DOM as much as possible becuase the way React works is we modify the data and we write our JSX and we are hands off with touching the DOM. We let React handle handling the DOM for us
+We can't use jQuery with something like `const value = $('input').val();` but in React you want to avoid touching the DOM as much as possible because the way React works is we modify the data and we write our JSX and we are hands off with touching the DOM. We let React handle handling the DOM for us
 
 ### So if we can't touch the DOM how do we get stuff from the DOM when we need it?
 Using a `ref`

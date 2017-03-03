@@ -34,7 +34,7 @@ Coming from HTML directly you may want to touch the HTML.
 In React, you edit the data and React will edit the HTML
 
 ### Huge idea behind `state`
-If you view a website made with React in the browser and you change the `state` inside one of it's component, that will change everyone that state is pulled from and React will update the HTML
+If you view a website made with React in the browser and you change the `state` inside one of it's component, that will change everywhere that state is pulled from and React will update the HTML
 
 The great thing is you have all these balls in the air but you don't have to id them, grab their contents and change them all. Just change the state and React handles the rest. It really is a great concept.
 
@@ -275,7 +275,7 @@ After we bind the `addPlayer()` method to our App Component and view in browser,
 
 We can call `addPlayer` directory and pass in a first and last name to test it out
 
-`$r.addPlayer({firstName: 'Diego', lastName: 'Maradona'`
+`$r.addPlayer({firstName: 'Diego', lastName: 'Maradona'})`
 
 Then switch back to the React tab and expand the `players` state and you will see that your player has been added to the state!
 
@@ -401,7 +401,7 @@ class AddPlayerForm extends React.Component {
   }
   render() {
     return (
-      <form ref={(input) => this.playerForm = input} className="players-edit" onSubmit={this.createPlayer}>
+      <form ref={(input) => this.playerForm = input} className="player-edit" onSubmit={this.createPlayer}>
       <input ref={(input) => this.firstName = input} type="text" placeholder="Player First Name" />
       <input ref={(input) => this.lastName = input} type="text" placeholder="Player Last name" />
       <select ref={(input) => this.status = input}>
