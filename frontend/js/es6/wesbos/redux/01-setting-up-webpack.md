@@ -89,7 +89,7 @@
 `$ npm install`
 
 ## Client
-Create the `client` folder and create an empty file named `reduxtagram.js` inside
+Create the `client` folder and create an empty file named `reduxstagram.js` inside
 
 ## .eslintrc
 ```
@@ -296,7 +296,7 @@ module.exports = {
 ```
 
 ## Webpack
-Take all our ES6 modules and bundle them all into one `bundle.js` file
+Take all our **ES6 modules** and bundle them all into one `bundle.js` file
 
 `$ npm start`
 

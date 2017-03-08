@@ -4,9 +4,8 @@
 
 ```
 import React from 'react';
-import { Link } from 'react-router';
 
-const PhotoGrid = React.createClass({
+class PhotoGrid extends React.Component {
   render() {
     return (
       <div className="photo-grid">
@@ -14,7 +13,7 @@ const PhotoGrid = React.createClass({
       </div>
     )
   }
-});
+}
 
 export default PhotoGrid;
 ```
@@ -23,33 +22,32 @@ export default PhotoGrid;
 
 ```
 import React from 'react';
-import { Link } from 'react-router';
 
-const Single = React.createClass({
+class Single extends React.Component {
   render() {
     return (
       <div className="single-photo">
-       Single
+        Single
       </div>
     )
   }
-});
+}
 
 export default Single;
 ```
 
 ## Routing
-We will always see `Main.js` (kind of like our parent component) 
+We will always see `Main.js` (_kind of like our parent Component_) 
 
-So the child (`PhotoGrid.js` or `Single.js`) will be handle by ReactRouter
+So the child (`PhotoGrid.js` or `Single.js`) will be handle by **React Router**
 
-Inside `Main.js` we would do this:
+`Main.js`
 
 ```
 import React from 'react';
 import { Link } from 'react-router';
 
-const Main = React.createClass({
+class Main extends React.Component {
   render() {
     return (
       <div>
@@ -60,27 +58,27 @@ const Main = React.createClass({
       </div>
     )
   }
-});
+}
 
 export default Main;
 ```
 
 **problem**
 
-If we had a single component `<Single this.props />` we could pass down props to the child component but we can't do that when we use `this.props.children`
+If we had a single Component `<Single this.props />` we could pass down `props` to the **child Component** but we can't do that when we use `this.props.children`
 
 **solution**
 
 `{React.cloneElement(this.props.children, this.props)}`
 
-* This will take any `props` that are coming down from the parent component and they'll pass the `props` down to our child components (in our case the Single or PhotoGrid components)
+* This will take any `props` that are coming down from the **parent Component** and they'll pass the `props` down to our **child Components** (_in our case the `Single` or `PhotoGrid` Components_)
 
 ## After saving Erro
 `Cannot read property 'props of undefined`
 
 * We get this because we have yet to pass our `React.cloneElement` any children
 
-**note** If we made the following change (and added children to Main, the error would be gone)
+**note** If we made the following change (_and added children to `Main`, the error would be gone_)
 
 `Main.js`
 
@@ -92,7 +90,7 @@ import { render } from 'react-dom';
 // import css
 import css from './styles/style.styl';
 
-// import components
+// import Components
 import Main from './components/Main';
 
 render(<Main><p>yo</p></Main>, document.getElementById('root'));

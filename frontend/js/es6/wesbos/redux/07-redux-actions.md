@@ -1,9 +1,10 @@
 # Redux Actions
-Actions and Action Creators
-
-* Fundamental concept behind React
+actions and actionCreators - **Fundamental concept behind React**
 
 ## What are actions in React?
+
+### Examples:
+
 * Someone clicks on a photo
 * Someone loads a page
 * Someone likes an image
@@ -12,27 +13,32 @@ Actions and Action Creators
 
 When any of the above happens in our app it dispatches an `action`
 
-That dispatched action has 2 things inside it
+That dispatched action has two things inside it:
 
 1. The type of action that happened
 2. A payload of information that is needed
-    * which comment was deleted? which photo should be added, what was the comment someone added, who was the author (any information about what specifically happened)
+    * Which comment was deleted?
+    * Which photo should be added?
+    * What was the comment someone added?
+    * Who was the author?
+
+**note** Any information about what specifically happened
 
 ## Redux tab
-Any time an action is fired this tab will show all information about that action
+Any time an action is fired the **Redux** tab in the Chrome dev tools will show all information about that action
 
-**time traveling** - You can comment on and off to see what was the state before and after the action
+**time traveling** - You can comment on and off to see what was the `state` before and after the `action`
 
 ## Reducers will do the opposite
-How do I handle the changes once they happen
+How do I handle the changes once they happen?
 
-## Let's learn about `action creators`
+## Let's learn about `actionCreators`
 Create a new folder called `actions`
 
 ### `actionCreators.js`
 Create `client/actions/actionCreators.js`
 
-**note** Sometimes developers create 1 actionCreator per file, but ours will be small and we'll just put them all in one file
+**note** Sometimes developers create one `actionCreator` per file, but ours will be small and _we'll just put them all in one file_
 
 `actionCreators.js`
 
@@ -44,7 +50,7 @@ Create `client/actions/actionCreators.js`
 // remove comment
 ```
 
-We also will have changing of the `route` but that will happen via Redux. That is why we use the React Router Redux, even when you change a page, that is something that happened in your app and we are storing them in our store
+We also will have changing of the `route` but that will happen via **Redux**. That is why we use the `React Router Redux combination`, even when you change a page, that is something that happened in your app and we are storing them in our `store`
 
 ## increment()
 ```
@@ -57,9 +63,12 @@ function increment(index) {
 }
 ```
 
-we pass the post as an argument and return an object because actions are just objects that have 2 things (the type and the index)
+We pass the `post` as an **argument** and **return an object** because `actions` are just objects that have two things:
 
-* We only use `index` because of ES6 instead of typing `index: index`
+1. The type
+2. The index
+
+* We only use `index` because of **ES6** instead of typing `index: index`
 
 ## addComment()
 
@@ -88,9 +97,9 @@ function removeComment(postId, i) {
 ```
 
 ## Why do we call them actionCreators?
-Inside the functions are the actions but the function is what creates the action and then we will dispatch it out into the air
+Inside the functions are the `actions` but the function is what creates the action and then we will **dispatch** it out into the air
 
-## export all our actionCreators
+## Export all our actionCreators
 So we can access them later on from different files
 
 ```
@@ -119,6 +128,10 @@ export function removeComment(postId, i) {
 ```
 
 ## Next...
-When these actionCreators get fired (the correct word is `dispatched`), we will soon wire it up to the UI, how are we going to handle that data? How are we going to add or remove that comment or increment the number of likes? How are we going to handle doing anything with our data to update our `store`?
+When these `actionCreators` get fired (_the correct word is `dispatched`_), we will soon wire it up to the **UI**
 
-Hint: We will do that with `Reducers`
+* How are we going to handle that **data**? 
+* How are we going to **add** or **remove** that `comment` or **increment** the number of **likes**? 
+* How are we going to handle doing anything with our **data** to update our `store`?
+
+**Hint:** We will do that with `Reducers`
