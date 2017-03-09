@@ -128,17 +128,17 @@ We just added a new prop called `details`. It is an object that holds all the de
 
 ```
 // bad
-<img src="{this.props.details.image}" alt="" />
+<img src="{this.props.details.imageURL}" alt="" />
 
 // good
-<img src={this.props.details.image} alt="" />
+<img src={this.props.details.imageURL} alt="" />
 ```
 
 ```
 render() {
     return (
         <li className="menu-player">
-          <img src={this.props.details.image} alt={this.props.details.firstName} />
+          <img src={this.props.details.imageURL} alt={this.props.details.firstName} />
         {this.props.details.firstName} {this.props.details.lastName}
         </li>
     )
@@ -169,7 +169,7 @@ render() {
     const { details } = this.props;
     return (
         <li className="menu-player">
-          <img src={details.image} alt={details.firstName} />
+          <img src={details.imageURL} alt={details.firstName} />
         {details.firstName} {details.lastName}
         </li>
     )
@@ -186,7 +186,7 @@ class Player extends React.Component {
     const { details } = this.props;
     return (
         <li className="menu-player">
-          <img src={details.image} alt={details.firstName} />
+          <img src={details.imageURL} alt={details.firstName} />
           <h3 className="fish-name">
             <span>{details.firstName}</span> <span>{details.lastName}</span>
             <span className="price">{formatPrice(details.fee)}</span>
