@@ -41,27 +41,6 @@ The great thing is you have all these balls in the air but you don't have to id 
 ## Adding the player form
 We will create a new Component called `src/components/AddPlayerForm.js`
 
-## Update Roster.js
-```
-import React from 'react';
-import AddPlayerForm from './AddPlayerForm';
-
-class Roster extends React.Component {
-  render() {
-    return (
-      <div>
-        <h2>Roster</h2>
-        <AddPlayerForm />
-      </div>
-    )
-  }
-}
-
-export default Roster;
-```
-
-## Create AddPlayerForm.js
-
 ```
 import React from 'react';
 
@@ -91,8 +70,49 @@ class AddPlayerForm extends React.Component {
 export default AddPlayerForm
 ```
 
-### Test form
-Update the code and see if you submit form does it `console.log()` **test**
+## Update Roster.js
+We **import** and **add** our new Component to `Roster.js`
+
+```
+import React from 'react';
+import AddPlayerForm from './AddPlayerForm';
+
+class Roster extends React.Component {
+  render() {
+    return (
+      <div>
+        <h2>Roster</h2>
+        <AddPlayerForm />
+      </div>
+    )
+  }
+}
+
+export default Roster;
+```
+
+### View in browser
+You should see the add player form in the Roster section
+
+### Add the event handler
+When the player is added we need to submit the form so we add an `onSubmit` event handler inside our opening `<form>` element
+
+* `onSubmit` works with both pressing the `enter` key or clicking the submit button
+* `this` works inside `render()`
+
+```
+import React from 'react';
+
+class AddPlayerForm extends React.Component {
+
+  render() {
+    return (
+      <form className="players-edit" onSubmit={this.createPlayer}>
+      // MORE CODE
+```
+
+## Add are createPlayer method
+Test app in browser and notice when we test for `this` inside our `createPlayer()` method, it returns `null`
 
 ```
 import React from 'react';
@@ -104,7 +124,7 @@ class AddPlayerForm extends React.Component {
   }
   createPlayer(e) {
     e.preventDefault();
-    console.log('test');
+    console.log(this);
   }
   render() {
     return (
@@ -112,14 +132,63 @@ class AddPlayerForm extends React.Component {
       // MORE CODE
 ```
 
-## How do you take all the text entered into the text fields, selects and text areas and put it into an object?
-We want to create a player object with all their properties inside that object
+## Binding `this` to our component
 
-### Update the createPlayer() method
+```
+import React from 'react';
+
+class AddPlayerForm extends React.Component {
+  constructor() {
+    super();
+    this.createPlayer = this.createPlayer.bind(this);
+  }
+  createPlayer(e) {
+    e.preventDefault();
+    console.log(this);
+  }
+  render() {
+    return (
+      <form className="players-edit" onSubmit={this.createPlayer}>
+      // MORE CODE
+```
+
+* Now when we check, we see that our AddPlayerForm appears in the console after we submit the form
+
+## How do you take all the text entered into the text fields, selects and text areas and put it into an object?
+We want to create a `player` object with all their properties inside that object
+
+* We have now way of accessing individual fields in our form yet. We didn't give them names or ids but with React the way we access them is with using `ref`
+
+### Adding `ref` to our form
+
+```
+render() {
+    return (
+      <form ref={(input) => this.playerForm = input} className="player-edit" onSubmit={this.createPlayer}>
+      <input ref={(input) => this.firstName = input} type="text" placeholder="Player First Name" />
+      <input ref={(input) => this.lastName = input} type="text" placeholder="Player Last name" />
+      <select ref={(input) => this.status = input}>
+        <option value="available">Available</option>
+        <option value="injured">Injured</option>
+        <option value="excused">Excused Absence</option>
+        <option value="unexcused">Unexcused Absence</option>
+      </select>
+      <input ref={(input) => this.position = input} type="text" placeholder="Player Position" />
+      <input ref={(input) => this.fee= input} type="text" placeholder="Player Fee" />
+      <input ref={(input) => this.number = input} type="text" placeholder="Player Jersey Number" />
+      <input ref={(input) => this.email = input} type="text" placeholder="Player Email" />
+      <textarea ref={(input) => this.comments = input} placeholder="Comments"></textarea>
+      <button type="submit">+ Add Player</button>
+      </form>
+
+    )
+  }
+```
+
+### Update the `createPlayer(`) method
 ```
 createPlayer(e) {
     e.preventDefault();
-    console.log('test');
     const player = {
       firstName: this.firstName.value,
       lastName: this.lastName.value,
@@ -134,19 +203,20 @@ createPlayer(e) {
   }
 ```
 
-Test it out. Enter some fake data and submit. You will see an object with all our data nicely inside
+### Test it out. 
+Enter some fake data and submit. You will see an object with all our data nicely inside
 
 ## How do we get our player object into our state?
-We will put our `state` on our `App` Component (the parent of all our other Components)
+We will put our `state` on our `App` Component (_the parent of all our other Components_)
 
-How do you use state on a React Component?
+## How do you use state on a React Component?
+**note** In older React apps it was called `getInitialState`
 
-### getInitialState
-React needs to know:
+### React needs to know:
 
-* What state you are going to have
-* What type of state it is going to be
-* What to expect
+* What state you are going to have?
+* What type of state it is going to be?
+* What to expect?
 
 When our App Component initializes we will tell App we will have a Players State and a Lineup state. We do that using a ES6 class constructor method
 
