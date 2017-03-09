@@ -10,7 +10,7 @@ The representation of all of the data in our application
 We have state with: 
 
 * How many players we have
-* How many orders we have
+* How many rosters we have
 
 ### `state` in jQuery
 You could save **data** in `attributes`. 
