@@ -7,7 +7,8 @@ Through `props`
 
 `<img src="cloud.jpg" alt="A Cloudy Day">`
 
-In HTML elements have attributes. Attributes are extra properties on that particular element. In React, `props` work the same way.
+### Kinda like HTML attributes, yo!
+In HTML elements have **attributes**. Attributes are extra properties on that particular element. In React, `props` work the same way.
 
 In React if you want to pass information to a tag, you pass it via a `prop`
 
@@ -109,7 +110,7 @@ Wrap the tagline in a `span`
 `this` will refer to the Component and `props` is an Object that we can use to gain access to all the `Props` available to it
 
 ## View in browser
-You will now see our h3 is populated by data we suplied to the `<Header>` component inside `App.js`. If you change the text for `tagline` in `App.js`, and save, the text will update with your change
+You will now see our `h3` is populated by data we suplied to the `<Header>` component inside `App.js`. If you change the text for `tagline` in `App.js`, and save, the text will update with your change
 
 ![props value showing](https://i.imgur.com/imso8Ty.png)
 

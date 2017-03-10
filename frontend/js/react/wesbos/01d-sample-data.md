@@ -3,6 +3,8 @@
 
 ## [format JSON](https://jsonformatter.curiousconcept.com/)
 
+`src/sample-player-data.js`
+
 ```js
 // This is just some sample data so you don't have to think of your own!
 const players = {

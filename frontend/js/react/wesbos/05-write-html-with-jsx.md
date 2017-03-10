@@ -16,7 +16,7 @@ class TeamPicker extends React.Component {
 ```
 
 ## Multiple lines
-We need to return but we will be using multiple lines. If we just have `return` it will never get to the next line and just return. We need to use parentheses like
+We need to return but we will be using multiple lines. If we just have `return` it will never get to the next line and just return. We need to use parentheses like this:
 
 ```
 return (
@@ -29,6 +29,8 @@ return (
 `ctrl` + `e`
 
 Writing JSX can be annoying as the usual Emmet `tab` doesn't work. You have to use the `ctrl` + `e` shortcut ([Wes Box video on this](http://wesbos.com/emmet-react-jsx-sublime/))
+
+**note** At the time of these notes I get an error when I run the Atom react package and language-babel. Atom cautions me with a blue window that the two packages conflict with each other. I still use them together because if I turn off language-babel, **emmet tab completion** doesn't work in JSX
 
 **tip** When writing template strings inside JSX with emmet use this syntax before you hit `ctrl` + `e`
 
@@ -60,9 +62,9 @@ Just a joke. React has lots of class but class is a `reserved` word in JavaScrip
 
 **JSX rule** In JSX you can only return one parent element
 
-* Workaround - Wrap a div parent container around both sibling elements
+* Workaround - Wrap a `div` parent container around both sibling elements
 
-What does this rule mean? Easy
+### What does this rule mean? Easy
 
 ```
 // this is good
@@ -88,7 +90,7 @@ class TeamPicker extends React.Component {
 }
 ```
 
-The second bad option above will generate a `Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag (8:6)`.
+The second bad option above will generate a `Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag (8:6)`
 
 **note** Note how cool our terminal output error is. It is very clear and way more user friendly in letting us know about the error than before
 

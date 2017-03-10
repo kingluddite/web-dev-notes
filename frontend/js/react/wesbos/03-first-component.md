@@ -25,13 +25,16 @@ These pop up to let you know stuff you should think about fixing in your JavaScr
 **note** [Create React App](https://github.com/facebookincubator/create-react-app) - comes with minimal eslint rules. We can eject out of that and use our own eslint rules if we want
 
 ## View the `Elements` tab of the inspector
-* A bundled script has been added. If you [view that in the browser](http://localhost:3000/static/js/bundle.js), all that code is React. If you comment out our React import all the React code will be removed. Try it and you still will see a ton of code. That is just Webpack code that is just for development and will be stripped out for production. If you add `alert('yo');` into `index.js` and check for it, you will see where it gets added
+* A bundled script has been added. If you [view that in the browser](http://localhost:3000/static/js/bundle.js), all that code is **React**
+* If you comment out our **React** import all the **React** code will be removed
+  - Try it and you still will see a ton of code. That is just `webpack` code that is just for development and will be stripped out for production
+  - If you add `alert('yo');` into `index.js` and check for it, you will see where it gets added
 
-Remove the `alert('yo');` and comment in our React import
+Remove the `alert('yo');` and comment in our **React** import
 
 **rule** - Components are always Capitalized and they can be used more than once
 
-**rule** - Every Component needs at least one method and that is the `render()` method. When a Component gets rendered to a page, it will ask that Component what HTML should I display
+**rule** - Every Component needs at least one method and that is the `render()` method. When a Component gets rendered to a page, it will ask that Component what HTML should I display?
 
 `index.js`
 
@@ -155,7 +158,7 @@ Nope
 To file that will be using it
 
 ##### Import React
-We need to import React. You will have to do this on top of every single Component. React is not like jquery where you load on page and it is available to all. With ES6 Modules, if you need something inside a `js` module you need to import it inside every single file that needs it 
+We need to import **React**. You will have to do this on top of every single Component. **React** is not like **jQuery** where you load on page and it is available to all. With ES6 Modules, if you need something inside a `js` module you need to import it inside every single file that needs it 
 
 ```
 import React from 'react'; // add this line
@@ -194,6 +197,6 @@ render(<TeamPicker/>, document.querySelector('#main'));
 **note** 
 
 * Path is important here. You need to point where the Component is relative to the file you are importing it into
-* If our import is just a string `TeamPicker`, Webpack thinks it is inside the `node_modules` directory. TeamPicker is not of `node_modules` it is a module that we created so with custom Components we need to supply a relative path
+* If our import is just a string `TeamPicker`, **webpack** thinks it is inside the `node_modules` directory. `TeamPicker` is not of `node_modules` it is a module that we created so with custom Components we need to supply a relative path
 * You do not to append the `.js` suffix. It is assumed
 

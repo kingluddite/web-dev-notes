@@ -55,7 +55,7 @@ export default Header;
 
 * We use the ES6
 * We pass the arrow function the `props`
-* **important** We change `{this.props.tagline}` to `{props.tagline}` because since we are not using a class we are no longer using `this`
+* **important** We change `{this.props.tagline}` to `{props.tagline}` because since we are not using a **class** we are no longer using `this`
 * **important** We remove the `render()` method
   - This means we no longer have access to `this` because it is no longer bound to the Component because we are now using a stateless functional Component
 
