@@ -218,7 +218,9 @@ We will put our `state` on our `App` Component (_the parent of all our other Com
 * What type of state it is going to be?
 * What to expect?
 
-When our App Component initializes we will tell App we will have a Players State and a Lineup state. We do that using a ES6 class constructor method
+When our `App` Component initializes we will tell `App` we will have a **players** `state` and a **lineup** `state`
+
+* We do that using a **ES6** class `constructor` method
 
 ## Constructor methods to state
 **note** You can not use the keyword `this` until you use `super()` and that is because the **React.Component** we are extending needs to be initialized
