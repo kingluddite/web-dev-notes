@@ -74,7 +74,7 @@ You will see:
 
 ![Preserve log](https://i.imgur.com/6i4Z0f4.png)
 
-## Why is console.log() flashing and leaving?
+## Why is `console.log()` flashing and leaving?
 Forms by default take the data you enter into them and then it will send that data to whatever the action of the form is (or it will just refresh the page if we didn't provide an action
 
 ### preventDefault()
@@ -126,14 +126,14 @@ render(
 So what the above code is doing is when the input is added to the page, it will have a reference added to it on the class itself
 
 ## Seeing is Believing
-So check out React tab. You will see that it takes a lot of clicking to get to our TeamPicker because now that we are using the Router Component, it has added a ton of nested Components
+So check out **React tab**. You will see that it takes a lot of clicking to get to our `TeamPicker` because now that we are using the `router` Component, it has added a ton of nested Components
 
 ![long path to TeamPicker](https://i.imgur.com/T07GSBa.png)
 
-Notice that when we select the input we see it has a `Ref` on it
+Notice that when we select the `input` we see it has a `Ref` on it
 
 ### Search is faster
-Instead of digging deep to find the TeamPicker Component you can just search for it inside the `Search by Component Name` text field (on React tab) and type `TeamPicker`
+Instead of digging deep to find the `TeamPicker` Component you can just search for it inside the `Search by Component Name` text field (on **React tab**) and type `TeamPicker`
 
 ## To Bind or not to bind
 We can use `this` inside `render()` but outside of `render()` this does not equal the Component
@@ -153,7 +153,7 @@ var TeamPicker = React.createClass({
 });
 ```
 
-But React now switched to using ES6 class and the binding of `this` has changed. Why?
+But **React** now switched to using ES6 class and the binding of `this` has changed. Why?
 
 Because ES6 classes do not implicitly bind all the methods to the class (Component)
 
@@ -246,9 +246,9 @@ export default TeamPicker;
 
 ### View in browser and you will see clicking the button returns the `input`
 
-If you change `console.log(this.teamInput )` to `console.log(this)` you will see the TeamPicker Component
+If you change `console.log(this.teamInput )` to `console.log(this)` you will see the `TeamPicker` Component
 
-## Binding with the Arrow function
+## Binding with the Arrow function (The ES6 way)
 Binding the ES6 way with a fat arrow
 
 Change this:

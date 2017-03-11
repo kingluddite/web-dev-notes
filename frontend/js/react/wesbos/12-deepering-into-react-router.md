@@ -12,25 +12,29 @@ Everything you want to do is done via a Component
 We won't use the `<Redirect>` Component. We will use the imperative API
 
 ### How do I access the router?
-Because `<BrowserRouter>` is the root Component of our App we can access it from any Component nested inside it
+Because `<BrowserRouter>` is the `root` Component of our App we can access it from any Component nested inside it
 
-Open TeamPicker in React tab and see if you can see the Router. You can't. How can we access the router. Through `context`
+Open `TeamPicker` in **React tab** and see if you can see the **router**. You can't. 
+
+#### How can we access the router? 
+Through `context`
 
 #### What is context?
-React has `props` and `state`. 99% of time you'll use `state` to hold your data or you will be using `props` to pass data from one Component (a parent) down to another Component (a child)
+**React** has `props` and `state`. 99% of time you'll use `state` to hold your data or you will be using `props` to pass data from one Component (a parent) down to another Component (a child)
 
 But there is also a third thing you will use called `context`
 
 Context allows you to declare something at the top level and it will be made available to anybody at a lower level.
 
 #### Context Sounds Awesome
-Why not put everything at the top level so every child can access everything. This would be against the React philosophy. They want you to not pollute the global scope and rather use tiny Components that are self contained
+Why not put everything at the top level so every child can access everything. This would be against the **React** philosophy. They want you to not pollute the global scope and rather use tiny Components that are self contained
 
 That being said there are exceptions to the rule. Some items need to be top level and passed down to every child Component and Routers are one of those exceptions
 
-React makes accessing `context` hard.
+**React** makes accessing `context` hard.
 
 ### Adding context to TeamPicker
+We just need to add this code to the bottom of `TeamPicker.js`
 
 ```
 TeamPicker.contextTypes = {
@@ -39,6 +43,8 @@ TeamPicker.contextTypes = {
 ```
 
 `src/components/TeamPicker.js`
+
+Here is what is should look like:
 
 ```
 import React from 'react';
@@ -77,13 +83,13 @@ export default TeamPicker;
 ```
 
 ### View in browser
-In React tab search for TeamPicker and you will see it now has a Context of `router`
+In **React tab** search for `TeamPicker` and you will see it now has a **Context** of `router`
 
 ![router context](https://i.imgur.com/Xu3rNMu.png)
 
-Inside the router you will see the `transitionTo()` method
+Inside the **router** you will see the `transitionTo()` method
 
-To access our router we can use `this.context.router` and to access the transitionTo() method inside router we can use `this.context.router.transitionTo()`. Then we just pass `transtionTo()` where we want to transition to, so we pass it the Team Name (since we captured it in the above line of code). That will change our URL to `/team/OUR Team Name`
+To access our **router** we can use `this.context.router` and to access the transitionTo() method inside **router** we can use `this.context.router.transitionTo()`. Then we just pass `transtionTo()` where we want to transition to, so we pass it the Team Name (since we captured it in the above line of code). That will change our URL to `/team/OUR Team Name`
 
 #### Update our `goToTeam()` method
 ```

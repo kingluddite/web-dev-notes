@@ -3,7 +3,7 @@
 ## What is state?
 The representation of all of the data in our application
 
-* Each Component can have its own state
+* Each Component can have its own `state`
 * Think of `state` as one object that holds the data of all of our application or a piece of our application
 
 ### `state` in team of the day app
@@ -15,26 +15,26 @@ We have state with:
 ### `state` in jQuery
 You could save **data** in `attributes`. 
 
-1. Save data in the DOM
+1. Save **data** in the **DOM**
 2. Then pull it out
 3. Then put it back in
 4. Rince and repeat
-5. And where the application is currently at is done entirely in the DOM
+5. And where the application is currently at is done entirely in the **DOM**
 
 ### React is different!
 
-In React you store all of your data in this master object called `state`. 
+In React you store all of your **data** in this master object called `state`. 
 
 * Whenever you want to change anything on the page
-  - You edit your state
-  - React will handle updating the DOM
+  - You edit your `state`
+  - **React** will handle updating the **DOM**
 
-Coming from HTML directly you may want to touch the HTML. 
+Coming from **HTML** directly you may want to touch the **HTML**. 
 
-In React, you edit the data and React will edit the HTML
+In **React**, you edit the **data** and **React** will edit the **HTML**
 
 ### Huge idea behind `state`
-If you view a website made with React in the browser and you change the `state` inside one of it's component, that will change everywhere that state is pulled from and React will update the HTML
+If you view a website made with **React** in the browser and you change the `state` inside one of it's Component, that will change everywhere that state is pulled from and **React** will update the HTML
 
 The great thing is you have all these balls in the air but you don't have to id them, grab their contents and change them all. Just change the state and React handles the rest. It really is a great concept.
 
@@ -92,7 +92,7 @@ export default Roster;
 ```
 
 ### View in browser
-You should see the add player form in the Roster section
+You should see the `AddPlayerForm` in the Roster section
 
 ### Add the event handler
 When the player is added we need to submit the form so we add an `onSubmit` event handler inside our opening `<form>` element
@@ -111,7 +111,7 @@ class AddPlayerForm extends React.Component {
       // MORE CODE
 ```
 
-## Add are createPlayer method
+## Add are `createPlayer()` method
 Test app in browser and notice when we test for `this` inside our `createPlayer()` method, it returns `null`
 
 ```
