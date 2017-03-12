@@ -8,11 +8,11 @@ const isAvailable = details.status === 'active';
 const buttonText = isAvailable ? 'Add To Lineup' : 'Out!';
 ```
 
-We check each of our players to find their status. We set variable isAvailable to true if our player has a status of "active"
+We check each of our players to find their **status**. We set variable `isAvailable` to **true** if our player has a status of **"active"**
 
 We create dynamic text on our button to either show `Add To Lineup` if player if `isAvailable` or `Out!` if they are not
 
-## Use react tab
+## Use React tab
 Change status of first player and watch the button update dynamically
 
 It has a CSS3 transition applied to it so it will animate
@@ -25,6 +25,7 @@ Update button with: `<button disabled={!isAvailable}>{buttonText}</button>`
 * This is the HTML5 disabled property that we set to `true` if player status is not `active`
 
 ## Where do we create a method to add to the Order Component?
+`App.js`
 
 ```
 import React from 'react';

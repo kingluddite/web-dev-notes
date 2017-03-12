@@ -25,7 +25,7 @@ export default Roster;
 Not in `Roster.js`. We need to include it where our `state` lives and that lives in our `App` Component
 
 ## Open App.js
-We need to import our `sample-players.js` file into App
+We need to import our `sample-players.js` file into `App`
 
 `import samplePlayers from '../sample-players';`
 
@@ -36,7 +36,7 @@ Inside our `loadSample()` method we need to bind this to our App Component
 constructor() {
     super();
     this.addPlayer = this.addPlayer.bind(this);
-    this.loadSample = this.loadSample.bind(this); // add this to bind `this`
+    this.loadSamples = this.loadSamples.bind(this); // add this to bind `this`
     this.state = {
       players: {},
       lineup: {}
@@ -44,19 +44,21 @@ constructor() {
   }
 ```
 
-### our `loadSample()` method
+### our `loadSamples()` method
 
 ```js
-loadSample() {
+loadSamples() {
     this.setState({
       players: samplePlayers
     });
   }
 ```
 
-## How do we get the `loadSample()` method to work on our `load sample players` button inside `Roster.js`
+## How do we get the `loadSamples()` method to work?
+How can we get it to work on our `load sample players` button inside `Roster.js`
 
-### Update render()
+### Update `render()` in `App.js`
+
 ```
 render() {
     return (
@@ -73,7 +75,10 @@ render() {
 
 We just need to give the `Roster` Component our `loadSamples()` method
 
-### Update Roster.js render()
+### Update`render()`
+
+`Roster.js`
+
 ```
 render() {
     return (
@@ -89,8 +94,8 @@ render() {
 We gain access to the `loadSamples()` method in our child Component using `props`
 
 ### View in browser
-1. Click Load Sample Players button
-2. View React Tab and search for App Component
+1. Click **Load Sample Players** button
+2. View **React Tab** and search for `App` Component
 3. View `state` and you'll see our 20 sample players have been added
 
 ![sample players added](https://i.imgur.com/0pk5zhh.png)

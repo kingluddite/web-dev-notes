@@ -1,5 +1,5 @@
 # Displaying State with JSX
-We need to update our App to hold our list of players
+We need to update our `App` to hold our **list of players**
 
 ## Update App render()
 ```
@@ -44,23 +44,27 @@ export default Player;
 * no `if` statements
 * no `loops`
 
+## Good-ole Regular JavaScript to the rescue!
 We just use regular JavaScript to loop through our state
 
 Normally you use `.map()` to loop over something in JavaScript but `.map()` is only for arrays and our `state` is an Object
 
 ### Use React tab
-To find App
-Switch to console and:
-`$r` -> Our App Object
+1. To find `App`
+2. Switch to **console** tab
+3. Type: `$r`
+
+That will give us our `App` object
 
 `$r.state` -> Gives us our `state` Object
 
 `$r.state.players` -> Empty Object
 
-Load Sample Players again and `$r.state.players` gives us our 20 sample players
+#### Load Sample Players Again!
+And `$r.state.players` gives us our 20 sample players
 
 ### Object.keys()
-If we `Object.keys($r.state.players)` - it will give us an array of all our player keys and that is something we can loop over with `.map()`
+If we `Object.keys($r.state.players)` - it will give us an array of all our **player keys** and that is something we can loop over with `.map()`
 
 ```
 render() {
@@ -83,19 +87,35 @@ render() {
 }
 ```
 
-Load sample players and you will see the player placeholder appear 20 times
+**Load sample players** and you will see the player placeholder appear 20 times
 
 ![load sample data and see placeholder player](https://i.imgur.com/j3O61Km.png)
 
 ## Error
 `Each child in an array or iterator should have a unique "key" prop`
 
-We need to use a unique key because if our Players do not have them, React won't know which to update
+We need to use a unique key because if our `Players` do not have them, **React** won't know which to update
+
+### Adding a unique key
+
+```
+<ul className="list-of-players">
+    {
+      Object
+      .keys(this.state.players)
+      .map(key => <Player key={key} />)
+    }
+</ul>
+```
 
 ![now with unique keys](https://i.imgur.com/GJ4dHGb.png)
 
-## Pass all data about Player instance to the Player
-Use `details` attribute
+Cool! We got rid of that pesky error!!
+
+### Getting the details
+Pass all data about the **player** instance to the `Player`
+
+* Use `details` attribute
 
 `src/components/App.js`
 
@@ -111,20 +131,20 @@ Update the `ul` to:
 </ul>
 ```
 
-Now we associated each of our players with their data
-
-We just added a new prop called `details`. It is an object that holds all the details for our players
+* Now we associated each of our players with their data
+* We just added a new prop called `details`
+* It is an object that holds all the details for our players
 
 ![Players with details](https://i.imgur.com/lSMJbmU.png)
 
 **note**
 
 * We first used `Object.keys()` because we need to use `.map()` and that only works with Arrays so we converted it to an array with `Object.keys()`
-* `.map()` is used a lot in React because it takes in something (each player in our players array) and it returns something else (a list of Player Components that have been set up with a unique key and their details)
+* `.map()` is used a lot in **React** because it takes in something (each player in our players array) and it returns something else (a list of Player Components that have been set up with a unique key and their details)
 
 ## Update the HTML inside `Player.js`
 
-**note** If you are setting the attribute value for JSX, you do not need to use double quotes
+**note** If you are setting the attribute value for JSX, **you should not use** double quotes `""`
 
 ```
 // bad
@@ -133,6 +153,8 @@ We just added a new prop called `details`. It is an object that holds all the de
 // good
 <img src={this.props.details.imageURL} alt="" />
 ```
+
+`Player.js`
 
 ```
 render() {

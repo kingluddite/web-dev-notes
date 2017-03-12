@@ -266,20 +266,20 @@ View in browser and search React tab for `App` and you will see
 
 ### When you want to update `state` there are a couple of things you need to do:
 
-You can directly update your state if you want to (_something like this.state.players.player1 = player_). But it is a best practice to first make a copy of your current state and then update your actual state. (This is done entirely for performance  )
+You can directly update your state if you want to (_something like this.state.players.player1 = player_). But it is a best practice to first make a copy of your current state and then update your actual state. (_This is done entirely for performance_)
 
 `const players = {...this.state.players};`
 
-* `this.state.players` is our existing state
-    - We are taking all the players in our existing state and putting them into a new one
-    - `...` is a spread but ES6 works with arrays not objects but here we are working with an object but what we are using here is not ES6 but something coming to the language real soon and this allows us to spread all our items in our object, into a completely new object (long way to say we are making a copy of our existing state)
+* `this.state.players` is our existing `state`
+    - We are taking all the players in our existing `state` and putting them into a new one
+    - `...` is a spread but ES6 works with arrays not objects but here we are working with an object but what we are using here is not ES6 but something coming to the language real soon and this allows us to spread all our items in our object, into a completely new object (_long way to say we are making a copy of our existing state_)
 
 ### Adding new players to our state
 When we add players we want to generate a unique key and we will use a timestamp to do this
 
 `Date.now()` - will give you a number like this: `1487660266016`
 
-React doesn't want to always watch your huge `state` object and then update it every time you make a change to it. It is your responsibility to tell React when you are updating state and what state you are updating
+**React** doesn't want to always watch your huge `state` object and then update it every time you make a change to it. It is your responsibility to tell **React** when you are updating state and what state you are updating
 
 `this.setState({ players: players })`
 
@@ -295,9 +295,6 @@ to this
 
 `this.setState({ players })`
 
-## View in browser
-You will not see our `addPlayer()` method yet and that is because we did not yet bind it to our `class/Component`
-
 ```
 import React from 'react';
 import Header from './Header';
@@ -308,7 +305,6 @@ class App extends React.Component {
 
   constructor() {
     super();
-    this.addPlayer = this.addPlayer.bind(this);
     // initial state (was known as 'getinitialstate' with React createClass)
     this.state = {
       players: {},
@@ -343,21 +339,44 @@ class App extends React.Component {
 export default App;
 ```
 
-After we bind the `addPlayer()` method to our App Component and view in browser, use React tab to find `App` Component. Select the App Component in the selector. Switch to the console tab and type `$r` and you will see the `addPlayer` method
+## View in browser
+You will not see our `addPlayer()` method yet and that is because we did not yet bind it to our `class/Component`
+
+```
+import React from 'react';
+import Header from './Header';
+import Lineup from './Lineup';
+import Roster from './Roster';
+
+class App extends React.Component {
+
+  constructor() {
+    super();
+    this.addPlayer = this.addPlayer.bind(this);
+    // initial state (was known as 'getinitialstate' with React createClass)
+    this.state = {
+      players: {},
+      lineup: {}
+    };
+  }
+// MORE CODE
+
+export default App;
+```
+
+### Use console tab and $r to see `addPlayer()` method on `App`
+After we bind the `addPlayer()` method to our `App` Component and view in browser, use **React tab** to find `App` Component. Select the `App` Component in the selector. Switch to the console tab and type `$r` and you will see the `addPlayer` method
 
 We can call `addPlayer` directory and pass in a first and last name to test it out
 
 `$r.addPlayer({firstName: 'Diego', lastName: 'Maradona'})`
 
-Then switch back to the React tab and expand the `players` state and you will see that your player has been added to the state!
+Then switch back to the **React tab** and expand the `players` state and you will see that your player has been added to the state!
 
 ![player added to state](https://i.imgur.com/TUn7Cec.png)
 
-## How do we `swim upstream` with the player to App.js?
-With Props
-
 ### What are Props?
-We have the `addPlayer` method in `App.js`. How am I going to call it from a child Component that is a couple of levels deep?
+We have the `addPlayer` method in `App.js`. How am I going to call it from a child Component that is a couple of levels deep? (_`AddPlayerForm`_)
 
 In `App.js` we pass the function down to that Component like this:
 
@@ -379,7 +398,7 @@ render() {
 
 `<Roster addPlayer={this.addPlayer} />` - This is how we pass our method down to our Component
 
-View React tab, search for `App`, expand and highlight the Roster Component and you will see that `addPlayer` method is bound
+View React tab, search for `App`, expand and highlight the `Roster` Component and you will see that `addPlayer` method is bound
 
 ![addPlayer bound](https://i.imgur.com/UhS26RX.png)
 
@@ -402,16 +421,19 @@ class Roster extends React.Component {
 export default Roster;
 ```
 
-`this.props.addPlayer` - The way that you pass things down whether it is data or reference to methods in child Components is through `props`
+`this.props.addPlayer` - The way that you pass **stuff** down whether it is data or reference to methods in child Components is through `props`
 
 ### View in browser
 In **React** tab search for `AddPlayerForm` and you will see that `addPlayer` is now available under `props`
 
 ![addPlayer under props in AddPlayerForm](https://i.imgur.com/B1TVBxM.png)
 
-### Lastly, call our parent method from the child Component like this:
 
-#### Update the createPlayer() method
+#### Update the `createPlayer()` method
+Lastly, call our parent method from the child Component like this:
+
+**note** We replace the `console.log(player)` with `this.props.addPlayer(player);`
+
 ```
 createPlayer(e) {
     e.preventDefault();
@@ -426,7 +448,7 @@ createPlayer(e) {
       email: this.email.value,
       comments: this.comments.value,
     }
-    this.props.addPlayer(player);
+    this.props.addPlayer(player); // ADD THIS LINE
   }
 ```
 
@@ -443,7 +465,9 @@ Now try the form again. Fill it in and when submitted the form fields clear
 
 We add this line: `this.playerForm.reset();`
 
-And modifiy this line: `<form ref={(input) => this.playerForm = input} className="players-edit" onSubmit={this.createPlayer}>`
+Make sure your form looks like: 
+
+`<form ref={(input) => this.playerForm = input} className="players-edit" onSubmit={this.createPlayer}>`
 
 Ending code for `AddPlayerForm.js`
 
