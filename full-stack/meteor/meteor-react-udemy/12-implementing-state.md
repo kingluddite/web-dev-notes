@@ -25,23 +25,23 @@ class App extends Component {
 ```
 
 * `constructor(props) {`
-    - the `contructor()` method is a special method in a JavaScript class
-    - whenever a `class` is instantiated (_in other words... whenever we make a copy of this class or make an object of this class or create an instance of this class_), the contructor() method is going to be automatically called
-    - in a react component, the constructor will be automatically called with the `props` object
-        + this `props` object is the exact same `props` that we passed down to the child components
-    - the `Component` class that we are extending from, which is implemented by React, has its own special implementation and configuration that it does inside of it's own constructor
-        + we call this parent `constructor()` by called `super(props)`
-            super(props) is really just administrative boilerplate, and it is something we always put into every react component whenver we call the constructor() method but it is not something that we have to worry about too much
+    - The `contructor()` method is a special method in a JavaScript class
+    - Whenever a `class` is instantiated (_in other words... whenever we make a copy of this class or make an object of this class or create an instance of this class_), the `contructor()` method is going to be automatically called
+    - In a **React** component, the constructor will be automatically called with the `props` object
+        + This `props` object is the exact same `props` that we passed down to the child components
+    - The `Component` class that we are extending from, which is implemented by **React**, has its own special implementation and configuration that it does inside of it's own constructor
+        + We call this parent `constructor()` by called `super(props)`
+            `super(props)` is really just administrative boilerplate, and it is something we always put into every react component whenver we call the `constructor()` method but it is not something that we have to worry about too much
 * `this.state = { images: [] };`
     - The purpose of this line it to initialize our `state` Object
-    - Our `state` object is something that belongs to every React Component that we create and we intialize it by saying `this.state = { some-object: [] };`
+    - Our `state` object is something that belongs to every **React** Component that we create and we intialize it by saying `this.state = { some-object: [] };`
     - Our state object can have multiple properties to it
         + In our example we only have one property that we are calling `images`
         + We always default our state properties to some reasonable value
-            * In our example we expect that the response from our server (the API) is going to be an array of images and so we are initializing `this.state.images` to be an empty array `[]` (which is a similar type)
-            * By default the array will start off as empty but when our request gets resolved, it is actually going to have some data inside of it
+            * In our example we expect that the response from our server (_the API_) is going to be an array of images and so we are initializing `this.state.images` to be an empty array `[]` (_which is a similar type_)
+            * By default the array will start off as empty but when our **request** gets resolved, it is actually going to have some data inside of it
         + We only ever make reference to our state by saying `this.state` and then the property we want to reference
-            * If we ever want to change our state, that is going to be a little more interesting case
+            * If we ever want to change our `state`, that is going to be a little more interesting case
 
 ## Making use of state inside or our application now!
 **note** We have kept `this.render()` inside our componentWillMount()
@@ -66,10 +66,10 @@ render() {
 ```
 
 #### View in browser
-You see we get two seperate console.log's of the array. I get the first one and then a half second later we get the second one. this means that whenever our component hits the render method we are console.logging `this.state.images` and by default it is empty
+You see we get two seperate `console.log()`'s of the array. I get the first one and then a half second later we get the second one. this means that whenever our component hits the render method we are `console.log()` `this.state.images` and by default it is empty
 
 ### Update our state object
-With a list of images that comes back from our API
+With a list of images that comes back from our **API**
 
 ```
 componentWillMount() {
@@ -81,15 +81,15 @@ componentWillMount() {
 * When we saw our return images from imgur, we saw in the console that the images we were interested in were inside the `data.data` property
 * Yes it is weirdly named but we are just getting a list of images that is inside the response object
 * `this.setState()`
-    - this is the only way that we change our state over time
+    - This is the only way that we change our `state` over time
     - NEVER DO THIS-
         + this.state.images = [ {}, {} ];
-        + we never, ever, ever, ever modify our state property directly with an equals sign
-            * The only time we ever do an operation like this is when we intialize our state in the constructor
-                - and that is the ONE SINGLE TIME we say `this.state = {something: something };`
-            * The reason behind this is so that React can update our state in an intelligent fashion, and it can only do that by passing this change to our state object to the `setState()` method
-                - Internally, React is going to take this object `{images: response.data.data }` (this update) and wait to see if we make any other updates, if we ever call `setState()` again, if we do, that it will make all of those updates at the same exact time (this is done for performance concerns)
-                - save the file and check it out in the browser
+        + We never, ever, ever, ever modify our `state` property directly with an equals sign
+            * The only time we ever do an operation like this is when we initialize our `state` in the **constructor**
+                - And that is the ONE SINGLE TIME we say `this.state = {something: something };`
+            * The reason behind this is so that **React** can update our `state` in an intelligent fashion, and it can only do that by passing this change to our state object to the `setState()` method
+                - Internally, **React** is going to take this object `{images: response.data.data }` (**this update**) and wait to see if we make any other updates, if we ever call `setState()` again, if we do, that it will make all of those updates at the same exact time (_this is done for performance concerns_)
+                - Save the file and check it out in the browser
 
 ### View in browser
 You will first see an empty array `[]`

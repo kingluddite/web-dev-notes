@@ -3,7 +3,7 @@ We just refactored our `App` functional component into a class based Component
 
 **why we did this** - so our `App` component could be able to go out and fetch it's own data
 
-We currently our making our ajax request completely outside of our React application
+We currently our making our **Ajax** request completely outside of our **React** application
 
 `main.js`
 
@@ -18,11 +18,11 @@ Meteor.startup(() => {
 ```
 
 ## Improving our Ajax placement
-We need a really good place to stick our Ajax request inside our class component
+We need a really good place to stick our **Ajax** request inside our class component
 
 ### Lifecyle
 #### componentWillMount()
-This is a method that if we decide to define it, it will automatically be called by React whenever this component is about to be rendered to the DOM
+This is a method that if we decide to define it, it will automatically be called by **React** whenever this component is about to be rendered to the **DOM**
 
 `main.js`
 
@@ -84,11 +84,11 @@ Meteor.startup(() => {
 * Now we can pass our reponse into our `ImageList` as a prop
 
 #### One Problem
-When we make the Ajax request it could take 200, 500 milliseconds... to a whole second. No one knows because it is an asynchrounous request
+When we make the **Ajax** request it could take 200, 500 milliseconds... to a whole second. No one knows because it is an asynchrounous request
 
-So React will first call our `App'` component's `componentWillMount()` method and then the next micro second it will call the `render()` method and push some stuff to the DOM
+So React will first call our `App'` component's `componentWillMount()` method and then the next micro second it will call the `render()` method and push some stuff to the **DOM**
 
-So we need to use componentWillMount() to make our request and then we wait but not before our DOM reloads with the render() UI update. We need to somehow find a way to make the `App` component re-render and pass this newly fetched list of images down into `ImageList`
+So we need to use `componentWillMount()` to make our request and then we wait but not before our DOM reloads with the `render()` UI update. We need to somehow find a way to make the `App` component re-render and pass this newly fetched list of images down into `ImageList`
 
 ```
 render() {
@@ -100,6 +100,7 @@ render() {
   }
 ```
 
+## Next Challenge
 That is still a big challenge that we have to solve and we'll do exactly that in the next section
 
 

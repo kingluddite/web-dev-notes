@@ -15,7 +15,7 @@ So we need a bit of a construct here. A methodology where we can tell a componen
 Up to this point we've only been using `functions` as components. The other type of component we have access to in React is a `class based component`
 
 ## Class based components
-ES6 (aka ES2015 - whatever terminology you like to go with) class
+ES6 (_aka ES2015 - whatever terminology you like to go with_) class
 
 ### Time to refactor our functional component to a class based component
 
@@ -45,11 +45,11 @@ class App extends Component {
 }
 ```
 
-The `render()` method is a special method in a React Component. In all our existing components they were functions, they were executed, they returned some JSX and that JSX was put on the screen
+The `render()` method is a special method in a React Component. In all our existing components they were functions, they were executed, they returned some **JSX** and that **JSX** was put on the screen
 
-With a class based component we instead define a render() method. The render() method is executed whenever this component needs to be rendered to the screen
+With a class based component we instead define a `render()` method. The `render()` method is executed whenever this component needs to be rendered to the screen
 
-So in our case when we try to render `App` to the screen with ReactDOM.render()
+So in our case when we try to render `App` to the screen with `ReactDOM.render()`
 
 `ReactDOM.render(<App />, document.querySelector('.container'));`
 
@@ -70,21 +70,21 @@ class App extends Component {
 ### View in browser
 We get an error: `ReferenceError: Component is not defined`
 
-Why the error?
+#### Why the error?
 
 Look at this line:
 
 `class App extends Component {`
 
-Component is a base class for our component. It is a component that already has already completed functionality. And this is set up by react. So when our `App` **extends** `Component`, we are sub-classing (as much as JavaScript can do sub-classing), we are borrowing functionality from `Component`
+Component is a base class for our component. It is a component that already has already completed functionality. And this is set up by **React**. So when our `App` **extends** `Component`, we are sub-classing (as much as JavaScript can do sub-classing (_it really doesn't sub-class but just extends with prototypal inheritence_), we are borrowing functionality from `Component`
 
 So we just need to make sure that this `Component` is defined
 
-* To define this Component we import it as a separate object off of the React library at the top of our App code
+* To define this Component we import it as a separate object off of the **React** library at the top of our `App` code
 
 `import React, { Component } from 'react';`
 
-This means - find the React library and pull off the property `Component` from the React library
+This means - find the **React** library and pull off the property `Component` from the **React** library
 
 That then gives us access to the `Component` object right here:
 
@@ -95,6 +95,6 @@ Which allows us to **extend** `App`
 **note** Even though we use the term **class** in JavaScript there really is no such thing as `classes`. It really is syntactic sugar over prototypal inheritence which is what JavaScript uses
 
 ### View in browser
-It should work just as it did before but now we are using a class based Component which will give us the ability to say when `App` is about to be rendered to the screen, then go ahead and fetch our data, then go ahead and make our Ajax request
+It should work just as it did before but now we are using a class based Component which will give us the ability to say when `App` is about to be rendered to the screen, then go ahead and fetch our data, then go ahead and make our **Ajax** request
 
 
