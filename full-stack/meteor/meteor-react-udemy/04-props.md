@@ -2,11 +2,11 @@
 
 ![Props illustration](https://i.imgur.com/gaVgBsj.png)
 
-In React passing some amount of data from a parent component to a child component is referred to as `Props` (short for properties)
+In **React** passing some amount of data from a parent component to a child Component is referred to as `Props` (_short for properties_)
 
 This is what we did:
 
-`<ImageDetail image={image}/>`
+`<ImageDetail image={image} />`
 
 Inside this:
 
@@ -16,8 +16,8 @@ const RenderedImages = IMAGES.map(function(image) {
   });
 ```
 
-* I am passing the `image` object as a `prop` (aka property) to ImageDetail. This prop is called `image`
-* This is one-dimensional communication. We are passing information down into ImageDetail
+* I am passing the `image` object as a `prop` (_aka property_) to `ImageDetail`. This prop is called `image`
+* This is one-dimensional communication. We are passing information down into` ImageDetail`
     - The second part of this is we have to somehow receive this data inside the `ImageDetail` component inside the `ImageDetail.js` file
 
 `ImageDetail.js`
@@ -27,9 +27,9 @@ const RenderedImages = IMAGES.map(function(image) {
 `const ImageDetail = (props) => {`
 
 * Now if I make reference to `props.image` inside the function, that is the image object
-    - which means I can now make the following references
-        + props.image.title
-        + props.image.link
+    - Which means I can now make the following references
+        + `props.image.title`
+        + `props.image.link`
 
 ```
 import React from 'react';
@@ -121,7 +121,7 @@ We will have the same output as before in the browser
 * You can pass many props
 
 ### View in browser
-you will see an image list and a title. It is not styled nicely
+You will see an image list and a title. It is not styled nicely
 
 ```
 import React from 'react';

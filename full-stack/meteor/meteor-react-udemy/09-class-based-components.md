@@ -1,16 +1,16 @@
 # Class based components
 
-**note** If [you see an error](https://i.imgur.com/V9hOVOm.png) when you stop and restart meteor, just copy and paste `meteor npm install --save meteor-node-stubs` and hit enter. If you don't see it, no worries and continue on down the road to learning react and meteor
+**note** If [you see an error](https://i.imgur.com/V9hOVOm.png) when you stop and restart **Meteor**, just copy and paste `meteor npm install --save meteor-node-stubs` and hit enter. If you don't see it, no worries and continue on down the road to learning react and meteor
 
 ## Where should we put our axios request?
-Right now we are doing it inside our `Meteor.startup()` method and in a Meteor App that is a good place for it. But in a React app we don't want to make the request outside of the application
+Right now we are doing it inside our `Meteor.startup()` method and in a **Meteor** App that is a good place for it. But in a **React** app we don't want to make the request outside of the application
 
-Whenever we are working with data inside of React we always want a React Component to be able to source it's own data (aka - we want a component to be able to go and fetch it's own data)
+Whenever we are working with data inside of **React** we always want a **React** Component to be able to source it's own data (_aka - we want a component to be able to go and fetch it's own data_)
 
 ### Let's analyze our components right now
-All our components are simple functions. So they run one time. They get executed. They return some JSX. And that's it. That's all they do. There is no ability to tell a component to go and fetch some data and when it's done fetching that data, go ahead and rerender itself. Or take the data and render something new to the screen
+All our components are simple functions. So they run one time. They get executed. They return some **JSX**. And that's it. That's all they do. There is no ability to tell a component to go and fetch some data and when it's done fetching that data, go ahead and rerender itself. Or take the data and render something new to the screen
 
-So we need a bit of a construct here. A methedology where we can tell a component when you are about to be rendered please go and make a request. To do that we are going to introduce a new class of components
+So we need a bit of a construct here. A methodology where we can tell a component when you are about to be rendered please go and make a request. To do that we are going to introduce a new class of components
 
 Up to this point we've only been using `functions` as components. The other type of component we have access to in React is a `class based component`
 

@@ -6,7 +6,8 @@
 ## Make it look prettier
 Import twitter bootstrap library
 
-stop meteor `ctrl` + `c`
+### How to stop meteor from running 
+`ctrl` + `c`
 
 ### Use meteor package manager
 `$ meteor add twbs:bootstrap@3.3.6`

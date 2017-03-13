@@ -31,8 +31,8 @@ export default ImageList;
 ```
 
 ## Forming a tree
-* main is showing ImageList
-    - ImageList is showing ImageDetail
+* `main` is showing `ImageList`
+    - `ImageList` is showing ImageDetail
 * React app nested components look like trees
 
 ## Getting Dummy data
@@ -63,7 +63,7 @@ const ImageList = () => {
 export default ImageList;
 ```
 
-## Map through each of our ImageDetails
+## Map through each of our `ImageDetails`
 
 ```
 import React from 'react';
@@ -85,8 +85,8 @@ const ImageList = () => {
 export default ImageList;
 ```
 
-* We use UPPERCASE to designate a constant where the data never changes
-* We use older JavaScript code to simplify what is happening with `.map()` but will soon refactor it to use the ES6 fat arrow
+* We use UPPERCASE to designate a **constant** where the data never changes
+* We use older JavaScript code to simplify what is happening with `.map()` but will soon refactor it to use the ES6 arrow function
 
 ```
 import React from 'react';
@@ -122,6 +122,7 @@ Image Detail
 Image Detail
 ```
 
+## Houston, we have an error!
 And we get an error about unique "keys"
 
 [how a .map() works](https://i.imgur.com/XqOwxb2.png)
@@ -136,16 +137,16 @@ function(image) {
 ```
 
 * That function will be run one time for each element in the array
-* Whatever gets returned from this function will get put into a brand new array (which is what gets returned from the map call)
-* We end up with an array of ImageDetail components
+* Whatever gets returned from this function will get put into a brand new array (_which is what gets returned from the map call_)
+* We end up with an array of `ImageDetail` components
 
 ### {} in JSX
-Whenever we want to make a reference to a JavaScript variable inside of JSX we do so by placing curly braces around the variable `{RenderedImages}`
+Whenever we want to make a reference to a JavaScript variable inside of **JSX** we do so by placing curly braces around the variable `{RenderedImages}`
 
 ### One needed task completed!
-We figured out how to create one ImageDetail for each Image in our app. We have three images and we have three ImageDetail components
+We figured out how to create one **ImageDetail** for each Image in our app. We have three images and we have three **ImageDetail** components
 
 ### Next problem
-How can we get image detail information down into our nested ImageDetail component (the image title and the image itself)
+How can we get image detail information down into our nested **ImageDetail** component (_the image title and the image itself_)
 
 
