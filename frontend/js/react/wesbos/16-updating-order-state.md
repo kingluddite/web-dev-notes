@@ -56,7 +56,7 @@ Update button with:
 
 * This is the **HTML5** disabled property that we set to `true` if player status is not `active`
 
-## Where do we create a method to add to the Order Component?
+## Where do we create a method to add to the Lineup Component?
 `App.js`
 
 ```
@@ -162,7 +162,7 @@ We add a click event to our button `<button disabled={!isAvailable} onClick={thi
 ### How do you pass an argument to `addToLineup`?
 We don't want the `addToLineup` to fire on page load but when they click the button
 
-`<button disabled={!isAvailable} onClick={() =>this.props.addToLineup('player-1')}>{buttonText}</button>`
+`<button disabled={!isAvailable} onClick={() =>this.props.addToLineup('player01')}>{buttonText}</button>`
 
 Now if you view in browser > `React` tab > Search for App > Look at lineup state > click `Add to Lineup` and you will see it increases every time
 
@@ -173,7 +173,7 @@ We don't want to hardcode `player-1`, `player-2`...
 No. Not right now
 
 * If you need to access the `key` attribute, you need to explicitly pass it down
-* They make it hard because the `key` is not for us, but if we do need it, we have to pass it down ourselves
+* **React** make it hard because the `key` is not for us, but if we do need it, we have to pass it down ourselves
 * To get around this we create another attribute called `index` that will pass the same `key` value. Something like this:
 
 ```
@@ -201,7 +201,7 @@ View `Player` in React tab and you will now see index
 <button disabled={!isAvailable} onClick={() => this.props.addToLineup(this.props.index)}>{buttonText}</button>
 ```
 
-Now view in `browser` > `Load sample players` > `Click` add to lineup > Search for App and you will see when you expand `state` that you added that specific player you added
+Now view in `browser` > `Load sample players` > `Click` add to lineup > Search for App and you will see when you expand `lineup` that you added that specific player you added
 
 ![player index added](https://i.imgur.com/HEdPhfi.png)
 
@@ -237,56 +237,3 @@ render() {
     )
 ```
 
-### Update AddPlayerForm Component
-Add all fields
-
-```
-import React from 'react';
-
-class AddPlayerForm extends React.Component {
-  constructor() {
-    super();
-    this.createPlayer = this.createPlayer.bind(this);
-  }
-  createPlayer(e) {
-    e.preventDefault();
-    const player = {
-      firstName: this.firstName.value,
-      lastName: this.lastName.value,
-      status: this.status.value,
-      fieldPosition: this.fieldPosition.value,
-      fee: this.fee.value,
-      jerseyNumber: this.jerseyNumber.value,
-      email: this.email.value,
-      comments: this.comments.value,
-      imageURL: this.imageURL.value
-    }
-    this.props.addPlayer(player);
-    this.playerForm.reset();
-  }
-  render() {
-    return (
-      <form ref={(input) => this.playerForm = input} className="player-edit" onSubmit={this.createPlayer}>
-      <input ref={(input) => this.firstName = input} type="text" placeholder="Player First Name" />
-      <input ref={(input) => this.lastName = input} type="text" placeholder="Player Last name" />
-      <select ref={(input) => this.status = input}>
-        <option value="active">Active</option>
-        <option value="injured">Injured</option>
-        <option value="excused">Excused Absence</option>
-        <option value="unexcused">Unexcused Absence</option>
-      </select>
-      <input ref={(input) => this.fieldPosition = input} type="text" placeholder="Field Position" />
-      <input ref={(input) => this.fee= input} type="text" placeholder="Player Fee" />
-      <input ref={(input) => this.jerseyNumber = input} type="text" placeholder="Jersey Number" />
-      <input ref={(input) => this.email = input} type="text" placeholder="Email" />
-      <input ref={(input) => this.imageURL = input} type="text" placeholder="Player Photo URL" />
-      <textarea ref={(input) => this.comments = input} placeholder="Comments"></textarea>
-      <button type="submit">+ Add Player</button>
-      </form>
-
-    )
-  }
-}
-
-export default AddPlayerForm;
-```

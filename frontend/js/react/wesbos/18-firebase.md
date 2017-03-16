@@ -1,5 +1,5 @@
 # Persisting our `State` with Firebase
-Firebase is product from Google that uses HTML5 websockets which means you can sync all of your data from your application up to Firebase and vice-versa when someone changes it in Firebase, it changes it on your react app
+Firebase is product from Google that uses HTML5 websockets which means you can sync all of your data from your application up to Firebase and vice-versa when someone changes it in Firebase, it changes it on your React app
 
 ## What Firebase does for us
 * Gives us a backend database
@@ -9,7 +9,7 @@ Firebase is product from Google that uses HTML5 websockets which means you can s
 ## What is [Firebase](https://firebase.google.com/)?
 Think of it at one really big object. That fits nicely with React because `State` is one really big object.
 
-We can sync our `State` with Firebase and when any of our State changes they all will automatically sync with Firebase
+We can sync our `state` with Firebase and when any of our `state` changes they all will automatically sync with Firebase
 
 ### You could have multiple browsers open
 Change one item and they all change in all browsers at the same time

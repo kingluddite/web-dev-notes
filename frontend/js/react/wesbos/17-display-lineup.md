@@ -4,11 +4,10 @@ Update our UI
 * Show Starting Lineup
 * Remove Players from lineup
 * Show total fees of player
-* Only allow 11 players
 
 `App.js`
 
-* We need all the **players** and our **lineup**
+* We need all the **players** and our entire **lineup** in state
     - Why not pass the entire `state`?
         + Not a good practice. Use what you need from `state` when you need it
 
@@ -33,7 +32,8 @@ class Lineup extends React.Component {
 export default Lineup;
 ```
 
-* The **lineup** got passed down to this component and we use `this.props.lineup` to access it. We use `Object.keys()` to make an array of all of our keys
+* The **lineup** got passed down to this component and we use `this.props.lineup` to access it. 
+* We use `Object.keys()` to make an array of all of our keys
 
 Now if you view in browser, **load Sample players** and add some players to lineup you will see
 
@@ -133,7 +133,7 @@ return (
   )
 ```
 
-* We added `{lineupsIds.map(this.renderLineup)}`
+* We added `{lineupIds.map(this.renderLineup)}`
 
 We normally would code a map like this `{lineupIds.map(key => <li>{key}</li>)}`
 and this would work fine but we have a lot more HTML to add. 
