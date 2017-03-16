@@ -3,26 +3,58 @@
 ## Get Add to Lineup to work
 Our button need to be dynamic. It needs to say `Add to Lineup`, `Injured`, `Out`
 
+`Player.js`
+
 ```
 const isAvailable = details.status === 'active';
-const buttonText = isAvailable ? 'Add To Lineup' : 'Out!';
 ```
 
 We check each of our players to find their **status**. We set variable `isAvailable` to **true** if our player has a status of **"active"**
+
+`Player.js`
+
+`const buttonText = isAvailable ? 'Add To Lineup' : 'Out!';`
 
 We create dynamic text on our button to either show `Add To Lineup` if player if `isAvailable` or `Out!` if they are not
 
 ## Use React tab
 Change status of first player and watch the button update dynamically
 
-It has a CSS3 transition applied to it so it will animate
+It has a **CSS3 transition** applied to it so it will animate
+
+`_button.scss`
+
+```
+button,input[type=submit] {
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid #000;
+  font-weight: 600;
+  font-size: 1.5rem;
+  font-family: 'Open Sans';
+  transition: all 0.2s;
+  position: relative;
+  z-index: 2;
+}
+
+button[disabled],input[type=submit][disabled] {
+  color: #d12028;
+  background: #fff;
+  border-color: #d12028;
+  transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
+}
+```
 
 ### Disable button if not available
 If player isn't active we need to disable their button
 
-Update button with: `<button disabled={!isAvailable}>{buttonText}</button>`
+`Player.js`
 
-* This is the HTML5 disabled property that we set to `true` if player status is not `active`
+Update button with: 
+
+`<button disabled={!isAvailable}>{buttonText}</button>`
+
+* This is the **HTML5** disabled property that we set to `true` if player status is not `active`
 
 ## Where do we create a method to add to the Order Component?
 `App.js`
@@ -107,7 +139,7 @@ export default App;
 
 ## View in browser
 Load sample players
-React tab > look for Player > And you will see that `addToLineup()` method is bound to it
+**React** tab > `look for Player` > And you will see that `addToLineup()` method is bound to it
 
 ## Update `Player.js`
 
@@ -137,8 +169,12 @@ Now if you view in browser > `React` tab > Search for App > Look at lineup state
 ## Passing a dynamic argument
 We don't want to hardcode `player-1`, `player-2`...
 
-Can we access the Player instance key inside a Component? No. Not right now.
-If you need to access the `key` attribute, you need to explicitly pass it down. They make it hard because the `key` is not for us, but if we do need it, we have to pass it down ourselves. To get around this we create another attribute called `index` that will pass the same `key` value. Something like this:
+### Can we access the Player instance key inside a Component? 
+No. Not right now
+
+* If you need to access the `key` attribute, you need to explicitly pass it down
+* They make it hard because the `key` is not for us, but if we do need it, we have to pass it down ourselves
+* To get around this we create another attribute called `index` that will pass the same `key` value. Something like this:
 
 ```
 <ul className="list-of-players">
@@ -165,7 +201,7 @@ View `Player` in React tab and you will now see index
 <button disabled={!isAvailable} onClick={() => this.props.addToLineup(this.props.index)}>{buttonText}</button>
 ```
 
-Now view in browser > Load sample players > Click add to lineup > Search for App and you will see when you expand `state` that you added that specific player you added
+Now view in `browser` > `Load sample players` > `Click` add to lineup > Search for App and you will see when you expand `state` that you added that specific player you added
 
 ![player index added](https://i.imgur.com/HEdPhfi.png)
 
@@ -200,15 +236,6 @@ render() {
         </li>
     )
 ```
-
-### Add just 1 player to lineup
-Currently, we can click and we will add a player once and then more than once and the number will increase by one every time we click the button. We just want it to say `1` and never go higher
-
-In `App.js` change this: `lineup[key] = lineup[key] + 1 || 1;`
-
-To this: ``lineup[key] = 1;``
-
-Now we need to update our UI to display our `Lineup`
 
 ### Update AddPlayerForm Component
 Add all fields

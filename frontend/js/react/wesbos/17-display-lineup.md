@@ -1,14 +1,14 @@
 # Display our Lineup
 Update our UI
 
-* Show Starting Linup
+* Show Starting Lineup
 * Remove Players from lineup
 * Show total fees of player
 * Only allow 11 players
 
 `App.js`
 
-* we need all the players in our **lineup** and the **lineup**
+* We need all the **players** and our **lineup**
     - Why not pass the entire `state`?
         + Not a good practice. Use what you need from `state` when you need it
 
@@ -35,7 +35,7 @@ export default Lineup;
 
 * The **lineup** got passed down to this component and we use `this.props.lineup` to access it. We use `Object.keys()` to make an array of all of our keys
 
-Now if you view in browser, load Sample players and add some players to lineup you will see
+Now if you view in browser, **load Sample players** and add some players to lineup you will see
 
 ![lineup without style](https://i.imgur.com/bCV8p9g.png)
 
@@ -59,8 +59,8 @@ Loop over an array and add up a whole bunch of stuff or return a new something (
 
 * The `0` at the end is where we want to start at
 * We get the specific player with `this.props.players[key]`
-* We count the number of times a player was added to the Lineup. Currently, we can add multiple of the same player but we only want to add one player once (You can't have the same player playing twice on the starting lineup)
-* `const isAvailable = player && player.status === 'active';` - We first check to make sure this is a fish (_this is a real time app where things can change at any given moment_) and then we also check to make sure the player **status** is "active"
+* We count the number of times a player was added to the Lineup.
+* `const isAvailable = player && player.status === 'active';` - We first check to make sure this is a player (_this is a real time app where things can change at any given moment_) and then we also check to make sure the player **status** is "active"
 
 ## Format properly
 As we add the fees up, the format is wacky. How can we fix this?
@@ -113,7 +113,7 @@ return (
     )
 ```
 
-## Render function
+## Adding another Render function
 Sometimes you won't want to make a separate Component
 
 You can have multiple `render()` functions inside your Component. They need different names.
@@ -136,9 +136,15 @@ return (
 * We added `{lineupsIds.map(this.renderLineup)}`
 
 We normally would code a map like this `{lineupIds.map(key => <li>{key}</li>)}`
-and this would work fine but we have a lot more HTML to add. What can we do to keep our JSX managable?
+and this would work fine but we have a lot more HTML to add. 
 
-We can shell it off to a render function with `{lineupIds.map(this.renderLineup)}` and that will call a different render method inside our component. We can place it above our existing render method and give it the name `renderLineup()`
+### What can we do to keep our JSX manageable?
+We can shell it off to a render function with 
+
+`{lineupIds.map(this.renderLineup)}` 
+
+* And that will call a different render method inside our component
+* We can place it above our existing render method and give it the name `renderLineup()`
 
 ```
 renderLineup(key) {

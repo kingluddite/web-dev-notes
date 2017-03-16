@@ -76,17 +76,21 @@ import base from '../base'; // add this line
 ```
 
 #### Is is safe to put our API key on the client?
-No. And that is where the authentication rules on Firebase will come in handy to make our App safer
+No. 
 
-**note** your numbers will be different
+And that is where the authentication rules on Firebase will come in handy to make our App safer
+
+**note** Your numbers will be different
 
 ## [React Component Lifecycle](https://facebook.github.io/react/docs/react-component.html)
 Gives us a bunch of entry points into a Component
 
-When a Component is being mounted (aka being rendered onto the page) there is different entry points of where it (the Component) can hook into and do various things (like an AJAX request or check for any number of items or in our case we will connect to `rebase`)
+When a Component is being mounted (_aka being rendered onto the page_) there is different entry points of where it (_the Component_) can hook into and do various things (_like an **AJAX** request or check for any number of items or in our case we will connect to `rebase`_)
 
 ### [componentWillMount()](https://facebook.github.io/react/docs/react-component.html#componentwillmount)
-Is invoked immediately before mounting occurs. It is called before `render()`, therefore setting state in this method will not trigger a re-rendering. Avoid introducing any side-effects or subscriptions in this method. This is the only lifecycle hook called on server rendering. Generally, we recommend using the `constructor()` instead.
+* Is invoked immediately before mounting occurs
+* It is called before `render()`, therefore setting `state` in this method will not trigger a re-rendering
+* Avoid introducing any side-effects or subscriptions in this method. This is the only lifecycle hook called on server rendering. Generally, we recommend using the `constructor()` instead.
 
 `componentWillMount()` will help us sync our Component `state` with our Firebase `state`
 
@@ -104,24 +108,27 @@ componentWillMount() {
 ![screenshot of firebase database](https://i.imgur.com/eNYwv40.png)
 
 * Top level is entire database - we don't want to sync our entire database, we just want to sync our one team
-    - So the path would be like /name of our Firebase db project/name of our team/players (example: `base.syncState(`panicky-lazy-fungi/players`)
+    - So the path would be like: `/name of our Firebase db project/name of our team/players` (_example: ``base.syncState(`panicky-lazy-fungi/players``_)
         + But that is static and we need to create this name dynamically
-            * How can we grab this name dynamically? Via `props`
+            * How can we grab this name dynamically? 
+                - Via `props`
 
 ### View React tab
 Search for `App` and you'll see a bunch of `Props` listed. One is `params` (_We never did anything to populate params but React Router did this for us because it knew we may need the `teamId` value_)
 
 ![params - teamId](https://i.imgur.com/olrwnTb.png)
 
-**note** We defined `teamId` in `index.js` in this line of code: `<Match pattern="/team/:teamId" component={App} />`
+**note** We defined `teamId` in `index.js` in this line of code: 
+
+`<Match pattern="/team/:teamId" component={App} />`
 
 ### Access the players
-So to access that value we use `this.props.params.teamId` and to we will be syncing the `players` of that team so our code becomes **base.syncState(`${this.props.params.teamId}/players`**
+So to access that value we use `this.props.params.teamId` and we will be syncing the `players` of that team so our code becomes **base.syncState(`${this.props.params.teamId}/players`**
 
 ![Firebase players](https://i.imgur.com/OnEtozH.png)
 
 ### Pass in Object
-has `context` of **this** and the `state` which will be `players`
+Has `context` of **this** and the `state` which will be `players`
 
 And when that is all done, our full code will be:
 
@@ -134,13 +141,17 @@ componentWillMount() {
 }
 ```
 
-**note** We also have a `lineup` **state** but we only want to do this for `players` **state**
+**note** 
+
+* We also have a `lineup` **state**
+* But we only want to do this for `players` **state**
 
 ## Problem
 What happens if we switch from one `team` to another `team`?
 
 ### `componentWillUnmount()`
-We need to stop syncing as soon as we go to another team and we do this with `componentWillUnmount()`. If we don't we will build up a gazillion listeners behind the scenes and our app will grind to a halt or get super slow
+* We need to stop syncing as soon as we go to another team and we do this with `componentWillUnmount()`
+* If we don't we will build up a gazillion listeners behind the scenes and our app will grind to a halt or get super slow
 
 ```js
 componentWillUnmount() {
