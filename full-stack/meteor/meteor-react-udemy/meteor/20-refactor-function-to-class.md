@@ -9,12 +9,17 @@
       </button>
 ```
 
-* We are not recreating our subscription. We are simply updating it. We won't delete data we already loaded, we will just add a new set of data on top of the old data, for each button click (This is an important distinction)
+* We are not recreating our `subscription`. We are simply updating it
+* We won't delete data we already loaded
+    - We will just add a new set of data on top of the old data, for each button click (_This is an important distinction_)
 
-How can we increment `40` everytime the user clicks the `load more` button?
+How can we increment `40` every time the user clicks the `load more` button?
 
 ## We need to refactor
-Currently, we have a functional Component. With functional Components you need to know you can render it as many times as you want. There is no `state` that persists with a functional component. Some `props` come in. Some JSX goes out. But we don't get to hold onto variables like 'Hey here is the current number of employees that are fetched'.
+* Currently, we have a functional Component
+* With **functional Components** you need to know you can render it as many times as you want
+* There is no `state` that persists with a **functional Component**
+* Some `props` come in. Some **JSX** goes out. But we don't get to hold onto variables like '_Hey here is the current number of employees that are fetched_'.
 
 If we need data to persist in a component, between renders, when the component is created, we will need to refactor to a class based component
 
@@ -57,9 +62,10 @@ Here is our class based component:
 
 **rule** All class components must have a `render()` method and that `render()` method must return some amount of JSX
 
+## Functional Components vs Class-based Components
 **gotcha** - Watch out for this!
-* In a functional component our `props` object is an argument to the function
-* In a class based component `props` are assigned to the component's `this.props` property
+* In a **functional component** our `props` object is an argument to the function
+* In a **class based component** `props` are assigned to the component's `this.props` property
 
 **note** the `this.props` is one of the things that occurs in the `Components` constructor
 
@@ -87,7 +93,7 @@ class EmployeeList extends Component {
 };
 ```
 
-* We don't need the `contructor()` so we can remove this code:
+* We don't need the `constructor()` so we can remove this code:
 
 ```
   constructor(props) {
@@ -95,6 +101,6 @@ class EmployeeList extends Component {
   }
 ```
 
-We could use component based `state` to keep track of our intial `20` record count and then every click we increment it by `20`
+We could use component based `state` to keep track of our initial `20` record count and then every click we increment it by `20`
 
 

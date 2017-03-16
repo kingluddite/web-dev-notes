@@ -109,7 +109,7 @@ export default App;
 Load sample players
 React tab > look for Player > And you will see that `addToLineup()` method is bound to it
 
-## Update Player.js
+## Update `Player.js`
 
 ```
 return (

@@ -9,8 +9,8 @@ Whenever we are communicating from the parent Component to the child Component w
 
 Look at `employee={employee}`
 
-* `{employee}` - is from our `.map()`
-* `employee=` - this the property that is going to show up on our `props` object inside of the `EmployeeDetail` Component
+* `{employee}` - Is from our `.map()`
+* `employee=` - This the property that is going to show up on our `props` object inside of the `EmployeeDetail` Component
 
 ```
 import React from 'react';
@@ -61,6 +61,8 @@ export default EmployeeDetail;
 
 Another way
 
+* Notice we pass the employee object `{employee}` instead of props
+
 ```
 import React from 'react';
 
@@ -88,6 +90,6 @@ export default EmployeeDetail;
 You will see it is not very pretty but we are getting there
 
 ### Next Up!
-Making EmployeeDetail even prettier with styling
+Making `EmployeeDetail` even prettier with styling
 
 

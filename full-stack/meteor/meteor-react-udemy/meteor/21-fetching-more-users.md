@@ -1,18 +1,15 @@
 # Fetching More Users
 Why are we not going to use component level state here?
 
-we have a subscription wired up inside our container
-then we go and fetch all the records inside our Employees collection
-So whenever we get more employees, that is what is causing our component to rerender
-so inside of our component itself we are not going to use component level state here because we used component level state only to cause our component to re-render
+* We have a subscription wired up inside our container
+* Then we go and fetch all the records inside our `Employees` collection
+* So whenever we get more employees, that is what is causing our component to rerender
+* So inside of our component itself we are not going to use component level state here because we used component level state only to cause our component to re-render
+* But in this case I don't care if my component is not going to re-render when the user clicks on the button, should not cause the component to re-render. I only want my component to re-render when my subscription updates
+* Every time the user clicks on the button we increment by 20 
+* We need much more logic than just update by 40
 
-But in this case I don't care if my component is not going to re-render when the user clicks on the button, should not cause the component to re-render. I only want my component to re-render when my subscription updates
-
-every time the user clicks on the button we increment by 20 
-
-We need much more logic than just update by 40
-
-So we will pull our subscribe call out to a clickEvent handler on the class
+So we will pull our `subscribe()` call out to a **clickEvent** handler on the class
 
 ```
 <button onClick={this.handleButtonClick.bind(this)}
@@ -21,7 +18,8 @@ So we will pull our subscribe call out to a clickEvent handler on the class
           </button>
 ```
 
-* Because this is a `callback` I need to bind the contect of `this`
+* Because this is a `callback` I need to bind the context of `this`
+    - I could also define this inside the `constructor`
 
 ```
 import React, { Component } from 'react';
@@ -89,7 +87,7 @@ handleButtonClick() {
   }
 ```
 
-* We use (this.page + 1) because we are already starting with 20 and so when we click the button the first time, we want to load 40 and (this.page + 1) allows us to do that (if we didn't do this, we would see 20 records on app load but after clicking button 1 time, we still would only see 20 records but if we click again then we would see the 40 records)
+* We use (_this.page + 1_) because we are already starting with 20 and so when we click the button the first time, we want to load 40 and (this.page + 1) allows us to do that (_if we didn't do this, we would see 20 records on app load but after clicking button 1 time, we still would only see 20 records but if we click again then we would see the 40 records_)
 
 ```
 import React, { Component } from 'react';

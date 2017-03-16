@@ -4,26 +4,26 @@
 
 Left is where we are and the right image is where we want to be
 
-* We want each EmployeeDetail to be the same with
+* We want each `EmployeeDetail` to be the same with
 * We want them to tile to
-* We could use Bootstrap classes
-    - But Flexbox might prove more useful
+* We could use **Bootstrap** classes
+    - But **Flexbox** might prove more useful
 
 ## What is Flexbox
 * A new CSS construct
 * Allows us to do responsive layouts in the browser much more easy
 
 ## How do we use Flexbox
-* We will turn a single element into a Flexbox container
+* We will turn a single element into a **Flexbox container**
     - This means it will more intelligently place elements inside of it
-    - We need to add CSS when working with Flexbox
+    - We need to add CSS when working with **Flexbox**
         + Where do we put our CSS file?
 
 Create `client/style/style.css`
 
 `style.css`
 
-* We will use `.employee-list` because it contains all of our other employee details and this is the element we will turn into a Flexbox element
+* We will use `.employee-list` because it contains all of our other employee details and this is the element we will turn into a **Flexbox** element
     - We are choosing this because it contains our list of items and we can style it nicely and wrap the list nicely inside of our browser window
 
 ```css
@@ -32,12 +32,12 @@ Create `client/style/style.css`
 }
 ```
 
-* Above is what turns our `.employee-list` into a flexbox container
+* Above is what turns our `.employee-list` into a Flexbox container
 
-View it in the browser and see what Flexbox did to our layout.
-We don't need to refresh or include the style.css as Meteor takes care of that for us
+View it in the browser and see what **Flexbox** did to our layout.
+We don't need to refresh or include the `style.css` as **Meteor** takes care of that for us
 
-By default Flexbox takes all containing elements and puts them all on a single line
+By default **Flexbox** takes all containing elements and puts them all on a single line
 
 ## Next Improvement
 Stop our images from being one long infinite row
@@ -49,10 +49,10 @@ Stop our images from being one long infinite row
 }
 ```
 
-Now they wrap.
+Yay! Now they wrap!
 
 ## Next Improvement
-Make the space inbetween cards more consistent
+Make the space in-between cards more consistent
 
 ```css
 .employee-list {

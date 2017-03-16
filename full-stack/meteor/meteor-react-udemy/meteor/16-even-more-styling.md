@@ -7,7 +7,7 @@
 Once bootstrap is installed, our page instantaneously looks better. We look best in mobile because we are styling with mobile first and would have to add additinal responsive code for other devices
 
 ## Fix our bugs
-We need to address the unique key error again. Remember how MongoDB added that `_id`? Well, that is a super unique key that we can use as our key!
+We need to address the unique key error again. Remember how **MongoDB** added that `_id`? Well, that is a super unique key that we can use as our key!
 
 `EmployeeList.js`
 
@@ -29,4 +29,4 @@ const EmployeeList = (props) => {
 ```
 
 ### Next Challenge
-We will add Flexbox to make our EmployeeDetails more flexible
+We will add **Flexbox** to make our `EmployeeDetails` more flexible

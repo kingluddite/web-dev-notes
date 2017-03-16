@@ -1,7 +1,7 @@
 # Updating Subscriptions
 To increase the number of records we load, we will update our **subscription**
 
-Where is our `subscription`?
+## Where is our `subscription`?
 At the bottom of `EmployeeList.js`
 
 ```
@@ -29,7 +29,7 @@ export default createContainer(() => {
 ```
 
 ## We get an error
-PER_PAGE is not defined
+**PER_PAGE** is not defined
 
 * We need to define this CONSTANT somewhere in our file
 
@@ -48,7 +48,8 @@ const PER_PAGE = 20;
 * Now, when a user first loads our app, they are going to get 20 records per page
 * Test this out by changing `PER_PAGE = 20` to `PER_PAGE = 1`
 
-Nothing changes and that is because we need to make sure we pass this value to our publication
+## Nothing changes? Why?
+Because we need to make sure we pass this value to our publication
 
 That `PER_PAGE` argument will be passed to this function inside `server/main.js`
 
@@ -68,7 +69,7 @@ Meteor.publish('employees', function(per_page) {
 
 Now, if you change `PER_PAGE = 20` to `PER_PAGE = 1`, you'll only see one record
 
-* Put the default PER_PAGE value to 20
+* Put the default `PER_PAGE` value to 20
 
 When clicked, show us 40 records
 
