@@ -1,6 +1,8 @@
 # Learning Meteor
 
-## Mockoup
+[github repo](https://github.com/StephenGrider/MeteorCasts)
+
+## Mockup
 We will [build this](https://i.imgur.com/xZkOIvo.png) in Meteor
 
 * Not pulling from 3rd Party API
