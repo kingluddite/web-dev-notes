@@ -30,7 +30,7 @@ We need to import our `sample-players.js` file into `App`
 `import samplePlayers from '../sample-players';`
 
 ### Bind `this`
-Inside our `loadSample()` method we need to bind this to our App Component
+Inside our `loadSamples()` method we need to bind this to our App Component
 
 ```js
 constructor() {

@@ -11,7 +11,7 @@ Update our UI
     - Why not pass the entire `state`?
         + Not a good practice. Use what you need from `state` when you need it
 
-`<Lineup players={this.state.player} lineup={this.state.lineup} />`
+`<Lineup players={this.state.players} lineup={this.state.lineup} />`
 
 ## Lineup.js
 ```

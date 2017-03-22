@@ -1,4 +1,4 @@
-# Updating Order State
+# Updating Lineup State
 
 ## Get Add to Lineup to work
 Our button need to be dynamic. It needs to say `Add to Lineup`, `Injured`, `Out`
@@ -235,5 +235,6 @@ render() {
           <button disabled={!isAvailable} onClick={() => this.props.addToLineup(index)}>{buttonText}</button>
         </li>
     )
+}
 ```
 
