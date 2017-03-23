@@ -41,7 +41,7 @@ As a take on this concept we'll create a page that shows famous soccer players. 
     - This plugin provides an easy to use interface for creating and administrating custom post types and taxonomies in WordPress. This plugin is for WordPress 3.0 and higher.
     - This plugin alone will not display post types or taxonomy data in customized places within your site; it registers them for you to use.
     - Customise WordPress with powerful, professional and intuitive fields
-
+* [Advanced Custom Fields](https://wordpress.org/plugins/advanced-custom-fields/)
 **Note**: You will need both of these plugins to create and use custom post types
 
 #### Add a custom post type
@@ -60,7 +60,7 @@ Pay attention to how you name the custom post type because the database stores c
 
 In one lecture I accidentilly gave the post type the name `portfolios` and all the following code broke.
 Why?
-Because instead of referring to `porfolfios` it reffered to the singler `portfolio`.
+Because instead of referring to `portfolios` it reffered to the singler `portfolio`.
 
 The fix would be to go into the `wp_posts` table and rename the `post_type` value from `portfolios` to `portfolio`.
 
