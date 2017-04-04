@@ -406,7 +406,7 @@ $ npm install
 | `ctrl` + `g`      | Go to line|
 | `cmd` + `shift` + `p`  |  Find Packages |
 | `cmd` + `ctrl` + up/down arrows  | Move Line Up/Down  |
-| `ctrl` + `w` | wrap |
+| `ctrl` + `shift` + `w` | wrap highlighted |
 | `cmd` + `j` | join line you are currently on with line below it|
 | `ctrl` + `shift` + `d` | duplicate line |
 | `ctrl` + `shift` + `p` | open command Palette |
