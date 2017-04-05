@@ -10,3 +10,12 @@
 | Refresh page | `cmd-r` |   |  | Refreshes page |
 | Toggle Console | `esc` |   |  | Toggles Console |
 | Navigate tabs | `cmd-[` or `cmd-]` |   |  | Move across left or right tabs |
+
+Focus on Address Bar `cmd` + `L`
+Then `cmd` + `f` to open search and search for `j`
+then hit `esc` key to bring focus back to page
+Add Vimium chrome extension to navigate browser page with `h`, `j`, `k`, `l` just like you can in VIM
+
+Scroll horizontally
+Hold `shift` while using mouse scroll key!
+
