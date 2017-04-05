@@ -10,9 +10,9 @@ No. We are going to use a React 3rd Party Library called `React Sparklines`
 
 [react-sparklines documentation](https://github.com/borisyankov/react-sparklines)
 
-There are animated Sparklines and static Sparkline charts. We'll create a static Sparkline chart
+There are animated `Sparklines` and static `Sparkline` charts. We'll create a static `Sparkline` chart
 
-Using Sparklines is super easy
+* Using Sparklines is super easy
 
 ### Sample Sparkline
 ```
@@ -33,7 +33,7 @@ We use a `Sparklines` Component instance and pass it some data (_which is just a
 </Sparklines>
 ```
 
-Adding Charts to our page using Sparklines is simple but adding data inside our charts will be a bit more challenging
+Adding `Charts` to our page using `Sparklines` is simple but adding data inside our charts will be a bit more challenging
 
 * The data we pass `Sparklines` should just be an array of numbers. It doesn't know how to handle it if we pass it an object. So we need to figure out how to pass it just a plain array of flat numbers
 
@@ -46,14 +46,18 @@ Adding Charts to our page using Sparklines is simple but adding data inside our 
         + los angeles
         + dallas
 
-We use `weather.map()` to produce one row for each city
+We use `weather.map()` to produce one row for each **city**
 
-We need to produce an array of numbers for the temperature, humidity and pressure
+We need to produce an array of numbers for the
+
+* temperature
+* humidity
+* pressure
 
 ![zooming in on diagram](https://i.imgur.com/umIEdTS.png)
 
-* These numbers are nested inside **list** (which is an array)
-    - Inside list is **main** (which is an object) that contains temperature, humidity and pressure
+* These numbers are nested inside **list** (_which is an array_)
+    - Inside list is **main** (_which is an object_) that contains **temperature**, **humidity** and **pressure**
 
 ### Our task
 We need to take all these different temperatures that are inside the **list** and get them all out as a simple, flat array (for temperature, humidity and pressure)
