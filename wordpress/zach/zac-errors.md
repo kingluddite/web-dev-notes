@@ -20,6 +20,11 @@ Webpack Errata
 
 * Should say Getting Started with webpack
 
+[nginx misspelled](https://i.imgur.com/mqKwzk3.png) @1:03 http deeper look
+
+Should be 2XX not 2XXX (@4:17 of HTTP deeper look)
+![HTTP - Status line slide errata](https://i.imgur.com/lBqYmco.png)
+
 
 
 
