@@ -5,7 +5,7 @@
 * JSX comment `{/* */}`
 
 ## Exercise
-Add a new variable with a string value of `Account Settings` and find a way to dynamically add it inside your JSX as a H1 element nested inside the parent `DIV` element
+Add a new variable with a string value of `Account Settings` and find a way to dynamically add it inside your JSX as a `H1` element nested inside the parent `DIV` element
 
 `client/main.js`
 

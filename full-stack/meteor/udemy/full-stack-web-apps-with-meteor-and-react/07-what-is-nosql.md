@@ -1,6 +1,6 @@
 # What is NoSQL?
 
-![nosql vs mysql diagram](https://i.imgur.com/qBbSFys.png)
+![NoSQL vs MySQL diagram](https://i.imgur.com/qBbSFys.png)
 
 MySQL, PostgreSQL and MongoDB - all are databases, they still request a database server to be started up, you have to connect to it to issue commands to Create, Read, Update or Delete (_CRUD_)
 

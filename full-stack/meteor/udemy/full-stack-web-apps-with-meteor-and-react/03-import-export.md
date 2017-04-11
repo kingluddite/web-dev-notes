@@ -1,12 +1,13 @@
 # Importing and Exporting
-We won't use eager loading at all in our Apps
+We won't use `eager loading` at all in our Apps
 
 ## We will use lazy loading
 Uses the ES6 `import` keyword to explicitly load in specific files
 
 ![import export visualization diagram](https://i.imgur.com/tj3L8Q7.png)
 
-Delete `imports/app.js` as we don't need it anymore. We just used it to show how `eager loading` works
+* Delete `imports/app.js` as we don't need it anymore
+* We just used it to show how `eager loading` works
 
 ## utils.js
 Create `/imports/utils.js`
@@ -30,11 +31,13 @@ console.log('Log from /server/main.js');
 ```
 
 ## View in browser
-You will see our import is working (and we're using lazying loading and not eager loading) because our terminal is showing the log statement `Log`
+You will see our import is working (_and we're using lazying loading and not eager loading_) because our Terminal is showing the log statement `Log`
 
 ![server log statement from utils](https://i.imgur.com/8i0kJe1.png)
 
-We don't see log in client console... not yet. Let's change that now with:
+We don't see log in `client` console... at least not yet
+
+Let's change that now with:
 
 `client/main.js`
 
@@ -74,7 +77,7 @@ console.log('Log from /server/main.js');
 console.log(greetUser());
 ```
 
-We comment the old relative path because now we are defining a variable `greetUser` and then we can call the function we imported
+We comment the old `relative path` because now we are defining a variable `greetUser` and then we can call the function we imported
 
 ![hello user prints to screen](https://i.imgur.com/Ks5UcRZ.png)
 
@@ -88,7 +91,7 @@ console.log('Log from /client/main.js');
 console.log(greetUser());
 ```
 
-And here is our console
+And here is our `console`
 
 ![console greet user](https://i.imgur.com/R5RiZve.png)
 
@@ -128,14 +131,16 @@ Create a function inside `imports/math.js` that will take two numbers as argumen
 * When importing we grab files by specifying the relative path
 
 ### How is is possible to import a default function AND specify a name when it is not named in the exporting file?
-You can name default exports whatever you want in the import statement. There's only one export default allowed per exporting file so it doesn't matter if the name matches.
+* You can name `default` exports whatever you want in the import statement
+* There's only one export `default` allowed per exporting file so it doesn't matter if the name matches
 
 ### default export
-Second type of export. Before we were using `named exports`. `greetUser()` and `name` were both `named exports`
+Second type of export
 
-We reference them by name anytime we want to use their functionality
+Before we were using `named exports`. `greetUser()` and `name` were both `named exports`
 
-We can also export one default value per file
+* We reference them by **name** anytime we want to use their functionality
+* We can also export one default value per file
 
 `imports/utils.js`
 
@@ -151,7 +156,7 @@ export let name = 'PEH2';
 export default 'Default value'; // add this line
 ```
 
-Now to import the default we need to place our variable name before our `{}` curly braces. We can use any "legitimate" JavaScript variable name we want
+Now to import the `default` we need to place our variable name before our `{}` curly braces. We can use any "legitimate" JavaScript variable name we want
 
 `client/main.js`
 
@@ -180,7 +185,7 @@ let myDefault = 'Some default value';
 export default myDefault;
 ```
 
-Exercise
-Modify `math.js` use a default export instead of a named export which is a function that adds those two numbers together. Remember to change how you load in the default value in `server/main.js`
-
-After trying it out remember to check the Terminal because the output will be coming from the server
+## Exercise
+* Modify `math.js` use a default export instead of a named export which is a function that adds those two numbers together
+* Remember to change how you load in the default value in `server/main.js`
+* After trying it out remember to check the Terminal because the output will be coming from the server

@@ -1,0 +1,235 @@
+# Arrow Functions
+Alternative way to define a function in JavaScript
+
+## Convert to ES6 Arrow function
+```js
+const square = function(x) {
+    return x * x;
+  }
+
+console.log(square(10));
+```
+
+* Functions can be anonymous and we can store it inside a variable
+* We can also use named functions, and they will give us the same result
+    - Arrow function **do not** support the named function syntax
+    - All Arrow functions are anonymous functions
+
+```js
+function square(x) {
+    return x * x;
+};
+```
+
+And Convert
+
+```js
+const square = (x) => {
+    return x * x;
+}
+```
+
+* Once you do the conversion, Meteor will take a little longer to re-run because now it is converting the ES6 code to older code behind the scenes
+
+And Refactor
+
+```js
+const square = x => x * x ;
+```
+
+## Why use Arrow functions?
+* They support a simplified syntax
+* The expression syntax implicitly uses the `return` keyword behind the scenes which means we do not have to explicitly provide it (in the above example `x * x` is automatically returned)
+
+`server/main.js`
+
+```
+import { Meteor } from 'meteor/meteor';
+import { Players } from './../imports/api/players';
+
+Meteor.startup(function() {
+  const user = {
+    name: 'Billy',
+    sayHi: function() {
+      console.log(this.name);
+    }
+  };
+
+  user.sayHi();
+});
+```
+
+Will output `Billy` on the server Terminal
+
+## The first difference between regular functions and arrow functions
+Arrow functions do not bind `this` keyword
+
+### Convert to arrow function
+```
+const user = {
+    name: 'Billy',
+    sayHi: () => {
+      console.log(this.name);
+    }
+  };
+
+user.sayHi();
+```
+
+`undefined` will be returned because we do not have access to `this` because Arrow functions do not bind the `this` keyword
+
+### Arrow function also don't bind the `arguments` array
+```
+const user = {
+    name: 'Billy',
+    sayHi: () => {
+      console.log(arguments);
+    }
+  };
+
+user.sayHi(1, 2);
+```
+
+Will return and empty object but if you used a regular function like this:
+
+```
+const user = {
+    name: 'Billy',
+    sayHi: function(a, b) {
+      console.log(arguments);
+    }
+  };
+
+user.sayHi(1, 2);
+```
+
+It would return `{ '0': 1, '1': 2 }`
+
+This means ES6 Arrow functions will be a poor use case for methods you define on an object
+
+## Object Definition Syntax
+But there is a shortcut inside ES6 and it is known as the Object definition syntax
+
+We turn this:
+
+```
+const user = {
+    name: 'Billy',
+    sayHi: function() {
+      console.log(arguments);
+    }
+};
+```
+
+Into this:
+
+```
+const user = {
+    name: 'Billy',
+    sayHi () {
+      console.log(arguments);
+    }
+  };
+```
+
+* This will still use a regular function behind the scenes (_i.e. - a function that does have access to `this` and `arguments`_) but the cool thing is that it is a shorter syntax but everything should work as expected
+
+## Takeaway
+When you are creating methods on objects, DO NOT USE ARROW FUNCTIONS because it will just cause problems
+
+### Why would I ever want Arrow functions not binding the `this` keyword?
+It is actually a really useful thing
+
+```
+Meteor.startup(function() {
+  const user = {
+    name: 'Billy',
+    sayHi () {
+      setTimeout(function () {
+        console.log(this.name);  
+      }, 1000);
+    }
+  };
+
+  user.sayHi(1, 2);
+});
+```
+
+Will return `undefined`
+
+The reason is ES5 functions bind the `this` keyword so inside our `setTimeout()` function we are binding `this` and we lose the original `this` keyword and that is why we are getting `undefined`
+
+### Common Workaround
+```
+const user = {
+    name: 'Billy',
+    sayHi () {
+      let that = this;
+      setTimeout(function () {
+        console.log(that.name);  
+      }, 1000);
+    }
+  };
+
+user.sayHi(1, 2);
+```
+
+And that will again give us `Billy`
+
+It does work but what you are doing it essentially writing code to fix ES5 functions
+
+But with ES6 we don't have to run into this function at all
+
+```
+const user = {
+    name: 'Billy',
+    sayHi () {
+      setTimeout(() => {
+        console.log(this.name);
+      }, 1000);
+    }
+  };
+
+user.sayHi(1, 2);
+```
+
+* So now that we are using an ES6 Arrow function we have access to the `this` keyword because Arrow functions don't bind do `this` but instead just use their parents `this` keyword and we get `Billy` output. **Note** the parent's function is using ES5 function syntax and it is binding to `this` but it's child `setTimeout()` function is using an arrow function which doesn't bind to `this`
+
+## Takeaway
+Using regular functions (_aka ES5 functions_) and Arrow functions (_aka ES6 functions_) we can achieve some powerful stuff
+
+* Both have their place
+* You don't want to just use one or just use the other
+* It just depends on the context
+
+## Exercise
+Comment all code inside `Meteor.startup(function() {});` in `server/main.js` and replace it with:
+
+```
+import { Meteor } from 'meteor/meteor';
+import { Players } from './../imports/api/players';
+
+Meteor.startup(function() {
+
+  const numbers = [1, 3, 5, 99];
+  
+});
+```
+
+Create a new Array of numbers that will add 1 to each of the numbers inside of the `numbers` array. Use the Arrays `.map()` function (_Use the "statements syntax with the curly braces"_) to do this and store it inside a new variable called `newNumbers`. Finally, `console.log(newNumbers)` so we should see `[ 2, 4, 6, 100 ]` as the output in the server Terminal.
+
+## Bonus
+Complete this task with just 3 lines of JavaScript (_**hint:** Try to convert it into the shortcut, that expression syntax we talked about above_)
+
+### Statements syntax Arrow function
+```
+students.map((student) => {
+  // return statement plus what you want to happen to each item in the array
+})
+```
+
+### Express Syntax
+```
+students.map(student => what you want to happen to each item in the array
+);
+```

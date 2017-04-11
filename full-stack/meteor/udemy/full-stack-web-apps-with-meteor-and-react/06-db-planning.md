@@ -22,7 +22,7 @@ let jsx = (
 );
 ```
 
-We get an error about unique key and can fix it with
+We get an error about **unique key** and can fix it with
 
 ```
 let jsx = (
@@ -143,9 +143,10 @@ const renderPlayers = function(playersList) {
 }
 ```
 
-This will give us an array of numbers `[0, 1, 2]` (not objects) and this is because of how we used `.map()`
+This will give us an array of numbers `[0, 1, 2]` (_not objects_) and this is because of how we used `.map()`
 
-We take the object and we return whatever we want to replace that object with (in the above case we got the individual number and subtracted 1). We could have returned an object to keep an array of objects or we could return some JSX
+* We take the object and we return whatever we want to replace that object with (_in the above case we got the individual number and subtracted 1_)
+* We could have returned an object to keep an array of objects or we could return some JSX
 
 ```
 const renderPlayers = function(playersList) {
@@ -162,7 +163,7 @@ This give us an array of JSX
 
 ![jsx array](https://i.imgur.com/LQ1BDh0.png)
 
-The reason that are object is that is what happens behind the scenes (as we saw with the babel **repl**)
+The reason that are object is that is what happens behind the scenes (_as we saw with the babel **repl**_)
 
 ### What is a `repl`?
 In short, it starts an interactive console where you can type in commands and immediately see the result of these commands. [This babel site is a repl](https://babeljs.io/)
@@ -214,7 +215,7 @@ Meteor.startup(function() {
 });
 ```
 
-Now if you add to our `numbers` array of objects like `let numbers = [{val: 9}, {val: 2}, {val: 3}, {val: 4}];`, It will dynamically update our app on the screen
+Now if you add to our `numbers` array of objects like `let numbers = [{val: 9}, {val: 2}, {val: 3}, {val: 4}];`, it will dynamically update our app on the screen
 
 ## Exercise:
 [Make your screen look like this](https://i.imgur.com/b77qGCu.png) by using our `players` object inside our `renderPlayers()` function
