@@ -1,5 +1,7 @@
 # Implementing State
 
+[learn ES6 classes](https://www.youtube.com/watch?v=EUtZRwA7Fqc)
+
 ## Adding our contructor
 
 ```

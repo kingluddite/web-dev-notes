@@ -144,7 +144,7 @@ const EmployeeList = (props) => {
   return (
     <div>
       <div className="employee-list">
-        {props.employees(employee => <EmployeeDetail />)} 
+        {props.employees.map(employee => <EmployeeDetail />)} 
       </div>
     </div>
   )

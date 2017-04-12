@@ -14,7 +14,7 @@ In our case, we have a **collection** of `Employees` that has 5000 records so fo
 
 ## I'm feeling a little insecure...
 
-By default, **Meteor** comes with the `insecure` package installed by default and that publishes all data to anyone who connects to our application at any given time (_insecure is obviously not safe but it is the default setting to help developers with quickly creating prototype apps_)
+By default, **Meteor** comes with the `autopublish` package installed by default and that publishes all data to anyone who connects to our application at any given time (_insecure is obviously not safe but it is the default setting to help developers with quickly creating prototype apps_)
 
 By setting up a **publication** and **subscription** (_after uninstalling the `insecure` package_) we make sure that users are only seeing a smaller subset of our data
 

@@ -1,5 +1,5 @@
 # Inserting records into collections
-We will use both the `lodash` library and `  ` library so we need to import them both
+We will use both the `lodash` library and `faker` library so we need to import them both
 
 ## Lodash using '_' as it's name
 Most imports use a name to pull in a package. Not Lodash.
@@ -122,9 +122,9 @@ Meteor.startup(() => {
     });
   }
 });
-``` 
+```
 
-* Our **Employee** model, the object that is going to represent a single employee is going to have the properties `name`, `email`, `phone`
+* Our **Employees** model, the object that is going to represent a single employee is going to have the properties `name`, `email`, `phone`
 
 ```
 Employees.insert({

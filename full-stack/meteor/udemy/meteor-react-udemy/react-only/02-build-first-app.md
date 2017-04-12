@@ -1,5 +1,7 @@
 # Build first app
 
+[reading resource](https://facebook.github.io/react/docs/thinking-in-react.html)
+
 ## Mockup
 
 ![mockup of image app](https://i.imgur.com/lzJM6pk.png)
@@ -73,7 +75,7 @@ All other Components will use Component nesting - We can take a collection of sm
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ImageList from './Components/ImageList';
+import ImageList from './components/ImageList';
 
 // Create a Component
 const App = () => {

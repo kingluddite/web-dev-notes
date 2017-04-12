@@ -66,7 +66,7 @@ We add `node_modules` after install (_all packages we install get installed in `
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "meteor-node-stubs": "~0.2.4",
-    "**React**": "^15.4.2"
+    "React": "^15.4.2"
   }
 }
 ```
