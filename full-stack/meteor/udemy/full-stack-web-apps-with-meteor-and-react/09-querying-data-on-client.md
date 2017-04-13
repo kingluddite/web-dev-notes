@@ -59,7 +59,7 @@ Either way we have a flicker. The difference is that flicker always happens, eve
 That was a high level overview of what is happening. On the `Client` we have a clone of MongoDB which means if we have players on the server, we have players on the `client`, we can query those players using regular Synchronous functions we can also manipulate this data (_insert, update or delete those players_), when we do make those changes we'll be able to sync up with the server but the DOM will be updated before that sync happens
 
 ## Time to Render the Players to the browser
-How can we tap into the MiniMongo methods (_the Synchronous function calls that allow us to communicate with the MiniMono database_)
+How can we tap into the MiniMongo methods (_the Synchronous function calls that allow us to communicate with the MiniMongo database_)
 
 ### Add the Collection to `client/main.js`
 ```

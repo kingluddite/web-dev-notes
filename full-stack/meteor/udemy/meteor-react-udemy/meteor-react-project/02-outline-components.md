@@ -13,7 +13,7 @@
         + Link to Create Bin
 * `BinList` Component
     - Shows list of all bins user has access to
-    - This page is only visible when user is on root rout (`/`)
+    - This page is only visible when user is on root route (`/`)
     - `localhost:3000`
 
 ### Bins page

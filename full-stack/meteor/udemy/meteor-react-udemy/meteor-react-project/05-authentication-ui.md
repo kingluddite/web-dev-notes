@@ -50,7 +50,7 @@ export default Accounts;
 * `componentDidMount()` - special method that a React component has that will automatically (_exactly one time_) be called whenever this component is rendered to the screen
 * `componentWillUnmount()` - similar to previous method but this method will automatically be called when our component is just about to be removed from the screen
 
-**note** The goal behind React is that it should be 100% in charge of the DOM and we should never manually dive into the DOM and start fiddling with something. By using this mount and unmount **lifecycle process** we are kind of circumventing that rule. This general approach is how we work with 3rd party libraries with React in general
+**note** The goal behind React is that it should be 100% in charge of the DOM and we should never manually dive into the DOM and start fiddling with something. By using this mount and unmount **lifecycle process** we are kind of circumventing that rule. This general approach is how we work with 3rd party libraries with React
 
 We let the React component render as usual, and then after it gets rendered to the DOM, we reach into the DOM and manipulate it in some fashion and after we're done with that and our component is going to unmount we need to go back in and clean up after ourselves
 

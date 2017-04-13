@@ -1,6 +1,6 @@
 # Create Header Component
 
-## Review Wirefram
+## Review Wireframe
 ![wireframe](https://i.imgur.com/Xoxn6pr.png)
 
 `client/components/Header.js`

@@ -29,7 +29,7 @@ React Router is a 3rd party library and we'll need to install it as a **npm modu
 
 **note** Scroll to the bottom of the notes to see the correct version of React Router to install. The latest version is in flux and may generate errors
 
-### How do we user React Router
+### How do we use React Router
 The key thing to remember here is React Router displays different sets of Components based on the URL
 
 * To do this we will create a mapping of different routes that a user can visit

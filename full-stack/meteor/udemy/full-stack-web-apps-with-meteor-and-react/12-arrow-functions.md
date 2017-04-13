@@ -12,7 +12,7 @@ console.log(square(10));
 
 * Functions can be anonymous and we can store it inside a variable
 * We can also use named functions, and they will give us the same result
-    - Arrow function **do not** support the named function syntax
+    - Arrow functions **do not** support the named function syntax
     - All Arrow functions are anonymous functions
 
 ```js
@@ -39,7 +39,7 @@ const square = x => x * x ;
 
 ## Why use Arrow functions?
 * They support a simplified syntax
-* The expression syntax implicitly uses the `return` keyword behind the scenes which means we do not have to explicitly provide it (in the above example `x * x` is automatically returned)
+* The **expression syntax** implicitly uses the `return` keyword behind the scenes which means we do not have to explicitly provide it (in the above example `x * x` is automatically returned)
 
 `server/main.js`
 
@@ -62,7 +62,7 @@ Meteor.startup(function() {
 Will output `Billy` on the server Terminal
 
 ## The first difference between regular functions and arrow functions
-Arrow functions do not bind `this` keyword
+Arrow functions do not bind the `this` keyword
 
 ### Convert to arrow function
 ```

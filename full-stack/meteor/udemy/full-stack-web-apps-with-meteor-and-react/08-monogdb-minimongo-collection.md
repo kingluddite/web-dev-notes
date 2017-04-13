@@ -3,7 +3,7 @@ Delete `imports/math.js` and `imports/utils.js` as we don't need them
 
 Empty out `server/main.js` as we no longer need that code
 
-## Create `import/api`
+## Create `imports/api`
 Inside of `import/api` we will create a file for every Collection we create
 
 ### Create `players` Collection
