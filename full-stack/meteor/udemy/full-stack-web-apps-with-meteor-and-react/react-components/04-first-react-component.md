@@ -83,7 +83,7 @@ Meteor.startup(() => {
 ```
 
 ## Goal - Create <TitleBar />
-Create Component that will rendered colored bar with Application title
+Create Component that will rendered colored bar with Application **title**
 
 ![diagram](https://i.imgur.com/zcseWMa.png)
 
@@ -206,7 +206,7 @@ export default TitleBar;
 * All our Components will reside inside `components`
 
 ## Import to client/main.js
-`import TitleBar from './../imports/api/ui/components/TitleBar';`
+`import TitleBar from './../imports/ui/components/TitleBar';`
 
 Make the Add Player form a Component
 
@@ -216,8 +216,8 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { Players } from './../imports/api/players';
 import { Tracker } from 'meteor/tracker';
-import TitleBar from './../imports/api/ui/components/TitleBar';
-import AddPlayer from './../imports/api/ui/components/AddPlayer';
+import TitleBar from './../imports/ui/components/TitleBar';
+import AddPlayer from './../imports/ui/components/AddPlayer';
 
 const checkPoints = (playerPoints) => {
   return (playerPoints === 1 || playerPoints === -1) ? 'point' : 'points';

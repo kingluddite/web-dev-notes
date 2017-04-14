@@ -734,6 +734,10 @@ Shows you the bottom lines of that file
 * Advanced History
 * Use Trash instead of `rm`
 
+## Z
+Using this will help you not have to rely solely on aliases
+[link to Wes Bos Z tutorial](https://www.youtube.com/watch?v=qbNn5zJLZU0)
+
 Practice these more
 * iTerm and Coding Environment
 * Explore ZSH Themes (Create Your Own)

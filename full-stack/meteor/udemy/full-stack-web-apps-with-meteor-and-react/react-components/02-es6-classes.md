@@ -1,7 +1,7 @@
 # ES6 Classes
 Great way to reuse code
 
-We can define the class once, giving it a set of methods and properties and then we can create instances of that class and customizing them as we go
+We can define the class once, giving it a set of **methods** and **properties** and then we can create **instances** of that class and customizing them as we go
 
 We could have a skateboard class
 * Skateboards all have wheels but they each can be customized with different colors, lengths, accessories...
@@ -25,8 +25,8 @@ Meteor.startup(() => {
 });
 ```
 
-* We have our class Person and our first instance of the class Person `me`
-* Our log outputs to the Terminal just `Person {}` and that is because our Person doesn't output any unique data
+* We have our class `Person` and our first instance of the class `Person` `me`
+* Our log outputs to the **Terminal** just `Person {}` and that is because our `Person` doesn't output any unique data
 
 ## constructor() function
 Gets called automatically
@@ -52,7 +52,7 @@ Meteor.startup(() => {
 `Person { name: 'KingLuddite' }`
 
 * We have to specifically call all other methods inside the class but the `constructor()` function is unique and whenever we create a new instance, the `constructor()` function is automatically called and any arguments passed to the `constructor()` get applied immediately
-* `this` inside of your Person class refers to the individual instance
+* `this` inside of your **Person** class refers to the individual instance
 
 ## Give default argument value for constructor()
 When you create an instance of the class and don't provide a name, the default value will be used
@@ -119,7 +119,7 @@ getGreeting() {
 ```
 
 ## Exercise
-When you use this code to create an instance of the Person class `const me = new Person('Bob', 40);` you should have a new method in your Person class that when called will output to the Terminal `Bob is 25 year(s) old`. Both `Bob` and `25` should be dynamic data pulled from the arguments you passed to the constructor() function. Also if no age argument is passed, the output should change to `Bob is 0 year(s) old`
+When you use this code to create an instance of the **Person** class `const me = new Person('Bob', 40);` you should have a new method in your **Person** class that when called will output to the **Terminal** `Bob is 25 year(s) old`. Both `Bob` and `25` should be dynamic data pulled from the arguments you passed to the `constructor()` function. Also if no age argument is passed, the output should change to `Bob is 0 year(s) old`
 
 ### Solution
 ```

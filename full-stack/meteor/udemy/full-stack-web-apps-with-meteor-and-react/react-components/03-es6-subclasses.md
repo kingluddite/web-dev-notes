@@ -12,7 +12,7 @@ class Employee extends Person {
 }
 ```
 
-* We now have a class that is identical to Person
+* We now have a class that is identical to `Person`
 
 ```
 import { Meteor } from 'meteor/meteor';
@@ -44,10 +44,10 @@ Meteor.startup(() => {
 });
 ```
 
-* We swap out Person for Employee and we get the exact same output. Not very useful but it is what it is :)
-* It only becomes useful when we give our sub class custom properties and behavior
+* We swap out `Person` for `Employee` and we get the exact same output. Not very useful but it is what it is :)
+* It only becomes useful when we give our sub class custom **properties** and **behavior**
 
-We will call a third argument that our Person class doesn't have but our subclass does
+We will call a third argument that our `Person` class doesn't have but our subclass does
 
 `const me = new Employee('KingLuddite', 40, 'Web Developer');`
 
@@ -61,9 +61,9 @@ class Employee extends Person {
   }
 ```
 
-* We are not giving default values for `name` and `age` (more on that later)
+* We are not giving default values for `name` and `age` (_more on that later_)
 * We are not giving a default value for `title` because the employee may be unemployed
-* We don't set name and age like this:
+* We don't set **name** and **age** like this:
 
 ```
 class Employee extends Person {
@@ -86,9 +86,9 @@ class Employee extends Person {
   }
 ```
 
-* By using `super()` we are calling the parents constructor() function because we are going to need it to run in order for the parent's methods to work
-* super() is a reserved keyword and enables you to access the parent's class
-* We pass super our arguments `super(name, age)` and that way we don't have to redefine the defaults, we simply call the parent and when the Person changes, the Employees will change because Employees extends Person
+* By using `super()` we are calling the parents `constructor()` function because we are going to need it to run in order for the **parent's** methods to work
+* `super()` is a reserved keyword and enables you to access the parent's class
+* We pass super our arguments `super(name, age)` and that way we don't have to redefine the defaults, we simply call the **parent** and when the `Person` changes, the `Employees` will change because `Employees` extends `Person`
 
 Inside our subclass we can do things with our methods:
 
@@ -103,7 +103,7 @@ hasJob() {
 }
 ```
 
-* Which means if it is undefined it will get flipped once to true and again to false (so they won't have a job)
+* Which means if it is undefined it will get flipped once to true and again to false (_so they won't have a job_)
 * If there is a valid string it will get flipped once to false and a second time to true
 * It will work regardless whether or not they have a title
 
@@ -210,9 +210,9 @@ Meteor.startup(() => {
 * We call `super()` to just use the original base class `getGreeting()` method
 
 ## Exercise
-Creat a new Programmer class that extends from Person class (Because all Programmers are people but they might not be Employees)
+Creat a new Programmer class that extends from Person class (_Because all Programmers are people but they might not be Employees_)
 
-A Programmer will have an **age**, a **name** and a **preferredLanguage** (set JavaScript as the default preferredLanguage). Override the `getGreeting()` method for the programmer with "Hi! I am NAME. I am a preferredLanguage developer". Then create a brand new programmer passing a name, age and preferred langauge. Print result to screen
+A Programmer will have an **age**, a **name** and a **preferredLanguage** (_set JavaScript as the default preferredLanguage_). Override the `getGreeting()` method for the programmer with, "_Hi! I am NAME. I am a preferredLanguage developer_". Then create a brand new programmer passing a name, age and preferred langauge. Print result to screen
 
 ```
 import { Meteor } from 'meteor/meteor';

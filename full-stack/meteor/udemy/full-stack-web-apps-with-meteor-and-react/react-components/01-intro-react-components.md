@@ -23,7 +23,7 @@ All this Component will care about will be to render a little bit of JSX and it 
 
 * It won't care how many players there are
 * It won't care what the page title is
-* It is just an isolated React Component responsible for just one job (rendering that form and responding to user interaction)
+* It is just an isolated React Component responsible for just one job (_rendering that form and responding to user interaction_)
 
 ### Adding a Component to a page
 `<AddPlayer />`
@@ -44,7 +44,7 @@ Here are the Components we need:
 * Include html attributes as they will help you set up `props`
     - `props` are things you can pass into a Component when you initialize it
 * `App` is parent of all Components
-    - The parent-child relationship, the hierarchy of Components is essential to building your React Application
-    - App doesn't care about the Player Component, the only Component that does is the PlayerList Component. This means we can reuse our Components anywhere
+    - The **parent-child** relationship, the hierarchy of Components is essential to building your React Application
+    - App doesn't care about the `Player` Component, the only Component that does is the `PlayerList` Component. This means we can reuse our Components anywhere
     - This is also a great way to easily test our Components
     - We need to review about ES6 classes to create Components
