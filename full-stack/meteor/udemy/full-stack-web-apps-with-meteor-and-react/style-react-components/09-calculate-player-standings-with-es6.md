@@ -27,9 +27,10 @@ const person = {
 console.log(person); // output -> { age: 25 }
 ```
 
-The object spread properties let's us spread out an object's properties inside of another object's definition
+The **object spread properties** let's us spread out an object's properties inside of another object's definition
 
-Example: We want person to use all the properties of `user`
+###Example
+We want person to use all the properties of `user`
 
 ```
 import { Meteor } from 'meteor/meteor';
@@ -53,6 +54,7 @@ console.log(person); // --> { name: 'King', location: 'LA', age: 25 }
 ```
 
 **note** Order matters
+
 ```
 import { Meteor } from 'meteor/meteor';
 import { Players } from './../imports/api/players';
@@ -119,7 +121,7 @@ const stuff = {
 console.log(stuff); // --> { team: 'Lakers' }
 ```
 
-If the key and value are the same you can just use the word once and it will give you the same result
+If the `key` and `value` are the same you can just use the word once and it will give you the same result
 
 ```
 const team = 'Lakers';
@@ -141,7 +143,7 @@ const house = {
 const yearBuilt = 1995;
 ```
 
-Create a new object that uses the spread operator and log it to the console and it should look like:
+Create a new object that uses the **spread operator** and log it to the `console` and it should look like:
 
 ```
 {
@@ -153,6 +155,7 @@ Create a new object that uses the spread operator and log it to the console and 
 ```
 
 ### Solutions
+
 ```
 const houseStuff = {
   ...house,

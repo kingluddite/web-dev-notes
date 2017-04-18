@@ -43,17 +43,18 @@ h1
 
 `@import './../imports/client/styles/main';`
 
-You can shorten this relative path to:
+You can shorten this **relative path** to:
 
 `@import '../imports/client/styles/main';`
 
-And it is the same path
-All should look the same but we are now importing a partial Sass file
+**note** It is the same path
+
+Everything should look the same but we are now importing a partial Sass file
 
 ## CSS Components
 `imports/client/styles/components`
 
-This new `components` folder is not referring to a React Component but rather components relating to style
+This new `components` folder is not referring to a **React** Component but rather components relating to style
 
 `imports/client/styles/components/_title-bar.scss`
 
@@ -77,7 +78,7 @@ This new `components` folder is not referring to a React Component but rather co
 
 ```
 
-Import them
+### Import them
 
 `_main.scss`
 
@@ -97,6 +98,7 @@ Import them
 ## Hard Refreshing
 Can help debug when you make mistakes
 
+### Break stuff!
 Intentionally break our path with:
 
 ```
@@ -104,10 +106,14 @@ Intentionally break our path with:
 @import './components/wrapper';
 ```
 
-Our app still looks like it is working but our Terminal shows the error
+Our app still looks like it is working but our **Terminal** shows the error
 
 ![terminal scss errors](https://i.imgur.com/VbiRx5I.png)
 
+## Hard Refresh
 A hard refresh will show the error so doing hard refreshes from time to time will alert us if our app has broken
 
-Fix the error and next we'll style the App Component
+Fix the error
+
+## Next
+We'll style the App Component

@@ -2,17 +2,17 @@
 
 ![wireframe](https://i.imgur.com/ggp5NOo.png)
 
-* Flexbox is a new layout module
+* **Flexbox** is a new layout module
 * Makes it real easy to create grid-like layouts
 
 ## Let's use Flexbox on the AddPlayer Component
 ![form tag and input](https://i.imgur.com/qvuraqr.png)
 
-* We have a form tag and an input
-* We want input to be same height as button
-* We want the input to take up all the extra space
-    - We'll move the button to the right and the input should take up all the rest of the space and it should flex its width depending on the total box size
-* Using Flexbox is pretty simple and we'll write a lot less code then if we were not using Flexbox
+* We have a `form` tag and an `input`
+* We want `input` to be same height as `button`
+* We want the `input` to take up all the extra space
+    - We'll move the `button` to the right and the input should take up all the rest of the space and it should flex its width depending on the total box size
+* Using **Flexbox** is pretty simple and we'll write a lot less code then if we were not using **Flexbox**
 
 Create `_form.scss` and import it and `_player.scss` into `_main.scss`
 
@@ -45,7 +45,7 @@ Create `_form.scss` and import it and `_player.scss` into `_main.scss`
 ![flexbox](https://i.imgur.com/ISmfQv3.png)
 
 * Now they are by default the same height (_input and button_)
-* By default Flexbox items flow left to right
+* By default **Flexbox** items flow left to right
 * All elements have equal height
     - This is great when making column-based layout because you want all the heights to be equal
 
@@ -56,7 +56,7 @@ We do that here:
 
 `<form className="form" onSubmit={this.handleSubmit.bind(this)}>`
 
-So `form` has `flex` on it and it is now known as a `flex container` and its children, it's direct decendents (input and button) are known as `flex items`
+So `form` has `flex` on it and it is now known as a `flex container` and its children, it's direct decedents (_input and button_) are known as `flex items`
 
 * We can add CSS properties to either the **flex container** or the **flex item**
 
@@ -117,8 +117,9 @@ select
 We are finished with our form. Now let's work on our players
 
 ## Player
-* We need to work on improving our HTML structure and add our BEM class names
-* We want a div on the left and a div on the right. The Name and stats will be in div on the left and the buttons will be in a div on the right
+### div on the left and a div on the right!
+* We need to work on improving our HTML structure and add our **BEM** class names
+* We want a `div` on the left and a `div` on the right. The **name** and **stats** will be in `div` on the left and the buttons will be in a `div` on the right
 
 ![Player layout](https://i.imgur.com/PP1LbW5.png)
 
@@ -223,8 +224,9 @@ What if you add a really long name?
 
 ![buttons stack](https://i.imgur.com/rMFOYMU.png)
 
-The buttons stack and our layout breaks. We want to say "Hey, this buttons, that flex item, we don't want it to shrink no matter other things in the flex container get"
+The `buttons` stack and our layout breaks. We want to say "_Hey, this buttons, that flex item, we don't want it to shrink no matter other things in the flex container get_"
 
+## Honey I shrunk the divs
 `_player.scss`
 
 ```
@@ -235,10 +237,11 @@ The buttons stack and our layout breaks. We want to say "Hey, this buttons, that
 }
 ```
 
-This tells flex to never shrink that item no matter how big other stuff gets
+This tells **Flex** to never shrink that item no matter how big other stuff gets
 
 ![it is fixed](https://i.imgur.com/0nhmL99.png)
 
+## Center of attention
 Our buttons look nice but they need to be centered too
 
 `_player.scss`
@@ -271,7 +274,7 @@ If you look at our buttons you will see they are not exactly centered
 // more code
 ```
 
-That rule says we don't have to worry about line-height for these buttons because there are not multiple lines
+That rule says we don't have to worry about `line-height` for these buttons because there are not multiple lines
 
 ![centered buttons](https://i.imgur.com/AHbq04i.png)
 

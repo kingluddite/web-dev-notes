@@ -1,7 +1,7 @@
 # BEM Naming
 Stands for: Block, Element, Modifier
 
-Naming conventtion. Just one way to think about and structure your styles and selectors. Its not a Library. Its not a framework. It's just a pattern you can use to create styles for apps
+Naming convention. Just one way to think about and structure your styles and selectors. Its not a Library. Its not a framework. It's just a pattern you can use to create styles for apps
 
 * There are a bunch of other patterns
 
@@ -34,13 +34,13 @@ Naming conventtion. Just one way to think about and structure your styles and se
 
 ![blocks](https://i.imgur.com/3iG4ULE.png)
 
-* We already created blocks without knowing it, it's the simplist building block in BEM
+* We already created blocks without knowing it, it's the simplest building block in **BEM**
 
 ### The E in BEM - Elements
 These are things that go inside a specific block
 
-Out Title Bar block, we may have a Title and slogan element
-Our Player block might have a player name and player score paragraph. These are elements inside of your blocks
+Out `Title Bar` block, we may have a **Title** and **slogan** element
+Our `Player` block might have a **player name** and **player score** paragraph. These are **elements** inside of your **blocks**
 
 ### Two core rules to BEM
 1. Always use classes
@@ -48,7 +48,7 @@ Our Player block might have a player name and player score paragraph. These are 
 2. We will never nest any of our selectors
     * All that does is create unwanted specificity
 
-Example: (this is the naming convention for multi-word block and/or element)
+Example: (_this is the naming convention for multi-word block and/or element_)
 
 `.some-item__some-message`
 
@@ -138,11 +138,12 @@ return (
 ```
 
 * This is useful if you have multiple messages but you only want some of them to have the lighter font color
-* elements get used in a lot of places
-* modifiers get used in a few places
+* **elements** get used in a lot of places
+* **modifiers** get used in a few places
 * Later we'll create square buttons but we'll use a rounded modifier
 
-BEM is a great pattern that enables you to create scalable, reusable, maintainable styles
+### BEM is great
+**BEM** is a great pattern that enables you to create scalable, reusable, maintainable styles
 
 Let's remove the modifier as we won't use it
 
@@ -250,7 +251,8 @@ Make the button color a little more subtle:
 }
 ```
 
-* This is what outline looks like by default in Chrome (_we are temporarily turning it off_) Later we'll add something here for accessibility purposes
+* This is what outline looks like by default in Chrome (_we are temporarily turning it off_)
+* Later we'll add something here for accessibility purposes
 
 ![outline tab focus](https://i.imgur.com/XIB3zVw.png)
 

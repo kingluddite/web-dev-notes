@@ -1,5 +1,10 @@
 # Dynamic Classes and SCSS Functions
-We will create dynamic classes for the first 3 positions. Green for first. Blue for Second. 3rd Place is red. All other positions will be white as they are now.
+We will create dynamic classes for the first three positions
+
+1. Green for first
+2. Blue for Second
+3. 3rd Place is red
+4. All other positions will be white as they are now.
 
 # Player
 Here is our current file
@@ -47,12 +52,11 @@ Player.propTypes = {
   player: PropTypes.object.isRequired
 }
 
-
-
 export default Player;
 ```
 
-* We remove `rank` from the player box. We just used it to test if it was working
+* We remove `rank` from the player box
+* We just used it to test if it was working
 
 ```
 // more code
@@ -70,7 +74,7 @@ After making our changes you will see the dynamic class working in the inspector
 
 ![dynamic classes in full effect](https://i.imgur.com/eBUniYD.png)
 
-* **note** This is a BEM modifier
+* **note** This is a **BEM** modifier
 
 ## Complete code
 
@@ -121,7 +125,11 @@ export default Player;
 ```
 
 ## Exercise
-Add three selectors for our three BEM modifiers. Green for 1st, blue for second and red for third
+Add three selectors for our three BEM modifiers
+
+* Green for 1st
+* Blue for second
+* Red for third
 
 ### Solution
 `_item.scss`
@@ -166,7 +174,6 @@ $green: #e4ede0;
 
 ### import it into `_main.scss`
 
-
 ```
 @import './components/variables'; // add import here
 @import './components/title-bar';
@@ -177,7 +184,7 @@ $green: #e4ede0;
 @import './components/form';
 ```
 
-**note** Where it is imported is important. We want it to come first
+**note** Where it is imported is important. We want it to come first so that any files using variables will have access to them
 
 `_item.scss`
 

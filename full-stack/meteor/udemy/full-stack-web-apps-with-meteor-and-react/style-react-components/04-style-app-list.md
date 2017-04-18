@@ -26,7 +26,7 @@ class App extends Component {
 ```
 
 ### Style modifications
-* Make body have light gray background
+* Make your `body` selector have light gray background
 
 `_main.scss`
 
@@ -45,9 +45,9 @@ body
 ![font size small](https://i.imgur.com/taDi7mZ.png)
 
 #### REMs scale nicely
-If you click `+` or `-` on keyboard the fonts will scale up and down nicely when you use REMs. (_They won't if you use pixels_)
+If you click `+` or `-` on keyboard the fonts will scale up and down nicely when you use **REMs**. (_They won't if you use pixels_)
 
-Currently we target h1 with REMs and that is why it is `24px` but we didn't target anything else so everything is only `10px`
+Currently we target `H1` with **REMs** and that is why it is `24px` but we didn't target anything else so everything is only `10px`
 
 ### Set body to `font-size: 1.6rem`
 ```
@@ -61,8 +61,8 @@ body
 }
 ```
 
-* We set our root to 10px (_<html>_)
-    - That makes setting REMs very easy because we just multiply any REM value by 10 to get the converted pixel value
+* We set our root to `10px` (_<html>_)
+    - That makes setting **REMs** very easy because we just multiply any **REM** value by 10 to get the converted pixel value
 * We set our `<body>` to `1.6rem` (_16px_)
     - So anything not targeted will be `16px` by default
 
@@ -71,7 +71,7 @@ Add this file
 
 `imports/client/styles/components/_item.scss`
 
-Import it into `_main.scss`
+### Import it into `_main.scss`
 
 ```
 @import './components/title-bar';

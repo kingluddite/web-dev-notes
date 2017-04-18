@@ -11,7 +11,9 @@ Our app looks crappy on a phone
 Left is ugly un-responsive Desktop site and right is nice mobile responsive design
 
 ## Easy Change
-We'll add one line (meta tag) in our `main.html` and this tag will tell our viewport how to operate with our website. This is very standard and Google officially recommends
+We'll add one line (_meta tag_) in our `main.html` and this tag will tell our **viewport** how to operate with our website. 
+
+**note** This is very standard and Google officially recommends this technique
 
 `main.html`
 
@@ -75,8 +77,8 @@ render() {
 // more code
 ```
 
-* Above we are accessing a `prop` that we personally didn't pass in (this is a built in one `this.props.children`)
-* After we make the change, and we get a full page refresh we will then see our `Test` text
+* Above we are accessing a `prop` that we personally didn't pass in (_this is a built in one `this.props.children`_)
+* After we make the change, and we get a **full page refresh** we will then see our `Test` text
 
 `App`
 
@@ -87,11 +89,12 @@ render() {
 </AddPlayer>
 ```
 
-And now we will see our h1 and p with their respective content wherever we use `this.props.children`
+And now we will see our `H1` and `P` with their respective content wherever we use `this.props.children`
 
 ![children](https://i.imgur.com/KimR5lt.png)
 
-We are going to use this exact same technique when using 3rd Party Components
+### Introducing 3rd Party Components
+We are going to use this exact same technique when using **3rd Party Components**
 
 Remove that code we just added. We were only using it to illustrate a point
 
@@ -130,7 +133,10 @@ render() {
 ```
 
 ## Test it out
-You should see the animation working. But there is a problem when you remove the last player
+You should see the animation working. 
+
+### Houston we have a problem
+But there is a problem when you remove the last player
 
 ## Fix Problem
 [maintainContainerHeight](https://github.com/joshwcomeau/react-flip-move/blob/master/documentation/api_reference.md#maintaincontainerheight)
@@ -148,9 +154,11 @@ render() {
 ```
 
 ### 3rd Party Bugs
+I've fallen and I can't get up
+
 [bug](https://github.com/joshwcomeau/react-flip-move/issues/138)
 
-That is a link to a problem with a recent React upgrade and recommendation. It won't break the app but reading shows how the community works with open source code
+That is a link to a problem with a recent **React** upgrade and recommendation. It won't break the app but reading shows how the community works with open source code
 
 ```
 So, the solution to this problem is to use the prop-types package instead of importing them from react.

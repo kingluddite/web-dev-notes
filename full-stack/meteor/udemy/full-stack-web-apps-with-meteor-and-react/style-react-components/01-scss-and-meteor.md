@@ -5,7 +5,7 @@ Search for `scss` on [atmouspherejs.com](https://atmospherejs.com/)
 
 **note** You don't have to shut down Meteor when installing packages, just do it in a separate tab
 
-`$ meteor help` - Lists all useful meteor commands
+`$ meteor help` - Lists all useful Meteor commands
 
 `$ meteor add NAMEOFPACKAGE`
 

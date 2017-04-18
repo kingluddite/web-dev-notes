@@ -19,13 +19,17 @@ If you use `class` you will get an error:
 
 `<div class="title-bar">`
 
-You need to use className instead of class
+You need to use `className` instead of **class**
 
 `<div className="title-bar">`
 
-The reason is because of how JSX is rendered. `class` is a reserved keyword in JavaScript
+## The reason is...
+* Because of how JSX is rendered
+* `class` is a reserved keyword in JavaScript
 
-**note** JSX just gets converted to function calls and that does result in a problem because these values `class="title-bar"` get converted into an object ` { "class": "title-bar" }` (_Try for yourself on [the babel repl](https://babeljs.io)_) and that won't work because the key of `class` is a reserved keyword
+**note** JSX just gets converted to function calls and that does result in a problem because these values `class="title-bar"` get converted into an object ` { "class": "title-bar" }`
+
+* Try for yourself on [the babel repl](https://babeljs.io)_) and that won't work because the key of `class` is a reserved keyword
 
 ![babel](https://i.imgur.com/jImelI4.png)
 
@@ -76,11 +80,11 @@ What is this 'relative' unit based off of?
 
 It is based on the font-size of your `<html>` element
 
-We will set the font-size of `<html>` to be `62.5%`. The default `<html>` font-size for most browsers is `16px` (_16 * 0.625 = 10px_). We set our base font-size to 10px because then our relative units `REM` are much easier to compute
+We will set the font-size of `<html>` to be `62.5%`. The default `<html>` **font-size** for most browsers is `16px` (_16 * 0.625 = 10px_). We set our base **font-size** to `10px` because then our relative units `REM` are much easier to compute
 
 `2.4rem` easily converts to `24px`
 
-So now we can think in pixels but get the advantage of REMs
+So now we can think in pixels but get the advantage of **REMs**
 
 `client/main.scss`
 
@@ -105,7 +109,7 @@ html {
 }
 ```
 
-Since our h1 is not specific to our title-bar, we'll move it:
+Since our `H1` is not specific to our **title-bar**, we'll move it:
 
 ```
 body

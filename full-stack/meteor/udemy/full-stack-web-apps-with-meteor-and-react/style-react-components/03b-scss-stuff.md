@@ -1,22 +1,28 @@
 # Cool Sass stuff
 Developing with Sass doesn't have to hurt
 
+## Sass Resources
+Here are some places to help speed up your Sass workflow
+
 * [Sass Guidelines](https://sass-guidelin.es/)
 * [scss-lint](https://github.com/brigade/scss-lint)
 * [atom linter-scss-lint](https://atom.io/packages/linter-scss-lint)
 * [CSScomb](http://csscomb.com/)
 * [CSS line explanation](http://davidtheclark.com/scss-lint-styleguide/)
 
-## My Setup
+## My Setup when working with Sass, React, Meteor and Atom
 * Install `scss-lint`
     - `$ gem install scss_lint`
 * Install atom plugin
     - `$ apm install linter-scss-lint`
 * [atom-beautify settings](https://i.imgur.com/Kif4IIG.png) for SCSS
 * Place this file in the root of your project `.scss-lint.yml`
-* Save your `*.scss` files and correct changes. Rinse and repeat
+* Save your `*.scss` files and correct changes
+* Rinse and repeat
 
 `.scss-lint.yml`
+
+Save this file in the root of your project. It is a yml file which means it conveys information through indentation
 
 ```yml
 linters:
