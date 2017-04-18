@@ -95,6 +95,7 @@ Inside our subclass we can do things with our methods:
 1. We can override existing methods
 2. We can create our own methods
 
+## Not Not. Who's there?
 Convert to Boolean by flipping its value twice
 
 ```
@@ -103,7 +104,7 @@ hasJob() {
 }
 ```
 
-* Which means if it is undefined it will get flipped once to true and again to false (_so they won't have a job_)
+* Which means if it is `undefined` it will get flipped once to true and again to false (_so they won't have a job_)
 * If there is a valid string it will get flipped once to false and a second time to true
 * It will work regardless whether or not they have a title
 
@@ -214,6 +215,8 @@ Creat a new Programmer class that extends from Person class (_Because all Progra
 
 A Programmer will have an **age**, a **name** and a **preferredLanguage** (_set JavaScript as the default preferredLanguage_). Override the `getGreeting()` method for the programmer with, "_Hi! I am NAME. I am a preferredLanguage developer_". Then create a brand new programmer passing a name, age and preferred langauge. Print result to screen
 
+<details>
+  <summary>Solution</summary>
 ```
 import { Meteor } from 'meteor/meteor';
 import { Players } from './../imports/api/players';
@@ -282,6 +285,7 @@ Meteor.startup(() => {
   console.log(dev2.getGreeting);
 });
 ```
+</details>
 
 ## Review
 * When we extend a class we create a new class

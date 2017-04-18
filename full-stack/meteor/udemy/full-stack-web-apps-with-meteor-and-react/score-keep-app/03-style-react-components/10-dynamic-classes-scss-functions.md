@@ -131,7 +131,8 @@ Add three selectors for our three BEM modifiers
 * Blue for second
 * Red for third
 
-### Solution
+<details>
+  <summary>Solution</summary>
 `_item.scss`
 
 ```
@@ -164,6 +165,7 @@ Add three selectors for our three BEM modifiers
   text-align: center;
 }
 ```
+</details>
 
 ### Variables
 Create `_variables.scss` 
@@ -196,9 +198,7 @@ $green: #e4ede0;
 // more code
 ```
 
-## Sass functions
-Darken a given value
-
+## Sass functions - Darken a given value
 [documenation on Sass functions](http://sass-lang.com/documentation/Sass/Script/Functions.html)
 
 ```
@@ -245,6 +245,8 @@ Make a blue and blue-alt -> #dfe7ed
 Make a red and red-alt -> # #eddfdf
 
 ### Solution
+<details>
+  <summary>Solution</summary>
 `_variables.scss`
 
 ```
@@ -278,4 +280,5 @@ $blue-alt: darken($blue, 15%);
 ```
 
 ![new colors](https://i.imgur.com/nZEybZp.png)
+</details>
 

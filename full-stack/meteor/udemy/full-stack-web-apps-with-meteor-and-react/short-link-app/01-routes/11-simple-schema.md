@@ -191,6 +191,8 @@ Will give us an error: `ClientError: Contact number must be a valid phone number
         + `email` - should be valid email (_required_)
         + `zip code` - optional should be valid zip
 
+<details>
+  <summary>Solution</summary>
 ```
 const employeeSchema = new SimpleSchema({
     name: {
@@ -219,3 +221,4 @@ const employeeSchema = new SimpleSchema({
     email: 'phil@gmail.com'
   });
 ```
+</details>

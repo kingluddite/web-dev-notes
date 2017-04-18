@@ -57,7 +57,7 @@ const renderPlayers = playersList => {
 }
 ```
 
-Add alert click event
+## Add alert click event
 
 ```
 const renderPlayers = playersList => {
@@ -74,7 +74,7 @@ const renderPlayers = playersList => {
 }
 ```
 
-Click on X and you will see an alert with `yo`. Nothing spectacular here but we now have our **event listener** set up
+Click on `X` and you will see an alert with `yo`. Nothing spectacular here but we now have our **event listener** set up
 
 ## Collection.remove()
 * Does take an object and that object takes a query?

@@ -82,7 +82,7 @@ Meteor.startup(() => {
 });
 ```
 
-## Goal - Create <TitleBar />
+## Goal - Create `<TitleBar />`
 Create Component that will rendered colored bar with Application **title**
 
 ![diagram](https://i.imgur.com/zcseWMa.png)
@@ -208,7 +208,7 @@ export default TitleBar;
 ## Import to client/main.js
 `import TitleBar from './../imports/ui/components/TitleBar';`
 
-Make the Add Player form a Component
+## Make the Add Player form a Component
 
 ```
 import React from 'react';

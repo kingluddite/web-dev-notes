@@ -10,7 +10,8 @@ Render the real players information to the page
 * This should use `Tracker.autorun()` and in the **callback** you should created a variable that is equal to `Players.find().fetch()`
 * Move all our current code inside `Meteor.startup()` inside `Tracker.autorun()`
 
-## Solution
+<details>
+  <summary>Solution</summary>
 `client/main.js`
 
 ```
@@ -48,6 +49,7 @@ Meteor.startup(function() {
 
 });
 ```
+</details>
 
 ## Exercise
 Insert a new Document into the players Collection on the `client`. This will be a dummy document with static data.

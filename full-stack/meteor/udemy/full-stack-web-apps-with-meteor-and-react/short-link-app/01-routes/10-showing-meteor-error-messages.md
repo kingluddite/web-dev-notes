@@ -58,7 +58,8 @@ Now enter just a **password** and click the button and you'll see a new error me
 ## Exercise
 We got `Signup` validating. Try to do the same thing with `Login`
 
-### Solution
+<details>
+  <summary>Solution</summary>
 `Login`
 
 ```
@@ -78,6 +79,7 @@ onSubmit(e) {
     });
   }
 ```
+</details>
 
 ### Test
 When you try to login without entering any text you'll get a very unhelpful `Match Failed`

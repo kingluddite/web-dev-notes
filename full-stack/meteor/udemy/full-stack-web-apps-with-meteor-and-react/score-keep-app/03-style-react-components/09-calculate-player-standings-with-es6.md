@@ -154,7 +154,8 @@ Create a new object that uses the **spread operator** and log it to the `console
 }
 ```
 
-### Solutions
+<details>
+  <summary>Solution</summary>
 
 ```
 const houseStuff = {
@@ -167,10 +168,11 @@ console.log(houseStuff);
 ```
 
 Using ES6 we were able to create an object that used other objects and variables
+</details>
 
 `server/main.js`
 
-Put back to the way it was:
+**note** Put it back to the way it was before we starting experimenting:
 
 ```
 import { Meteor } from 'meteor/meteor';

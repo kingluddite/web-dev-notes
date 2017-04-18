@@ -91,7 +91,8 @@ export default Login;
 ## Exercise
 Create a `Link` from the `Signup` page to the `Login` page
 
-### Solution
+<details>
+  <summary>Solution</summary>
 `Signup.js`
 
 ```
@@ -112,13 +113,15 @@ class Signup extends Component {
 
 export default Signup;
 ```
+</details>
 
 ## Exercise
 In the `Link` Component create a programmatic link that will mimic someone logging out and when they do, they will be taken to the home page `/`
 
 **note** Remove `window.browserHistory = browserHistory;` from `client/main.js` as we don't need it anymore
 
-### Solution
+<details>
+  <summary>Solution</summary>
 `Link`
 
 ```
@@ -164,6 +167,7 @@ class Link extends Component {
 
 export default Link;
 ```
+</details>
 
 ## binding `this`
 You don't have to bind unless you are using `this` in your custom event handler but a lot of times people will just bind `this` anyway as it saves time if they ever decide to expand their event handlers

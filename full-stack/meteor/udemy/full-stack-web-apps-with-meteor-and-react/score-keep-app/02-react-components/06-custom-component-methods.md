@@ -48,8 +48,8 @@ import { Players } from './../../api/players'; // add this line
 
 So far all our component have one method `render()`. It is a special method. We never call it yet it always gets called. We are about to create a generic method. It is not used by React. It will never be called unless we explicitly call it
 
-### Our working AddPlayer with custom method working
-AddPlayer
+### Our working `AddPlayer` with custom method working
+`AddPlayer`
 
 ```
 import React, { Component } from 'react';
@@ -82,7 +82,7 @@ export default class AddPlayer extends Component {
 }
 ```
 
-### Test AddPlayer Component
+### Test `AddPlayer` Component
 Make sure all the previous functionality of our Add Player form is now working after our code transplant
 
 ### Houston we have a problem
@@ -114,7 +114,7 @@ handleSubmit(event) {
 ### Test in browser
 Add a player of `Hank` and when you submit the form you will get an error that `can not read property 'score' of undefined`. This is telling us React can't read the `props` object. This is happening because inside of our custom method we are losing the `this` binding that we automatically get inside the `render()` method. The `this` binding no longer refers to the `AddPlayer` Component. Instead `this` is now referring to the **Global Window Object**
 
-This is not a React problem. This is a JavaScript problem when working with Angular, Ember or anything else
+This is not a **React** problem. This is a JavaScript problem when working with Angular, Ember or anything else
 
 ### Fixer Upper
 We'll address and fix this issue but first let's see why it's happening using core JavaScript features

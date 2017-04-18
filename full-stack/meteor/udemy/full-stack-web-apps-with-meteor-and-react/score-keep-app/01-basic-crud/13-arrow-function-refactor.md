@@ -22,8 +22,9 @@ Meteor.startup(() => {
 ```
 
 ## Try to convert `client/main.js` to use ES6 Arrow functions
-Here is my solution
 
+<details>
+  <summary>Here is my solution</summary>
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -94,6 +95,7 @@ Meteor.startup(() => {
     - Sometimes expression syntax will make your lines really long and it is a good rule of thumb to keep you lines from exceeding 80 characters
     - Text Editors like Atom has lines to guide you from exceeding 80 characters and here is an [example of what that looks like](https://i.imgur.com/z1YKPB0.png) - The gray vertical line on the right
 * If we had an object method in this file we would NOT have converted that into a arrow function
+</details>
 
 ### Atom info
 Atom has a package called [Wrap Guide](https://i.imgur.com/OKaQ0iU.png) that is activated by default and the gray vertical line will appear wherever your `Preferred Line Length` ([in Editor Settings](https://i.imgur.com/iO7F62Q.png)) is set (_80 is a common setting developers use but it can be changed to whatever you like_)

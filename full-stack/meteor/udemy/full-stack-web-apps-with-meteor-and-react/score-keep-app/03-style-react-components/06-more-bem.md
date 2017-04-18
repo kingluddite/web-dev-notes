@@ -31,6 +31,9 @@ Create a slogan **BEM** element for the **TitleBar** block
 * Use **BEM** to create a player block
 * Create Elements for **name**, **stats** and **action**
 
+<details>
+  <summary>Solution</summary>
+
 `_player.scss`
 
 ```
@@ -55,3 +58,6 @@ Create a slogan **BEM** element for the **TitleBar** block
     //
 }
 ```
+</details>
+
+

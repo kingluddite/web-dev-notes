@@ -78,8 +78,10 @@ Meteor.startup(() => {
 Should see `Signup`
 
 ## Exercise
-Take Signup and put in its own file
+Take `Signup` and put in its own file
 
+<details>
+  <summary>Solution</summary>
 `client/main.js`
 
 ```
@@ -146,6 +148,7 @@ class Link extends Component {
 
 export default Link;
 ```
+</details>
 
 ## Next
 We have two Components `Link` and `Signup` and we'll use **React Router** to switch between the two

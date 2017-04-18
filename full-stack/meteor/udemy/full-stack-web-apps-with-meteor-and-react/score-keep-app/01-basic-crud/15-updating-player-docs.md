@@ -12,7 +12,7 @@ Check what's in our db collection
 db.collection.update(target the documents you want to update, specify the updates about the Document)
 ```
 
-Example
+#### Example
 
 ```
 db.players.update({_id: "Lgxp2YYiQky38KHEN"}, {name: "John"})

@@ -47,7 +47,8 @@ const routes = (
 ## Exercise
 Now create a function that will work the same way but when you are logged out it will prevent you from hitting the back button to go back to the private `/links` page
 
-### Solution
+<details>
+  <summary>Solution</summary>
 `client/main.js`
 
 ```
@@ -73,6 +74,7 @@ const routes = (
 );
 // more code
 ```
+</details>
 
 ### Test
 You should see that you have locked down your routes with these two functions

@@ -179,7 +179,8 @@ We would just have to pass in the **count** `props` to `Signup`
 ## Exercise
 Create a `decrement()` function and button that when clicked reduces the `state` value
 
-### Solution
+<details>
+  <summary>Solution</summary>
 ```
 import React, { Component } from 'react';
 import { Link } from 'react-router';
@@ -231,6 +232,7 @@ You could also use an inline event handler (_They both work the same_)
  this.setState({ count: this.state.count - 1})
 }}>-1</button>
 ```
+</details>
 
 ## Create our form
 * It will keep track of error message inside `state`

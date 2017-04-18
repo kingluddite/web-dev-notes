@@ -52,7 +52,8 @@ Add a new route that will point to `/links` and shows the `Link` Component
 
 Make sure both routes show their respective Components
 
-### Solution
+<details>
+  <summary>Solution</summary>
 `client/main.js`
 
 ```
@@ -63,6 +64,7 @@ const routes = (
   </Router>
 );
 ```
+</details>
 
 ## Create a base route
 When someone comes to our home page `/`

@@ -5,7 +5,7 @@
 * **Flexbox** is a new layout module
 * Makes it real easy to create grid-like layouts
 
-## Let's use Flexbox on the AddPlayer Component
+## Let's use Flexbox on the `AddPlayer` Component
 ![form tag and input](https://i.imgur.com/qvuraqr.png)
 
 * We have a `form` tag and an `input`

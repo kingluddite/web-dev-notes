@@ -142,7 +142,7 @@ TitleBar.propTypes = {
 
 [Info from Facebook on this change](https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html)
 
-# Here is our updated TitleBar Component
+# Here is our updated `TitleBar` Component
 These changes will finally get rid of that warning
 
 ```
@@ -215,8 +215,10 @@ But let's make `PropTypes.string.isRequired` and comment out the default `prop` 
 * Pass into the Component instance the key value for the `slogan`. Make up your own `slogan`
 * Inside the Component, code it so the `slogan` outputs to the screen. The `slogan` should be underneath the `title`
 
-#### Solution
-**TitleBar**
+<details>
+  <summary>Solution</summary>
+
+`TitleBar`
 
 ```
 import React, { Component } from 'react';
@@ -269,6 +271,7 @@ Meteor.startup(() => {
 
 });
 ```
+</details>
 
 ### Behind the scenes
 What is actually happening when we have this code:
@@ -287,7 +290,7 @@ class TitleBar extends React.Component {
 
 Check all the code generated on the right
 
-Now try this:
+### Now try this:
 
 ```
 class TitleBar extends React.Component {

@@ -7,8 +7,10 @@
 ## Exercise
 Add a new variable with a string value of `Account Settings` and find a way to dynamically add it inside your JSX as a `H1` element nested inside the parent `DIV` element
 
+<details>
+  <summary>Solution</summary>
 `client/main.js`
-
+  
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -30,3 +32,5 @@ Meteor.startup(function() {
 ```
 
 ![output in browser](https://i.imgur.com/nVbOWOL.png)
+</details>
+

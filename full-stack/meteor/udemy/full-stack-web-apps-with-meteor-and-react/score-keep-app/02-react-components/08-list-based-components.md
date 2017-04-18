@@ -71,7 +71,7 @@ const jsx = (
 // more code
 ```
 
-### Give PlayersList all the players
+### Give `PlayersList` all the players
 ```
 Meteor.startup(() => {
 

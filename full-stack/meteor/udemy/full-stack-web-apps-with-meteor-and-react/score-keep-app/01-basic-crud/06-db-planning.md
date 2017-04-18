@@ -220,7 +220,8 @@ Now if you add to our `numbers` array of objects like `let numbers = [{val: 9}, 
 ## Exercise:
 [Make your screen look like this](https://i.imgur.com/b77qGCu.png) by using our `players` object inside our `renderPlayers()` function
 
-## Solution:
+<details>
+  <summary>Solution</summary>
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -265,6 +266,7 @@ Meteor.startup(function() {
   ReactDOM.render(jsx, document.getElementById('app'));
 });
 ```
+</details>
 
 ## Review
 * We can call functions inside of JSX and whatever gets returned will be used
