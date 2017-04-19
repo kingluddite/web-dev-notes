@@ -116,8 +116,16 @@ Write a Tracker call that keeps track of changes to the `links` Collection (whic
   <summary>Solution</summary>
 ```
 Tracker.autorun(() => {
-  const linkList = Links.find().fetch();
-  console.log(linkList);
+  const links = Links.find().fetch();
+  console.log('New Links', links);
 });
 ```
+
+![solution output](https://i.imgur.com/upRdtF1.png)
+
+* You get one right away when app first starts
+* Our second one when MiniMongo got the data from the backend with any existing links
+* The third one is our new link when we submitted the form
 </details>
+
+
