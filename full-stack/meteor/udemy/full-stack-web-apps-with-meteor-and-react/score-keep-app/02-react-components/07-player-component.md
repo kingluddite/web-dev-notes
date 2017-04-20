@@ -22,6 +22,8 @@ export default Player;
 ```
 
 ### Import and render Player instance
+`client/main.js`
+
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -104,6 +106,7 @@ import { Players } from './../../api/players'; // add this line
 Now we can increase and decrease scores
 
 ## Add our custom function
+`Player`
 
 ```
 import React, { Component } from 'react';

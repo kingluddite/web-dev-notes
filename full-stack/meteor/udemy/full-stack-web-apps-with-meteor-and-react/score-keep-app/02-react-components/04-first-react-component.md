@@ -168,21 +168,6 @@ Meteor.startup(() => {
 
 We now have a reusable Component
 
-```
-const jsx = (
-      <div>
-        {/* Put new h1 here */}
-        <TitleBar />
-        <TitleBar />
-        {renderPlayers(players)}
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="playerName" placeholder="Player Name"/>
-          <button>Add Player</button>
-        </form>
-      </div>
-    );
-```
-
 `imports/ui/components/TitleBar.js`
 
 Move the code from `client/main.js` to `TitleBar.js`
@@ -277,4 +262,21 @@ Meteor.startup(() => {
 });
 ```
 
+`AddPlayer` (_place inside `components` folder_)
 
+```
+import React, { Component } from 'react';
+
+class AddPlayer extends Component {
+  render() {
+    return (
+      <form>
+        <input type="text" name="playerName" placeholder="Player Name"/>
+        <button>Add Player</button>
+      </form>
+    );
+  }
+};
+
+export default AddPlayer;
+```

@@ -246,9 +246,9 @@ export default class AddPlayer extends Component {
 Add a player and you will see the name and the `10` score get passed. It works! 
 
 ### Takeaway
-If you are passing in a method you've defined on your Component to some sort of event listener (i.e. onClick, onSubmit...) you will have to manually preserve the binding
+If you are passing in a method you've defined on your Component to some sort of event listener (_i.e. onClick, onSubmit..._) you will have to manually preserve the binding
 
-Remove the score prop in AddPlayer and replace with just:
+Remove the score prop in `AddPlayer` and replace with just:
 
 ```
 Players.insert({

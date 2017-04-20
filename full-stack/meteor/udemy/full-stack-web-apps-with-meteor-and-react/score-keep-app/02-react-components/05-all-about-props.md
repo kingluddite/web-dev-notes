@@ -9,6 +9,7 @@ React `props` are a way to initial a Component with some information. The Compon
 `client/main.js`
 
 ```
+// more code
 Meteor.startup(() => {
 
   Tracker.autorun(() => {

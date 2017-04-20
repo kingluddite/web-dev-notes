@@ -33,16 +33,16 @@ import { Mongo } from 'meteor/mongo';
 const Players = new Mongo.Collection('players');
 ```
 
-## Important Naming Convention
-We Capitalize the variable and spell the collection in lowercase. This is a Meteor/Mongo naming convention and recommended
-
-## We also want to export Players
+**IMPORT** We need to export Players!
 
 ```
 import { Mongo } from 'meteor/mongo';
 
 export const Players = new Mongo.Collection('players');
 ```
+
+## Important Naming Convention
+We Capitalize the variable and spell the collection in lowercase. This is a Meteor/Mongo naming convention and recommended
 
 We export Players so any file that loads in Players can actually do something with the Players Collection (_read all the players, or update an individual player..._)
 
@@ -57,6 +57,7 @@ We also need to `import` Meteor so we can use the **startup** so we know Meteor 
 **tip** Most of the Meteor APIs we're going to use are available on both the `client` and the `server`
 
 ## Benefit of full stack Javascript
+`server/main.js`
 
 ```
 import { Meteor } from 'meteor/meteor';
