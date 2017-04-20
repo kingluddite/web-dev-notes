@@ -44,7 +44,7 @@ class BinsEditor extends Component {
     return (
        <div className="col-xs-8">
          <h5>Input</h5>
-         <CodeMirror options={{}}
+         <CodeMirror options={{}} />
        </div>
     );
   }

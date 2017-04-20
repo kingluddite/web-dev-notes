@@ -52,7 +52,7 @@ export default createContainer(() => {
 
 When anyone goes to a URL that looks like this (_or matches this URL pattern_) strip off this last part `/:binId` and make it available as a param called specifically `binId`
 
-`Header.js`
+BinsMain.js`
 
 ```
 import React, { Component } from 'react';
