@@ -1,5 +1,5 @@
 # Setting up Modal Errors
-We submit a bad URL and get a console.log() error with a very user friendly error notication under `reason`
+We submit a bad URL and get a console.log() error with a very user friendly error notification under `reason`
 
 ## Add error `state` and default to empty
 `AddLink`
