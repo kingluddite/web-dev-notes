@@ -2,10 +2,14 @@
 
 ![NoSQL vs MySQL diagram](https://i.imgur.com/qBbSFys.png)
 
-MySQL, PostgreSQL and MongoDB - all are databases, they still request a database server to be started up, you have to connect to it to issue commands to Create, Read, Update or Delete (_CRUD_)
+## Similarities
+* MySQL, PostgreSQL and MongoDB are all databases
+* They each request a database server to be started up
+* You have to connect to it to issue commands to Create, Read, Update or Delete (_CRUD_)
 
 That is where things are similar between NoSQL and Relational Databases
 
+## Differences
 * How the data is stored is drastically different
 * SQL databases have a "predefined" table with various columns and all the records have a value for that column
     - Collection of data called **table**

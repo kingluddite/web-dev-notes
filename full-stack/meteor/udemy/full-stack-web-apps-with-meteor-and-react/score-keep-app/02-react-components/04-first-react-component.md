@@ -83,7 +83,7 @@ Meteor.startup(() => {
 ```
 
 ## Goal - Create `<TitleBar />`
-Create Component that will rendered colored bar with Application **title**
+Create Component that will render a colored bar with Application **title**
 
 ![diagram](https://i.imgur.com/zcseWMa.png)
 
@@ -175,7 +175,7 @@ Move the code from `client/main.js` to `TitleBar.js`
 ```
 import React, { Component } from 'react';
 
-class TitleBar extends React.Component {
+class TitleBar extends Component {
   render() {
     return (
        <div>

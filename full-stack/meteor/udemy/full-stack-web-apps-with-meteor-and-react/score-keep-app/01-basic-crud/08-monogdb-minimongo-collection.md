@@ -23,7 +23,9 @@ Inside of `import/api` we will create a file for every Collection we create
 
 `new Mongo.Collection('players');`
 
-When it comes back from the constructor function it is something we need it is an object that gives us access to a wide variety of methods for **fetching**, **updating** and **deleting** Documents (_so we definitely want to create a variable to store it_)
+## We need to make it a variable!
+* When it comes back from the constructor function it is something we need
+* It is an object that gives us access to a wide variety of methods for **fetching**, **updating** and **deleting** Documents (_so we definitely want to create a variable to store it_)
 
 `imports/api/players.js`
 
@@ -42,13 +44,16 @@ export const Players = new Mongo.Collection('players');
 ```
 
 ## Important Naming Convention
-We Capitalize the variable and spell the collection in lowercase. This is a Meteor/Mongo naming convention and recommended
-
-We export Players so any file that loads in Players can actually do something with the Players Collection (_read all the players, or update an individual player..._)
-
-Since `players.js` resides inside `imports` we know it will not `eager load` and we'll have to manually load it 
-
-We will import this Collection on `server/main.js`
+* We **Capitalize** the variable
+* We spell the Collection in lowercase
+* This is a `Meteor/Mongo` naming convention
+* It is recommended you follow it
+* We export `Players` so any file that loads in `Players` can actually do something with the `Players` Collection
+  - Some Examples
+    + Read all the players
+    + Or update an individual player
+* Since `players.js` resides inside `imports` we know it will not `eager load` and we'll have to manually load in
+* We will import this Collection on `server/main.js`
 
 `import { Players } from './../imports/api/players';`
 
@@ -90,12 +95,19 @@ Meteor.startup(function() {
 ```
 
 * The program will restart, it will run the above code and a new player will be inserted into our MongoDB Players Collection
-* `Players.insert({})` takes a partial Document (_partial because we insert some properties and MongoDB will insert an _id for every Document inserted_)
-* We also want to fetch the Players back (_to ensure the player we just inserted was correctly inserted_)
-    - `Players.find()` - simply returns everything from the specified Collection
+* `Players.insert({})` takes a partial Document
+    - Partial because we insert some properties and MongoDB will insert an _id for every Document inserted
+* We also want to fetch the Players back
+    - To ensure the player we just inserted was correctly inserted
+* `Players.find()` - simply returns everything from the specified Collection
     - `find()` returns a **Cursor**
-        + A **Cursor** is a pointer to some Documents in the database
-        + To get an array of the Documents we have to call `.fetch()` like this:
+
+## What is a Cursor?
+* A **Cursor** is a pointer to some Documents in the database
+* It doesn't actually get us our data, it just points at it
+
+## So how do we actually get our data?
+To get an array of the Documents we have to call `.fetch()` like this:
 
 `Players.find().fetch()`
 
@@ -103,9 +115,8 @@ Meteor.startup(function() {
 ![output of inserted Document](https://i.imgur.com/IxJ1qWf.png)
 
 ## Synchronous?
-Notice what we just did was **synchronous**
-
-* We were able to fetch the data right after we inserted it without having to add a callback or a Promise chain
+* Notice what we just did was **synchronous**
+* We were able to fetch the data right after we inserted it without having to add a **callback** or a **Promise** chain
 * How is this possible? 
   - This is because the Meteor MongoDB API is **synchronous**
 

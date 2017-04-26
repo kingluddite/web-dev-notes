@@ -25,19 +25,26 @@ Query for all Documents with a score of `0`
 `> db.players.find({score: 0})`
 
 ## db.players.remove(argument)
-Must be privided an argument
+Must be provided an argument
 
-If you wanted to remove all documents you could run this (_don't do it please as we want our documents around_)
+* Remove all documents
 
 `> db.players.remove({})` - We provide an empty object as our argument
 
-We can remove a Document by providing an '_id' like this:
+We can remove a Document by providing an `_id` like this:
 
 `> db.players.remove({_id: "KtBBYRK9AM274yy4i"})`
 
-* Use the terminal to see [an _id you want to use](https://i.imgur.com/IfzfAGT.png)
+* Use the terminal to see 
 
-**nRemoved** - After submitting that to meteor mongo it will remove just one Document and what we get back is an object with an `nRemoved` property (stands for 'number Removed') and we can see we just removed `1` Document. It our query removes more than `1` Document, we will see that number beside the `nRemoved` property
+![an _id you want to use](https://i.imgur.com/IfzfAGT.png)
+
+## What is nRemoved?
+* After submitting that to **Mongo** it will remove just one Document
+* What we get back is an object with an `nRemoved` property
+    - Stands for 'number Removed'
+* We see we just removed `1` Document
+* If our query removes more than `1` Document, we will see that number beside the `nRemoved` property
 
 ## Button time
 Now we know how to remove a Document but we now need to create a button and add a click event to that button so that we can put our remove Document knowledge to use

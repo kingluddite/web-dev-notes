@@ -6,7 +6,8 @@
 ![Traditional Diagram](https://i.imgur.com/EA0yRqK.png)
 
 * If we weren't using Meteor we could build it this way
-* Note that Node and MongoDB are not synchronous but the API is Asynchronous
+* Note that Node and MongoDB are not synchronous
+* The API is Asynchronous
 
 ![Diagram of steps](https://i.imgur.com/OVRev5L.png)
 
@@ -59,7 +60,8 @@ Either way we have a flicker. The difference is that flicker always happens, eve
 That was a high level overview of what is happening. On the `Client` we have a clone of MongoDB which means if we have players on the server, we have players on the `client`, we can query those players using regular Synchronous functions we can also manipulate this data (_insert, update or delete those players_), when we do make those changes we'll be able to sync up with the server but the DOM will be updated before that sync happens
 
 ## Time to Render the Players to the browser
-How can we tap into the MiniMongo methods (_the Synchronous function calls that allow us to communicate with the MiniMongo database_)
+* How can we tap into the MiniMongo methods?
+    - The Synchronous function calls that allow us to communicate with the MiniMongo database
 
 ### Add the Collection to `client/main.js`
 ```
@@ -69,9 +71,9 @@ import { Meteor } from 'meteor/meteor';
 import { Players } from './../imports/api/players'; // add this line
 ```
 
-This was the exact same line we used in `server/main.js`
-
-Now we have access to the exact same function calls (_so if we copy `console.log(Players.find().fetch());` from the `server/main.js` to `client/main.js`_) it should show us our entire current Players Collection in the console
+* This was the exact same line we used in `server/main.js`
+* Now we have access to the exact same function calls
+    - So if we copy `console.log(Players.find().fetch());` from the `server/main.js` to `client/main.js` it should show us our entire current Players Collection in the console
 
 ```
 import React from 'react';
@@ -83,6 +85,7 @@ console.log('Players List', Players.find().fetch());
 // more code
 ```
 
+## Empty Array? What gives?
 We get back an empty array in the `console`
 
 ![empty array](https://i.imgur.com/ydyci5i.png)
@@ -149,4 +152,6 @@ Tracker.autorun(function() {
 });
 ```
 
-Now we get exactly what we expect. First the empty array because it the MongoDB server and MiniMongo haven't synced and then our next array (_because they are now in sync_) has the Players Collection
+## Now we get exactly what we expect
+1. First the empty array because it the MongoDB server and MiniMongo haven't synced
+2. And then our next array (_because they are now in sync_) has the `Players` **Collection**

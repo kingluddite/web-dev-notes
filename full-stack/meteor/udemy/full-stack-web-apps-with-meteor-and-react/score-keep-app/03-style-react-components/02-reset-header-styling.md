@@ -21,19 +21,21 @@ If you use `class` you will get an error:
 
 You need to use `className` instead of **class**
 
+`TitleBar`
+
 `<div className="title-bar">`
 
 ## The reason is...
 * Because of how JSX is rendered
 * `class` is a reserved keyword in JavaScript
 
-**note** JSX just gets converted to function calls and that does result in a problem because these values `class="title-bar"` get converted into an object ` { "class": "title-bar" }`
+**note** **JSX** just gets converted to function calls and that does result in a problem because these values `class="title-bar"` get converted into an object ` { "class": "title-bar" }`
 
 * Try for yourself on [the babel repl](https://babeljs.io)_) and that won't work because the key of `class` is a reserved keyword
 
 ![babel](https://i.imgur.com/jImelI4.png)
 
-Using `className` instead is the workaround and JSX will convert it to `class` behind the scenes
+Using `className` instead is the workaround and **JSX** will convert it to `class` behind the scenes
 
 ### Style our TitleBar
 `client/main.scss`
@@ -76,11 +78,11 @@ body {
 ```
 
 #### What is the "root" of REM?
-What is this 'relative' unit based off of?
-
-It is based on the font-size of your `<html>` element
-
-We will set the font-size of `<html>` to be `62.5%`. The default `<html>` **font-size** for most browsers is `16px` (_16 * 0.625 = 10px_). We set our base **font-size** to `10px` because then our relative units `REM` are much easier to compute
+* What is this 'relative' unit based off of?
+    - It is based on the font-size of your `<html>` element
+* We will set the font-size of `<html>` to be `62.5%`
+* The default `<html>` **font-size** for most browsers is `16px` (_16 * 0.625 = 10px_)
+* We set our base **font-size** to `10px` because then our relative units `REM` are much easier to compute
 
 `2.4rem` easily converts to `24px`
 

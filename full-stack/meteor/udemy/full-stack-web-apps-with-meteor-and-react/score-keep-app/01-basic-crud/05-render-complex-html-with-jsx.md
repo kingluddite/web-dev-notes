@@ -17,7 +17,7 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(function() {
-  let title = 'Score Keep';
+  let title = 'Account Settings';
   let name = 'PEH2'
   let jsx = (
      <div>

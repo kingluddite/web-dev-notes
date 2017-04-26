@@ -1,8 +1,8 @@
 # Importing and Exporting
-We won't use `eager loading` at all in our Apps
+**Important!** - We won't use `eager loading` at all in our Apps
 
 ## We will use lazy loading
-Uses the ES6 `import` keyword to explicitly load in specific files
+Uses the ES6 `import` keyword to <u>explicitly</u> load in specific files
 
 ![import export visualization diagram](https://i.imgur.com/tj3L8Q7.png)
 
@@ -12,7 +12,8 @@ Uses the ES6 `import` keyword to explicitly load in specific files
 ## utils.js
 Create `/imports/utils.js`
 
-`./` tells our Application we are loading a local file versus a 3rd part Library
+### The current directy `(./)`
+(`./`) Tells our Application we are loading a local file versus a 3rd part Library
 
 `imports/utils.js`
 
@@ -30,15 +31,18 @@ import './../imports/utils';
 console.log('Log from /server/main.js');
 ```
 
-## View in browser
-You will see our import is working (_and we're using lazying loading and not eager loading_) because our Terminal is showing the log statement `Log`
+## View in Server 
+* You will see:
+    - Our **import** is working
+    - We're using **lazying loading**
+    - We're not using **eager loading**
+    - Our Terminal is showing the `log` statement `Log`
 
 ![server log statement from utils](https://i.imgur.com/8i0kJe1.png)
 
 We don't see log in `client` console... at least not yet
 
-Let's change that now with:
-
+## View in Client
 `client/main.js`
 
 ```
@@ -52,8 +56,8 @@ This is what you will see
 
 ![we can see in console from import](https://i.imgur.com/U7X3oHN.png)
 
-## So far this is not very useful
-We want the ability to export functions and use them in other files
+* So far this is not very useful
+* We want the ability to <u>export functions and use them in other files</u>
 
 ### Export a function
 `imports/utils.js`
@@ -122,7 +126,9 @@ console.log(name);
 ![console output of client](https://i.imgur.com/quJQeyq.png)
 
 ## Exercise
-Create a function inside `imports/math.js` that will take two numbers as arguments and add them. Import that function inside `server/main.js` and `console.log()` the function and and pass it two numbers you would like to add
+1. Create a function inside `imports/math.js` that will take two numbers as arguments and add them
+2. Import that function inside `server/main.js` and `console.log()` the function
+    * When calling the function, pass it two numbers you would like to add
 
 ## Review
 * We now understand how to import and export stuff

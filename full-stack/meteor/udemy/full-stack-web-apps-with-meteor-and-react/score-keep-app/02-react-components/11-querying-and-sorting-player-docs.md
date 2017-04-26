@@ -10,18 +10,16 @@ High scores on top, low scores on bottom
 Find all players `> db.players.find()`
 
 ### sort() syntax
-db.COLLECTION.find().sort({ key-you-want-to-sort-by: 1|-1})
+`db.COLLECTION.find().sort({ key-you-want-to-sort-by: 1|-1})`
 
-* 1 (ascending)
-* 2 (descending)
-
-`db.players.find().sort({score: -1})`
-
-If you wanted to sort by name in acending order
+#### Sort Ascending Order
 
 `db.players.find().sort({name: 1})`
 
-### Switching to our Application
+#### Sort Descending Order
+`db.players.find().sort({score: -1})`
+
+### Switching back to our Application
 `client/main.js`
 
 ```
@@ -49,9 +47,10 @@ We want to look at:
 `const players = Players.find().fetch();`
 
 * `find()` takes an optional query
-* We need to pass an empty object (_To get all the players_) as the first argument just so we can use the second argument, our options object
+* We need to pass an empty object (_To get all the players_) as the first argument
+    - Just so we can use the second argument, our `options` object
 
-**note** The `sort` object gets passed on to the options object available on find (_So the syntax will look different in Meteor then in the MongoDB shell_)
+**note** The `sort` object gets passed on to the `options` object available on find (_So the syntax will look different in Meteor then in the MongoDB shell_)
 
 ```
 import React from 'react';
@@ -78,7 +77,8 @@ Meteor.startup(() => {
 ```
 
 ### Formatting
-You could format your code like this. It is up to you based on what you think is more readable
+* You could format your code like this
+* You decide what you think is more readable
 
 ```
 const players = Players.find({}, {sort: { score: -1 }}).fetch();

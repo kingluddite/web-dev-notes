@@ -10,20 +10,24 @@ Everything that defines our Application's logic, the rendering logic and the UI 
 As our Application gets more complex this file has to get even more complex because this is where all the code lives
 
 ## New Goal
-Break our file up into a reusable React Component
+Break our file up into a reusable **React** Component
 
-* React Components are essential to building any real world React Application
-* We are using JSX but React Components will enable us to break up our Application into reusable pieces
+* **React** Components are essential to building any real world **React** Application
+* We are using `JSX` but **React** Components will enable us to break up our Application into reusable pieces
 
 ### HTML element analogy
-Think of the HTML form tag. It will render a form but it also has some interaction built into it like when you submit a form. Because of the architecture/design of the form tag we can use it anywhere in our app and we can recreate the functionality without having to retype the code. It will also enable us to break up our Application into little pieces
+* Think of the HTML `form` tag
+* It will render a `form` but it also has some interaction built into it like when you submit a `form`
+* Because of the architecture/design of the `form` tag we can use it anywhere in our app and we can recreate the functionality without having to retype the code
+* It will also enable us to break up our Application into little pieces
 
-#### Example - AddPlayer Component
+#### Example - `AddPlayer` Component
 All this Component will care about will be to render a little bit of JSX and it will have one method and this method will be responsible for doing something when the form gets submitted
 
 * It won't care how many players there are
 * It won't care what the page title is
-* It is just an isolated React Component responsible for just one job (_rendering that form and responding to user interaction_)
+* It is just an isolated React Component responsible for just one job
+    - Rendering that form and responding to user interaction
 
 ### Adding a Component to a page
 `<AddPlayer />`

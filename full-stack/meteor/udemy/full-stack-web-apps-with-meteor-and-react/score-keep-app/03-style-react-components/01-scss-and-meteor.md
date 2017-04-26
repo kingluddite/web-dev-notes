@@ -1,5 +1,6 @@
 # SCSS and Atmousphere Packages
-Normally you would need to use a build tool like Grunt, Gulp or WebPack but we can use a Meteor Sass packages that does all the build tool stuff for us
+* Normally you would need to use a build tool like Grunt, Gulp or WebPack
+* But we can use a **Meteor Sass package** that does all the build tool stuff for us
 
 Search for `scss` on [atmouspherejs.com](https://atmospherejs.com/)
 
@@ -20,7 +21,10 @@ Search for `scss` on [atmouspherejs.com](https://atmospherejs.com/)
 
 `$ meteor add fourseven:scss@=3.10.1 --release 1.4.2.1`
 
-**Best Practice** Inside `.meteor` you'll see `packages` and `versions` where you'll see all the current packages listed and their versions. You are not supposed to manipulate these files but use `meteor add` and `meteor remove` to add and remove packages
+### Best Practices 
+* Inside `.meteor` you'll see `packages` and `versions` where you'll see all the current packages listed and their versions
+* You are not supposed to manipulate these files but use `meteor add` and `meteor remove` to add and remove packages
+* Sometimes to speed things up I add and remove packages from `.meteor/packages`
 
 ### Test Sass install
 Rename `client/main.css` to `client/main.scss` and add this Sass:

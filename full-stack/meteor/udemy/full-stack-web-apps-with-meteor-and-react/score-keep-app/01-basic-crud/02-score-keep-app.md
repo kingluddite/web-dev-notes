@@ -14,81 +14,92 @@ Also run `$ meteor npm install`
 Run meteor with `$ meteor run --release 1.4.2.1`
 
 ## Remove Boilerplate code
-* We don't touch `.meteor` folder, `.gitignore` or `package.json`
+* We don't touch `.meteor` folder
+    * Unless you know what you're doing
 * Remove all code from `server/main.js` and replace with `console.log('Log from /server/main.js);`
     - You will see this log output in the **Terminal**
 * Remove all code from `client/main.js` and replace with `console.log('Log from /client/main.js');`
     - You will see this log output in the **console** tab of Chrome
 
-**note** Most files right now are automatically loaded. This is dangerous
+## Review and talk about why we need them
+* `.gitignore`
+* `package.json`
 
-Meteor recommends not adding anything to `client` or `server` folder
+## [Danger Will Robinson!](https://www.youtube.com/watch?v=OWwOJlOI1nU)
+* Most files right now are automatically loaded. This is dangerous
+* Meteor recommends not adding anything to `client` or `server` folder
 
 ## Demonstrate dangers
-Add `app.js` file to root and type `console.log('Log from app.js);`
+1. Add `app.js` file to root and type `console.log('Log from app.js);`
+2. In **Terminal**, You will see `Log from app.js` on server even though we didn't put this file in our `server` folder
+3. In Chrome **Console** we also have `Log from app.js`
 
-In **Terminal**, You will see `Log from app.js` on server even though we didn't put this file in our `server` folder. We also have `Log from app.js` in `console` of Chrome. 
+### This is a problem! 
+* Automatically loading file from all over your Application makes things hard to maintain
+* If we create an `app` folder and drag and drop `app.js` inside it we'll get the same functionality
 
-## This is a problem! 
-Automatically loading file from all over your Application makes things so much harder to maintain
+## "A rose by any other name would smell as sweet" - WS
+* Directory names in Meteor (_aka folder names_) are important
+* The `client` and `server` directory names are important and have meaning in the Meteor ecosystem
 
-If we create an `app` folder and drag and drop `app.js` inside it we'll get the same functionality
-
-**note** directory names in Meteor are super important
-
-The `client` and `server` directory names are important and have meaning in the Meteor ecosystem
-
-## Eager loading vs lazy loading
+## Eager Loading vs Lazy Loading
 * `Eager loading` automatically loads files
 * `Lazy loading` requires us to manually import files
 
-## The `imports` folder
-Create `/imports`
+## The `/imports` folder
+`$ mkdir imports`
 
-All **lazy loading** files need to go inside `/imports`
-
+* All **lazy loading** files need to go inside `/imports`
 * Any file inside `/imports` will not be automatically loaded into our Application
     - This means if you toss `app.js` inside `/imports` you won't see it in the browser or the **Terminal**
-    - This is what we want
+    - This is a good thing and this is what we want to do
 
 ## The `public` folder
-Create `/public`
+* `$ mkdir public`
+* **Meteor** will treat anything inside `/public` as a public asset you want available on your server
+    - Example assets to add inside `/pubic` 
+        + **favicon**
+        + **images**
+        + **fonts**
+        + **svgs**
+        + **zipped files**
+        + **pdf**
 
-* Anything inside this folder, Meteor will treat as a public asset you want available on your server
-    - I could add a favicon here or an image in here
-    - Create `/public/help.html` and type `Help me!` inside it. Then browse to `http://localhost:3000/help.html` and you will see `Help me!`
-        + This page is completely disconnected from rest of Meteor Application
-            * We don't get logs or anything except for what we have in the file
-    - `public` folder is great for anything you need publicly available like **fonts**, **svgs**
+### Try it out
+1. `$ touch /public/help.html`
+2. Type `Help me!` inside `help.html`
+3. Browse to `http://localhost:3000/help.html`
+    * You will see `Help me!`
+    * This page is completely disconnected from rest of Meteor Application
+    * We don't get logs or anything except for what we have in the file
 
-**note** Same `eager loading` problems exist for CSS and HTML files causing unexpected behavior, this is an anti-pattern
+* Same `eager loading` problems exist for CSS and HTML files causing unexpected behavior, this is an anti-pattern
+* There are better ways to load our styles and our templates that we will address later
 
-There are better ways to load our styles and our templates that we will address later
-
-**Anti-patterns** are certain patterns in software development that is considered a bad programming practice
-
-As opposed to **design patterns** which are common approaches to common problems which have been formalized, and are generally considered a good development practice, `anti-patterns` are the opposite and are undesirable
+### What are Anti-patterns?
+* Patterns in software development that is considered a bad programming practice
+* As opposed to **design patterns** which are common approaches to common problems which have been formalized, and are generally considered a good development practice, `anti-patterns` are the opposite and are undesirable
 
 ## `client` directory
-Only available on the `client`
-
-We won't add anything to this directory except for `main.css`, `main.html` and `main.js` even for the most complex apps
+* Only available on the `client`
+* We won't add anything to this directory except:
+    - `main.css`
+    - `main.html`
+    - `main.js`
 
 ## `server` directory
-Only available on the `server` 
-
-We won't add any files inside this other than `main.js`. If we do add files we will put them in the `imports` folder and we will be lazy loading it using the `import` keyword
-
-## `public`
-We can toss anything in here we want public. Like `zips` we want users to download. Whatever public assets you need sit inside the public folder
+* Only available on the `server` 
+* We won't add any files inside this other than `main.js`
+* If we do add files we will put them in the `imports` folder
+    - And we will be **lazy loading** it using the `import` keyword
 
 ## View the source
-You will see the link to the stylesheet and in the body you will see all the links to JavaScript files to make our Application work
+* You will see:
+    - The link to the stylesheet in the `head`
+    - All the links to JavaScript in the body that make our Application work
 
 ## `client/main.html`
-
-You will see we do not have an official document
-
+* Strange looking file, huh? More like a fragment of a traditional HTML file
 * No DOCYTPE
 * No HTML tag
 * Meteor wants you to structure your HTML like this:

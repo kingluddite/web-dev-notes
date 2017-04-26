@@ -27,14 +27,14 @@ class PlayerList extends React.Component {
 
   renderPlayers() {
     if (this.props.players.length === 0 ) {
-      return <p>Please add players.</p>
+      return <p>Please add players.</p>;
     } else {
       return this.props.players.map( player => {
-      return <Player key={player._id} player={player} />;
-    });
+        return <Player key={player._id} player={player} />;
+      });
+    }
   }
-
-  }
+  
   render() {
     return (
       <div>

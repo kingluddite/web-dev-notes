@@ -22,9 +22,10 @@ Here are some places to help speed up your Sass workflow
 
 `.scss-lint.yml`
 
-Save this file in the root of your project. It is a yml file which means it conveys information through indentation
+* Save this file in the root of your project
+* It is a `.yml` file which means it conveys information through indentation
 
-```yml
+```
 linters:
 
   BangFormat:

@@ -2,7 +2,9 @@
 `imports/client/styles`
 
 ## Sass Partials
-Cut and paste all our code from `client/main.scss` to `imports/client/styles/_main.scss`
+Cut and paste all our code from `client/main.scss` to 
+
+`imports/client/styles/_main.scss`
 
 `_main.scss`
 
@@ -42,10 +44,6 @@ h1
 `client/main.scss`
 
 `@import './../imports/client/styles/main';`
-
-You can shorten this **relative path** to:
-
-`@import '../imports/client/styles/main';`
 
 **note** It is the same path
 
@@ -111,7 +109,7 @@ Our app still looks like it is working but our **Terminal** shows the error
 ![terminal scss errors](https://i.imgur.com/VbiRx5I.png)
 
 ## Hard Refresh
-A hard refresh will show the error so doing hard refreshes from time to time will alert us if our app has broken
+A hard refresh will show the error so doing hard refreshes from time-to-time will alert us if our app has broken
 
 Fix the error
 

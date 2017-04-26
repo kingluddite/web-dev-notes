@@ -1,17 +1,15 @@
-# DB Planning and Rendering static data
+# Database Planning
 * Each player needs
     - name
     - score
+* The place they are in can be rendered on the fly
+* We will need an array of objects with a name and a score
 
-The place they are in can be rendered on the fly
-
-So we need an array of objects with a name and a score
-
-## First Static Data
+## Rendering Static Data
 Type this in `client/main.js` and you see [this rendered to the screen](https://i.imgur.com/xaUbt5p.png) which means we can render a dynamic set of JSX to the screen
 
 ```
-let jsx = (
+const jsx = (
      <div>
        {/* Put new h1 here */}
        <h1>{title}</h1>
@@ -25,7 +23,7 @@ let jsx = (
 We get an error about **unique key** and can fix it with
 
 ```
-let jsx = (
+const jsx = (
      <div>
        {/* Put new h1 here */}
        <h1>{title}</h1>
@@ -36,7 +34,8 @@ let jsx = (
   );
 ```
 
-So we know how to render an array to the screen now we need to render an array of objects to the screen
+#### Great! We know how to render an array to the screen
+Now we need to render an <u>array of objects</u> to the screen
 
 ```js
 const players = [
@@ -58,7 +57,10 @@ const players = [
 ];
 ```
 
-And we create a new function and plop in our existing array and return it, then call that function from inside our JSX
+### Our Strategy to Accomplish rending an array of objects to the screen
+1. We create a new function
+2. We plop in our existing array (_And return it_)
+3. Then we call that function from inside our JSX
 
 ```
 import React from 'react';
@@ -103,12 +105,42 @@ Meteor.startup(function() {
 });
 ```
 
-This works as it did before but now we have the benefit of a reusable function. I can pass in our `players` list and I can take that in as an argument of `renderPlayers`
+* This works as it did before
+* But now we have the benefit of a reusable function
+* I can pass in our `players` list
+  - And I can take that in as an argument of `renderPlayers`
 
-**note** We should give the `players` variable and the argument name `playersList` different names to avoid confusion
+**note** 
+
+* We will give the `players` variable and the argument name `playersList` different names to avoid confusion
+* I want to point out that there is a difference between a **parameter** and an **argument**
+
+* **parameter** - Is a variable in the declaration of a function
+* **argument** - Is the actual value of this variable that gets passed to the function
 
 ```
-const renderPlayers = function(playersList) {
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Meteor } from 'meteor/meteor';
+
+const players = [
+  {
+    _id: '1',
+    name: 'Manny',
+    score: 0
+  },
+  {
+    _id: '2',
+    name: 'Moe',
+    score: 0
+  },
+  {
+    _id: '3',
+    name: 'Jack',
+    score: 0
+  }
+];
+const renderPlayers = function(players) {
    return [<p key="1">1</p>, <p key="2">2</p>];
 }
 
@@ -126,10 +158,10 @@ Meteor.startup(function() {
   );
 ```
 
-### How do we take the array of objects and get an array of JSX?
+#### How do we take the array of objects and get an array of JSX?
 Use the Array `.map` function
 
-#### Learning how to use `.map()`
+##### Learning how to use `.map()`
 `client/main.js`
 
 ```
@@ -146,7 +178,8 @@ const renderPlayers = function(playersList) {
 This will give us an array of numbers `[0, 1, 2]` (_not objects_) and this is because of how we used `.map()`
 
 * We take the object and we return whatever we want to replace that object with (_in the above case we got the individual number and subtracted 1_)
-* We could have returned an object to keep an array of objects or we could return some JSX
+* We could have returned an object to keep an array of objects
+* Or we could return some JSX
 
 ```
 const renderPlayers = function(playersList) {
@@ -163,10 +196,13 @@ This give us an array of JSX
 
 ![jsx array](https://i.imgur.com/LQ1BDh0.png)
 
-The reason that are object is that is what happens behind the scenes (_as we saw with the babel **repl**_)
+* The reason they are objects is that is what happens behind the scenes
+    + As we saw with the babel **repl**
 
 ### What is a `repl`?
-In short, it starts an interactive console where you can type in commands and immediately see the result of these commands. [This babel site is a repl](https://babeljs.io/)
+In short, it starts an interactive console where you can type in commands and immediately see the result of these commands
+
+[This babel site is a repl](https://babeljs.io/)
 
 ```
 import React from 'react';

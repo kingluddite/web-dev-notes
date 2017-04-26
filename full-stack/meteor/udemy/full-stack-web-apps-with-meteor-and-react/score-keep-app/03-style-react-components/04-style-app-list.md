@@ -1,10 +1,11 @@
 # Styling the App list
 ![wireframe](https://i.imgur.com/rvx1Oia.png)
 
-## Challenge
+## Exercise
 Center `PlayerList` and `AddPlayer` using `.wrapper` class
 
-### Solution
+<details>
+  <summary>Solution</summary>
 `App.js`
 
 ```
@@ -24,6 +25,7 @@ class App extends Component {
   }
 };
 ```
+</details>
 
 ### Style modifications
 * Make your `body` selector have light gray background

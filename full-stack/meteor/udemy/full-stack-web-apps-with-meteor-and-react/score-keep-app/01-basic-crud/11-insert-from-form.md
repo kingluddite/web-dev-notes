@@ -1,6 +1,6 @@
 # Insert Players from a Form
 * Right now we are working with dummy Documents
-* The names are always the same static players
+    - The names are always the same static players
 
 ## Next
 * Now we'll ask the user of the app to supply the player name
@@ -8,7 +8,9 @@
 * The player name will get added when they submit the form
 
 ## Focus on JSX
-Using exact same Player insert except we'll use dynamic variables for the name, and the score will always be `0`
+* We'll now use dynamic variables in our Mongo `insert()` for the name
+  - But the score will still be **static**
+      + It will default to `0` whenever a **player** is inserted
 
 `client/main.js`
 
@@ -68,7 +70,7 @@ Meteor.startup(function() {
 });
 ```
 
-### How can we clear data?
+### How can we delete data?
 It's starting to get long and unruly
 
 There are several ways. Here's a quick, easy solution
@@ -85,12 +87,15 @@ Add 3 players
 
 ## Review
 * We created a form with pure HTML elements
-* But we added an event listener by adding `onSubmit` attribute that pointed to the `handleSubmit` function (_Which means we basically set up an event listener - every time the form gets submitted we want to run this code_)
+* But we added an event listener by adding `onSubmit` attribute that pointed to the `handleSubmit` function
+  - **event listener** - every time the form gets submitted we want to run this code
     - We get the player name
     - We prevent a full page refresh
-    - If the player name is valid (one was provided)
-        + We clear the form field
+    - If the player name is valid (_one was provided_)
+        + We clear the form field (_usability improvement_)
         + Insert the player into the players Collection
-    - DDP will make this sync to all other browsers
+    - **DDP** will make this sync to all other browsers
         + Test this out by opening two browsers side-by-side
-            * Add a player in one browser and it will immediately appear in both browsers (_this is all because of DDP - it syncs the MiniMongo databases on the client with the MongoDB database that the server has access to, then that gets synced to all other connections_)
+            * Add a player in one browser and it will immediately appear in both browsers
+            * This is all because of **DDP**
+              - It syncs the `MiniMongo` database(s) on the `client`(s) with the **MongoDB** database that the `server` has access to, then that gets synced to all other connections

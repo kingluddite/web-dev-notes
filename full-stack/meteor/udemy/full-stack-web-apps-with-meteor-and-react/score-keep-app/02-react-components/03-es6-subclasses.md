@@ -1,10 +1,10 @@
 # ES6 Subclasses
-How to extend existing classes
-
-This is useful because in order to create React Components you have to extend existing classes
+* Extending existing classes
+    - This is useful because in order to create **React** Components you have to extend existing classes
 
 ## How can we extend our Person class?
-Employee is a good subclass of Person. They are persons but they also have salaries and job titles
+* Employee is a good subclass of Person
+* They are `Persons` but they also have `salaries` and `job titles`
 
 ```
 class Employee extends Person {
@@ -44,14 +44,15 @@ Meteor.startup(() => {
 });
 ```
 
-* We swap out `Person` for `Employee` and we get the exact same output. Not very useful but it is what it is :)
+* We swap out `Person` for `Employee` and we get the exact same output
+* Not very useful yet
 * It only becomes useful when we give our sub class custom **properties** and **behavior**
 
 We will call a third argument that our `Person` class doesn't have but our subclass does
 
 `const me = new Employee('KingLuddite', 40, 'Web Developer');`
 
-And here is our sub class
+### And introducing... our Employee sub class!
 
 ```
 class Employee extends Person {
@@ -88,7 +89,7 @@ class Employee extends Person {
 
 * By using `super()` we are calling the parents `constructor()` function because we are going to need it to run in order for the **parent's** methods to work
 * `super()` is a reserved keyword and enables you to access the parent's class
-* We pass super our arguments `super(name, age)` and that way we don't have to redefine the defaults, we simply call the **parent** and when the `Person` changes, the `Employees` will change because `Employees` extends `Person`
+* We pass `super()` our arguments `super(name, age)` and that way we don't have to redefine the defaults, we simply call the **parent** and when the `Person` changes, the `Employees` will change because `Employees` extends `Person`
 
 Inside our subclass we can do things with our methods:
 
@@ -96,7 +97,9 @@ Inside our subclass we can do things with our methods:
 2. We can create our own methods
 
 ## Not Not. Who's there?
-Convert to Boolean by flipping its value twice
+* Convert to Boolean by flipping its value twice
+* `!` Is known as the `Not` operator
+    - Two of them next to each other would be `Not Not`
 
 ```
 hasJob() {
@@ -104,9 +107,9 @@ hasJob() {
 }
 ```
 
-* Which means if it is `undefined` it will get flipped once to true and again to false (_so they won't have a job_)
-* If there is a valid string it will get flipped once to false and a second time to true
-* It will work regardless whether or not they have a title
+* Which means if it is `undefined` it will get flipped once to **true** and again to **false** (_so they won't have a job_)
+* If there is a valid string it will get flipped once to **false** and a second time to **true**
+* It will work regardless whether or not they have a `title`
 
 ```
 import { Meteor } from 'meteor/meteor';

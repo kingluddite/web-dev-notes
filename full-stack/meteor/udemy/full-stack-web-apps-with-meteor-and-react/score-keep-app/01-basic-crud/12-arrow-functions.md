@@ -39,7 +39,8 @@ const square = x => x * x ;
 
 ## Why use Arrow functions?
 * They support a simplified syntax
-* The **expression syntax** implicitly uses the `return` keyword behind the scenes which means we do not have to explicitly provide it (in the above example `x * x` is automatically returned)
+* The **expression syntax** implicitly uses the `return` keyword behind the scenes which means we do not have to explicitly provide it
+    - In the above example `x * x` is automatically returned
 
 `server/main.js`
 
@@ -61,8 +62,8 @@ Meteor.startup(function() {
 
 Will output `Billy` on the server Terminal
 
-## The first difference between regular functions and arrow functions
-Arrow functions do not bind the `this` keyword
+## Arrow functions do not bind the `this` keyword
+The first difference between regular functions and arrow functions
 
 ### Convert to arrow function
 ```
@@ -76,9 +77,10 @@ const user = {
 user.sayHi();
 ```
 
-`undefined` will be returned because we do not have access to `this` because Arrow functions do not bind the `this` keyword
+* `undefined` will be returned because we do not have access to `this`
+* Because `Arrow functions` do not bind the `this` keyword
 
-### Arrow function also don't bind the `arguments` array
+### Arrow function also don't bind to the `arguments` array
 ```
 const user = {
     name: 'Billy',
@@ -159,7 +161,11 @@ Will return `undefined`
 
 The reason is ES5 functions bind the `this` keyword so inside our `setTimeout()` function we are binding `this` and we lose the original `this` keyword and that is why we are getting `undefined`
 
-### Common Workaround
+### "You can get with `this` or you can get with `that`"
+[lyric from The Choice is Yours - Black Sheep](https://genius.com/Black-sheep-the-choice-is-yours-revisited-lyrics)
+
+#### Common ES5 workaround to `this` issue
+
 ```
 const user = {
     name: 'Billy',
@@ -178,7 +184,8 @@ And that will again give us `Billy`
 
 It does work but what you are doing it essentially writing code to fix ES5 functions
 
-But with ES6 we don't have to run into this function at all
+## [ES6 is here to save the day!](https://www.youtube.com/watch?v=hiu1wfHSU1w)
+But with ES6 we don't have to run into this function scope issue at all
 
 ```
 const user = {
@@ -193,14 +200,16 @@ const user = {
 user.sayHi(1, 2);
 ```
 
-* So now that we are using an ES6 Arrow function we have access to the `this` keyword because Arrow functions don't bind do `this` but instead just use their parents `this` keyword and we get `Billy` output. **Note** the parent's function is using ES5 function syntax and it is binding to `this` but it's child `setTimeout()` function is using an arrow function which doesn't bind to `this`
+* Using an ES6 Arrow function gives us access to the `this` keyword
+* Because Arrow functions don't bind do `this`
+* But instead ES6 Arrow functions just use their parents `this` keyword and we get the desired `Billy` output
 
-## Takeaway
-Using regular functions (_aka ES5 functions_) and Arrow functions (_aka ES6 functions_) we can achieve some powerful stuff
+**Note** the parent's function is using ES5 function syntax and it is binding to `this` but it's child `setTimeout()` function is using an Arrow function which doesn't bind to `this`
 
+## Takeaway for ES5 and ES6 functions
 * Both have their place
 * You don't want to just use one or just use the other
-* It just depends on the context
+* It just depends on the context when deciding which to use
 
 ## Exercise
 Comment all code inside `Meteor.startup(function() {});` in `server/main.js` and replace it with:
@@ -216,10 +225,14 @@ Meteor.startup(function() {
 });
 ```
 
-Create a new Array of numbers that will add 1 to each of the numbers inside of the `numbers` array. Use the Arrays `.map()` function (_Use the "statements syntax with the curly braces"_) to do this and store it inside a new variable called `newNumbers`. Finally, `console.log(newNumbers)` so we should see `[ 2, 4, 6, 100 ]` as the output in the server Terminal.
+* Create a new Array of numbers that will add 1 to each of the numbers inside of the `numbers` array
+* Use the Arrays `.map()` function
+    - Use the "statements syntax with the curly braces" to do this
+    - store return value inside a new variable called `newNumbers`. Finally, `console.log(newNumbers)` so we should see `[ 2, 4, 6, 100 ]` as the output in the server Terminal.
 
 ## Bonus
-Complete this task with just 3 lines of JavaScript (_**hint:** Try to convert it into the shortcut, that expression syntax we talked about above_)
+* Complete this task with just 3 lines of JavaScript
+* **hint:** Use "expression syntax"
 
 ### Statements syntax Arrow function
 ```
