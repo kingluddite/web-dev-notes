@@ -58,6 +58,8 @@ Create a slogan **BEM** element for the **TitleBar** block
     //
 }
 ```
+
+* Make sure you import it!
 </details>
 
 

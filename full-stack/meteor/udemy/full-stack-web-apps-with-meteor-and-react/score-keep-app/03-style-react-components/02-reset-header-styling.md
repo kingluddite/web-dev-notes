@@ -56,7 +56,8 @@ body {
 
 * We read this like: `2.4 "root" em`
 * REM's are relative (_pixels are absolute_)
-    - This gives us more flexibility over pixels with screen readers, accessibility features and mobile devices
+    + [What are REMs?](https://snook.ca/archives/html_and_css/font-size-with-rem)
+    + This gives us more flexibility over pixels with screen readers, accessibility features and mobile devices
 
 `client/main.scss`
 

@@ -3,6 +3,10 @@ Stands for: Block, Element, Modifier
 
 Naming convention. Just one way to think about and structure your styles and selectors. Its not a Library. Its not a framework. It's just a pattern you can use to create styles for apps
 
+## Reading Homework
+* [More info on BEM](http://getbem.com/introduction/)
+* [BEM 101](https://css-tricks.com/bem-101/)
+* [BEM and SMACSS](https://www.sitepoint.com/bem-smacss-advice-from-developers/)
 * There are a bunch of other patterns
 
 ## _item.scss
@@ -39,16 +43,22 @@ Naming convention. Just one way to think about and structure your styles and sel
 ### The E in BEM - Elements
 These are things that go inside a specific block
 
-Out `Title Bar` block, we may have a **Title** and **slogan** element
-Our `Player` block might have a **player name** and **player score** paragraph. These are **elements** inside of your **blocks**
+* Out `Title Bar` block, we may have:
+    - a **Title** and **slogan** element
+* Our `Player` block might have: 
+    - **player name** and **player score** paragraph
+
+These are **elements** inside of your **blocks**
 
 ### Two core rules to BEM
 1. Always use classes
     * You will never select by element (_p, table, form..._) or by ID (_#app_)
 2. We will never nest any of our selectors
-    * All that does is create unwanted specificity
+    * All that does is create unwanted [specificity](https://specificity.keegan.st/)
+        - [What is specificity?](https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/)
 
-Example: (_this is the naming convention for multi-word block and/or element_)
+#### Example
+This is the naming convention for multi-word `block` and/or `element`
 
 `.some-item__some-message`
 
@@ -251,10 +261,11 @@ Make the button color a little more subtle:
 }
 ```
 
-* This is what outline looks like by default in Chrome (_we are temporarily turning it off_)
-* Later we'll add something here for accessibility purposes
-
 ![outline tab focus](https://i.imgur.com/XIB3zVw.png)
+
+* This is what outline looks like by default in Chrome
+    - We are temporarily turning it off `outline: none`
+    - Later we'll add something here for accessibility purposes
 
 * `cursor: pointer` - gives us the common hand pointer to alert the user that this is a button when they hover over it
 
@@ -311,7 +322,7 @@ return (
 
 ## Transitions for cool FX!
 
-### `&` - in **Sass** `&`
+### `&` - in **Sass**
 Lets us add things to the current selector
 
 #### Example of `&` in Sass

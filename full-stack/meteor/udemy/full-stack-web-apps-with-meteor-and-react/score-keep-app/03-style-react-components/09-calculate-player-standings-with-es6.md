@@ -200,6 +200,8 @@ import { Mongo } from 'meteor/mongo';
 import numeral from 'numeral'; // add this line
 ```
 
+And here is the full code for `players.js`
+
 ```
 import { Mongo } from 'meteor/mongo';
 import numeral from 'numeral';
@@ -217,7 +219,7 @@ export const calculatePlayerPositions = (players) => {
       return {
         ...player,
         rank,
-        position: numeral(rank).format('0o');
+        position: numeral(rank).format('0o')
       };
    });
 };

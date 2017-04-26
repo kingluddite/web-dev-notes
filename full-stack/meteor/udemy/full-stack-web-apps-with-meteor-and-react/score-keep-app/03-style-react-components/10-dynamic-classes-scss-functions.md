@@ -58,6 +58,8 @@ export default Player;
 * We remove `rank` from the player box
 * We just used it to test if it was working
 
+`Player.js`
+
 ```
 // more code
 render() {
