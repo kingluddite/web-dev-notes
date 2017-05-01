@@ -107,7 +107,7 @@ When you log out, this information will no longer be available
 
 ## Tracker.autorun()
 * In the Score Keep app we were using `Tracker.autorun()` to watch one of our database queries (_where we fetched all of the players_)
-* If that result changed (_whether a player got added, removed or updated_) that `Tracker.autorun()` callback re-ran and we were able to re-render the browser with the latest information
+* If that result changed (_whether a player got added, removed or updated_) that `Tracker.autorun()` **callback** re-ran and we were able to re-render the browser with the latest information
 * We will use a similar but slightly different technique
 
 ### Here's what we will do differently
@@ -119,6 +119,8 @@ When you log out, this information will no longer be available
 
 ### We need to import Tracker!
 To use `Tracker.autorun()` - You know the drill by now :)
+
+`client/main.js`
 
 ```
 import { Meteor } from 'meteor/meteor';
@@ -157,8 +159,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import { Tracker } from 'meteor/tracker';
-
-// import App from './../imports/ui/components/App';
 
 import Link from './../imports/ui/components/Link';
 import Signup from './../imports/ui/components/Signup';
@@ -221,7 +221,7 @@ Tracker.autorun(() => {
 });
 ```
 
-### Define what pages server what purposes
+### Define what pages serve what purposes
 We will do this using two arrays
 
 * `unauthenticatedPages` - Pages a user should be able to visit if they are not logged in `['/', '/signup']`

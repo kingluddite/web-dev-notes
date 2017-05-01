@@ -1,31 +1,45 @@
-# Component State and Signup Form
-Rendering information inside our **React** Components we have one way to do it and that is by passing in `props` and using those `props` in our render method or methods that get called by `render()` and this enables us to render dynamic **JSX**
+# Component `state` and `Signup` Form
+* One way to render dynamic information inside our **React** Components 
+    - Pass in `props` and use those `props` in our render method(s) that get called by `render()`
+    - This enables us to render dynamic **JSX**
 
-## React State
+## React `state`
 Essential to understand for building real world **React** Components
 
-## How does State fit in with the rest of the Component?
+## How does `state` fit in with the rest of the Component?
 
 ![state diagram with props](https://i.imgur.com/E89ZOG7.png)
 
 Your Component can not update `props` but your Component can update `state`
 
-A form that needs to show an error message if the input is invalid. The Component needs to do something with the user clicks a button, and then we need to render a warning message, "_Hey, you need to fill out those fields_"
+1. A form that needs to show an error message if the input is invalid
+2. The Component needs to do something with the user clicks a button
+3. Then we need to render a warning message, "_Hey, you need to fill out those fields_"
 
-Our `state` is nothing more than an object. It is just like `props` (_instead of `this.props` we would access the `state` values via `this.state`_)
+### Example of how `state` could be used
+* Our `state` is nothing more than an object
+* It is just like `props`
+    - Instead of `this.props` 
+    - We access `state` via `this.state`
 
-We can use that Component `state` when we are rendering just like we can with `props` (_so if we can do the same thing, what's the real value of using `state`?_)
+### Why use `state?`
+We can use that Component `state` when we are rendering just like we can with `props`
 
-The value is user interaction can change the `state`. So if someone clicks a button we can increment a counter and we can show that new count in our Component
+* The value is user interaction can change the `state`
+* So if someone clicks a button we can increment a counter and we can show that new count in our Component
 
-## Our signup form
-When someone signs up and **submits** form, we will check if they filled it out properly and if not we will update the `state` and show that warning message and this will get re-rendered to the browser
+## Our `Signup` form
+1. Someone signs up and **submits** form
+2. We check if they filled it out properly
+3. If not we update the `state` and show that **warning message**
+4. This will get re-rendered to the browser
 
-**note**
+**notes**
 
 * `props` come into a Component
 * `state` is manage internally by the Component
-* Other Components can not manage this Components state and this Component can not manage the `props` that get passed in
+* Other Components can not manage this Component's state
+    - And this Component can not manage the `props` that get passed in
 * `props` are external
 * `state` is internal
 
@@ -61,12 +75,16 @@ class Signup extends Component {
 export default Signup;
 ```
 
-* The `constructor()` method gets called when the Component **class** gets instantiated (_in this example when `Signup` **class** gets instantiated_)
-* The `constructor()` method gets called with whatever arguments get passed in
-    - In the case of our Components class, **JSX** passes in the `props` object
-        + So we have access to all of our `props`
-* If we are going to override the `constructor()` for React.Component we do have to call the parent `constructor()` using `super()` and passing in the `props` (`super(props)`)
-    - This just makes sure the **React.Component** gets the values it needs
+* The `constructor()` method gets called 
+    - When the Component **class** gets instantiated
+    - With whatever arguments get passed in
+* In the case of our Components class, **JSX** passes in the `props` object
+    - So we have access to all of our `props`
+* If we are going to override the `constructor()` for **React.Component**
+    - We have to:
+        1. Call the parent `constructor()` using `super()`
+        2. Pass in the `props` (_super(props)_)
+    - This just makes sure that **React.Component** gets the values it needs
 
 ## Setting `state`
 We can set it equal to an empty object
@@ -79,10 +97,20 @@ this.state = {
 
 We can put anything inside it we want and for now, we'll just use a simple counter
 
-* We can have:
-    - **properties** that are `strings`, `numbers`, `objects`, `objects` with `arrays`, `arrays of objects`, just use your imagination and you can put any value inside of `state`
-* Just as your Component updates when the `props` get changed, your Component also updates when the `state` gets changed
-* To render `state` we just use `this.state.count` (_we use `count` here because that was the property we initially set inside our `state`_)
+* We can have **properties** that are:
+    - `strings`
+    - `numbers`
+    - `objects`
+    - `objects` with `arrays`
+    - `arrays of objects`
+    - Just use your imagination and you can put any value inside of `state`
+    
+* Your Component updates when:
+    - The `props` get changed
+    - The `state` gets changed
+
+### How do we render `state`?
+`this.state.count` (_We use `count` here because it is in our current code_)
 
 ```
 this.state = {
@@ -112,9 +140,9 @@ Instead, when you want to update `state` you use:
 
 * `this.setState()`
     - Super simple function
-      + It takes an object and on that object you can provide all of the `state` properties you want to update
+      + It takes an **object** and on that **object** you can provide all of the `state` **properties** you want to update
     - If you don't provide one, that's fine, it won't get erased
-    - We just provide the `state` properties we want to change
+    - We just provide the `state` **properties** we want to change
 
 ```
 import React, { Component } from 'react';
@@ -152,11 +180,12 @@ export default Signup;
 ```
 
 ### View in browser
-Click the `+1` button and you will see the counter increase by **one** with every **click**
+* Click the `+1` button and you will see the counter increase by **one** with every **click**
+* If you don't bind `this` (_this.increment.bind(this)_)you will get an error
 
-Using `state` and `props` together we can create awesome apps!
+![bind error](https://i.imgur.com/ukW9QGn.png)
 
-### props and state
+### `props` and `state` - the dynamic duo!
 When we set our `state` we have access to our `props` so we can use `props` to set default values for our `state`
 
 #### Example:
@@ -175,6 +204,8 @@ class Signup extends Component {
 ```
 
 We would just have to pass in the **count** `props` to `Signup`
+
+`<Signup count={4} />`
 
 ## Exercise
 Create a `decrement()` function and button that when clicked reduces the `state` value
@@ -234,7 +265,12 @@ You could also use an inline event handler (_They both work the same_)
 ```
 </details>
 
+* Remove the `increment()` and `decrement()` methods as we don't need them inside our app
+
 ## Create our form
+* We want to have a form that had email and password inputs and a button
+* When the user submits the form it will generate an error if either are empty
+
 * It will keep track of error message inside `state`
 * The default error should just be an empty string
 * If there are no errors we don't want to show anything at all
