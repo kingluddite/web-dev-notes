@@ -24,7 +24,7 @@ Example:
 [https://short-link-peh2.herokuapp.com/](https://short-link-peh2.herokuapp.com/)
 
 ### Use our build app
-We only have to do this everytime, just the first time we deploy our app
+We don't have to do this everytime, <u>just the first time we deploy our app</u>
 
 `heroku buildpacks:set https://github.com/AdmitHub/meteor-buildpack-horse.git`
 

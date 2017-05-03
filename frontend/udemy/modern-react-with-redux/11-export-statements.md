@@ -104,7 +104,7 @@ const API_KEY = 'AIzaSyC9bJsdEJpmtGcBb_c7ck0NvOvyShMxXXX'; // fake API
 const App = () => {
   return (
     <div>
-      <input />
+      <SearchBar />
     </div>
   )
 }

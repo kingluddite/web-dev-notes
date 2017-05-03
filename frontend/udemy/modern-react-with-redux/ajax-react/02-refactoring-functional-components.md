@@ -3,7 +3,7 @@ We will refactor `App` Component from a functional based Component to a class-ba
 
 We are doing this because we need our `App` Component to have state so it can keep track of the list of videos
 
-## Steps in converting a fuctional Component into a class-based Component
+## Steps in converting a functional Component into a class-based Component
 This is where we are starting from:
 
 ```
