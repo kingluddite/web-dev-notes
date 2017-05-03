@@ -4,7 +4,8 @@
 * We'll call one **Meteor Method** passing in the email and password and it will do everything for us
     - It will [hash that password](https://www.wired.com/2016/06/hacker-lexicon-password-hashing/)
     - It will communicate back and forth with the server
-    - It will store the user in a new users Collection, which we don't have to manage
+    - It will store the user in a new **users** Collection
+        + (_which we don't have to manage_)
     - It will manage the [authentication token](https://stormpath.com/blog/token-authentication-scalable-user-mgmt) making sure to send a **token** from the `server` to the `client` so the `client` is automatically logged in the next time they visit the Application
 
 In other frameworks you used to have to write and manage all of that stuff and when using **Meteor** it is managed by **Meteor**
@@ -19,20 +20,23 @@ It is built into **Meteor** but the package doesn't come installed by default
 `$ meteor add accounts-password`
 
 * This will enable password-based `sign ups` and `logins`
-* It will also add a dependency `accounts-base` which is necessary for having things like our user Collection and various methods that enable us to check if someone is authenticated
+* It will also add a dependency `accounts-base` which is necessary for having things like:
+    - Our user Collection
+    - And various methods that enable us to check if someone is authenticated
 
 ### You may see this error
 ![error](https://i.imgur.com/jtsxbQ2.png)
 
 * What it is saying is that we are using a JavaScript implementation of the **bcrypt** algorithm (_that is a hashing algorithm that secures your password_) and this will work but it is slower than a native implementation
-* You could run that command to switch but it is recommended to keep a pure JavaScript version as it tends to be more stable in cross-operating environments
+* You could run that command to switch but it is <u>recommended</u> to keep a pure JavaScript version as it tends to be more stable in cross-operating environments
 
 **note** Even though we install `accounts-password` we never import it
 
 * This package installs dependencies and makes changes to some of those modules adding new password related functionality
 
 ### accounts-base
-We will be importing `accounts-base`. This is a method where signing up for a new user lives
+* We will be importing `accounts-base`
+* This is a method where signing up for a new user lives
 
 ### [Meteor Documentation](http://docs.meteor.com/#/full/)
 ![accounts](https://i.imgur.com/abZtUKh.png)
@@ -58,10 +62,10 @@ import { Accounts } from 'meteor/accounts-base'; add this line
 // more code
 ```
 
-**note** In the beginning we will ignore all password validation (_if email is an email, email length_)
+**note** In the beginning we will ignore all password validation
 
+* Stuff like _if email is an email, email length_
 * We'll comment out our call to `setState()`
-
 * `createUser(object, callback function)`
     - The **object** takes and **email** and **password** key with their respective values
     - The **callback** gets called when there are any errors if no errors it gets called with no arguments and we can use that to determine whether or not we should set the `state`
@@ -144,7 +148,7 @@ onSubmit(e) {
 ```
 Accounts.createUser({email: email, password: password}, (err) => {
 
-    });
+});
 ```
 
 With ES6 this can be shortened (_using ES6 Property Shorthand_) to:
@@ -157,9 +161,9 @@ Accounts.createUser({email, password}, (err) => {
 
 ## Add a log to test what is happening
 ```
-Accounts.createUser({email: email, password: password}, (err) => {
+Accounts.createUser({email, password}, (err) => {
        console.log('Signup callback', err);
-    });
+});
 ```
 
 ### Testing in browser
@@ -176,7 +180,6 @@ Accounts.createUser({email: email, password: password}, (err) => {
             3. And then type the same login information again (_which is a bad user experience_)
 
 #### Enter a valid email and password
-
 * There is no re-direct
 * Open the first DDP item
 
@@ -225,7 +228,7 @@ But first we need to talk about the **require function** and the **import statem
 
 With `import` we can load in **defaults** or **named exports** but with `require` we **load in a file** and it <u>returns an object</u> with everything inside it
 
-**note** We will use import in our code but we will use require in the console
+**note** We will use **import** in our code but we will use **require** in the console
 
 ### Let's use the console to test this out
 `> require('meteor/meteor')`
@@ -241,8 +244,7 @@ We can get the `userId` with:
 
 Will return our string `id` (_something like "C3EeHuFS55Wz32Mrp"_)
 
-**Rule** 
-
+### Important to Remember
 * When there is a `userId` we are logged in
 * When there is not a `userId`, we are not logged in
 

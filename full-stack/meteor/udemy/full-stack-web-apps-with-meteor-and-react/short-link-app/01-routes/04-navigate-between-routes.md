@@ -69,9 +69,9 @@ The opposite of the `.goBack()` method
 [documentation of the history library](https://github.com/ReactTraining/history)
 
 ## Navigating via Link
-* We can't use regular anchor tags when we are navigating internally in our app
-* We can use regular anchor tags when navigating externally from our app
-* If we want to navigate internally inside our app without a full page refresh we have to use Link that **React Router** gives us
+* We can't use "regular anchor tags" when we are navigating internally in our app
+* We can use "regular anchor tags" when navigating **externally** from our app
+* If we want to navigate **internally** inside our app without a <u>full page refresh</u> we have to use **Link** that **React Router** gives us
 
 `Login`
 

@@ -13,7 +13,7 @@ We're working on a **client-side** router so we'll spent most of our time inside
 ### browserHistory
 There are few different types of histories
 
-We will be using the **HTML5 history API**. It let's us have really clean URLS (like `/signup`)
+We will be using the **HTML5 history API**. It let's us have really clean URL's (like `/signup`)
 
 #### hashHistory is dead
 * You could also use hash history `/#/signup`
@@ -119,7 +119,7 @@ When creating Components now that you know how easy they are to create, just dup
 
 `NotFound.js`
 
-* This doesn't need to be a class-based Component so we can make it a Stateless functional component
+* This doesn't need to be a class-based Component so we can make it a **Stateless functional component**
 * We'll learn the difference between the two and when to use each
 
 ```
@@ -137,25 +137,10 @@ export default NotFound () => {
 ### Import it into `client/main.js`
 
 ```
-import { Meteor } from 'meteor/meteor';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
-import Link from './../imports/ui/components/Link';
-import Signup from './../imports/ui/components/Signup';
-import NotFound from './../imports/ui/components/NotFound';
+// more code
+import NotFound from './../imports/ui/components/NotFound'; // add this line
 
-const routes = (
-  <Router history={browserHistory}>
-    <Route path="/signup" component={Signup} />
-    <Route path="/links" component={Link} />
-    <Route path="*" component={NotFound} />
-  </Router>
-);
-
-Meteor.startup(() => {
-  ReactDOM.render(routes, document.getElementById('app'));
-});
+// more code
 ```
 
 * `<Route path="*" component={NotFound} />`
@@ -163,7 +148,6 @@ Meteor.startup(() => {
     - Test it in the browser and you'll find any non-match route gets our 404 page
 
 ## Create Login route `/login`
-
 * We will make Login Component and make it be the first Component our user see so we'll set that as our base route
 * We'll add a `/signup` route
 
@@ -190,14 +174,7 @@ export default Login;
 `client/main.js`
 
 ```
-import { Meteor } from 'meteor/meteor';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
-
-import Link from './../imports/ui/components/Link';
-import Signup from './../imports/ui/components/Signup';
-import NotFound from './../imports/ui/components/NotFound';
+// more code
 import Login from './../imports/ui/components/Login'; // add this line
 
 const routes = (

@@ -34,12 +34,11 @@ We can use that Component `state` when we are rendering just like we can with `p
 3. If not we update the `state` and show that **warning message**
 4. This will get re-rendered to the browser
 
-**notes**
-
+## `props` === external vs `state` === internal
 * `props` come into a Component
 * `state` is manage internally by the Component
-* Other Components can not manage this Component's state
-    - And this Component can not manage the `props` that get passed in
+* Other Components **CAN NOT** manage this Component's state
+* And this Component **CAN NOT** manage the `props` that get passed in
 * `props` are external
 * `state` is internal
 
@@ -95,6 +94,7 @@ this.state = {
 };
 ```
 
+### A Simple `state` counter
 We can put anything inside it we want and for now, we'll just use a simple counter
 
 * We can have **properties** that are:
@@ -110,7 +110,7 @@ We can put anything inside it we want and for now, we'll just use a simple count
     - The `state` gets changed
 
 ### How do we render `state`?
-`this.state.count` (_We use `count` here because it is in our current code_)
+`this.state.count`
 
 ```
 this.state = {
@@ -124,6 +124,7 @@ You should see `0` rendered to the screen
 ![0 rendered](https://i.imgur.com/l8mUYad.png)
 
 ## How can we update our `state`?
+### Never do this!
 You never manipulate `state` directly with something like:
 
 ```
@@ -134,6 +135,7 @@ You never manipulate `state` directly with something like:
 
 Because your Component needs to know when the `state` gets updated so it can do stuff behind the scenes to make sure the new `state` value shows up.
 
+## The right way to set state
 Instead, when you want to update `state` you use:
 
 `this.setState({})`
@@ -181,12 +183,13 @@ export default Signup;
 
 ### View in browser
 * Click the `+1` button and you will see the counter increase by **one** with every **click**
-* If you don't bind `this` (_this.increment.bind(this)_)you will get an error
+* If you don't bind `this` (_this.increment.bind(this)_) you will get an error
 
 ![bind error](https://i.imgur.com/ukW9QGn.png)
 
 ### `props` and `state` - the dynamic duo!
-When we set our `state` we have access to our `props` so we can use `props` to set default values for our `state`
+* When we set our `state` we have access to our `props`
+* So we can use `props` to set default values for our `state`
 
 #### Example:
 
@@ -270,7 +273,6 @@ You could also use an inline event handler (_They both work the same_)
 ## Create our form
 * We want to have a form that had email and password inputs and a button
 * When the user submits the form it will generate an error if either are empty
-
 * It will keep track of error message inside `state`
 * The default error should just be an empty string
 * If there are no errors we don't want to show anything at all
@@ -315,9 +317,9 @@ class Signup extends Component {
 export default Signup;
 ```
 
-* `undefined` returned from JSX results in nothing showing up
+* **important** `undefined` returned from JSX results in nothing showing up
 * We use a **ternary operator** to check for errors and not to render extra unneeded `<p>` which would mess up layout if we were rendering them with no content inside them
-* We pass `e` with could be spelled `evt` or `event`. You will see it spelled like any of these
+* We pass `e` which could be spelled `evt` or `event`. You will see it spelled like all of these the more you work with JavaScript as each developer has their own style
 * We `preventDefault()` to make sure we don't get the default page refresh when submitting a form
 
 ## Output
