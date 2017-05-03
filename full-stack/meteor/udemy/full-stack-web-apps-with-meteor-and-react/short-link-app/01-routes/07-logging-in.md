@@ -21,9 +21,7 @@ We will log out the Component but also wire it up to the Meteor API
 
 ### How do we access loginWithPassword()?
 
-`import { Meteor } from 'meteor/meteor'`
-
-#### Don't forget to import it!
+Import the `Meteor` named export!
 
 `Login`
 
@@ -33,7 +31,9 @@ import { Link } from 'react-router';
 import { Meteor } from 'meteor/meteor'; // add this line
 ```
 
-`loginWithPassword()` takes three arguments (**user** (_obj_), **password** (_string_) and a **callback** (_function_))
+`loginWithPassword()` takes three arguments 
+
+(**user** (_obj_), **password** (_string_) and a **callback** (_function_))
 
 ## Not just emails play this game
 * We don't have to use an email to log in
@@ -50,7 +50,6 @@ import { Meteor } from 'meteor/meteor';
 class Login extends Component {
   constructor(props) {
     super(props);
-
 
     this.state = {
       error: ''
@@ -91,7 +90,9 @@ export default Login;
 ```
 
 ### Log In
-And check console to make sure you are logged in `> require('meteor/meteor').Meteor.user()`
+Log in and check console to make sure you are logged in 
+
+`> require('meteor/meteor').Meteor.user()`
 
 ### Log Out
 And logout with `> require('meteor/accounts-base').Accounts.logout()`
@@ -99,7 +100,7 @@ And logout with `> require('meteor/accounts-base').Accounts.logout()`
 ### Do we have a user?
 Run user command `> require('meteor/meteor').Meteor.user()`
 
-And we get **nul** meaning we are logged out
+And we get **null** meaning we are logged out
 
 ### Log in again
 Now log in again and we get `Login callback undefined` (_undefined is from our error and that is good we want error to be undefined_)

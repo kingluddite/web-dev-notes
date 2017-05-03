@@ -1,5 +1,10 @@
 # Atom Packages I Use Often
 
+## Atom config
+To speed up atom make sure to add `.git`, `.meteor` and `node_modules` to the `Ignored Names` inside `Atom` > `Settings` > `Core`
+
+![ignore settings](https://i.imgur.com/tWw4HcY.png)
+
 ## Install packages with:
 
 `$ apm install NAMEOFPACKAGEHERE`
