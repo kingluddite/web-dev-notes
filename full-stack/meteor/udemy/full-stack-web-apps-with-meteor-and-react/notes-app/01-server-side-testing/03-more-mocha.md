@@ -111,6 +111,13 @@ it('should square a number', function() {
 * Call `describe('method your test is for', function for test)`
 
 ```
+const add = (a, b) => {
+  if(typeof b !== 'number') {
+    return a + a;
+  }
+
+  return a + b;
+}
 describe('add', function() {
   it('should add two numbers', function() {
     const res = add(11, 9);

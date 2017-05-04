@@ -5,13 +5,13 @@ If we are trying to compare objects
 
 `{} === {}` - We are comparing if two objects are equal
 
-But we can't  compair the properties inside objects
+But we can't  compare the properties inside objects
 
 ```
 { name : 'Drew'}
 ```
 
-compaired to the value in this object
+compared to the value in this object
 
 ```
 {
@@ -63,7 +63,7 @@ An `Assertion` library can help us do this
 `users.test.js`
 
 ```
-import expect from expect;
+import expect from 'expect';
 ```
 
 * We call `expect()` with the value we want to check

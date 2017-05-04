@@ -125,7 +125,7 @@ When creating Components now that you know how easy they are to create, just dup
 ```
 import React from 'react';
 
-export default NotFound () => {
+export default NotFound = () => {
     return(
       <div>
         NotFound

@@ -63,7 +63,7 @@ Accounts.validateNewUser(validateNewUser);
 * Have a root `describe()` block is always a good idea
 * Don't have tests outside a `describe()` block
 
-`users.js`
+`users.test.js`
 
 ```
 import expect from 'expect';

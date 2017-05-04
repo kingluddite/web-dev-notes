@@ -140,13 +140,10 @@ But we do need a way to pass in real information in development and in productio
 
 Now after those changes we need to change the import code anywhere `Header` is used (because we just changed the exports)
 
-change this in `Header.test.js`
+# REVIEW THESE NOTES
+change this in `Dashboard.js`
 
 `import Header from './Header';`
-
-to this
-
-`import { Header } from './Header';`
 
 Refresh the page and all our test cases are passing again
 
@@ -193,7 +190,7 @@ export default createContainer(() => {
 }, Header);
 ```
 
-* The Container Component is a really dump React Component
+* The Container Component is a really dumb React Component
 * It runs this function through Tracker.autorun() and anything that gets returned on this object gets passed down to the presentational Component as a prop and this is how we have both **title** and **handleLogout** successfully rendered inside our Application
     - One comes from `Dashboard`
     - And the other one comes from Container `createContainer()` call

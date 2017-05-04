@@ -93,9 +93,10 @@ it('should not update note if unauthenticated', function() {
       }).toThrow();
     });
 
-![All tests should be passing](https://i.imgur.com/vknGRot.png)
 ```
+
 </details>
+![All tests should be passing](https://i.imgur.com/vknGRot.png)
 
 **note**
 * `insert` has two tests

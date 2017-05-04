@@ -45,7 +45,7 @@ Meteor.methods({
       title: '',
       body: '',
       userId: this.userId,
-      updatedAt: moment().valueOf // new Date().getTime()
+      updatedAt: moment().valueOf() // new Date().getTime()
     });
   }
 });
@@ -79,6 +79,12 @@ if (Meteor.isServer) {
   });
 }
 ```
+
+* To see what just happened jump into the test mongo db
+
+`> mongo meteor --port 3001`
+
+`> db.notes.find()`
 
 ## Seed data
 We should have one set of seed data and that seed data should be reset for every test case

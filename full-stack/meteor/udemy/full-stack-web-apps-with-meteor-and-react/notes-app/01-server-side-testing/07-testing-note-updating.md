@@ -111,7 +111,7 @@ Meteor.methods({
 * We know that `...updates` has no malicious data because SimpleSchema will reject any fields not inside the Schema we defined
 
 ### Using variables inside our test file
-`notes.js`
+`notes.test.js`
 
 ```
 import { Meteor } from 'meteor/meteor';
@@ -195,7 +195,6 @@ it('should update note', function () {
          body: noteOne.body
        });
       });
-    });
 ```
 
 ## Exercise
