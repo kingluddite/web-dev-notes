@@ -137,7 +137,9 @@ Wait 5 minutes
 
 `$ heroku open`
 
-
+### Add New Features
+* Confirmation screen when deleting note
+* Add Search bar to the list
 
 
 
