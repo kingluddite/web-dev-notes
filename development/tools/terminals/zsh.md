@@ -1,5 +1,8 @@
 # The ZSH shell
 
+## How to manually upgrade oh-my-zsh
+`$ upgrade_oh_my_zsh`
+
 **What is the Zsh shell?**
 It's just a terminal.
 
