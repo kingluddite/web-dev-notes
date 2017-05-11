@@ -33,12 +33,10 @@ class App extends Component {
 `_main.scss`
 
 ```
-body
-{
-    font-family: Helvetica, Arial, sans-serif;
-
-    color: #555;
-    background: #f2f2f2;
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  color: #555555;
+  background: #f2f2f2;
 }
 ```
 
@@ -53,13 +51,11 @@ Currently we target `H1` with **REMs** and that is why it is `24px` but we didn'
 
 ### Set body to `font-size: 1.6rem`
 ```
-body
-{
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 1.6rem;
-
-    color: #555;
-    background: #f2f2f2;
+body {
+  background: #f2f2f2;
+  color: #555555;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
 }
 ```
 
@@ -84,13 +80,11 @@ Add this file
 `_item.scss`
 
 ```
-.item
-{
-    margin-bottom: 1.3rem;
-    padding: 1.3rem;
-
-    border: 1px solid #e8e8e8;
-    background: #fff;
+.item {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  padding: 1.3rem;
+  margin-bottom: 1.3rem;
 }
 ```
 

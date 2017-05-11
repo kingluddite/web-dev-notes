@@ -8,7 +8,7 @@ To do this we'll have to create a **Custom Method** on our React Component
 ```
 import React, { Component } from 'react';
 
-const handleSubmit = event => {
+const handleSubmit = (event) => {
   const playerName = event.target.playerName.value;
 
   event.preventDefault();

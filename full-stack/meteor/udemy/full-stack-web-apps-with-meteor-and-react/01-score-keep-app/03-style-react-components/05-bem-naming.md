@@ -1,7 +1,11 @@
 # BEM Naming
 Stands for: Block, Element, Modifier
 
-Naming convention. Just one way to think about and structure your styles and selectors. Its not a Library. Its not a framework. It's just a pattern you can use to create styles for apps
+* Naming convention
+* Just one way to think about and structure your styles and selectors
+* It's not a Library
+* Its not a framework
+* It's just a pattern you can use to create styles for apps
 
 ## Reading Homework
 * [More info on BEM](http://getbem.com/introduction/)
@@ -103,13 +107,11 @@ Now you'll see the purple text when you have no players but there won't be purpl
 Let's remove the ugly purple and make our item message look nicer
 
 ```
-.item__message
-{
-    font-size: 1.3rem;
-    font-weight: 300;
-    font-style: italic;
-
-    text-align: center;
+.item__message {
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 300;
+  text-align: center;
 }
 ```
 
@@ -169,22 +171,18 @@ Make sure to remove the `item__message--empty` class from `PlayerList` too
 `_item.scss`
 
 ```
-.item
-{
-    margin-bottom: 1.3rem;
-    padding: 1.3rem;
-
-    border: 1px solid #e8e8e8;
-    background: #fff;
+.item {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  padding: 1.3rem;
+  margin-bottom: 1.3rem;
 }
 
-.item__message
-{
-    font-size: 1.3rem;
-    font-weight: 300;
-    font-style: italic;
-
-    text-align: center;
+.item__message {
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 300;
+  text-align: center;
 }
 ```
 
@@ -272,18 +270,14 @@ Make the button color a little more subtle:
 `_button.scss`
 
 ```
-.button
-{
-    font-weight: 600;
-
-    margin-left: 1.3rem;
-    padding: 1.3rem;
-
-    cursor: pointer;
-
-    color: #555;
-    border: 1px solid #555;
-    outline: none;
+.button {
+  border: 1px solid #555555;
+  color: #555555;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 1.3rem;
+  outline: none;
+  padding: 1.3rem;
 }
 ```
 
@@ -292,12 +286,10 @@ Using a modifier
 
 ```
 // modifier
-.button--round
-{
-    width: 4rem;
-    height: 4rem;
-
-    border-radius: 50%;
+.button--round {
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
 }
 ```
 
@@ -343,26 +335,20 @@ We'll never use it for class selectors but we will use it for [pseudo-selectors]
 `_button.scss`
 
 ```
-.button
-{
-    font-weight: 600;
-
-    margin-left: 1.3rem;
-    padding: 1.3rem;
-
-    cursor: pointer;
-    transition: background .2s ease;
-
-    color: #555;
-    border: 1px solid #555;
-    outline: none;
-    background: #fff;
+.button {
+  border: 1px solid #555555;
+  color: #555555;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 1.3rem;
+  outline: none;
+  padding: 1.3rem;
+  transition: background .2s ease;
     
     // pseudo-selectors
     &:hover,
-    &:focus
-    {
-        background: #e8e8e8;
+    &:focus {
+      background: #e8e8e8;
     }
 }
 ```
@@ -380,31 +366,24 @@ Change the `active` psuedo-selector
 `_button.scss`
 
 ```
-.button
-{
-    font-weight: 600;
+.button {
+  border: 1px solid #555555;
+  color: #555555;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 1.3rem;
+  outline: none;
+  padding: 1.3rem;
+  transition: background .2s ease;
 
-    margin-left: 1.3rem;
-    padding: 1.3rem;
+  &:hover,
+  &:focus {
+    background: #e8e8e8;
+  }
 
-    cursor: pointer;
-    transition: background .2s ease;
-
-    color: #555;
-    border: 1px solid #555;
-    outline: none;
-    background: #fff;
-
-    &:hover,
-    &:focus
-    {
-        background: #e8e8e8;
-    }
-
-    &:active
-    {
-        background: #ccc;
-    }
+  &:active {
+    background: #cccccc;
+  }
 }
 // more code
 ```
@@ -417,12 +396,10 @@ Let's modify our button so that when it is clicked it will get slightly larger
 
 ```
 // more code
-    &:active
-    {
-        transform: scale(1.1);
-
-        background: #ccc;
-    }
+  &:active {
+    background: #cccccc;
+    transform: scale(1.1);
+  }
 // more code
 ```
 

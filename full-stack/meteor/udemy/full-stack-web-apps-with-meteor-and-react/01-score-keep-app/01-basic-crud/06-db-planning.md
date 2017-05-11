@@ -62,6 +62,8 @@ const players = [
 2. We plop in our existing array (_And return it_)
 3. Then we call that function from inside our JSX
 
+`client/main.js`
+
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -110,12 +112,11 @@ Meteor.startup(function() {
 * I can pass in our `players` list
   - And I can take that in as an argument of `renderPlayers`
 
-**note** 
+### Stuff to Remember
 
 * We will give the `players` variable and the argument name `playersList` different names to avoid confusion
 * I want to point out that there is a difference between a **parameter** and an **argument**
-
-* **parameter** - Is a variable in the declaration of a function
+* **parameter** - Is a variable in the declaration of a functi
 * **argument** - Is the actual value of this variable that gets passed to the function
 
 ```
@@ -309,7 +310,7 @@ Meteor.startup(function() {
 * We can use an array of JSX to print multiple elements
     - We took an array of objects and used it to convert to an array of expressions and all of those get rendered to the screen which creates a dynamic list
 
-### Use conditional logic to dynamically output `points` or `point` depending on single or plural number of points
+##### Use conditional logic to dynamically output `points` or `point` depending on single or plural number of points
 
 ```
 const renderPlayers = function(playersList) {

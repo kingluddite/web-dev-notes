@@ -1,4 +1,4 @@
-# Intro
+# Intro to Meteor
 ## Meteor version
 `$ meteor --version`
 
@@ -49,17 +49,21 @@ To use **node** you would normally have to install it but Meteor bundles all of 
 * `Client-side` JavaScript (_JavaScript that runs in the browser_)
 * **MongoDB** database
 * **Web Sockets** - Connect our **Node.js** server to the `Client-side` JavaScript
+
+## Wave Goodbye to Blaze and Hello to React
 * **Blaze** - Meteor comes bundled with a rendering tool called **Blaze**
-    * We won't use it
-    * We will use **React** as our rendering tool instead
-        + It is currently a very popular choice
+* We won't use it
+* We will use **React** as our rendering tool instead
+    - It is currently the popular choice
 
 ![overall meteor application diagram](https://i.imgur.com/OVInJnV.png)
 
 **note** The first time you create a Meteor app it will take significantly longer then future Meteor apps you create and that is only because Meteor adds a bunch of tools the first time
 
-### Why are we using `$ meteor npm install` instead of `$ npm install`?
-Meteor comes with its own version of **npm** and that is why we use `$ meteor npm install` instead of just `$ npm install`
+### meteor npm install vs npm install vs yarn install`?
+* Meteor comes with its own version of **npm** and that is why we use `$ meteor npm install` instead of just `$ npm install`
+* `yarn` can easily be swapped in for **npm**
+    - It is faster and more secure and the superior choice
 
 ### How do I run Meteor?
 `$ meteor run` 
@@ -70,5 +74,13 @@ Or just `$ meteor` (_The later is just an alias for the other_)
 
 * Starts up your Web Server
 * Starts up MongoDB
-* Compiles your Application files into a nice minified, concatenated bundle
-    - This makes sure your app runs smoothly
+* Compiles your Application files into a minified, concatenated bundle
+
+## Create Meteor app with specific version
+`$ meteor --version` - Tells you what version of Meteor you are running
+
+`$ meteor create --release 1.4.2.1 score-keep`
+
+Also run `$ meteor npm install`
+
+Run meteor with `$ meteor run --release 1.4.2.1`

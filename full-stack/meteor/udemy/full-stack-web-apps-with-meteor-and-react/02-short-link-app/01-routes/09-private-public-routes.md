@@ -3,10 +3,13 @@ We just used `Tracker.autorun()` to watch the user authentication status
 
 It works but it is not the complete picture when creating **public** and **private** pages using `React Router`
 
-* We log in and get redirected to the `/links` URL - Cool!
-* But I can always use the browsers **back** button to view the login page even though I shouldn't be able to (_cause when we refresh the page we get kicked away from the login page and back to the `/links` page_)
+## The Good News
+* We log in and get redirected to the `/links` URL - This is good :)
+
+## The Bad News
+* But I can always use the browsers **back** button to view the login page even though I shouldn't be able to (_Because when we refresh the page we get kicked away from the login page and back to the `/links` page_)
 * And the same thing is true the other way around
-* If I log out I leave the private page to the home page `/` but the back button takes me back to the private page but the page refresh kicks me back to the home page
+* If I log out I leave the **private page** and go to the **home page** `/` but the `back button` takes me back to the **private page** but the **page refresh** kicks me back to the **home page** - This is not good :(
 
 ![browser's back button](https://i.imgur.com/0Sai24W.png)
 
@@ -16,7 +19,10 @@ if (Meteor.userId()) {
 }
 ```
 
+### Am I logged in?
 * `Meteor.userId()` will return a **Truthy** value if logged in 
+
+### Am I logged out?
 * `Meteor.userId()` will return a **Falsey** value if not logged in
 
 `client/main.js`
@@ -101,11 +107,14 @@ Two ways to change pages
 1. We started on a **blank page**
 2. We then went to `google.com`
 3. We then went to `localhost:3000` and our app saw we were logged in and sent us to `localhost:3000/links`
-* We tried to go back but we couldn't and that is because we used `browserHistory.push()` and that adds on to our browser history and we want to replace our browser history instead
+    * We tried to go back but we couldn't and that is because we used `browserHistory.push()` and that: 
+      + <u>Adds on to our browser</u> history
+      + And we want to **replace our browser history** instead
 
 So now when we go to `localhost:3000` and it takes us to `localhost:3000/links` it won't push it but instead it will replace it and that means when we do hit the back button in the browser we'll get back to `google.com`
 
-## Replace browserHistory.push() with browserHistory.replace()
+## Replace our push with replace
+
 ### browserHistory.replace()
 We'll replace all our cases of `browserHistory.push()` with `browserHistory.replace()`
 

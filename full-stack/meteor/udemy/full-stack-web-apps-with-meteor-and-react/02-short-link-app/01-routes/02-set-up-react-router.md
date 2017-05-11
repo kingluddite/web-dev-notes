@@ -42,6 +42,10 @@ Remove all code from `client/main.js`
 ### Install React, ReactDOM and React Router
 `$ meteor npm i react react-dom react-router@3.0.0 -S`
 
+Or use yarn
+
+`$ yarn add react react-dom react-router@3.0.0`
+
 **React Router** is in flux so we need to install a specific version that we know will work
 
 ### Install babel-runtime and meteor-node-stubs
@@ -50,8 +54,13 @@ Remove all code from `client/main.js`
 
 `$ meteor npm install`
 
+Or use yarn
+`$ yarn add`
+
 ## Run your Meteor app
 `$ meteor run`
+
+or just `$ meteor`
 
 `client/main.js`
 

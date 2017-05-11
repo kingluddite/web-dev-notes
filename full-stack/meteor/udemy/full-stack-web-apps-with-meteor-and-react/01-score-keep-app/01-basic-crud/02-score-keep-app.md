@@ -1,25 +1,32 @@
 # Score Keep App
+* [Live URL](http://score-keep-mead.herokuapp.com)
+* [Github source code](https://github.com/andrewjmead/score-keep-meteor-course)
 
-[Live URL](http://score-keep-mead.herokuapp.com)
+## Run Meteor
+`$ meteor`
 
-[Github source code](https://github.com/andrewjmead/score-keep-meteor-course)
+* Make sure you are inside your meteor project
+* The terminal will let you know when meteor is running and when you can visit `http://localhost:3000` to view your app
 
-## Create Meteor app with specific version
-`$ meteor --version` - Tells you what version of Meteor you are running
-
-`$ meteor create --release 1.4.2.1 score-keep`
-
-Also run `$ meteor npm install`
-
-Run meteor with `$ meteor run --release 1.4.2.1`
+![app is ready and running](https://i.imgur.com/BgyYzMK.png)
 
 ## Remove Boilerplate code
 * We don't touch `.meteor` folder
     * Unless you know what you're doing
-* Remove all code from `server/main.js` and replace with `console.log('Log from /server/main.js);`
+
+## Show the Server
+1. Remove all code from `server/main.js`
+2. Replace with `console.log('Log from /server/main.js');`
     - You will see this log output in the **Terminal**
-* Remove all code from `client/main.js` and replace with `console.log('Log from /client/main.js');`
+
+![hello from server](https://i.imgur.com/8o0w0FX.png)
+
+## Show the Client
+3. Remove all code from `client/main.js`
+4. Replace with `console.log('Log from /client/main.js');`
     - You will see this log output in the **console** tab of Chrome
+
+![client says hello](https://i.imgur.com/v3zHspJ.png)
 
 ## Review and talk about why we need them
 * `.gitignore`
@@ -30,7 +37,8 @@ Run meteor with `$ meteor run --release 1.4.2.1`
 * Meteor recommends not adding anything to `client` or `server` folder
 
 ## Demonstrate dangers
-1. Add `app.js` file to root and type `console.log('Log from app.js);`
+1. Add `app.js` file to root
+2. Type `console.log('Log from app.js);`
 2. In **Terminal**, You will see `Log from app.js` on server even though we didn't put this file in our `server` folder
 3. In Chrome **Console** we also have `Log from app.js`
 
@@ -38,7 +46,7 @@ Run meteor with `$ meteor run --release 1.4.2.1`
 * Automatically loading file from all over your Application makes things hard to maintain
 * If we create an `app` folder and drag and drop `app.js` inside it we'll get the same functionality
 
-## "A rose by any other name would smell as sweet" - WS
+#### "A rose by any other name would smell as sweet" - WS
 * Directory names in Meteor (_aka folder names_) are important
 * The `client` and `server` directory names are important and have meaning in the Meteor ecosystem
 

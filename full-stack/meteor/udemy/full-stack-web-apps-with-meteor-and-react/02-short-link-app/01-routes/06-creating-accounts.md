@@ -56,9 +56,8 @@ Let's start coding!
 `Signup.js`
 
 ```
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { Accounts } from 'meteor/accounts-base'; add this line
+// more code
+import { Accounts } from 'meteor/accounts-base'; // add this line
 // more code
 ```
 

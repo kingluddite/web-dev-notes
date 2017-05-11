@@ -2,7 +2,7 @@
 ![wireframe](https://i.imgur.com/aQiyOBK.png)
 
 ## We will focus on rendering PlayerList Component
-The PlayerList Component will get passed a list of all of the player
+The PlayerList Component will get passed a list of all of the `players`
 
 `PlayerList`
 

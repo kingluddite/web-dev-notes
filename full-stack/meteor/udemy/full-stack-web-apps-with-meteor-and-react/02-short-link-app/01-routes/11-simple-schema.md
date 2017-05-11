@@ -6,42 +6,43 @@ Time to validate:
 
 ## Simple Schema (Library)
 ### What is a Schema?
-A set of properties (_i.e. an object with a property `name` and it lets you define rules for those properties_)
+A set of properties
+
+#### I need more of an explanation
+* A Schema is an object with a property `name` 
+* The Schema lets you define rules for those properties
 
 ### Example Schema
 Pet Schema
 
-* Pets can have a **name** and an **age**
-* **name** should be a string and it should be at least one character
-* **age** should be a number with a minimum value of `0` 
-
-**note** These are the schema rules
-
+#### Here our Schema rules
 Using those rules we can validate user data against the schema and from that we can determine if that information should be allowed in our database
 
-## Simpl Schema (yes I spelled Simpl without the `e`)
+* Pets can have a **name** and an **age**
+* **name** should be
+    - A string 
+    - And it should be at least one character
+* **age** 
+    - Should be a number with a minimum value of `0`
+
+
+## Simpl Schema
+_(yes I spelled Simpl without the `e`)_
 Simpl Schema lets you define a schema
 
 ## Install `simpl-schema`
-Make sure you don't install `simple-schema` that is not the one we want. Ours does not have an `e` at the end of `simpl`
+**Important!**
 
-`$ meteor npm i simpl-schema -S`
+* Make sure you don't install `simple-schema` that is not the one we want
+* Ours does not have an `e` at the end of `simpl`
+
+`$ yarn add simpl-schema`
 
 ## Let's play around with simple-schema first on our server `server/main.js`
 
-### Import it
 ```
 import { Meteor } from 'meteor/meteor';
-import SimpleSchema from 'simpl-schema'; // add this line (double check spelling)
-
-Meteor.startup(() => {
-  // code to run on server at startup
-});
-```
-
-```
-import { Meteor } from 'meteor/meteor';
-import SimpleSchema from 'simpl-schema';
+import SimpleSchema from 'simpl-schema'; // we import it here
 
 Meteor.startup(() => {
   // code to run on server at startup
@@ -58,9 +59,12 @@ Meteor.startup(() => {
 });
 ```
 
-Nothing will happen because `.validate()` will only show results when the data doesn't validate
+### Nothing happen?
+Because `.validate()` will only show results when the data doesn't validate
 
-* When you create a schema every property you define is required by default and any property that's on the object that's not part of the schema is not allowed (_both of those will cause errors_)
+* When you create a **schema** every property you define is required by default
+* Any property that is on the object and that is not part of the **schema** is not allowed (_both of those will cause errors_)
+* This is great because it will stop malicious users from sending additional properties we did not make with bad stuff inside
 
 So if we remove one line like:
 
@@ -86,7 +90,7 @@ You'll get this error in the Terminal on the server:
 
 `ClientError: Name must be of type String`
 
-### Other types of validations we can use
+### Other types of validations
 * Set `min` and `max` for a string
 
 ```

@@ -12,7 +12,7 @@ Uses the ES6 `import` keyword to <u>explicitly</u> load in specific files
 ## utils.js
 Create `/imports/utils.js`
 
-### The current directy `(./)`
+### The current directory `(./)`
 (`./`) Tells our Application we are loading a local file versus a 3rd part Library
 
 `imports/utils.js`
@@ -81,7 +81,7 @@ console.log('Log from /server/main.js');
 console.log(greetUser());
 ```
 
-We comment the old `relative path` because now we are defining a variable `greetUser` and then we can call the function we imported
+We comment the old `relative path` because now we are defining a variable `greetUser` and then we can call the function we **imported**
 
 ![hello user prints to screen](https://i.imgur.com/Ks5UcRZ.png)
 
@@ -105,11 +105,11 @@ And here is our `console`
 ```
 console.log('Log from /imports/utils.js');
 
-export let greetUser = function() {
+export const greetUser = function() {
    return 'Hello user!';
 };
 
-export let name = 'PEH2';
+export const name = 'PEH2';
 ```
 
 ### Import multiple variables
@@ -133,18 +133,16 @@ console.log(name);
 ## Review
 * We now understand how to import and export stuff
 * We know how to export a function or just a property
-* We can import files or import as many export statements as we want by just separated them with commas `import { one, two, three }`
+* We can import files or import as many named export statements as we want by just separated them with commas `import { one, two, three }`
 * When importing we grab files by specifying the relative path
 
-### How is is possible to import a default function AND specify a name when it is not named in the exporting file?
-* You can name `default` exports whatever you want in the import statement
+##### How is it possible to import a default function AND specify a name when it is not named in the exporting file?
+* You can name `default` exports whatever you want in the **import** statement
 * There's only one export `default` allowed per exporting file so it doesn't matter if the name matches
 
-### default export
-Second type of export
-
-Before we were using `named exports`. `greetUser()` and `name` were both `named exports`
-
+### `default` export
+* This is the second type of export
+* Before we were using `named exports`. `greetUser()` and `name` were both `named exports`
 * We reference them by **name** anytime we want to use their functionality
 * We can also export one default value per file
 
@@ -162,7 +160,8 @@ export let name = 'PEH2';
 export default 'Default value'; // add this line
 ```
 
-Now to import the `default` we need to place our variable name before our `{}` curly braces. We can use any "legitimate" JavaScript variable name we want
+* Now to **import** the `default` we need to place our variable name before our `{}` curly braces
+* We can use any "legitimate" JavaScript variable name we want
 
 `client/main.js`
 
@@ -194,4 +193,4 @@ export default myDefault;
 ## Exercise
 * Modify `math.js` use a default export instead of a named export which is a function that adds those two numbers together
 * Remember to change how you load in the default value in `server/main.js`
-* After trying it out remember to check the Terminal because the output will be coming from the server
+* After trying it out remember to check the **Terminal** because the output will be coming from the **Server**

@@ -81,16 +81,9 @@ This new `components` folder is not referring to a **React** Component but rathe
 `_main.scss`
 
 ```
-// more code
-.wrapper
-{
-    max-width: 50rem;
-    margin: 0 auto;
-    padding: 1.3rem;
-}
-
 @import './components/title-bar';
 @import './components/wrapper';
+// more code
 ```
 
 ## Hard Refreshing

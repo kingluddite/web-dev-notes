@@ -41,7 +41,7 @@ Meteor.startup(function() {
 
 Now we'll see the page
 
-**caution** - The following would give you an error. Watch our for misplaced semi-colons in JSX
+caution** - The following would give you an error. Watch our for misplaced semi-colons in JSX
 
 ```
 const jsx = (

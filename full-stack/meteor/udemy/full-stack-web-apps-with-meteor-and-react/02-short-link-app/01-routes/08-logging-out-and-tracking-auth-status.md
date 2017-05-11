@@ -65,7 +65,7 @@ export default Link;
 
 ## Test it out
 1. Log in 
-2. Click the log out button
+2. Click the `Log Out` button
 3. Test if `user()` and `userId()` work in the browser
   * They both should be **null** after logging out
 4. Log in and see if they exist

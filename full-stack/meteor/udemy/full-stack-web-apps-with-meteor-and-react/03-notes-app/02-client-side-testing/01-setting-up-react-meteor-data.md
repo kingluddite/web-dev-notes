@@ -1,12 +1,12 @@
 # Setting up React-Meteor-Data
-We will not set up properly the handleLogout prop for both production and development environments
+We will not set up properly the `handleLogout` prop for both production and development environments
 
 ## Remember the Score Keep app?
-We set up Tracker.autorun() at the root of our app `client/main.js` and we then fetched our data and we were able to use Tracker.autorun() to rerun this function if the data ever changed. if the data did change, we used `ReactDOM.render()` passing in <App /> and passing in the new prop information
+We set up `Tracker.autorun()` at the root of our app `client/main.js` and we then fetched our data and we were able to use `Tracker.autorun()` to rerun this function if the data ever changed. If the data did change, we used `ReactDOM.render()` passing in `<App />` and passing in the new prop information
 
 Then we went into the App Component and saw that it did take the players but it didn't do anything with them, it just passed them down to `PlayerList`
 
-And then inside `PlayersList` is the first time the **players** array is actually used (even though it's used in `main.js` and `App.js` it doesn't need to be there) it is simply getting passed a long
+And then inside `PlayersList` is the first time the **players** array is actually used (_even though it's used in `main.js` and `App.js` it doesn't need to be there_) it is simply getting passed a long
 
 ## We did solve this problem in shortlink app
 We no longer queried our data at the root level because we set up React Router and instead we had to do something different
@@ -16,13 +16,13 @@ We no longer queried our data at the root level because we set up React Router a
 * The `Link` Component took zero `0` props
 
 ### How did we solve the problem in shortlink?
-* We set up tracker.autorun() inside of the componentDidMount() Lifecycle
-* We created a cool container Component that new how to fetch the data it needed
+* We set up `Tracker.autorun()` inside of the `componentDidMount()` Lifecycle
+* We created a cool container Component that knew how to fetch the data it needed
 * It did not need to get those things passed in as props
 
 ### Time to improve
 * We are going to improve on this technique
-* Instead of setting up our own Tracker.autorun() calls inside of Components we define we will use a library instead that generates very simply Container Components for us
+* Instead of setting up our own `Tracker.autorun()` calls inside of Components we define we will use a library instead that generates very simple Container Components for us
 * At the end of the day we're really just going to be defining a single function, the `Tracker.autorun()` function and it will do everything else for us, allowing us to easily re-render a new Component when the data in our function changes
 
 We first need to install
@@ -37,13 +37,13 @@ We never use this directly but it required for the next thing we are installing
 This will create container Components that are responsible for fetching all of the data we need to render stuff to the screen
 
 ## If you used React and Redux...
-Think of react-meteor-data like the Connect function from Redux
+Think of `react-meteor-data` like the Connect function from Redux
 
-* react-meteor-data will take the place of Redux in this project
+* `react-meteor-data` will take the place of Redux in this project
 
 `Header.js`
 
-Import react-meteor-data
+Import `react-meteor-data`
 
 `import { createContainer } from 'meteor/react-meteor-data';`
 
@@ -81,7 +81,7 @@ export default createContainer(() => {
 }, Header);
 ```
 
-* createContainer() takes two args
+* `createContainer()` takes two args
     - arg1 - function (similar to Tracker.autorun() - anything that `Header` needs to render itself will get defined inside of hear)
         + currently it will just be handleLogout()
         + But later down the road it could be the result of Database queries

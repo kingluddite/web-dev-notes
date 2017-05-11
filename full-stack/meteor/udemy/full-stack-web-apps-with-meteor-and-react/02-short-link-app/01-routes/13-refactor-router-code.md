@@ -1,9 +1,9 @@
 # Refactoring Router Code
-
-`client/main.js`
+## Moving Time!
+* We are going to move what we need from `client/main.js` into a new file `routes.js`
+* This will keep our `client/main.js` lean and mean
 
 ## Create a new file 
-We are going to move what we need from `client/main.js` into `routes.js` and this will keep our `client/main.js` lean and mean which is recommended
 
 `imports/routes/routes.js`
 
@@ -57,7 +57,8 @@ export const routes = (
 ```
 
 ### Tracker.autorun()
-Knowing when a user has an authenticaton status change is very useful. It won't just be useful for our router but other parts of our app
+* Knowing when a user has an authenticaton status change is very useful
+* It won't just be useful for our `router` but other parts of our app
 
 Cut all of the [router specific code](https://i.imgur.com/5m84Bux.png) and we will break it out into its own function and then we can call this function in `Tracker.autorun()`
 

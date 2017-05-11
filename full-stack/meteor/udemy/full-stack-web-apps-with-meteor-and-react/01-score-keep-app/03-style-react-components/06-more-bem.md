@@ -10,16 +10,15 @@ Create a slogan **BEM** element for the **TitleBar** block
 `_title-bar.scss`
 
 ```
-.title-bar
-{
-    color: #fff;
-    background: #e35557;
+.title-bar {
+  background: #e35557;
+  color: #ffffff;
 }
-.title-bar__slogan
-{
-    font-size: 1.3rem;
-    font-weight: 200;
-    font-style: italic;
+
+.title-bar__slogan {
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 200;
 }
 ```
 

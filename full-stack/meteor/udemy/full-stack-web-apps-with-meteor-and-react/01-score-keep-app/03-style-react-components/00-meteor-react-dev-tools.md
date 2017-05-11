@@ -1,48 +1,9 @@
 # Meteor and React Developer Tools
 
-## [Eslint with React and Meteor](https://github.com/Firfi/meteor-react-bootstrap/blob/master/.eslintrc)
-
-`.eslintrc`
-
-```
-{
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "ecmaFeatures": {
-    "jsx": true
-  },
-  "parser": "babel-eslint",
-  "plugins": [
-    "react"
-  ],
-  "rules": {
-    "comma-spacing": 2,
-    "key-spacing": 0,
-    "no-underscore-dangle": 0,
-    "no-unused-vars": [2, { "vars": "all", "args": "none" }],
-    "no-var": 2,
-    "object-shorthand": 2,
-    "quotes": [2, "single", "avoid-escape"],
-    "react/display-name": 0,
-    "react/jsx-no-undef": 2,
-    "react/jsx-uses-react": 2,
-    "react/no-did-mount-set-state": 2,
-    "react/no-did-update-set-state": 2,
-    "react/no-multi-comp": 2,
-    "react/prop-types": [2, { ignore: [children, className] }],
-    "react/react-in-jsx-scope": 2,
-    "react/self-closing-comp": 2,
-    "react/wrap-multilines": 2,
-    "react/jsx-uses-vars": 2,
-    "strict": 0
-  }
-}
-```
-
-* Debugging code is a pain
-* It can take you hours. You stare at your screen. You pull out your hair.
+## Debugging code is a pain
+* It can take you hours
+* You stare at your screen
+* You pull out your hair.
 * But as you debug more and more, you get better, faster and more efficient. 
 
 You learn to write better code when you debug
