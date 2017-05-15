@@ -44,6 +44,7 @@ module.exports = {
 
 ### Add in babel loader
 ```
+/* eslint-disable */
 var webpack = require('webpack');
 var path = require('path');
 
@@ -95,6 +96,7 @@ module.exports = {
 * `style-loader` takes all those modules and injects them into a `<style>` tag inside our HTML document
 
 ```
+/* eslint-disable */
 var webpack = require('webpack');
 var path = require('path');
 
@@ -120,7 +122,7 @@ module.exports = {
 };
 ```
 
-`$ yarn build`
+`$ npm build`
 
 * This is a large app (3.36 MB)
 * We get warnings because it is so large
@@ -196,7 +198,7 @@ output: {
 * We have two files (this is good)
 * Our file size has doubled (this is bad)
 
-index.js
+`index.js`
 
 ```
 import React from 'react';
@@ -235,7 +237,7 @@ import Routes from './router';
 * If any modules in all those files are identical (aka duplicates)
 * Pull them out and only add them to the `vendor` entry point
 
-`$ yarn build`
+`$ npm build`
 
 We save space!
 
@@ -243,7 +245,3 @@ We save space!
 
 * The first time a user comes to our website they'll download the entire 3.5 MB chunk but every time after they visit our site again they won't have download vendor.js
 * If they every clear their browser cache they'll have to download it again
-
-
-
-

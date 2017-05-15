@@ -23,6 +23,7 @@
 `webpack.config.js`
 
 ```
+/* eslint-disable */
 const config = {
   entry: './src/index.js'
 };
@@ -55,6 +56,7 @@ The `output` property - Takes our huge bundle and tells it where to save it and 
 `webpack.config.js`
 
 ```
+/* eslint-disable */
 const path = require('path');
 
 const config = {

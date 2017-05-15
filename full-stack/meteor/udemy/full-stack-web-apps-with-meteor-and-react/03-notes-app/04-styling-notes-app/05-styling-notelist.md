@@ -106,7 +106,7 @@ export const NoteListItem = (props) => {
 // Item
 .item {
   cursor: pointer;
-padding: $space;
+  padding: $space;
 }
 // more code
 ```

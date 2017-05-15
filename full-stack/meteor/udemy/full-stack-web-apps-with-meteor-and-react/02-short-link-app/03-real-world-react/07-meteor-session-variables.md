@@ -27,15 +27,16 @@ Test it out and we'll see that when we click to hide links the hidden links are 
 * Change it to `visible: false` and the opposite will occur
 
 ## Task
-We need to find a way to set the visible value to true or false inside our Collection query. We will use a **check** input field to toggle **true** or **false**
+* We need to find a way to set the `visible` value to **true** or **false** inside our Collection query
+* We will use a **check** input field to toggle **true** or **false**
 
 ## Meteor Session package
-* This lets us create a key/value store (similar to localStorage)
+* This lets us create a **key/value** store (_similar to localStorage_)
     - We can set/get values
     - But the cool thing is it is reactive (just like our queries)
 * If we use the Session package inside of a `Tracker.autorun()` call we can do something when that value changes
 * This is a `Client-side` package and therefore it is only meant for **Client-side** state management
-* Showing our hiding our links is a great example for *Client-side** state because this is something that should not be stored inside the Database because it really is just temporary in the UI
+* Showing our hiding our links is a great example for **Client-side** `state` because this is something that should not be stored inside the Database because it really is just temporary in the UI
 
 ## Session on Meteor
 [Session Documentation](http://docs.meteor.com/api/session.html)
@@ -66,7 +67,9 @@ And in the console we'll see after page refresh `Name: Elvis Presley`
 ## Why do we need this?
 This looks similar to localStorage or Session storage so why would we ever use Meteor Session?
 
-One reason - It is reactive. So if we use Session.get() inside of `Tracker.autorun()` the Session will rerun every time this value `Session('name')` changes - and this is exactly what we want and need
+* One reason - <u>It is reactive</u>
+* So if we use `Session.get()` inside of `Tracker.autorun()` the Session will re-run every time this value `Session('name')` changes
+* This is exactly what we want!
 
 When our **filter** changes we want to re-render our links list
 

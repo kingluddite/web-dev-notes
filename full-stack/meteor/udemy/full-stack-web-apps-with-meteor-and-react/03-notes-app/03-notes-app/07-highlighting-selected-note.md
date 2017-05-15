@@ -107,7 +107,7 @@ update route
 
 `<Route path="/dashboard/:id" component={Dashboard} onEnter={onEnterNotePage} />`
 
-Finished routes.js
+Finished `routes.js`
 
 ```
 import { Meteor } from 'meteor/meteor';

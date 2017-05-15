@@ -195,9 +195,9 @@ Tracker.autorun(() => {
 });
 ```
 
-* Test in app
+### Test in app
 * You will see when you refresh you get **undefined** and then **unauth**
-* If you click on 'need an account' or 'already have an account' you will see nothing happens because `Tracker.autorun()` only runs when the value changes
-* If you log in you'll see the value change to **auth**
+* If you click on '**need an account**' or '**already have an account**' you will see nothing happens because `Tracker.autorun()` only runs when the value changes
+* If you **log in** you'll see the value change to **auth**
 
 ## Next - Finish hooking up Logout to work with new Routes

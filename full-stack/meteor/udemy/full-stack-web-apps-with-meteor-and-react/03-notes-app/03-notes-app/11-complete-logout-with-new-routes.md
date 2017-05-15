@@ -1,7 +1,7 @@
 # Setting up Logout to Work with New Routes (Part 2)
-* currentPagePrivacy gets updated as we move through the app
-* we added the code that will make this work but now we need to wire it up
-* currently we are pulling the actual url from the browser and using that to determine if we should redirect
+* `currentPagePrivacy` gets updated as we move through the app
+* We added the code that will make this work but now we need to wire it up
+* Currently we are pulling the actual *url* from the browser and using that to determine if we should redirect
 
 ```
 export const onAuthChange = (isAuthenticated) => {
@@ -158,7 +158,7 @@ const onLeaveNotePage = () => {
 // more code
 ```
 
-* Test and you'll see that when you delete a note, our message changes to `Pick or create a note to get started` (because we changed selectedNoteId to **undefined**)
+* Test and you'll see that when you delete a note, our message changes to `Pick or create a note to get started` (_because we changed selectedNoteId to **undefined**_)
 
 ### git add . vs git commit -a -m
 When we have files that are being tracked and there is nothing new we are going to add we can sue `$ git commit -a -m 'some message'`

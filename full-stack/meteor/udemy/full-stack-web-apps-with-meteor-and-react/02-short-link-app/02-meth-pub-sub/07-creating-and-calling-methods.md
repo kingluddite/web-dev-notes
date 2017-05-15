@@ -1,9 +1,9 @@
 # Creating and Calling Methods
 * `Publications` and `Subscriptions` allow us to securely fetch data
-* Meteor Methods will allow us to securely create, update and delete Documents
+* **Meteor Methods** will allow us to securely create, update and delete Documents
 
 ## Meteor Methods
-* More involved that `Publications` and `Subscriptions`
+* More involved with `Publications` and `Subscriptions`
     - Have to validate arguments
     - Throw errors
     - Make Database requests
@@ -12,7 +12,9 @@
 
 * Not inside our `isServer` conditional (_we also aren't adding it inside an `isClient` conditional_)
     - Why?
-    - Because our **Meteor Methods** should be defines on both our `server` and the `client` and this is so that we can securely run these Database changes on the `server` but it also enables us to simulate those changes on the `client` so we can render things to the screen as quickly as possible
+    - Because our **Meteor Methods** should be defined on both the `Server` and the `Client`
+    - This is so that we can securely run these Database changes on the `Server`
+    - But it also enables us to simulate those changes on the `client` so we can render things to the screen as quickly as possible
 
 ### Meteor.methods()
 
@@ -51,7 +53,7 @@ We will first start working in `server/main.js`
 
 * `Meteor.call()` first argument -> METHOD_NAME_AS_STRING
     - This is the only way **Meteor** knows what method to run so make sure it is spelled correctly
-* `Meteor.call()` second argument -> callback function
+* `Meteor.call()` second argument -> **callback** function
     - Will allow us to do stuff depending on whether or not `greetUser` succeeds or fails
     - If it `fails` it will throw an error and we want to do something with that error
     - If it `succeeds` and we get a valid result we want to do something with that result
@@ -79,7 +81,7 @@ Meteor.startup(() => {
 2. `res` - The **result**
 
 * If there is an error, `err` will be populated and `res` won't be populated
-* If all is well `err` will be empty and the `res` (result) (aka - the return result of the method is stored in `res`)
+* If all is well `err` will be empty and the `res` (_result_) (_aka - the return result of the method is stored in `res`_)
 
 `server/main.js`
 
@@ -102,14 +104,15 @@ Meteor.startup(() => {
 
 * We see `greetUser is running`
     - Which means our method code is indeed running on the server
-    - We see `err` is **undefined** (we expected that as we're just returning a string which will never be an error)
-    - And we see `req` which is the **result** (the return value from our method) and that will be the string we returned `Hello user`
+    - We see `err` is **undefined** (_we expected that as we're just returning a string which will never be an error_)
+    - And we see `res` which is the **result** (_the return value from our method_) and that will be the string we returned `Hello user`
 
-**note** Meteor Methods can be called from the `Server` or from the `Client`
+**note** 
 
-This is a very important distinction becuase this is unlike most other frameworks you use
+**Meteor Methods** can be called from the `Server` or from the `Client`
 
-To test if Meteor Methods work on the `Client` also we will cut them from `server/main.js` and paste into `client/main.js`
+* This is a very important distinction because this is unlike most other frameworks
+* To test if **Meteor Methods** work on the `Client` also we will cut them from `server/main.js` and paste into `client/main.js`
 
 ```
 import { Meteor } from 'meteor/meteor';
@@ -131,14 +134,17 @@ Meteor.startup(() => {
 });
 ```
 
+### Remote Procedure Calls
 * If you check the `Server` Terminal you'll see `greetUser is running`
-    - This lets us know that our **Client-side** method calls are pretty much remote procecure calls (_translation: - it tells some other computer to run some sort of method_)
+    - This lets us know that our **Client-side** method calls are pretty much remote procedure calls (_translation: - it tells some other computer to run some sort of method_)
         + In our case the client is telling the server to go ahead and run `greetUser` and that is why we are seeing the log on in the Server Terminal (_and this is how methods can be secure_)
 * Check out the browser (_Client_) console
 
 ![client method call](https://i.imgur.com/tCkYw4i.png)
 
-* We see `greetUser is running` so the **Meteor** method is running on the `client` and the `server` and `greetUser()` also gets executed on the `client` and the `server`. This lets us quickly simulate changes to the Database having things rendered to the screen before the `Server` actually responds
+* We see `greetUser is running` so the **Meteor** method is running on the `Client` and the `Server`
+* `greetUser()` also gets executed on the `Client` and the `Server`
+    - This lets us quickly simulate changes to the Database having things rendered to the screen before the `Server` actually responds
 * We see we have no errors `err` and our `res` (_result_) returned is `Hello user` which is just our simple string
 
 # Common Pattern that we'll be using
@@ -172,24 +178,26 @@ Meteor.methods({
 
 * Now we'll see `Greet User Arguments undefined Hello Joe` on the **Client** and `greetUser is running` on the **Server** and the **Client**
 * If we didn't pass a name argument, we would then see the default value of `User` used instead `Greet User Arguments undefined Hello User`
-* Now we have a method that takes in dynamic information from the **client**, runs it on the **client** and the **server** and ends up with some sort of **result**
+* Now we have a method that takes in dynamic information from the **Client**, runs it on the **Client** and the **Server** and ends up with some sort of **result**
 
 ### What happens with the client side method call?
-Is this data from the **server** side method call or from the client side method call?
+Is this data from the **Server** side method call or from the **Client** side method call?
 
-* If we look at this from our client console `Greet User Arguments undefined Hello Joe`, this data is from the **server** side method call
+* If we look at this from our client console `Greet User Arguments undefined Hello Joe`, this data is from the **Server** side method call
 * Your function that you pass into `Meteor.call()`
 
 ![highlighted code](https://i.imgur.com/ymnHLJc.png)
 
-The highlighted code only gets called with the **server** responds (_whether it responds with an error or the data (`err` or `res`)_). This code will never be called by the **client**. The **client** side method, when it gets execute is only to simulate changes to the Database and currently our method doens't do anything like that so we will ignore this feature
+* The highlighted code only gets called when the **server** responds (_whether it responds with an error or the data (`err` or `res`)_)
+* This code will never be called by the **client**
+* The **Client** side method, when it gets executed, is only to simulate changes to the Database and currently our method doesn't do anything like that so we will ignore this feature
+* So now it is like our methods are never getting executed on the **client**
+* But as we start to create real world methods (_in a little bit_) we will change this and make our code more secure
 
-* So now it is like our methods are never getting executed on the **client**. But as we start to create real world methods (_in a little bit_) we will change this and make our code more secure
-
-## What is the whole pupose of a method?
+## What is the whole purpose of a Meteor Method?
 To make sure that whatever gets inserted into the real MongoDB Database is inserted in some sort of secure way
 
-This means:
+### This means:
 
 * The user has access to do that action
 * Or the data is valid
@@ -226,20 +234,22 @@ Meteor.startup(() => {
 });
 ```
 
-**note** The method gets called on the method and the server and it throws an error on both the `client` and the `server`
+**notes** 
 
-* We'll see on `client` console
+* The method gets called on the **Client** and the **Server**
+* And it throws an error on both the `Client` and the `Server`
+* We'll see on `Client` console
     - `greetUser is running`
-    - We have the [stack trace](https://i.imgur.com/3HumJRI.png) for when the `client` executes our method
+    - We have the [stack trace](https://i.imgur.com/3HumJRI.png) for when the `Client` executes our method
         + The stack trace for the most part is not useful
 
-We then see this:
+#### We then see this:
 
 ![error](https://i.imgur.com/KNs5737.png)
 
 * We `Greet User Arguments` printing to the screen
-* The first argument is now defined `err` and the second argument id **undefined** `res` and that is because we have an error
-* The errors are the same but the first one comes from the Client (when the client tried to simulate that method call) and the second one comes from the server (we know that because it is in our **callback** function)
+* The first argument is now defined `err` and the second argument is **undefined** `res` and that is because we have an **error**
+* The **errors** are the same but the first one comes from the `Client` (_when the client tried to simulate that method call_) and the second one comes from the server (_we know that because it is in our **callback** function_)
 
 ```
 import { Meteor } from 'meteor/meteor';
@@ -280,7 +290,7 @@ componentDidMount() {
   }
 ```
 
-* You will see that we see in the `console` the userId of the currently logged in user (_which is what our simple Meteor Method is doing_)
+* You will see that we see in the `console` the **userId** of the currently logged in user (_which is what our simple Meteor Method is doing_)
 
 ## ES5 function for `this.userId`
 * Just as before we use ES5 so that we have `this` bound to the function and we can access `this.userId` which gives us the `id` of the currently logged in user
@@ -308,11 +318,12 @@ Meteor.methods({
 ```
 
 * After the code modification we still have access to the logged in user `id` which is what we want
-* Even though we are using ES6 syntax, the above code snippet is still using the function keyword behind the scenes and that is how we have access to `this` because it is bound to the function (_even though we are using ES6 object syntax we are still using ES5 function behind the scenes_)
+* Even though we are using ES6 syntax, the above code snippet is still using the function keyword behind the scenes and that is how we have access to `this` because it is bound to the function
 
+### Review
 This was a fundamental look at:
 
-* How methods work
+* How **Meteor Methods** work
 * How we define them
 * How we call them
 
@@ -325,12 +336,14 @@ This was a fundamental look at:
 
 * in `links.js`
     - Write some validation code
-    - Make sure the type of both of those arguments is a number (hint: JavaScript has a `typeof` )
+    - Make sure the type of both of those arguments is a number (_hint: JavaScript has a `typeof`_ )
 
-**hint** - `if (typeof === 'number')` - use `typeof` on **number**, **object**, *array*, **string** or **boolean** and you get the type back (_as a string_)
-if one or both are not numbers, throw an **error** (_using `Meteor.Error()` to throw a new error, make up your own values for the Error code and the reason message_)
+**hints**
 
-* Call method with 2 numbers (_good data_)
+* `if (typeof === 'number')` - use `typeof` on **number**, **object**, *array*, **string** or **boolean** and you get the type back (_as a string_)
+* If one or both are not numbers, throw an **error** (_using `Meteor.Error()` to throw a new error, make up your own values for the Error code and the reason message_)
+
+* Call method with two numbers (_good data_)
 * Call it with some bad data (_to see if your error is working properly_)
 * Make a new method call and don't replace the other one
 * Use `typeof` on both numbers, if they are valid numbers, return their sum

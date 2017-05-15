@@ -34,7 +34,7 @@ And that will add an orange border to our main content
 
 ![add mixin](https://i.imgur.com/yNERN59.png)
 
-* When you call a mixin you are place those rules set in the mixin definition right where the call happens
+* When you call a **mixin** you are placing that rules-set in the **mixin** definition right where the call happens
 
 ### Mixins can have arguments
 ```
@@ -89,7 +89,7 @@ And that will add an orange border to our main content
 }
 ```
 
-* Since you didn't pass a border-color when calling mixin, the default color of blue will be used
+* Since you didn't pass a `border-color` when calling **mixin**, the default color of blue will be used
 * We are not limited to just putting style properties inside mixins
     - We can also put selectors inside mixins
 
@@ -105,12 +105,12 @@ If I want to select everything that shows up inside of `.page-content__main`
 }
 ```
 
-That will change all elements inside main to that color (note if you type in the input or textarea they will change that color but that won't change the placeholder color)
+That will change all elements inside main to that color (_note if you type in the input or textarea they will change that color but that won't change the placeholder color_)
 
 [how to color HTML5 placeholders with CSS](http://stackoverflow.com/questions/9451902/changing-an-inputs-html5-placeholder-color-with-css-does-not-work-on-chrome)
 
 ## @content
-When we call our mixin we can provide a block
+When we call our **mixin** we can provide a `block`
 
 ```
 .page-content__main {
@@ -148,8 +148,8 @@ But if you add **@content** to the mixin:
 ## Exercise
 * Create a mixin called `groovy-background`
 * It has an argument it takes called `$background-color` with a pink default color
-* Set the backgrond-color property equal to the argument
-* Call the mixin and Make sure default value works
+* Set the `background-color` property equal to the argument
+* Call the **mixin** and make sure default value works
 * Pass a different color and make sure that gets used when provided
 
 <details>
@@ -183,8 +183,8 @@ This is so we don't have to use `@media (min-width: 50rem)` everywhere we want t
 }
 ```
 
-* We take whatever gets passed into the mixin and dump it right where **@content** is
-* If there are no arguments, parenthesees are option so this:
+* We take whatever gets passed into the **mixin** and dump it right where **@content** is
+* If there are no arguments, parenthesees are optional so this:
 
 ```
 .page-content {
@@ -254,7 +254,9 @@ Could become this
 }
 ```
 
-* Just like variables you have to define your mixin before it can be used
+**Important!** 
+
+Just like **variables** you have to define your **mixin** before it can be used
 
 ### Organize your mixins
 Create a new folder called `mixins`

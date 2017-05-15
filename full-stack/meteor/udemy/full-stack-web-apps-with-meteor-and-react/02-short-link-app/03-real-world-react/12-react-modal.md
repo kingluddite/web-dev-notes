@@ -9,7 +9,7 @@ This is a third party react Component
     - [React Dropdown](http://fraserxu.me/react-dropdown/)
 
 ## Install react-modal
-`$ npm i -S react-modal`
+`$ yarn add react-modal`
     
 ### Read the documentation. It is awesome
 ```
@@ -26,7 +26,8 @@ This is a third party react Component
 </Modal>
 ```
 
-* We provide `props` and then type our html elements. It's that simple
+* We provide `props` and then type our html elements
+* It's that simple
 
 ## Move `AddLink`
 `Link`
@@ -141,7 +142,7 @@ And we set our Modal to the current `state` value of `isOpen`
 ## Add button to open/close Modal on click
 * Make sure to set `url` to an empty string in `state` on close modal
 
-`AddLink`
+`Header`
 
 ```
 import React, { Component } from 'react';

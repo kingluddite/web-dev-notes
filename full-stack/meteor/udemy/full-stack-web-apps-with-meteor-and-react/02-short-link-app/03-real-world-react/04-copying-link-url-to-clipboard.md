@@ -4,7 +4,10 @@ Available in all modern browsers (except Opera Mini)
 
 Highlight one of your links and type `> document.execCommand('copy')`
 
-`true` Will be returned (if you get `false` it means your browser doesn't work with this command, or maybe the user has restricted access to the clipboard)
+`true` Will be returned 
+
+* If you get `false` it means your browser doesn't work with this command
+* Or maybe the user has restricted access to the clipboard
 
 You can paste your clipboard item to the console and it should be exactly the link you copied to your clipboard
 
@@ -39,15 +42,18 @@ This is exactly what is used on Github. Look familiar?
 ## Our behavior will be even cooler
 * This is possible because we are using a 3rd party library
 * It is using what we have plus a little more making it a much better user experience
-    - It will create an input (like what we used)
+    - It will create an input (_like what we used_)
     - It shifts the input out of view of the user
     - It adds the URL we want to copy to that input field then it runs the commands we just used to select and copy and it also removes the input
-        + This all happens in just a few milliseconds (the time it takes to click a button)
+        + This all happens in just a few milliseconds
+        + The time it takes to click a button
 
-## [clipboard from npm](https://www.npmjs.com/package/clipboard)
-This is not specific to `React` so this will show you that you can use non-react libraries inside your React Application
+## Clipboard from npm
+[clipboard from npm](https://www.npmjs.com/package/clipboard)
 
-This library could be used in Angular, React, Ember or even just a static page
+### Non React libraries can work inside your React apps
+* This is not specific to `React` so this will show you that you can use non-react libraries inside your React Application
+* This library could be used in `Angular`, `React`, `Ember` or even just a static page
 
 ### Install clipboard
 `$ npm i -S clipboard`
@@ -141,7 +147,7 @@ class LinksListItem extends Component {
 * We use `<button ref="copy" data-clipboard-text={this.props.shortUrl}>Copy</button>` to grab the copied clipboard text when we click the button
 
 ## Time for some clean up
-"clean up" means remove all the event listeners that `Clipboard` uses and this will free up the browser of useful resources
+**"clean up"** means remove all the event listeners that `Clipboard` uses and this will free up the browser of useful resources
 
 ```
 // more code
@@ -162,7 +168,9 @@ class LinksListItem extends Component {
 // more code
 ```
 
-This won't work because the way we structured our code we can't access `clipboard` in another function because of scope but if we scope `clipboard` to the Component using `this.clipboard`, this will give us access to it globally inside the Component
+* This won't work 
+* Because the way we structured our code we can't access `clipboard` in another function because of scope
+* But if we scope `clipboard` to the Component using `this.clipboard`, this will give us access to it globally inside the Component
 
 ```
 // more code

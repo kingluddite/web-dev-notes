@@ -92,6 +92,7 @@ render() {
   }
 ```
 
+### You can't render Booleans to the screen
 That won't work because you can't render Booleans to the screen unless you use the `toString()` method
 
 ```
@@ -137,7 +138,7 @@ import Clipboard from 'clipboard';
 // more code
 ```
 
-### Add the Meteor.call() (we'll do it inlines this time)
+### Add the `Meteor.call()` (we'll do it inlines this time)
 `LinksListItem.js`
 
 ```

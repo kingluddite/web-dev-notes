@@ -80,11 +80,9 @@ export default () => {
 
 **note** We just add a class of `button` to **Login** and **Signup** Components because they are buttons but we needed to add the modifier to `Link` because it really is an `a` tag that is **inline** by default
 
-## Login to your app
-Hint: It won't look pretty. It actually looks worse now that we added all these styles
+## `AddLink` and Modals
 
-### Time to make is pretty
-`AddLink` - Add our `button` class
+Add our `button` class
 
 `<button className="button" onClick={this.openModal}>+ Add Link</button>`
 
@@ -193,7 +191,7 @@ If we add `line-height` to our `.button` class and set it to `1.2`
   font-size: $base-font-size;
   padding: $input-spacing;
   cursor: pointer;
-  line-height: 1.2;
+  line-height: 1.2; // add this line
   margin-bottom: $space;
   text-transform: uppercase;
   color: #ffffff;

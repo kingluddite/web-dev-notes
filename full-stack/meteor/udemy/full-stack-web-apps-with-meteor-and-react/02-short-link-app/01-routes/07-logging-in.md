@@ -123,6 +123,15 @@ When we log in you'll see [what we saw before](https://i.imgur.com/NxZuw0Q.png)
   + This is our **authentication token** which gets passed back and forth
   + This securely identifies us without having to provide the password with every single request
 
+### Focus
+Just after we render our Login form, we want to put the focus on the first field which will slightly enhance our UX
+
+```
+componentDidMount() {
+    this.email.focus();
+}
+```
+
 
 
 

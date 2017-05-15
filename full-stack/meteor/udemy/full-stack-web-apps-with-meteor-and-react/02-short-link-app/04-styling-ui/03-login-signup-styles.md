@@ -157,17 +157,17 @@ Make `NotFound` look like:
 ```
 import React from 'react';
 
-export default () => {
-    return (
+const NotFound = () => (
       <div className="boxed-view">
         <div className="boxed-view__box">
           <h1>Page Not Found</h1>
-          <p>Hmmm, we're unable to find that page</p>
+          <p>Hmmm, we&apos;re unable to find that page</p>
           <a href="/">HEAD HOME</a>
         </div>
       </div>
     );
-};
+
+export default NotFound;
 ```
 
 ![NotFound](https://i.imgur.com/qmApqH8.png)

@@ -40,6 +40,7 @@ Usually used for transpiling from ES6 to ES5
 `webpack.config.js`
 
 ```
+/* eslint-disable */
 const path = require('path');
 
 const config = {

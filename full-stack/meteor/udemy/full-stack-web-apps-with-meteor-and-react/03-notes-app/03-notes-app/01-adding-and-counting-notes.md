@@ -67,9 +67,9 @@ return {
   };
 ```
 
-* Notes.find() will return an unfiltered collection of all our notes
+* `Notes.find()` will return an unfiltered collection of all our notes
 * The subscription makes sure only notes the user owns can be in this Collection
-* We use Notes.find().fetch() to get an array and we store that array inside the `notes` key which passes in the array of notes into our Component and we can access them by `props.notes` (We are using a Stateless functional component so that accesses props via `props.notes` but if were using a class-based Component that would access props via `this.props.notes`)
+* We use `Notes.find().fetch()` to get an array and we store that array inside the `notes` key which passes in the array of notes into our Component and we can access them by `props.notes` (_We are using a Stateless functional component so that accesses props via `props.notes` but if were using a class-based Component that would access props via `this.props.notes`_)
 
 `NoteListHeader.js`
 

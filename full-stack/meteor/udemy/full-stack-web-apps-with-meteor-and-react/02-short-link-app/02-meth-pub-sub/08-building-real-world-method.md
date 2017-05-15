@@ -1,5 +1,5 @@
 # Building "links.create" Method
-This is our first **real world**, ready for production, Meteor Method
+This is our first **real world**, ready for production, **Meteor Method**
 
 * Our method will allow for the secure insertion of a new link
 * We will add validation that someone can't just bypass on the client
@@ -8,14 +8,17 @@ This is our first **real world**, ready for production, Meteor Method
 **note** We can remove `addNumbers()` and `greetUser()` from our Application as we won't be using them
 
 ## Insecure
-Meteor has a built-in package that enables insecure behavior in our app. We will uninstall this package
-
-This insecure package allows us to write to the Database from the client without going through any formal process. This is great for prototyping but a huge problem for production ready apps
+* Meteor has a built-in package that enables insecure behavior in our app
+* We will uninstall this package
+* This **insecure** package allows us to write to the Database from the `Client` without going through any formal process
+* This is great for prototyping but a huge problem for production ready apps
 
 ### View the currently installed packages
 `$ meteor list`
 
-Once we remove `insecure` from our app, our app will break because we won't be able to directly call our Collections from the client like we did here from sort of React callback function:
+### Caution - We are about to break our app!
+* Once we remove `insecure` from our app our app will break because we won't be able to directly call our Collections from the `Client`
+* So the code in `Link` calling the Links Collection directly from the client will no longer work
 
 `Link`
 
@@ -34,7 +37,7 @@ onSubmit(e) {
 // more code
 ```
 
-Instead we will call our Meteor Methods and that's where the data manipulation is going to happen
+Instead we will call our **Meteor Methods** and that's where the data manipulation is going to happen
 
 ## Uninstall the `insecure` package
 `$ meteor remove insecure`
@@ -42,13 +45,14 @@ Instead we will call our Meteor Methods and that's where the data manipulation i
 ### Log in and Test
 ![insert failed](https://i.imgur.com/T4uzRgv.png)
 
-We try to instert a Document but can not and get this message in the console, `insert failed: Access denied`
-
+* We try to insert a Document but it doesn't work and we get this error message in the console, `insert failed: Access denied`
 * We now see the effect of removing the `insecure` package
-* So we stop letting the user insert data via forms? No way. We still will allow this to happen but we will do it in a much more secure way
+
+### Great. No we can't insert data via form any more. What gives?
+* We still will allow data to gathered on forms and inserted into Collections but we will do it in a **much more secure way**
 
 ### Meteor Method naming convention (optional but recommended)
-resource.action --> emails.archive (if I had an email app and I was created a method to store old emails)
+`resource.action` --> `emails.archive` (_if I had an email app and I was created a method to store old emails_)
 
 Another example - we have links and we want to insert links
 
@@ -95,7 +99,7 @@ Meteor.methods({
 });
 ```
 
-* We leave off the reason in our Meteor.Error() which it totally valid. If this error is thrown nothing after that `if` statement gets run. So if the user is not logged in, they can't do any damage which is nice
+* We leave off the reason in our `Meteor.Error()` which it totally valid. If this error is thrown nothing after that `if` statement gets run. So if the user is not logged in, they can't do any damage which is good!
 
 ```
 Meteor.methods({
@@ -116,7 +120,7 @@ Meteor.methods({
 
 * We accept the **url** as our one and only argument
 * We use ES6 shortcode for our object key/value
-* We store the logged in user id inside our `links` Collection
+* We store the logged in `user id` inside our `links` Collection
 * We currently are not using any validation
     - Later we'll validate for:
         + That the **url** exists
@@ -149,7 +153,7 @@ onSubmit(e) {
   e.preventDefault();
 
   if (url) {
-    Meteor.call(url);
+    Meteor.call('links.insert', url);
     this.refs.url.value = '';
   }
 }
@@ -163,20 +167,20 @@ Insert a URL and you will see that it gets added and we no longer get the `inser
 
 * Check if our new [link is inside `MiniMongo`](https://i.imgur.com/iTlgxOi.png)
 * Check the Mongo shell if our new link [is inside MongoDB's server](https://i.imgur.com/QTPTAfQ.png) `links` Collection
-* Make sure you see the logged in user's 'userId' value for the Document
+* Make sure you see the logged in user's `userId` value for the Document
 * All should be good to move on to the next step
-
-* Now we have secured our insertion process for the `links` collection
+* Now we have secured our insertion process for the `Links` collection
 * You have to provide a **url**
-* You can't add any extra fields but only the once we specify in our Meteor Method
+* You can't add any extra fields (_only the once we specify in our **Meteor Method**_)
 
 ## DDP
-DDP looks like it is doing a lot stuff but frankly it is a bit intimidating and overwhelming. We can simplify to make the data easier to digest
+* DDP looks like it is doing a lot stuff but frankly it is a bit intimidating and overwhelming
+* We can simplify to make the data easier to digest
 
 1. Click the DDP tab of the Meteor Dev Tool
 2. Click the clear button
 3. Uncheck `Subscriptions` and uncheck `Collections`
-4. We just will have `Methods` checked
+4. Now we only have `Methods` checked
 
 ![just Methods checked](https://i.imgur.com/kwG6HDE.png)
 
@@ -186,17 +190,18 @@ DDP looks like it is doing a lot stuff but frankly it is a bit intimidating and 
 
 ![three items](https://i.imgur.com/mCwSHef.png)
 
-* [The first item](https://i.imgur.com/2d1zFjr.png) is our method call, with the method name, the params (**url**), an `id` (used to sync up all the requests), randomSeed - this is designed to allow the client and the server to use the exact same random numbers (this is for generating object ids) and this is necessary so we don't get any sync errors when the server tells the client what to show to the screen
+* [The first item](https://i.imgur.com/2d1zFjr.png) is our method call, with the method name, the params (**url**), an `id` (_used to sync up all the requests_), 
+* `randomSeed` - this is designed to allow the `Client` and the `Server` to use the exact same random numbers (_this is for generating object ids_) and this is necessary so we don't get any sync errors when the server tells the client what to show to the screen
     - Remember - The `Server` is the boss
-* [The second items](https://i.imgur.com/xptHvu0.png) is the message and this is where the error would appear or the response (res) if all went well and we returned data
-* The last item is the update and that message gets sent once it has all the info it needs and this is the time to swap out the client data for the real server data
+* [The second items](https://i.imgur.com/xptHvu0.png) is the message and this is where the error would appear or the response (_res_) if all went well and we returned data
+* The last item is the update and that message gets sent once it has all the info it needs and this is the time to swap out the `Client` data for the real `Server` data
     - Most of the time this won't change anything
     - If there was a conflict of any sort, you might see a quick flicker where the client side data gets swapped out for the server side data
 
 ## No data is coming back from the server?
-We won't see the data if we just look at `Methods` in the DDP tab. We need to look at the Collections tab
-
-Click the `Show` checkbox over Collections [and you will](https://i.imgur.com/ljx25Yq.png) see `item added to links collection` (this is where the data actually comes back from the server)
+* We won't see the data if we just look at `Methods` in the DDP tab
+* We need to look at the Collections tab
+* Click the `Show` check-box over Collections [and you will see](https://i.imgur.com/ljx25Yq.png) `item added to links collection` (_this is where the data actually comes back from the server_)
 
 [`updated`](https://i.imgur.com/aqi200T.png) is just a way to say it's time to take the server data and swap out the client MiniMongo data with the real server data
 
@@ -212,7 +217,7 @@ Meteor.startup(() => {
 });
 ```
 
-This should should you what happens when a Method throws an error
+This should show you what happens when a Method throws an error
 
 <details>
   <summary>Solution</summary>
@@ -235,6 +240,6 @@ And here is our DDP error
 ![DDP error](https://i.imgur.com/GomkyWl.png)
 </details>
 
-**note** You can remove our Meteor.call() from `client/main.js` as we won't need it
+**note** You can remove our `Meteor.call()` from `client/main.js` as we won't need it
 
 

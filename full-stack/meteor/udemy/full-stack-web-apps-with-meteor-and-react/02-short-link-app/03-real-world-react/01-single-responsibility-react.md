@@ -22,12 +22,12 @@ The problem is if we try to reuse anything we wrote
 
 ## Exercise
 * Create new components
-    - AddLink.js
+    - `AddLink.js`
         + Move necessary handler to this Component
-    - Header.js
+    - `Header.js`
         + Takes `title` **prop**
-        + Add PropType that requires this **prop**
-        + Move logout handler and necessary import
+        + Add **PropType** that requires this **prop**
+        + Move `logout()` handler and necessary import
     - Make sure to upate `Link` to include new Component instances and only use necessary `import` statements
 
 <details>

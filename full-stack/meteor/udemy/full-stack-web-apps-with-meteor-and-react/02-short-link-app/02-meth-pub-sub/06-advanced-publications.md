@@ -1,11 +1,11 @@
 # Advanced Publications
-We will create a **Publications** that only returns **links** that the `currently logged in user` created
+We will create a **Publication** that only returns **links** that the `currently logged in user` created
 
 * If the user **is not logged in** they will get no links synced up to their `MiniMongo` Database
 * If the user **is logged in** and has no links, they will see no links as they won't have access to **links** they didn't created
 
 ## Add userId to `links` Collection
-For now we will associate links with the user that created them so in the links Collection we will have a field that has the userId on it but later we will improve on this technique by accomplishing the same end result but it will be done securely using Meteor Methods
+For now we will associate links with the user that created them so in the `Links` Collection we will have a field that has the `userId` on it but later we will improve on this technique by accomplishing the same end result but it will be done securely using **Meteor Methods**
 
 `Link`
 
@@ -21,7 +21,7 @@ if (url) {
 * This is not secure
     - Anyone could fake a `userId()`
     - We will improve this later using Meteor Methods
-    - Our `links` Collection currently just has `_id` and `url` as its fields and we are adding one more field, `userId` which will store the currently logged in user
+    - Our `links` Collection currently just has `_id` and `url` as its fields and we are adding one more field, `userId` which will <u>store the currently logged in user</u>
     - Since we are using `Meteor` we need to import it at the top of `Link` with
 
 `Link`
@@ -96,14 +96,16 @@ import { Mongo } from 'meteor/mongo';
 export const Links = new Mongo.Collection('links');
 
 if (Meteor.isServer) {
-  Meteor.publish('linksPub', function() {
+  Meteor.publish('linksPub', function() { // eslint-disable-line func-names
       return Links.find({userId: this.userId });
   });
 }
 ```
 
-* You will see the Terminal shows all the `userIds` but our query now is Publishing only links with the currently logged in user's `_id`
+* Our query now is Publishing only links with the currently logged in user's `_id`
 * `this.userId` is a **special Meteor property** that **Meteor** gives us for free so that inside **Publications** we can always know what the `id` is of the currently logged in user
+* `// eslint-disable-line func-names`
+    - eslint wants us to use arrow functions but we want to not use it so we diable the rule for this one line ([gets rid of this warning](https://i.imgur.com/j3pTjTn.png))
 * Why doesn't `Meteor.userId()` work on the server?
     - If you try to use it, you will get this error in the Terminal `Error: Meteor.userId can only be invoked in method calls. Use this.userId in publish functions.`
     - If you read [Meteor Docs](http://docs.meteor.com/api/accounts.html#Meteor-userId) you will see that `Meteor.userId()` can be used anywhere except **publish functions**

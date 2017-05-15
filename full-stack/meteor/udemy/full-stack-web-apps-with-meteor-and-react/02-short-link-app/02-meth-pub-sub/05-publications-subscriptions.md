@@ -10,7 +10,7 @@ This will enable us to sync a subset of our `Server-side` database to a **Client
 
 **note** Any of those scenarios can be accomplished by:
 
-1.  Created a Publication
+1.  Creating a Publication
 2.  And Subscribing to it
 
 ## Time for another user
@@ -51,9 +51,9 @@ Our code will run on both client and server (_inside `imports/api/links.js`_)
 
 Let's look at all the methods we have available to us and in console type:
 
-`> require('meteor/meteor).Meteor`
+`> require('meteor/meteor').Meteor`
 
-You will see a ton of stuff but we want all the `is...` Booleans
+You will see a ton of stuff but all we care about right now is all the `is...` Booleans
 
 ![all is Meteor Booleans](https://i.imgur.com/u15ieTI.png)
 
@@ -63,6 +63,8 @@ Check out the object:
   - `isServer` is **false** (_we are running it inside the Client_)
   - and `isClient` is **true**
 
+`imports/api/links.js`
+
 ```
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
@@ -70,18 +72,16 @@ import { Mongo } from 'meteor/mongo';
 export const Links = new Mongo.Collection('links');
 
 if (Meteor.isServer) {
-  Meteor.publish('linksPub', () => {
-      return Links.find();
-  });
+  if (Meteor.isServer) {
+    Meteor.publish('sectionsPub', () => SectionsCollection.find());
+  }
 }
 ```
 
 ### How can we subscribe to that Publication?
 We will jump to where the `links` are used so we open `LinksList` Component
 
-We need to use `Meteor.subscribe()` so we need to import:
-
-`import { Meteor } from 'meteor/meteor';`
+`LinksList`
 
 ```
 // more code
@@ -99,8 +99,13 @@ componentDidMount() {
 // more code
 ```
 
+#### Now we can see our list of `links` again!
+
+* We need to use `Meteor.subscribe()` so we need to import:
+
+`import { Meteor } from 'meteor/meteor';`
+
 * `Meteor.subscribe()` - only takes one argument (_the name of the Publication_)
-* Now we can see our list of `links` again. 
   - But both users can see all links so we are right back where we started before we removed the `autopublish` package
 
 ## Exercise

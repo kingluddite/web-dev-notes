@@ -79,7 +79,7 @@ That test should now pass
 * We check that the length === 1
 * We make sure that the first item in the array (there is only one) is === `noteOne`
 
-## Excercise
+## Exercise
 Now on the other side of things we want to test that when a user provides a `userId` of a user who has no notes, we want to make sure we get no notes back (length === 0)
 
 <details>

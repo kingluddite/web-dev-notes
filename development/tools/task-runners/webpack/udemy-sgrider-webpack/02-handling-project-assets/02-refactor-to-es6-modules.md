@@ -42,7 +42,7 @@ const total = sum(100, 500);
 console.log(total);
 ```
 
-`$ yarn build`
+`$ npm build`
 
 `$ open index.html`
 

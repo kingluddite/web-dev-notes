@@ -65,21 +65,37 @@ Now that we have the `links` Collection set up on both the `Client` and the `Ser
 * We want to focus on Publications, Subscriptions, and Methods
 * Once we get that down we'll dive into adding validations and shortening the link (the entire purpose of our app)
 
-## Create basic form
-That adds new links
+## `AddLinks`
+Create basic form that adds new links
 
 `<form onSubmit={this.onSubmit.bind(this)}>`
 
-* We add this to make sure we have access to the Component inside of that method
+* We add this **binding** to make sure we have access to the Component inside of that method (_We now can use `this` inside the custom event handler and `this` will refer to the Component_)
+
+### Update onSubmit()
+```
+handleSubmit(e) {
+    const name = this.refs.url.value.trim();
+
+    e.preventDefault();
+
+    if (url) {
+      Links.insert({ url });
+      this.refs.url.value = '';
+    }
+  }
+```
+
 * We use `e.preventDefault()` to prevent the **full page refresh** and we also want to prevent the actual inputs posted as query strings
 * We are inserting using `Links.insert()` so we need to import our `Links` named export
 * We use React `refs` to gain access to the value the user enters into the URL input using `this.refs.url.value;`
     - We make sure to trim an extra spaces off the end with `this.refs.url.value.trim();`
+* We clear out the input field after we insert a `url` using `this.refs.url.value = ''`
 
 ```
 if (url) {
  Links.insert({ url });
- this.refs.url.value = '';
+ this.refs.url.value = ''; // this clears the input
 }
 ```
 
@@ -87,7 +103,6 @@ if (url) {
 * We do a quick, simple validation to make sure the url has at least some value (_we don't want the user to be able to enter empty strings into the `links` Collection_)
 * We know `Links.insert()` takes an object as an argument so `Links.insert({})`
 * We use the ES6 object short code which changes `Links.insert({ url: url });` to `Links.insert({ url })`
-* We clear out the input field after we insert a `url` using `this.refs.url.value = ''`
     - **note** We are not **getting** the input value (_aka reading the input field value_) but instead we are **setting** the input value to an empty string
 
 ## Test

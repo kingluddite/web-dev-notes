@@ -78,7 +78,7 @@ Where one transition is based off of width
 // more code
 ```
 
-But it will never show so we nest a media query to show it when it grows to 50rem
+But it will never show so we nest a media query to show it when it grows to `50rem`
 
 ```
 // more code
@@ -94,8 +94,8 @@ But it will never show so we nest a media query to show it when it grows to 50re
 // more code
 ```
 
-* Try in browser and smush --> no sidebar but stretch and you'll see the sidebar appear when you hit 50rem
-* Notice we don't use a selector in the @media and it uses the code it is nested inside as the selector it will apply it's rules to
+* Try in browser and smush --> no `sidebar` but stretch and you'll see the `sidebar` appear when you hit the **50rem** breakpoint
+* Notice we don't use a `selector` in the **@media** and it uses the code it is nested inside as the `selector` it will apply it's rules to
 
 ## Mobile first approach for `.page-content`
 * We don't need padding on phones so we put it in a media query

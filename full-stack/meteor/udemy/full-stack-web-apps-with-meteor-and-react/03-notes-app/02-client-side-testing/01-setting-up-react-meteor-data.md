@@ -1,10 +1,10 @@
 # Setting up React-Meteor-Data
-We will not set up properly the `handleLogout` prop for both production and development environments
+We will not set up properly the `handleLogout` **prop** for both production and development environments
 
 ## Remember the Score Keep app?
-We set up `Tracker.autorun()` at the root of our app `client/main.js` and we then fetched our data and we were able to use `Tracker.autorun()` to rerun this function if the data ever changed. If the data did change, we used `ReactDOM.render()` passing in `<App />` and passing in the new prop information
+We set up `Tracker.autorun()` at the root of our app `client/main.js` and we then fetched our data and we were able to use `Tracker.autorun()` to rerun this function if the data ever changed. If the data did change, we used `ReactDOM.render()` passing in `<App />` and passing in the new **prop** information
 
-Then we went into the App Component and saw that it did take the players but it didn't do anything with them, it just passed them down to `PlayerList`
+Then we went into the `App` Component and saw that it did take the players but it didn't do anything with them, it just passed them down to `PlayerList`
 
 And then inside `PlayersList` is the first time the **players** array is actually used (_even though it's used in `main.js` and `App.js` it doesn't need to be there_) it is simply getting passed a long
 
@@ -27,7 +27,7 @@ We no longer queried our data at the root level because we set up React Router a
 
 We first need to install
 
-`$ npm install -S react-addons-pure-render-mixin`
+`$ yarn add react-addons-pure-render-mixin`
 
 We never use this directly but it required for the next thing we are installing
 
@@ -37,9 +37,9 @@ We never use this directly but it required for the next thing we are installing
 This will create container Components that are responsible for fetching all of the data we need to render stuff to the screen
 
 ## If you used React and Redux...
-Think of `react-meteor-data` like the Connect function from Redux
+Think of `react-meteor-data` like the **Connect** function from `Redux`
 
-* `react-meteor-data` will take the place of Redux in this project
+* `react-meteor-data` will take the place of `Redux` in this project
 
 `Header.js`
 

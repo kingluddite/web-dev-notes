@@ -22,6 +22,7 @@
 `$ yarn add -D image-webpack-loader url-loader`
 
 ```
+/* eslint-disable */
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -119,7 +120,7 @@ const config = {
 // more code
 ```
 
-`$ yarn build`
+`$ npm build`
 
 Refresh `index.html` in brower and our image appears
 

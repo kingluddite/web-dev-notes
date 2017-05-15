@@ -445,6 +445,84 @@ Here are some places to help speed up your Sass workflow
     }
   }
 }
+```
 
+### Add .eslintrc inside `package.json`
+Here is how you would do this:
 
 ```
+{
+  "name": "application-name",
+  "version": "1.0.0",
+  "description": "Application description.",
+  "license": "MIT",
+  "scripts": {
+  },
+  "devDependencies": {
+    "eslint": "^3.8.1",
+    "babel-eslint": "^7.2.3",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-meteor": "^4.0.1",
+    "eslint-plugin-react": "^6.4.1"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "plugins": [
+      "meteor",
+      "react"
+    ],
+    "extends": [
+      "airbnb/base",
+      "plugin:meteor/guide",
+      "plugin:react/recommended"
+    ],
+    "env": {
+      "browser": true
+    },
+    "globals": {
+      "server": false,
+      "browser": false,
+      "expect": false
+    },
+    "rules": {
+      "import/no-unresolved": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/extensions": 0,
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allow": [
+            "_id",
+            "_ensureIndex",
+            "_verifyEmailToken",
+            "_resetPasswordToken",
+            "_name"
+          ]
+        }
+      ],
+      "class-methods-use-this": 0
+    }
+  },
+  "dependencies": {
+    "babel-runtime": "^6.23.0",
+    "bcrypt": "^1.0.2",
+    "meteor-node-stubs": "^0.2.6",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-addons-pure-render-mixin": "^15.5.2",
+    "react-dom": "^15.5.4",
+    "react-router": "^3.0.0",
+    "react-router-bootstrap": "^0.23.2",
+    "simpl-schema": "^0.2.3"
+  }
+}
+```
+
+## Uninstall elint globally
+`$ npm uninstall -g eslint`

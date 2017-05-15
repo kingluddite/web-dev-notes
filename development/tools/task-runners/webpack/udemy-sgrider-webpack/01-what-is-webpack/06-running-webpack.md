@@ -18,7 +18,7 @@
 
 * Now we can run
 
-`$ yarn run build`
+`$ npm run build`
 
 ### Why are we running a script instead of just calling `webpack` ourselves?
 
@@ -35,7 +35,7 @@ You could install webpack globally `$ yarn add -g webpack` and then later you co
 If you install globally you can only install one version of webpack at a time
 If you want two different projects running two different versions of webpack our second way is superior
 
-`$ yarn run build`
+`$ npm run build`
 
 * We get in the output:
     - Version of webpack we used

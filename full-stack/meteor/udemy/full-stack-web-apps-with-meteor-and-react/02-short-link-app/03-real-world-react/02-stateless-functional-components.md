@@ -1,4 +1,4 @@
-# Stateless Functional Components
+# Stateless Functional Componentsaaa
 This is an alternative to class-based Components
 
 ## Experiment with Stateless Functional Component
@@ -134,19 +134,19 @@ import Header from './Header';
 import LinksList from './LinksList';
 import AddLink from './AddLink';
 
-// class Link extends Component {
-//   render() {
-//     return (
-//       <div>
-//         <Header title="Your Links" />
-//         <LinksList />
-//         <AddLink />
-//       </div>
-//     );
-//   }
-// };
-//
-// export default Link;
+class Link extends Component {
+ render() {
+   return (
+     <div>
+       <Header title="Your Links" />
+       <LinksList />
+       <AddLink />
+     </div>
+   );
+ }
+};
+
+export default Link;
 ```
 
 To this:
@@ -172,7 +172,8 @@ export default () => {
 Convert `Header` and `NotFound` to Stateless functional components
 
 * We can use PropTypes on Stateless functional components
-* We use a variable `const Header` with the `Header` Component (and we did not use one when we created `Link` as a Stateless functional component) and the reason is we need to provide `PropTypes` with a variable name
+* We use a variable `const Header` with the `Header` Component (_and we did not use one when we created `Link` as a Stateless functional component_)
+* The reason is we need to provide `PropTypes` with a variable name
 
 <details>
   <summary>Solution</summary>
@@ -202,7 +203,8 @@ Header.propTypes = {
 export default Header;
 ```
 
-Alternative Way: Easier way to call function
+### Alternative Way
+Easier way to call function
 
 ```
 import React from 'react';
@@ -252,14 +254,16 @@ Header.propTypes = {
 export default Header;
 ```
 
-**note** You would not want to do this:
+## Note - You would not want to do this:
 
 `<button onClick={Accounts.logout}>Logout</button>`
 
-That would call Accounts.logout with an event argument and that could cause unexpected behavior
+That would call `Accounts.logout()` with an event argument and that could cause unexpected behavior
 
 * Test and it should work as before
-* Change the `prop` for Header to a Number and see [if the PropTypes warning is triggered](https://i.imgur.com/YH7HQ68.png)
+* Change the `prop` for Header to a Number and see 
+
+![if the PropTypes warning is triggered](https://i.imgur.com/YH7HQ68.png)
 
 `NotFound`
 

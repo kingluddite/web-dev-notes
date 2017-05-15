@@ -1,8 +1,9 @@
 # Wrapping Up Insecure part of App
 We want to get our list of links output to the screen in a very simple way
 
-## `LinksList`
+## Step 1 - Render Component to Screen
 Create this new Component
+`LinksList`
 
 ```
 import React, { Component } from 'react';
@@ -22,8 +23,8 @@ export default LinksList;
 
 This will be responsible for fetching the links from the database but it is also responsible for rendering all of the items
 
-## Import and render the LinksList Component
-`Link`
+## `Link`
+Import and render the `LinksList` Component 
 
 ```
 import React, { Component } from 'react';
@@ -67,14 +68,16 @@ class Link extends Component {
 export default Link;
 ```
 
-## Step One Completed
-Create simple component and render it to the screen - Done!
+**Step One Completed!**
 
-## Step Two
+## Step Two - Render Collection to Screen
 How can we **render** the array of all the `links` Collection in our database onto the screen
 
+### Using React Router makes how we do this change 
 * Inside `client/main.js` we are not directly rendering a specific Component that we pass in to `ReactDOM.render()`
-* There we were passing in our `router` and because of that we can't use `Tracker.autorun()` function to rerender the Application because what we were doing was when we were on a specific route
+* There we were passing in our `router` and because of that we can't use `Tracker.autorun()` function to re-render the Application
+    - Why?
+    - Because what we were doing was when we were on a specific route
 
 We need to figure out how the `LinksList` Component can call `Tracker.autorun()`, getting the information it needs and having that information updated live to the screen
 
@@ -86,10 +89,12 @@ In order to do that we will be using two `LifeCycle` Methods
 
 **note** When you are using a built-in LifeCycle Method it is very similar to using `render()`
 
-* You never called `render()` - It is called internally by the **React** code
+* You never called `render()`
+* It is called internally by the **React** code
+* This is the same case for `componentDidMount()`
 
 ## componentDidMount()
-* This is the same case for `componentDidMount()`
+When the Component first renders to the screen this function lets us hook into that event and do something
 
 `LinksList`
 
@@ -103,8 +108,9 @@ class LinksList extends Component {
 * `componentDidMount()` gets called just after the Component renders
 * Our `console.log()` will [show up in our console](https://i.imgur.com/cB1dTTw.png)
 
-## componentWillUnmound()
-This gets called internally by **React** when the Component is removed from the screen
+## componentWillUnmount()
+* This gets called internally by **React** when the Component is removed from the screen
+* We use this for clean up
 
 ```
 componentWillUnmount() {
@@ -117,6 +123,12 @@ componentWillUnmount() {
 * **Log out** and you will see `componentsWillUnmount LinksList` in the console
 
 Now that we have these two `LifeCycle` Methods set up we are ready to integrate `Tracker.autorun()` directly into our LinksList Component
+
+### Tracker.autorun()
+* This will listen to our collection
+* At first it will be empty
+* Then when MiniMongo and DDP hook up, our collection will have items inside the array (if we added any)
+* Any time the collection changes, `Tracker.autorun()` will rerun
 
 ### General idea
 * Inside of `componentDidMount()` we're going to be setting up a `Tracker.autorun()` call
@@ -357,6 +369,29 @@ export default LinksList;
 ```
 </details>
 
+### Working with ESLint
+You may get an ESLint error
+
+```
+renderLinksListItems() {
+    return this.state.links.map(link => (
+      <div key={link._id}>
+        <p>{link.url}</p>
+      </div>
+    ));
+}
+```
+
+or this:
+
+```
+renderLinksListItems() {
+    return this.state.links.map(link => (
+      <p key={link._id}>{link.url}</p>
+    ));
+  }
+```
+
 ### Clean up
 We need to stop our `Tracker.autorun()` call inside of `componentWillUnmount()`. In order to accomplish that we need to store the return value from `Tracker.autorun()` (_it has useful information_)
 
@@ -377,7 +412,7 @@ componentDidMount() {
 
 * We just used the arbitrary name of `this.linksTracker`, it could be named anything but since we are naming it so we can use it later, we name it something that makes sense to us whenever we see it
 
-## Stopping `Tracker.autorun()` with .stop()
+## Stopping `Tracker.autorun()` with `.stop()`
 `LinksList`
 
 ```

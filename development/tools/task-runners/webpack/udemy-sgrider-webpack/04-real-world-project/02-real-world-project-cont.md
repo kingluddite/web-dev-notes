@@ -52,6 +52,7 @@ Now it will run and regenerate our HTML with the necessary script tags injected
 `webpack.config.js`
 
 ```
+/* eslint-disable */
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -95,7 +96,7 @@ module.exports = {
 
 * We add the `require` and add the plugin
 
-`$ yarn build`
+`$ npm build`
 
 `$ open dist/index.html`
 
@@ -188,18 +189,18 @@ console.log('we made a change'); // add this line
 // more code
 ```
 
-before
+#### Before
 
 ![before build](https://i.imgur.com/xO0kpPT.png)
 
-after build
+#### After build
 
 ![after build](https://i.imgur.com/o1iKAi0.png)
 
-* we generated a bundle.js but not a vendor so that is 3MB we won't have to download again
+* We generated a `bundle.js` but not a vendor so that is 3MB we won't have to download again
 * We will need a way of deleting files in our dist file
-
-This is saving us tons of time. The hash is updated inside `dist/index.html`
+* This is saving us tons of time
+* The hash is updated inside `dist/index.html`
 
 ```
 <!DOCTYPE html>
@@ -239,7 +240,7 @@ This is a helper module
 // more code
 ```
 
-update to
+### Update to
 
 ```
 // more code
@@ -253,4 +254,5 @@ update to
 1. It will delete all files inside our build diretory (dist)
 2. And then rebuild our project
 
-Test it out and it should work
+### Test it out
+And it should work

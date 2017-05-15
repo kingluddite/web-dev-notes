@@ -19,7 +19,8 @@ It appends the string argument to the Absolute URL
 * We will use this to not pass in `about` we'll use it to pass in our unique url `_id`
 
 ## Exercise
-* Create `LinksListItem.js` as an ES6 class-based Component (We will be adding complexity to it so we'll need it to be a class-based Component)
+* Create `LinksListItem.js` as an ES6 class-based Component
+* We will be adding complexity to it so we'll need it to be a class-based Component
 * Use `this.props` to grab the `url` and the `shortUrl` and render to the screen
 * Define PropTypes for `url`, `shortUrl`, `_id` and `userId`
 * Test and make sure the app is working

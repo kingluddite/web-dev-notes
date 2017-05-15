@@ -74,6 +74,7 @@ If you `$ yarn build` you'll get an error because we did not configure webpack t
     - `css-loader` will be loaded and then the output from that will be sent to `style-loader`
 
 ```
+/* eslint-disable */
 const path = require('path');
 
 const config = {
@@ -168,6 +169,7 @@ We will tweak our process to spit out a separate CSS file
 Here is our current `webpack.config.js`
 
 ```
+/* eslint-disable */
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // add this ine
 
@@ -200,7 +202,7 @@ module.exports = config;
 ```
 
 ## Run build
-`$ yarn build`
+`$ npm build`
 
 ![output](https://i.imgur.com/7Xllb1T.png)
 

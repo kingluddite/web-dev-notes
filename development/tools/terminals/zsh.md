@@ -1,5 +1,10 @@
 # The ZSH shell
 
+## Install Z
+`$ brew install z`
+
+[watch video tutorial](https://www.youtube.com/watch?v=qbNn5zJLZU0&index=10&list=PLu8EoSxDXHP7tXPJp5ZmUpuT7sFvrswzf)
+
 ## How to manually upgrade oh-my-zsh
 `$ upgrade_oh_my_zsh`
 

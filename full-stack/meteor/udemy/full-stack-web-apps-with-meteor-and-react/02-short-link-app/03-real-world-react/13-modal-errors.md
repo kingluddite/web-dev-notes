@@ -2,7 +2,7 @@
 We submit a bad URL and get a console.log() error with a very user friendly error notification under `reason`
 
 ## Add error `state` and default to empty
-`AddLink`
+`Header`
 
 ```
 // more code
@@ -38,7 +38,8 @@ onSubmit(e) {
 // more code
 ```
 
-* We currently check for a `url` before we call our Meteor Method, we will remove that and let our Meteor Method check for it
+* We currently check for a `url` before we call our **Meteor Method**
+* We will remove that and let our **Meteor Method** check for it
     - We do this so that if someone submits no URL they will see our error message which is what we want
 
 ```
@@ -59,8 +60,8 @@ onSubmit(e) {
 // more code
 ```
 
-* If we have no error, we clear the **error** `state`
-* If we have an error we set the **error** `state` to **err.reason**
+* If we <u>have no error</u>, we clear the **error** `state`
+* If we <u>have an error</u> we set the **error** `state` to **err.reason**
 * When we close the modal we set the **error** `state` to empty
 
 ```
@@ -106,7 +107,7 @@ When Modal opens we want to bring focus to the input field where user will add *
 `onAfterOpen` This is provided by `react-modal` and it lets you provide a function and that function gets called right after the modal is open
 
 * We want to focus on the input but since we switched over to a controlled input we have no way to access it
-* We got rid of the `ref` React attribute (but let's add it back in now)
+* We got rid of the `ref` React attribute (_but let's add it back in now_)
 
 ```
 // more code
@@ -143,7 +144,7 @@ Open modal and you'll see input is in focus
 ## Close Modal when click in gray area
 Nice usability improvement
 
-`onRequestClose` - also provided by react-modal and it let's us provide a function that is run when the Modal Component is requesting that the Modal be closed (this just means when someone Clicks off the Modal)
+`onRequestClose` - also provided by **react-modal** and it let's us provide a function that is run when the Modal Component is requesting that the Modal be closed (_this just means when someone Clicks off the Modal_)
 
 ```
 <Modal
@@ -158,6 +159,7 @@ Nice usability improvement
 Open Modal and click in gray area and the Modal will close
 
 ## Improve Readability
+Feel free to space out your custom functions to improve code readability
 ```
 closeModal() {
     this.setState({
@@ -168,7 +170,7 @@ closeModal() {
   }
 ```
 
-## Call our closeModal() to refactor code
+## Call our `closeModal()` to refactor code
 ```
 Meteor.call('links.insert', url, (err, res) => {
       if (!err) {

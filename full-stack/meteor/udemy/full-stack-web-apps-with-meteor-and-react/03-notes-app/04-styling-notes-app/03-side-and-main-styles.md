@@ -57,8 +57,6 @@ Make sure to import it
 // more code
 ```
 
-Not too pretty yet but working
-
 ![ugly box](https://i.imgur.com/IHOfm46.png)
 
 ## Fix heights of box
@@ -91,7 +89,7 @@ We want our editor to take up 100% width
 }
 ```
 
-Looking even better (the height matches height of sidebar)
+Looking even better (_the height matches height of sidebar_)
 
 ![wider editor](https://i.imgur.com/QfRQmZW.png)
 
@@ -99,12 +97,11 @@ Looking even better (the height matches height of sidebar)
 * Add some notes
     - And our page stretches and we get a scrollbar
     - This is more like a website and less like a web app
-
-* We need to make sure the sidebar and editor never take up more height than is available to them and if they do, it should show a scrollbar
+* We need to make sure the **sidebar** and **editor** never take up more height than is available to them and if they do, it should show a `scrollbar`
 
 ## Calculation time
 * Make sure browser doesn't get taller than space available in browser
-    - height === entire height of browser - space left over for page-content
+    - **height** === `entire height of browser` - space left over for page-content
 
 ## Fixed height for header
 `_variables.scss`
@@ -147,7 +144,7 @@ $page-content-main-width: calc(#{$site-max-width} - #{$page-content-sidebar-widt
 $page-content-height: calc(100vh - #{$header-height}); // add this line
 ```
 
-* 100vh gives use the full height of the browser and we subtract the header height
+* `100vh` gives use the full height of the browser and we subtract the header height
 
 ## Apply our page height variable
 `_page-content.scss`
@@ -178,16 +175,18 @@ $page-content-height: calc(100vh - #{$header-height}); // add this line
 * The problem has to do with a property called **box-sizing**
 
 ### [box-sizing](https://css-tricks.com/box-sizing/)
-(default setting --> `box-size: content-box`)
+(_default setting --> `box-size: content-box`_)
+
+#### IMPORTANT RULE
 You need to use this inside of all your CSS projects
 
 If you open browser, inspect, select header you'll see something like:
 
 ![header dimensions](https://i.imgur.com/ANW30oj.png)
 
-* But our height should be 6rem? Why is it 88px?
-    - The reason is it is also taking the **padding** into account when setting the height
-    - So this height is the height of the content and does not include the height of the padding or the border
+* But our height should be `6rem`? Why is it `88px`?
+    - The reason is it is also taking the **padding** into account when setting the **height**
+    - So this **height** is the **height** of the `content` and does not include the **height** of the `padding` or the `border`
     - This is confusing and often causes layout problems where everything is off but just a bit
 
 #### Solution
@@ -239,9 +238,9 @@ Set `box-sizing: border-box` for all your elements that problem no longer exists
 }
 ```
 
-* Add comments to break up Item List and Item
-* overflow-y: scroll (gives us the scrollbar when list exceeds height)
-* width 100% of sidebar
+* Add comments to break up `ItemList` and `Item`
+* `overflow-y: scroll` (_gives us the scrollbar when list exceeds height_)
+* **width** 100% of `sidebar`
 
 ## Apply new CSS class
 `NoteList`
