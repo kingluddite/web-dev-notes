@@ -22,7 +22,6 @@ I use the following packages a lot:
 | JavaScript Snippets | Help you type JavaScript fast | [Link](https://atom.io/packages/javascript-snippets) |
 | Language Babel | ES6 syntax | [Link](https://atom.io/packages/language-babel)
 | Linter es6lint | Essential code checker for ES6 | [Link](https://atom.io/packages/linter-eslint) |
-| Stylel | Essential code checker for ES6 | [Link](https://atom.io/packages/linter-eslint) |
 | Vim Mode Plus | Super Productivity Mode | [Link](https://atom.io/packages/vim-mode-plus) |
 | Language Gitignore | syntax checker for gitignore | [Link](https://atom.io/packages/language-gitignore) |
 | Markdown Preview Plus | See Markdown in Atom | [Link](https://atom.io/packages/markdown-preview-plus)
