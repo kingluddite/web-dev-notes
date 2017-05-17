@@ -1,11 +1,22 @@
 # Exploring Mocha
+
+## Test file naming convention
 * All test files have a special name `filename.test.js`
+
+## Where should I save test files?
 * Put test files along side their matching 'live' file inside the current directry where they reside
 * These are the files that Meteor will automatically load and print the test results to the screen
 
-## it('which test you are talking about', function of test code itself)
+## it()
+
+### it() syntax
+`it('which test you are talking about', function of test code itself)`
+
 * When you want to define a new test case you use `it()`
-    - `it()` is defined by Mocha so you don't have to import or require it
+    - `it()` is defined by Mocha
+    - So you don't have to `import` or `require` it
+
+#### it() says no to arrow functions
 * Mocha recommends you avoid using arrow functions inside of `it()`
 
 `imports/api/users.test.js`
@@ -16,17 +27,27 @@ it('should add two numbers', function() {
 });
 ```
 
+### Turn Eslint off
+When testing you may not want to keep seeing errors so you can disable eslint by putting this at the top of all test files
+
+`/* eslint-disable */`
+
 ### Run test
 `$ npm test`
 
+### Autoreload!
 * You will usually only need to start it up once a day as it will automatically reload when you update the code
 
 ### visit localhost:3000
 ![test case](https://i.imgur.com/VD0OMIY.png)
 
-* Runs on both client and server (_default behavior of tests inside mocha_)
-* You can isolate on client on server if you want and we will in a bit
-* Our test is passing because our code inside our test file does not throw an error
+* Runs on both **Client** and **Server** (_default behavior of tests inside mocha_)
+
+### Client and Server side testing
+* You can isolate on **Client** on **Server** if you want and we will in a bit
+
+### Why is our empty test passing?
+Our test is passing because our code inside our test file does not throw an error
 
 ### Test fail
 ```
@@ -102,12 +123,17 @@ it('should square a number', function() {
     throw new Error('Number was not squared');
   }
 });
-![passes!](https://i.imgur.com/aA1THNA.png)
 ```
+
+Result should pass
+
+![passes!](https://i.imgur.com/aA1THNA.png)
 </details>
 
-## How to Group your tests with `describe()`
-* For formatting only
+## `describe()`
+Allows you to groups tests
+
+* We use `describe()` only for formatting purposes
 * Call `describe('method your test is for', function for test)`
 
 ```
@@ -137,8 +163,12 @@ describe('add', function() {
 });
 ```
 
+Now we have an `add` test group heading
+
+![describe()](https://i.imgur.com/HPxmaEk.png)
+
 ## Exercise
-Put square inside it's on describe block and call it `square`
+Put square inside its own describe block and call it `square`
 
 <details>
   <summary>Solution</summary>
@@ -153,6 +183,10 @@ describe('square', function() {
   });
 });
 ```
+
+We now have two groupings of tests
+
+![tests pass](https://i.imgur.com/HfwjQAR.png)
 </details>
 
 

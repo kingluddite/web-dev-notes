@@ -1,8 +1,9 @@
 # Testing User Validation
 
-* Comment out users.test.js as we don't need it but use it for reference
+* Comment out `users.test.js` as we don't need it
+* But for now keep it around for reference
 
-* We need to test users.js
+* We need to test `users.js`
 
 `users.js`
 
@@ -26,38 +27,41 @@ Accounts.validateNewUser((user) => {
 });
 ```
 
-* It is a function and we need to simulate that function
-* It has one argument and checks if an email is valid
-* If email is valid it returns true
-* If email isn't valid it returns an error
+* It is a `function` and we need to <u>simulate that function</u>
+* It has one argument and checks if an **email is valid**
+* If **email is valid** it returns `true`
+* If **email isn't valid** it `returns an error`
 
+## Restructuring Code
 When you test, it is common to restructure your code
 
-`users.js` (restructured)
+`users.js` (_restructured_)
 
 ```
-import SimpleSchema from 'simpl-schema';
 import { Accounts } from 'meteor/accounts-base';
+import SimpleSchema from 'simpl-schema';
 
-export const validateNewUser = (user) => {
+const validateNewUser = (user) => {
   const email = user.emails[0].address;
 
   new SimpleSchema({
     email: {
       type: String,
-      regEx: SimpleSchema.RegEx.Email
-    }
+      regEx: SimpleSchema.RegEx.Email,
+    },
   }).validate({
-    email
+    email,
   });
 
   return true;
-}
+};
 
 Accounts.validateNewUser(validateNewUser);
+
+export default validateNewUser;
 ```
 
-* Does exact same thing but this is easier to test
+* This functions exactly as before but this is easier to test
 
 ## Best Practice
 * Have a root `describe()` block is always a good idea
@@ -92,7 +96,7 @@ describe('users', function() {
 
 ![accounts error](https://i.imgur.com/E3MfNru.png)
 
-* The reason is `Accounts.validateNewUser` only can run on Server
+* The reason is `Accounts.validateNewUser` only can run on **Server**
 * So we should only run that function on the server
 
 ```
@@ -121,7 +125,8 @@ if (Meteor.isServer) {
 }
 ```
 
-Then we see our test passes on Client and Server but we only want to test on Server because that is where it is run
+### Our test passes on both! But...
+Then we see our test passes on `the Client` and `the Server` but we only want to test on **the Server** because that is where it only can run
 
 `users.test.js`
 
@@ -150,7 +155,7 @@ if (Meteor.isServer) {
 ```
 
 ## Test for invalid email
-* Make sure we get an error when email is invalid
+* Make sure we get an **error** when email is invalid
 * We were checking for a value now we are checking for a function
 
 ```
@@ -163,7 +168,8 @@ if (Meteor.isServer) {
 // more code
 ```
 
-* We want our function to throw an error
+## I demand you to throw an Error!
+We want our function to throw an **error**
 
 ```
 import expect from 'expect';

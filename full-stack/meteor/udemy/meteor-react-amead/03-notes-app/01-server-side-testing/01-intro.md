@@ -1,14 +1,14 @@
 # Notes App
-[Github](https://github.com/andrewjmead/notes-meteor-course)
-[demo](http://notes-mead.herokuapp.com/)
+* [Github repo for finished site](https://github.com/andrewjmead/notes-meteor-course)
+* [demo of finished site](http://notes-mead.herokuapp.com/)
 
 ## Create boilerplate project
 Generic and reusable that you can clone when starting a new meteor Application
 
-* We'll duplicate shortlink app and strip out anything that was specific to that app
+* We'll duplicate **shortlink app** and strip out anything that was specific to that app
 
 ## Remove the following
-* node_modules
+* `node_modules`
 * remove **.git** (`$ rm -rf .git`)
 * Delete
     - `imports/api/links.js`
@@ -21,6 +21,8 @@ Generic and reusable that you can clone when starting a new meteor Application
 `imports/client/styles`
 
 `client/main.html`
+
+Update to look like this:
 
 ```
 <head>
@@ -224,7 +226,6 @@ import { Meteor } from 'meteor/meteor';
 class Login extends Component {
   constructor(props) {
     super(props);
-
 
     this.state = {
       error: ''

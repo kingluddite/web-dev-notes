@@ -1,11 +1,15 @@
 # Using the Assertion Library
-* When our code gets more complex we will have to figure out a way to improve how we test
+* Our code gets will get more complex
+* We need to improve how we test
 
-If we are trying to compare objects
+## Example
+* If we are trying to compare objects
+  - How do we know if two objects are equal?
 
-`{} === {}` - We are comparing if two objects are equal
+`{} === {}`
 
-But we can't  compare the properties inside objects
+* That works but what about comparing properties inside objects?
+* We can't compare them
 
 ```
 { name : 'Drew'}
@@ -21,10 +25,11 @@ compared to the value in this object
 ```
 
 ## Assertion Library
-An `Assertion` library can help us do this
-
-* An Assertion library is not magical, it just is a collection of functions that throw errors
-* It will enable us to clean up our test and add much more assertions with much less code
+* An `Assertion` library can help us do this
+* An `Assertion` library is not magical
+* It just is a collection of functions that throw errors
+* It will enable us to clean up our test
+* We can add much more **assertions** with much less code
 
 ### [expect js](https://github.com/mjackson/expect)
 * Popular assertion Library
@@ -39,7 +44,7 @@ An `Assertion` library can help us do this
 * `toExist()`
 * `toBe()`
 * `toNotBe()`
-* Lots more!
+* Lots more! Read the Documentation
 
 ### Install Expect JS
 `$ npm i expect -D`
@@ -57,7 +62,8 @@ An `Assertion` library can help us do this
 ```
 
 * **note** everything in **devDependencies** will not be installed on Heroku
-* It is just added locally for development, it is stuff that will only be necessary when someone is working on the project on their local machine
+* It is just added locally for development
+* It is stuff that will only be necessary when someone is working on the project on their local machine
 
 ### Import Expect
 `users.test.js`
@@ -82,10 +88,27 @@ it('should add two numbers', function() {
 We can use this:
 
 ```
-it('should add two numbers', function() {
-    const res = add(11, 9);
-    expect(res).toBe(20);
-  });
+/* eslint-disable */
+import expect from 'expect';
+
+
+const add = (a, b) => {
+  if(typeof b !== 'number') {
+    return a + a;
+  }
+
+  return a + b;
+}
+
+const square = a => a * a;
+
+describe('add', function() {
+  it('should add two numbers', function() {
+      const res = add(11, 9);
+      expect(res).toBe(20);
+    });
+
+// more code
 ```
 
 * Our code is shorter
@@ -98,6 +121,7 @@ The Error is more helpful with the actual numbers
 ### Update our code using assertions
 
 ```
+/* eslint-disable */
 import expect from 'expect';
 
 const add = (a, b) => {

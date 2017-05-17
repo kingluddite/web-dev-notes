@@ -1,12 +1,13 @@
 # Meteor Test command
 [mochajs.org](http://mochajs.org/)
 
-* Mocha is a JavaScript framework that works with Node.js and the browser which is great because we have a **full stack** application
+* Mocha is a JavaScript framework that works with `Node.js` and the browser which is great because we have a **full stack** application
 * Very popular
 * Well documented
 
 ## Meteor package to add Mocha to our project
-Mocha alone is generic and we will use a Test Driver to teach Mocha how to work with Meteor
+* `Mocha` alone is generic
+* We will use a `Test Driver` to teach **Mocha** how to work with **Meteor**
 
 ## Clone Meteor Boilerplate project
 `$ git clone git@github.com:kingluddite/meteor-react-boilerplate.git notes`
@@ -24,14 +25,15 @@ We'll get an error
 ### Install
 `$ meteor add practicalmeteor:mocha`
 
+### Install all dependencies
 `$ meteor npm install`
 
-Now let's use our test driver
+Now let's use our `test driver`
 
 `$ meteor test --driver-package=practicalmeteor:mocha`
 
-* This will give us a URL
-* We use this URL to view the output (if our tests were successful or failed)
+* This will give us a **URL**
+* We use this **URL** to view the output (_if our tests were successful or failed_)
 * This is called a `Web Reporter`
     - An alternative to a `console reporter`
 

@@ -1,5 +1,9 @@
 # Testing Note Updating
 
+Normally it is good to use TDD (_Test Driven Development_) where you write your tests before you write your code
+
+But we really don't have a firm grasp on the `update` Meteor Method yet, so let's code and analyze how we coded it
+
 `notes.js`
 
 ```
@@ -30,50 +34,20 @@
 
 * `notes.update` takes two arguments `_id` and `updates`
 * We check to make sure the user is logged in
-* We make sure there is an `_id` and we make title and body accept Strings but they are both optional
-* `...updates` is great because this is the spread operator and it will spread all of the other fields that are getting updated (**title** and/or **body**) but if a malicious user tries to add other fields, SimpleSchema will block them because those other fields were not defined inside our schema
+* We make sure there is an `_id` and we make **title** and **body** accept Strings but they are both optional
+* `...updates` is great because this is the `spread operator` and it will spread all of the other fields that are getting updated (**title** and/or **body**)
+    - But if a malicious user tries to add other fields, `SimpleSchema` will block them because those other fields were not defined inside our schema
 
 And we need to add our `Notes.update()` call
 
 `notes.js`
 
 ```
-import { Mongo } from 'meteor/mongo';
-import { Meteor } from 'meteor/meteor';
-import moment from 'moment';
-import SimpleSchema from 'simpl-schema';
-
-export const Notes = new Mongo.Collection('notes');
+// more code
 
 Meteor.methods({
-  'notes.insert'() {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
+  // more code
 
-    return Notes.insert({
-      title: '',
-      body: '',
-      userId: this.userId,
-      updatedAt: moment().valueOf // new Date().getTime()
-    });
-  },
-  'notes.remove'(_id) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
-
-    new SimpleSchema({
-      _id: {
-        type: String,
-        min: 1
-      }
-    }).validate({
-      _id
-    });
-
-    return Notes.remove({ _id, userId: this.userId });
-  },
   'notes.update'(_id, updates) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
@@ -111,13 +85,29 @@ Meteor.methods({
 * We know that `...updates` has no malicious data because SimpleSchema will reject any fields not inside the Schema we defined
 
 ### Using variables inside our test file
+We will create a variable and still our note dummy document inside it and then we'll just pass that to our Collection's `insert` method
+
+```
+const noteOne = {
+  _id: 'testNoteId1',
+  title: 'My Title',
+  body: 'My body for note',
+  updatedAt: 0,
+  userId: 'testUserId1'
+}
+
+beforeEach(function() {
+  Notes.remove({});
+  Notes.insert(noteOne);
+});
+```
+
+### Refactor using our new variables
+
 `notes.test.js`
 
 ```
-import { Meteor } from 'meteor/meteor';
-import expect from 'expect';
-
-import { Notes } from './notes';
+// more code
 
 if (Meteor.isServer) {
   describe('notes', function() {
@@ -135,18 +125,7 @@ if (Meteor.isServer) {
       Notes.insert(noteOne);
     });
 
-    it('should insert new note', function() {
-      const userId = 'testId';
-      const _id = Meteor.server.method_handlers['notes.insert'].apply({ userId  });
-
-      expect(Notes.findOne({ _id, userId })).toExist();
-    });
-
-    it('should not insert note if not authenticated', function() {
-      expect(() => {
-          Meteor.server.method_handlers['notes.insert']();
-      }).toThrow();
-    });
+    // more code
 
     it('should remove note', function () {
       Meteor.server.method_handlers['notes.remove'].apply({ userId: noteOne.userId }, [noteOne._id]);
@@ -169,6 +148,7 @@ if (Meteor.isServer) {
 }
 ```
 
+## More Flexible Code!
 * Now our code is more flexible setup
 * We can change our seed data without worrying about breaking our test cases and having to spend the time refactoring them
 * Test and you should see it works as it did before

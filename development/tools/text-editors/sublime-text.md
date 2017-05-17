@@ -607,3 +607,34 @@ To change all markdown files, just have one open and then click the main `View M
 ## Key bindings
 
 [link to gist](https://gist.github.com/kingluddite/8dfe308886e7b3876ac40eb246f74f99)
+
+## Markdown Preview
+Getting it to work in LivePreview
+
+[link](https://github.com/revolunet/sublimetext-markdown-preview/issues/389)
+
+1. Sublime Text > Package Settings > Markdown Preview > Settings - User
+
+2. Added
+
+```
+{
+  "enable_autoreload": true
+}
+```
+3. Saved, shut down Sublime Restarted
+4. Then when opened file in browser and refresh the update worked
+5. To not have to refresh I installed the LiveReload package for ST
+6. Restarted ST
+7. Open markdown file in browser
+8. Open palette in ST
+9. Selected this [screenshot](https://i.imgur.com/rRyJ6mJ.png) (enabled/disable plugins)
+10. Chose Enable SimpleReload
+11. Then as I made changes and saved them, the page refreshed
+
+Here were two links that helped me figure this out
+https://huima.wordpress.com/2014/06/29/sublimetext-markdown-preview-live-reload-epic-markdown-writing-environment/
+
+https://forum.sublimetext.com/t/how-to-use-livereload-in-sublime-text-3/16356/14
+
+Hopefully this saved people the hour it took me. Was it worth it? Of course :)
