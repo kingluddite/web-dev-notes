@@ -120,14 +120,14 @@ Meteor.startup(() => {
     },
     age: {
       type: Number,
-      min: 0
+      min: 0,
+      optional: true
     }
   });
 
   petSchema.validate({
     name: 'Spot',
-    age: 21,
-    optional: true
+    age: 21
   });
 });
 ```

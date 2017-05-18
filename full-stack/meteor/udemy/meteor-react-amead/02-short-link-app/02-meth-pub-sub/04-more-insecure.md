@@ -101,7 +101,7 @@ When the Component first renders to the screen this function lets us hook into t
 ```
 class LinksList extends Component {
   componentDidMount() {
-    console.log('componentsDidMount LinksList');
+    console.log('componentDidMount LinksList');
   }
 ```
 
@@ -114,7 +114,7 @@ class LinksList extends Component {
 
 ```
 componentWillUnmount() {
-    console.log('componentsWillUnmount LinksList');
+    console.log('componentWillUnmount LinksList');
 }
 ```
 
@@ -187,7 +187,6 @@ Here's our code so far:
 
 ```
 import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/tracker';
 import ReactDOM from 'react-dom';
 
 import { routes, onAuthChange } from './../imports/routes/routes';
