@@ -9,7 +9,6 @@ From CommonJS to ES6 modules
 
 ```
 const sum = (a, b) => a + b;
-
 module.exports = sum;
 ```
 
@@ -17,7 +16,6 @@ module.exports = sum;
 
 ```
 const sum = (a, b) => a + b;
-
 export default sum;
 ```
 
@@ -27,18 +25,14 @@ export default sum;
 
 ```
 const sum = require('./sum');
-
 const total = sum(100, 500);
-
 console.log(total);
 ```
 
 ### To this:
 ```
 import sum from './sum';
-
 const total = sum(100, 500);
-
 console.log(total);
 ```
 

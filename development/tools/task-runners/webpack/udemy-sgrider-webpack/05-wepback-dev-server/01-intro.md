@@ -22,7 +22,7 @@ How does webpack fit into our overall architecture
     - Once running `webpack-dev-server` will watch all our files and automatically rerun the build and reload our files anytime they change
     - It only updates the individual files that have changed, not everything
     - When we make changes we won't have to wait 10 minutes for a build, it will just be a fraction of a second
-* Webpack will serve our index.html back to us so we won't have to open it up and refresh it
+* Webpack will serve our `index.html` back to us so we won't have to open it up and refresh it
 * Our browser will connect directly to webpack-dev-server
     - We don't have access to the 'guts' of this server
     - webpack-dev-server is only about developing a client-side web app single page app with zero server side logic

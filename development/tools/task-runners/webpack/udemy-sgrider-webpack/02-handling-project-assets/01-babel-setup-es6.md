@@ -2,7 +2,7 @@
 Usually used for transpiling from ES6 to ES5
 
 * `Webpack` - Link up JS modules together
-* `Babel` - Turn futher JS code into ES5 code
+* `Babel` - Turn future JS code into ES5 code
 
 ## Three modules we need to get Babel setup for our project
 1. `babel-loader` - Teaches babel how to work with webpack

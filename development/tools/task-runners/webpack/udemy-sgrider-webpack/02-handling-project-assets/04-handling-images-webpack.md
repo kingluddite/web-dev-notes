@@ -78,7 +78,7 @@ Create `/src/assets`
 * Rename image as `big.jpg`
 * Do the same thing but make it `http://lorempixel.com/200/200`. Drag it into `assets`
     - Rename it to `small.jpg`
-* Import both images into your `image.viewer.js` file
+* Import both images into your `image-viewer.js` file
 
 `image-viewer.js`
 
@@ -100,8 +100,18 @@ document.body.appendChild(bigImage);
 
 `$ yarn build`
 
+### Error!
+You need to install file-loader
+
+* You need to update brew with `$ brew install libpng`
+* Also add `$ yarn add file-loader`
+
+`$ yarn build`
+
+It should work now
+
 * You should see a super large image filename inside `dist`
-* The small image have been converted to **base64**
+* The small image has been converted to **base64**
   - [How does base64 make the web better?](https://varvy.com/pagespeed/base64-images.html)
 * The large image is broken and the console says the path is wrong
 

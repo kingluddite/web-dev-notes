@@ -6,7 +6,7 @@ By default webpack pumps out static assets only
 ## What is a static asset?
 Anything that is not served by a dynamic server
 
-* Make an API request and get back infor from a Database
+* Make an API request and get back info from a Database
 * WYSIWYG - With a webpack project
 * The entire app is running inside of the user's browser
     - There is no corresponding backend to make any type of request to
@@ -72,7 +72,7 @@ If you have an express app with mongo Database behind it you'll want a server-ba
 
 `'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)`
 
-* left hand side if variable we want to define
+* left hand side is variable we want to define
 * right hand side is value for that variable
 * `process.env.NODE_ENV` - This is talking about the NODE_ENV variable that is running on our machine
     - The assumption is that we, the developer will set the correct value for this variable whenever we build our project

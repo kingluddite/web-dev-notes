@@ -13,7 +13,7 @@
 * `src` - Holds all code for your JavaScript project
     - `sum.js`
         + Utility functions for working with mathematical
-    - index.js
+    - `index.js`
         + Calls functions from `sum.js`, then prints result
 
 * So `index.js` has `sum.js` as a dependency

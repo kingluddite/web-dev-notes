@@ -65,6 +65,7 @@ The we can see inside the **index.js** function that it references the function 
 * Then calls those different functions in that array
 
 There is no big magic going on. It is all plain vanilla javascript code that webpack is spitting out
+
 * remember everything webpack does will run on older browsers
 
 ## Run our app inside the browser

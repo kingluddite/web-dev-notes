@@ -4,7 +4,7 @@ We have an error `wepackJsonp is not defined`
 ![webpack jsonp error](https://i.imgur.com/EPispFZ.png)
 
 ## No script tag!
-* We forgot to add our `<script>` for vendor.js
+* We forgot to add our `<script>` for `vendor.js`
 * But to have to add these all the time is a pain
 * There is a plugin that will add them for us
 
@@ -13,10 +13,10 @@ Now it will run and regenerate our HTML with the necessary script tags injected
 
 `$ yarn add -D html-webpack-plugin`
 
-* We need to make our index.html a template so it knows where to inject the script tags
+* We need to make our `index.html` a template so it knows where to inject the script tags
 
 ## Move `index.html`
-* Since `index.html` is not part of the configuration of our project we'll move it into `src`
+* Since `index.html` is now part of the configuration of our project we'll move it into `src`
 
 `index.html`
 
@@ -96,7 +96,7 @@ module.exports = {
 
 * We add the `require` and add the plugin
 
-`$ npm build`
+`$ yarn build`
 
 `$ open dist/index.html`
 
@@ -123,10 +123,10 @@ module.exports = {
 ## Bust our cache
 aka `cache busting`
 
-* We need to somehow rename our `bundle.js` file and our vendor .js files so the browser is crystal clear on when the files have actually changed
+* We need to somehow rename our `bundle.js` file and our `vendor.js` files so the browser is crystal clear on when the files have actually changed
 * by renaming the file we'll give the browser the info it needs to know if it downloaded the file before
 
-### chuckhash to the rescue!
+### chunkhash to the rescue!
 * `hashed` of the contents of the file
 * **hashed** === long string of numbers and letters
 * everytime we build our project webpack will automatically hash the contents of our file (unique string of characters)
@@ -171,7 +171,7 @@ plugins: [
 // more code
 ```
 
-* With that change, a new file will be created `manifest' that's purpose is to better tell the browser whether or not the vendor file actually got changed
+* With that change, a new file will be created `manifest` that's purpose is to better tell the browser whether or not the vendor file actually got changed
 
 Chunked cache with manifest
 

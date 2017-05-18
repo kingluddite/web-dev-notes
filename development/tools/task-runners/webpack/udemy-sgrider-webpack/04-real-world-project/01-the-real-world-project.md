@@ -9,7 +9,7 @@
 ## Install it
 * `$ yarn install`
 * `$ atom .`
-* check out package.json`
+* check out `package.json`
     - have a script for build `$ yarn build`
     - have all the dev dependencies we need for webpack
 
@@ -122,7 +122,7 @@ module.exports = {
 };
 ```
 
-`$ npm build`
+`$ npm run build`
 
 * This is a large app (3.36 MB)
 * We get warnings because it is so large
@@ -152,7 +152,7 @@ And this is how we'll cache vendor code and not our custom code
 ![next visit](https://i.imgur.com/3BWA3k0.png)
 
 ## Refactor for Vendor Splitting
-1. We open webpack.config.js
+1. We open `webpack.config.js`
 2. We change the entry point from 1 file to multiple files by changing it from a string value to an object
 
 ```
@@ -228,7 +228,7 @@ import Routes from './router';
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
-    });
+    })
   ]
 };
 ```
@@ -237,7 +237,7 @@ import Routes from './router';
 * If any modules in all those files are identical (aka duplicates)
 * Pull them out and only add them to the `vendor` entry point
 
-`$ npm build`
+`$ npm run build`
 
 We save space!
 

@@ -83,7 +83,7 @@ button.onclick = () => {
 document.body.appendChild(button);
 ```
 
-- This is an asynchronous call, so this `System.import()` returns a **Promise** so to get access to that module we need to append `.then()` and pass that a arrow head function to execute after the module has loaded
+- This is an asynchronous call, so this `System.import()` returns a **Promise** so to get access to that module we need to append `.then()` and pass that a arrow function to execute after the module has loaded
 
 ### Let's alter our `image-viewer.js`
 Just to make how code-splitting works more obvious
@@ -114,7 +114,7 @@ export default () => {
 #### Click `Network` tab of Chrome dev tool
 * Refresh browser
 * Filter for only javascript
-* you will only see bundle.js
+* you will only see `bundle.js`
 * click button and you'll see another JavaScript file
 
 ![two bundles](https://i.imgur.com/vEeVBwq.png)

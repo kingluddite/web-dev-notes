@@ -18,7 +18,7 @@ Thousands of lines of code in this app
 
 ## What is a JavaScript module?
 * A single JavaScript file that contains some small amount of code
-* Instead of a few very large JavaScript files, we strive for many small JavaScript
+* Instead of a few very large JavaScript files, we strive for many small JavaScript files
     - The benefit is it is much more clear where code is located
 
 ## Problems with many small files in your app

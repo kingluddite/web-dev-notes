@@ -1,5 +1,5 @@
 # Webpack installation and configuration
-`$ yarn webpack -D`
+`$ yarn add webpack -D`
 
 ![webpack config diagram](https://i.imgur.com/iQmCyai.png)
 

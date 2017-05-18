@@ -141,7 +141,7 @@ We will tweak our process to spit out a separate CSS file
 #### Install new plugin
 `$ yarn add -D extract-text-webpack-plugin`
 
-* Use and loader should be the same thing in `webpack.config.js` but with this plugin we have to use `loader` because of the way this plugin was written
+* `use` and `loader` should be the same thing in `webpack.config.js` but with this plugin we have to use `loader` because of the way this plugin was written
 * Plugins are a different system from loaders in the webpack world
     - Loaders are used for some amount of preprocessing before a file is included into the webpack bundle
     - Plugins work a little bit outside of the webpack pipeline and they have the ability to keep files from ending up inside of the `bundle.js` output
