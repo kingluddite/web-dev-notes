@@ -429,6 +429,8 @@ Here are some places to help speed up your Sass workflow
       "import/no-unresolved": 0,
       "import/no-extraneous-dependencies": 0,
       "import/extensions": 0,
+      "arrow-body-style": [2, "always"],
+      "import/no-named-as-default": ["off"],
       "no-underscore-dangle": [
         "error",
         {
@@ -494,6 +496,7 @@ Here is how you would do this:
       "import/no-unresolved": 0,
       "import/no-extraneous-dependencies": 0,
       "import/extensions": 0,
+      "arrow-parens": ["error", "always"],
       "no-underscore-dangle": [
         "error",
         {

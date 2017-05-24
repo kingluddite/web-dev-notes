@@ -10,7 +10,7 @@ Some general keyboard shortcuts that I use frequently.
 | ------- | -------- | ------- | ----- | ----------- |
 | Open Browser | `ctrl-alt-q` |   |  | Opens browser window (need to install Open in Browser package) |
 | Toggle iterm | `ctrl` + `~` |   |  | User terminal inside Atom requires install of Platformio package) |
-| Wrap tag | `alt-shift-w` |   |  | Wraps tag around highlighted content |
+| Wrap tag | `ctrl-alt-w` |   |  | Wraps tag around highlighted content |
 | New File in tree | `a` |   |  | Creates new file in the tree where you currently are |
 | New Folder in tree | `shift-a` |   |  | Creates new folder in the tree where you currently are |
 | Open folder | `return` |   |  | Move to folder with content and press `return` |

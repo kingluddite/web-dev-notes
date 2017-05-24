@@ -1,5 +1,5 @@
 # Media Queries
-Smush our app in the browser and it look unusable
+Smush our app in the browser and it looks unusable
 
 ![bad mobile](https://i.imgur.com/PUxHncH.png)
 
@@ -20,9 +20,9 @@ A way to conditionally add styles to your application
 }
 ```
 
-* The above media query says when the browser has a minimum width of 50rem's, apply these styles
-* That means these rules will only be applied to this element when the browser is equal to or wider than 50rem
-* With the browser smushed up slowly stretch it and once it is 50rem wide it will turn the text red and it will stay red if you keep stretching it wider than 50rem
+* The above media query says when the browser has a minimum width of` 50rem`'s, apply these styles
+* That means these rules will only be applied to this element when the browser is equal to or wider than `50rem`
+* With the browser smushed up slowly stretch it and once it is `50rem` wide it will turn the text red and it will stay red if you keep stretching it wider than `50rem`
 
 ![red text with min-width](https://i.imgur.com/wUuLXU4.png)
 
@@ -35,8 +35,10 @@ A way to conditionally add styles to your application
 }
 ```
 
+## Point Break!
+
 * This is the exact opposite
-* Our text turns red when 50rem or smaller
+* Our text turns red when `50rem` or smaller
 * This is known as a **breakpoint**
 
 ## What are `breakpoints`?
@@ -58,20 +60,20 @@ Where one transition is based off of width
 }
 ```
 
-* These rules will only apply when the max width is 50rem and the min width is 30rem
+* These rules will only apply when the max width is `50rem` and the min width is `30rem`
 * This is possible but might not be the most practical use of media queries but it does let you know you can do some complex things with media queries
 * We will just be targeting with `min-width` for our mobile styles
 * You can comment this code out as we don't need it but you can keep it for reference
 
 ## Mobile First Approach
 * Our core styles will be for mobile
-* And then we'll add breakpoints that add on new styles as the browser size increases
-* So to use this approach in our app we'll set sidebar to `display: none` as our core
+* And then we'll add **breakpoints** that add on new styles as the browser size increases
+* So to use this approach in our app we'll set **sidebar** to `display: none` as our core
 
 ```
 // more code
 .page-content__sidebar {
-  display: none;
+  display: none; // change from display: flex
   width: $page-content-sidebar-width;
   padding-right: $large-space;
 }
@@ -98,6 +100,7 @@ But it will never show so we nest a media query to show it when it grows to `50r
 * Notice we don't use a `selector` in the **@media** and it uses the code it is nested inside as the `selector` it will apply it's rules to
 
 ## Mobile first approach for `.page-content`
+### Who needs phone padding?
 * We don't need padding on phones so we put it in a media query
 
 ```

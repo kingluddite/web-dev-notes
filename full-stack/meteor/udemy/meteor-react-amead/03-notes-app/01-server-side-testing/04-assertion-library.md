@@ -77,6 +77,7 @@ import expect from 'expect';
 So instead of this:
 
 ```
+/* eslint-env mocha */
 it('should add two numbers', function() {
     const res = add(11, 9);
     if (res !== 20) {
@@ -88,7 +89,7 @@ it('should add two numbers', function() {
 We can use this:
 
 ```
-/* eslint-disable */
+/* eslint-env mocha */
 import expect from 'expect';
 
 
@@ -121,7 +122,7 @@ The Error is more helpful with the actual numbers
 ### Update our code using assertions
 
 ```
-/* eslint-disable */
+/* eslint-env mocha */
 import expect from 'expect';
 
 const add = (a, b) => {

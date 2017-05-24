@@ -1,6 +1,14 @@
 # Meteor Test command
 [mochajs.org](http://mochajs.org/)
 
+## Add these eslint comments when testing in meteor
+Place at the top of each testing file
+
+```
+/* eslint-env mocha */
+/* eslint-disable func-names, prefer-arrow-callback */
+```
+
 * Mocha is a JavaScript framework that works with `Node.js` and the browser which is great because we have a **full stack** application
 * Very popular
 * Well documented

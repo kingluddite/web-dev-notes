@@ -10,7 +10,7 @@ Empty the collection
 ## Exercise
 1. Create new file named `NoteListEmptyItem`
     * This will show when there are no notes
-    * Setup default export for Stateless functional component
+    * Setup default export for **stateless functional component**
     * Make up some text that will appear when no notes exist
     * Setup `NoteList` to render empty note message when notes array is empty
 
@@ -74,7 +74,8 @@ export default createContainer(() => {
 }, NoteList );
 ```
 
-* Test with no notes you should see the `NoteListEmptyItem` Component and when you add a note you should see the notes. Remove the notes using the Mongo shell and they should come back
+* Test with no notes you should see the `NoteListEmptyItem` Component and when you add a note you should see the notes
+* Remove the notes using the Mongo shell and you'll see `NoteListEmptyItem` again
 </details>
 
 ## Write test cases for `NoteList` Component
@@ -84,13 +85,12 @@ When there are notes in the **notes** array we do get items rendered to the scre
 ### Second Test
 When there are no notes in the **notes** array, if that occurs there should be zero instances of `NoteListItem` and one instance of `NoteListEmptyItem`
 
-
 ### Some fix ups
 If you use React tools in Chrome you'll see `<Unknown />` like this:
 
 ![unknown](https://i.imgur.com/jYmETRV.png)
 
-But if we change the code like this, React Tools will [give us better info](https://i.imgur.com/5g2G5uo.png):
+But if we change the code like this, **React Tools** will [give us better info](https://i.imgur.com/5g2G5uo.png):
 
 ```
 import React from 'react';
@@ -114,11 +114,12 @@ export default Dashboard = () => {
 * `MeteorDataContainer` is a Component
     - `Header` is a nested Component
 
-Add 4 notes and check out React tab again. Look for NoteList Component
+* Add `4` additional notes and check out **React tab** again
+* Look for `NoteList` Component
 
 ![NoteListItem](https://i.imgur.com/eIPWLTv.png)
 
-* enzyme gives us a way to check that `NoteList` renders `n` instances of a given Component
+* `enzyme` gives us a way to check that `NoteList` renders `n` instances of a given Component
 * But things get more difficult when we have no notes
     - Observe what happens when you use Mongo shell to remove all notes
 
@@ -164,6 +165,8 @@ export default NoteListEmptyItem;
 * Grab the usual 4 imports we use for testing from another file and paste at the top
 
 ```
+/* eslint-env mocha */
+/* eslint-disable func-names, prefer-arrow-callback */
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import expect from 'expect';
@@ -171,7 +174,7 @@ import { mount } from 'enzyme';
 ```
 
 * Import the named export `NoteList`
-* This is very important if you accidentally import the default export, your test won't work
+* This is very important if you accidentally import the **default export**, your test won't work
 
 `import { NoteList } from './NoteList';`
 
@@ -187,7 +190,7 @@ if (Meteor.isClient) {
 * We name our describe block after our Component
 
 ### First test
-* See what happens when we do pass notes into NotesList
+* See what happens when we pass `notes` into `NotesList`
 * We need dummy data to make it look realistic to match up with those props
 
 ```
@@ -252,7 +255,7 @@ It should pass the test but if you add another `<NoteListEmptyItem />` like this
 
 * You will get a fail because it expects 0 and it got 1 instance
 
-## Ex
+## Exercise
 * You will pass in an empty array as the notes prop
 * You don't want to use the dummy `notes` array we used to test
 * This test case is trying to see what happens when the array is empty

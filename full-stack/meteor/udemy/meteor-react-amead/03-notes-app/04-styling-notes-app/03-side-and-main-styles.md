@@ -24,7 +24,8 @@ Make sure to import it
 @import './components/item';
 ```
 
-* When order doesn't matter we keep our imports in alphabetical order so we can easily find imports
+* When order doesn't matter we keep our imports in alphabetical order
+* So we can easily find imports
 
 ## Now we need to use the editor class
 `Editor`
@@ -101,7 +102,8 @@ Looking even better (_the height matches height of sidebar_)
 
 ## Calculation time
 * Make sure browser doesn't get taller than space available in browser
-    - **height** === `entire height of browser` - space left over for page-content
+    - **height** === `entire height of browser`
+    - space left over for `page-content`
 
 ## Fixed height for header
 `_variables.scss`
@@ -169,6 +171,7 @@ $page-content-height: calc(100vh - #{$header-height}); // add this line
 }
 ```
 
+## Box-Sizing
 * If you view the page it is not quite what we want
 * The editor box does stop before the notes list but is seems a few pixels off
 * We needed to add `display: flex` to the sidebar to make sure editor and sidebar have same height

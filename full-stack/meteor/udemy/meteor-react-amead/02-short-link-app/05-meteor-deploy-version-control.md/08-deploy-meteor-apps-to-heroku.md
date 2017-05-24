@@ -38,7 +38,7 @@ We need to find out which version of node our Meteor app is using
 Take note of it: My node version is `v4.8.1`
 
 ### package.json
-Heroku will take our package.json and install everything
+Heroku will take our `package.json` and install everything
 
 ### Add engines to `package.json`
 ```
@@ -76,9 +76,13 @@ Heroku will take our package.json and install everything
 `$ git commit -m 'Add node version to engines'`
 
 ### Set up MongoDB database (a real one)
-We will use a Heroku addon
+* We will use a Heroku addon
 
-Open up the app you just created (remember the name!) and then click `Configure Add-ons` then click `Find more add-ons`
+1. Log into Heroku
+2. Open up the `app` you just created (_remember the name!_)
+  * You may need to check under `Resources` and then click **Find more add-ons**
+3. click `Configure Add-ons`
+4. Click `Find more add-ons`
 
 We'll addon mLab MongoDB and use the free plan
 
@@ -88,17 +92,18 @@ We'll addon mLab MongoDB and use the free plan
 * It will create a new environment variable for you `MONGODB_URI`
 
 ### Why use Environment variables
-It is a way to configure that value without having that value in your code. This makes it easy to change and makes it way more secure
+* It is a way to configure that value without having that value in your code
+* This makes it easy to change and makes it significantly more secure
 
 ### How can I see all my environment variables?
 `$ heroku config`
 
-Make sure you see the MONGODB_URI - the build pack we installed knows how to use this value
+Make sure you see the `MONGODB_URI` - the build pack we installed knows how to use this value
 
 ## ROOT_URL
 * Set custom environment variable
 * Meteor requires this when you are deploying that you set a custom environment variable
-* It needs to be your URL (the one showing our app on heroku's servers)
+* It needs to be your **URL** (_the one showing our app on heroku's servers_)
 * It helps generate any absolute value URLs
 
 `$ heroku config:set ROOT_URL="https://short-link-peh2.herokuapp.com"`

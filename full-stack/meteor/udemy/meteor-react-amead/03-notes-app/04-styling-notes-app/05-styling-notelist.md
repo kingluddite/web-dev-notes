@@ -38,7 +38,6 @@ NoteList { props.notes.length }
 
 ## Style `NoteListHeader`
 * Style our button with default blue
-* 
 
 ```
 // more code
@@ -49,6 +48,8 @@ return (
 );
 // more code
 ```
+
+`_item.scss`
 
 * Make our button take up the full space of sidebar
 
@@ -232,7 +233,10 @@ return (
 // more code
 ```
 
-### Make selected bold and not select normal
+### Selected or Not Selected?
+* Make selected item bold
+* And not selected items normal
+
 `_item.scss`
 
 ```

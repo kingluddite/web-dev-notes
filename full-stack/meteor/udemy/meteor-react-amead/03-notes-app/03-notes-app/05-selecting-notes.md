@@ -4,33 +4,34 @@
 
 * Focusing on Editor area
     - Be able to change:
-        + title
-        + body
+        + `title`
+        + `body`
 
-* add note button on left hand side
-* list of notes (already have)
-* on the right will be area asking us to pick a note
-* when we select on note 3 things happen
-    1. We have a visual indicator of which note is selected
-        + we'll apply a custom class to indicate that the todo note is currently selected
-    2. The URL is currently updated
-        + `localhost:3000/dashboard/ad830dld`
-        + we have some id at the end of the URL
-        + you can bookmark and share that link
-    3. The entire editor area showed up
-        + title - you can change it
-        + body - you can change it
+* **Add note** button on left hand side
+* List of notes (**already have**)
+* On the right will be area asking us to pick a note
+
+## When we select on note three things happen
+1. We have a visual indicator of which note is selected
+    - We'll apply a custom class to indicate that the todo note is currently selected
+2. The URL is currently updated
+    - `localhost:3000/dashboard/ad830dld`
+    - we have some `id` at the end of the `URL`
+    - you can bookmark and share that link
+3. The entire editor area showed up
+    - `title` - you can change it
+    - `body` - you can change it
 
 * No save button
-* All three points mentioned above will be handled by a single Meteor Session variable
+* <u>All three points mentioned above will be handled by a single Meteor Session variable</u>
     - It will be called `selectedNoteId`
-        + It will be equal to the string id of the currently selected note
+        + It will be equal to the string `_id` of the currently selected note
         + By default it will be `undefined`
-            * there will be no id in the URL
-            * no selected item in the notes list
-            * editor area will say 'pick a note to get started'
+            * There will be no `_id` in the URL
+            * No selected item in the notes list
+            * Editor area will say **'pick a note to get started'**
         + When there is a note for that Session
-            * We'll update URL to contain that notes `id`
+            * We'll update URL to contain that notes `_id`
             * We'll highlight that based on some CSS in notes list
             * We'll show editor for that note
 
@@ -54,7 +55,7 @@ Meteor.startup(() => {
 
 ## Separate Tracker.autorun()
 * Watch for a change in `selectedNoteId` and when it does change update the URL
-    - So when a note gets picked, the URL changes to have that note ID inside of it
+    - So when a note gets picked, the URL changes to have that note `_id` inside of it
 
 ```
 Tracker.autorun(() => {
@@ -66,7 +67,7 @@ Tracker.autorun(() => {
 });
 ```
 
-* The above code handles all 3 points mentioned above
+* The above code handles all three points mentioned above
 * We just created a new route so we need to set that up inside `routes.js`
 
 `routes.js`

@@ -81,8 +81,8 @@ Meteor.methods({
 });
 ```
 
-* `...updates`, we are using the spread operator again to take all the values passed and update them
-* We know that `...updates` has no malicious data because SimpleSchema will reject any fields not inside the Schema we defined
+* `...updates`, we are using the **spread operator** `...` again to take all the values passed and update them
+* We know that `...updates` has no malicious data because **SimpleSchema** will reject any fields not inside the Schema we defined
 
 ### Using variables inside our test file
 We will create a variable and still our note dummy document inside it and then we'll just pass that to our Collection's `insert` method
@@ -157,6 +157,7 @@ if (Meteor.isServer) {
 `notes.test.js`
 
 ```
+/* eslint-env mocha */
 it('should update note', function () {
       const title = 'Updated Title';
 
@@ -177,16 +178,26 @@ it('should update note', function () {
       });
 ```
 
+## Analysis of what we just did
+* We have a dummy new title
+* We use our special **Meteor Method** to call the `notes.update` **Meteor Method** and we pass it a logged in `userId`
+* We point to the `_id` of the test note we are updating
+* And we pass our new title to be the entry for this test document
+* We then query to to find that one note
+* We make sure that it has a `updatedAt` value greater than `0`
+* And it has our new `title` and a body inside that matched the one in our dummy data object `body` property
+
 ## Exercise
 We want to make sure we get an error if someone adds fields not in our Notes Collection
 
 * It should throw error if extra updates (_make up a field and value_)
     - Expect some function to throw
-        + Call notes.update with extra updates
+        + Call `notes.update` with extra updates
 
 <details>
   <summary>Solution</summary>
 ```
+/* eslint-env mocha */
 it('should throw error if extra updates provided', function () {
       expect(() => {
         Meteor.server.method_handlers['notes.update'].apply({
@@ -197,96 +208,8 @@ it('should throw error if extra updates provided', function () {
         ]);
       }).toThrow();
     });
+```
 
 ![Server test passes for extra updates](https://i.imgur.com/CswE8Gi.png)
-```
+
 </details>
-
-## Final `notes.test.js`
-
-```
-import { Meteor } from 'meteor/meteor';
-import expect from 'expect';
-
-import { Notes } from './notes';
-
-if (Meteor.isServer) {
-  describe('notes', function() {
-
-    const noteOne = {
-      _id: 'testNoteId1',
-      title: 'My Title',
-      body: 'My body for note',
-      updatedAt: 0,
-      userId: 'testUserId1'
-    }
-
-    beforeEach(function() {
-      Notes.remove({});
-      Notes.insert(noteOne);
-    });
-
-    it('should insert new note', function() {
-      const userId = 'testId';
-      const _id = Meteor.server.method_handlers['notes.insert'].apply({ userId  });
-
-      expect(Notes.findOne({ _id, userId })).toExist();
-    });
-
-    it('should not insert note if not authenticated', function() {
-      expect(() => {
-          Meteor.server.method_handlers['notes.insert']();
-      }).toThrow();
-    });
-
-    it('should remove note', function () {
-      Meteor.server.method_handlers['notes.remove'].apply({ userId: noteOne.userId }, [noteOne._id]);
-
-      expect(Notes.findOne({ _id: noteOne._id })).toNotExist();
-    });
-
-    it('should not remove note if unauthenticated', function() {
-      expect(() => {
-        Meteor.server.method_handlers['notes.remove'].apply({}, [noteOne.userId]);
-      }).toThrow();
-    });
-
-    it('should not remove note if invalid _id', function() {
-      expect(() => {
-        Meteor.server.method_handlers['notes.remove'].apply({ userId: noteOne.userId });
-      }).toThrow();
-    });
-
-    it('should update note', function () {
-      const title = 'Updated Title';
-
-       Meteor.server.method_handlers['notes.update'].apply({
-         userId: noteOne.userId
-       }, [
-         noteOne._id,
-         { title }
-       ]);
-
-       const note = Notes.findOne(noteOne._id);
-
-       expect(note.updatedAt).toBeGreaterThan(0);
-       expect(note).toInclude({
-         title,
-         body: noteOne.body
-       });
-    });
-
-    it('should throw error if extra updates provided', function () {
-      expect(() => {
-        Meteor.server.method_handlers['notes.update'].apply({
-          userId: noteOne.userId
-        }, [
-          noteOne._id,
-          { title, name: 'Bad Data' }
-        ]);
-      }).toThrow();
-    });
-    
-  });
-}
-```

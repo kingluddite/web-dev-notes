@@ -2,9 +2,10 @@
 * input for title
 * textarea for body
 * button to remove whatever note is currently shown
-
 * We won't use a form
 * The fields will be automatically updating the Database
+
+`Editor.js`
 
 ```
 import React, { Component } from 'react';
@@ -23,7 +24,6 @@ export class Editor extends Component {
   }
 
   render() {
-
     if (this.props.note) {
       return (
         <div>
@@ -39,7 +39,6 @@ export class Editor extends Component {
         </p>
       )
     }
-
   }
 };
 

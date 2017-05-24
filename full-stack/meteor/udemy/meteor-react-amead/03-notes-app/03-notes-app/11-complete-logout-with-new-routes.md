@@ -38,7 +38,7 @@ We don't need these anymore because we'll be using `currentPagePrivacy`
 
 `client/main.js`
 
-Update our Tracker.autorun()
+Update our `Tracker.autorun()`
 
 ```
 Tracker.autorun(() => {
@@ -126,13 +126,17 @@ const onEnterNotePage = (nextState) => {
 ```
 
 ## Houston we have a problem
-* Log in
-* Add a note
-* Select it
-* Make some changes to it
-* Log out
-* Log back in and you'll see that note is still selected. This is bad we don't want that old note still selected. When we leave the dashboard we need to set `selectedNoteId` to **undefined**
-* Also the URL is not matching up to which note we are seeing
+1. Log in
+2. Add a note
+3. Select it
+4. Make some changes to it
+5. Log out
+6. Log back in and you'll see that note is still selected
+
+### This is bad!
+* We don't want that old note still selected
+* When we leave the dashboard we need to set `selectedNoteId` to **undefined**
+* Also the **URL** is not matching up to which **note** we are seeing
 
 ### Bug
 We need to make `selectedNoteId` empty when we delete a note
@@ -158,7 +162,7 @@ const onLeaveNotePage = () => {
 // more code
 ```
 
-* Test and you'll see that when you delete a note, our message changes to `Pick or create a note to get started` (_because we changed selectedNoteId to **undefined**_)
+* Test and and this time when you log out and log in you won't see a selected note
 
 ### git add . vs git commit -a -m
 When we have files that are being tracked and there is nothing new we are going to add we can sue `$ git commit -a -m 'some message'`
@@ -169,4 +173,4 @@ When we have files that are being tracked and there is nothing new we are going 
 
 `$ git status`
 
-`$ git commit -a -m 'Add test cases for Editor Component'`
+`$ git commit -a -m 'Add onLeave to set presentation session to undefined'`

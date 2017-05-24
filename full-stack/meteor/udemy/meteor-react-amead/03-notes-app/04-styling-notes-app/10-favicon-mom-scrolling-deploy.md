@@ -22,7 +22,7 @@
 
 ## Momentum Scrolling
 Only can see on mobile phones
-If you try our app on phone and try to scroll through the notes list, we see that we can not scroll (like settings on an app phone)
+If you try our app on phone and try to scroll through the notes list, we see that we can not scroll (_like settings on an app phone_)
 
 * We have to enable Momentum Scrolling for the NoteList and textarea
 * We also have to fix zooming issue preventing a user from zooming in on stuff
@@ -48,7 +48,7 @@ If you try our app on phone and try to scroll through the notes list, we see tha
 ```
 
 * over scrolling is not universally supported by browsers
-* `-webkit-overflow-scrolling: auto;` (default behavior)
+* `-webkit-overflow-scrolling: auto;` (_default behavior_)
 
 ### And let's add it to our `textarea`
 

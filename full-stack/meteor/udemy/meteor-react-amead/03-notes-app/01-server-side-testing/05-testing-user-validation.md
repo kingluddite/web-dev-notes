@@ -131,6 +131,7 @@ Then we see our test passes on `the Client` and `the Server` but we only want to
 `users.test.js`
 
 ```
+/* eslint-env mocha */
 import expect from 'expect';
 import { Meteor } from 'meteor/meteor';
 import { validateNewUser } from './users';
@@ -172,6 +173,7 @@ if (Meteor.isServer) {
 We want our function to throw an **error**
 
 ```
+/* eslint-env mocha */
 import expect from 'expect';
 import { Meteor } from 'meteor/meteor';
 import { validateNewUser } from './users';

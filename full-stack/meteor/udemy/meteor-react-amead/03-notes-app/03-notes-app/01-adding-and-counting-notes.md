@@ -18,11 +18,13 @@
         + Goes inside NoteList
             * Shows things like:
                 - filtering options
-                - our button for adding a new note
+                - Our button for adding a new note
 
 ## `NoteList`
 * Will be Stateless functional component
 * Will use `createContainer()`
+
+`NoteList.js`
 
 ```
 import React from 'react';
@@ -54,7 +56,7 @@ export default createContainer(() => {
 }, NoteList );
 ```
 
-Here is our publication in notes.js
+Here is our publication in `notes.js`
 ![notes publication](https://i.imgur.com/XMHLPoA.png)
 
 * We have to subscribe to that in order to ever get notes back
@@ -129,7 +131,7 @@ export default createContainer(() => {
 ```
 
 ## Use NoteList inside Dashboard
-* We don't need to pass `<NoteList />` the `notes` prop because we used a Container and it will pass the `notes` array into NoteList for us
+* We don't need to pass `<NoteList />` the `notes` prop because we used a Container and it will pass the `notes` array into `NoteList` for us
 
 `Dashboard.js`
 
@@ -156,7 +158,7 @@ Log in and you should see:
 ![NoteList count](https://i.imgur.com/XDOEuxp.png)
 
 ## Goal #2 - Button that creates new notes
-* With each new note the NoteList count should automatically be incremented
+* With each new note the `NoteList` count should automatically be incremented
 * Our `createContainer()` code acts like it is inside of `Tracker.autorun()`, so as the query changes, the code re-runs, re-rendering NoteList above
 * If we are going to use the `Notes` Collection we should also import `notes.js` into our `server/main.js`
 
@@ -239,4 +241,34 @@ export default createContainer(() => {
 
 * Make sure to import and add an instance of `<NoteListHeader />` to `NoteList`
 </details>
+
+## ESLint fixes
+`NotesListHeader.js`
+
+```
+import React from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
+import PropTypes from 'prop-types';
+
+export const NotesListHeader = (props) => {
+  const handleButtonClick = () => {
+    props.meteorCall('Notes.insert');
+  };
+
+  return (
+    <div>
+      <button className="button" onClick={handleButtonClick}>Create Note</button>
+    </div>
+  );
+};
+
+NotesListHeader.propTypes = {
+  meteorCall: PropTypes.func.isRequired,
+};
+
+export default createContainer(() => ({
+  meteorCall: Meteor.call,
+}), NotesListHeader);
+```
 

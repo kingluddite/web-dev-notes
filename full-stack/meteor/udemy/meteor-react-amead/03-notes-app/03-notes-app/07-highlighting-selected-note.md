@@ -1,7 +1,7 @@
 # Highlighting Selected Note
-* We want to make sure the individual items know if they are the selected note
-    - This will enable them to add custom styles to themselves
-    - Or leave themselves in the default state if they are not selected
+* We want to make sure the individual items know if they are the <u>selected note</u>
+    - This will enable the individual items to add custom styles to themselves
+    - Or leave themselves in the default `state` if they are not selected
 
 We added this inside of `routes.js`
 
@@ -21,7 +21,7 @@ We added this inside of `routes.js`
 // more code
 ```
 
-`NoteList`
+`NoteList.js`
 
 * We need to get the value for `selectedNoteId`
 
@@ -30,38 +30,13 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Session } from 'meteor/session';
+import { Session } from 'meteor/session'; // add this line
 
-import { Notes } from './../../api/notes';
+// more code
 
-import NoteListHeader from './NoteListHeader';
-import NoteListItem from './NoteListItem';
-import NoteListEmptyItem from './NoteListEmptyItem';
-
-export const NoteList = (props) => {
-
-    const renderNotes = props.notes.map((note) => {
-       return <NoteListItem key={note._id} note={note} />;
-    });
-
-    return (
-      <div>
-        <NoteListHeader />
-        {(props.notes.length === 0) ? <NoteListEmptyItem /> : undefined }
-        {renderNotes}
-        NoteList { props.notes.length }
-      </div>
-    );
-};
-
-NoteList.propTypes = {
-  notes: PropTypes.array.isRequired
-};
-
-
+// update the rest of this code
 export default createContainer(() => {
   const selectedNoteId = Session.get('selectedNoteId');
-  // 1. subscribe to the subscription (we set up in notes.js)
   Meteor.subscribe('notes');
 
   // we want to fetch the notes from here
@@ -78,15 +53,16 @@ export default createContainer(() => {
 }, NoteList );
 ```
 
-* shut down test
-* run meteor
-* click on notes and you will see that selected appears (eventually we'll add a dynamic css class)
-* We have a problem
-    - Refresh page and the URL stays the same the we lose the selected text because we did not set the session
+1. Shut down test `ctrl` + `c`
+2. run meteor `$ meteor`
+3. Click on **notes** on the screen and you will see that the word **selected** appears (_eventually we'll add a dynamic css class_)
+
+### House we have a problem - We forgot to set the session
+Refresh page and the URL stays the same the we lose the selected text because we did not set the session
 
 `routes.js`
 
-import session named export
+Import session named export
 
 `import { Session } from 'meteor/session';`
 
@@ -107,34 +83,15 @@ update route
 
 `<Route path="/dashboard/:id" component={Dashboard} onEnter={onEnterNotePage} />`
 
-Finished `routes.js`
+Update the following in `routes.js`
 
 ```
 import { Meteor } from 'meteor/meteor';
-import React from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+// more code
 import { Session } from 'meteor/session';
 
-// import App from './../imports/ui/components/App';
+// more code
 
-import Signup from './../ui/components/Signup';
-import Dashboard from './../ui/components/Dashboard';
-import NotFound from './../ui/components/NotFound';
-import Login from './../ui/components/Login';
-
-const unauthenticatedPages = ['/', '/signup'];
-const authenticatedPages = ['/dashboard'];
-
-const onEnterPublicPage = () => {
-  if (Meteor.userId()) {
-    browserHistory.replace('/dashboard');
-  }
-};
-const onEnterPrivatePage = () => {
-  if (!Meteor.userId()) {
-    browserHistory.replace('/');
-  }
-};
 const onEnterNotePage = (nextState) => {
   if (!Meteor.userId()) {
     browserHistory.replace('/');
@@ -144,29 +101,9 @@ const onEnterNotePage = (nextState) => {
   }
 };
 
-export const onAuthChange = (isAuthenticated) => {
-  const pathname = browserHistory.getCurrentLocation().pathname;
-  const isUnauthenticatedPage = unauthenticatedPages.includes(pathname);
-  const isAuthenticatedPage = authenticatedPages.includes(pathname);
-
-  // if public page and logged in - let them in
-  if (isUnauthenticatedPage && isAuthenticated) {
-    browserHistory.replace('/dashboard');
-  } else if (isAuthenticatedPage && !isAuthenticated) {
-    // if private page and not logged in - kick them out
-    browserHistory.replace('/');
-  }
-}
-
-export const routes = (
-  <Router history={browserHistory}>
-    <Route path="/" component={Login} onEnter={onEnterPublicPage} />
-    <Route path="/signup" component={Signup} onEnter={onEnterPublicPage} />
-    <Route path="/dashboard" component={Dashboard} onEnter={onEnterPrivatePage} />
+// more code
     <Route path="/dashboard/:id" component={Dashboard} onEnter={onEnterNotePage} />
-    <Route path="*" component={NotFound} />
-  </Router>
-);
+// more code
 ```
 
 `$ add .`

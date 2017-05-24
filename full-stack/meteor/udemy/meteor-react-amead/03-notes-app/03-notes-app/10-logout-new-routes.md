@@ -23,17 +23,18 @@ And we added this route
 
 We need to find a way to know when we are on the above route, we need to find a way to redirect away when the **auth** status changes
 
-We now have to work with dynamic routes `:id` and our current system will not work with this and so we need to make a bunch of changes but this will make our app routing system more robust and this is now becoming more of a real world app because dynamic URLs are a fact of life in modern day apps
+## Our current system is not sustainable
+We now have to work with dynamic routes `:id` and our current system will not work with this and so we need to make a bunch of changes but this will make our app routing system more robust and this is now becoming more of a real world app because **dynamic URLs** are a fact of life in modern day apps
 
 ## Find New Way
-How can we determine if pages are to be seen by authenticated or unauthenticated users
+How can we determine if pages are to be seen by authenticated or unauthenticated users?
 
 `const authenticatedPages = ['/dashboard'];`
 
 We don't know right now what will be after dashboard because it is now a dynamic URL
 
 ## Put decision if auth or unauth in the hands of the Route itself
-* We add a made up attribute `privacy` (we could name it anything) and depending on the page we enter a value of **auth** or **unauth**
+* We add a made up attribute `privacy` (_we could name it anything_) and depending on the page we enter a value of **auth** or **unauth**
 
 ```
 // more code
@@ -50,13 +51,12 @@ export const routes = (
 ```
 
 ## Step 1 - Track what type of page we are on
-* If I'm on the home page I should have a variable somewhere that lets me know I'm on an **unauth** page
+* If I'm on the **home page** I should have a variable somewhere that lets me know I'm on an **unauth** page
 * If I login and switch to the Dashboard, that value should switch from **unauth** to **auth**
 * As that status changes we know what type of page were on and act accordingly
 
-### React Router Nested routes
-`beforeEach` - it gets called before every test and what we are doing now is similar to that
-
+### Nested routes in React Router - Let's add one!
+* `beforeEach` - (we used this in testing) - it gets called before every test and what we are doing now is similar to that
 * We are going to do something every single time the page changes
 
 ```
@@ -128,20 +128,12 @@ export const globalOnEnter = (nextState) => {
   debugger;
 };
 
-export const routes = (
-  <Router history={browserHistory}>
-    <Route onEnter={globalOnEnter} onChange={globalOnChange}>
-      <Route path="/" component={Login} privacy="unauth" onEnter={onEnterPublicPage} />
-      <Route path="/signup" component={Signup} privacy= "unauth" onEnter={onEnterPublicPage} />
-      <Route path="/dashboard" component={Dashboard} privacy="auth" onEnter={onEnterPrivatePage} />
-      <Route path="/dashboard/:id" component={Dashboard} privacy="auth" onEnter={onEnterNotePage} />
-      <Route path="*" component={NotFound} />
-    </Route>
-  </Router>
+// more code
 );
 ```
 
-Go to sign up route and in console:
+1. Go to `/signup` route
+2. Type in console:
 
 `> nextState`
 
@@ -150,11 +142,11 @@ Go to sign up route and in console:
     - It is an empty object but could be populated on other routes
 * `routes` will!
     - routes is an array
-    - routes[0] is global route we defined (5 children)
+    - routes[0] is global route we defined (_5 children_)
     - routes[1] is our `/signup` route and you'll see `privacy` with **unauth**
         + This is what we need to wire up our feature
-
-So we will be grabbing the last route in the `routes` array, we'll grab the `privacy` value off of that, store it and we'll be able to determine what type of page we are on
+* So we will be grabbing the last route in the `routes` array
+    - We'll grab the `privacy` value off of that, store it and we'll be able to determine what type of page we are on
 
 ## Grab the last route
 `const lastRoute = nextState.routes[nextState.routes.length - 1];`
@@ -182,7 +174,7 @@ export const globalOnChange = (prevState, nextState) => {
 };
 ```
 
-### Add to Tracker.autorun()
+### Add to `Tracker.autorun()`
 `client/main.js`
 
 ```

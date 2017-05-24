@@ -1,8 +1,8 @@
 # Enzyme 101
 `Header`
 
-* How we can test things about this Component
-* Can we test the title shows up in the proper location? Yes!
+## How we can test things about this Component?
+* Can we test that the title on a page shows up in the proper location? Yes!
 
 ## Enzyme
 * [Documentation](https://github.com/airbnb/enzyme)
@@ -11,25 +11,33 @@
 **note** Shut down your current `Test` running
 
 ### Install Enzyme
-`$ npm i --save-dev enzyme`
+`$ yarn add -D enzyme`
 
-You also have to install `react-addons-test-utils`
+### You also have to install `react-addons-test-utils`
 
 `$ npm i --save-dev react-addons-test-utils`
 
 ## Create first Client-side test cases
-* Not all Components get tested (_some are too simple_)
+**note** Not all Components get tested (_some are too simple_)
 
 ### Create Header test file
 `$ touch imports/ui/components/Header.test.js`
 
-* `mount` - enables us to mount our Components to the DOM and then we can assert stuff about them
-    - `mount` takes a single argument - JSX
-    - Any time we test a React Component we will be calling `mount`
+#### `mount()`
+* Enables us to mount our Components to the DOM
+* Then we can assert stuff about them
+    - `mount()` takes a single argument - **JSX**
+    - Any time we test a React Component we will be calling `mount()`
+
+### Test #1 - Simple Introduction
+Does our Login button have text that says `Login`?
+
+This is a useless test but gives you an idea how it works
 
 `Header.test.js`
 
 ```
+/* eslint-env mocha */
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import expect from 'expect';
@@ -54,10 +62,15 @@ if (Meteor.isClient) {
 `$ npm test`
 
 * Our simple test passes
+
+### Make the test fail
 * Change `Logout` text to something else and it will fail our test
 
-## Create test to ensure `title` is used and placed inside an h1
+### Test #2
+Create test to ensure `title` is used and placed inside an `h1`
+
 ```
+/* eslint-env mocha */
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import expect from 'expect';
@@ -87,7 +100,7 @@ if (Meteor.isClient) {
 }
 ```
 
-If you alter `Header.js` with `<h1 className="header__title">{props.title}a</h1>`
+If you alter `Header.js` with `<h1 className="header__title">{props.title}a</h1>` (_Added `a` after the title_)
 
 * You'll see our test fails
-* But if you remove the `a`, our test will pass
+* But if you remove the **a**, our test will pass

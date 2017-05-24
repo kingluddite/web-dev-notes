@@ -22,15 +22,14 @@
 `imports/api/users.test.js`
 
 ```
+/* eslint-env mocha */
 it('should add two numbers', function() {
 
 });
 ```
 
-### Turn Eslint off
-When testing you may not want to keep seeing errors so you can disable eslint by putting this at the top of all test files
-
-`/* eslint-disable */`
+### Moca globals
+Add `/* eslint-env mocha */` to the top of the file with mocha globals
 
 ### Run test
 `$ npm test`
@@ -51,6 +50,7 @@ Our test is passing because our code inside our test file does not throw an erro
 
 ### Test fail
 ```
+/* eslint-env mocha */
 it('should add two numbers', function() {
 
 });
@@ -65,6 +65,7 @@ it('should fail', function() {
 
 ### Let's test our test
 ```
+/* eslint-env mocha */
 const add = (a, b) => a + b;
 
 it('should add two numbers', function() {
@@ -81,6 +82,7 @@ it('should add two numbers', function() {
 
 ## More Complex Test
 ```
+/* eslint-env mocha */
 const add = (a, b) => {
   if(typeof b !== 'number') {
     return a + a;
@@ -114,6 +116,7 @@ Create a test that checks to make sure you square a number
 <details>
   <summary>Solution</summary>
 ```
+/* eslint-env mocha */
 const square = (a) => a * a;
 
 it('should square a number', function() {
@@ -137,6 +140,7 @@ Allows you to groups tests
 * Call `describe('method your test is for', function for test)`
 
 ```
+/* eslint-env mocha */
 const add = (a, b) => {
   if(typeof b !== 'number') {
     return a + a;
@@ -173,6 +177,7 @@ Put square inside its own describe block and call it `square`
 <details>
   <summary>Solution</summary>
 ```
+/* eslint-env mocha */
 describe('square', function() {
   it('should square a number', function() {
     const res = square(10);

@@ -28,6 +28,8 @@
 * Test it out
     - Make browser phone size click and watch NoteList appear and on the other click it disappears
 
+### Making improvements
+
 ```
 // more code
 .page-content__sidebar {
@@ -72,17 +74,18 @@
 ```
 // more code
 .page-content__sidebar {
-  width: $page-content-sidebar-width;
-  padding-right: $large-space;
-
+  //
   position: fixed;
-  top: 0;
+  top: $header-height;
   left: 0;
   right: 0;
   bottom: 0;
 
-  @include desktop() {
+  @include desktop {
     display: flex;
+    padding-right: $large-space;
+    width: $page-content-sidebar-width;
+    //
   }
 }
 .is-nav-open .page-content__sidebar {
@@ -92,6 +95,7 @@
 ```
 
 * We want to set `top` to be the value of our header height, which we have stored in the `$header-height: 6rem;` variable
+  - We'll add that in the code snippet below
 
 ## Houston we have a huuuuge Problem!
 * We can not scroll in the sidebar
@@ -278,7 +282,7 @@ When we stretch the browser the tri-bar (tri-con?) stays on the screen
 * Now the tri-con disappears in desktop view
 
 ## How do we bring back the note list when we are in desktop view?
-On mobile position was set to fixed but we need to set that to `static` (default flow of document) when we are in desktop
+On mobile, `position` was set to **fixed** but we need to set that to `static` (_default flow of document_) when we are in **desktop**
 
 ```
 // more code

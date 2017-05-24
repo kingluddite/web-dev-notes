@@ -1,4 +1,11 @@
 # Atom Keybindings I Use
+`keymap.cson`
+# Auto indent 
+```
+# auto indent
+'atom-text-editor':
+  'ctrl-cmd-]': 'editor:auto-indent'
+```
 
 ## add this to `keymap.cson` so you can type `j` + `j` to enter normal mode
 

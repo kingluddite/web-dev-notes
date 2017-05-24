@@ -1,10 +1,10 @@
 # Rendering Notes Part 2
 Exercise
 
-* Write a test case that renders NoteListHeader
-* Pass in a `spy` as the Meteor.call prop
+* Write a test case that renders `NoteListHeader`
+* Pass in a `spy` as the **Meteor.call** `prop`
     - Make sure `spy` gets called with correct argument
-* Then you click the button (simulate that click)
+* Then you click the button (_simulate that click_)
 
 ```
 // create test file

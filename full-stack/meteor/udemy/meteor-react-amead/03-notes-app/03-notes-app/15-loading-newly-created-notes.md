@@ -3,7 +3,7 @@
 ## Sorting our Notes
 By `updatedAt`
 
-`NoteListComponent`
+`NoteList`
 
 ```
 // more code
@@ -28,7 +28,8 @@ export default createContainer(() => {
 
 We will update this line: `notes: Notes.find().fetch().map((note) => {`
 
-* MongoDB has documentation that is different than how to sort when using Meteor. [Here is a good reference](http://meteor.hromnik.com/blog/how-to-sort-collections-in-meteor) to show you how to sort with Meteor
+* MongoDB has documentation that is different than how to sort when using Meteor. 
+* [Here is a good reference](http://meteor.hromnik.com/blog/how-to-sort-collections-in-meteor) to show you how to sort with Meteor
 * We want to sort so that the note we most recently updated is at the top of our notes list
 
 `NoteList`
@@ -53,25 +54,25 @@ export default createContainer(() => {
 }, NoteList );
 ```
 
-* Notes.find({}, {})
-    - That first argument (is an object) makes sure we still return our entire notes Collection
-    - The second argument (is an object) where we can customize our query
+* `Notes.find({}, {})`
+    - That first argument (_is an object_) makes sure we still return our entire notes Collection
+    - The second argument (_is an object_) where we can customize our query
 
 ### Test in Browser
-* The most recently modified note is now at the top
-* Make some new notes, modify notes, watch the list update
+* The most recently modified `note` is now at the top
+* Make some new `notes`, modify `notes`, watch the list update
 
 ## Houston we have a problem
-* When you create a note:
-    - The note is not selected
-    - The URL doesn't change
-    - Our old note data still shows up inside the input and textarea
+* When you create a `note`:
+    - The `note` is not selected
+    - The **URL** doesn't change
+    - Our old `note` data still shows up inside the **input** and **textarea**
     - This is not good and bad design - doesn't make much sense
 
 ### What should happen when we create a new note
-* The URL should update with the id of the new note
-* The input and text area should be empty
-* That new note should be selected
+* The **URL** should update with the `_id` of the new `note`
+* The **input** and **textarea** should be empty
+* That new `note` should be **selected**
 
 `NoteListHeader`
 
@@ -100,7 +101,7 @@ NoteListHeader.propTypes = {
 };
 ```
 
-So change this:
+So change this code:
 
 ```
 import React from 'react';
@@ -130,7 +131,9 @@ export default createContainer(() => {
 }, NoteListHeader);
 ```
 
-And our code that will grab the note id from the new note (from **res** (result)) To this:
+To this code:
+
+* And our code that will grab the note `_id` from the new note (_from **res** (result)_) To this:
 
 ```
 import React from 'react';
@@ -167,8 +170,8 @@ export default createContainer(() => {
 }, NoteListHeader);
 ```
 
-## Add Test
-To make sure Session.set gets called correctly
+## Add our Test to make sure we check for the code we just added
+To make sure `Session.set` gets called correctly
 
 ```
 import { Meteor } from 'meteor/meteor';
@@ -206,7 +209,7 @@ if (Meteor.isClient) {
 ```
 
 ## Next test
-When we pass in an error and no response, the `spy` never gets called
+When we pass in an **error** and **no response**, the `spy` never gets called
 
 ```
 it('should not set session for failed insert', function() {

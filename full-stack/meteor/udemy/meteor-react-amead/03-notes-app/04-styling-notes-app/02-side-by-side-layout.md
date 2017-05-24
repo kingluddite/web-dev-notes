@@ -1,5 +1,5 @@
 # Creating Side-by-side layout
-* side by side layout
+* side-by-side layout
 * heights are dynamic
 * we are trying to make the web site look more like a web app
 
@@ -13,9 +13,9 @@
 }
 ```
 
-This is the B in BEM (block level selecter)
+This is the **B** in `BEM` (_block level selecter_)
 
-* add two elements
+* Add two elements
     - sidebar
     - main content
 
@@ -63,7 +63,9 @@ export default Dashboard = () => {
 }
 ```
 
-Right now our elements are stacked on top of each other but we want them left and right in our layout so we'll use `display: flex`
+* Right now our elements are stacked on top of each other
+* But we want them left and right in our layout
+* So we'll use `display: flex`
 
 `_page-content.scss`
 
@@ -117,7 +119,7 @@ $page-content-main-width: 70rem;
 * examples
     - `$page-content-main-width: calc(2px + 22px);`
     - `$page-content-main-width: calc(100rem - 90rem);`
-* We can inject variables into calc()
+* We can inject variables into `calc()`
     - But we must use [Sass interpolation](https://webdesign.tutsplus.com/tutorials/all-you-ever-need-to-know-about-sass-interpolation--cms-21375) when we do
 
 `_variables.scss`

@@ -63,7 +63,7 @@ Vanilla JavaScript feature where you can call a function specifying your own `th
 `notes.test.js`
 
 ```
-/* eslint-disable */
+/* eslint-env mocha */
 import { Meteor } from 'meteor/meteor';
 import expect from 'expect';
 
@@ -137,7 +137,7 @@ if (Meteor.isServer) {
 ```
 
 ### `beforeEach()`
-* Here we delete a document from our collection and then insert 1 record
+* Here we delete a document from our collection and then insert one record
 * This happens everytime we run test
 
 ## Exercise
@@ -229,7 +229,7 @@ userId: 'testUserId1'
 ```
 
 3. Then our test calls the `presentations.remove` Meteor Method
-4. Here we pass it a valid user id (because our Meteor Method checks for its existence)
+4. Here we pass it a valid user id (_because our Meteor Method checks for its existence_)
 5. But we also pass it a bogus Presentation `id`, which should trigger an error when we try to query **Mongo** for that `id`
 6. If we entered a bogus userId instead, we'll also get an error
 

@@ -1,72 +1,82 @@
 # Mocking functions with Spies
 We will simulate user interaction
 
-* button clicks
-* form submits
-* essential for testing real world Components
+* Button clicks
+* Form submits
+* Essential for testing real world Components
 
 ## Spies
 A way to mock out real functions
 
-* `Accounts.logout()` is a real function that logs us out of the server and client
+* `Accounts.logout()` is a real function that logs us out of the **Server** and the **Client** 
 * We want to `mock` this function
-* We just want to make sure the logout button gets called one time
-* Our assertion library has `Spies` built-in so we don't have to add anything else to our test files
+
+### Make sure the logout button gets called one time
+* Our assertion library has `Spies` built-in
+* So we don't have to import them into our test files
 * [Documentation for `Spies`](https://github.com/mjackson/expect)
 
-* A Spy is a function
+### A Spy is a function
+
+`Header.test.js`
 
 ```
+/* eslint-env mocha */
 it('should call the function', function () {
-      const spy = expect.createSpy();
+  const spy = expect.createSpy();
 
-      expect(spy).toHaveBeenCalled();
-    });
+  expect(spy).toHaveBeenCalled();
+});
 ```
 
-This will generate an test fail and alert us that `spy was not called`
+* This will generate a test fail
+* And alert us that `spy was not called`
 
 ![spy fail](https://i.imgur.com/hfRpUhM.png)
 
 ```
 it('should call the function', function () {
-      const spy = expect.createSpy();
-      spy(3, 4, 123);
-      expect(spy).toHaveBeenCalled();
-    });
+  const spy = expect.createSpy();
+  spy(3, 4, 123);
+  expect(spy).toHaveBeenCalled();
+});
 ```
 
 * This will pass the test
-* `spy()` is a mocked function so the arguments called do not matter
+
+### `spy()` is a mocked function
+* So the arguments called do not matter
 
 ## Don't call a function
-If something is not valid a function should not be called
+If something is not valid ---> a function should not be called
 
 ```
+/* eslint-env mocha */
 it('should call the function', function () {
-      const spy = expect.createSpy();
-      spy(3, 4, 123);
-      expect(spy).toNotHaveBeenCalled();
-    });
+  const spy = expect.createSpy();
+  spy(3, 4, 123);
+  expect(spy).toNotHaveBeenCalled();
+});
 ```
 
 This will error because the function was called and should not have been
 
 * There is no limit on how many times you can call a `spy`
 
-### `toHaveBeenCalledWith()`
+### toHaveBeenCalledWith()
 We can check the arguments inside our `Spy`
 ```
+/* eslint-env mocha */
 it('should call the function', function () {
-      const spy = expect.createSpy();
-      spy(3, 4, 123);
-      spy('Todd');
-      expect(spy).toHaveBeenCalledWith(3, 4, 123);
-    });
+  const spy = expect.createSpy();
+  spy(3, 4, 123);
+  spy('Todd');
+  expect(spy).toHaveBeenCalledWith(3, 4, 123);
+});
 ```
 
-* This will pass because it's true that 3, 4, 123 were called with our Spy
-* But if you just pass 3 by itself, you will get an error because Spy was never called with just the number 3
+* This will pass because it's true that `3`, `4`, `123` were called with our Spy
+* But if you just pass `3` by itself, you will get an error because Spy was never called with just the number `3`
 * But it will pass if you just pass `Todd` by itself because it is true that `Todd` spy was just called with `Todd`
 
 ### Most common assertions
@@ -76,26 +86,26 @@ it('should call the function', function () {
 
 ### debugger
 ```
+/* eslint-env mocha */
 it('should call the function', function () {
-      const spy = expect.createSpy();
-      spy(3, 4, 123);
-      spy('Todd');
-      debugger;
-      expect(spy).toHaveBeenCalledWith('Todd');
-    });
+  const spy = expect.createSpy();
+  spy(3, 4, 123);
+  spy('Todd');
+  debugger;
+  expect(spy).toHaveBeenCalledWith('Todd');
+});
 ```
 
-Refresh browser and we free at the point in code where our `debugger` is
+1. Refresh browser
+2. We **freeze** at the point in code where our `debugger` is
+3. Type `> spy.calls` and press enter
 
 ### Spy.calls
-Very interesting!
-
 * `spy.calls` is an array
-    - It stores one item in the array for every time it is called
+* It stores one item in the array for every time it is called
+* This is a great way to check if a spy was called multiple times
 
 ![spy.calls](https://i.imgur.com/JV8VWWb.png)
-
-This is a great way to check if a spy was called multiple times
 
 ![spy.calls error](https://i.imgur.com/LPw6zVr.png)
 
@@ -104,7 +114,7 @@ This is a great way to check if a spy was called multiple times
 ## Let's get the `spy` call inside of `Header`
 * We want to insure `Accounts.logout()` gets called in development and production
 
-`Header`
+`Header.js`
 
 ```
 import React from 'react';
@@ -134,6 +144,7 @@ export default Header;
 `Header.test.js`
 
 ```
+/* eslint-env mocha */
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import expect from 'expect';
@@ -160,14 +171,6 @@ if (Meteor.isClient) {
       expect(h1Text).toBe(title);
     });
 
-     // it('should call the function', function () {
-    //   const spy = expect.createSpy();
-    //   spy(3, 4, 123);
-    //   spy('Todd');
-    // 
-    //   expect(spy).toHaveBeenCalledWith('Todd');
-    // });
-
     it('should call handleLogout on click', function () {
       const spy = expect.createSpy();
       const wrapper = mount( <Header title="title" handleLogout={spy} /> );
@@ -179,8 +182,10 @@ if (Meteor.isClient) {
 }
 ```
 
-* If you comment out the click we'll get an error, but when you comment it out we pass our test and we just simulated a click of our logout button
-* We commented out the spy 'call the function'
+* If you comment out the click we'll get an error
+* But when you comment it back in we pass our test
+* Congrats! We just simulated a click of our logout button
+* We deleted the spy 'should call the function'
 
 
 

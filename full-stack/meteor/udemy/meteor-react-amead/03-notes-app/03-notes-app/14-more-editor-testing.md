@@ -61,8 +61,8 @@ Do the same for the title
 
 ## Last test for Editor
 When our props change `componentDidUpdate()` handles things correctly
-* We'll start the Component out with no note and no `selectedNoteId`
-* Then we'll update the Component with both of those props to make sure that the `state` correctly gets set
+* We'll start the Component out with no **note** and no `selectedNoteId`
+* Then we'll update the Component with both of those `props` to make sure that the `state` correctly gets set
 
 ```
 it('should set state for new note', function() {

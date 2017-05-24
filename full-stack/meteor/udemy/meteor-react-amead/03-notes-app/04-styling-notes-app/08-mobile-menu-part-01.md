@@ -8,6 +8,12 @@
 
 ![tri-bars menu](https://i.imgur.com/dmG5nP7.jpg)
 
+* Not sure why I took a screenshot of my desktop but that definitely isn't a tri-bar
+
+Here is the tri-bar
+
+![tri-bar](https://i.imgur.com/rt85nMa.png)
+
 * We will add a click on the bars that will open the menu and show us an `X` that when you click it it will close
 * The menu will close when you create a new note
 * The menu will close when you switch to an existing note in the notes list
@@ -17,15 +23,29 @@
     - **isNavOpen** Session name
     - We will use Tracker.autorun()
 
+`_page-content.scss`
+
 ```
+// more code
+page-content__sidebar {
+  display: none;
+  width: $page-content-sidebar-width;
+  padding-right: $large-space;
+
+  @include desktop {
+    display: flex;
+  }
+}
+
 .is-nav-open .page-content__sidebar {
 
 }
+// more code
 ```
 
-* Will enable us to target sidebar only when the nav is open
-* `is-nav-open` only exists when nav is open
-* We will pass that dynamically through that Session variable
+* Will enable us to target **sidebar** only when the **nav** is open
+* `is-nav-open` only exists when **nav** is open
+* We will pass that dynamically through that `Session` variable
 
 ## Adding/Removing `is-nav-open` to DOM
 `client/main.js`
@@ -55,7 +75,7 @@ return (
 
 * import Session to `Header.js`
 
-``
+`import { Session } from 'meteor/session';`
 
 * Add in Container and PropType
 
@@ -248,4 +268,4 @@ We toggle it on:
 
 We toggle it off:
 
-![is-nav-open toggled off(https://i.imgur.com/3JspVwy.png)]
+![is-nav-open toggled off](https://i.imgur.com/3JspVwy.png)
