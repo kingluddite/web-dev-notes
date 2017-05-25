@@ -17,12 +17,12 @@ We just want to serve up the compiled Application (what is inside our `dist`)
 ##### What are middlewares?
 Middlewares are used to intercept and modify incoming requests to our server and they are really a part of Express JS (_not really anything to do with node and not having anything specifically to do with webpack_)
 
-Our middle works by intercepting incoming requests for our application (`index.html`) and it will respond with the compiled JavaScript Application
+Our middleware works by intercepting incoming requests for our application (`index.html`) and it will respond with the compiled JavaScript Application
 
 So if `webpack middleware` will watch for incoming requests, and if it sees one it thinks it needs to take care of, it will grab it and respond with our Application assets
 
 ### One - Install webpack middleware as a module
-    * Stop the current node server `ctrl` + `c`
+Stop the current node server `ctrl` + `c`
 
 `$ yarn add -D webpack-dev-middleware`
 

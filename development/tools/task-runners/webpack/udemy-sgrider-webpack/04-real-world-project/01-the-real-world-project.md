@@ -243,5 +243,5 @@ We save space!
 
 ![smaller file](https://i.imgur.com/8ga9ONx.png)
 
-* The first time a user comes to our website they'll download the entire 3.5 MB chunk but every time after they visit our site again they won't have download vendor.js
+* The first time a user comes to our website they'll download the entire 3.5 MB chunk but every time after they visit our site again they won't have download `vendor.js`
 * If they every clear their browser cache they'll have to download it again

@@ -1,7 +1,7 @@
 # Node and Webpack Integration
 Integrating webpack with node will be different depending on if we our on our development machine or our application has been deployed to some outside service provider (_ie AWS, Heroku..._)
 
-## Enviroment counts!
+## Environment counts!
 Our node server will behave differently depending on its environment
 
 ## Two Different Ways to Set up node

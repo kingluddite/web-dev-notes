@@ -60,7 +60,7 @@ You will see `502 Bad Gateway` error message
 * Choose `Global` on top and select your region from dropdown
 * Then open the elastic bean stalk service (use searchbox to find it)
 * You will open it up and it will be red to let you know something went wrong
-* Click on it and you will see `Heath` is **Degraded**
+* Click on it and you will see `Health` is **Degraded**
 * On left click on `Logs` and open latest batch of log files by clicking on `Download`
 * You will have to search for EB, choose your region, I chose Northern California and launch a new app with `node.js`
 

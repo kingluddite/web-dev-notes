@@ -3,6 +3,12 @@
 ## Install Z
 `$ brew install z`
 
+If you get command not found try this inside the terminal:
+
+`source /usr/local/etc/profile.d/z.sh`
+
+[reference](https://superuser.com/questions/998846/command-line-z-is-installed-but-cant-find-the-command)
+
 [watch video tutorial](https://www.youtube.com/watch?v=qbNn5zJLZU0&index=10&list=PLu8EoSxDXHP7tXPJp5ZmUpuT7sFvrswzf)
 
 ## How to manually upgrade oh-my-zsh
