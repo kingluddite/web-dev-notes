@@ -1,5 +1,12 @@
 # Common Atom Questions, Tips and Default Setup
 
+## How can I speed up the tooltip dropdown?
+`init.coffee`
+
+```
+not sure? Anyone know how to do this? Sublime tooltips are so much faster
+```
+
 ## What is a good font to use?
 [fira font](https://www.youtube.com/watch?v=-aI4l2sSwV0)
 

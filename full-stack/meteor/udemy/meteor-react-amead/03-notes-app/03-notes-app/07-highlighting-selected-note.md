@@ -58,7 +58,7 @@ export default createContainer(() => {
 3. Click on **notes** on the screen and you will see that the word **selected** appears (_eventually we'll add a dynamic css class_)
 
 ### House we have a problem - We forgot to set the session
-Refresh page and the URL stays the same the we lose the selected text because we did not set the session
+Refresh page and the URL stays the same but we lose the selected text because we did not set the session
 
 `routes.js`
 
