@@ -76,7 +76,7 @@ export default createContainer(() => {
 
 `NoteListHeader`
 
-* We will provide a callback function
+* We will provide a **callback** function
 * We'll use Session so import it:
 
 `import { Session } from 'meteor/session';`

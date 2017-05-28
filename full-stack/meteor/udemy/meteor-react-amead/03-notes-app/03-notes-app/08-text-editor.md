@@ -141,7 +141,7 @@ export default createContainer(() => {
 }, Editor);
 ```
 
-* We don't make `presentation` and `selectedNodeId` required PropTypes because they may both not be set
+* We don't make `note` and `selectedNodeId` required PropTypes because they may both not be set
   - User may not have selected a presentation
 
 ### Check out data inside Component using React dev tools

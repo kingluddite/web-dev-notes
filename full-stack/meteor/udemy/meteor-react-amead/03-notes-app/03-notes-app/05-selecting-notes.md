@@ -87,10 +87,10 @@ export const routes = (
 * When we want to set up URL parameters we use `:some-value`
     - `<Route path="/dashboard/:id" component={Dashboard} onEnter={onEnterPrivatePage} />`
     - Now we have access to anything after last forward slash and we'll get that access through a variable called `id`
-    - So if someone visits that page we can fetch that id and show that note to the screen
+    - So if someone visits that page we can fetch that `id` and show that **note** to the screen
 
 ## Handle note click
-* When you click on note we want to show that note and update the URL
+* When you **click** on `note` we want to show that `note` and update the **URL**
     - To do this we just have to use `Session.set()`
 
 Normally we would do something like this:

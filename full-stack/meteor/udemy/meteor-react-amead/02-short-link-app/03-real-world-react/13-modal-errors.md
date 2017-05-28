@@ -1,5 +1,5 @@
 # Setting up Modal Errors
-We submit a bad URL and get a console.log() error with a very user friendly error notification under `reason`
+We submit a bad URL and get a `console.log()` error with a very user friendly error notification under `reason`
 
 ## Add error `state` and default to empty
 `Header`
@@ -62,12 +62,14 @@ onSubmit(e) {
 
 * If we <u>have no error</u>, we clear the **error** `state`
 * If we <u>have an error</u> we set the **error** `state` to **err.reason**
+
+## Close Modal when no errors
 * When we close the modal we set the **error** `state` to empty
 
 ```
 closeModal() {
     this.setState({modalIsOpen: false, url: '', error: ''});
-  }
+}
 ```
 
 ## Exercise
@@ -102,11 +104,11 @@ Or you could use a one line ternary operator with:
 ## Make sure to test that the error appears
 
 ## Add focus
-When Modal opens we want to bring focus to the input field where user will add **url**
+* When Modal opens we want to bring focus to the input field where user will add **url**
+    - `onAfterOpen` - This is provided by `react-modal` and it lets you provide a function and that function gets called right after the modal is open
 
-`onAfterOpen` This is provided by `react-modal` and it lets you provide a function and that function gets called right after the modal is open
-
-* We want to focus on the input but since we switched over to a controlled input we have no way to access it
+## Bring our refs back!
+* We want to **focus** on the `input` but since we switched over to a **controlled input** we have no way to access it
 * We got rid of the `ref` React attribute (_but let's add it back in now_)
 
 ```
@@ -174,7 +176,7 @@ closeModal() {
 ```
 Meteor.call('links.insert', url, (err, res) => {
       if (!err) {
-        this.modalClose();
+        this.closeModal();
       } else {
         this.setState({ error: err.reason });
       }
@@ -200,4 +202,4 @@ Meteor.call('links.insert', url, (err, res) => {
 ```
 
 ### Test
-Click visit and it will take you to the shortUrl
+Click visit and it will take you to the **shortUrl**
