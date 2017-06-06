@@ -145,3 +145,38 @@ require('./handlers/passport'); // add this line
 * For now, delete the email in Compass and register again
 * You will see success flash letting you know you are logged in
 * You are redirected to the home page
+
+### Troubleshoot Login
+If you are having problems logging in it may be your email and normalizeEmail
+
+`userController.js`
+
+```
+// more code
+exports.validateRegister = (req, res, next) => {
+  req.sanitizeBody('name');
+  req.checkBody('name', 'You must supply a name').notEmpty();
+  req.checkBody('email', 'That Email is not valid').isEmail();
+  req.sanitizeBody('email').normalizeEmail({
+    remove_dots: false,
+    remove_extension: false,
+    gmail_remove_subaddress: false
+  });
+// more code
+```
+
+If you use gmail and you have a `.` in your email like `john.doe@gmail.com`, normalizeEmail() will strip out the `.` so if you log in with `john.doe@gmail.com` you will get a failed log in
+
+You will have to add `gmail_remove_dots: false`
+```
+req.sanitizeBody('email').normalizeEmail({
+    remove_dots: false,
+    remove_extension: false,
+    gmail_remove_dots: false
+  });
+```
+
+I had this issue with my email and it took me an hour to figure it out
+
+
+
