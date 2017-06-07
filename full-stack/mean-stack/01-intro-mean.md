@@ -46,13 +46,13 @@ Install Yeoman
 $ npm install -g yo
 ```
 
-Install the MEAN.js generator
-
+Install the MEAN.js` generator
+`
 ```
 $ npm install -g generator-meanjs
 ```
 
-Generate a MEAN.js app
+Generate a `MEAN.js` app
 
 ```
 $ yo meanjs
@@ -73,7 +73,7 @@ Steps to create our todo app (building from scratch)
 2. Terminal (iTerm)
 3. Browser (Chrome)
 
-dev/mean-stuff/mean-todo-list
+`dev/mean-stuff/mean-todo-list`
 
 mean-todo-list
 
@@ -82,16 +82,16 @@ $ cd ~/Documents/dev/mean-stuff/mean-todo-list
 $ mkdir src
 ```
 
-- src/ (used to hold our code and keep separation from other 3rd party libaries)
+- `src/` (_used to hold our code and keep separation from other 3rd party libaries_)
     + will contain all our node application code
 
 ## Make our Project a node project
 
 ```
-$ npm init
+$ npm init -y
 ```
 
-* initializes a package.json file
+* initializes a `package.json` file
 * node uses this file for keeping 3rd party node modules up to date and to run scripts (like tests)
     - node uses package.json to manage dependencies
     - run scripts to run tests
@@ -147,7 +147,7 @@ specify engines key with current version of node (node -v)
 ## Install Express
 
 ```
-$ npm install express --save-exac
+$ npm install express --save-exact
 ```
 
 When installing **npm** packages, you can provide the optional **--save-exact** (or -E) command line flag in order to save the dependency with an exact version instead of npm's default semver range operator.

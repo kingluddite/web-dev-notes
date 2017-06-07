@@ -1,13 +1,12 @@
 # The ZSH shell
 
 ## Install Z
-`$ brew install z`
-
-If you get command not found try this inside the terminal:
-
-`source /usr/local/etc/profile.d/z.sh`
-
-[reference](https://superuser.com/questions/998846/command-line-z-is-installed-but-cant-find-the-command)
+# Download to latest to home dir
+wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O ~/z.sh
+# Add to .bashrc
+`$ echo . /path/to/z.sh >> ~/.bashrc`
+# Add to .zshrc
+`$ echo . /path/to/z.sh >> ~/.zshrc`
 
 [watch video tutorial](https://www.youtube.com/watch?v=qbNn5zJLZU0&index=10&list=PLu8EoSxDXHP7tXPJp5ZmUpuT7sFvrswzf)
 
