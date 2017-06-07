@@ -1,3 +1,4 @@
+* names not being removed from textarea when switching to new presentation
 * Take code from Modal and put in text field to add students to presentations (done)
 * Add edit students to box holding count of students and change view students to Edit Students in EditPresentation
 * Make back button look better
@@ -13,3 +14,4 @@
 * replace updateAt in preslistitem with startDate (done)
 
 * Focus on first form field when create section, presentation, student (icebox)
+* when you delete records they are going to the wrong path and getting 404
