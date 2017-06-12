@@ -534,6 +534,7 @@ Sublime Text > Preferences > Settings - User
   "theme": "Material-Theme.sublime-theme",
   "color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
   "create_window_at_startup": false,
+  "binary_file_patterns": ["*.jpg", "*.jpeg", "*.png", "*.gif", "*.ttf", "*.tga", "*.dds", "*.ico", "*.eot", "*.pdf", "*.swf", "*.jar", "*.zip", "node_modules/**"],
   "default_line_ending": "LF",
   "drag_text": false,
   "draw_white_space": "all",
@@ -638,3 +639,143 @@ https://huima.wordpress.com/2014/06/29/sublimetext-markdown-preview-live-reload-
 https://forum.sublimetext.com/t/how-to-use-livereload-in-sublime-text-3/16356/14
 
 Hopefully this saved people the hour it took me. Was it worth it? Of course :)
+
+## Use React With Sublime (08.08.2017)
+### Babel
+* Install the `Babel` Package
+  - This makes it easy for you to write common React functions
+### AutoComplete JSX/HTML `Emmet`
+* You obviously need to have Emmet installed
+* In order to get Emmet to work in JSX files, you’ll need to add the following to your Key Bindings — User file (you can access it under Preferences)
+
+`Default (OSX).sublime-keymap -- User`
+
+```
+{"keys": ["tab"], "command": "expand_abbreviation_by_tab", "context":
+  [
+    { "operand": "source.js", "operator": "equal", "match_all": true, "key": "selector" },
+    { "match_all": true, "key": "selection_empty" },
+    { "operator": "equal", "operand": false, "match_all": true, "key": "has_next_field" },
+    { "operand": false, "operator": "equal", "match_all": true, "key": "auto_complete_visible" },
+    { "match_all": true, "key": "is_abbreviation" }
+  ]
+}
+```
+
+* Add the `SublimeLinter` package
+* Add the `SublimeLinter-contrib-eslint` package
+* Shut down and Start up Sublime Text
+* You should see error
+* Open JavaScript file and choose
+
+![open files as](https://i.imgur.com/OvQxHXf.png)
+
+## FAQ and Troubleshooting
+
+##### What is my first step to find out what trouble I have?
+
+Use SublimeText console and SublimeLinter debug mode.
+
+1. Check `Tools -> SublimeLinter -> Debug Mode`.
+2. Open console `View -> Show Console`.
+
+Then open any JS file and run `Tools -> SublimeLinter -> Lint This View`. It must be an output in console after, something like that:
+
+```
+SublimeLinter: eslint: 1.js ['/Projects/sample/node_modules/.bin/eslint', '--format', 'compact', '--stdin', '--stdin-filename', '@'] 
+```
+
+##### I've got 'SublimeLinter: ERROR: eslint cannot locate 'eslint' in ST console when I try to use locally installed `eslint`.
+
+You **must** have `package.json` file if install `eslint` locally. Also, restart project or ST itself after to make sure SublimeLinter uses correct `eslint` instance.
+
+```
+npm init -f
+npm install eslint
+```
+
+##### Plugin still does not work or there are errors in ST console.
+
+Update `eslint` instance, probably you use outdated version and SublimeLinter does not check it properly sometimes.
+
+##### There are no errors in console, but plugin does nothing.
+
+ESLint >2.0.0 does not enable any default rules and you should have config file for your code. Run in your console:
+```
+eslint --init # if eslint is global
+./node_modules/.bin/eslint --init # if eslint is installed locally
+```
+
+[link to sublime jsx setup with react](https://codepen.io/mi-lee/post/sublime-text-setup-for-react-js-development)
+
+You also have to point your linter to where node is located
+[point node to linter](http://jonathancreamer.com/setup-eslint-with-es6-in-sublime-text/)
+
+Add tab trigger for emmet
+[video ](http://wesbos.com/emmet-react-jsx-sublime/)
+[gist](https://gist.github.com/wesbos/2bb4a6998635df97c748)
+
+```
+{
+  "keys": ["tab"], 
+  "command": "expand_abbreviation_by_tab", 
+
+  // put comma-separated syntax selectors for which 
+  // you want to expandEmmet abbreviations into "operand" key 
+  // instead of SCOPE_SELECTOR.
+  // Examples: source.js, text.html - source
+  "context": [
+    {
+      "operand": "meta.group.braces.round.js, text.html", 
+      "operator": "equal", 
+      "match_all": true, 
+      "key": "selector"
+    }, 
+
+    // run only if there's no selected text
+    {
+      "match_all": true, 
+      "key": "selection_empty"
+    },
+
+    // don't work if there are active tabstops
+    {
+      "operator": "equal", 
+      "operand": false, 
+      "match_all": true, 
+      "key": "has_next_field"
+    }, 
+
+    // don't work if completion popup is visible and you
+    // want to insert completion with Tab. If you want to
+    // expand Emmet with Tab even if popup is visible -- 
+    // remove this section
+    {
+      "operand": false, 
+      "operator": "equal", 
+      "match_all": true, 
+      "key": "auto_complete_visible"
+    }, 
+    {
+      "match_all": true, 
+      "key": "is_abbreviation"
+    }
+  ]
+}
+```
+
+## Useful packages
+Scopehunter - shows you the scope you are in, useful for stuff like you want tab to work in emmet and it isn't in jsx and you want to find your scope so you can add it into your keybinding - Wes Bos talks about it in his video to solve tab issue inside JSX (http://wesbos.com/emmet-react-jsx-sublime/)
+
+### In ST3 settings file remove `node_modules` from search:
+```
+"binary_file_patterns": ["*.jpg", "*.jpeg", "*.png", "*.gif", "*.ttf", "*.tga", "*.dds", "*.ico", "*.eot", "*.pdf", "*.swf", "*.jar", "*.zip", "node_modules/**"],
+```
+
+### Navigate Sidebar sublime text
+`cntrl` + k, ctrl + b  ----> toggle sidebar
+`ctrl` + 0 -----> focus sidebar
+`up/down arrow` ---> navigate sidevar folder/file list
+`right arrow` ---> expand directory
+`left arrow` ---> collapse directory
+`enter arrow` ---> open file

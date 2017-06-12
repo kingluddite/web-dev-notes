@@ -59,7 +59,7 @@ If you have an express app with mongo Database behind it you'll want a server-ba
 ```
 
 * Several modules we installed in our project
-    - Chief of which is React.js
+    - Chief of which is `React.js`
     - They make use of NODE_ENV flag
     - Whenever node runs it looks for a window scoped variable `process.env.NODE_ENV`
         + Literally in your browser when React boots up it will look for this variable on window scope
