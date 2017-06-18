@@ -779,3 +779,19 @@ Scopehunter - shows you the scope you are in, useful for stuff like you want tab
 `right arrow` ---> expand directory
 `left arrow` ---> collapse directory
 `enter arrow` ---> open file
+
+### Open in Chrome
+* Create a new build system
+* On mac and sublime text 3 , which version is 3103, the content should be
+* You can add a new "Build System" under
+
+`Tools` -> `Build System` -> `New Build System...`
+
+```
+{
+    "shell_cmd": "open -a 'Google Chrome' '$file'"
+}
+```
+
+* To run this build
+  - `cmd` + `b`
