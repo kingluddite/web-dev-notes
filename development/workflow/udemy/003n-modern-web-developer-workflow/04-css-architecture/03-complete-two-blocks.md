@@ -30,7 +30,6 @@
 `_large-hero.css`
 
 ```
-
 // more code
 &__description {
   color: #fff;
@@ -89,7 +88,7 @@
 
 `index.html`
 
-```
+```html
 // more code
   <header>
     <img src="assets/images/icons/clear-view-escapes.svg">
@@ -106,7 +105,7 @@ $mainBlue: #2f5572;
 
 `/app/styles/modules/_btn.css`
 
-```
+```css
 .btn {
   background-color: $mainBlue;
   color: #fff;
@@ -116,7 +115,7 @@ $mainBlue: #2f5572;
 ### Import the partial
 `styles.css`
 
-```
+```css
 @import 'normalize.css';
 @import 'base/_variables';
 @import 'base/_global';
@@ -127,7 +126,7 @@ $mainBlue: #2f5572;
 ### Update other blue colors
 `_large-hero.css`
 
-```
+```css
   &__title {
     color: $mainBlue;
     font-weight: 300;
@@ -149,7 +148,7 @@ $mainBlue: #2f5572;
 ### Making improvements on button
 `_btn.css`
 
-```
+```css
 .btn {
   background-color: $mainBlue;
   color: #fff;
@@ -166,14 +165,14 @@ $mainBlue: #2f5572;
 ## Errors break the gulp-watch task
 * Just restart with `$gulp watch`
 
-Our default button
+### Our default button
 
 ![default button](https://i.imgur.com/R58PTrk.png)
 
 ### Styling another button
 `index.html`
 
-```
+```html
 // more code
 <footer>
     <p>Copyright &copy; 2016 Clear View Escapes. All rights reserved. <a href="#" class="btn">Get in Touch</a></p>
@@ -185,7 +184,7 @@ Our default button
 * But now we want to use a `BEM modifier`
 
 ### Adding a BEM modifier for our button
-```
+```html
 // more code
 <footer>
     <p>Copyright &copy; 2016 Clear View Escapes. All rights reserved. <a href="#" class="btn btn--orange">Get in Touch</a></p>
@@ -218,7 +217,7 @@ $mainBlue: #2f5572;
 $mainOrange: #d59541;
 ```
 
-Orange button
+### Orange button
 
 ![orange button](https://i.imgur.com/gB8kJSr.png)
 
@@ -235,7 +234,7 @@ Orange button
 
 `_btn.css`
 
-```
+```css
 // more code
   &--orange {
     background-color: $mainOrange;
@@ -273,19 +272,19 @@ gulp.task('watch', function() {
 ### When do we want to run our cssInject task?
 Whenever we save a change to any css file we trigger the `styles` task which runs all of our postCSS tasks
 
-We'll make this change
+#### We'll make this change:
 
-from
+From this:
 
-```
+```js
 watch('./app/assets/styles/**/*.css', function() {
     gulp.start('styles');
   });
 ```
 
-to
+To this:
 
-```
+```js
 watch('./app/assets/styles/**/*.css', function() {
     gulp.start('cssInject');
   });
@@ -308,7 +307,7 @@ gulp.task('watch', function() {
 // more code
 ```
 
-* Stop and start browserSync again
+* Stop and start `browserSync` again
 * Test with some obvious code
 
 `_global.js`
@@ -326,19 +325,19 @@ body {
 * Remove the blue background as we just used it for an example
 
 ### That browerSync box is annoying so we can turn it off
-* See how cool browserSync is
-* Select text, make CSS change, the text is still selected, browserSync didn't even need to refresh the page
+* See how cool `browserSync` is
+* Select text, make CSS change, the text is still selected, `browserSync` didn't even need to refresh the page
   - When we start working with JavaScript this feature will come in very handy because, like opening and closing a menu, it is really nice to update the CSS without updating the state of the browser
 
 ### Cool feature - the sync in browserSync
-* Copy URL and paste in safari and firefox
+* Copy URL and paste in Safari and Firefox
 * Scroll and they all scroll
   - Any actions in one browser
     + filling out a form, opening menu,
     + They will be matched in all browsers open in your computer
 * This makes `cross browser testing super easy`
 
-### the External URL in terminal
-* type that URL into your mobile phone or tablet and you can preview our website on your devices
+### The External URL in terminal
+* Type that URL into your mobile phone or tablet and you can preview our website on your devices
 * So mobile testing becomes super simple too
 

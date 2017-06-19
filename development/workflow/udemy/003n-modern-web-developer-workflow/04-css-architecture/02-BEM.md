@@ -1,9 +1,9 @@
 # BEM
 Old way to target elements
 
-`_large-hero-css`
+`_large-hero.css`
 
-```
+```css
 // more code
 
 .large-hero h1 {
@@ -15,7 +15,7 @@ BEM is better
 
 * Give element a class
 
-```
+```css
 .large-hero__title {
     font-weight: 300;
 }
@@ -52,16 +52,17 @@ Popular abstract way of thinking about our interface
     - and a larger button `btn btn--orange btn--large`
 
 ## BEM Takeaway
-* CSS selectors should target elements directly with classes, instead of relying on type selectors, descendant selectors, and the cascade
+* CSS selectors should target elements directly with classes
+  - Instead of relying on **type selectors**, **descendant selectors**, and **"the cascade"**
 * Because we are limiting cascade we are free to move blocks around and reuse them throughout the page
     - we create a one-on-one relationship between a block of HTML and its CSS we don't need to worry about any parent elements trickling their styles down to our block and hurting the predictability of our blocks styles
 * Blocks can be nested inside other blocks
 * Identify patterns, and then create **single-responsibility** blocks
 * BEM makes the relationship between our HTML and CSS crystal clear
-    - Editing sites that are a year old are a pain
+    - Editing sites that are over year old can become a nightmare
     - You don't have the confidence to edit any CSS because you don't know where the styles are being used and what your changes might break
     - And if you can't edit existing CSS you just pile more spaghetti CSS on top of the existing spaghetti CSS
-        + you create brand new CSS styles and plop them into the already enormous pile of existing CSS
+        + You create brand new CSS styles and plop them into the already enormous pile of existing CSS
         + That is not organized
         + That is not maintainable
         + That is a developers nightmare
@@ -75,10 +76,10 @@ Popular abstract way of thinking about our interface
 Some columns are 50/50 width, some are 25/75 (for two columns) and 3 columns are 33% * 3
 
 * The pattern is columns
-* There is know reason to code a pattern more than once
+* There is no reason to code a pattern more than once
+  - We want to write modular reusable code
 
-So...for testimonials
-
+### So...for testimonials
 * Create a block to represent column layouts
 * Then create a block for testimonials to nest inside the column block
 * We can reuse the column block throughout the page
@@ -87,12 +88,13 @@ So...for testimonials
     - The testimonial block has the single responsibility of creating testimonials
 
 ## How does BEM deal with the semantics of our HTML?
-Is adding all these extra classes with presentational names making our HTML less semantic? No
+Is adding all these extra classes with presentational names making our HTML less semantic? **No**
 
-Nicolas Gallagher - creator of Normalize.css
-
-* Well known and respected in internet community
-* Great [article to read for homework](http://nicolasgallagher.com/about-html-semantics-front-end-architecture/)
+### Nicolas Gallagher
+  * Creator of `Normalize.css` says:
+  * Well known and respected in internet community
+  * Great [article to read for homework](http://nicolasgallagher.com/about-html-semantics-front-end-architecture/)
+  * He says:
     - "Class names cannot be 'unsemantic'"
     - "Content-layer semantics are already served by HTML elements"
     - "Class names impart little or no useful semantic information to machines or human visitors"
@@ -116,7 +118,7 @@ Nicolas Gallagher - creator of Normalize.css
 
 `index.html`
 
-```
+```html
 // more code
 <h2 class="large-hero__subtitle">One trip away.</h2>
 // more code
@@ -124,7 +126,7 @@ Nicolas Gallagher - creator of Normalize.css
 
 `_large-hero.css`
 
-```
+```css
 // more code
 .large-hero__subtitle {
   color: #2f5572;
@@ -134,7 +136,7 @@ Nicolas Gallagher - creator of Normalize.css
 ```
 
 ## Nesting
-We could use PostCSS to Nest our code but that would go against the BEM philosophy of no nesting because that would lead to **specificity wars**
+We could use `PostCSS` to nest our code but [that would go against the BEM philosophy](https://en.bem.info/methodology/) of no nesting because that would lead to **specificity wars**
 
 [reading assignment on specificity](https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/)
 
@@ -144,7 +146,7 @@ We could use PostCSS to Nest our code but that would go against the BEM philosop
 * Without having Gulp compile things down to a descendant selector
 
 ##### Example of descendant selector
-```
+```css
 .large-hero .large-hero__text-content {
   position: absolute;
   top: 50%;

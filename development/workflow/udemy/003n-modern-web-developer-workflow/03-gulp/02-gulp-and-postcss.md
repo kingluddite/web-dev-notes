@@ -6,7 +6,7 @@
 
 ### Other CSS features
 * Stuff we want to do with CSS but can't do it because Web browsers don't support it
-* Famous CSS Preprocessor
+* Famous CSS Preprocessors
     - Sass
     - Less
     - Stylus
@@ -45,7 +45,7 @@ We are not just moving water, we are manipulating the water
 ![code and PostCSS filters](https://i.imgur.com/xNV2xZ0.png)
 
 ## Setup CSS workflow
-* We use the word `return` because `gulp.src()` is an asynchronous function
+* We use the word `return` because `gulp.src()` is an **asynchronous** function
 * We need to Gulp to be aware when this function completes so we include `return`
 
 `gulpfile.js`
@@ -99,7 +99,7 @@ You will see
 #### Install gulp postcss
 `$ npm i gulp-postcss -D`
 
-Install autoprefixer
+#### Install autoprefixer
 
 `$  npm i autoprefixer -D`
 
@@ -138,7 +138,7 @@ gulp.task('watch', function() {
 });
 ```
 
-* If you watch with gulp and make a normal CSS change, no difference than before
+* If you **watch** with gulp and make a normal CSS change, no difference than before
 * But if you use a css property that needs prefixes like
 
 ```css
@@ -172,9 +172,9 @@ body {
 }
 ```
 
-If you watch that, it won't work
+If you **watch** that, it won't work
 
-### postcss-simple-vars
+### Install postcss-simple-vars
 You need this package to have variables work
 
 `$ npm i postcss-simple-vars -D`
@@ -215,7 +215,7 @@ gulp.task('watch', function() {
 });
 ```
 
-* Watch with gulp
+* `$ gulp watch`
 * Now you get the variables transformation
 
 ```css
@@ -268,7 +268,7 @@ gulp.task('watch', function() {
 });
 ```
 
-* Watch
+* `$ gulp watch`
 * Make this change
 
 ```

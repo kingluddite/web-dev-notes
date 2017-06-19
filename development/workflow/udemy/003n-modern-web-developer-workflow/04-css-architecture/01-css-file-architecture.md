@@ -40,7 +40,7 @@ body {
 
 * Make a small change to regenerate our gulp code
 
-### fix out image
+### Fix image
 * It is so large that it is horizontally scrolling
 
 `styles.css`
@@ -85,8 +85,9 @@ img {
 }
 ```
 
-* Why `_` before file name (underscore)
-* Traditional naming convention to your team that this file is a partial
+#### Partials
+* Why `_` before file name (_underscore_)?
+  - Traditional naming convention to your team that this file is a partial
 
 #### Import partial
 `styles.css`
@@ -97,12 +98,13 @@ img {
 ```
 
 * imports MUST be at very top of file
-* extensions not needed
-* `@import` is native css feature
+* extensions not needed `_large-hero.css`
+* `@import` is native CSS feature
     - But we DO NOT want the browser to have to download multiple CSS files
-    - We will tell Gulp and PostCSS to look for this line and replace it with the contents of the `_large-here.css` file
+    - We will tell Gulp and PostCSS to look for this line and replace it with the contents of the `_large-hero.css` file
+* Stop gulp by typing this in the Terminal:  
 
-* stop gulp `ctrl` + `c`
+`ctrl` + `c`
 
 ### Install postcss-import
 `$ npm i postcss-import -D`
@@ -123,12 +125,12 @@ gulp.task('styles', function() {
 // more code
 ```
 
-* Make sure to put `cssImport` at very begging of array
-* Watch gulp
+* Make sure to put `cssImport` at very beginning of array
+* `$ gulp watch`
 * View generated css inside `temp` folder and if you see `.large-hero` selector at top, our import of the partial was successful
 
 ## Create `/assets/styles/base`
-* We will put all of our global css inside `base`
+* We will put all of our **global CSS** inside `base` folder
 * We'll cut and past our gobal code into a new file
 
 `/assets/styles/base/_global.css`
@@ -154,12 +156,13 @@ And modify:
 @import "modules/_large-hero";
 ```
 
-* Our main css file doesn't contain any css itself
+### Our very own CSS Recipe book
+* Our main CSS file doesn't contain any CSS itself
 * It is like a recipe pointing to other recipes
     - Where each ingredient has its own specific focused purpose
     - Structuring it like this will help keep our code awesomely organized
 
-### We need to add normalize.css
+### We need to add `normalize.css`
 * How do we grab it from `node_modules`?
 * PostCSS makes this easy!
 
@@ -171,8 +174,8 @@ And modify:
 @import "modules/_large-hero";
 ```
 
-* View your output css file and you'll see we have imported normalize!
-* You need the the .css extenstion on normalize or you will get an error
+* View your output CSS file and you'll see we have imported normalize!
+* You need the the `.css` extension on normalize or you will get an error
 
 ![normalize effect](https://i.imgur.com/5P3WFxT.png)
 
@@ -208,11 +211,12 @@ And modify:
 * Why `large-hero__text-content` name?
     - BEM - bigger discussion, coming later
 
-### add the CSS
+### Add the CSS
 * Center content vertically and horizontally
     - Developers handle this various ways
     - Here is one way
     - Flex is another option that would make this easier
+      + Watch all [Wes Bos free flex videos](https://flexbox.io/) to learn more
 
 `_large-hero.css`
 

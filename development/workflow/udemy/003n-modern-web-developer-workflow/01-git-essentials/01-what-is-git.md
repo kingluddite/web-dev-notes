@@ -4,12 +4,11 @@
 3. Where do we begin?
 
 ## What is Git
-Most popular VCS - Version Control System
+Today's most popular **VCS** - Version Control System
 
-What does git do?
-helps us manage our project's files
-
-Git is a tool we install on our computer
+## What does git do?
+* Helps us manage our project's files
+* Git is a tool we install on our computer
 
 ## What does Git do that makes managing our files easier?
 * History
@@ -26,13 +25,12 @@ Git is a tool we install on our computer
 
 ![visual for feature branches](https://i.imgur.com/O3IYf6z.png)
 
-* When we are finished our header-changes we fold in back into our tree (master branch)
-* Do the same with footer-changes
+* When we are finished making our changes in our `header-changes` branch we fold in back into our tree (_master branch_)
+* Do the same with `footer-changes` branch
 
-## Vocab
-Project = Repository (repo)
-
-Git saves all changes in repo
+## Web Dev Vocab
+* Project = Repository (_repo_)
+* Git saves all changes in **repo**
 
 ### Working directory
 * Folder on your computer where your project lives
@@ -42,63 +40,70 @@ Git saves all changes in repo
 Only when we actively commit changes does Git save them
 
 ### Staging
-We stage our changes before we commit them
-Before you sell a home, you first have to get it ready or staged
-Staging means preparing, getting ready
-Staging enables us to control what gets committed
-We don't always want to push every change we made into a commit
-We add files to Staging area and when I'm happy they are what I want to commit, I commit them
+* We `stage` our changes before we `commit` them
+* **analogy** Before you sell a home, you first have to get it ready or staged
+* Staging means preparing, getting ready
+* Staging enables us to control what gets committed
+* We don't always want to push every change we made into a commit
+* We `add` files to **Staging area** and when we are happy they are what we want to `commit`, we `commit` them
 
-git status
-git add -A (add all changes)
-git commit -m 'your message here'
+`$ git status`
+
+`$ git add -A` (_add all changes_)
+
+`$ git commit -m 'your message here'`
 
 ## Bring back lost files
-If all your files were deleted
+* If all your files were deleted, you can bring them back to life with the following command:
 
 `$ git checkout -- .`
 
-And our files are right back where we last had them
+* And presto! Our files are right back where we last had them
+* Even if all your files content or entire files and folder are deleted as long as you have `.git` you can restore them with `$ git checkout -- .`
 
-Even if all your files content or entire files and folder are deleted as long as you have `.git` you can restore them with `$ git checkout -- .`
+### Git != GitHub
+* Github is one of many services that can host your repos
+* Github is the most popular
 
-Git != GitHub
-
-Github is one of many services that can host your repos
-Github is the most popular
+### Push changes to Github
 
 `$ git push origin master`
 
-Pushes our commit to Github
+### Pull changes from Github
 
 `$ git pull origin master`
 
 ### Tell git about you
-`$ git config --global user.name "PEH2"`
+* `$ git config --global user.name "PEH2"`
+* `$ git config --global user.email "youremail@address.com"`
 
-`$ git config --global user.email "youremail@address.com"`
+## Talk to the terminal
+* `pwd`
+* `cd`
+* `mkdir`
+* `touch`
 
-* pwd
-* cd
-* drag fold on top of command line
-* mkdir
-* touch
+**note** You can also drag your folder from inside finder onto the command line and that will place the path inside the Terminal
 
 ## Create new reop
 `$ git init`
 
-
-.DS_Store - system file on Macs
+### .gitignore
+* `.DS_Store` - system file on Macs
+* We will add this to our `.gitignore`
 
 ## Clone
-Copy an existing repository from a server to our computer's hard drive
+* Copy an existing repository from a server to our computer's hard drive
+* `Public Repo`
+    - Everyone in world can see your code (_doesn't mean they can change your code_)
 
-Public Repo - everyone in world can see your code (doesn't mean they can change your code)
+## BitBucket - offers private repos for free
 
-BitBucket - offers private repos for free
-
-Repo-names: use dashes on Github
+## Repo-names: use dashes on Github
+* Won't allow you to have projects with spaces in their names
 
 ### Add origin
+* Use this so you can push/pull your repo to/from Github
+
 `$ git remote set-url origin https://github.com/USERNAME/REPONAME`
 

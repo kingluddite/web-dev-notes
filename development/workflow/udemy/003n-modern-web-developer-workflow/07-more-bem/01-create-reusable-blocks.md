@@ -212,4 +212,81 @@ And make the description like this:
 
 ![image inline room](https://i.imgur.com/jl4hbXm.png)
 
+* By changing the element to a blocklevel element we are telling it to treat the image like a `div`
+* [Read More About Block level vs Inline](https://www.impressivewebs.com/difference-block-inline-css/)
 
+## Style the Intro Area
+### Design Pattern
+The white spacing at the top of each section is a design pattern
+
+`/app/assets/styles/modules/_page-section.css`
+
+```css
+.page-section {
+  padding: 4.5rem 0;
+}
+```
+
+### Import to `styles.css`
+
+`@import 'modules/_page-section';`
+
+
+### Add to `index.html`
+`<div id="our-beginning" class="page-section">`
+
+* Top and bottom padding added
+
+![top and bottom padding](https://i.imgur.com/5I3BapU.png)
+
+* Our content in `our-beginning` section needs padding
+* We will reuse `wrapper`
+
+`index.html`
+
+![wrap the wrapper](https://i.imgur.com/XvvFd5r.png)
+
+#### Too wide
+* If we have a 30 inch monitor, we don't want our web site to stretch 30 inches
+* We need to set a max-width
+* Too long text lines are terrible usability and way too long for human eye to comfortably read
+    - [read more on line length](https://www.smashingmagazine.com/2014/09/balancing-line-length-font-size-responsive-web-design/)
+
+* We will add a max-width of 1200px and horizontally centered in screen
+
+`_wrapper.css`
+
+```css
+.wrapper {
+  padding-left: 18px;
+  padding-right: 18px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
+## The benefit of reusable blocks
+`index.html`
+
+```html
+// more code
+<div id="features" class="page-section page-section--blue">
+    <div class="wrapper">
+      ...
+    </div>
+    <!-- /.wrapper -->
+</div>
+<!-- /#features -->
+<div id="testimonials" class="page-section">
+    <div class="wrapper">
+      ...
+    </div>
+    <!-- /.wrapper -->
+</div>
+<!-- /#testimonials -->
+// more code
+```
+
+* We reuse our page-section class
+* We add a block modifier `page-section--blue`

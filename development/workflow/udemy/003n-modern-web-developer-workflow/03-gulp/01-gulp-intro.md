@@ -3,14 +3,19 @@
 * A build system
 * A build tool
 * A task runner
-* Translation: Gulp makes it easy to automate development tasks
+* **Translation:** Gulp makes it easy to automate development tasks
 * Gulp is at heart of all automation for many projects
 * Gulp doesn't do anything by itself
     - Lightweight
     - Efficient
     - Runs Quickly
+
+## Gulp is like a Record Player
+
+![record player](https://i.imgur.com/eXX2iSm.png)
+
 * Think of Gulp like a record player
-    - By itself does nothing
+    - It does nothing by itself
     - Gulp plugins === records
     - Thousands of Gulp plugins to automate thousands of tasks
     - Gulp is simple
@@ -18,8 +23,11 @@
 ## Install Gulp on your computer
 ### Two steps to installing Gulp on Project
 1. Install it Globally
-   * `$ gulp` - if you get "Command not found" - you need to install it
-   * If you don't have Gulp installed globally here is how you do that:
+
+`$ gulp`
+
+* If you get **"Command not found"** - you need to install it
+* If you don't have Gulp installed globally here is how you do that:
 
 `$ npm install gulp-cli --global`
 
@@ -27,8 +35,7 @@
 `$ sudo npm install gulp-cli --global`
 
 * Now we have the ability to use gulp commands from any project we are working on, on our computer
-
-* Now run gulp and you'll get an error message
+* Now **run gulp** and you'll get an `error message`
 * `$ gulp -v` - version of Gulp you are currently running
 
 2. Install Gulp in your project
@@ -50,7 +57,7 @@ var gulp = require('gulp');
 ```
 
 * Run gulp `$ gulp` - error --> "Task default is not in your gulpfile"
-* Everything in gulp revolves around tasks
+* Everything in gulp revolves around **tasks**
 
 `gulpfile.js`
 
@@ -84,8 +91,8 @@ gulp.task('html', function() {
 * You can run the `default` task with just `$ gulp`
 * Or you can run the individual `html` task with `$ gulp html`
 
-### first Gulp plugin
-gulp-watch
+### First Gulp plugin
+#### gulp-watch
 
 `$ npm install gulp-watch --save-dev`
 
@@ -108,7 +115,7 @@ watch = require('gulp-watch');
 ### Using watch to watch tasks
 `gulpfile.js`
 
-```
+```js
 var gulp = require('gulp');
 var watch = require('gulp-watch');
 
@@ -129,7 +136,7 @@ gulp.task('watch', function() {
 });
 ```
 
-* Now anytime you make changes to `app/index.html` gulp is watching and will run the log statement inside the `html` task
+* Now anytime you make changes to `app/index.html` Gulp is watching and will runs the log statement inside the `html` task
 
 ## How to stop gulp from watching
 `ctrl` + `c` in command line
@@ -169,6 +176,6 @@ gulp.task('watch', function() {
 });
 ```
 
-* Globbing - way to watch all css files inside a folder or even nested CSS files
+* **Globbing** - way to watch all css files inside a folder or even nested CSS files
 * Changes to anything inside the `css` folder or `index.html` are being watched
 * You can individually call `$ gulp styles` just to run that task
