@@ -33,7 +33,7 @@
 ```
 
 * What will will call our columns?
-* We could call it a 4 - 8 split so
+* We could call it a `4 - 8 split` so
 
 ```html
 <div class="row">
@@ -72,6 +72,7 @@
 
 * 100% /  12 grid = 8.33%
 * 8.33 * 4 = 33.33%
+
 ## Import it
 `styles.css`
 
@@ -83,8 +84,8 @@
 
 ## Clear floats!
 * We have columns but we need to clear our floats
-* When we float a column we take it out of the normal "flow" of the page
-* Both columns are taking out of the flow of the document
+* When we float a column we take it out of the normal ["flow" of the page](http://marksheet.io/css-the-flow.html)
+* Both columns are taking out of the `flow of the document`
 * So the containing `row` thinks that it is empty
 
 ## Sloppy solution
@@ -109,11 +110,12 @@
 
 ![this works](https://i.imgur.com/1pnGwCB.png)
 
+### Sloppy Solution
 * This is a sloppy solution because we added an empty element to our markup
 * Whenever possible you should avoid adding empty elements just for styling purposes
 
 ### A better solution
-Remove the clear me empty element and matching class as we won't use them
+* Remove the `clear-me` empty element and matching class as we won't use them
 
 ```
 &::after {
@@ -121,7 +123,7 @@ Remove the clear me empty element and matching class as we won't use them
   }
 ```
 
-* This enables us to create some psuedo content (aka fake content) with CSS
+* This enables us to create some psuedo content (_aka fake content_) with CSS
 
 `_row.css`
 
@@ -224,8 +226,8 @@ Since we may use our clear float solution more than once, we should move it insi
 * This will break our column layout
 * Our second column gets pushed to a second line
 * This is a common problem
-    - When the width of the entire row exceeds 100%, the columns then appear on their own rows
-    - This happens because the padding we just added + our 33.33% and 66.66% exceeds 100%
+    - When the width of the entire row exceeds `100%`, the columns then appear on their own rows
+    - This happens because the padding we just added + our `33.33%` and `66.66% `exceeds 100%
 
 ## By Default
 Web browsers calculate the **true width** of an element by taking the declared with and then adding on any padding or borders
@@ -286,7 +288,7 @@ img {
 ![right gutter](https://i.imgur.com/QipY8yy.png)
 
 * How do we remove the end gutter?
-* We could select the last column in a row and tell it to have 0 padding
+* We could select the last column in a row and tell it to have `0` padding
     - But that would effect the ratio of our columns
     - The first column is exactly 1/3 available width
     - The second column is exactly 2/3 available width
@@ -361,7 +363,7 @@ Not good
     - `row__medium-4`
     - `row__medium-8`
 
-```
+```html
 // more code
 <!-- /.wrapper -->
       <div class="row row--gutters">
@@ -374,9 +376,31 @@ Not good
 
 `_row.css`
 
-```
-// more code
+```css
+.row {
 
-// more code
+  @mixin clearfix;
+
+  &--gutters {
+    margin-right: -65px;
+  }
+
+  &--gutters > div {
+    padding-right: 65px;;
+  }
+
+  @mixin atMedium {
+    &__medium-4 {
+      float: left;
+      width: 33.33%;
+    }
+
+    &__medium-8 {
+      float: left;
+      width: 66.66%;
+    }
+  }
+
+}
 ```
 

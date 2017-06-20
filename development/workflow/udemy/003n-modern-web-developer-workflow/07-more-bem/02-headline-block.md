@@ -17,7 +17,7 @@
 // more code
 ```
 
-* We could use class names to tie it directly to this h2 and h3
+* We could use class names to tie it directly to this `h2` and `h3`
 * But let's think modular and reusable because there are other headlines that will use the same styles
 
 `index.html`

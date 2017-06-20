@@ -3,7 +3,7 @@
 
 `/app/assets/styles/modules/_wrapper.css`
 
-```
+```css
 .wrapper {
   padding-left: 18px;
   padding-right: 18px;
@@ -13,7 +13,7 @@
 ## Import it
 `styles.css`
 
-```
+```css
 // more code
 @import 'modules/_wrapper'; /* add this line */
 @import 'modules/_large-hero';

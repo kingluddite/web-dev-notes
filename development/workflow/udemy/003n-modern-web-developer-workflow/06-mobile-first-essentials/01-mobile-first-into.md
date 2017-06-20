@@ -2,7 +2,6 @@
 * "Mobile-first" means different things in different contexts
 
 ## What is responsive web design?
-![responsive web design]
 
 * 3 cols - laptop/desktop
 * 2 cols - tablet
@@ -35,9 +34,9 @@ We start with smartphones and we enhance it as the device grows larger
 
 #### Design Content
 * Designing around a smaller screen
-* forces us to prioritize our content
-* anticate most common user actions
-    - on smaller devices, people have shorter attention spans
+* Forces us to prioritize our content
+* Anticate most common user actions
+    - On smaller devices, people have shorter attention spans
 * People involved in design context
     - Information architects
     - Graphic Designers
@@ -93,7 +92,7 @@ Shink our browser down and we see:
 ### Import postcss-mixins
 `styles.js`
 
-```
+```js
 // more code
 cssImport = require('postcss-import'),
 mixins = require('postcss-mixins'); /* add this line */
@@ -127,7 +126,7 @@ Just a resusable piece of code
 #### Import our new mixins file
 `styles.css`
 
-```
+```css
 @import 'normalize.css';
 @import 'base/_variables';
 @import 'base/_mixins'; /* add this line */
@@ -161,7 +160,7 @@ Think of our mobile first design to be `atSmallest`
 ### Add different sizes to mixin
 `_mixins.css`
 
-```
+```css
 @define-mixin atSmall {
   @media (min-width: 530px) {
     @mixin-content;
@@ -184,7 +183,7 @@ Think of our mobile first design to be `atSmallest`
 ### Our finished file
 `_large-hero.css`
 
-```
+```css
 .large-hero {
   position: relative;
 

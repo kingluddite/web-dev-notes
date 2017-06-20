@@ -15,7 +15,8 @@ gulp.task('styles', function() {
 });
 ```
 
-* Now when there is an error, we will tell our styles to stop but not stop Gulp
+## Don't stop the server on error
+* Now when there is an error, we will tell our `styles` task to stop but not stop Gulp
 * Test by adding a non-existant variable like:
 
 `_global.css`

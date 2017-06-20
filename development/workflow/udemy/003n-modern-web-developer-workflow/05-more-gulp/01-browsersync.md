@@ -16,8 +16,8 @@ watch = require('gulp-watch');
 ```
 
 * We are not importing the entire package, just the `create()` method
-* We want to auto-refresh whenver we save a change to a file so we want to work inside our Gulp `watch` task
-* browser-sync spins up a tiny web server on our computer so we need to tell it where our project is
+* We want to auto-refresh whenever we save a change to a file so we want to work inside our Gulp `watch` task
+* `browser-sync` spins up a tiny web server on our computer so we need to tell it where our project is
 
 `gulpfile.js`
 
@@ -39,13 +39,14 @@ gulp.task('watch', function() {
 
 `$ gulp watch`
 
-* Browser-sync starts up a server
+* `Browser-sync` starts up a server
 * Opens the browser
 * Points our site, in the server, to the browser
 
 ### Add the auto-refresh capability
 * Stop the server
-* `ctrl` + `c`
+
+`ctrl` + `c`
 
 `gulpfile.js`
 

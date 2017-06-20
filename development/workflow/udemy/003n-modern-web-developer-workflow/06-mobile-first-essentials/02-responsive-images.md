@@ -1,6 +1,7 @@
 # Responsive Images
 ## What is a responsive image and why do we need it?
 * Very similar to a traditional image
+* [Reading up on high-dpi images](https://www.html5rocks.com/en/mobile/high-dpi/)
 
 ## Two unique situations
 * Two unique code patterns
@@ -28,19 +29,23 @@
 2. Shrink size to mobile
 3. Observer what is happening
 
-* Problem
-    - We are forcing mobile phones to download large image
-    - We are needlessly burning through the smartphone user's data plan
-    - The problem is the `img` tag is forcing us to send one image to all devices, it doesn't care if they differ in size
-* Solution
-    - Send different image files to different device sizes
-    - That is exactly what responsive images do!
+### Problem
+* We are forcing mobile phones to download large image
+* We are needlessly burning through the smartphone user's data plan
+* The problem is the `img` tag is forcing us to send one image to all devices, it doesn't care if they differ in size
+
+### Solution
+* Send different image files to different device sizes
+* That is exactly what responsive images do!
 
 ## Convert traditional image into a responsive image
 ### Two Examples
 * There are two distinct reasons to use responsive images in the first place
 
 1. Art Direction & Cropping situation
+2. Image resolution & file size situation (_faster load times_)
+
+### Art Direction & Cropping situation
 
 `responsive-image-example.html`
 
@@ -68,8 +73,7 @@
 
 * When you need to use responsive images for art direction and cropping situation -----> use the `<picture>` element
 
-2. Image resolution & file size situation (faster load times)
-
+### Image resolution & file size situation (faster load times)
 * Here we leave the browser and the device to decide which image they see
 * The image is the same cropped image
 * But we have three different optimizations of the same cropped image (small, medium and large)
