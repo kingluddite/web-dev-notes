@@ -154,6 +154,22 @@
 // more code
 ```
 
+## Errors
+You will get this error if you forget the `w`
+
+![no w error](https://i.imgur.com/sqrWV7u.png)
+
+```html
+<img class="large-hero__image" srcset="assets/images/hero--smaller.jpg 640w, assets/images/hero--smaller-hi-dpi.jpg 1280" alt="Coastal view of ocean and mountains" />
+```
+
+So make sure to add the `w`
+
+```html
+<img class="large-hero__image" srcset="assets/images/hero--smaller.jpg 640w, assets/images/hero--smaller-hi-dpi.jpg 1280w" alt="Coastal view of ocean and mountains" />
+```
+
+
 
 
  
