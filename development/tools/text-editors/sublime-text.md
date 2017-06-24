@@ -795,3 +795,6 @@ Scopehunter - shows you the scope you are in, useful for stuff like you want tab
 
 * To run this build
   - `cmd` + `b`
+
+## Add closing comment tags HTML
+[article](http://iaintnoextra.tumblr.com/post/68089741466/automatically-add-closing-comments-to-html-using)

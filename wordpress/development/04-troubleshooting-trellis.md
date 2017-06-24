@@ -29,3 +29,11 @@ Time suck problem using DigitalOcean. It prefilled the IP and I had to manually 
 Composer wouldn't update:
 Clear composure cache:
 `rm -rf ~/.composer/cache`
+
+User agent
+[follow these instructions](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#adding-your-ssh-key-to-the-ssh-agent)
+
+## WP-CLI
+WP-CLI is installed by Trellis automatically. The wp command is available globally but you need to run the command from your site root such as /srv/www/example.com/current.
+
+So you need to SSH into your Vagrant box or server, go to that directory, and then run wp commands.

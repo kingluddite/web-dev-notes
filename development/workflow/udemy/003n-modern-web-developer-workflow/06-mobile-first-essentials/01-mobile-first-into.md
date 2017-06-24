@@ -66,6 +66,11 @@ Shink our browser down and we see:
 
 * We need to fix this
 
+### Use Google Chrome mobile settings
+* Set Chrome to iPhone5
+
+![iPhone5](https://i.imgur.com/MGKlG5Z.png)
+
 `_large-hero.css`
 
 ```

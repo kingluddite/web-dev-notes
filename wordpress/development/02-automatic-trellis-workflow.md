@@ -358,7 +358,7 @@ Intialize Git in your project.
 
 `git init`
 
-* `gs` should show you `site/` and `trellis`
+* `$ gs` should show you `site/` and `trellis`
 
 Add files.
 
@@ -462,8 +462,18 @@ Trellis gives us a shortcut for that
 * git push
 * cd trellis
 
-`$ .deploy.sh production make-wordpress-great-again.com`
+`$ ./bin/deploy.sh production make-wordpress-great-again.com`
 * Now it should be faster because our server has been provisioned
 * We can very quickly roll to staging or production
 
+### Adding plugins
+* You need to be in `site` folder
+* Let's say you want to install jetpack
+* `$ composer require automattic/jetpack`
+* then you need to add and commit git changes
+* deploy again from trellis folder
+* https://wpackagist.org/
+
+log into DO with `ssh@IP`
+DO location `/srv/www/DOMAIN.com/current`
 
