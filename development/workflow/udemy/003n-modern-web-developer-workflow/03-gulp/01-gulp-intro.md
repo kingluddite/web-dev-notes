@@ -147,7 +147,7 @@ gulp.task('watch', function() {
 
 `gulpfile.js`
 
-```
+```js
 var gulp = require('gulp');
 var watch = require('gulp-watch');
 

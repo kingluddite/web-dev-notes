@@ -27,7 +27,7 @@
 
 1. View in browser
 2. Shrink size to mobile
-3. Observer what is happening
+3. Observe what is happening
 
 ### Problem
 * We are forcing mobile phones to download large image
@@ -113,7 +113,7 @@
 
 * Here is the code we are changing
 
-```
+```html
 // more code
   <div class="large-hero">
     <img src="assets/images/hero--large.jpg">

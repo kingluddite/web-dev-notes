@@ -86,7 +86,7 @@ gulp.task('createSprite', ['beginClean'], function() {
 
 ![one sprite only](https://i.imgur.com/LWYAYZL.png)
 
-* Move fire.svg back
+* Move `fire.svg` back
 
 `$ gulp icons`
 

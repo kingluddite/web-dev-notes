@@ -4,7 +4,7 @@
 
 `styles.js`
 
-```
+```js
 gulp.task('styles', function() {
   return gulp.src('./app/assets/styles/styles.css')
       .pipe(postcss([cssImport, cssvars, nested, autoprefixer]))
@@ -37,7 +37,7 @@ body {
 ### What error was it?
 `styles.js`
 
-```
+```js
 // more code
 
 gulp.task('styles', function() {

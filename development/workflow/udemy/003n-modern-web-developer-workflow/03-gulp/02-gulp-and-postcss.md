@@ -50,7 +50,7 @@ We are not just moving water, we are manipulating the water
 
 `gulpfile.js`
 
-```
+```js
 var gulp = require('gulp');
 var watch = require('gulp-watch');
 
@@ -105,7 +105,7 @@ You will see
 
 `gulpfile.js`
 
-```
+```js
 var gulp = require('gulp'),
 postcss = require('gulp-postcss'),
 autoprefixer = require('autoprefixer'),
@@ -181,7 +181,7 @@ You need this package to have variables work
 
 `gulpfile.js`
 
-```
+```js
 var gulp = require('gulp'),
 postcss = require('gulp-postcss'),
 autoprefixer = require('autoprefixer'),
@@ -233,7 +233,7 @@ body {
 
 `gulpfile.js`
 
-```
+```js
 var gulp = require('gulp'),
 postcss = require('gulp-postcss'),
 autoprefixer = require('autoprefixer'),
@@ -271,7 +271,7 @@ gulp.task('watch', function() {
 * `$ gulp watch`
 * Make this change
 
-```
+```css
 $mainBlue: #2f5572;
 
 body {
@@ -291,7 +291,7 @@ body {
 
 And you will see this output
 
-```
+```css
 body {
     color: #2f5572;
     padding: 25px;

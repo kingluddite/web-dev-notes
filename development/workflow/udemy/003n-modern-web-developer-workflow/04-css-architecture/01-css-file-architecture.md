@@ -112,7 +112,7 @@ img {
 ### Import and use it
 `gulpfile.js`
 
-```
+```js
 // more code
 cssImport = require('postcss-import'), // add this line
 watch = require('gulp-watch');
