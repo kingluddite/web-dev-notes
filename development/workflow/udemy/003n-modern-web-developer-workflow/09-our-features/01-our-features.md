@@ -17,8 +17,8 @@
 
 `/app/assets/styles/modules/_section-title.css`
 
-```css
-
+```
+? what goes here
 ```
 
 ## Import it
@@ -28,7 +28,7 @@
 @import 'modules/_section-title';
 ```
 
-* Measure Our Features font size 50px (rem 50/16 = 3.125rem)
+* Measure Our Features font size `50px` (rem 50/16 = 3.125rem)
 * We need to make our strong tags bolder when inside a `section-title`
 
 `_section_title.css`

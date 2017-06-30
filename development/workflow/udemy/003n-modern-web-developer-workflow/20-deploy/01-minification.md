@@ -122,6 +122,8 @@ gulp.task('build', ['optimizeImages']);
 ## Delete our `dist` folder
 * Let's begin the build task by **deleting the 'dist' folder** so we begin each build with a clean slate
 
+`$ npm i del -D`
+
 `build.js`
 
 ```js

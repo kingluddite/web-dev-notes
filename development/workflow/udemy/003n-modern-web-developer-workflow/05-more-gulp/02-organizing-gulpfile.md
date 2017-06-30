@@ -1,4 +1,4 @@
-# Gulpfile.js Organization
+# gulpfile.js Organization
 * Create folders and files
 
 `/gulp/tasks/styles.js`

@@ -168,7 +168,7 @@ And modify:
 
 `styles.css`
 
-```
+```css
 @import "normalize.css";
 @import "base/_global";
 @import "modules/_large-hero";
@@ -236,8 +236,8 @@ And modify:
 }
 ```
 
-* What is `positioning`?
-    - **absolute** vs **relative**
+## What is `positioning`?
+### absolute vs relative
 * Organize properties alphabetically
 * Put position properties up top and separate them from the other properties
 * `transform` property
@@ -245,7 +245,8 @@ And modify:
         + Enables us to position an element vertically relative to itself
             * If we use `translateY(100%)` it will put the content down the height of the element
             * If we set it to `translateY(0)` we just want to pull it up half of it's own height so we use `translateY(50%)`
-* Why did we put the huge image on the page versus making it a background image?
-    - Both ways are acceptable
-    - But we will be learning about responsive images soon and this might prove to make this way more acceptable
-    - There is no right or wrong way to overlay text over an image
+
+## Why did we put the huge image on the page versus making it a background image?
+* Both ways are acceptable
+* But we will be learning about responsive images soon and this might prove to make this way more acceptable
+* There is no right or wrong way to overlay text over an image

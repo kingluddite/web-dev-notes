@@ -46,17 +46,23 @@
 
 ### What is REM?
 * When we use `rem` everything is relative to the root of the page
-* The root of Every page is `html`
+* The root of every page is `html`
 * Most browser have a default size of `html` of 16px
   - 16px * 1.5rem = 24px
 
 ### Why use REM?
 * Not everyone has their web browser configured the same
-* Other people may change their default `html` font size to deal with eye problems, near-sighted, far-sighted or just avoiding eye-strain they may have their `html` configured to use `30px`
-* As a good web developer we want to honor the user's font size preference
-* If we use REM for font-size, padding and margin our entire web site, all the white space and balance will scale accordingly to the user's font-size preference
-  - If we used `px` our font-size would be set in stone
-  - If the user had a larger font-size, the text might appear too big for the layout surrounding it
+* Other people may change their default `html` font size to deal with stuff like:
+  - eye problems
+  - near-sighted
+  - far-sighted 
+  - or just avoiding eye-strain
+    + (_they may have their `html` configured to use `30px`_)
+
+##### As a good web developer we want to honor the user's font size preference
+* If we use REM for font-size, padding and margin our entire web site, all the white-space and balance will scale accordingly to the user's font-size preference
+  - If we used `px` our **font-size** would be set in stone
+  - If the user had a larger **font-size**, the text might appear too big for the layout surrounding it
 
 ### How can we eliminate guesswork with font-sizes?
 `_large-hero.css`
@@ -78,7 +84,7 @@
 * Make element on two lines
   - Set a `max-width: 480px` and it will wrap
   - But that will move text to the left
-    + It is still centered in it's 480px wide box but it is now on the left side of the page
+    + It is still centered in it's `480px` wide box but it is now on the left side of the page
   - We need to convert 480px to rem `480 / 16` = 30rem
 
 ![left side of page](https://i.imgur.com/4tyQ8cT.png)
@@ -142,7 +148,7 @@ $mainBlue: #2f5572;
   }
 ```
 
-* I like single quotes for css
+* I like **single quotes** `''` for css
 * The order of the imports is important for obvious reasons
 
 ### Making improvements on button
@@ -159,7 +165,7 @@ $mainBlue: #2f5572;
 ```
 
 * Because we give it padding we also want to give it a display of `inline-block`
-  - Info on what i`nline-block` does [read this stackoverflow article](https://stackoverflow.com/questions/9189810/css-display-inline-vs-inline-block)
+  - Info on what `inline-block` does [read this stackoverflow article](https://stackoverflow.com/questions/9189810/css-display-inline-vs-inline-block)
   - This helps the parent and surrounding elements to be away of of its vertical padding
 
 ## Errors break the gulp-watch task
@@ -249,6 +255,9 @@ $mainOrange: #d59541;
 
 * Make changes to `index.html` and watch the browser refresh on its own
 
+## Install browserSync
+`$ npm i browser-sync -D`
+
 ### Adding browserSync to our CSS
 * browser-sync will inject our latest CSS into the page without even forcing a refresh
 
@@ -256,24 +265,33 @@ $mainOrange: #d59541;
 
 ```
 // more code
+cssImport = require('postcsss-import'), // don't forget the comma
+browserSync = require('browser-sync').create(); // add this line
+// more code
 gulp.task('cssInject', function() {
   return gulp.src('./app/temp/styles/styles.css')
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream());
 })
 
 gulp.task('watch', function() {
-// more code
+
+    browserSync.init({
+      server: {
+        baseDir: 'src'
+      }
+    });
+  // more code
+}
 ```
 
 * Because `gulp.src()` is an asynchronous function we need to return it
-* We point to our temp css file
+* We point to our temp CSS file
 * And use browser-sync's `stream()` function to inject it into our `index.html`
 
 ### When do we want to run our cssInject task?
-Whenever we save a change to any css file we trigger the `styles` task which runs all of our postCSS tasks
+Whenever we save a change to any CSS file we trigger the `styles` task which runs all of our `postCSS` tasks
 
 #### We'll make this change:
-
 From this:
 
 ```js
@@ -325,7 +343,20 @@ body {
 * Remove the blue background as we just used it for an example
 
 ### That browerSync box is annoying so we can turn it off
-* See how cool `browserSync` is
+```
+gulp.task('watch', function() {
+
+    browserSync.init({
+      notify: false,
+      server: {
+        baseDir: 'src'
+      }
+    });
+  // more code
+}
+```
+
+### See how cool `browserSync` is!
 * Select text, make CSS change, the text is still selected, `browserSync` didn't even need to refresh the page
   - When we start working with JavaScript this feature will come in very handy because, like opening and closing a menu, it is really nice to update the CSS without updating the state of the browser
 

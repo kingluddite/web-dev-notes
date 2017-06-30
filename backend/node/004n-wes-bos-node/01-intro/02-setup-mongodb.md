@@ -12,6 +12,7 @@ Dbas
 * Signup
 * Verify Email
 * Free plan for developers
+    - Only get one Database
 
 1. Create new deployment from scratch
 2. Select AWS
@@ -25,21 +26,30 @@ Dbas
 10. When ready, click it
 
 ## What is our connection string?
+
+### variables.env
 * Rename `variables.env.sample` to be `variables.env`
 * Replace `DATABASE=mongodb://user:pass@host.com:port/database`
 * With what **mLab** gives us
+
+### Create a user for your Database
 * We need to add a username and password
-    - click `Users` to add a new Database user
-    - enter a username and password and plug that into DATABASE string
+    - Click `Users` to add a new Database user
+    - Enter a username and password and plug that into DATABASE string
+        + Your username should not be an email address
     - something like `DATABASE=mongodb://deh2admin:R7J2JVpzj^jcZ1Zz%s#i@ds147551.mlab.com:47551/oh-thats-good`
     - This will allow us to connect to our remote mongodb
 
 ### How do we know if our MongoDB connection works?
 * Use a MongoDB GUI
-* MongoDB Compass - [website](https://www.mongodb.com/download-center?filter=enterprise#compass)
-    - Choose latest beta and OS, download and install
+
+### MongoDB Compass
+* [MongoDB Compass website](https://www.mongodb.com/download-center?filter=enterprise#compass)
+    - Choose latest beta and OS
+    - Download and Install
     - Open MongoDB Compass
 * Copy Database line from `variables.env` and Mongo Compass will tell us they know we just copied something and we say yes to the popup and it will autopopulate the Connect to Host page
+* Create a favorite to easily select next time you use Compass
 * Test the connection and it should work
     - The copy and paste is buggy so make sure your username and password are correct, you'll know if you screwedup if you can't connect
 
@@ -60,7 +70,7 @@ Dbas
 * Nice to have it running it its own terminal tab
 * Connect locally
     - MongoDB Compass
-    - localhost (hostname)
-    - (leave at defauls from new connection)
-    - connect and you'll see all your databases you have locally
+    - localhost (_hostname_)
+    - (_Leave at defaults from new connection_)
+    - Connect and you'll see all your databases you have locally
 

@@ -798,7 +798,20 @@ myusername.sql
 
 Look on your desktop and there it shall be. And no FTP needed!
 
+#### Move folder contents into parent folder
+* Make sure you are in the root of your project folder
+* `$ ls` should show you `SOMECHILDFOLDER`
+* Move all the files inside `travel-site-files` to the parent folder `travel-site`
 
+`$ mv travel-site-files/* .`
+
+* If you also want to move hidden files
+
+`$ mv travel-site-files/.* .`
+
+* Remove the empty child folder
+
+`$ rm -rf travel-site-files`
 
 
 

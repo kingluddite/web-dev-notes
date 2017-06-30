@@ -169,7 +169,7 @@ gulp.task('watch', function() {
     gulp.start('html');
   });
 
-  watch('/.app/assets/styles/**/*.css', function() {
+  watch('./app/assets/styles/**/*.css', function() {
     gulp.start('styles');
   });
 

@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
 `const routes = require('./routes/index');`
 
-5. We tell express to use our **routes** here in `app.js`
+5. We tell **express** to use our **routes** here in `app.js`
 
 `app.use('/', routes);`
 
@@ -41,19 +41,25 @@ router.get('/', (req, res) => {
 });
 ```
 
-1. You get the url
-2. You have a callback function that runs whenever someone visits that specific URL
+1. You `get` the URL
+2. You have a **callback** function that runs whenever someone visits that specific URL
 
 ### Callback function gives you three things
-1. The `req` (request) ---> an object full of information coming in
-2. the `res` (response) ---> an object full of methods for sending data back to the user
-3.  `next` --> we'll learn more about this later but at times you won't want to send data back and you just want to pass it off to something else and that is the topic of `middleware`
+1. The `req` (_request_)
+  - An object full of information coming in
+2. the `res` (_response_)
+  - An object full of methods for sending data back to the user
+3.  `next`
+  - We'll learn more about this later
+  - But at times you won't want to send data back and you just want to pass it off to something else and that is the topic of `middleware`
 
 ### Stuff we can do with our `res`
-* res.send()
-* You NEVER want to send data more than once
+* `res.send()`
+* **Important** You NEVER want to send data more than once
+  - If you do, you'll get an error
+  - Replace our route with the code below and you'll see the error
 
-```
+```js
 router.get('/', (req, res) => {
   const player = { name: 'Kobe', age: 40, good: true };
   res.send('Hey! It works!');
@@ -61,14 +67,14 @@ router.get('/', (req, res) => {
 });
 ```
 
-## Houston we have a problem
+## Houston we have a problem!
 We get an error stating `Error: Can't set headers after they are sent`
 
 ![header error](https://i.imgur.com/vpowWmg.png)
 
 But if we comment out `res.send()` and we want to send our JSON object
 
-```
+```js
 router.get('/', (req, res) => {
   const player = { name: 'Kobe', age: 40, good: true };
   // res.send('Hey! It works!');
@@ -80,14 +86,16 @@ We will see this:
 
 ![json output](https://i.imgur.com/UZVO25T.png)
 
-* Download Chrome extension `JSON formatter` to make your JSON look more readable
+* Download Chrome extension `JSON Viewer` to make your JSON look more readable
 
 ### How do we get data that is in URL?
+* Put this URL in the address bar of the browser and replace our current route with the route below
+
 `http://localhost:7777/?name=kobe&age=40&good=true`
 
-* The URL is part of the request
+* The URL is part of the **request** `req`
 
-```
+```js
 router.get('/', (req, res) => {
   const player = { name: 'Kobe', age: 40, good: true };
   // res.send('Hey! It works!');
@@ -120,15 +128,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 ```
 
 * This is middleware
-* Before we get to our routes, express will check URL and it will check if use has posted data from a form and this will put all the data in the request so we can easily access it with stuff like `req.query` or `req.body` or `req.params`
+* Before we get to our routes, express will check URL and it will check if use has posted data from a form and this will put all the data in the request so we can easily access it with stuff like 
+  - `req.query` 
+  - or `req.body` 
+  - or `req.params`
 
 ### Let's make a new route
 * Our route will return the reverse of the name we enter
 * How do you put variables in a route? `router.get('/reverse/:name')`
+  - Add the following route below our existing route
+  - Enter the URL into the browser address bar and press enter
+    + http://localhost:7777/reverse/bob
 
-URL -> http://localhost:7777/reverse/bob
+```js
+router.get('/', (req, res) => {
+  const player = { name: 'Kobe', age: 40, good: true };
+  res.json(req.query.name);
+});
 
-```
 router.get('/reverse/:name', (req, res) => {
   res.send('it works!');
 });
@@ -136,7 +153,7 @@ router.get('/reverse/:name', (req, res) => {
 
 Now if we go to that URL it will hit our route and output `it works!`
 
-```
+```js
 router.get('/reverse/:name', (req, res) => {
   res.send(req.params);
 });
@@ -146,7 +163,7 @@ URL -> http://localhost:7777/reverse/jerry
 
 Will output to screen:
 
-```
+```js
 {
 "name": "jerry"
 }
@@ -155,7 +172,7 @@ Will output to screen:
 ### Reverse the name in the URL and send it back to user
 URL -> http://localhost:7777/reverse/elvis
 
-```
+```js
 router.get('/reverse/:name', (req, res) => {
   const reverse = [...req.params.name].reverse().join('');
   res.send(reverse);
@@ -163,7 +180,13 @@ router.get('/reverse/:name', (req, res) => {
 ```
 
 * Try to reverse the name of `racecar`
-* req.body --> we'll use for posted parameters
+* `[...req.params.name]`
+  - spread operator
+  - Converts to an array and puts each letter as an item
+  - We use the array `reverse()` method to reverse the order of the array of letters
+  - We join the letters together with `.join()`
+* `req.body`
+  - We'll use for posted parameters
 
 All this and more can be found at the [Express Documentation page](https://expressjs.com/en/4x/api.html)
 

@@ -109,6 +109,8 @@ mixins = require('postcss-mixins'); /* add this line */
 ### Add mixins to our task
 In `styles.js`
 
+`.pipe(postcss([cssImport, mixins, cssvars, nested, autoprefixer]))`
+
 ![mixins added to task](https://i.imgur.com/dfjfUfQ.png)
 
 * We add it just after `cssImport`

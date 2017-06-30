@@ -73,7 +73,7 @@ Popular abstract way of thinking about our interface
 * (two columns) [screenshot](https://i.imgur.com/Nip3IUf.png)
 * (three columns) [screenshot](https://i.imgur.com/CxMil6M.png)
 
-Some columns are 50/50 width, some are 25/75 (for two columns) and 3 columns are 33% * 3
+Some columns are `50/50 width`, some are `25/75` (for two columns) and 3 columns are `33% * 3`
 
 * The pattern is columns
 * There is no reason to code a pattern more than once
@@ -115,6 +115,10 @@ Is adding all these extra classes with presentational names making our HTML less
 
 * We'll discuss what `rem` is in a bit
 * It is just a responsive measurement
+
+```html
+<h1 class="large-hero__title">...</h1>
+```
 
 `index.html`
 

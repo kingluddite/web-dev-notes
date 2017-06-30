@@ -110,6 +110,7 @@ Google with a search like `npm THEPACKAGENAMEYOUARELOOKINGFOR`
 
 We just clone and use `$ npm install` to grab all our most recent packages
 
+`$ git status`
 `$ git add -A`
 `$ git commit -m 'add jquery and normalize`
 `$ git push origin master`

@@ -233,7 +233,7 @@ gulp.task('scripts', ['modernizr'], function(callback) {
 
 * We just add test code for flexbox and cssanimations
 * Save this
-* Open Vendor.js and resave
+* Open `Vendor.js` and resave
 * That will regenerate our JavaScript bundles
 * Look in spector
 * Modernizr has updated and added the classes to our `<html>` element

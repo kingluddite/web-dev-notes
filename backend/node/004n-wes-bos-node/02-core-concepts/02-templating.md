@@ -1,5 +1,5 @@
 # Templating
-## `res.render()` - response.render()
+## `res.render()` - (res is short for response)
 It will render a template for us
 
 ## pug
@@ -18,7 +18,7 @@ app.set('view engine', 'pug'); // we use the engine pug, mustache or EJS work gr
 * We have a `views` folder
 * All `.pug` files reside inside `views`
 * All our templates reside inside `views`
-* pug is based on indentation
+* `pug` is based on indentation
 
 ## Other templating languages
 * mustache
@@ -44,10 +44,9 @@ router.get('/', (req, res) => {
 });
 ```
 
-### View in browser
-You will see `Hello`
-
-* All the HTML we did not include the browser will insert it
+### View `http://localhost:7777/` in browser
+* You will see `Hello`
+* All the HTML that we did not include the browser will insert it for us
 
 ## pug Nesting
 `hello.pug`
@@ -58,10 +57,10 @@ div
   span Oh Yeah!
 ```
 
-* Indentation is huge
+* Indentation is huge in Jade, practice and get used to it
 * Pick a style `2 space, 4 space, 1 tab`
     - And stick with it
-    - pug will force you to pay attention to your spacing
+    - `pug` will force you to pay attention to your spacing
 
 ![pug spacing](https://i.imgur.com/4wNAGnr.png) 
 
@@ -89,7 +88,7 @@ div.container.awesome
 ![pug attributes](https://i.imgur.com/w4DFJGG.png)
 
 * pug-lint atom file
-* language-pug (syntax highlighting)
+* language-pug (_syntax highlighting_)
 
 `.pug-lintrc` [github](https://www.npmjs.com/package/pug-lint)
 
@@ -99,6 +98,20 @@ div.container.awesome
   "disallowIdLiterals": null
 }
 ```
+
+* You need to have `Node.js` installed
+* Install pug-lint globally
+
+`$ npm install -g pug-lint`
+
+#### Sublime Text 3
+If you use SublimeLinter 3 with Sublime Text 3, you can install the SublimeLinter-pug-lint plugin using Package Control.
+
+#### Atom
+If you use Atom, you can install the linter-pug package.
+
+#### VS Code
+If you use VS Code, you can install the vscode-puglint extension.
 
 ## Put multiple tags on same line
 ```
@@ -140,7 +153,7 @@ router.get('/', (req, res) => {
 });
 ```
 
-## Interpolate a variable inside of text in pug
+## Interpolate a variable inside of text using `pug`
 `#{dog}`
 
 `hello.pug`
@@ -152,7 +165,7 @@ router.get('/', (req, res) => {
 
 Output --> `I am Pele and my team is Brazil`
 
-## Getting variables off of URLs
+## Plucking variables `off` of URLs
 * These are local variables (often called _locals_ in express)
 
 ```
@@ -166,11 +179,11 @@ router.get('/', (req, res) => {
 
 URL -> `http://localhost:7777/?team=argentina`
 
-Output -> `I am Pele and my team is argentina`
+Output -> `I am Diego and my team is argentina`
 
 ## How do you put variables inside pug attribute values?
 ### This won't work
-img.team(src="pele.jpg" alt="Player #{name}")
+``img.team(src="pele.jpg" alt="`Player #{name}"`)``
 
 * That will just output the `name` literally
 * Pug took the ability to put variables in attributes unless you just use JavaScript
@@ -178,11 +191,12 @@ img.team(src="pele.jpg" alt="Player #{name}")
     - ``img.team(src="pele.jpg" alt=`Player ${name}`)``
 
 ### Gotcha
-* When writing text use `#{team}`
+* When writing content text use `#{team}`
 * When writing attribute values use ``${team}``
 
 ## You can run any JavaScript inside of pug
 * Most of the work will be done in your routes but you have the option of using JavaScript in pug
+* We declare a variable inside `pub` using `-`
 
 ```
 .wrapper
@@ -201,9 +215,10 @@ Or
 
 With same output as before `I am Diego and my team is ARGENTINA`
 
-* Major pro of `pug` is that it is JavaScript based
+* **Major pro** of `pug` is that it <u>is JavaScript based</u>
 
 ## Layouts, extending templates
+* Atom Text Editor
 To get pug and emmet to play nice open `config.json` and add
 
 ```
@@ -216,7 +231,7 @@ Just like this:
 ![add pug to emmet](https://i.imgur.com/yI8EAKV.png)
 
 ### Emmet to the rescue
-**![tab]**
+**! + [tab]**
 
 ```
 <!DOCTYPE html>
@@ -264,7 +279,7 @@ block content
 
 ![cool header](https://i.imgur.com/C6vta8A.png)
 
-This will extend our layout and place the code we typed inside the spot in layout.pug that says this:
+This will extend our layout and place the code we typed inside the spot in `layout.pug` that says this:
 
 ![block content](https://i.imgur.com/OZPP7JN.png)
 

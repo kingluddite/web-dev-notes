@@ -46,7 +46,7 @@ We are not just moving water, we are manipulating the water
 
 ## Setup CSS workflow
 * We use the word `return` because `gulp.src()` is an **asynchronous** function
-* We need to Gulp to be aware when this function completes so we include `return`
+* We need Gulp to be aware when this function completes so we include `return`
 
 `gulpfile.js`
 
@@ -90,6 +90,16 @@ body {
 ```
 
 When you make changes to the `styles.css`
+
+### Update HTML
+
+`index.html`
+
+```html
+// more code
+<link rel="stylesheet" href="temp/styles/styles.css" />
+// more code
+```
 
 You will see
 

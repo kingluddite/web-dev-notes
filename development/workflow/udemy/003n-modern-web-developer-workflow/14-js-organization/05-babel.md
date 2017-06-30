@@ -102,7 +102,7 @@ module.exports = {
 * Anytime you make changes to `webpack.config.js` you should restart `$ gulp watch`
 
 ## Write ES6 flavored JavaScript 
-* Open Person.js
+* Open `Person.js`
 * "blueprint for Person objects" as a **class**
     - But JavaScript doesn't have **classes**
     - We refer to the constructor function as a class because the concept of a class is super popular throughout the programming world
