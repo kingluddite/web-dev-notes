@@ -85,7 +85,7 @@
 ## Clear floats!
 * We have columns but we need to clear our floats
 * When we float a column we take it out of the normal ["flow" of the page](http://marksheet.io/css-the-flow.html)
-* Both columns are taking out of the `flow of the document`
+* Both columns are taken out of the `flow of the document`
 * So the containing `row` thinks that it is empty
 
 ## Sloppy solution
@@ -223,9 +223,9 @@ Since we may use our clear float solution more than once, we should move it insi
 
 ![broken columns](https://i.imgur.com/dVw9vwk.png)
 
-* This will break our column layout
+## This will break our column layout :(
 * Our second column gets pushed to a second line
-* This is a common problem
+* This is a **common problem**
     - When the width of the entire row exceeds `100%`, the columns then appear on their own rows
     - This happens because the padding we just added + our `33.33%` and `66.66% `exceeds 100%
 
@@ -246,8 +246,8 @@ Web browsers calculate the **true width** of an element by taking the declared w
 
 * [read more about box-sizing](https://css-tricks.com/box-sizing/)
 
-### Tip
-* Recent years developers have been setting `box-sizing` globally to all elements on the page
+### Tip - Global rule
+* In recent years developers have been setting `box-sizing` globally to all elements on the page
 * We'll move `box-sizing: border-box;` in `_row.css` and we'll move it to `_global.css`
 
 `_global.css`
@@ -268,6 +268,7 @@ img {
 }
 ```
 
+## Life just got a whole lot better
 * With that in place, managing our width values is now so much easier
 * But we have some margin issues
 * To see it add this to `_row.css`:
@@ -287,7 +288,7 @@ img {
 
 ![right gutter](https://i.imgur.com/QipY8yy.png)
 
-* How do we remove the end gutter?
+## How do we remove the end gutter?
 * We could select the last column in a row and tell it to have `0` padding
     - But that would effect the ratio of our columns
     - The first column is exactly 1/3 available width
@@ -331,6 +332,7 @@ img {
 
 ![outside wrapper](https://i.imgur.com/BWKD4qu.png)
 
+## Overlapping!
 * Our column is now overlapping it's container
 * This is because of the negative right margin value
 * To fix this we just tell the `wrapper` to hide the overflow with:
@@ -386,7 +388,7 @@ Not good
   }
 
   &--gutters > div {
-    padding-right: 65px;;
+    padding-right: 65px;
   }
 
   @mixin atMedium {

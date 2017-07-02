@@ -21,7 +21,7 @@
 ```
 
 * We'll add a new `div` and wrap our text inside it
-* then We'll add the `wrapper` class to that new `div`
+* Then we'll add the `wrapper` class to that new `div`
 
 `index.html`
 
@@ -176,6 +176,7 @@ And make the description like this:
 ```
 
 * We need to remove the white space between the blue border and image
+* If you can't see it, add a temporary background color to `.large-hero`
 
 ![blue border and white space](https://i.imgur.com/2A6y0bF.png)
 
@@ -248,11 +249,11 @@ The white spacing at the top of each section is a design pattern
 
 #### Too wide
 * If we have a 30 inch monitor, we don't want our web site to stretch 30 inches
-* We need to set a max-width
+* We need to set a `max-width`
 * Too long text lines are terrible usability and way too long for human eye to comfortably read
     - [read more on line length](https://www.smashingmagazine.com/2014/09/balancing-line-length-font-size-responsive-web-design/)
 
-* We will add a max-width of 1200px and horizontally centered in screen
+* We will add a `max-width` of 1200px and horizontally centered in screen
 
 `_wrapper.css`
 
@@ -290,3 +291,17 @@ The white spacing at the top of each section is a design pattern
 
 * We reuse our page-section class
 * We add a block modifier `page-section--blue`
+
+`_page-section.css`
+
+```
+.page-section {
+  // more code
+  &--blue {
+    background-color: $mainBlue;
+    color: $white;
+  }
+}
+```
+
+* Now features section has a nice blue background

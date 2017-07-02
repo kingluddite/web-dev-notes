@@ -192,17 +192,16 @@
 ### Too many modifers?
 * Modular development is common these days
 * Using lots of modifiers beats having to come up with lots and lots of new class names as the designs get updated
-* class name fatigue
+* Class name fatigue
 * 6 months later revisiting site for revamp, then you have to dig through all your class names to figure out what is going on
 
 ![too many class names](https://i.imgur.com/q37PFka.png)
 
 ### Using modifier system
-* 2 years later the designer could come to us with a new style for us to develop
-* We look at new headline style and we ask "Can we create this new style by combining existing modifiers?"
-    - Yes we do
-    - No, we create a new modifier
-
+* Two years later the designer could come to us with a new style for us to develop
+* We look at new headline style and we ask "**Can we create this new style by combining existing modifiers?**"
+    - Yes, ---> we use existing modifiers
+    - No, ----> we create a new modifier
 
 ### Center hand holding image horizontally
 * Which headline is easier to understand?

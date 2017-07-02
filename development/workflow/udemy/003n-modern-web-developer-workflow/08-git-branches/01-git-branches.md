@@ -1,4 +1,5 @@
 # Git Branches
+## Topics we'll address
 * What is a branch?
 * How to create a new branch
 * How to switch between branches

@@ -114,7 +114,7 @@
     - The difference between a good developer and a great developer is a great developer is totally cool with adjusting things here and there to match the design
 
 ## Border box side effect
-* We gave our site a max-width of 1200px
+* We gave our site a `max-width` of 1200px
 
 `_wrapper.css`
 
@@ -127,10 +127,11 @@
 // more code
 ```
 
-* We applied box-sizing globally to all elements on our page
-* When we did that we decreased the max-width of this wrapper element by 36px
+## We need to bump up our max-width
+* We applied `box-sizing` globally to all elements on our page
+* When we did that we decreased the `max-width` of this wrapper element by `36px`
     - padding-left (18px) + padding-right (18px) = 36px
-* So we need to add 36px to our max-width
+* So we need to add `36px` to our `max-width`
 
 ```
 .wrapper {
@@ -141,6 +142,7 @@
 // more code
 ```
 
+## More breathing room!
 * Subtle change but now our design has more room to breathe
 
 ### Make image landscape in mobile design

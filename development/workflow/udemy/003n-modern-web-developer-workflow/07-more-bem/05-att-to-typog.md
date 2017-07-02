@@ -101,7 +101,7 @@ a {
 
 ## Takeaway
 * For unique parts of our page follow BEM
-* But for sections where content is more generic and streamlined and comes from automated sources (Like WordPress, or a blog) it's OK to deviate form BEM
+* But for sections where content is more generic and streamlined and comes from automated sources (Like WordPress, or a blog) it's OK to deviate from BEM
 
 ```css
 .generic-content-container {
@@ -160,7 +160,7 @@ a {
 * Now our landscape image has spacing it needs for small screens and the necessary spacing for larger screens
 
 ## Make our generic font size text smaller
-On smallest devices it is smaller and grows in size  on small and larger devices
+On smallest devices it is smaller and grows in size on small and larger devices
 
 `_generic-content-container.css`
 
@@ -181,5 +181,5 @@ On smallest devices it is smaller and grows in size  on small and larger devices
 }
 ```
 
-* By not adding a font size to the paragraph on smallest devices it will default to 1 rem which is the default size for 1rem which
+* By not adding a `font-size` to the paragraph on smallest devices it will default to 1rem which is the default size
 * Remove the `-i` from all images
