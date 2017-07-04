@@ -99,7 +99,7 @@
 * We give it the blue color
 * We position our icon better
 
-### Add our rows and columns
+### Add our row and columns
 * We want a row with 3 columns
 
 ![3 cols](https://i.imgur.com/rSgnXeO.png)
@@ -228,8 +228,10 @@
 * The left side is only rounded because that containing `div` is using the full available width
 * We can give the allusion that the image is round by setting the container to have the same height and width as the image
 * How to find out dimensions of image
-    - Right click, open in new tab, look at tab for dimensions
-* To make the image a circle we just make the border-radius be 1/2 of the width or length of the image (_1/2 of 160px = 80px_)
+    1. Right click
+    2. Open in new tab
+    3. Look at tab for dimensions
+* To make the image a circle we just make the `border-radius` be 1/2 of the width or length of the image (_1/2 of 160px = 80px_)
 
 ![image dimensions](https://i.imgur.com/wSthxBB.png)
 
@@ -247,20 +249,22 @@
 ## Image violate the top edge
 ```css
   &__photo {
-    border-radius: 80px;
-    overflow: hidden;
-    height: 160px;
-    width: 160px;
-    margin: 0 auto 0 auto;
     position: relative;
     top: -80px;
+    
+    border: 6px solid rgba(255,255,255, 0.8);
+    border-radius: 80px;
+    height: 160px;
+    margin: 0 auto 0 auto;
+    overflow: hidden;
+    width: 160px;
   }
 ```
 
 ![violate top edge](https://i.imgur.com/5XaXhVR.png)
 
 * When you use position relative, the surrounding content is not aware of the change
-* We counteract that by giving the image negative bottom-margin
+* We counteract that by giving the image negative `margin-bottom`
 
 ```css
 &__photo {

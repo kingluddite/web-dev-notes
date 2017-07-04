@@ -1,5 +1,5 @@
 # Medium Sized Testimonial Screens
-* 3 col layout for medium screens it too little screen real estate for 3 columns
+* 3 col layout for medium screens it too little **screen real estate** for 3 columns
 * We'll change our atLarge from 1200 to 1010
 
 `_mixins.css`
@@ -157,7 +157,7 @@ Copy the medium section, paste and rename to:
   }
 ```
 
-* We need to fix our pagging and margin in testimonials
+* We need to fix our padding and margin in testimonials
 
 `_testimonial.css`
 
@@ -177,7 +177,7 @@ To
   }
 ```
 
-And change our page section rule so background is not used until the large breakpoint
+And change our `page-section` rule so background is not used until the large breakpoint
 
 `_page-section.css`
 

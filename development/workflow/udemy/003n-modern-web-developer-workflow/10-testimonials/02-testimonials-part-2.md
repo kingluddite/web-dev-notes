@@ -1,5 +1,5 @@
 # Testimonials Part 2
-* The font-size and line-height can be the same as our-features so we add `generic-content-container`
+* The `font-size` and `line-height` CSS properties can be the same as **our-features** so we reuse our `generic-content-container` class
 
 ```html
 <div id="testimonials" class="page-section page-section--testimonials">
@@ -65,9 +65,9 @@
 ![3 testimonials styled](https://i.imgur.com/ZByrxUB.png)
 
 ## Fix Real Testimonials spacing issue
-* This happened because we used position relative to pull the images up out of their normal positions
-    - We pull them up 80px
-    - We can counteract that by adding 80px to the row
+* This happened because we used `position` **relative** to pull the images up out of their normal positions
+    - We pull them up `80px`
+    - We can counteract that by adding `80px` to the row
 
 ```html
 <div class="row row--gutters row--t-padding generic-content-container">
@@ -149,11 +149,11 @@
 ```
 
 * Now they are all equal height
-* We use a descendant selector to turn off all floats in Medium devices the container uses flex and all its direct descendent's use flex too
+* We use a **descendant selector** (`>`) to turn off all floats in Medium devices the container uses `flex` and all its direct descendent's use flex too
 
 ![all equal height](https://i.imgur.com/e8p2Rhd.png)
 
-### Testimonials on smaller screens
+### Remove background on smaller screens 
 * On larger screens the background image makes sense
 * On small screens there is no room so we should remove it
     - It is a large image with a large file size
@@ -208,7 +208,7 @@
   }
 ```
 
-* Make our testimonial padding match our other section padding
+* Make our `testimonial` **padding** match our other `section` **padding**
 
 `_testimonial.css`
 
@@ -226,7 +226,7 @@
 ## Fix this problem
 ![images overlapping](https://i.imgur.com/wEFQSLb.png)
 
-* We used position relative to pull them up 80px out of their natural position
+* We used `position` **relative** to pull them up `80px` out of their natural position
 * Larger screens is fine because they sit next to each other
 * But on mobile screens they are stacked on top of each other
 * To fix we just add a margin bottom on smaller screens
@@ -268,8 +268,8 @@ On larger screens we don't need that margin-bottom
 
 ![gap](https://i.imgur.com/CuCpmsp.png)
 
-* Caused by bottom margin we just added to testimonials
-* And also by bottom padding of `page-section` element
+* Caused by `margin-bottom` we just added to testimonials
+* And also by `padding-bottom` of `page-section` element
 * We add `testimonial--last` modifier to our 3rd and last testimonial
 
 ```html

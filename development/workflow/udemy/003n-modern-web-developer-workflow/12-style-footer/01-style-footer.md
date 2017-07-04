@@ -13,7 +13,7 @@
 
 * We add a new `site-footer` class
 
-## Create new css module
+## Create new CSS module
 `app/assets/styles/modules/_site-footer.css`
 
 ```css
@@ -85,7 +85,7 @@
   color: #fff;
   padding: .5rem 0;
   text-align: center;
-  font-weight: 200;
+  font-weight: 200; /* add this line */
 
   &__text {
     display: block;

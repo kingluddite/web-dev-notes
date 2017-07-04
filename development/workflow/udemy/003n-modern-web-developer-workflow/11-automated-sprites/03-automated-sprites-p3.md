@@ -5,8 +5,8 @@
 
 `/app/assets/images/icons`
 
-* Temporarily move fire.svg to the desktop
-* Run our icon task because we need to regenerate our icons to update them with the most recent change (fire.svg was removed)
+* Temporarily move `fire.svg` to the desktop
+* Run our icon task because we need to regenerate our icons to update them with the most recent change (_fire.svg was removed_)
 
 `$ gulp icons`
 
@@ -15,9 +15,9 @@
 
 ![two sprite files](https://i.imgur.com/VXCF9QC.png)
 
-* Currently, our setup isn't intelligent to delete the old outdated sprite.svg
-* It will only be a matter of time before this file is filled with old sprite.svg files
-* We will fix this by only having the latest sprite.svg and all the others will be deleted
+* Currently, our setup isn't intelligent enough to delete the old outdated `sprite.svg`
+* It will only be a matter of time before this file is filled with old `sprite.svg` files
+* We will fix this by only having the latest `sprite.svg` and all the others will be deleted
 * We will delete the `app/temp/sprite` folder
 * We create this folder through Gulp in the `createSprite` task
 * If we delete that folder before we create it we can avoid filling it with old svg files
@@ -66,7 +66,7 @@ gulp.task('createSprite', function() {
 gulp.task('icons', ['beginClean', 'createSprite', 'copySpriteGraphic', 'copySpriteCSS']);
 ```
 
-* And it is **important** to point out that we don't want the `createSprite` task to begine until the `beginClean` task is completed
+* And it is **important** to point out that we don't want the `createSprite` task to begin until the `beginClean` task is completed
 
 `sprites.js`
 
@@ -95,9 +95,12 @@ gulp.task('createSprite', ['beginClean'], function() {
 ![fire icon is back](https://i.imgur.com/SdFTDQC.png)
 
 ## We don't need the temp sprite folder anymore
-* When this task sequence is completed, we know longer need the temp sprites folder
+* When this task sequence is completed, we no longer need the temp `sprites` folder
+* So delete it
 
 `gulp.task('icons', ['beginClean', 'createSprite', 'copySpriteGraphic', 'copySpriteCSS']);`
+
+### endClean task
 
 * We don't want `endClean` to run until both of these tasks `'createSprite', 'copySpriteGraphic'` have completed
 

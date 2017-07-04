@@ -86,10 +86,16 @@ gulp.task('createSprite', function() {
 
 ## How do we use this single sprite file in the browser?
 * We display the sprite image as a background on HTML elements
-* This can be very manual process
-* The good news is Gulp svg sprite package can generate it for us
+* This can be very a very tedious manual process
+* The good news is Gulp **svg sprite package** can generate it for us
 
 Create a new folder and file `/gulp/templates/sprite.css`
+
+```
+/* test comment */
+```
+
+`/gulp/tasks/sprites.js`
 
 ```js
 var gulp = require('gulp'),
@@ -114,14 +120,14 @@ gulp.task('createSprite', function() {
 });
 ```
 
-* Run gulp createSprite
+* Run it again
 
 `$ gulp createSprite`
 
 * Now look inside `temp/css/sprite.css` and you will see our test comment
 * It is working!
 
-`/gulp/templates/spirte.css`
+`/gulp/templates/sprite.css`
 
 * Replace the test comment with:
 
@@ -234,11 +240,12 @@ Outputs
 {{/shapes}}
 ```
 
+* **note** Add mustache syntax to your text editor
 * We point to the background
 
 `background-image: url('/temp/sprite/css/{{{sprite}}}');`
 
-* We need to make a variable because every time the sprite is created a random string of cache-busting file name is created
+* We need to make a variable because every time the sprite is created a random string (_cache-busting_) file name is created
 
 ![cache busting file name](https://i.imgur.com/Y6hYIEB.png)
 
@@ -255,9 +262,9 @@ Outputs
 `background-position: {{position.relative.xy}};`
 
 * How are we supposed to know all of these variable names?
-    - shapes
-    - outer
-    - position.relative.xy
+    - `shapes`
+    - `outer`
+    - `position.relative.xy`
 * These names have nothing to do with `Node` or `Gulp` the names are entirely dependent on the package we are using
 * You need to read the [documentation](https://github.com/jkphl/svg-sprite) for **svg-sprite**
     - [templating documentation](https://github.com/jkphl/svg-sprite/blob/master/docs/templating.md)
