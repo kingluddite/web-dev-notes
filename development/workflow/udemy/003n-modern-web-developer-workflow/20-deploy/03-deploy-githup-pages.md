@@ -1,3 +1,30 @@
+## Git Stuff
+`$ git status`
+
+* Add all changes with:
+
+`$ git add -A`
+
+* Commit changes
+
+`$ git commit -m 'Add build task`
+
+* Merge branch into master
+
+`$ git checkout master`
+
+`$ git merge build-task`
+
+`$ git push origin master`
+
+* Remove old branch
+
+`$ git branch -d build-task`
+
+* Create new branch
+
+`$ git checkout -b github-build-task`
+
 # Deploy To Github Pages
 * 100% free service
 * URL will look like `username.github.io/repo-name`
@@ -157,6 +184,8 @@ Because of the above we need to update the way our `index.html` references our C
  <!-- build:js /assets/scripts/App.js -->
 ```
 
+* To this:
+
 ```
  <!-- build:css assets/styles/styles.css -->
  <!-- build:js assets/scripts/Vendor.js -->
@@ -165,6 +194,16 @@ Because of the above we need to update the way our `index.html` references our C
 
 * When we use the forward slash, the browser will look to the root of the **current domain** to find this path and file
 * But because our Github pages site won't live at the root domain we just want our paths to be relative to the `index.html`
+
+* Note - you may have to add comments we forgot to add earlier:
+
+```html
+  <!-- build:js assets/scripts/App.js -->
+  <script src="/temp/scripts/App.js"></script>
+  <!-- endbuild -->
+</body>
+</html>
+```
 
 ## Update our CSS background images paths
 `sprite.css`
@@ -228,7 +267,7 @@ Because of the above we need to update the way our `index.html` references our C
 
 * Add all changes with:
 
-`$ git all -A`
+`$ git add -A`
 
 * Commit changes
 

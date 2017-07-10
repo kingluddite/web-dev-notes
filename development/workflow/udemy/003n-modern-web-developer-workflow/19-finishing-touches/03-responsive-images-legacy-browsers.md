@@ -24,13 +24,13 @@
 
 `$ git checkout master`
 
-`$ git merge create-modal`
+`$ git merge lazyloading`
 
 `$ git push origin master`
 
 * Add new branch
 
-`$ git checkout -b browser-support
+`$ git checkout -b browser-support`
 
 * Prune branches
 `$ git branch -d BRANCHNAME`

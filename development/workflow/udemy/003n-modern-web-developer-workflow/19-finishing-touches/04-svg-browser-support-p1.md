@@ -4,21 +4,21 @@
 ## What is a PNG fallback?
 * All of our icons are stored as `.svg`
     - There are also
-        + .jpg
-        + .gif
-        + .png
+        + `.jpg`
+        + `.gif`
+        + `.png`
 
 * SVG support in webbrowsers is great
     - SVG files: 97% support
     - PNG files: 100% support
 
 ## Strategy
-* Send the .svg icons by default
-* Send the .png icons for those without svg support
+* Send the `.svg` icons by default
+* Send the `.png` icons for those without svg support
 
 ### Plan
-1. Use Gulp to automatically create a PNG copy of our SVG icon sprite
-2. Figure out how to only send the PNG version to browsers that don't support SVG
+1. Use `Gulp` to automatically create a **PNG** copy of our **SVG** icon sprite
+2. Figure out how to only send the **PNG** version to browsers that don't support **SVG**
 
 #### How can we know if a browser supports SVG?
 Modernizr
@@ -29,7 +29,7 @@ A tool that tests web browser support for SVG and a everything else
 ## Install gulp package `gulp-svg2png`
 `$ npm i gulp-svg2png@2.0.2 -D`
 
-* What will this package do?
+### What will this package do?
 * We have a SVG file here `/app/assets/images/sprites/sprite-RANDOMNUM.svg`
 * This package will generate a PNG file with the same icon graphics
 
@@ -105,12 +105,13 @@ gulp.task('modernizr', function() {
 });
 ```
 
-* This is the basic gulp task skeleton
-* We require what we need in this file
-* We give our task a name
-* We point to the `src` file
-* We run our code through modernizr
-* We point to the `dest` folder
+* This is the **basic gulp task skeleton**
+
+1. We require what we need in this file
+2. We give our task a name
+3. We point to the `src` file
+4. We run our code through `modernizr`
+5. We point to the `dest` folder
 
 ### Import modernizr
 `gulpfile.js`
@@ -121,22 +122,22 @@ require('./gulp/tasks/modernizr'); // add this line
 ```
 
 ## What does the gulp modernizr package do for us?
-* Modernizr has the ability to test browsers for hundreds of different features
+* `Modernizr` has the ability to test browsers for hundreds of different features
     - Examples
         + Flexbox
         + Opacity
         + CSS animations
-* But the more features we test for, the larger the modernizr file becomes and the more it will slow down load speed for our visitors
-* This gulp-modernizr will enable us to build our own custom copy of modernizr to only include the code we need to test for certain features we are using in our site
-    - This will keep our modernizr file small and efficient
+* But the more features we test for, the larger the `modernizr` file becomes and the more it will slow down load speed for our visitors
+* This `gulp-modernizr` will enable us to build our own custom copy of `modernizr` to **only include the code we need** to test for certain features we are using in our site
+    - This will keep our `modernizr` file small and efficient
     - Our web site will load faster
 
 ## How does modernizr know which features we need to test for?
 * We point to our CSS and JS files in the `src`
-* We pipe that group of files through the modernizr package
+* We pipe that group of files through the `modernizr` package
 * It will look at our code and automatically determine which features we need to test for
-* It will generate a lightweight customized modernizr file
-* And we us gulp to pipe that file to our destintation folder `dest`
+* It will generate a lightweight customized `modernizr` file
+* And we use `Gulp` to **pipe** that file to our destination folder `dest`
 
 `modernizr.js`
 
@@ -165,19 +166,20 @@ gulp.task('modernizr', function() {
 
 ![file created](https://i.imgur.com/r2F5Ld7.png)
 
-* Now we need to include this file into our webpage
+* Now we need to include this file into our web site
 
 ## Add to our Vendor files
 `Vendor.js`
 
 ```js
-import '../../temp/scripts/modernizr'; // add this line
 import 'lazysizes';
 import 'picturefill';
+import '../../temp/scripts/modernizr'; // add this line
 ```
 
 `$ gulp watch`
 
+## Trigger Rebundling
 * Save `Vendor.js`
     - That should trigger a rebundling from Gulp of our JavaScript files
 * View site in browser
@@ -214,7 +216,7 @@ gulp.task('scripts', ['modernizr'], function(callback) {
 
 `$ gulp watch`
 
-* Re-save a javascript file in your `modules` folder and you will see that a new `modernizr.js` file was regenerated
+* Re-save a JavaScript file in your `modules` folder and you will see that a new `modernizr.js` file was regenerated
 
 ## What if we add a new element that needs flexbox
 `_btn.css`
@@ -235,7 +237,7 @@ gulp.task('scripts', ['modernizr'], function(callback) {
 * Save this
 * Open `Vendor.js` and resave
 * That will regenerate our JavaScript bundles
-* Look in spector
+* Look in Chrome inspector
 * Modernizr has updated and added the classes to our `<html>` element
 
 ![modernizr adds new classes](https://i.imgur.com/T9rGkdS.png)

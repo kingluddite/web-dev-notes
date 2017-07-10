@@ -69,6 +69,7 @@ export default RevealOnScroll;
 ```
 
 * We use `that` to bind `this`
+
 ## Test
 That won't work because in our constructor, the order of when functions run is important
 
@@ -85,7 +86,7 @@ constructor(els, offset) {
 }
 ```
 
-* Test now and it should work for both Feature items and testimonials each with different offsets
+* Test now and it should work for both Feature items and Testimonials each with different offsets
 
 ## Add zoom out effect
 `_reveal-item.css`
@@ -93,8 +94,8 @@ constructor(els, offset) {
 ```css
 .reveal-item {
  opacity: 0;
- transition: all 1.5s ease-out;
  transform: scale(1.15);
+ transition: all 1.5s ease-out;
 
  &--is-visible {
   opacity: 1;

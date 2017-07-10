@@ -52,12 +52,13 @@
 ```css
 .modal {
   position: fixed;
-  z-index: 5;
-  background-color: rgba(255, 255, 255, .94);
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+
+  background-color: rgba(255, 255, 255, .94);
+  z-index: 5;
 
   &__description {
       text-align: center;
@@ -159,11 +160,12 @@
 
   &__icon {
     position: relative;
+
     background-color: $mainOrange;
     display: inline-block;
+    height: 72px;
     margin: 0 5px 5px 5px;
     width: 33%;
-    height: 72px;
 
     @mixin atSmall {
       width: 72px;
@@ -171,10 +173,11 @@
     }
 
     .icon {
-      display: block;
       position: absolute;
       top: 50%;
       left: 50%;
+      
+      display: block;
       transform: translate(-50%, -50%);
     }
   }

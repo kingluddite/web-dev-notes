@@ -19,7 +19,7 @@ block content
 
 ```
 mixin storeForm(store = {})
-  p It works!
+  p It works
 ```
 
 ## Now let's add our real form we will be using
@@ -32,24 +32,37 @@ mixin storeForm(store = {})
     input(type="text" name="name")
 ```
 
+* Update our form background color:
+
+`_helpers.scss`
+
+```
+// more code
+.card {
+  background: $danger-yellow; // update this line
+  padding: 5rem;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.15);
+}
+// more code
+```
 ### View in browser
 Should look like this:
 
-![form rendered](https://i.imgur.com/JtZBYk6.png)
+![form rendered](https://i.imgur.com/orbhR1O.png)
 
-* `-` In **Pug** using `-` at beginning of line means you are running JavaScript
-* We show how you loop in Pug using **each** (_each choice in choices_)
+* `-` In **Pug** using `-` at beginning of line means you are running JavaScript and declaring a variable
+* We show again how you loop in Pug using **each** (_each choice in choices_)
 
 `_storeForm.pug`
 
 ```
 mixin storeForm(store = {})
   form(action="/add" method="POST" enctype="multipart/form-data" class="card")
-    label(for="name") Name 
+    label(for="name") Name
     input(type="text" name="name")
     label(for="description") Description
     input(type="text" name="description")
-    - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetarian', 'Licensed']
+    - const choices = ['Closed', 'Closing', 'Kmart', 'Sears', 'Radioshack', 'Mall']
     ul.tags
       each choice in choices
         .tag.tag__choice
@@ -61,26 +74,99 @@ mixin storeForm(store = {})
 
 `input(type="checkbox" id=choice value=choice name="tags")`
 
-* The attributes who's values are not surrounded with quotations are using our `choice` variable as the value
+* The attributes with values not surrounded with quotations are using our `choice` variable as the value
+
+### Add tag styles
+
+`/public/sass/partials/_tag.scss`
+
+```
+.tags {
+  color: $black;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: block;
+  margin-right: 1rem;
+  &__choice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input {
+      width: auto;
+      right: -1.5rem;
+      margin-right: -1rem;
+      position: relative;
+      z-index: 2;
+      & + label {
+        background: $grey;
+        padding: 1rem 1rem 1rem 4rem;
+      }
+      &:checked + label {
+        background: $danger-orange;
+      }
+    }
+  }
+  &__link {
+    background:$danger-orange;
+    color:$black;
+    display: flex;
+    padding-left: 10px;
+    clip-path: polygon(10px 0%, 100% 1%, 100% 100%, 10px 100%, 0% 50%);
+    &--active {
+      background: lighten($danger-red, 40%);
+      .tag__text {
+        color: $white;
+      }
+    }
+  }
+  &__text {
+    padding: 1rem 1rem;
+    display: block;
+  }
+  &__count {
+    padding: 1rem 1rem;
+    background: $white;
+    border-left: 3px solid rgba(0,0,0,0.1);
+    margin-right: -1px; /* not a best practice */
+    background-clip: padding-box;
+  }
+}
+```
+
+* And make sure to import that file
+
+`/public/sass/style.scss`
+
+```
+// more code
+@import 'partials/tag';
+```
 
 ### View in browser
 Should look like this:
 
-![form with checkboxes](https://i.imgur.com/4BnxxAb.png)
+![form with checkboxes](https://i.imgur.com/cBWqkMt.png)
 
 ## Add a button, View, Fill out form
-* We changed input to textreaa
+* We changed input to textrea
 
 `_storeForm.pug`
 
 ```
 mixin storeForm(store = {})
   form(action="/add" method="POST" enctype="multipart/form-data" class="card")
-    label(for="name") Name 
+    label(for="name") Name
     input(type="text" name="name")
     label(for="description") Description
     textarea(name="description")
-    - const choices = ['Wifi', 'Open Late', 'Family Friendly', 'Vegetarian', 'Licensed']
+    - const choices = ['Closed', 'Closing', 'Kmart', 'Sears', 'Radioshack', 'Mall']
     ul.tags
       each choice in choices
         .tag.tag__choice
@@ -89,21 +175,42 @@ mixin storeForm(store = {})
     input(type="submit" value="Save" class="button")
 ```
 
-![fill out form](https://i.imgur.com/fDpqC9x.png)
+* Update `_helpers.scss`
+
+```
+// more code
+.button {
+  border: 0;
+  background: $danger-red; /* update this line */
+  color: $black;
+  font-family: 'Hamurz';
+  font-weight: 600;
+  font-size: 3rem; /* update this line */
+}
+// more code
+```
+
+![fill out form](https://i.imgur.com/d6ZhR2V.png)
 
 ## Submit
 We get a 404 error
 
-![404](https://i.imgur.com/Og7qrCI.png)
+![404](https://i.imgur.com/1gjvZXq.png)
 
 ### What went wrong?
-When you submit a form we use the `method` and ours is **POST** (_method="POST"_) which is a way to send data that is not visible in the URL and **action** tells us where we are sending the **data** and we are sending ours to `/add`
+* When you submit a form we use the `method` and ours is **POST** 
+(_method="POST"_)
+* Which is a way to send data that is not visible in the URL
+* And **action** tells us where we are sending the **data** and we are sending ours to `/add`
 
-* POST - sending data not through the URL
-* GET - sending data through the URL (_Great for bookmarking a page_)
+`form(action="/add" method="POST"... `
+
+* `POST` - sending data not through the URL
+* `GET` - sending data through the URL (_Great for bookmarking a page_)
 
 #### Refreshing POST
-When you refresh a page that has been POSTED to the browser will ask you if you want to confirm the `Form Resubmission`
+* When you refresh a page that has been POSTED to the browser
+* The browser will ask you if you want to confirm the `Form Resubmission`
 
 ![form resubmission](https://i.imgur.com/J9wDZ8t.png)
 
@@ -111,7 +218,7 @@ When you refresh a page that has been POSTED to the browser will ask you if you 
 * And if you refresh you get the same alert window and you can't get back to our form page and that is because we are in a POST value
 * But click on `ADD` 
 
-![add](https://i.imgur.com/6OVsjCj.png)
+![add](https://i.imgur.com/vR6jt0W.png)
 
 * And that will take us back to our form
 
@@ -176,7 +283,7 @@ exports.homePage = (req, res) => {
 };
 
 exports.addStore = (req, res) => {
-  res.render('editStore', { title: '💩 Add Store' });
+  res.render('editStore', { title: 'Add Store' });
 };
 
 // add this new method
@@ -187,7 +294,9 @@ exports.createStore = (req, res) => {
 
 ## Fill out and submit form
 ### Empty Result?
-We get an empty result set and that is because of this `enctype="multipart/form-data"` and since that is a special case (we are uploading images using our form) but for now remove it, fill out the form and submit
+* We get an empty result set and that is because of this `enctype="multipart/form-data"`
+* And since that is a special case (_we are uploading images using our form_)
+* But for now remove it, fill out the form and submit
 
 ### Success!
 here is our output
@@ -204,9 +313,9 @@ here is our output
 }
 ```
 
-And if you are using a JSON formatter for Chrome you'll see this:
+And if you are using a JSON Viewer for Chrome you'll see this:
 
-![nice JSON](https://i.imgur.com/Z36ltAm.png)
+![nice JSON](https://i.imgur.com/Pw0Kfkx.png)
 
 ```
 exports.createStore = (req, res) => {
@@ -219,7 +328,7 @@ Refill out the form and submit and check out the terminal
 
 If your terminal is full just `cmd` + `k` to clear out terminal and you'll see:
 
-![terminal](https://i.imgur.com/VG8d6i0.png)
+![terminal](https://i.imgur.com/H0p7rnH.png)
 
 ## Next - How do we save that data back to the Database?
-We'll use Mongoose and async-await to save the data to the Database
+We'll use Mongoose and `async-await` to save the data to the Database

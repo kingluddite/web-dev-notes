@@ -1,11 +1,11 @@
 # Templating
-## `res.render()` - (res is short for response)
+## `res.render()` - (`res` is short for response)
 It will render a template for us
 
 ## pug
 * This is our templating language
 * Formerly `jade`
-* pug templating language very popular in **node** community
+* `pug` templating language very popular in **node** community
 
 `app.js`
 
@@ -25,39 +25,55 @@ app.set('view engine', 'pug'); // we use the engine pug, mustache or EJS work gr
 * EJS
 
 ## How do we render out a template?
-`views/hello.pug`
+`views/learning-pug-for-fun.pug`
 
 ```
-p Hello
+doctype html
+html
+  head
+    title Learning Pug is Fun
+  body
+    p hello
 ```
+
+* That template is our view but in order to see that we need to create a route that points to that template
+* We'll create a `/learning` route
 
 `routes/index.js`
 
-```
-router.get('/', (req, res) => {
-  const player = { name: 'Kobe', age: 40, good: true };
-  // res.send('Hey! It works!');
-  // res.json(player);
-  // res.send(req.query.good);
-  // res.json(req.query);
-  res.render('hello');
+```js
+// more code
+router.get('/learning', (req, res) => {
+  res.render('learning-pug-for-fun');
 });
+
+module.exports = router;
 ```
 
-### View `http://localhost:7777/` in browser
+### View `http://localhost:7777/learning-pug-for-fun` in browser
 * You will see `Hello`
 * All the HTML that we did not include the browser will insert it for us
+  - View source to check
+
+`<!DOCTYPE html><html><head><title>Learning Pug is Fun</title></head><body><p>hello</p></body></html>`
 
 ## pug Nesting
-`hello.pug`
+`learning-pug-is-fun.pug`
 
 ```
-div
-  p Hello
-  span Oh Yeah!
+doctype html
+html
+  head
+    title Learning Pug is Fun
+  body
+    div
+      p Hello
+      span Oh Yeah!
 ```
 
-* Indentation is huge in Jade, practice and get used to it
+## Indentation is important in Pug
+* Practice and get used to it
+* Used to be called `Jade`
 * Pick a style `2 space, 4 space, 1 tab`
     - And stick with it
     - `pug` will force you to pay attention to your spacing
@@ -66,9 +82,14 @@ div
 
 ## Adding classes and id's
 ```
-div.container.awesome
-  p.important Hello
-  span#groovy.awesome Oh Yeah!
+doctype html
+html
+  head
+    title Learning Pug is Fun
+  body
+    div.container.awesome
+      p.important Hello
+      span#groovy.awesome Oh Yeah!
 ```
 
 ![pug class and id's](https://i.imgur.com/J101G5O.png)
@@ -79,265 +100,257 @@ div.container.awesome
 
 ## pug attributes
 ```
-.container.awesome
-  p.important Hello
-  span#groovy.awesome Oh Yeah!
-  img.roll-seven(src="dice.jpg" alt="rolling dice")
+doctype html
+html
+  head
+    title Learning Pug is Fun
+  body
+    .container.awesome
+      p.important Hello
+      span#groovy.awesome Oh Yeah!
+      img.roll-seven(src="dice.jpg" alt="rolling dice")
 ```
 
 ![pug attributes](https://i.imgur.com/w4DFJGG.png)
 
-* pug-lint atom file
-* language-pug (_syntax highlighting_)
+### Structure Code
+```
+doctype html
+html
+  head
+    title Learning Pug is Fun
+  body
+    ul
+      li item one
+      li item two
+```
 
-`.pug-lintrc` [github](https://www.npmjs.com/package/pug-lint)
+* View Element tab of Code Inspector inside chrome
+
+### Tip if you don't want to have really lines of code
 
 ```
-{
-  "extends": "./node_modules/coding-standard/.pug-lintrc",
-  "disallowIdLiterals": null
+doctype html
+html
+  head
+    title Learning Pug is Fun
+  body
+    ul
+      li item one
+      li.
+        this is lots of text
+        still lots of text
+        more lots of text
+        you get this idea
+```
+
+* See what happens when you remove the `.` in `li.`
+* That `.` is necessary to have a multi-code-line string inside an element
+![broken code](https://i.imgur.com/7VsNVR2.png)
+
+## Add some CSS
+```
+doctype html
+html
+  head
+    title Learning Pug is Fun
+    link(rel='stylesheet', href='/dist/fun-test.css')
+  body
+    ul
+      li item one
+      li
+        this is lots of text
+        still lots of text
+        more lots of text
+        you get this idea
+    input(type='text').fun-class-name#fun-id-name
+```
+
+`/public/dist/fun-test.css`
+
+```css
+li {
+  background-color: red;
 }
 ```
 
-* You need to have `Node.js` installed
-* Install pug-lint globally
+![output of pug css](https://i.imgur.com/tyTr55W.png)
 
-`$ npm install -g pug-lint`
+![output of html](https://i.imgur.com/Ej9sri2.png)
 
-#### Sublime Text 3
-If you use SublimeLinter 3 with Sublime Text 3, you can install the SublimeLinter-pug-lint plugin using Package Control.
-
-#### Atom
-If you use Atom, you can install the linter-pug package.
-
-#### VS Code
-If you use VS Code, you can install the vscode-puglint extension.
-
-## Put multiple tags on same line
-```
-h2
-  | hello
-  em How are you?
-```
-
-![on same line](https://i.imgur.com/OVvqnYj.png)
-
-### Watch out for this
-```
-h2
-  hello
-  em How are you?
-```
-
-![hello tag is bad](https://i.imgur.com/IrRQyPS.png)
-
-* looping
-* logic
-* advanced templating
-* mixins
-* and lots more
-
-## How do you get information from your route?
-* Maybe it is coming from a Database?
-* Or it is coming from your URL?
-* How do you get that info to your template?
-
+## Inject variables into templates
 `routes/index.js`
 
-```
-router.get('/', (req, res) => {
-  res.render('hello', {
-    name: 'Pele',
-    team: 'Brazil',
-  });
+```js
+// more code
+router.get('/learning', (req, res) => {
+  res.render('learning-pug-for-fun', { title: 'Pug is Fun!'} );
 });
+// more code
 ```
 
-## Interpolate a variable inside of text using `pug`
-`#{dog}`
+* And modify our template like this
 
-`hello.pug`
-
-```
-.wrapper
-  p.hello I am #{name} and my team is #{team}
-```
-
-Output --> `I am Pele and my team is Brazil`
-
-## Plucking variables `off` of URLs
-* These are local variables (often called _locals_ in express)
+`learning-pug-for-fun.pug`
 
 ```
-router.get('/', (req, res) => {
-  res.render('hello', {
-    name: 'Diego',
-    team: req.query.team,
-  });
+doctype html
+html
+  head
+    title= title
+// more code
+```
+
+* Refresh the browser and you'll see this in the title:
+
+![pug is fun title](https://i.imgur.com/t42OWuG.png)
+
+* This is how we insert JavaScript objects into our template
+* And in the template we can output that object by using just the variable name
+* The `=` tells pug to not render text but rather render a variable and use whatever that variable contains
+
+## Conditions and logic with Pug
+`learning-pug-for-fun.pug`
+
+```
+// more code
+input(type='text').fun-class-name#fun-id-name
+    if condition
+      p all is well
+```
+
+* Update our router
+
+`index.js`
+
+```js
+// more code
+router.get('/learning', (req, res) => {
+  res.render('learning-pug-for-fun',
+    {
+      title: 'Pug is Fun!',
+      condition: true,
+    });
 });
+// more code
 ```
 
-URL -> `http://localhost:7777/?team=argentina`
+* Refresh browser and you will see `all is well`
 
-Output -> `I am Diego and my team is argentina`
+## Define variable inside `pug` files
+* Use the minus sign for defining variable inside pug
 
-## How do you put variables inside pug attribute values?
-### This won't work
-``img.team(src="pele.jpg" alt="`Player #{name}"`)``
-
-* That will just output the `name` literally
-* Pug took the ability to put variables in attributes unless you just use JavaScript
-    - Use backticks and ES6 template literals
-    - ``img.team(src="pele.jpg" alt=`Player ${name}`)``
-
-### Gotcha
-* When writing content text use `#{team}`
-* When writing attribute values use ``${team}``
-
-## You can run any JavaScript inside of pug
-* Most of the work will be done in your routes but you have the option of using JavaScript in pug
-* We declare a variable inside `pub` using `-`
+`learning-pug-for-fun.pug`
 
 ```
-.wrapper
-  - const upTeam = team.toUpperCase();
-  p.hello I am #{name} and my team is #{upTeam}
+// more code
+ - const condition = true
+    if condition
+      p all is well
 ```
 
-Output --> `I am Diego and my team is ARGENTINA`
+* Remove the condition from the route `index.js`
 
-Or
+```js
+// more code
+router.get('/learning', (req, res) => {
+  res.render('learning-pug-for-fun',
+    {
+      title: 'Pug is Fun!',
+    });
+});
 
-```
-.wrapper
-  p.hello I am #{name} and my team is #{dog.toUpperCase()}
-```
-
-With same output as before `I am Diego and my team is ARGENTINA`
-
-* **Major pro** of `pug` is that it <u>is JavaScript based</u>
-
-## Layouts, extending templates
-* Atom Text Editor
-To get pug and emmet to play nice open `config.json` and add
-
-```
-"file-types":
-    pug: "source.jade"
+module.exports = router;
 ```
 
-Just like this:
+* Refresh the browser and you will see `all is well`
 
-![add pug to emmet](https://i.imgur.com/yI8EAKV.png)
+## Override conditions
+* What happens if my route defines the condition as false and my template defines the condition as true?
 
-### Emmet to the rescue
-**! + [tab]**
-
-```
-<!DOCTYPE html>
-html(lang="en")
-head
-  meta(charset="UTF-8")
-  title Document
-body
-```
-
-**ul.dogs>li.dog.dog.$$*10**
+`index.js`
 
 ```
-ul.dogs
-  li.dog.dog.01
-  li.dog.dog.02
-  li.dog.dog.03
-  li.dog.dog.04
-  li.dog.dog.05
-  li.dog.dog.06
-  li.dog.dog.07
-  li.dog.dog.08
-  li.dog.dog.09
-  li.dog.dog.10
+// more code
+router.get('/learning', (req, res) => {
+  res.render('learning-pug-for-fun',
+    {
+      title: 'Pug is Fun!',
+      condition: false,
+    });
+});
+// more code
 ```
 
-## block
-A section of your website that can be filled in by another template
+* The template condition of true will override the route condition of false
 
-We want to consume our entire `layout.pug` and place our content inside:
+### Looping with Pug templates
+* Remember, no semi-colons!
+* In Pug everything is done with indentation
+  - No need for know when a line ends with a semi-colon
+  - Because indentation and line breaks tell you that information
 
-```
-.content
-  block content
-```
-
-`hello.pug`
+`learning-pug-for-fun.pug`
 
 ```
-extends layout
-
-block content
-  p Hello
+// more code
+- const anyArray = [1, 2, 3]
+each value in anyArray
+  p= value
 ```
 
-![cool header](https://i.imgur.com/C6vta8A.png)
+* Will output when you refresh the browser
 
-This will extend our layout and place the code we typed inside the spot in `layout.pug` that says this:
+![loop output](https://i.imgur.com/93F7jmu.png)
 
-![block content](https://i.imgur.com/OZPP7JN.png)
+## block content and layout
+* We will use a special view file that will serve as the basic layout for all our pages
+* We will call that special view file `layout.pug`
+* We will temporarily rename our existing `layout.pug` to `old-layout.pug`
+  - And create a new `layout.pug`
+  - This `layout.pug` serves as our basic "skeleton" which other layouts reuse and extend and add their content into it
+  - We can provide basic **hooks** in our skeleton where we want our inheriting layouts to insert content
+  - We define these **hooks** with the `block` keyword
+    + `block content`
+      * Is a content block which can be used by our views extending the `layout.pug` to insert some content
 
-## Override header with custom header
-`hello.pug`
-
-```
-extends layout
-
-block header
-  h2 I am overriding the layout header!
-
-block content
-  p Hello
-```
-
-![override header](https://i.imgur.com/oxlKSZs.png)
-
-* Express is not like WordPress where you pull in the pages that you want
-* It is more like you grab your layout and you pass it the data you want
-
-## Add a footer
 `layout.pug`
 
 ```
-    .content
-      block content
-      
-    footer
-      block footer
-        p (C) KL 
-
-    block scripts
-      script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)
-      script(src="/dist/App.bundle.js")
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/dist/fun-test.css')
+  body
+    block content
 ```
 
-![add a footer](https://i.imgur.com/D48ndft.png)
-
-But if I want to override this footer I could:
-
-`hello.pug`
+`learning.pug`
 
 ```
 extends layout
 
 block content
-  p Hello
-  
-block footer
-  p I am overriding my default footer!
+  h1= title
+  p Welcome to #{title}
+
+  ul
+    li item 1
+    li item 2
 ```
 
-![override footer](https://i.imgur.com/R1XPZ4s.png)
+* `extends layout` means we are inheriting at the very beginning of `learning-pug-for-fun` the contents of `layout.pug`
+  - **layout** in `learning-pug-for-fun.pug` (_extends layout_) must match the layout in **layout.pug** file name
 
-* Layout is your overall page layout
-* And you can **extend** that layout with pieces you want to extend it with
-* Usually you'll have:
-    * One front end layout
-    * One back end layout
-    * Than use blocks to plop in part you need when you need them
+### But why do I need to add `block content`?
+* Because the `layout.pug` is closed in itself
+* We only have access to these hooks where an extending layout may enter something
+  - So in layout we have `block content`
+  - And in `learning-pug-for-fun.pug` we also have `block content`
+  - And by doing this we are signaling, "Hey Pug! I want to insert something into this block content"
+    + And what follows is the content I want to insert
+
+### Why do we need `#{title}`
+* If we have a mixture of normal text and a variable we use #{variableNameHere}
+}

@@ -10,6 +10,7 @@
 
 ![all files](https://i.imgur.com/ZMWKYMJ.png)
 
+## Download Everything!
 * By default our browser will try to download everything on the page immediately
 * As a developer we can customize it and make it more efficient
 
@@ -52,13 +53,14 @@ Only load assets as they become necessary
 
 `$ git checkout -b lazyloading`
 
-## Install npm library `lazysizes`
+## Lazysizes
+### Install npm library `lazysizes`
 `$ npm i lazysizes -S`
 
 * [Lazysizes](https://github.com/aFarkas/lazysizes) will do everything for us and we won't need to add a single line of JavaScript
-* When using 3rd party libraries/packages/plugins that we write no custom code for it is a best practice to include those imports in their own file and not in our main `App.js`
+* When using 3rd party **libraries/packages/plugins** that we write no custom code for it is a best practice to include those imports in their own file and not in our main `App.js`
 
-## Create Vendor JavaScript file
+## Create and Import `Vendor.js` file
 `/app/assets/scripts/Vendor.js`
 
 ```js
@@ -91,8 +93,14 @@ module.exports = {
     - That will keep the filename dynamic and will create two file names based on the `entry` object's keys (_App and Vendor_) and so the files created will be:
         + `App.js`
         + `Vendor.js`
+
+## Restart Webpack
 * Because you changed the `webpack.config.js` you must restart it to see the config changes take effect
+
+## Restart Gulp
 * `ctrl` + `c` and `$ gulp watch`
+
+## Save any JavaScript file
 * You also need to trigger webpack to create its bundles just go into any JavaScript file and save with `cmd` + `s`
 * You should `lazysizes.js` in the Terminal output
 
@@ -115,20 +123,23 @@ module.exports = {
 
 ```html
   <link rel="stylesheet" href="temp/styles/styles.css"/>
-  <script src="/temp/scripts/App.js"></script>
+  <script src="/temp/scripts/Vendor.js"></script>
 </head>
 <body>
 ```
 
-### We need to tell webbrowser to not load our testimonial images
+### We need to tell the web browser to not load our testimonial images
 * But web browsers can't help it
-* As soon as they see srcset, they immediately begin download the file
+* As soon as they see `srcset`, they immediately begin download the file
 * So in order to stop the browser from doing this, we don't use `srcset` and instead use our very own custom attribute `data-srcset`
     - Won't that break the image entirely?
     - Yes, but that is what the lazysizes package is doing for us
-        + We just need to also give that image elemetn a class of `lazyload` and the lazysizes JavaScript package will automatically convert this to the legit `srcset` attribute at the precise moment that this element is almost scrolled to
+        + We just need to also give that image element a class of `lazyload` and the **lazysizes** JavaScript package will automatically convert this to the legit `srcset` attribute at the precise moment that this element is almost scrolled to
 
 `index.html`
+
+* We create a container and give it the `testimonial__photo` class
+  - And inside we have our image with the `.lazyload` class
 
 ```html
 // more code
@@ -148,14 +159,14 @@ module.exports = {
 
 ## Check the Network
 * In Chrome Dev tools
+* Make sure you are on the top of your web site
 * Click Network
 * Filter images
 * Refresh browser
 * You will not see our 3 testimonial images
 * Scroll down the page and when you get to the testimonials section, you'll see the images appear in the Network tab!
 
-## Can we lazyload background images?
-* That we add to the page with CSS
+## Can we lazyload background images that we add to the page with CSS?
 * We can lazy load the testimonial background using lazysizes
 * Find the HTML element the background image is applied to and give that element a class of `lazyload` and then as we get to that part of the page, lazyload will swap the `lazyload` class name out with `lazyloaded` and we can use that class name to load our image using our CSS file
 
@@ -190,6 +201,15 @@ module.exports = {
       background-size: cover;
     }
   }
+}
+```
+
+* That will output to this CSS (production CSS)
+
+```css
+.page-section--tools.lazyloaded {
+    background: url(/assets/images/textured-paper-bg.jpg) top center no-repeat;
+    background-size: cover;
 }
 ```
 

@@ -6,12 +6,13 @@
 ```
 // more code
 &__menu-icon {
-    width: 20px;
-    height: 20px;
-    /*background-color: #fff;*/
     position: absolute;
     top: 10px;
     right: 10px;
+    
+    /*background-color: #fff;*/
+    height: 20px;
+    width: 20px;
     z-index: 10;
 // more code
 ```
@@ -32,31 +33,44 @@
 
 ```
 // more code
-&__top {
+&__menu-icon {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 3px;
-  background-color: #fff;
-}
+  top: 10px;
+  right: 10px;
 
-&__middle {
-  position: absolute;
-  top: 7px;
-  left: 0;
+  height: 20px;
   width: 20px;
-  height: 3px;
-  background-color: #fff;
-}
+  z-index: 10;
 
-&__bottom {
-  position: absolute;
-  top: 14px;
-  left: 0;
-  width: 20px;
-  height: 3px;
-  background-color: #fff;
+  @mixin atMedium {
+    display: none;
+  }
+  &__top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 3px;
+    background-color: #fff;
+  }
+
+  &__middle {
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 20px;
+    height: 3px;
+    background-color: #fff;
+  }
+
+  &__bottom {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    width: 20px;
+    height: 3px;
+    background-color: #fff;
+  }
 }
 // more code
 ```
@@ -71,34 +85,54 @@
 `_site-header.css`
 
 ```
-&::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 3px;
-  background-color: #fff;
-}
+// more code
+&__menu-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 
-&__middle {
-  position: absolute;
-  top: 7px;
-  left: 0;
-  width: 20px;
-  height: 3px;
-  background-color: #fff;
-}
+    height: 20px;
+    width: 20px;
+    z-index: 10;
 
-&::after {
-  content: "";
-  position: absolute;
-  top: 14px;
-  left: 0;
-  width: 20px;
-  height: 3px;
-  background-color: #fff;
-}
+    @mixin atMedium {
+      display: none;
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      background-color: #fff;
+      content: "";
+      height: 3px;
+      width: 20px;
+    }
+
+    &__middle {
+      position: absolute;
+      top: 7px;
+      left: 0;
+
+      background-color: $white;
+      height: 3px;
+      width: 20px;
+    }
+
+    &::after {
+      position: absolute;
+      top: 14px;
+      left: 0;
+
+      background-color: $white;
+      content: "";
+      height: 3px;
+      width: 20px;
+    }
+
+  }
+// more code
 ```
 
 `MobileMenu.js`
@@ -128,7 +162,13 @@ toggleTheMenu() {
   // more code
   transform-origin: 0 100%;
 }
-// more code
+```
+
+`_site-header.css`
+
+* Place after `&__menu-icon` closes
+
+```
 &__menu-icon--close-x {
   &::before {
     transform: rotate(45deg) scaleX(1.25) translateY(-2px);
@@ -155,23 +195,24 @@ toggleTheMenu() {
 `_site-header.css`
 
 ```
-// more code
-&::before {
+&__menu-icon {
   // more code
-  transition: transform .3s ease-out;
-}
+  &::before {
+    // more code
+    transition: transform .3s ease-out;
+  }
 
-&__middle {
-  // more code
-  transition: all .3s ease-out;
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-}
+  &__middle {
+    // more code
+    transition: all .3s ease-out;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+  }
 
-&::after {
-  // more code
-  transition: transform .3s ease-out;
-}
+  &::after {
+    // more code
+    transition: transform .3s ease-out;
+  }
 // more code
 ```
 

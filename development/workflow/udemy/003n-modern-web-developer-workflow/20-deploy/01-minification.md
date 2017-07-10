@@ -3,20 +3,22 @@
 
 ## /dist
 * Short for `distributable`
-* Public copy - that we will push up to the web
+
+### Public copy - that we will push up to the web
 * It will be streamlined, minimalist
 * Only contains files essential for visitors visiting the site
 * Compressed files
-    - img
-    - css
-    - js
+    - `img`
+    - `css`
+    - `js`
 
 ## /app is our source code `src`
 * We don't need to upload the `app` folder because it contains lots of files that visitors to our website don't need
-* Think of this as our Developer folder
-* Our source code
-* Multiple files
-* Highly organized
+* Think of this as:
+    - Our Developer folder
+    - Our source code
+    - Multiple files
+    - Highly organized
 
 ### Developers Need:
 * Individual CSS and JS modules
@@ -33,7 +35,7 @@
 
 * Add all changes with:
 
-`$ git all -A`
+`$ git add -A`
 
 * Commit changes
 
@@ -68,10 +70,16 @@ gulp.task('build', );
 
 * The build task won't do anything
     - It will just be called to run other build tasks
+
+## Copy all images to `dist`
 * Create a task that will copy all of our images files over to the `dist` folder and also compress the image files before they reach their destination
+
+## What is `!`
 * The `!` allows us to **exclude** certain files from the previous path
-    - Why do we need to exclude certain files?
-        + Our icons folder is used to generate a consolidated SVG or PNG file so we don't need to include the icons folder as it is not used in production
+
+### Why do we need to exclude certain files?
+* Our icons folder is used to generate a consolidated SVG or PNG file so we don't need to include the icons folder as it is not used in production
+
 ## Import build file
 `gulpfile.js`
 
@@ -178,8 +186,9 @@ gulp.task('build', ['deleteDistFolder', 'optimizeImages']);
 
 ![revision files](https://i.imgur.com/n5eNV0B.png)
 
+#### Cache-busting
 * This is for cache-busting
-    - Which means, we force the browsers to redownload the file if we made any changes
+    - Which means, we force the browsers to re-download the file if we made any changes
     - If we don't revision, browsers will cache the file and a visitor won't see any changes to our site if they visited our site and didn't clear their browser cache
 * There is a great tool that will `copy to dist folder, compress files and revision them for us` and this tool is called `usemin`
 
@@ -218,15 +227,7 @@ gulp.task('usemin', ['deleteDistFolder'], function() {
 gulp.task('build', ['deleteDistFolder', 'optimizeImages', 'usemin']);
 ```
 
-## Add the task to gulpfile
-`gulpfile.js`
-
-```js
-// more code
-require('./gulp/tasks/build'); // add this line
-```
-
-## Add HTML comment to tell usemin what we want
+## Add HTML comment to tell `usemin` what we want
 `index.html`
 
 ```html

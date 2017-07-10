@@ -27,7 +27,7 @@
 `/app/assets/scripts/modules/RevealOnScroll.js`
 
 ```js
-class = RevealOnScroll {
+class RevealOnScroll {
 
 }
 
@@ -129,6 +129,9 @@ export default RevealOnScroll;
 
 ## Test it out in the browser
 * You will see `4 waypoints` in console
+
+![4 waypoints](https://i.imgur.com/RUNikmX.png)
+
 * `element` is the DOM element we want to watch for as we scroll down the page
 * `handler` is what we want to happen when that element is scrolled to
 * Inside jQuery's `each()` method `this` points to the current DOM element

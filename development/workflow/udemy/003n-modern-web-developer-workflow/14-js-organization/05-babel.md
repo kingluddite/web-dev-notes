@@ -2,7 +2,7 @@
 * We will write modern JavaScript and have excellent browser support
 
 ## What is Babel?
-* W3C - World Wide Web Consortium
+* W3C - [World Wide Web Consortium](https://www.w3.org/)
 * They set the standards for HTML and CSS
     - It is up to each manufacturer to follow those standards
         + Google Chrome
@@ -12,20 +12,21 @@
 * W3C also sets standard for DOM - Document Object Model
     - DOM is browsers programmatic model of the page that we can manipulate with JavaScript to add behaviors to our web pages
 * But the W3C does NOT set a standard for JavaScript
-    - Ecma International sets the standard for JavaScript
+    - [ECMA International](https://www.ecma-international.org/default.htm) sets the standard for JavaScript
 
 ![exhibits](https://i.imgur.com/dVN9jl1.png)
 
 ### Exhibit A
 `document.getElementById('sampleElement');`
 
+## Javascripty and Browserish
 * DOM based
 * Web browser's API
 * This code is technically written in JavaScript it doesn't look very 'javascripty'
-* It feels 'browserish' because all we are doing is interacting with the browser's API with the DOM
+* It feels 'browserish' because all we are doing is interacting the browser's API with the DOM
     - DOM based
     - Web browser's API
-* So we can say that this code is based n the W3C DOM standard because the W3C sets the DOM standard
+* So we can say that this code is based on the W3C DOM standard because the W3C sets the DOM standard
 
 ### Exhibit B
 ```js
@@ -35,18 +36,19 @@ for (var i = 0; i < 10; i++) {
 ```
 
 * A `for loop` to do stuff `10` times
-* The for loop has nothing specific to do with the browser
+* The `for loop` has nothing specific to do with the browser
 * This has to do with the native features and syntax of the JavaScript programming language
 * JavaScript is based on the ECMAScript standard
 * Smart people work on ECMAScript and its the standard for JavaScript that all web browsers are encouraged to follow and support
 
 ## ECMAScript through the years... lot of versions
 ### ECMAScript 5 (5th edition) - has been around since 2009
-* This means web browsers have had plenty of time to adopt and support ES5 (ECMAScript 5)
+* This means web browsers have had plenty of time to adopt and support ES5 (_ECMAScript 5_)
 * When we build a website we can safely assume that virtually all of our visitors have full browser support for ES5
+* But ECMAScript recently released version 6 ECMAScript 6
+(_aka `ECMAScript 2015`_)
 
-## But ECMAScript recently released version 6 ECMAScript 6
-* aka `ECMAScript 2015`
+### ES6
 * ES6 adds lots of new syntax and features
     - classes
     - for/of loops
@@ -57,14 +59,15 @@ for (var i = 0; i < 10; i++) {
 ### What should we do?
 ![options](https://i.imgur.com/7X8V57m.png)
 
-* The answer is we can have the best of both worlds thanks to Babel
+* The answer is we can have the best of both worlds thanks to `Babel`
 
 ## What is Babel?
 * It is a tool we install on our computer
 * We write ES6 code
 * Behind the scenes Babel will automatically convert the ES6 code into ES5 code
     - We then server up that converted ES5 code to the browser
-    - And everyone wins
+
+### And Everyone wins!
 
 ## Install and setup Babel
 `$ npm i babel-core babel-loader babel-preset-es2015 -D`
@@ -87,15 +90,15 @@ module.exports = {
   module: {
     loaders: [
       {
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
-          presets: ['es2015']
+          presets: ['es2015'],
         },
         test: /\.js$/,
-        exclude: /node_modules/
-      }
-    ]
-  }
+        exclude: /node_modules/,
+      },
+    ],
+  },
 }
 ```
 
@@ -111,7 +114,7 @@ module.exports = {
     - JavaScript doesn't use **Classical Inheritance**
         + Instead JavaScript uses **Prototypal Inheritance**
     - ES6 didn't change this - JavaScript still uses prototypes
-    - But ES6 has added some syntactical sugar to the language where we can almost trick ourselves into thinking that JavaScript does have classes
+    - But ES6 has added some `syntactical sugar` to the language where we can almost trick ourselves into thinking that JavaScript does have classes
 
 * So this code:
 
@@ -150,7 +153,8 @@ module.exports = Person;
 * `constructor()` - reserved word in JavaScript
     - JavaScript knows to immediately run this code as soon as the object is created
     - We include any parameters inside the constructor's parentheses
-* Save your changes
+
+## Save your changes
 * Check out console and our code is working as it did before
 * Benefit of class in JavaScript
     - Makes Inheritance super simple
@@ -196,7 +200,7 @@ Greetings, my name is Jane Doe. My favorite color is blue.
 
 # ES6 Import/Export Modules
 * `require` is not part of the JavaScript language
-    - `require` is part of Node.js
+    - `require` is part of `Node.js`
     - We used `require` because before ES6 there was no native way to import modules
     - But we are now using Babel and we can use ES6
 

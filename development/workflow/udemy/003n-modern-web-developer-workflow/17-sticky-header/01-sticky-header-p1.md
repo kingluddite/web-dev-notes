@@ -28,8 +28,8 @@ As we scroll down we want our header to stick to the top of the page
 
 ```css
 @mixin atMedium {
-  position: fixed; /* add this line */
   background-color: rgba($mainBlue, 0.3);
+  position: fixed; /* add this line */
 }
 ```
 
@@ -78,14 +78,18 @@ class StickyHeader {
   }
 
   createHeaderWaypoint() {
-    const that = this;
-    new Waypoint({
-      element: that.headerTriggerElement[0],
-      handler: function() {
-        that.siteHeader.addClass('site-header--dark');
-      }
-    });
-  }
+      const that = this;
+      new Waypoint({
+        element: that.headerTriggerElement[0],
+        handler: function(direction) {
+          if (direction === 'down') {
+            that.siteHeader.addClass('site-header--dark');
+          } else {
+            that.siteHeader.removeClass('site-header--dark');
+          }
+        }
+      });
+   }
 }
 
 export default StickyHeader;
@@ -95,12 +99,19 @@ export default StickyHeader;
     - `const that = this;` - We use this because directly inside the `createHeaderWaypoint()` method `this` is pointing to the `StickyHeader` class but inside of the `new Waypoint({})` object, `this` points to the Waypoint object
         + We use `that = this` to bind `that` to `this`
 * Waypoint has a `direction` argument that will know when the user is scrolling `down`
-    - We use a condition `if` statement to add the dark background class if scrolling down and remove the class if scrolling up
-* Waypoint wants a JavaScript native DOM element as the value for the `element` key but currently we are using a jQuery object `this.headerTriggerElement`
-    - [How do I pull a native DOM element from a jQuery object?](https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/)
-    - `that.headerTriggerElement[0]`
-        + This works because the first item in a jquery array like object is always a pointer to the native DOM element
+    - We use a conditional `if` statement to either:
+      + Add the dark background class if scrolling down
+      + Or remove the class if scrolling up
 * We want the Waypoint object to be created as soon as the page loads so we place it in the constructor and call it `this.createHeaderWaypoint();`
+
+## Need Native DOM Element
+* Waypoint wants a JavaScript native DOM element as the value for the `element` key
+* But currently we are using a jQuery object `this.headerTriggerElement`
+
+### How do I pull a native DOM element from a jQuery object?
+[READ MORE](https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object/)
+* `that.headerTriggerElement[0]`
+  - This works because the first item in a jquery array like object is always a pointer to the native DOM element
 
 ## Create the dark background with CSS
 `_site-header.css`
@@ -112,6 +123,7 @@ export default StickyHeader;
 
 @mixin atMedium {
   position: fixed;
+
   background-color: rgba($mainBlue, 0.3);
 
   &--dark { /* add this style */
@@ -130,18 +142,19 @@ When we make header background dark we also will shrink the logo
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translateX(-50%) scale(.8);
-    transition: transform .3s ease-out;
-    transform-origin: 50% 0%;
+
     background-color: $mainBlue;
     padding: 25px 36px;
+    transform: translateX(-50%) scale(0.8);
+    transform-origin: 50% 0%;
+    transition: transform 0.3s ease-out; /* add this line */
 
     @mixin atMedium {
       left: auto;
       transform: translateX(0) scale(1);
 
       .site-header--dark & { /* add this rule */
-        transform: scale(.57);
+        transform: scale(0.57);
       }
     }
   }
@@ -157,7 +170,7 @@ When we make header background dark we also will shrink the logo
 }
 ```
 
-* When the dark class is added, we shrink the logo to almost half its size
+* When the dark class is added, we shrink the logo to a little over half its size
 
 ### Animate the logo size change
 `_site-header.css`
@@ -167,11 +180,12 @@ When we make header background dark we also will shrink the logo
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%) scale(.8);
-  transition: transform .3s ease-out; /* add this line
-  transform-origin: 50% 0%;
+  
   background-color: $mainBlue;
   padding: 25px 36px;
+  transform: translateX(-50%) scale(.8);
+  transform-origin: 50% 0%;
+  transition: transform .3s ease-out; /* add this line
 ```
 
 * Now scroll down and you'll see the logo animate smaller

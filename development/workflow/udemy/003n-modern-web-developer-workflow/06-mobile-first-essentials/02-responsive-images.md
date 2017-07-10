@@ -2,6 +2,8 @@
 ## What is a responsive image and why do we need it?
 * Very similar to a traditional image
 * [Reading up on high-dpi images](https://www.html5rocks.com/en/mobile/high-dpi/)
+* [Watch Video on the difference between high dpi and not high dpi images](https://www.youtube.com/watch?v=F_CdTRDNNRE)
+* [Efficient and Modern way to create high dpi images with Photoshop](https://www.elegantthemes.com/blog/tips-tricks/how-to-create-retina-display-image-assets-for-better-looking-websites)
 
 ## Two unique situations
 * Two unique code patterns

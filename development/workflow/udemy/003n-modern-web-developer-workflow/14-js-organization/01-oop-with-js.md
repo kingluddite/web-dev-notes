@@ -33,7 +33,7 @@ console.log('Hello, my name is Jane Doe and my favorite color is green');
 ```
 
 * The output should not be surprising
-* But this code is repetitive
+* But this `code` is **repetitive**
 * The lines are identical except for the **name** and **color**
 * Everything else is part of a pattern that we can define once and then recycle
 
@@ -61,7 +61,7 @@ person(johnName, johnFavColor);
 person(janeName, janeFavColor);
 ```
 
-## How do we add structure to our data?
+## How do we add structure to our data? - Use Objects
 ```js
 var john = {
   name: 'John Doe',
@@ -97,17 +97,17 @@ var john = {
 john.greet();
 ```
 
-* One object can contain all the data and behavior that it needs to operate
+* One object can contain all the data and behavior (properties and methods) that it needs to operate
 * OOP is where we stop thinking in terms of individual variables and functions
     - And begin thinking in terms of cohesive, self-sufficient objects
 
-## What is an Object
+## What is an Object?
 * An entity that has Data and behavior
-* Or think of it as an entity that has nouns and verbs
+  - Or think of it as an entity that has nouns and verbs
 
 ### Our Object
 * `name` is a noun
-* `favcolor` is a noun
+* `favColor` is a noun
 * `greet` is a verb
 
 ## method
@@ -126,10 +126,12 @@ var jane = {
 jane.greet();
 ```
 
-* That is really repetitive and what if we have 1000 people. We have to do this 1000 times?
-* There's got to be a better way
-* There is
-* Creating a class
+## That is really repetitive
+* What if we have 1000 people?
+  - We would have to do this 1000 times
+
+## There's got to be a better way!
+* There is... and that better way is by creating a class
 
 ## Class
 ```js
@@ -146,14 +148,17 @@ var jane = new Person();
 jane.greet(); // Yo!
 ```
 
-* Begin classes with a Captital letter
-    - Common Naming convention
+* Begin classes with a Capital letter
+    - Common naming convention is to spell constructors with a Capital letter
 * `new` is a keyword in JavaScript that will create a new **instance** of the Person object type
-    - aka - will create a new object using our Person blueprint
+  - (_We could also say we will create a new object using our Person blueprint_)
 
 ## What is `this` keyword
 * Allows our Object to be flexible
-* The value of `this` changes depending on **how**, **when** and **where** it is called
+* The value of `this` changes depending on 
+  - **how**
+  - **when**
+  - and **where** it is called
 * When we call this after called `john.greet()` `this` refers to **john**
 * When we call this after called `jane.greet()` `this` refers to **jane**
 * Within the **signature** of our constructor function we add parameters to receive incoming stuff like names and favorite color
@@ -175,9 +180,9 @@ var jane = new Person('Jane Doe', 'green');
 jane.greet();
 ```
 
-* Now our code is Object Oriented
+## Now our code is Object Oriented
 * JavaScript does not technically have classes like Java and C#
-* E6 introduces the class keyword to make JavaScript look like is uses classes but it is not a **true** JavaScript language
+* ES6 introduces the `class` keyword to make JavaScript look like is uses classes but it is not a **true** JavaScript language
 * It is a difference but I will refer to the blueprint code as a `class`
 * It would be nice if we could put our `class` in its own file so we don't have it mudding up our other code
-* We can't import files/libraries using native JavaScript but we can using a tool called Webpack 
+* We can't import files/libraries using native JavaScript but we can using a tool called **Webpack** 

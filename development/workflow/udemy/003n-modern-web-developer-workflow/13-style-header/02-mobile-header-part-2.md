@@ -27,6 +27,7 @@
   &__logo {
     position: absolute;
     top: 0;
+
     background-color: $mainBlue;
     padding: 25px 36px;
   }
@@ -37,6 +38,7 @@
 }
 ```
 
+## SEO/Accessibility
 * We need to add text in the markup, this is beneficial from a SEO perspective
 * We need the text for SEO but we don't want to render it visually
     - Setting `text-indent: -9999px` is a common way to hide it from the person viewing the page but not from screen readers
@@ -46,11 +48,11 @@
 
 ```css
 &__text-content {
-  padding-top: 60px;
   position: absolute;
   top: 50%;
   left: 0;
-
+  
+  padding-top: 60px;
   text-align: center;
   transform: translateY(-50%);
   width: 100%;
@@ -62,7 +64,7 @@
 
 ![bad mobile header](https://i.imgur.com/n3c6oWp.png)
 
-* We'll hide the top right nave and button until the user clicks a menu icon
+* We'll hide the top right `nav` and button until the user clicks a menu icon
 * We will show a smaller logo on small screens
     - We can get rid of the transparent blue blackground
 
@@ -108,8 +110,9 @@
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+
   background-color: $mainBlue;
+  transform: translateX(-50%);
   padding: 25px 36px;
 }
 ```
@@ -126,9 +129,10 @@
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translateX(-50%);
+
     background-color: $mainBlue;
     padding: 25px 36px;
+    transform: translateX(-50%);
 
     @mixin atMedium {
       left: auto;
@@ -147,8 +151,9 @@
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%) scale(.8);
+
   background-color: $mainBlue;
+  transform: translateX(-50%) scale(.8);
   padding: 25px 36px;
 
   @mixin atMedium {
@@ -158,23 +163,42 @@
 }
 ```
 
+## Bad Top Padding Gap
 * But the sprite logo now has a top padding gap
     - This is because by default when you use `transform: scale()` the element considers its perfect center to be the origin of the transform
         + (translation) - It shrunk equaly in all 4 directions so that its centers is the same position as it was before the shrinking occurred
-        + Another way of saying this is by default the `transform-origin: 50% 50%` (perfect middle horizontally and perfect middle vertically)
+        + Another way of saying this is by default the `transform-origin: 50% 50%` (_perfect middle horizontally and perfect middle vertically_)
         + `transform-origin: 50% 100%;` - Will move it down even more
         + `transform-origin: 50% 0;` - Gets rid of the top padding gap
+
+```css
+&__logo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  background-color: $mainBlue;
+  padding: 25px 36px;
+  transform: translateX(-50%) scale(0.8);
+  transform-origin: 50% 0;
+
+  @mixin atMedium {
+    left: auto;
+    transform: translateX(0) scale(1);
+  }
+}
+```
 
 # Give hero and logo more spacing
 `_large-hero.css`
 
 ```css
 &__text-content {
-  padding-top: 88px;
   position: absolute;
   top: 50%;
   left: 0;
 
+  padding-top: 88px;
   text-align: center;
   transform: translateY(-50%);
   width: 100%;
@@ -201,12 +225,13 @@
 
 ```css
 &__menu-icon {
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
   position: absolute;
   top: 10px;
   right: 10px;
+  
+  background-color: #fff;
+  height: 20px;
+  width: 20px;
 
   @mixin atMedium {
     display: none;
@@ -214,8 +239,9 @@
 }
 ```
 
+## Ugly White Square
 * Now we have an ugly white square
-* It will soon use a tri-nav
+* It will soon use a tri-nav (aka hamburger menu)
 * It shows on mobile and not on large screens
 * We will use JavaScript to make this look good and work
 

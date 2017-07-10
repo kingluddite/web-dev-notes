@@ -35,10 +35,11 @@
     position: absolute;
     top: 15px;
     right: 15px;
+
+    color: $mainBlue;
     font-size: 2rem;
     transform: scaleX(1.2);
     transform-origin: 100% 0;
-    color: $mainBlue;
 
     &:hover {
       color: $mainOrange;
@@ -51,7 +52,7 @@
 ## Vertical Center Modal content in viewport
 `index.html`
 
-* We put everything in our modal (except the X) inside a div with a class of `modal__iner`
+* We put everything in our modal (_except the X_) inside a `div` with a class of `modal__iner`
 
 ```html
 <div class="modal">
@@ -105,15 +106,17 @@
 ```
 .modal {
   position: fixed;
-  z-index: 5;
-  background-color: rgba(255, 255, 255, .94);
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+
+  background-color: rgba(255, 255, 255, .94);
   opacity: 0; // add this line
+  z-index: 5;
 ```
 
+## Visibility: hidden
 * But if you hover over the page you will still see that the social icons are still clickable
 * So just add `visability: hidden` and that will prevent the hand cursor from appearing over the social icons
 
@@ -220,16 +223,17 @@ export default Modal;
 ```
 .modal {
   position: fixed;
-  z-index: 5;
-  background-color: rgba(255, 255, 255, .94);
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+
+  background-color: rgba(255, 255, 255, .94);
   opacity: 0;
-  visibility: hidden;
   transform: scale(1.2);
   transition: all .3s ease-out;
+  visibility: hidden;
+  z-index: 5;
 
   &--is-visible {
     opacity: 1;
@@ -264,7 +268,7 @@ keyPressHandler(event) {
 }
 ```
 
-## Add the modal open to `Get Started Today` button and button in footer
+## Add the `open-modal` class to `Get Started Today` button and button in footer
 
 ```html
 <p><a href="#" class="btn btn--orange btn--large open-modal">Get Started Today</a></p>

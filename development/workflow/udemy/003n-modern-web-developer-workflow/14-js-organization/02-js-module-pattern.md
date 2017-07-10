@@ -26,7 +26,7 @@ var jane = new Person('Jane Doe', 'green');
 jane.greet();
 ```
 
-* How can we import a JavaScript file into `App.js`?
+## How can we import a JavaScript file into `App.js`?
 * Like this:
 
 ```js
@@ -44,11 +44,22 @@ jane.greet();
 * We will get an error
 * `Person` is not defined
 * Our above code will not work within a web browser
-* The **require** syntax works within our `Gulp` file because Gulp runs within the context of **Node.js**
-    - Node.js supports the `require` import functionality
-* But `App.js` is going to be running within the context of people's **web browsers** and web browsers have no idea what **require** means
-* We will use Webpack to solve this problem
-    - We will install it
-    - Then change it's config file to tell it to look at our `App.js` file and it will detect any `required` or `imported` files and then **Webpack** will bundle all of our individual files together into one, nice, neat, single JavaScript file
-    - That bundled file **WILL WORK IN THE WEB BROWSER**
 
+## `require` works with Gulp because of the Node.js environment
+* The **require** syntax works within our `Gulp` file because Gulp runs within the context of **Node.js**
+    - `Node.js` supports the `require` import functionality
+
+## `require` won't work in the browser environment
+* But `App.js` is going to be running within the context of people's **web browsers** and web browsers have no idea what **require** means
+
+## `Webpack` will help solve this problem
+* We will install it
+* Then change it's `config` file (**webpack.config.js**) to tell it to look at our `App.js` file
+* And it will detect any `required` or `imported` files
+* And then **Webpack** will bundle all of our individual files together into one:
+    - nice
+    - neat
+    - single JavaScript file
+* That bundled file **WILL WORK IN THE WEB BROWSER!**
+
+## Next - Webpack

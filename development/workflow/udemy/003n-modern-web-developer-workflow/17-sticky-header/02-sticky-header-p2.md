@@ -19,7 +19,7 @@ In `index.html` we need to create relationships between each section of the page
 * [Read More on HTML5 custom data attributes](http://html5doctor.com/html5-custom-data-attributes/)
 * Add this to our `index.html`
 
-```
+```html
 // more code
 <div id="our-beginning" class="page-section" data-matching-link="#our-beginning-link">
 // more code
@@ -29,10 +29,10 @@ In `index.html` we need to create relationships between each section of the page
 // more code
 ```
 
-* Now we'll use JavaScript and Waypoints so that when this section of the page gets scrolled to we'll use `#our-beginning-link` as a custom attribute as a jquery selector and we give that element a modifier css class that makes it yellow
-* We'll add this code inside our StickyHeader class
+* Now we'll use JavaScript and Waypoints so that when this section of the page gets scrolled to we'll use `#our-beginning-link` as a custom attribute as a jQuery selector and we give that element a modifier css class that makes it yellow
+* We'll add this code inside our `StickyHeader` JavaScript class
 
-`HighlightSection.js`
+`/app/assets/scripts/modules/HighlightSection.js`
 
 ```js
 import $ from 'jquery';
@@ -88,7 +88,7 @@ a {
   text-decoration: none;
   display: block;
   padding: 5px 8px; /* make sure this is correct */
-  font-size: .8rem;
+  font-size: .8rem; /* check this too */
   background-color: rgba($mainBlue, .5);
 
   @mixin atMedium {
@@ -137,7 +137,7 @@ class HighlightSection {
       new Waypoint({
         element: currentPageSection,
         handler: function(direction) {
-          if (direction == "down") {
+          if (direction === 'down') {
             const matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
             that.headerLinks.removeClass('is-current-link');
             $(matchingHeaderLink).addClass('is-current-link');
@@ -149,7 +149,7 @@ class HighlightSection {
       new Waypoint({
         element: currentPageSection,
         handler: function(direction) {
-          if (direction == "up") {
+          if (direction === 'up') {
             const matchingHeaderLink = currentPageSection.getAttribute('data-matching-link');
             that.headerLinks.removeClass('is-current-link');
             $(matchingHeaderLink).addClass('is-current-link');
@@ -165,12 +165,25 @@ export default HighlightSection;
 ```
 
 * Now when you scroll up or down, you see the section highlighted in the main nav
+* If it is not working check
+  - The spelling on your HTML5 custom attributes `data-matching-link`
+  - Check your CSS for `.primary-nav`
+  - Check your html for your nabar (_The id attribute value is important_)
+
+```html
+<ul>
+  <li><a href="#our-beginning" id="our-beginning-link">Our Beginning</a></li>
+  <li><a href="#features" id="features-link">Features</a></li>
+  <li><a href="#testimonials" id="testimonials-link">Testimonials</a></li>
+</ul>
+```
+
 
 ## Implementing smooth scrolling
 ### Install jquery-smooth-scroll
 `$ npm i jquery-smooth-scroll -S`
 
-`SmoothScrolling.js`
+`/app/assets/scripts/modules/SmoothScrolling.js`
 
 ```js
 import $ from 'jquery';
@@ -208,5 +221,8 @@ const stickyHeader = new StickyHeader();
 const highlightSection = new HighlightSection();
 const smoothScrolling = new SmoothScrolling(); // add this line
 ```
+
+### Test it out
+* Click on the links and watch the page magically scroll
 
 ## Next - Build a Modal

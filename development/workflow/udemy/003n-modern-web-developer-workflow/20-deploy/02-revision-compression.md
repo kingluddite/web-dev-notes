@@ -2,11 +2,11 @@
 ## Install multiple packages
 `$ npm i gulp-rev gulp-cssnano gulp-uglify -D`
 
-* gulp-rev
+* `gulp-rev`
     - Helps us revision our files
-* gulp-cssnano
+* `gulp-cssnano`
     - Helps us compress our CSS
-* gulp-uglify
+* `gulp-uglify`
     - Helps ups compress our JS
 
 `build.js`
@@ -38,7 +38,7 @@ gulp.task('usemin', ['deleteDistFolder'], function() {
 ![minified](https://i.imgur.com/9jLettg.png)
 
 * The JS and CSS files have been revisioned
-    - Great for cache-busting
+    - Great for `cache-busting`
 * Check out the file size difference in development `App.js` and production `App-randomstring.js` file
 
 ![file size diff](https://i.imgur.com/5yiWv27.png)
@@ -166,7 +166,7 @@ gulp.task('optimizeImages', ['deleteDistFolder', 'icons'], function() {
     - move everything perfectly into place in the `dist` folder
 
 ## Create a task that will let us preview our `dist` folders in the web browser
-* We can use browsersync to spin up a server
+* We can use `browser-sync` to spin up a server
 
 `build.js`
 
@@ -201,4 +201,68 @@ gulp.task('previewDist', function() {
 
 ![two servers](https://i.imgur.com/LK4nTxO.png)
 
+## Finished build.js
+```js
+const gulp = require('gulp'),
+imagemin = require('gulp-imagemin'),
+del = require('del'),
+usemin = require('gulp-usemin'),
+rev = require('gulp-rev'),
+cssnano = require('gulp-cssnano'),
+uglify = require('gulp-uglify'),
+browserSync = require('browser-sync').create();
+
+gulp.task('previewDist', function() {
+  browserSync.init({
+    notify: false,
+    server: {
+      baseDir: './dist'
+    }
+  });
+});
+
+gulp.task('deleteDistFolder', ['icons'], function() {
+  return del('./dist');
+});
+
+gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
+  var pathsToCopy = [
+    './app/**/*',
+    '!./app/index.html',
+    '!./app/assets/images/**',
+    '!./app/assets/styles/**',
+    '!./app/assets/scripts/**',
+    '!./app/temp/*',
+    '!./app/temp/**'
+  ]
+
+  return gulp.src(pathsToCopy)
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('optimizeImages', ['deleteDistFolder'], function() {
+  return gulp.src(['./app/assets/images/**/*', '!./app/assets/images/icons', '!./app/assets/images/icons/**/*'])
+    .pipe(imagemin({
+      progressive: true,
+      interlaced: true,
+      multipass: true
+    }))
+    .pipe(gulp.dest('./dist/assets/images'));
+});
+
+gulp.task('useminTrigger', ['deleteDistFolder'], function() {
+  gulp.start('usemin');
+});
+
+gulp.task('usemin', ['styles', 'scripts'], function() {
+  return gulp.src('./app/index.html')
+    .pipe(usemin({
+      css: [function() {return rev()}, function() {return cssnano()}],
+      js: [function() {return rev()}, function() {return uglify()}],
+    }))
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('build', ['deleteDistFolder', 'copyGeneralFiles', 'optimizeImages', 'useminTrigger']);
+```
  

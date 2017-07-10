@@ -98,10 +98,11 @@ export default MobileMenu;
 
 ```
 .site-header {
-  padding: 10px 0;
   position: absolute;
+  
+  padding: 10px 0;
+  transition: background-color 0.3s ease-out;
   width: 100%;
-  transition: background-color .3s ease-out;
   z-index: 2;
 
   &--is-expanded {
@@ -109,7 +110,7 @@ export default MobileMenu;
   }
 ```
 
-* .3s (300 milliseconds)
+* 0.3s (300 milliseconds)
 * Learn more about [CSS transition property](https://css-tricks.com/almanac/properties/t/transition/)
 
 ### Also have Menu items fade in
@@ -120,14 +121,14 @@ export default MobileMenu;
   &__menu-content {
     /*display: none;*/
     opacity: 0;
+    padding-top: 100px;
     transition: opacity .3s ease-out;
     text-align: center;
-    padding-top: 100px;
 
     @mixin atMedium {
-      text-align: left;
       display: block;
       padding-top: 0;
+      text-align: left;
     }
 
     &--is-visible {
@@ -138,7 +139,8 @@ export default MobileMenu;
 }
 ```
 
-* Instead of display none and then display block to show and hide menu items
+## Opacity over Display
+* Instead of `display none` and then `display block` to show and hide menu items
     - We use **opacity** `0` (_invisible_) and the **transition** to **opacity** `1` (_fully opaque_)
 * One problem is now our item is opacity 0 and invisible it can still be clicked on
     - We don't want our user to be able to click on invisible content
@@ -149,10 +151,11 @@ export default MobileMenu;
 // more code
   &__menu-content {
     position: relative; /* add this line */
+    
     opacity: 0;
+    padding-top: 100px;
     transition: opacity .3s ease-out;
     text-align: center;
-    padding-top: 100px;
     z-index: -10; /* add this line */
 
     @mixin atMedium {
@@ -175,15 +178,18 @@ export default MobileMenu;
     - This ensures the user won't click on it
 * `z-index` is only recognized by the browser if `position` is **relative** or **absolute**
 * We set `z-index` to `1` when it is visible so it can easily be clicked on
+
+## Transition all
 * We can use `all` in transition to transition all properties
-    * You can specify a particular property as we have above, or use a value of "all" to refer to transition properties
-    * The following is just a code sample and has nothing to do with the project
+    - You can specify a particular property as we have above, or use a value of "all" to refer to transition properties
+    - The following is just a code sample and has nothing to do with the project
+* This is just sample code and not part of this project
 
 ```css
 div {
-  transition: all 0.5s ease;
   background: red;
   padding: 10px;
+  transition: all 0.5s ease;
 }
 div:hover {
   background: green;
@@ -191,7 +197,7 @@ div:hover {
 }
 ```
 
-* In this above example, both `background` and `padding` will transition, due to the value “all” specified for the transition-property portion of the shorthand
+* In this above example, both `background` and `padding` will transition, due to the value “all” specified for the `transition-property` portion of the shorthand
 * So we can use that in our code:
 
 `_site-header.css`
@@ -199,11 +205,12 @@ div:hover {
 ```
 // more code
 &__menu-content {
-  position: relative;
+  position: relative; /* add this line */
+  
   opacity: 0;
-  transition: all .3s ease-out; /* modify this line */
-  text-align: center;
   padding-top: 100px;
+  text-align: center;
+  transition: all .3s ease-out; /* modify this line */
   z-index: -10;
 // more code
 ```
@@ -232,8 +239,8 @@ div:hover {
 
     &--is-visible {
       opacity: 1;
-      z-index: 1;
       transform: scale(1); /* add this line */
+      z-index: 1;
     }
   }
 }
@@ -241,7 +248,7 @@ div:hover {
 
 ### Houston we have a problem!
 * We can open the menu with a click but we can't close it with a click
-* This occurs because we adjusted the `z-index` value of the main-content div
+* This occurs because we adjusted the `z-index` value of the main content div
     - When the menu is visible it is overlapping the icon so we can't click on it
     - To fix we just give the menu icon on larger `z-index`
 
@@ -249,12 +256,13 @@ div:hover {
 
 ```
 &__menu-icon {
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
   position: absolute;
   top: 10px;
   right: 10px;
+  
+  background-color: #fff;
+  height: 20px;
+  width: 20px;
   z-index: 10; /* add this line */
 ```
 
@@ -271,18 +279,18 @@ div:hover {
 /* more code */
 
   a {
-    color: #fff;
-    font-weight: 300;
-    text-decoration: none;
-    display: block;
-    padding: 12px 0;
-    font-size: .8rem;
     background-color: rgba($mainBlue, .5);
+    color: #fff;
+    display: block;
+    font-size: .8rem;
+    font-weight: 300;
+    padding: 12px 0;
+    text-decoration: none;
 
     @mixin atMedium {
+      background-color: transparent;
       font-size: 1rem;
       padding: 12px 0;
-      border-color: transparent;
     }
   }
 }

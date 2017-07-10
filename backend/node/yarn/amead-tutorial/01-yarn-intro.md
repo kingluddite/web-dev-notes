@@ -37,7 +37,7 @@ Create your project folder
 
 ```
 {
-  "name": "learn-yarn-andrew-tutorial",
+  "name": "learn-yarn",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT"
@@ -87,7 +87,7 @@ app.listen(port, () => {
 
 * Ranges can cause major problems
 * You don't want to automatically have your versions change because you deployed to heroku for example
-* say you install 4.14.0 (_most recent version_)
+* Say you install 4.14.0 (_most recent version_)
     - You're developing with it
     - So when you deploy to heroku it will install your dependencies and let's say 4.15.0 is the new version and maybe it's not backwards compatible
 * This will make it very hard to track down issues
@@ -101,7 +101,7 @@ app.listen(port, () => {
 
 ```
 {
-  "name": "learn-yarn-andrew-tutorial",
+  "name": "learn-yarn",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -175,7 +175,7 @@ Delete `node_modules`
 * It will take longer
 * With lots of packages to install, yarn will save you time
 
-## Scripts inside package.json
+## Scripts inside `package.json`
 To use scripts:
 
 `$ yarn run`
@@ -212,7 +212,7 @@ Check with `$ nodemon`
 * And nodemon will rerun and show new log message in terminal
 
 ## Upgrade global module
-`$ yarn global upgrade nodemone`
+`$ yarn global upgrade nodemon`
 
 * Upgrade to a specific version
 

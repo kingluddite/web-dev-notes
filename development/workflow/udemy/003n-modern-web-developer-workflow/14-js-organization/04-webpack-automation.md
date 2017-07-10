@@ -1,8 +1,8 @@
 # Webpack Automation
 * Webpack does come with the ability to watch our files
-* And it can spin up it's very own Webpack dev server
-* But we are already extensively using Gulp and Browsersync so we won't use those
-* We want to integrate webpack into our existing Gulp automation
+* And it can spin up it's very own `Webpack` dev server
+* But we are already extensively using `Gulp` and `Browsersync` so we won't use those
+* We want to integrate `webpack` into **our existing Gulp automation**
 
 ## scripts.js
 * New Gulp task
@@ -23,9 +23,9 @@ gulp.task('scripts', function(callback) {
 ```
 
 * Before Webpack knew where our `webpack.config.js` file was
-    - Inside Gulp we have to explicitly tell Webpack where that file is
+    - Inside Gulp we have to explicitly tell **Webpack** where that file is
     - `webpack(require('../../webpack.config.js'));`
-* We provide a second argument that is just an anonymous function that will run when webpack completes (this is a **callback** function)
+* We provide a second argument that is just an anonymous function that will run when `webpack` completes (this is a **callback** function)
     - We will just use a simple log statement to test this **callback**
     - Normally we don't need to do anything else but we also want to make sure that Webpack is playing nicely with Gulp
         + We need Gulp to be aware when Webpack completes
@@ -42,12 +42,12 @@ gulp.task('scripts', function(callback) {
 require('./gulp/tasks/scripts');
 ```
 
-* We installed Webpack globally but now we are going to use it locally so we need to install it into our project
+* We installed **Webpack** globally but now we are going to use it locally so we need to install it into our project
 
 ## Uninstall Webpack globally
 `$ npm uninstall webpack -g`
 
-* [Read more](https://hashnode.com/post/install-all-npm-packages-globally-or-locally-cin0eje5f002ulk5354i1rh9r) about why Webpack global is not the best idea
+* [Read more](https://hashnode.com/post/install-all-npm-packages-globally-or-locally-cin0eje5f002ulk5354i1rh9r) about why `Webpack` global is not the best idea
 
 ## Install Webpack locally
 `$ npm i webpack -D`
@@ -55,7 +55,7 @@ require('./gulp/tasks/scripts');
 ### Test our Gulp `scripts` task
 `$ gulp scripts`
 
-* You will see `Webpack completed` in our terminal
+* You will see `Webpack completed` in our Terminal
 
 ![webpack completed](https://i.imgur.com/ymmHdGK.png)
 
@@ -71,6 +71,7 @@ require('./gulp/tasks/scripts');
 `watch.js`
 
 ```js
+// more code
   watch('./app/assets/styles/**/*.css', function() {
     gulp.start('cssInject');
   });
@@ -97,6 +98,7 @@ console.log('Webpack Automation test#2');
 ```
 
 * Refresh browser
+* Look how easy it is to import jQuery
 * `Webpack Automation test#2` should now be in console
 
 ## Have Browsersync refresh JavaScript
@@ -112,6 +114,7 @@ gulp.task('cssInject', ['styles'], function() {
     .pipe(browserSync.stream())
 });
 
+// add this task
 gulp.task('scriptsRefresh', ['scripts'], function() {
   browserSync.reload();
 });
@@ -124,6 +127,7 @@ gulp.task('watch', function() {
     gulp.start('cssInject');
   });
 
+  // modify this task
   watch('./app/assets/scripts/**/*.js', function() {
     gulp.start('scriptsRefresh');
   });
@@ -132,8 +136,10 @@ gulp.task('watch', function() {
 ```
 
 * We add a task that will just reload the browser when any changes to JavaScript files occur
-* But we don't want that to happen until our `scripts` task is complete where webpack does all our bundling
-* Restart gulp watch `$ gulp watch`
+* But we don't want that to happen until our `scripts` task is complete where `webpack` does all our bundling
+
+## Restart gulp watch task
+`$ gulp watch`
 
 `App.js`
 
@@ -145,7 +151,7 @@ console.log('Webpack Automation test#3');
 // more code
 ```
 
-* You will see that once you press `cmd` + `s` to save the file, Gulp and browsersync refresh the browser and the log is automatically updated
+* You will see that once you press `cmd` + `s` to save the file, `Gulp` and `browsersync` refresh the browser and the log is automatically updated
 
 ## Making things `error-proof`
 
@@ -168,7 +174,7 @@ gulp.task('scripts', function(callback) {
 });
 ```
 
-* Webpack gives us access to the `err` and `stats` object in the **callback**
+* `Webpack` gives us access to the `err` and `stats` object in the **callback**
 * Restart gulp `$ gulp watch`
 
 ## Create an error on purpose
@@ -194,8 +200,6 @@ var Person = require('./modules/Personnn'); // we misspell this on purpose
 
 ## Next - Babel
 * Think of it like this
-    - Babel is to JavaScript
-        + what
-            * PostCSS is to CSS
+    - **Babel is to JavaScript** what **PostCSS is to CSS**
 * Babel lets us use modern JavaScript even if that code won't run in older browsers
 * Babel will convert our modern JavaScript into JavaScript that will work on every web browser

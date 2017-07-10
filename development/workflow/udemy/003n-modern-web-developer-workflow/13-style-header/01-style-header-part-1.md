@@ -23,12 +23,14 @@
 }
 ```
 
+## We lost our header!
 * We need to take the header out of the normal `flow of the document`
 * This makes it look like our header has disappeared
-* But it is really just layered underneath the large hero-section
-* Why is this?
-    - By default when two HTML elements are position in a way when they will overlap the element that comes later in the HTML will sit on top
-    - `z-index` will give us control of which HTML **positioned** elements sit on top/behind
+* But it is really just layered underneath the large **hero-section**
+
+### Why is this?
+* By default when two HTML elements are positioned in a way they will overlap the element that comes later in the HTML will sit on top
+* `z-index` will give us control of which HTML **positioned** elements sit on top/behind
 
 `_site-header.css`
 
@@ -39,6 +41,7 @@
 }
 ```
 
+### z-index
 * Whichever HTML positioned element has a higher `z-index` will be placed on top
 * Default `z-index` of any element is `auto` with exception of `<html>` which has default `z-index:0`
 * `auto` means that element gets `z-index` from its **parent**
@@ -88,6 +91,7 @@ You can see this by using Developer Tools (_in Chrome_) or any similar tool in o
 
 ## Import it and use it
 ```js
+// more code
 mixins = require('postcss-mixins'), // don't forget the comma
 hexrgba = require('postcss-hexrgba'); // add this line
 
@@ -122,9 +126,10 @@ gulp.task('styles', function() {
 ```css
 .site-header {
   position: absolute;
-  z-index: 2;
+  
   background-color: rgba($mainBlue, 0.3);
   width: 100%;
+  z-index: 2;
 }
 ```
 
@@ -167,9 +172,10 @@ gulp.task('styles', function() {
 ```css
 .site-header {
   position: absolute;
-  z-index: 2;
+  
   background-color: rgba($mainBlue, 0.3);
   width: 100%;
+  z-index: 2;
 
   &__btn-container {
     float: right;
@@ -232,6 +238,7 @@ Or you could use this CSS
   ul {
     margin: 0;
     padding: 0;
+
     @mixin clearfix;
   }
 
@@ -276,9 +283,10 @@ With this HTML
 ```css
 .site-header {
   position: absolute;
-  z-index: 2;
+  
   background-color: rgba($mainBlue, 0.3);
   width: 100%;
+  z-index: 2;
 
   &__btn-container {
     float: right;
@@ -286,6 +294,7 @@ With this HTML
 
   &__logo {
     position: absolute;
+
     background-color: $mainBlue;
     padding: 25px 36px;
   }
@@ -298,15 +307,21 @@ With this HTML
 
 ```
 .site-header {
-  padding: 10px 0;
-
-// more code
-&__logo {
   position: absolute;
-  top: 0; /* add this line */
-  background-color: $mainBlue;
-  padding: 25px 36px;
-}
+
+  background-color: rgba($mainBlue, 0.3);
+  padding: 10px 0; /* add this line */
+  width: 100%;
+  z-index: 2;
+
+  // more code
+  &__logo {
+    position: absolute;
+    top: 0; /* add this line */
+    
+    background-color: $mainBlue;
+    padding: 25px 36px;
+  }
 ```
 
 ## Vertical center navbar
@@ -315,9 +330,9 @@ With this HTML
 ```
   a {
     color: #fff;
+    display: block;
     font-weight: 300;
     text-decoration: none;
-    display: block;
     padding: 12px 0;
   }
 ```

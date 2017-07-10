@@ -1,10 +1,10 @@
 # Core Concept - Routing
 * You will deal with routing in any Application you build
 * When people go to a URL you need to do stuff
-    - query Database
-    - filter through list of stores
-    - modify that date in some way
-    - and finally, when you have all the data you want to send to the user, you send it to them
+    - Query Database
+    - Filter through list of stores
+    - Modify that data in some way
+    - And finally, when you have all the data you want to send to the user, you send it to them
 
 ## `routes/index.js`
 1. Import express
@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 
 `app.use('/', routes);`
 
-* Anytime someone goes to `/` anything, we will hit the routes file and that file will handle every single URL hit that we get
+* Anytime someone goes to `/` anything, we will hit the routes file (`/routes/index.js`) and that file will handle every single URL hit that we get
 * You can have multiple route handlers `app.use('/admin', adminRoutes)`
 
 ## How the router works
@@ -51,12 +51,12 @@ router.get('/', (req, res) => {
   - An object full of methods for sending data back to the user
 3.  `next`
   - We'll learn more about this later
-  - But at times you won't want to send data back and you just want to pass it off to something else and that is the topic of `middleware`
+  - But at times you won't want to send data back and you just want to pass it off to something else and that falls under the topic of `middleware`
 
 ### Stuff we can do with our `res`
 * `res.send()`
 * **Important** You NEVER want to send data more than once
-  - If you do, you'll get an error
+  - If you do, you'll get an **error**
   - Replace our route with the code below and you'll see the error
 
 ```js
@@ -109,7 +109,7 @@ Will output to screen `kobe`
 ### Pass our query back in JSON format
 URL: `http://localhost:7777/?team=lakers&good=true`
 
-```
+```js
 router.get('/', (req, res) => {
   const player = { name: 'Kobe', age: 40, good: true };
   // res.send('Hey! It works!');
@@ -119,26 +119,35 @@ router.get('/', (req, res) => {
 });
 ```
 
+## bodyParser
+* `body-parser` extracts the entire body portion of an incoming request stream and exposes it on `req.body` as something easier to interface with.
+* You can do the same thing by yourself but using `body-parser` will do what is required and will save you time
+  - `bodyParser.urlencoded()` Parses the text as **URL encoded data** (_which is how browsers tend to send form data from regular forms set to POST_) and exposes the resulting object (_containing the keys and values_) on `req.body`
+  - `bodyParser.json()` Parses the text as JSON and exposes the resulting object on `req.body`
+
 `app.js`
 
-```
+```js
 // Takes the raw requests and turns them into usable properties on req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 ```
 
 * This is middleware
-* Before we get to our routes, express will check URL and it will check if use has posted data from a form and this will put all the data in the request so we can easily access it with stuff like 
-  - `req.query` 
-  - or `req.body` 
-  - or `req.params`
+* **Before we get to our routes**, `Express` will:
+    - Check the URL
+    - And it will check if user has posted data from a form and this will put all the data in the request so we can easily access it with stuff like 
+      + `req.query` 
+      + or `req.body` 
+      + or `req.params`
 
 ### Let's make a new route
-* Our route will return the reverse of the name we enter
-* How do you put variables in a route? `router.get('/reverse/:name')`
+* Our route will return the **reverse of the name we enter**
+
+#### How do you put variables in a route? `router.get('/reverse/:name')`
   - Add the following route below our existing route
   - Enter the URL into the browser address bar and press enter
-    + http://localhost:7777/reverse/bob
+    + [http://localhost:7777/reverse/bob](http://localhost:7777/reverse/bob)
 
 ```js
 router.get('/', (req, res) => {
@@ -170,7 +179,7 @@ Will output to screen:
 ```
 
 ### Reverse the name in the URL and send it back to user
-URL -> http://localhost:7777/reverse/elvis
+URL -> [http://localhost:7777/reverse/elvis](http://localhost:7777/reverse/elvis)
 
 ```js
 router.get('/reverse/:name', (req, res) => {

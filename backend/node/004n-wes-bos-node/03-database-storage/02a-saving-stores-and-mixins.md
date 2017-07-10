@@ -27,7 +27,7 @@ exports.homePage = (req, res) => {
 
 // add this code below
 exports.addStore = (req, res) => {
-  res.send('addStore page!');
+  res.send('addStore');
 };
 ```
 
@@ -37,12 +37,12 @@ exports.addStore = (req, res) => {
 ## View Route in browser
 `http://localhost:7777/add`
 
-And you should see this:
+And you should see this in the browser:
 
-![addStore route](https://i.imgur.com/E3iGnN7.png)
+`addStore`
 
 ## Render
-But we don't want to send that we want to render out one of our `pug` templates
+But we don't want to `send` that we want to **render** out one of our `pug` templates
 
 `storeController.js`
 
@@ -53,8 +53,8 @@ exports.addStore = (req, res) => {
 ```
 
 ## View in browser
-* We see our navbar but we have an error because we didn't create the template
-* We use the `editStore` template because we want to be efficient with our templates and use the editStore template for both adding and editing the Store
+* We see our navbar but we have an error because we didn't create the `editStore` template
+* We use the `editStore` template because we want to be efficient with our templates and use the editStore template for both **adding** and **editing** the Store
 
 ![editStore error](https://i.imgur.com/9ScSklM.png)
 
@@ -70,9 +70,9 @@ block content
 
 And you will see this:
 
-![working template](https://i.imgur.com/zHrolul.png)
+![working template](https://i.imgur.com/BY8LJJF.png)
 
-Alternative for using variables:
+### Alternative for using variables:
 
 ```
 extends layout
@@ -82,9 +82,8 @@ block content
     h2= title
 ```
 
-With same output result
-
-* remember that `title` is a variable that is available to us in our **locals**
+* With same output result
+* Remember that `title` is a **variable** that is available to us in our **locals**
 
 ## Add a Store form
 * We could attach the store form to the edit page
@@ -103,13 +102,13 @@ With same output result
 
 ```
 mixin storeForm(store = {})
-  p It works!
+  p It works
 ```
 
 * Similar to ES6 we take an argument but default to an empty object if no argument is provided
 
 ### Import the mixin
-`storeController.js`
+`editStore.pug`
 
 ```
 extends layout
@@ -122,10 +121,11 @@ block content
 ```
 
 * This makes the mixin function available to our pug template
+* Don't need `.pug` extension
 
 #### Best Practice
-* You have have multiple mixins per file
-* But keep it to one mixin per file
+* You can have multiple mixins per file
+    - But keep it to one mixin per file
 
 ## Use the Mixins
 `storeController.js`
@@ -144,7 +144,7 @@ block content
 ### View in browser
 And you will see this:
 
-![You see this](https://i.imgur.com/pCw39uO.png)
+![You see this](https://i.imgur.com/9KXOekz.png)
 
 ### Pass mixin data
 `editStore.pug`
@@ -167,7 +167,7 @@ mixin storeForm(store = {})
   p It works! #{store.name}
 ```
 
-Output will show `It works! Abercrombie & Fitch`
+Output will show `It works Abercrombie & Fitch`
 
 ### Why did that work?
 - We passed in an object that was a store `+storeForm({ name: 'Abercrombie & Fitch'})`

@@ -15,7 +15,7 @@
 * It will be float based
 * It won't be equal height
 * But it will have 100% browser support
-* We'll use modernizr to target only browsers who support Flexbox and then swap out the floats for the equal heights section
+* We'll use `modernizr` to target only browsers who support Flexbox and then swap out the floats for the equal heights section
 
 * This is the class we are targeting in our HTML `row--equal-height-at-large`
 
@@ -66,7 +66,7 @@
   }
 ```
 
-* We have gulp running so saving our `_row.css` will trigger a fresh CSS rebuild
+* We have `Gulp` running so saving our `_row.css` will trigger a fresh CSS rebuild
 * But we need to also save a modules JavaScript file to trigger a JavaScript rebuild
 
 ## View in browser

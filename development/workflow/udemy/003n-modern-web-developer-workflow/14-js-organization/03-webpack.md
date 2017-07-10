@@ -32,7 +32,7 @@ module.exports = {
 `$ webpack`
 
 * When we run this, webpack will automatically know to look for `webpack.config.js` and then it will read our settings
-* After running you will see the bundled file created inside /app/temp/scripts/App.js
+* After running you will see the bundled file created inside `/app/temp/scripts/App.js`
 
 ## Update index.html to include `App.js`
 ```html
@@ -48,7 +48,7 @@ module.exports = {
 * Check console
 * We get an **error** `Person is not a constructor`
 
-## We have export Person.js
+## We have export `Person.js`
 * `module.exports`
 * We need to spell out exactly what this file should export or return when another file tries to require it
 
@@ -69,7 +69,7 @@ module.exports = Person;
 `$ webpack`
 
 * Refresh browser
-* Now we see our Person objec the console
+* Now we see our `Person` object the console
 
 ![Person in console with webpack](https://i.imgur.com/HUKNFNE.png)
 
@@ -104,18 +104,23 @@ var Person = require('./modules/Person');
 // jane.greet();
 ```
 
-* Run webpack
+## Run webpack
 
 `$ webpack`
 
+## Immediate code execution
 * Refresh browser
 * Check console
 * You will see `Hello from Person.js`
-* What we can glean from this is that when you require a file, the code from that imported file is immediately executed (otherwise we wouldn't see the log statement in the console)
-    - But we want to do more then immediately run the Person modular code
-    - We want to also export and expose certain parts of that Person file and make those parts accessible or callable from witin our main `App.js`
 
-## What is being stored inside the Person variable that we set to be the require call
+## Lesson Learned: What we can glean from this
+When you require a file, the code from that imported file is immediately executed (_otherwise we wouldn't see the log statement in the console_)
+
+## We want to do more than immediately execute required code
+* But we want to do more then immediately run the `Person` modular code
+* We want to also export and expose certain parts of that `Person` file and make those parts accessible or callable from witin our main `App.js`
+
+## What is being stored inside the Person variable that we set to be the `require` call
 `App.js`
 
 ```js
@@ -124,15 +129,18 @@ var Person = require('./modules/Person');
 console.log(Person);
 ```
 
-* Run webpack again `$ webpack`
+## Run **webpack** again 
+`$ webpack`
+
 * Refresh browser
 * You will see we log out an empty object
 
 ![empty object](https://i.imgur.com/72NRyEY.png)
 
 * We have an empty object
-* How can we add something to that object?
-    - How can we make our Person variable contain something that we can use?
+
+## How can we add something to that object?
+* How can we make our Person variable contain something that we can use?
 
 `Person.js`
 
@@ -153,9 +161,11 @@ exports.sampleFunction = function() {
 }
 ```
 
-* Run webpack to bundle up our files again `$ webpack`
+## Run `webpack` to bundle up our files again
+`$ webpack`
+
 * Refresh the browser
-* You will see we have now populated our Person object with a property and method
+* You will see we have now populated our `Person` object with a **property** and **method**
 
 ![Person object populated](https://i.imgur.com/dx3qIMJ.png)
 
@@ -172,7 +182,9 @@ console.log(Person.sampleProperty);
 Person.sampleFunction();
 ```
 
-* Run webpack `$ webpack`
+## Run webpack
+`$ webpack`
+
 * Refresh browser and you will see:
 
 ```
@@ -181,12 +193,14 @@ I am a test property. I come in Peace.
 I am a function that does nothing but log
 ```
 
-* We now know how export (expose) different properties and methods from a module file
-* We don't need to export multiple things, we just need to export the one constructor function
-* We don't want the exports object to contain this constructor function, we want the exports object to be the constructor function
+* We now know how export (_aka expose_) different `properties` and `methods` from a module file
+* We don't need to export multiple things
+    - We just need to export the one **constructor function**
+* We don't want the exports object to contain this constructor function
+    - We want the exports object to be the constructor function
 * The `exports` module's parent is `module`
     - `module.exports`
-    - `module.exports = Person` (our constructor function)
+    - `module.exports = Person` (_our constructor function_)
 
 `Person.js`
 
@@ -215,22 +229,24 @@ var jane = new Person('Jane Doe', 'green');
 jane.greet();
 ```
 
-* Run webpack `$ webpack`
+## Run webpack 
+`$ webpack`
+
 * Refresh browser
 * You will see the console filled with:
 
 ![console](https://i.imgur.com/ZfPmvas.png)
 
+## Congrats!
 * You just created your first module
 * And you used that module from within another file
-* Congrats!
 
 ## Why is Webpack amazing?
 * We can use it to require in module files that we create
-* We can also use webpack to require in and bundle 3rd party packages from npm
+* We can also use `webpack` to require in and bundle 3rd party packages from **npm**
 
 ## We will add jquery with Webpack
-* We'll test that it is working (proof of concept) by removing all `h2` elements from our `index.html`
+* We'll test that it is working (_proof of concept_) by removing all `h2` elements from our `index.html`
 
 ## Install jQuery
 `$ npm i jquery -S`
