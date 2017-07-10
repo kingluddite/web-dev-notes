@@ -1,5 +1,6 @@
 # Course Outline
 1. Course Project: theretailapocalypse.com
+    * Clone starter code repo
 2. Install Homebrew and NodeJS
 3. Install Yarn
 4. Yarn Tutorial
