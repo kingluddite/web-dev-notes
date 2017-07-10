@@ -1,9 +1,14 @@
 # Async-Await Part 2
 
 ## Mongoose with Promises
-* This is where we improved by getting rid of **Callback Hell**
-* Promises immediately return to your something, not the data because that is impossible but it does return a **Promise**
-    - Think of it like an IOU note for the data "I will eventually come back to you with either the data which the store saved or an error saying something went wrong"
+* We will get rid of **Callback Hell** and greatly improve the readability of our code
+* `Promises` immediately return to you something
+    - They don't immediately return the data because that is impossible
+    - But it does return a **Promise**
+
+### What is a Promise?
+* Think of it like an IOU note for the data "I will eventually come back to you with either the data which the store saved or an error saying something went wrong"
+* Homework - [Read More about ES6 Promises](http://www.datchley.name/es6-promises/)
 
 ### How come we can use Promises?
 Because of this line in `start.js`
@@ -14,6 +19,8 @@ Because of this line in `start.js`
 * And second, it tells Mongoose we are using built-in ES6 Promises
     - Because there are additional Promise Libraries like `BlueBird`
     - But now that ES6 Promises are out, we can just use them
+* [Read More about Node and Promises](https://alexperry.io/node/2015/03/25/promises-in-node.html)
+* [Why bluebird?](http://bluebirdjs.com/docs/why-bluebird.html)
 
 `storeController.js`
 
@@ -35,7 +42,7 @@ exports.createStore = (req, res) => {
 * That is great
 * You can also `chain` stores
 
-## The Promise Land!
+## The "Promise" Land!
 ```
 exports.createStore = (req, res) => {
   const store = new Store(req.body);
@@ -66,10 +73,10 @@ exports.createStore = (req, res) => {
 
 ## Async-await
 ### But we can do even better
-In ES8, we have `async-await`, which will help us get rid of all our `then`s and `catch`es
+In `ES8`, we have `async-await`, which will help us get rid of all our `then`s and `catch`es
 
 ### Test it out to show how async works
-I only want to `console.log('It worked!')` only once the save has finished
+I want to `console.log('It worked!')` **only** **once** the save has finished
 
 * We can tell JavaScript to `cool it's jets! Hold on a second and wait until I've don't he save and then continue on`
 
@@ -97,7 +104,10 @@ exports.createStore = async (req, res) => {
 ## Composition
 ### One way to avoid using `try/catch` errors
 * We can take this `createStore = (` and wrap it in another function that will catch any errors
-    - So we create a higher function that `wraps` create store and if any of that code throws an error and our wrapper function will handle all of our error handling - This is nice!
+    - So we create a higher function that `wraps` **createStore**
+    - And if any of that code throws an error
+    - Our wrapper function will handle all of our error handling
+        + This is nice!
 
 `handlers/errorHandlers.js`
 
@@ -112,15 +122,19 @@ exports.catchErrors = (fn) => {
 * We take a function... like `createStore()` and then we call a function that returns our function `createStore()` and if there is an **error**, it will **catch** the error and call `next`
     - What does `next` do?
     - All of our routes will be wrapped in this errorHandler (catchErrors)
-    - If any of our routes hit an error, this errorHandler (catchErrors) will kick in and it will catch the error and it will immediately call **next**
-        + So what will **next** do?
-            * So when it catches an error it will say **"Ok we are not using any of our routes here"**
+    - If any of our routes hit an error
+        + This errorHandler (catchErrors) will kick in
+        + And it will catch the error
+        + And it will immediately call **next**
+
+### So what will **next()** do?
+* So when it catches an error it will say **"Ok we are not using any of our routes here"**
 
 `app.js`
 
 `app.use('/', routes);`
 
-So then we pass it along the chain of middleware which will either be a **notFound**
+So then we pass it along the chain of `middleware` which will either be a **notFound**
 
 `app.js`
 
@@ -150,9 +164,10 @@ app.use(errorHandlers.productionErrors);
 * That's what **next** does, it keeps moving us along until it meets middleware that meets the condition that stops **next** from moving along
 
 ## Takeaway
-If you do not wrap your **async-await** functions in a **try/catch** than you new wrap it inside this `catchErrors` errorHandler
-
-* Or you could just write perfect code and not use any errorHandlers? Not! We all need to use errorHandlers. No one writes perfect code
+* If you do not wrap your **async-await** functions in a **try/catch** than you need to wrap it inside this `catchErrors` errorHandler
+* Or you could just write perfect code and not use any errorHandlers?
+* Not! 
+* We all need to use errorHandlers. **No one writes perfect code**
 
 ## What is `composition`?
 Wrapping a function inside a function
@@ -164,7 +179,8 @@ Wrapping a function inside a function
 const { catchErrors } = require('./../handlers/errorHandlers');
 ```
 
-* We are using { catchErrors } which is **object destructuring** which enables us to import an entire object
+* We are using `{ catchErrors }` which is ES6's **object destructuring**
+    - Which enables us to import an entire object
     - We don't need to import the entire file, we just need to require one particular function `exports.catchErrors()`
 
 `routes/index.js`
@@ -186,9 +202,17 @@ module.exports = router;
 
 ### What will this do?
 1. It will immediately run `catchErrors()` when we boot up our Application
-2. `catchErrors()` will take that function wrap it inside another function (a higher order function) and then return to us our function with a `catch()` tied onto the end of it
+2. `catchErrors()` will take that function and wrap it inside another function (_aka **a higher order function**_)
+3. And then return to us our function with a `catch()` tied onto the end of it
 
-Yes this is confusing but it is a nice **clean** way to catch errors and push onto later **middleware** and avoid nesting with **try/catch** in every single controller that we have and handle it
+### This seems a bit confusing!
+* Yes, this is confusing
+* But it is a nice **clean** way to catch errors
+* And push onto later **middleware**
+* And avoid nesting with **try/catch** in every single controller that we have
+* And handle it
+
+### The async-await syntax
 
 `storeController.js`
 
@@ -205,24 +229,25 @@ exports.createStore = async (req, res) => {
 3. Enter store info
 4. Submit
 
+### Congrats. You just entered your store data into the Database
 Your data is entered into the Database and you are redirected to the home page
 
 ## How do we know if it worked?
 1. Open MongoDB Compass
 2. Open your online MongoDB
 3. You will see stores (has 1!)
-4. Click stores
-5. Click Documents and you'll see your data
-    * Our slug was auto populated with lowercase word
+4. Click `stores`
+5. Click `Documents` and you'll see your data
+    * Our slug was auto populated with lowercase words separated by dashes (_if more than one word was used in the name of the store_)
 6. Enter another store
 7. Click refresh in Mongo Compass
 8. You should see two stores!
 
 ![two stores in MongoDB](https://i.imgur.com/IvBULdC.png)
 
-## Create Date to Database
+## Review Steps to using async-await
 1. Create Schema
 2. In Controller create a `new` Store Schema
 3. And call `.save()` on it
-4. Because we use async-await there are no nested callback (Callback Hell), no Promising chaining with `.then()`
+4. Because we use **async-await** there are no nested callback (_Callback Hell_), no `Promise` chaining with `.then()`
     * We just wait for the save and then do some data
