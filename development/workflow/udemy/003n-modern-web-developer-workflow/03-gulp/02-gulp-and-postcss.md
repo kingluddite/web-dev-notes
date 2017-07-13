@@ -171,7 +171,7 @@ body {
 ```
 
 ### Adding Variables
-```
+```css
 $mainBlue: #2f5572;
 
 body {

@@ -86,7 +86,7 @@ showMeTheFiles.writeFile(__dirname + '/index.html', '<h1>I am HTML and I come in
 
 `$ node test.js`
 
-#### Demo #4 - Grab an image from the Integret and add to your project
+#### Demo #4 - Grab an image from the Internet and add to your project
 `app.js`
 
 ```

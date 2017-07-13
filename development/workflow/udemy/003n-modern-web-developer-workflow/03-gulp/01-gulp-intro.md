@@ -10,15 +10,13 @@
     - Efficient
     - Runs Quickly
 
-## Gulp is like a Record Player
-
+## Think of Gulp like a record player
 ![record player](https://i.imgur.com/eXX2iSm.png)
 
-* Think of Gulp like a record player
-    - It does nothing by itself
-    - Gulp plugins === records
-    - Thousands of Gulp plugins to automate thousands of tasks
-    - Gulp is simple
+* It does nothing by itself
+* Gulp plugins `===` records
+* Thousands of Gulp plugins to automate thousands of tasks
+* Gulp is simple
 
 ## Install Gulp on your computer
 ### Two steps to installing Gulp on Project
@@ -34,7 +32,7 @@
 ## Troubleshoot
 `$ sudo npm install gulp-cli --global`
 
-* Now we have the ability to use gulp commands from any project we are working on, on our computer
+* Now we have the ability to use Gulp commands from any project we are working on, on our computer
 * Now **run gulp** and you'll get an `error message`
 * `$ gulp -v` - version of Gulp you are currently running
 

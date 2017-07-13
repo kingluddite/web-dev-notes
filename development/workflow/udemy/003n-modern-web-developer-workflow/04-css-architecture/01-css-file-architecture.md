@@ -74,7 +74,7 @@ img {
 ```
 
 ### Modular code
-* We don't want all our css in one file
+* We don't want all our CSS in one file
 * Create `/app/assets/styles/modules/_large-hero.css`
 
 `_large-hero.css`
@@ -97,12 +97,12 @@ img {
 // more code
 ```
 
-* imports MUST be at very top of file
-* extensions not needed `_large-hero.css`
-* `@import` is native CSS feature
+* `imports` MUST be at very top of file
+* `.css` extensions not needed (example: `_large-hero.css`)
+* `@import` is a native CSS feature
     - But we DO NOT want the browser to have to download multiple CSS files
     - We will tell Gulp and PostCSS to look for this line and replace it with the contents of the `_large-hero.css` file
-* Stop gulp by typing this in the Terminal:  
+* Stop Gulp by typing this in the Terminal:  
 
 `ctrl` + `c`
 
@@ -127,7 +127,7 @@ gulp.task('styles', function() {
 
 * Make sure to put `cssImport` at very beginning of array
 * `$ gulp watch`
-* View generated css inside `temp` folder and if you see `.large-hero` selector at top, our import of the partial was successful
+* View generated CSS inside `temp` folder and if you see `.large-hero` selector at top, our import of the partial was successful
 
 ## Create `/assets/styles/base`
 * We will put all of our **global CSS** inside `base` folder
@@ -208,7 +208,7 @@ And modify:
 // more code
 ```
 
-* Why `large-hero__text-content` name?
+### Why are we using `large-hero__text-content` as our name?
     - BEM - bigger discussion, coming later
 
 ### Add the CSS

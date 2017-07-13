@@ -32,7 +32,7 @@ mixin storeForm(store = {})
     input(type="text" name="name")
 ```
 
-* Update our form background color:
+* Update our **form** `background-color`:
 
 `_helpers.scss`
 
@@ -45,6 +45,7 @@ mixin storeForm(store = {})
 }
 // more code
 ```
+
 ### View in browser
 Should look like this:
 
@@ -155,7 +156,7 @@ Should look like this:
 ![form with checkboxes](https://i.imgur.com/cBWqkMt.png)
 
 ## Add a button, View, Fill out form
-* We changed input to textrea
+* We changed **input** to `textarea`
 
 `_storeForm.pug`
 
@@ -301,15 +302,15 @@ exports.createStore = (req, res) => {
 ### Success!
 here is our output
 
-```
+```json
 {
-"name": "john",
-"description": "test",
-"tags": [
-"Wifi",
-"Family Friendly",
-"Licensed"
-]
+  "name": "john",
+  "description": "test",
+  "tags": [
+    "Wifi",
+    "Family Friendly",
+    "Licensed"
+  ]
 }
 ```
 

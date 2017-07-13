@@ -1,16 +1,15 @@
 # Flash Messages
-You do stuff on a website, fill out a form, click on a button... and if you do something wrong, you could be redirected to a web page letting you know there is an error and how you can fix it
-
-With Flash messages, we don't redirect the user just to tell them something, we keep them on the same page and "flash" the info to them where there already are on the site. This is a better user experience
-
-The user can then read it and refresh the page and it's gone or click the x and it's gone
+* You do stuff on a website, fill out a form, click on a button... and if you do something wrong, you could be redirected to a web page letting you know there is an error and how you can fix it
+* With **Flash messages**, we don't redirect the user just to tell them something, we keep them on the same page and "flash" the `info` to them where there already are on the site. 
+* This is a better user experience!
+* The user can then read it and refresh the page and it's gone or click the `x` and it's gone
 
 `request.flash()`
 
 ## How is `.flash()` available to us?
-`app.js`
+* Our Middleware uses it in `app.js`
 
-Our Middleware uses
+`app.js`
 
 ### We require it
 `const flash = require('connect-flash');`
@@ -18,8 +17,120 @@ Our Middleware uses
 ### We use it
 `app.use(flash());`
 
-* You can make up your own categories but a **tip** is to stick with `success`, `warning`, `error` and `info`
-    - They all line up with CSS **classes**
+* You can make up your own categories but a **tip** is to stick with: 
+    - `success`
+    - `warning`
+    - `error`
+    - `info`
+* They all line up with CSS **classes**
+
+`_flashes.scss`
+
+```
+@keyframes slideIn {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.flash {
+  background: $white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  margin-bottom: 2rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  border-radius: 3px;
+  display: flex;
+  animation: slideIn forwards .1s ease-in-out 2;
+  animation-timing-function: cubic-bezier(0.01, 1.68, 0.58, 1);
+  & + .flash {
+    animation-delay: 0.55s;
+    & + .flash {
+      animation-delay: 0.6s;
+    }
+  }
+  &__text {
+    flex: 1;
+    color: $black;
+  }
+  &__remove {
+    background: none;
+    border:0;
+    &:hover {
+      color: $danger-yellow;
+    }
+  }
+  &:after {
+    content: '';
+    display: block;
+    background: $white;
+    position: absolute;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    top: 8px;
+    left: 8px;
+    z-index: -1;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.1);
+    border-radius: 3px;
+  }
+  &--success {
+    background: linear-gradient(135deg, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+  }
+  &--error {
+    background: linear-gradient(20deg, rgba(255,0,0,1) 0%, rgba(200,0,0,1) 100%);
+  }
+  &--info {
+    background: linear-gradient(35deg, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+  }
+  p {
+    margin: 0;
+  }
+}
+```
+
+### Import flashes
+`style.scss`
+
+```
+// more code
+@import 'partials/flashes';
+```
+
+### Update our layout view
+* Add the `block messages` chunk of code below
+
+`layout.pug`
+
+```
+// more code
+block messages
+  if locals.flashes
+    .inner
+      .flash-messages
+        - const categories = Object.keys(locals.flashes)
+        each category in categories
+          each message in flashes[category]
+            .flash(class=`flash--${category}`)
+              p.flash__text!= message
+              button.flash__remove(onClick="this.parentElement.remove()") &times;
+
+.content
+  block content
+
+footer
+  block footer
+    p &copy; The Retail Apocalypse
+
+block scripts
+  script(src="/dist/App.bundle.js")
+```
 
 `storeController.js`
 
@@ -39,7 +150,7 @@ exports.createStore = async (req, res) => {
 4. Submit
 5. You should see this
 
-![success flash](https://i.imgur.com/LDVaMA0.png)
+![success flash](https://i.imgur.com/b8JgbXE.png)
 
 ## Let's see all our flashes
 * Just to see what they look like
@@ -58,6 +169,7 @@ exports.homePage = (req, res) => {
 };
 ```
 
+### Flash - The second time around
 1. Save (_We are on `http://localhost:7777`_)
 2. Refresh page - You won't see any flashes
     * **Flashes** only get sent on the `next` request
@@ -65,7 +177,7 @@ exports.homePage = (req, res) => {
     * In our last example we **flashed** and then we redirected (_which is considered a second request_) so we saw the **flash**
 3. Refresh Again and you will see this:
 
-![all four flashes](https://i.imgur.com/SIQwFzS.png)
+![all four flashes](https://i.imgur.com/LmPwbPZ.png)
 
 ## How is this possible?
 `app.js`
@@ -94,6 +206,20 @@ All the variables that are available to you in your template
     - We give ourselves a `<div class="flash-messages>` **.flash-messages**
 
 ## How we can dump locals to the page
+* You can't `console.log()` like this:
+
+```
+block messages
+      if locals.flashes
+        .inner
+          .flash-messages
+            - const categories = Object.keys(locals.flashes)
+            console.log(categories)
+```
+
+### Dump that data!
+* You need to `dump` your data like this instead
+
 `layout.pug`
 
 ```
@@ -144,7 +270,7 @@ block messages
 ```
 
 * We have an object with a **key** 
-* We could make up any **keys** we want to (if you want to see a different style you'll have to add CSS for that **key**
+* We could make up any **keys** we want to (_if you want to see a different style you'll have to add CSS for that **key**_)
 * In our `layout.pug` we are using `Object.keys(locals.flashes)`
     - To get an array of `error`, `info`, `warning` and `success`
     - Then we loop over those categories

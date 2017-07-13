@@ -3,7 +3,7 @@
 ## Update router
 `routes/index.js`
 
-```
+```js
 const express = require('express');
 const storeController = require('./../controllers/storeController');
 
@@ -19,7 +19,7 @@ module.exports = router;
 ## Update controller
 `controllers/storeController.js`
 
-```
+```js
 exports.homePage = (req, res) => {
   console.log(req.name);
   res.render('index');
@@ -46,7 +46,7 @@ But we don't want to `send` that we want to **render** out one of our `pug` temp
 
 `storeController.js`
 
-```
+```js
 exports.addStore = (req, res) => {
   res.render('editStore', { title: 'Add Store' });
 };

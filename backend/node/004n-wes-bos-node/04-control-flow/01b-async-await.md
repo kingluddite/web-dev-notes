@@ -7,7 +7,7 @@
     - But it does return a **Promise**
 
 ### What is a Promise?
-* Think of it like an IOU note for the data "I will eventually come back to you with either the data which the store saved or an error saying something went wrong"
+* Think of it like an IOU note for the data **"I will eventually come back to you with either the data which the store saved or an error saying something went wrong"**
 * Homework - [Read More about ES6 Promises](http://www.datchley.name/es6-promises/)
 
 ### How come we can use Promises?
@@ -15,8 +15,8 @@ Because of this line in `start.js`
 
 `mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises`
 
-* This first tells Mongoose that we are using `Promises`
-* And second, it tells Mongoose we are using built-in ES6 Promises
+* The left side tells Mongoose that we are using `Promises`
+* The right side tells Mongoose we are using built-in ES6 Promises
     - Because there are additional Promise Libraries like `BlueBird`
     - But now that ES6 Promises are out, we can just use them
 * [Read More about Node and Promises](https://alexperry.io/node/2015/03/25/promises-in-node.html)
@@ -24,7 +24,7 @@ Because of this line in `start.js`
 
 `storeController.js`
 
-```
+```js
 // more code
 exports.createStore = (req, res) => {
   const store = new Store(req.body);
@@ -42,8 +42,8 @@ exports.createStore = (req, res) => {
 * That is great
 * You can also `chain` stores
 
-## The "Promise" Land!
-```
+## Chaining Promises - The "Promise" Land!
+```js
 exports.createStore = (req, res) => {
   const store = new Store(req.body);
   store
@@ -69,7 +69,7 @@ exports.createStore = (req, res) => {
 };
 ```
 
-* And this is good because we no longer are in **Callback Hell** and as long as each return a Promise `then()` we can chain them indefinitely 
+* And this is good because we no longer are in **Callback Hell** and as long as each returns a Promise `then()` we can chain them indefinitely 
 
 ## Async-await
 ### But we can do even better
@@ -83,13 +83,13 @@ I want to `console.log('It worked!')` **only** **once** the save has finished
 ### Here's how to do it
 * Mark the function as `async`
     - That will tell the browser or `node.js` that **'hey! this function that I'm using is going to have some awaits inside of it'** (_or possibly have some awaits inside of it_)
-    - And then we go in front of the thing that returns a Promise and just `await` it
-        + Because `store.save()` will return to us a Promise and we then can **await** it
+    - And then we go in front of the thing that returns a **Promise** and just `await` it
+        + Because `store.save()` will return to us a **Promise** and we then can **await** it
             * This means we won't move on to the next line of code until the save has successfully happened
-            * Before we had an error object or a `catch()` that gave us an error but in order to catch an error with `async-await` you have to wrap all your code inside a `try catch`
+            * Before we had an error object or a `catch()` that gave us an error but in order to catch an **error** with `async-await` you have to wrap all your code inside a `try catch`
             * But **Try/Catch** defeats the purpose of avoiding nested code
 
-```
+```js
 exports.createStore = async (req, res) => {
   try {
     const store = new Store(req.body);
@@ -104,53 +104,56 @@ exports.createStore = async (req, res) => {
 ## Composition
 ### One way to avoid using `try/catch` errors
 * We can take this `createStore = (` and wrap it in another function that will catch any errors
-    - So we create a higher function that `wraps` **createStore**
+    - So we create a **higher function** that `wraps` **createStore**
     - And if any of that code throws an error
     - Our wrapper function will handle all of our error handling
         + This is nice!
 
 `handlers/errorHandlers.js`
 
-```
+```js
+// more code
 exports.catchErrors = (fn) => {
   return function(req, res, next) {
     return fn(req, res, next).catch(next);
   };
 };
+// more code
 ```
 
 * We take a function... like `createStore()` and then we call a function that returns our function `createStore()` and if there is an **error**, it will **catch** the error and call `next`
-    - What does `next` do?
-    - All of our routes will be wrapped in this errorHandler (catchErrors)
-    - If any of our routes hit an error
-        + This errorHandler (catchErrors) will kick in
-        + And it will catch the error
-        + And it will immediately call **next**
 
-### So what will **next()** do?
-* So when it catches an error it will say **"Ok we are not using any of our routes here"**
+### What does `next` do?
+* All of our routes will be wrapped in this errorHandler (_catchErrors_)
+* If any of our routes hit an error
+    - This errorHandler (_catchErrors_) will kick in
+    - And it will catch the error
+    - And it will immediately call **next**
+
+### What does **next()** do again?
+* When it catches an error it will say **"Ok we are not using any of our routes here"**
 
 `app.js`
 
 `app.use('/', routes);`
 
-So then we pass it along the chain of `middleware` which will either be a **notFound**
+* So then we pass it along the chain of `middleware` which will either be a **notFound**
 
 `app.js`
 
 `app.use(errorHandlers.notFound);`
 
-Or a **flashValidationError**
+* Or a **flashValidationError**
 
 `app.js`
 
 `app.use(errorHandlers.flashValidationErrors);`
 
-or most likely we will catch the `development` or `production` error
+* Or most likely we will catch the `development` or `production` error
 
 `app.js`
 
-```
+```js
 if (app.get('env') === 'development') {
   /* Development Error Handler - Prints stack trace */
   app.use(errorHandlers.developmentErrors);
@@ -160,14 +163,15 @@ if (app.get('env') === 'development') {
 app.use(errorHandlers.productionErrors);
 ```
 
-* All those errors are one after another and **next** just travels to the next **middleware**
-* That's what **next** does, it keeps moving us along until it meets middleware that meets the condition that stops **next** from moving along
+* All those errors are one after another and **next** just travels to the <u>next</u> **middleware**
+* That's what **next** does, it keeps moving us along until it meets **middleware** that meets the condition that stops **next** from moving along
 
 ## Takeaway
-* If you do not wrap your **async-await** functions in a **try/catch** than you need to wrap it inside this `catchErrors` errorHandler
-* Or you could just write perfect code and not use any errorHandlers?
+* If you do not wrap your **async-await** functions in a **try/catch** than you need to wrap it inside this `catchErrors` **errorHandler**
+* Or you could just write perfect code and not use any `errorHandlers`?
 * Not! 
-* We all need to use errorHandlers. **No one writes perfect code**
+* We all need to use errorHandlers. 
+* **No one writes perfect code**
 
 ## What is `composition`?
 Wrapping a function inside a function

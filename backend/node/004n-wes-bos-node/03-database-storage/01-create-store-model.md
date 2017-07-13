@@ -68,7 +68,6 @@ Look like:
             * To be `global.Promise` (_Think of this like the window property in the browser_) - it is our global variable
             * Open browser with your app running and type `> Promise` and you'll see this:
 
-
  ![Native Promise](https://i.imgur.com/ZCA2rvo.png)
 
  * That is exactly what we are doing with `global.Promise`
@@ -218,7 +217,7 @@ module.exports = mongoose.model('Store', storeSchema);
 ## How do we make MongoDB know about this Store model?
 `start.js`
 
-```
+```js
 // more code
 // READY?! Let's go!
 

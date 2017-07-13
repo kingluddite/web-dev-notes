@@ -35,7 +35,7 @@ Let's work with our `createStore()` controller
 
 `storeController.js`
 
-```
+```js
 exports.createStore = (req, res) => {
   const store = new Store(req.body);
 };
@@ -43,8 +43,8 @@ exports.createStore = (req, res) => {
 
 * `req.body` pulls in all the data from the form
 * Take notice of naming conventions
-  - We capitalize constructor functions `new Store()`
-  - We camelcase the variables holding the constructor function `store`
+  - We **capitalize** constructor functions `new Store()`
+  - We **camelCase** the variables holding the constructor function `store`
 
 ### Shouldn't we be worried about bad people passing bad data to our form?
 * Nope
