@@ -32,6 +32,11 @@ DBaaS
 * Replace `DATABASE=mongodb://user:pass@host.com:port/database`
 * With what **mLab** gives us
 
+### You may have problems with variables.env and .gitignore
+* `$ git rm -r --cached .`
+* Then `$ git add .`
+* That should make sure you do not see variables.env on github (Thanks Lauren!)
+
 ## Create a user for your Database
 * We need to add a username and password
     - Click `Users` to add a new Database user
@@ -70,7 +75,7 @@ DBaaS
 
 `$ brew upgrade mongodb` (Want >= 3.4)
 
-* [autoupdate brew](https://github.com/DomT4/homebrew-autoupdate/commits/master)
+* [auto update brew](https://github.com/DomT4/homebrew-autoupdate/commits/master)
 
 ## How do we start up mongodb?
 `$ sudo mongod`
