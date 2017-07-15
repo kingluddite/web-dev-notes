@@ -146,8 +146,8 @@ exports.createStore = async (req, res) => {
 1. Save
 2. Run the server `$ npm start`
 2. View `http://localhost:7777/add` in browser
-3. Add a store
-4. Submit
+3. Add a store by filling in the data fields
+4. Click to submit the form
 5. You should see this
 
 ![success flash](https://i.imgur.com/b8JgbXE.png)
@@ -203,7 +203,25 @@ All the variables that are available to you in your template
 ![layout flashes](https://i.imgur.com/ap76R5r.png)
 
 * If there are flashes `if locals.flashes`
-    - We give ourselves a `<div class="flash-messages>` **.flash-messages**
+    - We give ourselves a `<div class="flash-messages>` 
+    - ``.flash(class=`flash--${category}`)``
+      + We use that to style with:
+
+`_flashes.scss`
+
+```
+// more code
+  &--success {
+    background: linear-gradient(135deg, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+  }
+  &--error {
+    background: linear-gradient(20deg, rgba(255,0,0,1) 0%, rgba(200,0,0,1) 100%);
+  }
+  &--info {
+    background: linear-gradient(35deg, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+  }
+// more code
+```
 
 ## How we can dump locals to the page
 * You can't `console.log()` like this:
@@ -239,7 +257,7 @@ exports.dump = (obj) => JSON.stringify(obj, null, 2);
 * This enables us to visually view the JavaScript object on the page
 * Refresh page and you'll see something like:
 
-![dump locals](https://i.imgur.com/rSkoT5D.png)
+![dump locals](https://i.imgur.com/WmbkjmD.png)
 
 * This is all the information that is available to us in our locals
 
@@ -270,7 +288,8 @@ block messages
 ```
 
 * We have an object with a **key** 
-* We could make up any **keys** we want to (_if you want to see a different style you'll have to add CSS for that **key**_)
+    - We could make up any **keys** we want to
+    - If you want to see a different style you'll have to add CSS for that **key**
 * In our `layout.pug` we are using `Object.keys(locals.flashes)`
     - To get an array of `error`, `info`, `warning` and `success`
     - Then we loop over those categories
@@ -284,7 +303,7 @@ exports.homePage = (req, res) => {
   console.log(req.name);
   req.flash('error', 'Something Happened');
   req.flash('error', 'Warning!');
-  req.flash('error', 'Holy Sh*t!');
+  req.flash('error', 'Holy Smokes Batman!');
   req.flash('info', 'Something Happened');
   req.flash('warning', 'Something Happened');
   req.flash('success', 'Something Happened');
@@ -293,7 +312,7 @@ exports.homePage = (req, res) => {
 // more code
 ```
 
-![loop over category too](https://i.imgur.com/KToaCs0.png)
+![loop over category too](https://i.imgur.com/3fE4mdU.png)
 
 ## dynamic class names
 `layout.pug`
@@ -316,7 +335,45 @@ exports.homePage = (req, res) => {
 ![view chrome inspector](https://i.imgur.com/U0tkMm1.png)
 
 ### Render just text
+* As we loop through each category we store them in the `message` variable
+* And we output that text using `p.flash__text!= message`
+
 We could use `p.flash__text= message` and it will render just text
+
+#### What does != do in jade/pug?
+* It is **interpolation**
+  - [More info here](https://pugjs.org/language/interpolation.html)
+* `messages will be escaped`
+
+```
+- var riskyBusiness = "<em>Some of the girls are wearing my mother's clothing.</em>";
+.quote
+  p.test= riskyBusiness
+```
+
+* Will output this:
+
+```
+<div class="quote">
+  <p class="test">&lt;em&gt;Some of the girls are wearing my mother's clothing.&lt;/em&gt;</p>
+</div>
+```
+
+* But if I use this:
+
+```
+- var riskyBusiness = "<em>Some of the girls are wearing my mother's clothing.</em>";
+.quote
+  p.test!= riskyBusiness
+```
+
+* That will output this:
+
+```
+<div class="quote">
+  <p class="test"><em>Some of the girls are wearing my mother's clothing.</em></p>
+</div>
+```
 
 ### Render HTML
 We use `p.flash__text!= message` and we can render HTML!
@@ -328,7 +385,8 @@ We use `p.flash__text!= message` and we can render HTML!
 
 * We add a class `.flash__remove`
 * We add an inline JavaScript that uses DOM to tell parent element to remove child
-* &times; is an `X`
+* `&times;` is an `X`
+  - [X Marks the spot with HTML entities](http://wesbos.com/times-html-entity-close-button/)
 
 ## Review
 * **Flashes** allow us to show information on the page
@@ -344,7 +402,7 @@ We use `p.flash__text!= message` and we can render HTML!
 
 `storeController.js`
 
-```
+```js
 // more code
 exports.homePage = (req, res) => {
   console.log(req.name);
@@ -353,33 +411,50 @@ exports.homePage = (req, res) => {
 // more code
 ```
 
-## When form is submitted
-Change redirect from `/` to the actual store
+## Redirect to new store 
+* When form is submitted change redirect from `/` to the actual store we just created
+* We want to use this ``res.redirect(`/store/${store.slug}`);``
 
-We want to use this ``res.redirect(`/store/${store.slug}`);``
-
-### Houston we have a problem
+### Houston we have a problem!
 `storeController.js`
 
 ```
 const store = new Store(req.body);
 ```
 
-* `req.body` - only had form data user submitted
+* `req.body` - only has form data user submitted
 * `store.slug` - was auto-generated
 
-So we will use async-away to save our form data and wait for us to get the entire saved data back (even with our auto-generated `slug`)
+#### So what's our problem?
+* We enter our store data in the form but when we hit submit we want to be redirected to that store but where is that slug coming from?
+  - It comes from a npm package we installed that automatically creates it
+  - But it doesn't autocreate it instantaneously
+  - We submit our form and it talks to the Database but before it inserts the store info it uses the slug package to auto generate a slug based on our store name
+  - We need to wait for the slug to be created and the record inserted into the Database before we redirect to that store page slug
+
+### Async-await to the rescue!
+So we will use `async-await` to save our form data and wait for us to get the entire saved data back (_even with our auto-generated `slug`_)
 
 `const store = await (new Store(req.body)).save();`
 
 `storeController.js`
 
+```js
+// more code
+exports.createStore = async (req, res) => {
+  const store = new Store(req.body);
+  await store.save();
+  req.flash('success', `Successfully Created ${store.name}. Care to leave a review?`);
+  res.redirect(`/store/${store.slug}`);
+};
 ```
+
+### Refactor Time!
+```js
 // more code
 exports.createStore = async (req, res) => {
   const store = await (new Store(req.body)).save();
-  await store.save();
-  req.flash('success', `Successfully Created ${store.name}. Care to leave a review?`);
+  req.flash('success', `Successfully Created ${store.name}. Wish to leave a review?`);
   res.redirect(`/store/${store.slug}`);
 };
 ```
@@ -399,3 +474,5 @@ exports.createStore = async (req, res) => {
 * We get a 404 because we haven't created the `store/:id` route yet
 * We get our successful **flash** message
 * Our route updates to `http://localhost:7777/store/javaman`
+
+## Things are starting to look promising!

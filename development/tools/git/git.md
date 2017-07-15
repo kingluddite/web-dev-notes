@@ -467,3 +467,9 @@ Add a comment just so people know
 
 `// this is just an empty file so the empty folder will stay in git`
 
+### How do I push all branches?
+`$ git push --all`
+
+### How do I push all tags?
+`$ git push --tags`
+

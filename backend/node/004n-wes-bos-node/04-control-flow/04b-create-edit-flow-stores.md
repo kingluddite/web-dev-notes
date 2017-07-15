@@ -1,5 +1,8 @@
 # Create and edit flow stores (Part 2)
 
+## Create a new branch
+`$ git checkout -b create-edit-flow-stores2`
+
 ## Getting our `editStore` showing up with store name
 `storeController.js`
 
@@ -15,7 +18,7 @@ exports.editStore = async (req, res) => {
 };
 ```
 
-![working edit form](https://i.imgur.com/yOspAON.png)
+![working edit form](https://i.imgur.com/Nvi2Fvp.png)
 
 ### Dump the data above the store
 This is good to let us know we are using the edit form and teh data shows us how we can target it to pre-populate the form with the data
@@ -35,23 +38,7 @@ block content
 ```
 
 ### View in browser
-![data above our edit store form](https://i.imgur.com/ToXWQcm.png)
-
-## How do we populate fields and check checkboxes?
-To match our data
-
-`editStore.pug`
-
-```
-extends layout
-
-include mixins/_storeForm
-
-block content
-  .inner
-    h2= title
-    +storeForm(store)
-```
+![data above our edit store form](https://i.imgur.com/XK1uQXV.png)
 
 ### How are we using two forms for two different reasons?
 `_storeForm.pug`
@@ -63,16 +50,24 @@ mixin storeForm(store = {})
 * This is possible because of this line
 * If we don't pass a store the form will be passed an empty object
 * If we do pass a store to the mixin, the form will be passed the `store` object
-
 * `- const tags = store.tags || []`
-    - We set it to `store.tags` or an empty array because further down the code we will use the `includes()` method and if you try to use the array `includes()` method on something that doesn't exist you will get an error (_can not read property includes of undefined_)
+    - We set it to `store.tags` or an empty array because further down the code we will use the `includes()` method
+    - And if you try to use the Array's `includes()` method on something that doesn't exist you will get an error
+        + (_can not read property includes of undefined_)
+
+## How do we populate fields and check checkboxes?
+* We have data as we can see from our data dump
+* How can we put that data into inputs, textareas and checkboxes?
 
 ### How do you make a checkbox checked?
 `checked`
 
-* When you want to run JavaScript you add parenthesees like this `checked=()`
-* If you set a value like `value=store.name` and there is no store name, it is ok, it will then just be empty
+#### JavaScript inside Pug
+* When you want to run JavaScript inside a Pug template you add parentheses like this `checked=()`
+* If you set a value like `value=store.name` and there is no store name, it is OK, it will then just be empty
 * `<textarea>` doesn't have a **value** attribute so we use `textarea(name="description")= store.description`
+
+`_storeForm.pug`
 
 ```
 - const tags = store.tags || []
@@ -84,9 +79,16 @@ mixin storeForm(store = {})
     input(type="submit" value="Save" class="button")
 ```
 
-* So with checkboxes we create an array that holds all of our store's current tags or we create an empty array
-* Later in the code we use `checked=(tags.includes(choice))` and if any of our tags are included in that **tags** array, we mark that particular checkbox as **checked**
-    - Otherwise it will return false and **pug** knows to omit that item from being checked
+* We add two lines:
+    - `- const tags = store.tags || []`
+    - `checked=(tags.includes(choice))`
+* So with `checkboxes` we create an array that holds all of our store's current tags or we create an empty array
+* Later in the code we use `checked=(tags.includes(choice))`
+    - And if any of our tags are included in that **tags** array
+    - We mark that particular checkbox as **checked**
+    - Otherwise it will return false
+    - And **pug** knows to omit that item from being checked
+* Now we'll populate our input and `textarea` with our store Database data
 
 `_storeForm.pug`
 
@@ -107,7 +109,30 @@ mixin storeForm(store = {})
     input(type="submit" value="Save" class="button")
 ```
 
-View several stores and after you click the `edit` button you will see that each store input, textarea and checkboxes are filled in appropriately
+View several stores and after you click the `edit` button you will **NOT** see that each store input, textarea and checkboxes are filled in appropriately
+
+## What is wrong?
+* We need to pass the store to our mixin
+
+`editStore`
+
+```
+extends layout
+
+include mixins/_storeForm
+
+block content
+  .inner
+    h2 #{title}
+    +storeForm(store)
+```
+
+* We added this store here `+storeForm(store)`
+
+## Try in browser again
+View several stores and after you click the `edit` button you **WILL SEE** that each store input, textarea and checkboxes are filled in appropriately
+
+![edit form filled in](https://i.imgur.com/HQbDJIo.png)
 
 ## Now we need to handle updating the URL
 If we submit now the form action will **POST** to `/add` and that won't work because it will create another store instead of updating the existing store
@@ -170,7 +195,7 @@ module.exports = router;
 exports.updateStore = async (req, res) => {
   // find and update the store
 
-  // Redirect them to teh store and tell them it worked
+  // Redirect them to the store and tell them it worked
 };
 ```
 
@@ -180,11 +205,12 @@ exports.updateStore = async (req, res) => {
 * Change the data on it
 * Then send it back to the Database and update it
 
-But `findOneAndUpdate()` is a method in MongoDB that will allow us to kind of do it in one fell swoop (which is nice!)
+But `findOneAndUpdate()` is a method in MongoDB that will allow us to kind of do it in one fell swoop (_which is nice!_)
 
 * `new: true` - returns the new store instead of the old one (_By default findOneAndUpdate() will return to us the old store and not the updated data_)
-* `runValidators: true` - We run our validators only on insert but this option makes sure that if someone changes a value from something to nothing and their is a `required` value in that field's schema, the validators will run again and the person will get an error and the data won't be updated
-* We tag on `.exec()` on the end to make sure this runs (some won't run so we do this to make sure it runs)
+* `runValidators: true` - We run our validators only on insert
+    - But this option makes sure that if someone changes a value from something to nothing and there is a `required` value in that field's schema, the validators will run again and the person will get an error and the data won't be updated
+* We tag on `.exec()` on the end to make sure this runs (_some won't run so we do this to make sure it runs_)
 * All of this returns a Promise so we make sure we use `await`
 
 `storeController.js`
@@ -193,7 +219,7 @@ But `findOneAndUpdate()` is a method in MongoDB that will allow us to kind of do
 exports.updateStore = async (req, res) => {
   // find and update the store
   const store = await Store.findOneAndUpdate({ _id: req.params.id }, req.body, {
-    new: true, // returns the new store instead of the old owner
+    new: true, // returns the new store instead of the old one
     runValidators: true,
   }).exec();
   // Redirect them to the store and tell them it worked
@@ -207,3 +233,15 @@ exports.updateStore = async (req, res) => {
 * We flash congrats to our use and give them a link to that store
 * We bring the user back to our form with the store data changed and saved
 * The link to the new store is broken because we didn't create that route yet
+
+## View in browser and test
+* Edit a store
+* Save
+* Your changes should be updated
+
+## Git
+* Save
+* Commit
+* Checkout master
+* Merge branch into master
+* Push master to github
