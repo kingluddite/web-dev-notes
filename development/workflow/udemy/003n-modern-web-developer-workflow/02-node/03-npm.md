@@ -60,8 +60,6 @@
 * It can be our `one-stop-shop` for all code we need
 
 ## Demo
-`$ cd travel-site`
-
 `$ npm install jquery`
 
 * Created 

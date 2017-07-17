@@ -1,4 +1,8 @@
 # Save Lat/Long Store
+
+## Create a new branch
+`$ git checkout -b save-lat-long`
+
 ## Custom Data Types and our Schema
 `Store.js`
 
