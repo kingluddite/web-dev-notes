@@ -1,4 +1,4 @@
-# CSS file architecture
+ecture
 1. File architecture
     * Organize CSS into multiple files
     * Each file to be relatively small and have a specific purpose

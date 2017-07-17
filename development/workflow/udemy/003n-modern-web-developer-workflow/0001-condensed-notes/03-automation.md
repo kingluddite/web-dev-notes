@@ -1,4 +1,5 @@
-# Node.js and NPM
+# Automation is Good
+## Node.js and NPM
 
 ## Automation and Organization are good things
 * While we build our site we want **automation** and **organization**
@@ -46,7 +47,3 @@
     - Downloading them to your project
     - Takes time
 * We can get all those files faster using package management
-
-
-
-
