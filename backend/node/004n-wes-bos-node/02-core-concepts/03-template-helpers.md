@@ -209,3 +209,15 @@ block content
 Outputs: `The next store closes in 3 hours` (your time may differ)
 
 ![helpers output](https://i.imgur.com/ti7tL4i.png)
+
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'template-helpers notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge template-helpers`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

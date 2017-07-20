@@ -253,7 +253,12 @@ This means we have the data from our specific store we clicked on
 
 ## Git
 * Save
+  - `$ ga -A`
 * Commit
+  - `$ gc -m 'complete create-edit-flow-stores notes`
 * Checkout master
+  - `$ gcm`
 * Merge branch into master
-* Push master to github
+  - `$ git merge complete create-edit-flow-stores`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

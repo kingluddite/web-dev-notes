@@ -108,6 +108,17 @@ Generally how it will work:
     - And then we'll always push that off to the Controller (_a separate file to do the work_)
     - We can have multiple Controllers inside one of our routes
     - Multiple Controllers called 'Middleware'
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'mvp notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge mvp`
+* Push master to github (_and all branches_)
+  - `$ git push --all`
 
 
 

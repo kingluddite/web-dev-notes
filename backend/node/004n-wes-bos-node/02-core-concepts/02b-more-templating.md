@@ -213,3 +213,15 @@ block footer
     * One front end layout
     * One back end layout
     * Than use blocks to plop in parts you need when you need them
+
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'more-templating notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge more-templating`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

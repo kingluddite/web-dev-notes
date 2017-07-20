@@ -199,6 +199,48 @@ router.get('/reverse/:name', (req, res) => {
 
 All this and more can be found at the [Express Documentation page](https://expressjs.com/en/4x/api.html)
 
+## Add Git keyboard shortcuts to your `.zshrc`
+
+`~/.zshrc`
+
+```
+# ====================
+# Git Aliases
+# ====================
+alias gs='git status'
+alias gpush='git push origin master'
+alias gpull='git pull origin master'
+alias gap='git add -p'
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+alias gob='git checkout -b '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+alias glog='git log --pretty=oneline --abbrev-commit'
+alias gitl='git log --pretty=oneline'
+alias lgl='git log --oneline --decorate'
+# when I mispell git commands the following 2 commands help
+alias got='git '
+alias get='git '
+alias glog='git log --pretty=oneline --abbrev-commit'
+alias up='git pull upstream master'
+```
+
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'routing notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge routing`
+* Push master to github (_and all branches_)
+  - `$ git push --all`
+
 
 
 

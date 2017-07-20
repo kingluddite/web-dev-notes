@@ -44,9 +44,9 @@ DBaaS
         + Your username should not be an email address
     - something like 
 
-    `DATABASE=mongodb://deh2admin:R7J2JVpzj^jcZ1Zz%s#i@ds147551.mlab.com:47551/retail-apocalypse`
+`DATABASE=mongodb://deh2admin:R7J2JVpzj^jcZ1Zz%s#i@ds147551.mlab.com:47551/retail-apocalypse`
 
-    - This will allow us to connect to our remote mongodb
+* This will allow us to connect to our remote mongodb
 
 ### How do we know if our MongoDB connection works?
 * Use a MongoDB GUI

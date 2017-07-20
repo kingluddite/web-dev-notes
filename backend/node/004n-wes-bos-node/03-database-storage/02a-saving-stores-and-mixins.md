@@ -176,3 +176,15 @@ Output will show `It works Abercrombie & Fitch`
 - Works just like a function in JavaScript
     + It accepts the parameters and then we can use that parameter and all the properties on it
 
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'save-stores-mixins notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge save-stores-mixins`
+* Push master to github (_and all branches_)
+  - `$ git push --all`
+

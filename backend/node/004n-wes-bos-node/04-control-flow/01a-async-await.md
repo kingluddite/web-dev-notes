@@ -148,3 +148,15 @@ exports.createStore = (req, res) => {
 * Your code looks like Christmas Tree code
 * This is an example of **Callback Hell**
 * Lots of example code has this because this was the way it was done for years
+
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'async-await notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge async-await`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

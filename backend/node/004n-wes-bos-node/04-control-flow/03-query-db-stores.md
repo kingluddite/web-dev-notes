@@ -507,7 +507,12 @@ mixin storeCard(store = {})
 
 ## Git
 * Save
+  - `$ ga -A`
 * Commit
+  - `$ gc -m 'query-db-stores notes`
 * Checkout master
+  - `$ gcm`
 * Merge branch into master
-* Push master to github
+  - `$ git merge query-db-stores`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

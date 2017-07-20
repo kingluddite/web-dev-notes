@@ -297,3 +297,15 @@ pre.error {
 
 * Refresh the browser again and you'll see the first line of the stack trace is showing you what caused the error
 
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'middleware-error notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge middleware-error`
+* Push master to github (_and all branches_)
+  - `$ git push --all`
+

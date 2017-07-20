@@ -241,7 +241,12 @@ exports.updateStore = async (req, res) => {
 
 ## Git
 * Save
+  - `$ ga -A`
 * Commit
+  - `$ gc -m 'complete create-edit-flow-stores-p2 notes`
 * Checkout master
+  - `$ gcm`
 * Merge branch into master
-* Push master to github
+  - `$ git merge complete create-edit-flow-stores-p2`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

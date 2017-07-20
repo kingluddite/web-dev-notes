@@ -333,3 +333,15 @@ If your terminal is full just `cmd` + `k` to clear out terminal and you'll see:
 
 ## Next - How do we save that data back to the Database?
 We'll use Mongoose and `async-await` to save the data to the Database
+
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'save-stores-mixins-p2 notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge save-stores-mixins-p2`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

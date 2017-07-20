@@ -476,3 +476,15 @@ exports.createStore = async (req, res) => {
 * Our route updates to `http://localhost:7777/store/javaman`
 
 ## Things are starting to look promising!
+
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'flash-messages notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge flash-messages`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

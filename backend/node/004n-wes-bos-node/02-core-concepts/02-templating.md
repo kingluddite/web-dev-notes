@@ -354,3 +354,15 @@ block content
 ### Why do we need `#{title}`
 * If we have a mixture of normal text and a variable we use #{variableNameHere}
 }
+
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'templating notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge templating`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

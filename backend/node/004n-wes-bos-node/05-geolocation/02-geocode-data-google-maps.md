@@ -1,9 +1,16 @@
 # Geocoding Data with Google Maps
 * We need to create an auto dropdown to pull cities
-* And prepopulate them with lng/lat
+* And prepopulate them with `lng` and `lat`
 * This is called **Geolocation**
 
-`/public/javascripts/delicious-apps.js`
+## Git
+* Create new branch
+
+`$ git checkout -b geocode`
+
+## Entry Point for all our JavaScript
+
+`/public/javascripts/tra-apps.js`
 
 * This is the **entry point** for all of our JavaScript
 * How do I know this?
@@ -16,7 +23,7 @@
 const config = {
   entry: {
     // we only have 1 entry, but I've set it up for multiple in the future
-    App: './public/javascripts/delicious-app.js'
+    App: './public/javascripts/tra-app.js'
   },
 // more code
 ```
@@ -60,7 +67,7 @@ export { $, $$ };
 
 ## Import autocomplete.js
 
-`delicious-app.js`
+`tra-app.js`
 
 ```
 import '../sass/style.scss';
@@ -85,21 +92,28 @@ export default autocomplete;
 ## Beware of the order discrepancy between Google and MongoDB
 **notice order of arguments**
 - `input`, `latInput`, `lngInput`
-    + Google maps does it the write way (_order-wise_)
+    + Google maps does it the right way (_order-wise_)
     + `MongoDB` does it the wrong way (_order-wise_)
     + That is why the order is different and confusing as hell
 
 ## bling.js and our form id's working together
-`public/javascripts/delicious-app.js`
+`public/javascripts/tra-app.js`
 
-`autocomplete($('#address'), $('#lat'), $('#lng'));`
+```js
+import '../sass/style.scss';
+
+import { $, $$ } from './modules/bling';
+import autocomplete from './modules/autocomplete';
+
+autocomplete($('#address'), $('#lat'), $('#lng'));
+```
 
 * We get these from the `id`s we have inside `_storeForm.pug`
 * **remember** We are not using `jQuery` here
     - This is just `bling.js` saving us from typing out `document.querySelector('#address')`
 
 ## Test that it is working
-`autocomplete.js`
+`modules/autocomplete.js`
 
 ```
 function autocomplete(input, latInput, lngInput) {
@@ -112,19 +126,6 @@ export default autocomplete;
 1. View `stores` in browser
 2. Click on edit of the store with address
 3. You will see this in console:
-
-![autocomplete.js](https://i.imgur.com/FpCOenq.png)
-
-## Woops! I made a mistake
-* We are missing `address` in the output and that is because I misspelled it in `_storeForm.pug`
-
-`input(type="text" id="addres" name="location[address]" value=(store.location && store.location.address))`
-
-* I update it to this (_id="address"_)
-
-``input(type="text" id="address" name="location[address]" value=(store.location && store.location.address))``
-
-* And refresh the page and now we get all three:
 
 ![working autocomplete.js](https://i.imgur.com/1kyITEm.png)
 
@@ -150,6 +151,16 @@ To get it to work you need to sign up for your own API key and use that instead
 
 3. Stop the server `ctrl` + `c`
 4. Run again `$ npm start`
+
+### Add script tag to your main template
+`layout.pug`
+
+```
+// more code
+block scripts
+      script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)
+      script(src="/dist/App.bundle.js")
+```
 
 Type `P` in the Address and you'll get a dropdown:
 

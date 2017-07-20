@@ -255,3 +255,15 @@ Your data is entered into the Database and you are redirected to the home page
 3. And call `.save()` on it
 4. Because we use **async-await** there are no nested callback (_Callback Hell_), no `Promise` chaining with `.then()`
     * We just wait for the save and then do some data
+
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'async-await-p2 notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge async-await-p2`
+* Push master to github (_and all branches_)
+  - `$ git push --all`

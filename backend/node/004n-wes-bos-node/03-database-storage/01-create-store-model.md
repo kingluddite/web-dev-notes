@@ -289,3 +289,14 @@ storeSchema.pre('save', function (next) {
 });
 ```
 
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'create-store-model notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge create-store-model`
+* Push master to github (_and all branches_)
+  - `$ git push --all`
