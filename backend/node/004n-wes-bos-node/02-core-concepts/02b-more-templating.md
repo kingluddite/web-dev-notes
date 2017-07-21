@@ -48,7 +48,7 @@ h2
 
 ```
 router.get('/learning', (req, res) => {
-  res.render('learning-pug-for-fun', {
+  res.render('learning', {
     name: 'Pele',
     team: 'Brazil',
   });
@@ -58,7 +58,7 @@ router.get('/learning', (req, res) => {
 ## Interpolate a variable inside of text using `pug` 
 `#{dog}`
 
-`learning-pug-for-fun.pug`
+`learning.pug`
 
 ```
 extends layout
@@ -90,7 +90,7 @@ Output -> `I am Diego and my team is argentina`
 
 ## How do you put variables inside pug attribute values?
 ### This won't work
-``img.team(src="pele.jpg" alt="`Player #{name}"`)``
+``img.team(src="pele.jpg" alt=`Player #{name}`)``
 
 * That will just output the `name` literally
 * Pug put variables in attributes using JavaScript
@@ -119,7 +119,7 @@ Or
 
 ```
 .wrapper
-  p.hello I am #{name} and my team is #{dog.toUpperCase()}
+  p.hello I am #{name} and my team is #{team.toUpperCase()}
 ```
 
 With same output as before `I am Diego and my team is ARGENTINA`
@@ -139,7 +139,7 @@ We want to consume our entire `layout.pug` and place our content inside:
   block content
 ```
 
-`learning-pug-for-fun.pug`
+`learning.pug`
 
 ```
 extends layout
@@ -155,7 +155,7 @@ This will extend our layout and place the code we typed inside the spot in `layo
 ![block content](https://i.imgur.com/OZPP7JN.png)
 
 ## Override header with custom header
-`learning-pug-for-fun.pug`
+`learning.pug`
 
 ```
 extends layout
@@ -193,7 +193,7 @@ block scripts
 ## Override the footer!
 But if I want to override this footer I could:
 
-`learning-pug-for-fun.pug`
+`learning.pug`
 
 ```
 extends layout
