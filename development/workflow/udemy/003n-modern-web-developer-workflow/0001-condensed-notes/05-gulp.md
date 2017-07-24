@@ -30,7 +30,7 @@
 * `$ gulp -v` - version of Gulp you are currently running
 
 ## Install Gulp in your project
-* `$ npm i gulp --save-dev`
+* `$ npm install gulp --save-dev`
 
 ## Run gulp 
 `$ gulp`
@@ -89,7 +89,7 @@ gulp.task('watch', function() {
 
 ### Update HTML
 
-`index.html`
+`app/index.html`
 
 ```html
 // more code
@@ -97,7 +97,9 @@ gulp.task('watch', function() {
 // more code
 ```
 
-## postcss and autoprefixr
+## Notice how Google fonts are added inside `index.html`
+
+## postcss and autoprefixr (shortcut way to install devDependencies)
 `$ npm i gulp-postcss autoprefixer -D`
 
 `gulpfile.js`
@@ -136,7 +138,11 @@ gulp.task('watch', function() {
 ```
 
 * If you **watch** with gulp and make a normal CSS change, no difference than before
-* But if you use a css property that needs prefixes like
+* But if you use a CSS property that needs prefixes like
+* Add a new directory `$ mkdir /app/assets/styles`
+* Add a new file `$ touch /app/assets/styles/styles.css`
+
+`app/assets/styles/styles.css`
 
 ```css
 body {
@@ -146,7 +152,14 @@ body {
 }
 ```
 
-You will see this output
+### Run `$ gulp styles`
+* This will run the `styles` gulp task and it will take all our source CSS and convert it using prefixr to add CSS vendor prefixes
+* It Then will create folders and a new CSS file with all our new code
+
+## Gulp watches our CSS (if we make changes)
+* If we are running `$ gulp watch` it will watch for any changes to our source CSS code and then update our production CSS
+
+You will see this output inside `app/temp/styles/styles.css`
 
 ```css
 body {

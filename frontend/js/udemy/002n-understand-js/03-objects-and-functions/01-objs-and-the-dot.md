@@ -45,7 +45,6 @@ To access those properties and functions of an object
 
 #### Computer Member Access Operator
 
-
 * `person[]` (the brackets are teh computer member access operator)
 * Inside the brackets I put the name I am trying to locate in memory
 * `person['firstname'] = 'Tony';`

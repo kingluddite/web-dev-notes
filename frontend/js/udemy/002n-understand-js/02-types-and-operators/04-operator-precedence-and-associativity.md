@@ -17,7 +17,7 @@ var a = 3 + 4 * 5;
 console.log(a); // 23
 ```
 
-* Remember that this is two function calls
+* **Remember** that this is two function calls
 * JavaScript is synchronous so it won't do the functions simultaneously
     - It needs to call each function one at a time
     - Which one gets called first?

@@ -5,7 +5,7 @@
 ## spread
 * In E6 we won't use arguments but instead will use `spread` which is the new approach to what arguments does currently
 * But any code in current libraries and frameworks you will see the `arguments` variable
-* So you should no what `arguments` is and how to use it
+* So you should know what `arguments` is and how to use it
 
 ### Digging in
 ![diagram for Execution Context](https://i.imgur.com/ckvkjPd.png)

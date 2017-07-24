@@ -96,7 +96,7 @@ a == 0; // true
 
 * using `===` in our code will prevent odd behavior caused by coercion
 
-```
+```js
 var a = 0;
 var b = false;
 
@@ -127,7 +127,7 @@ if (a === b) {
 
 Remember `==` and `===` are just two different functions that behave differently
 
-```
+```js
 function ==(a, b) {}
 function ===(a, b) {}
 ```

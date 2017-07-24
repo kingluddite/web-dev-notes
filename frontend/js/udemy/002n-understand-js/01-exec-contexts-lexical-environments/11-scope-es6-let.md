@@ -18,7 +18,7 @@
 ## Thought For the day
 With regards to JavaScript, those that learn how things work under the hood solve problems better
 
-ES6
+## ES6
 * Also called EcmaScript 2015
 * Introduced a new way to declare variables
 

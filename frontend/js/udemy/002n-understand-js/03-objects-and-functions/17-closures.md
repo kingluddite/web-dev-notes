@@ -34,7 +34,7 @@ function greet(whatToSay) {
 greet('Hi');
 ```
 
-* that won't work
+* That won't work
 * You have to invoke the function
 
 ```js

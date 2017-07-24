@@ -1,5 +1,5 @@
 # Objects and Object Literals
-* new Object() not best way to create new object
+* `new Object()` not best way to create new object
 
 ## Object Literal
 `var person = {};`
@@ -104,6 +104,7 @@ greet({
 ```
 
 Will output
+
 ```
 Hello John
 Hello Tom
@@ -115,17 +116,17 @@ Hello Tom
 * It is no different to passing a number or a string on the fly
 
 ### Mix and match your methodologies
-```
+```js
 John.address2 = {
     street: '456 Easy Stree'
 }
 ```
 
-* Why does this work?
-    - The code your write is being translated by the JavaScript Engine into something the computer can understand 
-    - The syntax (object literals, the dot operator, new object), it is all doing the exact same thing under the hood
-        + It is creating a new object in memory and its properties and methods in memory and that's it
-        + So the syntax doesn't matter because in the end you are creating the same thing   
+### Why does this work?
+* The code your write is being translated by the JavaScript Engine into something the computer can understand 
+* The syntax (object literals, the dot operator, new object), it is all doing the exact same thing under the hood
+    - It is creating a new object in memory and its properties and methods in memory and that's it
+    - So the syntax doesn't matter because in the end you are creating the same thing   
     
 ### Takeaway
 That is why object literal syntax is preferred because it makes clean looking easy to understand code

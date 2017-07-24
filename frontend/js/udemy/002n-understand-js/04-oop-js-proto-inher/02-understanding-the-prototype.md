@@ -1,5 +1,6 @@
 # Understanding the Prototype
 * JavaScript uses Prototypal Inheritance
+
 ## What is the prototype?
 * We have an object in memory
 
