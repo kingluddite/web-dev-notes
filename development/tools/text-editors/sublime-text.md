@@ -36,7 +36,7 @@ import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d
 * Emmet
 * Origami
 * Add Sublime Preferences
-* After they are installed use this gist to set their preferences
+* After they are installed [use this gist](https://gist.githubusercontent.com/kingluddite/0bd73f49cedeb95402436767ddbcdbfd/raw/cc10bb588f7d91662f4a2857dec3cf06e5d42a5b/Preferences.sublime-settings) to set their preferences
 
 `Sublime Text` > `Preferences` > `Settings`
 
