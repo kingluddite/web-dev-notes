@@ -8,9 +8,51 @@ There are a lot of [text editors out there](https://en.wikipedia.org/wiki/List_o
 
 I like ST3 and use it exclusively. [Atom](https://atom.io/) is also very popular. If you know of an text editor you think is super awesome, let me know.
 
-## Sublime Project file
+## Sublime Text 3 Install instructions for classroom
 
-* this helps you organize your files especially if you are working with WordPress
+1. First Install Package Controller
+
+### Package Controller
+Open sublime and use keyboard shortcut **(` + ctrl)** - that is the backtick key + control key
+
+In the box that opens paste:
+
+```
+import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) 
+```
+
+* Restart Sublime
+
+### Add the following packages using: `cmd` + `shift` + `p` (for each one)
+* SidebarEnhancements
+* Advanced New File
+* Markdown Extended
+* Markdown Preview
+* Oceanic Next Color Scheme
+* Sass
+* Seti_UI
+* HTML-CSS-Javasript Prettify
+* LiveReload
+* Emmet
+* Origami
+* Add Sublime Preferences
+* After they are installed use this gist to set their preferences
+
+`Sublime Text` > `Preferences` > `Settings`
+
+## Add a way to open Sublime inside Terminal:
+
+```
+$ sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
+```
+
+## Test if it works:
+
+1. Create a folder named "test" on the Desktop and a file inside that folder called `test.html`
+2. Then type `$ sublime`
+
+## Sublime Project file
+* This helps you organize your files especially if you are working with WordPress
 
 I really like this option for when I'm working with WordPress. Instead of having to navigate internally in Sublime Text (ST) to get to my `themes`, `core`, and `plugins` folder I can quickly create a Sublime Text Project file. This file gives me the ability to point to several different parts of my site and see the different entry points in the files panel.
 
