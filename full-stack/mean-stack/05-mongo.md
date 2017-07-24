@@ -150,7 +150,7 @@ Essential tool for developing node applications
 * Lets us interact with a debugged applications in the browser while the node application is running
 
 #### Install iron-node globally
-Remember that when we install something gloabally we can use it on any node application on our machine
+Remember that when we install something globally we can use it on any node application on our machine
 
 ```
 $ npm install iron-node -g

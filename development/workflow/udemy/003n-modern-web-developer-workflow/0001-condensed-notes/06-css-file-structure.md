@@ -1,4 +1,6 @@
-ecture
+# Agile Development and Scrum
+
+# CSS File Structure and other cool Stuff
 1. File architecture
     * Organize CSS into multiple files
     * Each file to be relatively small and have a specific purpose
@@ -23,18 +25,6 @@ body {
 }
 ```
 
-* Point our `index.html` file to our generated css
-
-`index.html`
-
-```html
-// more code
-<link rel="stylesheet" href="temp/styles/styles.css"/>
-</head>
-<body>
-// more code
-```
-
 ## Start watching with Gulp
 `$ gulp watch`
 
@@ -56,7 +46,7 @@ img {
 * We took care of global styles that we want to trickle down to everything
 
 ## Now we start focusing on unique pieces
-### Start with banner area
+### Start with HERO area
 * skip navigation for now
 
 `index.html`
@@ -65,10 +55,10 @@ img {
 // more code
 <div class="large-hero">
     <img src="assets/images/hero--large.jpg">
-    <h1>Your clarity.</h1>
-    <h2>One trip away.</h2>
-    <p>We create soul restoring journeys that inspire you to be you.</p>
-    <p><a href="#">Get Started Today</a></p>
+    <h1>Retail Apocalypse</h1>
+    <h2>Stores are closing</h2>
+    <p>Let us know if a store is closing near you</p>
+    <p><a href="#">Register Now</a></p>
   </div>
 // more code
 ```
@@ -93,7 +83,7 @@ img {
 `styles.css`
 
 ```
-@import "modules/_large-hero";
+@import 'modules/_large-hero';
 // more code
 ```
 
@@ -102,7 +92,9 @@ img {
 * `@import` is a native CSS feature
     - But we DO NOT want the browser to have to download multiple CSS files
     - We will tell Gulp and PostCSS to look for this line and replace it with the contents of the `_large-hero.css` file
-* Stop Gulp by typing this in the Terminal:  
+
+### Stop Gulp!
+* By typing this in the Terminal:  
 
 `ctrl` + `c`
 
@@ -119,6 +111,7 @@ watch = require('gulp-watch');
 // more code
 gulp.task('styles', function() {
   return gulp.src('./app/assets/styles/styles.css')
+      // add cssImport like below
       .pipe(postcss([cssImport, cssvars, nested, autoprefixer]))
       .pipe(gulp.dest('./app/temp/styles'));
 });
@@ -126,7 +119,9 @@ gulp.task('styles', function() {
 ```
 
 * Make sure to put `cssImport` at very beginning of array
-* `$ gulp watch`
+
+`$ gulp watch`
+
 * View generated CSS inside `temp` folder and if you see `.large-hero` selector at top, our import of the partial was successful
 
 ## Create `/assets/styles/base`
@@ -194,17 +189,20 @@ And modify:
 * We'll wrap this text it its own `div` so we can move position all the text as one cohesive unit
     - The alternative would be to position each element independently, which would be a major time suck
 
-### Add a `div sandwich`
+### Add a div container and some BEM
 `index.html`
 
 ```html
 // more code
-<div class="large-hero__text-content">
-  <h1>Your clarity.</h1>
-  <h2>One trip away.</h2>
-  <p>We create soul restoring journeys that inspire you to be you.</p>
-  <p><a href="#">Get Started Today</a></p>
-</div>
+<div class="large-hero">
+      <div class="large-hero__text-content">
+        <img src="assets/images/hero--large.jpg">
+        <h1>Retail Apocalypse</h1>
+        <h2>Stores are closing</h2>
+        <p>Let us know if a store is closing near you</p>
+        <p><a href="#">Register Now</a></p>
+      </div>
+  </div>
 // more code
 ```
 
@@ -248,6 +246,15 @@ absolute vs relative
 * If we use `translateY(100%)` it will put the content down the height of the element
 * `translateY(0)` is default
 * We just want to pull it up half of it's own height so we use `translateY(-50%)`
+
+### Git Stuff
+* In a new Terminal tab (make sure you are in project root)
+* `$ git status`
+* Add to staging `$ git add -A`
+* Commit snapshot `$ git commit -m 'Add BEM and hero stuff'`
+* Checkout to master `$ git checkout master`
+* Merge Branch to master
+* `$ git merge NAMEOFYOURBRANCH`
 
 ## Next - Responsive Images and BEM
 * Why did we put the huge image on the page versus making it a background image?

@@ -623,6 +623,7 @@ Getting it to work in LivePreview
   "enable_autoreload": true
 }
 ```
+
 3. Saved, shut down Sublime Restarted
 4. Then when opened file in browser and refresh the update worked
 5. To not have to refresh I installed the LiveReload package for ST
@@ -630,7 +631,7 @@ Getting it to work in LivePreview
 7. Open markdown file in browser
 8. Open palette in ST
 9. Selected this [screenshot](https://i.imgur.com/rRyJ6mJ.png) (enabled/disable plugins)
-10. Chose Enable SimpleReload
+10. Choose Enable SimpleReload
 11. Then as I made changes and saved them, the page refreshed
 
 Here were two links that helped me figure this out

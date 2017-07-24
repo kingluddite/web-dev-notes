@@ -54,7 +54,6 @@ When you deploy you want to change Port to `80`
 ## SECRET and KEY
 Keep as is
 
-
 **note** You need to have all your `variables.env` ready before you start to deploy
 
 ## Changes to `package.json`

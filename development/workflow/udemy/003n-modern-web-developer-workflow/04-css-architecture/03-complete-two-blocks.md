@@ -60,7 +60,7 @@
     + (_they may have their `html` configured to use `30px`_)
 
 ##### As a good web developer we want to honor the user's font size preference
-* If we use REM for font-size, padding and margin our entire web site, all the white-space and balance will scale accordingly to the user's font-size preference
+* If we use REM for `font-size`, `padding` and `margin` our entire web site, all the **white-space** and balance will scale accordingly to the user's font-size preference
   - If we used `px` our **font-size** would be set in stone
   - If the user had a larger **font-size**, the text might appear too big for the layout surrounding it
 

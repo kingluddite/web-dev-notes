@@ -14,6 +14,13 @@
 ### Initialize our own Git
 `$ git init`
 
+#### Important to add and commit first before creating new branches
+`$ git add -A`
+
+`$ git commit -m 'initialize repo`
+
+### Now you can create new branches with `$ git checkout -b BRANCHNAME`
+
 ### Install Homebrew and Node
 * Install [homebrew](https://brew.sh/)
 * Install node using homebrew `$ brew install node`
@@ -27,10 +34,7 @@
 
 `$ npm install jquery normalize.css -S`
 
-## Gitignore
-`$ touch .gitignore`
-
-* Open file and add `node_modules`
+## Project already has `.gitignore`
 
 ### Create branch
 `$ git checkout -b add-npm`

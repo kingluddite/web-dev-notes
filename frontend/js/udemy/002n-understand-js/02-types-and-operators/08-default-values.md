@@ -1,5 +1,5 @@
 # Default Values
-```
+```js
 function greet(name) {
   console.log('Hello ' + name);
 }
@@ -10,7 +10,7 @@ greet('John'); // Hello John
 * Simple
 * What if we call `greet()` without a **parameter**
 
-```
+```js
 function greet(name) {
   console.log('Hello ' + name);
 }
@@ -115,7 +115,7 @@ greet(); // Hello Default Name
 * This is a neat, cool cat trick that makes your code readable
 
 ### Remember to be careful with `0`
-```
+```js
 function greet(name) {
   name = name || 'Default Name';
   console.log('Hello ' + name);

@@ -39,7 +39,7 @@ console.log(objectLiteral);
 * People saw the object literal notation and thought that would be a better way to send data across the internet
     - Why not just make a string that looks like this:
 
-```
+```js
 {
     firstname: 'John',
     isAProgrammer: true
@@ -59,11 +59,11 @@ console.log(objectLiteral);
 }
 ```
 
-* Note - in object literal syntax, properties can be wrapped in quotes but they MUST be wrapped in quotes in JSON
-* JSON - technically a subset of the object literal notation
-    - Anything that is JSON valid is also valid JavaScript object literal syntax
-    - But not all object literal syntax is valid JSON
-    - JSON has stricter formatting rules
+* **Note** - in object literal syntax, properties can be wrapped in quotes but they MUST be wrapped in quotes in `JSON`
+* `JSON` - technically a subset of the object literal notation
+    - Anything that is `JSON` valid is also valid JavaScript object literal syntax
+    - But not all object literal syntax is valid `JSON`
+    - `JSON` has stricter formatting rules
 
 ### JSON.stringify(objectLiteral)
 Built in feature in JavaScript

@@ -198,12 +198,9 @@ router.get( '/logout', function( req, res, next ) {
 ```
 
 ## Test
-
 Click logout and then it will destroy the session and use the logic in navbar.pug to remove logout and replace it with login and bring back 'Sign up'
 
 but we can't got to the login route because we have not created login.pug or created the login route yet.
-
-
 
 ## Express Middleware
 Express is known as a routing and middleware framework

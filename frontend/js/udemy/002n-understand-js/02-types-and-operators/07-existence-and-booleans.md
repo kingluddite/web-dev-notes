@@ -8,7 +8,7 @@
 ## All things that imply the "lack of existence" they convert to `false`
 This is something we can use to our advantage
 
-```
+```js
 var a;
 
 // goes out to internet and looks for a value
@@ -32,7 +32,7 @@ if (a) {
 ### But once I have something
 * Where the string is not empty
 
-```
+```js
 var a;
 
 // goes out to internet and looks for a value
@@ -50,7 +50,7 @@ Then the log runs with `Something is there`
 * This is a problem because `0` is not lack of existence
 
 ### Fix for values of `0`
-```
+```js
 var a;
 
 // goes out to internet and looks for a value
