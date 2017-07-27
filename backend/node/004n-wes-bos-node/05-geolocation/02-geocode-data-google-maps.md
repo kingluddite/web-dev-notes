@@ -10,10 +10,11 @@
 
 ## Entry Point for all our JavaScript
 
-`/public/javascripts/tra-apps.js`
+`/public/javascripts/tra-app.js`
 
 * This is the **entry point** for all of our JavaScript
-* How do I know this?
+
+### How do I know this is the entry point?
 * Open `webpack.config.js`
 
 `webpack.config.js`
@@ -87,7 +88,8 @@ export default autocomplete;
 ```
 
 * We will use ES6
-* We don't have ES6 in `node.js` yet but we do have ES6 in `webpack` and it can compile it out for us
+* We don't have ES6 in `node.js` yet
+* But we do have ES6 in `webpack` and it can compile it out for us
 
 ## Beware of the order discrepancy between Google and MongoDB
 **notice order of arguments**
@@ -162,13 +164,38 @@ block scripts
       script(src="/dist/App.bundle.js")
 ```
 
+## Get our Address and Google Maps working together!
+`autocomplete.js`
+
+```js
+function autocomplete(input, latInput, lngInput) {
+  if (!input) return; // skip this function from running if there is no address input
+  const dropdown = new google.maps.places.Autocomplete(input);
+
+  dropdown.addListener('place_changed', () => {
+    const place = dropdown.getPlace();
+    latInput.value = place.geometry.location.lat();
+    lngInput.value = place.geometry.location.lng();
+  });
+  // if someone hits enter on the address field, don't submit the form
+  input.on('keydown', (evt) => {
+    if (evt.keyCode === 13) evt.preventDefault();
+  });
+}
+
+export default autocomplete;
+```
+
 Type `P` in the Address and you'll get a dropdown:
 
 ![dropdown working](https://i.imgur.com/3g5Q2iu.png)
 
-* `.addListener()` - Google Maps way to add an event listener
+### Talking about the code we just used
 
-```
+* `.addListener()` - Google Maps way to add an event listener
+* Temporarily replace our current `dropdown.addListener()` function with:
+
+```js
 // more code
 dropdown.addListener('place_changed', () => {
   const place = dropdown.getPlace();
@@ -191,7 +218,8 @@ That is all the possible info you could want about philly from googlemaps
 * We are interested in `geometry.location.lat` and `geometry.location.lng`
 * If you want to disable a rule in eslint specifically for param properties
 
-### Get ride of eslint error you don't want to keep seeing
+### Here's an ESLint tip if you are using it
+* Get ride of eslint error you don't want to keep seeing
 Add this to your eslint rules section: (_don't forget to use a comma if you need it_)
 
 `"no-param-reassign": [2, { "props": false }]`
@@ -205,6 +233,14 @@ Add this to your eslint rules section: (_don't forget to use a comma if you need
 ![lat lng populate](https://i.imgur.com/t4Dx8J1.png)
 
 ## Houston we have a problem
+* comment out this portion of our code
+
+```js
+//input.on('keydown', (evt) => {
+  // if (evt.keyCode === 13) evt.preventDefault();
+//});
+```
+
 ### Hitting enter in address field trips the flash error
 * When someone hits submit on address form we get a flash error
 
@@ -212,7 +248,7 @@ Add this to your eslint rules section: (_don't forget to use a comma if you need
 If someone hits `enter` inside the address input?
 * `keycode === 13` is **enter**
 
-How do I know `13` is the number for the `enter` key?
+#### How do I know `13` is the number for the `enter` key?
 * [Read this](https://css-tricks.com/snippets/javascript/javascript-keycodes/)
 * Or Visit: [keycode.info](http://keycode.info/) and press **enter**
 
@@ -226,25 +262,15 @@ input.on('keydown', (evt) => {
 ### Bling to the rescue again!
 We normally would type `input.addEventListener()` but with `bling.js` we can just type `input.on()`
 
-## Final Code
-`autocomplete.js`
-
-```
-function autocomplete(input, latInput, lngInput) {
-  if (!input) return; // skip this function from running if there is no address input
-  const dropdown = new google.maps.places.Autocomplete(input);
-
-  dropdown.addListener('place_changed', () => {
-    const place = dropdown.getPlace();
-    latInput.value = place.geometry.location.lat();
-    lngInput.value = place.geometry.location.lng();
-  });
-  // if someone hits enter on the address field, don't submit the form
-  input.on('keydown', (evt) => {
-    if (evt.keyCode === 13) evt.preventDefault();
-  });
-}
-
-export default autocomplete;
-```
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'complete geocode notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge geocode`
+* Push master to github (_and all branches_)
+  - `$ git push --all`
 

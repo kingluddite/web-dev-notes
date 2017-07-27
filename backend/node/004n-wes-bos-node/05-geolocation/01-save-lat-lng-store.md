@@ -39,7 +39,8 @@ Before building your app you should figure out how your data should be stored
     - This will enter the **current Date** when the document is inserted into `MongoDB`
     - This is what the **current date** will look like
       + Notice that it is not in the most readible format
-      + We'll use `moment.js` to make the date look more user friendly
+      + We'll use `moment.js` (_in a moment :)_ )to make the date look more user friendly
+
 ![date.now()](https://i.imgur.com/k4nmg17.png)
 
 `Store.js`
@@ -68,14 +69,15 @@ const storeSchema = new mongoose.Schema({
 
 ## Add `location` field
 * `MongoDB` has great location info built in
-* All you need to do is enter the `latitude` and `longitude` and `MongoDB` will be able to figure out if you are close to those coordinates
+* All you need to do is enter the `latitude` and `longitude`
+* And `MongoDB` will be able to figure out if you are close to those coordinates
 
 ### No Math!
 * <u>The cool part</u> is you don't have to figure out the crazy math to determine if you are close to those coordinates, MongoDB does it for you
 
 `Store.js`
 
-```
+```js
 // more code
 const storeSchema = new mongoose.Schema({
 // more code
@@ -108,7 +110,7 @@ location: {
     - **123 Elm St**
 
 ## Let's build an interface
-* This will incorporate adding the `address` and s`coordinates`
+* This will incorporate adding the `address` and `coordinates`
 
 ### How to comment in `Pug`
 * You should feel free to add comments inside your Pug templates
@@ -165,7 +167,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 2. Submit form
 3. We get `successful` flash on 404 (_as we have no route yet_)
 
-### Now let's edit an exiting store
+### Now let's edit an existing store
 1. View the stores page (_`/stores` route_)
 2. Click edit button (`pencil icon`) on a store
 
@@ -214,10 +216,12 @@ input(type="text" id="address" name="location[address]" value=(store.location &&
 * All is right and just in the world again!
 
 ## Add Lng and Lat
-* **Important** Make sure `lng` comes first and `lat` is second in this array
+* **Important** 
+    - Make sure `lng` comes first in this array
+    - And `lat` is second in this array
 * This is just how `MongoDB` expects the data to be stored
-
-`1st lng, 2nd lat`
+  - lng ---> location[coordinates][0]
+  - lat ---> location[coordinates][1]
 
 `_storeForm.pug`
 
@@ -236,7 +240,7 @@ input(type="text" id="lat" name="location[coordinates][1]")
 ```
 
 ### Manually add Lng and Lat
-* This definitely is not a good solution but let's see if we can add long and lat first, then we'll improve on this solution
+* This definitely is not a good solution but let's see if we can add `lng` and `lat` first, then we'll improve on this solution
 
 1. Save
 2. Open the edit page of a store
@@ -259,7 +263,7 @@ input(type="text" id="lat" name="location[coordinates][1]" value=store.location.
 // more code
 ```
 
-* Refresh browser and you'll see the Lng/Lat coordinates
+* Refresh browser and you'll see the `Lng/Lat` coordinates
 * But we need to use our same solution as before to prevent errors when we add stores
 
 ```
@@ -310,7 +314,7 @@ input(type="text" id="lat" name="location[coordinates][1]" value=(store.location
 ![supply address error](https://i.imgur.com/xAeIJNg.png)
 
 #### Why is that happening?
-In our schema our store requires an address
+In our schema our store `requires` an **address**
 
 `Store.js`
 
@@ -346,7 +350,7 @@ And it will go to our routes
 
 `app.use('/', routes);`
 
-* And if it does not work, it will say, "Ok, next"
+* And if it does not work, it will say, **"Ok, next"**
 * And then it will go down the chain of events
 
 ![chain of events middleware](https://i.imgur.com/8fy9aRt.png)
@@ -370,9 +374,9 @@ exports.flashValidationErrors = (err, req, res, next) => {
 // more code
 ```
 
-* So if we don't have any errors skip to next middleware
-* But if there is an error, it will check for those errors and flash them
-* And our **model** will pass an error message
+* So if we don't have any errors skip to next `middleware`
+* But if there is an error, it will check for those errors and `flash` them
+* And our **model** will pass an **error message**
 
 `Store.js`
 
@@ -392,7 +396,7 @@ exports.flashValidationErrors = (err, req, res, next) => {
 
 ## Next
 * Hook our address to google Maps
-* When we plugin the address our long and lat will populate with real values
+* When we plugin the address our `lng` and lat will populate with real values
 
 ## Git
 * Save
@@ -402,6 +406,6 @@ exports.flashValidationErrors = (err, req, res, next) => {
 * Checkout master
   - `$ gcm`
 * Merge branch into master
-  - `$ git merge save-lat-long notes`
+  - `$ git merge save-lat-long`
 * Push master to github (_and all branches_)
   - `$ git push --all`

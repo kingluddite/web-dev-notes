@@ -1,22 +1,39 @@
 # Upload, resize, images with middleware
+
+## Git
+* Create new branch
+
+`$ git checkout -b upload-resize-img`
+
 ## Add the ability to upload a photo
 ### This will be a 3 stage process
 1. Modify our form to accept file uploads
-2. Need to add some middleware inbetween
+2. Need to add some `middleware` inbetween
     * Before we create the store (_`createStore()` controller_)
         - We need to add some logic to:
             1. upload the file
             2. resize the file
-    * [**multer**](https://www.npmjs.com/package/multer)
-        - External middleware package
-        - This will allow us to upload the file
-    * [**jimp**](https://www.npmjs.com/package/jimp)
-        - Will help us resize a file
+
+### multer
+* [**multer**](https://www.npmjs.com/package/multer)
+    - External middleware package
+    - This will allow us to upload the file
+
+### jimp
+* [**jimp**](https://www.npmjs.com/package/jimp)
+    - Will help us resize a file
+
+#### Install
+* We already have them installed but if not we would:
+
+`$ yarn add multer jimpo uuid`
+
+* uuid helps to make sure images are unique
 
 ## Modify our form to accept file uploads
 `_storeForm.pug`
 
-Change the `form` to look like this:
+Our current form:
 
 ```
 mixin storeForm(store = {})
@@ -27,11 +44,11 @@ mixin storeForm(store = {})
 * Anytime you are uploading files to a server
 * You need to make sure that the browser will send it as a **multipart**
 
-Make the following modification:
+### Make the following modification:
 
 ```
 mixin storeForm(store = {})
-  form(action=`/add/${store._id || ''}` method="POST" class="card")
+  form(action=`/add/${store._id || ''}` method="POST" class="card" enctype="multipart/form-data")
 ```
 
 * At the beginning we had this inside our form and when we submitted the form, nothing happened
@@ -43,7 +60,7 @@ require it
 
 `storeController.js`
 
-```
+```js
 const mongoose = require('mongoose');
 const multer = require('multer');
 
@@ -67,7 +84,7 @@ const multerOptions = {
 
 `storeController.js`
 
-```
+```js
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter: function(req, file, next) {
@@ -76,9 +93,9 @@ const multerOptions = {
 };
 ```
 
-Use ES6 method shorthand like this:
+## ES6 method shorthand (less typing!)
 
-```
+```js
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
@@ -87,7 +104,7 @@ const multerOptions = {
 };
 ```
 
-* file.mimetype - will tell you what type of photo it is
+* `file.mimetype` - will tell you what type of photo it is
     - Every file has it's own **mimetype**
     - You can't rely on the extension of the file to actually be true
         + Someone could take `virus.exe` and rename it to `image.jpg` but mimetype you can rely on
@@ -104,7 +121,7 @@ const multerOptions = {
 };
 ```
 
-* Since we are using `async-await` we haven't working with **callback** stuff or **Promises** but you will often see this callback premise in node:
+* Since we are using `async-await` we haven't working with **callback** stuff or **Promises** but you will often see this `callback` premise in node:
 
 ```
 if (isPhoto) {
@@ -117,7 +134,7 @@ if (isPhoto) {
     - So we are saying if it starts with `image` cool, continue on
         + Otherwise we have an error and we handle it
 
-```
+```js
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
@@ -131,14 +148,16 @@ const multerOptions = {
 };
 ```
 
-* In our app we don't want people uploaded PDFs or mp4 files
+* In our app we don't want people uploading these types of files:
+    - `PDF`s
+    - `mp4`
 
 ## Make our middleware
 For working with our `createStore()`
 
 `storeController.js`
 
-```
+```js
 // more code
 exports.upload = multer(multerOptions).single('photo'); // add this line
 
@@ -167,7 +186,8 @@ label(for="photo") Photo
 * We use **Client side** validation `accept="image/gif, image/png, image/jpeg"`
     * But this can be removed if someone use the Chrome dev tools
     * So we also more importantly **Server side** validate
-    * `const isPhoto = file.mimetype.startsWith('image/');` (_storeController.js_)
+    * `const isPhoto = file.mimetype.startsWith('image/');`
+      - We create a variable and make sure our mimetype starts with `image`
 
 `_storeForm.pug`
 
@@ -185,11 +205,11 @@ label(for="address") Address
 ```
 
 ## View in browser
-![photo upload field in form](https://i.imgur.com/UImto6C.png)
+![photo upload field in form](https://i.imgur.com/UGQo9eH.png)
 
 * Now we can upload images and read them into memory
     - This means it doesn't save the file to disc
-    - It just stores it in the memory of our server (just temporary)
+    - It just stores it in the memory of our server (_just temporary_)
     - We want to resize and then save it to disc
 
 ## Resize images with jimp
@@ -208,7 +228,10 @@ const uuid = require('uuid'); // add this line
 
 `storeController.js`
 
-```
+```js
+// more code
+exports.upload = multer(multerOptions).single('photo');
+
 exports.resize = async (req, res, next)
 ```
 
@@ -226,7 +249,7 @@ exports.resize = async (req, res, next)
 ## log out our file
 `storeController.js`
 
-```
+```js
 // more code
 exports.upload = multer(multerOptions).single('photo');
 
@@ -267,7 +290,8 @@ router.post('/add/:id', catchErrors(storeController.updateStore));
 
 * We don't use `catchErrors()` on `.upload()` because it is 3rd party **multer**
 
-1. View in `/add`
+## Check it out in the browser
+1. View in `/add` route in browser
 2. Enter store info
 3. Add an image
 4. Submit
@@ -318,7 +342,7 @@ exports.resize = async (req, res, next) => {
 ## Now time to do the Resizing
 * jimp.read()
     - Either pass it a file path on your server
-    - Or you pass it a buffer (this is something stored in memory)
+    - Or you pass it a buffer (_this is something stored in memory_)
         + `req.file.buffer`
 
 ![buffer highlighted](https://i.imgur.com/zrylBl9.png)
@@ -330,7 +354,7 @@ exports.resize = async (req, res, next) => {
         + `await photo.resize(800, jimp.AUTO)`
         + [jimp documentation reference](https://github.com/oliver-moran/jimp)
 * Write it
-    - All this is asynchronous so we need to wait until their done
+    - All this is asynchronous so we need to wait until they are done
     - ``await photo.write(`./public/uploads/${req.body.photo]}`);``
 * Keep going!
     - next()
@@ -361,16 +385,17 @@ exports.createStore = async (req, res) => {
 
 ## View the image upload hot!
 * Refresh browser on `/add` route and place on left of your screen
-* open finder (_on right of screen_) and have it open to the `uploads` folder
-    - sort finder by `Date Modified`
+  - make browser half the browser and on left hand side
+* Open finder (_on right of screen_)
+  - And have it open to the `uploads` folder
+  - Sort finder by `Date Modified`
 * Add new store and upload image
 * Submit
 
-View in finder
-
+### View in finder
 ![new image uploaded](https://i.imgur.com/1WTJLef.png)
 
-View the dimensions (800xauto)
+### View the dimensions (_800xauto_)
 
 ![image dimensions](https://i.imgur.com/fCmFMMw.png)
 
@@ -385,6 +410,10 @@ mixin storeForm(store = {})
     pre= h.dump(store)
 // more code
 ```
+
+* Go to `/stores`
+* Edit the store you added an image to
+* You won't see the image
 
 ![data dump](https://i.imgur.com/ThX1c7l.png)
 
@@ -404,7 +433,7 @@ We forgot to add this image to our **schema**
 4. View `/stores`
 5. You will see the new image
 
-![images working](https://i.imgur.com/ws8wwWa.png)
+![images working](https://i.imgur.com/D3Ynb4n.png)
 
 ## Do the same thing for our update controller
 
@@ -426,7 +455,9 @@ router.post('/add/:id',
 // more code
 ```
 
-Edit and image and you will see it uploads and places our image in `/stores`
+* Edit and image
+* And you will see it uploads
+* And places our image in `/stores` route in the browser
 
 ## Why middleware is useful
 * Don't dump all your logic into one controller
@@ -441,3 +472,17 @@ mixin storeForm(store = {})
         enctype="multipart/form-data")
     //- pre= h.dump(store) delete this line
 ```
+
+* **note** jimp does not support `gif` images
+
+## Git
+* Save
+  - `$ ga -A`
+* Commit
+  - `$ gc -m 'complete upload-resize-image notes`
+* Checkout master
+  - `$ gcm`
+* Merge branch into master
+  - `$ git merge upload-resize-image`
+* Push master to github (_and all branches_)
+  - `$ git push --all`
