@@ -88,6 +88,46 @@ setupController(app);
     - `$ node app.js`
     - You should see `You have connected to Mongo!` in the terminal
 
+## Troubleshoot problems with Mongod or MongoDB
+## Adding your DB
+Whether you installed Mongo with homebrew or by downloading from MongoDB site, you need to add the `data/db` directory to your machine
+
+### the -p parameter
+Make the entire path, if it doesn't exist already 
+
+```
+$ mkdir -p /data/db
+```
+
+If you get permissions error
+
+```
+$ sudo mkdir -p /data/db
+```
+
+Enter your password
+
+It should now work!
+
+### Permissions problems
+If you run into these you need to make sure the data directory is readable and writable
+
+```
+$ sudo chmod 777 /data/db
+```
+
+### Mongod might not shut down properly
+* If that happens kill all mongod process 
+
+`$ killall mongod`
+
+* Also make sure you are in root of your project when doing this
+
+`$  ps aux | grep mongo`
+
+* Finds all processes named mongo
+* `$ kill PID`
+
 ![connected to Mongo](https://i.imgur.com/wHw4kbU.png)
 
 * Browse to `localhost:3000/api/setupTodos`
