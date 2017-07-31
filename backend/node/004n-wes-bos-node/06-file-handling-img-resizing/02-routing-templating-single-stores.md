@@ -1,4 +1,10 @@
 # Routing and Templating Single Stores
+
+## Git
+* Create new branch
+
+`$ git checkout -b rout-templating`
+
 1. Click stores link
 2. Click on single store
     * We need to find store that has the slug (_Tied to `_id`_)

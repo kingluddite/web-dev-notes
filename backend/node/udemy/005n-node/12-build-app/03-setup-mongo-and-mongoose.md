@@ -1,3 +1,11 @@
+# Mongod troubleshoot
+* Find what is running
+`$ lsof -Pi | grep LISTEN`
+
+* Kill the node process with extreme prejudice
+
+`$ kill -9 $PID`
+
 # Setup `MongoDB` and Mongoose
 * We'll setup our `MongoDB`
 * We'll setup Mongoose and our schema for our Database

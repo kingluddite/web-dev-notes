@@ -13,11 +13,11 @@
 ### Why use REM?
 * Not everyone has their web browser configured the same
 * Other people may change their default `html` font size to deal with stuff like:
-  - eye problems
-  - near-sighted
-  - far-sighted 
-  - or just avoiding eye-strain
-    + (_they may have their `html` configured to use `30px`_)
+    - eye problems
+    - near-sighted
+    - far-sighted 
+    - or just avoiding eye-strain
+        + (_they may have their `HTML` configured to use `30px`_)
 
 ##### As a good web developer we want to honor the user's font size preference
 * If we use REM for `font-size`, `padding` and `margin` our entire web site, all the **white-space** and balance will scale accordingly to the user's font-size preference

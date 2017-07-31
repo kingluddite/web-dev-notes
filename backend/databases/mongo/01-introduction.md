@@ -2,7 +2,12 @@
 
 [NBA & Mongo](https://thecodebarbarian.wordpress.com/2014/02/14/crunching-30-years-of-nba-data-with-mongodb-aggregation/)
 
-
+### Mongo Errors and Troubleshooting them
+* `Unable to lock file: /data/db/mongod.lock`
+  - `$ sudo rm /data/db/mongod.lock`
+* `Address already in use for socket: 0.0.0.0:27017`
+  - `$ pgreg mongo`
+  - `$ kill PID` (_you will get PID when you use previous line_)
 
 * A DB to store persistant data for Applications
 

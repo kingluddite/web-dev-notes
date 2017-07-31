@@ -69,3 +69,11 @@ ul.dogs
   li.dog.dog.09
   li.dog.dog.10
 ```
+
+## Mongod troubleshoot
+* Find what is running
+`$ lsof -Pi | grep LISTEN`
+
+* Kill the node process with extreme prejudice
+
+`$ kill -9 $PID`

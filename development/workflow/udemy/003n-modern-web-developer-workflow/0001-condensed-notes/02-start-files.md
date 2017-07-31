@@ -63,3 +63,6 @@
 
 * You will get an error
 * We will fix this by adding a remote origin
+
+## Push all branches to github
+`$ git push origin --all`

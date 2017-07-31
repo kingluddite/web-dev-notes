@@ -11,7 +11,7 @@ Old way to target elements
 }
 ```
 
-BEM is better
+## BEM is better
 
 * Give element a class
 

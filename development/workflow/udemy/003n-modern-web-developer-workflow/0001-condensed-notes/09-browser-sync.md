@@ -58,7 +58,7 @@ gulp.task('watch', function() {
 
 `gulpfile.js`
 
-```
+```js
 // more code
 cssImport = require('postcsss-import'), // don't forget the comma
 browserSync = require('browser-sync').create(); // add this line
@@ -76,7 +76,7 @@ gulp.task('watch', function() {
       }
     });
   // more code
-}
+})
 ```
 
 * Because `gulp.src()` is an asynchronous function we need to return it
@@ -109,7 +109,7 @@ watch('./app/assets/styles/**/*.css', function() {
 
 `gulpfile.js`
 
-```
+```js
 // more code
 gulp.task('cssInject', ['styles'], function() {
   return gulp.src('./app/temp/styles/styles.css')
@@ -118,6 +118,7 @@ gulp.task('cssInject', ['styles'], function() {
 
 gulp.task('watch', function() {
 // more code
+});
 ```
 
 * Stop and start `browserSync` again
@@ -138,7 +139,7 @@ body {
 * Remove the blue background as we just used it for an example
 
 ### That browerSync box is annoying so we can turn it off
-```
+```js
 gulp.task('watch', function() {
 
     browserSync.init({
@@ -148,7 +149,7 @@ gulp.task('watch', function() {
       }
     });
   // more code
-}
+})
 ```
 
 ### See how cool `browserSync` is!

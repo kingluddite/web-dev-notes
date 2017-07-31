@@ -9,7 +9,7 @@
 ## Import browser-sync
 `gulpfile.js`
 
-```
+```js
 // more code
 browserSync = require('browser-sync').create();
 watch = require('gulp-watch');
@@ -21,7 +21,7 @@ watch = require('gulp-watch');
 
 `gulpfile.js`
 
-```
+```js
 // more code
 gulp.task('watch', function() {
 
@@ -35,6 +35,7 @@ gulp.task('watch', function() {
     gulp.start('html');
   });
 // more code
+});
 ```
 
 `$ gulp watch`
@@ -50,13 +51,15 @@ gulp.task('watch', function() {
 
 `gulpfile.js`
 
-```
+```js
 // more code
 gulp.task('html', function() {
   browserSync.reload();
 });
 
 gulp.task('styles', function() {
+// more code
+});
 ```
 
 
