@@ -88,6 +88,18 @@ Some columns are `50/50 width`, some are `25/75` (for two columns) and 3 columns
     - The testimonial block has the single responsibility of creating testimonials
 
 ## Back to coding
+```html
+<h1 class="large-hero__title">...</h1>
+```
+
+`index.html`
+
+```html
+// more code
+<h2 class="large-hero__subtitle">One trip away.</h2>
+// more code
+```
+
 `_large-hero.css`
 
 ```css
@@ -101,18 +113,6 @@ Some columns are `50/50 width`, some are `25/75` (for two columns) and 3 columns
 
 * We'll discuss what `rem` is in a bit
 * It is just a responsive measurement
-
-```html
-<h1 class="large-hero__title">...</h1>
-```
-
-`index.html`
-
-```html
-// more code
-<h2 class="large-hero__subtitle">One trip away.</h2>
-// more code
-```
 
 `_large-hero.css`
 
@@ -299,7 +299,7 @@ $mainBlue: #2f5572;
 ```html
 // more code
 <footer>
-    <p>Copyright &copy; 2016 Clear View Escapes. All rights reserved. <a href="#" class="btn">Get in Touch</a></p>
+    <p>Copyright &copy; TRA. All rights reserved. <a href="#" class="btn">Get in Touch</a></p>
   </footer>
 // more code
 ```
