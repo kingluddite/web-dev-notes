@@ -1,5 +1,8 @@
 # Async-Await Part 2
 
+## Homework - [JavaScript functional programming](https://www.youtube.com/watch?v=e-5obm1G_FY&t=200s)
+
+
 ## Mongoose with Promises
 * We will get rid of **Callback Hell** and greatly improve the readability of our code
 * `Promises` immediately return to you something
