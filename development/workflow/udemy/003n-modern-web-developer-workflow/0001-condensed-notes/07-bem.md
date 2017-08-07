@@ -87,20 +87,6 @@ Some columns are `50/50 width`, some are `25/75` (for two columns) and 3 columns
 * We also create a testimonial block
     - The testimonial block has the single responsibility of creating testimonials
 
-## How does BEM deal with the semantics of our HTML?
-Is adding all these extra classes with presentational names making our HTML less semantic? **No**
-
-### Nicolas Gallagher
-  * Creator of `Normalize.css` says:
-  * Well known and respected in internet community
-  * Great [article to read for homework](http://nicolasgallagher.com/about-html-semantics-front-end-architecture/)
-  * He says:
-    - "Class names cannot be 'unsemantic'"
-    - "Content-layer semantics are already served by HTML elements"
-    - "Class names impart little or no useful semantic information to machines or human visitors"
-    - "The primary purpose of a class name is to be a hook for CSS and JavaScript"
-    - "Class names should communicate useful information to developers"
-
 ## Back to coding
 `_large-hero.css`
 
@@ -157,8 +143,7 @@ We could use `PostCSS` to nest our code but [that would go against the BEM philo
   left: 0;
 
   text-align: center;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 100%;
 }
 ```

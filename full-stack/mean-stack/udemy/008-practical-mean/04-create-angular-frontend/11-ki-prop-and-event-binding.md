@@ -17,8 +17,6 @@
     - Or a Function (method call)
         + returning something we want to pass
 
-
-
 #### Event Binding
 `(event)="expression"`
 
@@ -50,3 +48,37 @@
 
 ![property and event binding summary](https://i.imgur.com/7sXhkU3.png)
 
+### Child components
+![child components property and event binding]
+* The expressions/syntax above is how we use the bindings in the parent Component
+    - (_i.e. - the app component for the message component we just created_)
+
+#### How would that look like in the Child Component?
+* Which is the receiving end
+        - (_Or in the case of the binding, the outputting end_)
+
+#### Custom Property Binding
+(_In Component or Directive_)
+
+* `@Input('Alias') propertyName`
+* alternative syntax: `inputs['propertyName:Alias']`
+    - You put it in an array of all inputs that you want to make bindable
+
+##### Usage
+```
+<my-component
+[propertyName]="expression">
+</my-component>
+```
+
+#### Custom Event Binding
+(In Component or Directive)
+
+* @Output('Alias') eventName
+* alternative syntax: `outputs: ['eventName:Alias']`
+
+##### Usage
+```
+<my-component
+(eventName)="expression">
+</my-component>

@@ -2,10 +2,11 @@
 # Emerging Technologies Final Project
 This is the a group project where all four of you will participate as a team to complete the following tasks.
 
+Name: Genry - 2pm call call dan 2:05pm
+
 ## Rules
 * Team members can make pull requests and the only rule is the person making the * pull request can not merge his own pull request
 * Must derive finished product using `services` psd in photoshop folder
-
 
 ## Tasks (100 total points)
 * Create 1 Upstream Repo (1 pt)
