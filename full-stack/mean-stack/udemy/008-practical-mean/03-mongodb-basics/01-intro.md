@@ -167,3 +167,8 @@ var app = express();
 mongoose.connect('localhost:27017/node-angular');
 ```
 
+## Troubleshoot mongod errors
+* `$ lsof -Pi | grep LISTEN`
+* Kill the node process with extreme prejudice
+
+`$ kill -9 $PID`
