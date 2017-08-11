@@ -16,7 +16,10 @@ mixin storeCard(store = {})
         .store__action.store__action--edit
           a(href="/stores/123/edit")
             != h.icon('pencil')
-// more code
+            
+      img(src=`/uploads/${store.photo || 'store.png'}`)
+      h2.title
+        a(href=`/store/${store.slug}`) #{store.name}
 ```
 
 * Update our Sass
