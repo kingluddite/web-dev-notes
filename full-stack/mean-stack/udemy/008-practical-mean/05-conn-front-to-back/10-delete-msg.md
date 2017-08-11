@@ -60,3 +60,15 @@ onDelete() {
 
 * Restart server
 * Refresh browser
+* You should be able to delete messages
+
+## Congrats
+* You now know how to build an angular/node app to use CRUD
+* You can communicate between NodeJS and the AngularJS frontend
+* How to send data from frontend to backend and vice-versa
+
+## Next - Authentication
+* We'll create users
+* Map users to messages
+* Register users
+* Authorized users are able to edit and delete messages
