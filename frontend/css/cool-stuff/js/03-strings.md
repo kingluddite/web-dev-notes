@@ -56,3 +56,36 @@ Cannot change the value of `myStr` to "Job", because the contents of myStr canno
 var myStr = "Bob";
 myStr = "Job";
 ```
+
+#  Use Bracket Notation to Find the Last Character in a String
+In order to get the last letter of a string, you can subtract one from the string's length.
+
+For example, if var firstName = "Charles", you can get the value of the last letter of the string by using firstName[firstName.length - 1]
+
+# Access Array Data with Indexes
+Array indexes are written in the same bracket notation that strings use, except that instead of specifying a character, they are specifying an entry in the array. Like strings, arrays use zero-based indexing, so the first element in an array is element 0.
+
+Example
+```
+var array = [1,2,3];
+array[0]; // equals 1
+var data = array[1];  // equals 2
+```
+
+# Access Multi-Dimensional Arrays With Indexes
+One way to think of a multi-dimensional array, is as an array of arrays. When you use brackets to access your array, the first set of brackets refers to the entries in the outer-most (the first level) array, and each additional pair of brackets refers to the next level of entries inside.
+
+Example
+```
+var arr = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9],
+    [[10,11,12], 13, 14]
+];
+arr[3]; // equals [[10,11,12], 13, 14]
+arr[3][0]; // equals [10,11,12]
+arr[3][0][1]; // equals 11
+```
+
+
