@@ -53,13 +53,15 @@ img {
 
 ```html
 // more code
-<div class="large-hero">
-    <img src="assets/images/hero--large.jpg">
-    <h1>Retail Apocalypse</h1>
-    <h2>Stores are closing</h2>
-    <p>Let us know if a store is closing near you</p>
-    <p><a href="#">Register Now</a></p>
-  </div>
+ <div class="large-hero">
+       <div class="large-hero__text-content">
+         <img src="assets/images/hero--large.jpg">
+         <h1>Retail Apocalypse</h1>
+         <h2>Stores are closing</h2>
+         <p>Let us know if a store is closing near you</p>
+         <p><a href="#">Register Now</a></p>
+       </div>
+   </div>
 // more code
 ```
 
