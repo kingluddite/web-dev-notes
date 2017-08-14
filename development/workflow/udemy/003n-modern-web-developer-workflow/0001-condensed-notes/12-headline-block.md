@@ -7,7 +7,7 @@
 
 ```html
 // more code
-<div id="our-beginning" class="page-section">
+<div id="tags" class="page-section">
     <div class="wrapper">
       <h2>The first trip we planned was our own.</h2>
       <h3>Ever since, we&rsquo;ve been working to make travel better for everyone.</h3>
@@ -23,7 +23,7 @@
 `index.html`
 
 ```html
-<div id="our-beginning" class="page-section">
+<div id="stores" class="page-section">
     <div class="wrapper">
       <h2 class="headline">The first trip we planned was our own.</h2>
       <h3 class="headline">Ever since, we&rsquo;ve been working to make travel better for everyone.</h3>

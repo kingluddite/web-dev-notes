@@ -250,7 +250,7 @@ The white spacing at the top of each section is a design pattern
 
 
 ### Add to `index.html`
-`<div id="our-beginning" class="page-section">`
+`<div id="stores" class="page-section">`
 
 * Top and bottom padding added
 
@@ -260,8 +260,6 @@ The white spacing at the top of each section is a design pattern
 * We will reuse `wrapper`
 
 `index.html`
-
-![wrap the wrapper](https://i.imgur.com/XvvFd5r.png)
 
 #### Too wide
 * If we have a 30 inch monitor, we don't want our web site to stretch 30 inches
@@ -288,20 +286,20 @@ The white spacing at the top of each section is a design pattern
 
 ```html
 // more code
-<div id="features" class="page-section page-section--blue">
+<div id="tags" class="page-section page-section--blue">
     <div class="wrapper">
       ...
     </div>
     <!-- /.wrapper -->
 </div>
-<!-- /#features -->
-<div id="testimonials" class="page-section">
+<!-- /#tags -->
+<div id="top" class="page-section">
     <div class="wrapper">
       ...
     </div>
     <!-- /.wrapper -->
 </div>
-<!-- /#testimonials -->
+<!-- /#top -->
 // more code
 ```
 

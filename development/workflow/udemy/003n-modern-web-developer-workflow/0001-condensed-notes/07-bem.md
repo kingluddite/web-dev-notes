@@ -223,6 +223,10 @@ We could use `PostCSS` to nest our code but [that would go against the BEM philo
 ### Adding Variables
 `/app/styles/base/_variables.css`
 
+* To add Syntax highlighting `cmd` + `p` and select `Syntax Highlighting for PostCSS` syntax
+
+![syntax highlighting PostCSS](https://i.imgur.com/8avALqZ.png)
+
 ```
 $mainBlue: #2f5572;
 ```
@@ -246,6 +250,32 @@ $mainBlue: #2f5572;
 @import 'modules/_large-hero';
 @import 'modules/_btn';
 ```
+
+* We can't see the button but if we "comment out" the "large-here" block, we will
+* The reason we can't see it is it is underneath the heading
+* This is like 2 cards inside a deck of cards
+  - One is on top of the other
+  - Our web page is 3D now
+  - When you use positioning in CSS you can stack elements on top of each other
+  - You change their 3 dimensional stacking order using the z-index property
+
+#### Comment out "large-hero" block
+
+```html
+// more code
+<!-- <div class="large-hero">
+       <div class="large-hero__text-content">
+         <img src="assets/images/hero--large.jpg">
+         <h1 class="large-hero__title">Retail Apocalypse</h1>
+         <h2 class="large-hero__subtitle">Stores are closing</h2>
+         <p class="large-hero__description">Let us know if a store is closing near you</p>
+         <p><a href="#">Register Now</a></p>
+       </div>
+   </div> -->
+// more code
+```
+
+Comment it back in using the `cmd` + `/` keyboard shortcut
 
 ### Update other blue colors
 `_large-hero.css`

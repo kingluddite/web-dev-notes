@@ -17,9 +17,6 @@
 
 * Add new modifier `wrapper--b-margin`
     - Class names are getting long so we abbreviate `b` for `bottom`
-
-![top margin needed](https://i.imgur.com/cT2nAPj.png)
-
 * We measure 62px for the design mockup measurement
     - `62px / 16px = 3.875rem` for **top-margin**
 
@@ -34,13 +31,7 @@
 ```
 
 * Our top margin looks good
-
-![top margin added](https://i.imgur.com/c1bHFo9.png)
-
 * But on mobile it looks too much
-
-![bad mobile spacing](https://i.imgur.com/b4pgljW.png)
-
 * Fix our mobile spacing
 
 `_wrapper.css`
@@ -277,12 +268,14 @@ And now we add responsive images based on device
 </div>
 ```
 
-But now our mobile phones will be loading 976 images
+But now our mobile phones will be loading 976px wide images
 
 ![too large for mobile](https://i.imgur.com/5MptjtW.png)
 
 * This is not what we want
 * We need to add a rule to the sizes attribute that tells the browser to only use the 976px wide image for devices with a min-width of `970px` and for everything else (devices under 970px width) the image only needs to be 100% of the device width
+
+**tip** - Add the [Clear Cache](https://chrome.google.com/webstore/detail/clear-cache/cppjkneekbjaeellbfkmgnhonkkjfpdn?hl=en) Chrome Extension
 
 ```html
 <div class="wrapper wrapper--medium wrapper--b-margin">

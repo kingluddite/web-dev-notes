@@ -119,7 +119,7 @@ $ ssh-keygen -f vvv
 On `Mac OS` use this:
 
 ```
-$ pbcopy < ~/.ssh_rsa.pub
+$ pbcopy < ~/.ssh/id_rsa.pub
 ```
 
 On `Linux` use this:
