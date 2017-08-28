@@ -247,10 +247,6 @@ We need to fix this with:
 
 Change this line:
 
-`p Page #{page} of ${pages} - ${count} total results`
-
-To this:
-
 `p Page #{page} of #{pages} - #{count} total results`
 
 * That fixes the dynamic pages but when you click you get a 404
@@ -276,6 +272,7 @@ if (!stores.length && skip) {
     return;
   }
 ```
+
 * If a person bookmarks a page and stores were deleted and that page no longer exists
 * Or if someone manually changes URL to break our site, we flash them a message and redirect them to our furthest page
 * We use return to leave because we do not need to render again
@@ -352,4 +349,3 @@ exports.getStores = async (req, res) => {
   res.render('stores', { title: 'Stores', stores, page, pages, count });
 };
 ```
-

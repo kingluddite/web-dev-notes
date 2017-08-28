@@ -20,11 +20,11 @@
     - 10,000 Documents with 15 fields on them will eat up your memory quickly
 
 ## How can we offload the heavy lifting off of `nodejs` and onto our database?
-Why?
-Because that's what Databases are good at:
-* Complex data queries and aggregations
-* They are able to look at the data and filter it for specific stuff that it needs
-* We just want to write some code in node.js and pass it off to mongodb because mongodb is better at it
+### Why?
+* Because that's what Databases are good at:
+    - Complex data queries and aggregations
+    - They are able to look at the data and filter it for specific stuff that it needs
+    - We just want to write some code in node.js and pass it off to mongodb because mongodb is better at it
 
 ## What is Aggregation?
 * The ability to do a complex query

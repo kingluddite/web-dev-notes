@@ -91,7 +91,6 @@ if you have SSH you will be logged into your box
 ### Remote Server
 You now are operating Terminal but on a remote server
 
-
 `$ ls -l` ---> total 0 (nothing in it)
 
 But if you type:
@@ -185,7 +184,6 @@ so quit our sever `ctrl` + `c`
 
 ### Install forever
 `$ npm install -g forever`
-
 
 #### Start server with forever
 `$ forever start start.js`

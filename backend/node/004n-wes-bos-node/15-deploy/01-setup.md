@@ -16,7 +16,7 @@ variables.env.now
 ```
 
 * `.idea` (webstorm)
-* `/haters` - don't have them
+* `/haters` - don't have them :)
 * never put `variables.env` in Git
 
 ## Add to Staging

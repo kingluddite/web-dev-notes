@@ -34,7 +34,7 @@ storeSchema.pre('save', function (next) {
 * search for slugs that start with
 
 ```
-`new RegExp(`^($this.slug})1, 'i');
+`new RegExp(`^($this.slug}), 'i');
 ```
 
 * And where it ends with

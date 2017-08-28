@@ -216,7 +216,7 @@ Yes
 * The defacto library that you use if you need to do any sort of authentication inside of Express
 
 ##### Uses "strategies"
-* Enables you to do stuff with `passport-authO`
+* Enables you to do stuff with `passport-auth`
 * `Local Strategy` - **username** and **password**
 * Search their strategies on `passportjs.org` and you will find many
 * **Passportjs** is authentication **middleware** for `Node.js`
@@ -247,10 +247,12 @@ Yes
     - Some sites use **username** instead of email and this just gives us a choice
     - We are using the **email** to log people in
 
-### [mongodbErrorHandler](https://www.npmjs.com/package/mongoose-mongodb-errors)
+### mongodbErrorHandler
+[mongodbErrorHandler link](https://www.npmjs.com/package/mongoose-mongodb-errors)
 * We imported this
-* What is it for?
-    - Our current email validation will give us good errors
-    - But when you have a **unique** of true it doesn't give us good errors
-    - It gives us an ugly error that comes along with `MongoDB` and it has a code in it and it is something you don't want to show to your user
-        + All this plugin does is it will turn those ugly errors into nice user friendly errors
+
+#### What is it for?
+* Our current email validation will give us good errors
+* But when you have a **unique** of true it doesn't give us good errors
+* It gives us an ugly error that comes along with `MongoDB` and it has a code in it and it is something you don't want to show to your user
+    - All this plugin does is it will turn those ugly errors into nice user friendly errors

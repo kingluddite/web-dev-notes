@@ -27,3 +27,8 @@
 ### Install npm module of react-stripe-checkout
 `$ yarn add react-stripe-checkout`
 
+* **note** When I first installed this I was in the server directory and not the client directory
+    - This is a big problem
+    - I need to make sure I install this on the client because when I push to production, my stripe client side won't work because it was installed in the wrong `package.json`
+* First change into the `client` directory `$ cd client`
+* Then install with `yarn add react-stripe-checkout` 

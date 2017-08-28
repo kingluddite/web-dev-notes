@@ -150,7 +150,7 @@ exports.getStoreBySlug = async (req, res, next) => {
 It will assume that this (our controller) is a middleware and it will pass it along to the next steps
 
 ### Drilling it home!
-1. Go to app.js
+1. Go to `app.js`
 2. We require our `routes/index` (_const routes = require('./routes/index');_)
 3. We find our routes (_app.use('/', routes);_)
 4. If the route is not found (next - move onto the next piece of middleware
@@ -237,9 +237,9 @@ block content
 
 #### How many params does the static google map need?
 * Use source to view static map
-* Copy and paste URL into Atom
+* Copy and paste URL into Atom/Sublime
 * Highlight all `&` in URL
-* Move over 1 space and delete all `&` and press return
+* Move 1 space left and delete all `&` and press return
 * You will see all the params we need for a static google map
 
 ### A lot goes into making a static map
