@@ -47,7 +47,7 @@ module.exports = {
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
   mongoURI: process.env.MONGO_URI,
   randomCookieKey: process.env.RANDOM_COOKIE_KEY,
-  googleRedirectURI: 'http://localhost:5000/auth/google'
+  googleRedirectURI: 'https://mysterious-sierra-29112.herokuapp.com/'
 };
 ```
 
@@ -63,7 +63,7 @@ module.exports = {
     'mongodb://peh2admin:$0qj2WdNzNb40u812@ds025802.mlab.com:25802/emaily-dev',
   randomCookieKey:
     'Apy7tNf7SsWbFK3EUTWLc0hNRmpXV4WTYFnoP2xUPr6UvR6ZzfLGQOa0u812',
-    googleRedirectURI: 'https://mysterious-sierra-29112.herokuapp.com/'
+    googleRedirectURI: 'http://localhost:5000/auth/google'
 };
 ```
 

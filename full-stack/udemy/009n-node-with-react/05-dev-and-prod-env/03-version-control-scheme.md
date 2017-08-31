@@ -92,4 +92,48 @@ node_modules
 dev.js
 ```
 
+## A better Way To manage environment variables using dotenv
+* When deploying to multiple environments, you need a more versatile solution than above 
+* The way that Stephen teaches to do the conditional check for the environment name in `keys.js` work, but it actually couples the environment name to the code
+* It's better if the code does not really know or care about any environment names and just gets wired with environment variables when it starts
+* With the strategy above, as you add more environments (staging, QA, performance, CD, etc), you have to change code in `keys.js`
+* I would  suggest just making the `keys.js` file look like this:
+
+`keys.js`
+
+```
+module.exports = {
+  googleClientID: process.env.GOOGLE_CLIENT_ID,
+  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  mongoURI: process.env.MONGO_URI,
+  cookieKey: process.env.COOKIE_KEY,
+}
+```
+
+* Then, to have the environment variables set in your `dev` environment
+    - Install the `dotenv` npm module
+    - And create a `.env` file in the root of your project (_not version controlled!_):
+
+`.env`
+
+```
+GOOGLE_CLIENT_ID=dev_client_id
+GOOGLE_CLIENT_SECRET=dev_client_secret
+MONGO_URI=dev_mongo_uri
+COOKIE_KEY=dev_cookie_key
+```
+
+### `.env.sample`
+* You could also create a `.env.sample` file that **IS** version controlled
+* This is useful for when a developer sets up a new development machine as it informs them as to which variables they have to configure to get their environment up and running
+* The `.env.sample` file would just have:
+    - The environment variable names
+    - And placeholder values / details:
+
+```
+GOOGLE_CLIENT_ID=[get this from google dev console]
+GOOGLE_CLIENT_SECRET=[get this from google dev console]
+MONGO_URI=[get this from mLab console]
+COOKIE_KEY=[just make up a random string]
+```
 
