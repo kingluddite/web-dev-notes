@@ -6,7 +6,7 @@
 ## This should take us to our user account
 `index.js`
 
-```
+```js
 // more code
 router.get('/account', userController.account);
 
@@ -16,15 +16,26 @@ module.exports = router;
 ## Add our `account` controller
 `userController.js`
 
-```
+```js
 // more code
+exports.register = async (req, res, next) => {
+  const user = new User({
+    email: req.body.email,
+    name: req.body.name
+  });
+  const registerWithPromise = promisify(User.register, User);
+  await registerWithPromise(user, req.body.password);
+  next(); // pass to authController.login
+};
+
+// add the below code
 exports.account = (req, res) => {
   res.render('account', { title: 'Edit Your Account' });
 };
 ```
 
 ### Account view not found
-We need to create that now
+* We need to create that view now
 
 ### Create account view
 `account.pug`
@@ -51,12 +62,12 @@ block content
       input(type="text" name="name" value=user.name)
 ```
 
-* `user.name`
-* View in browser `/account` and you'll see we access the logged in user name
-* How can we do this?
-    - Because `user` is going to be passed to every single request
+#### Can't access `user.name`
+* View in browser `/account` and you'll see we CAN NOT access the logged in user name
+* You first need to make sure you are logged in
 
-![user.name](https://i.imgur.com/7kZTrWW.png)
+##### How can we do this?
+* Because `user` is going to be passed to every single request
 
 `app.js`
 
@@ -68,6 +79,35 @@ block content
     - `locals` is all the variables our template will have
     - When we were not logged in it was just `null`
     - But when we are logged in, Passport gives us `req.user` and we can pass it along to our locals
+
+## The User object passed into our Controller
+`userController.js`
+
+```js
+// more code
+exports.account = (req, res) => {
+  res.render('account', { user: req.user, title: 'Edit Your Account' });
+};
+```
+
+* `user: req.user`
+* Now our template has access to the user object
+
+### Test it out
+`account.pug`
+
+```
+extends layout
+
+block content
+  .inner
+    h2= title
+    pre= h.dump(user)
+```
+
+* Will show you this (You must be logged in to see this!)
+
+![dump user data account](https://i.imgur.com/xUjsSzA.png)
 
 ## Finish our form
 `account.pug`
@@ -86,21 +126,22 @@ block content
       input.button(type="submit" value="Update My Account")
 ```
 
-![updated account form](https://i.imgur.com/vOJPAuF.png)
+![updated account form](https://i.imgur.com/SsYrdDN.png)
 
 * We will deal with password later
 
-## Houston we have a problem
-If you try to update your Name and submit you will get a 404
+## Houston we have a problem!
+* If you try to update your Name and submit you will get a `404`
 
 ### Add post account route pointing to new `updateAccount()` controller
 `index.js`
 
-```
-// more code
+```js
+// account routes
 router.get('/account', userController.account);
-router.post('/account', catchErrors(userController.updateAccount)); // add this
-// more code
+router.post('/account', catchErrors(userController.updateAccount));
+
+module.exports = router;
 ```
 
 * This route will be using `async-await` on our **POST** account so we wrap it in **catchErrors()**
@@ -108,7 +149,7 @@ router.post('/account', catchErrors(userController.updateAccount)); // add this
 
 `index.js`
 
-```
+```js
 // more code
 router.get('/account', authController.isLoggedIn, userController.account);
 router.post('/account', catchErrors(userController.updateAccount)
@@ -119,8 +160,13 @@ router.post('/account', catchErrors(userController.updateAccount)
 ### Create our `updateAccount()` controller
 `userController.js`
 
-```
+```js
 // more code
+exports.account = (req, res) => {
+  res.render('account', { user: req.user, title: 'Edit Your Account' });
+};
+
+// add the code below
 exports.updateAccount = async (req, res) => {
   const updates = {
     name: req.body.name,
@@ -134,7 +180,7 @@ exports.updateAccount = async (req, res) => {
 ### Filling in QUERY, UPDATES and OPTIONS
 `userController.js`
 
-```
+```js
 exports.updateAccount = async (req, res) => {
   const updates = {
     name: req.body.name,
@@ -151,23 +197,24 @@ exports.updateAccount = async (req, res) => {
 };
 ```
 
-* make sure you get the user `_id` from the `request` (**req**) because if you get the `_id` from the user that value can be maliciously manipulated and is a security risk
-* **new: true** - returns the new actual user
-* **runValidators: true** - make sure to run through all validation steps
-* **context: 'query'** - must be there for mongo to do the query
+* Make sure you get the user `_id` from the `request` (**req**) because if you get the `_id` from the `user` that value can be maliciously manipulated and is a security risk
+* **new: true** - `returns` the new actual user
+* **runValidators: true** - Make sure to run through all validation steps
+* **context: 'query'** - Must be there for Mongo to do the query
 * We add `res.json(user)` so we can see the JSON data we get in the `response` **res**
 
 ## Test it out
 1. Edit your username and submit
-2. You should see this JSON returned (your user object)
+2. You should see this JSON returned (_your user object_)
 
 ![user object JSON response](https://i.imgur.com/S9Pi14b.png)
 
-* You will see what is returned is the new changed data (not the old data) and that is what `new: true` does
+* You will see what is returned is the new changed data (_not the old data_) 
+* And that is what `new: true` does
 
 `userController.js`
 
-```
+```js
 exports.updateAccount = async (req, res) => {
   const updates = {
     name: req.body.name,
@@ -213,7 +260,7 @@ block content
 
 And this is the data dump
 
-![user data dump](https://i.imgur.com/40aiLNU.png)
+![user data dump](https://i.imgur.com/VSr3n4l.png)
 
 ## Next Up
 Password reset flow (_When your user forgets their password_)
