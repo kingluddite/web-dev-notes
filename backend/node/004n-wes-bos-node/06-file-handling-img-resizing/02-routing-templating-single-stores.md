@@ -23,7 +23,7 @@
 
 `routes/index.js`
 
-```
+```js
 // more code
 router.get('/stores/:id/edit', catchErrors(storeController.editStore));
 // add this line
@@ -35,7 +35,7 @@ module.exports = router;
 ## Add our Controller and Test
 `storeController.js`
 
-```
+```js
 exports.getStoreBySlug = async (req, res) => {
   res.send('it works');
 };
@@ -49,25 +49,24 @@ Click on a store and you should see `it works`
     - So we first need to do a lookup of the slug to get the `_id`
     - How do we access the URL params?
 
-```
+```js
 exports.getStoreBySlug = async (req, res) => {
   res.send(req.params);
 };
 ```
 
-URL `http://localhost:7777/store/javaman`
+* URL `http://localhost:7777/store/javaman`
+* Output
 
-Output
-
-```
+```json
 {
 "slug": "javaman"
 }
 ```
 
-So to get slug's value from the URL we will use `req.params.slug` and we'll search to find it
+* So to get slug's value from the URL we will use `req.params.slug` and we'll search to find it
 
-```
+```js
 exports.getStoreBySlug = async (req, res) => {
   const store = await Store.findOne({ slug: req.params.slug });
   // check our data coming back (res)
@@ -76,7 +75,7 @@ exports.getStoreBySlug = async (req, res) => {
 ```
 
 ### Our `res` data coming back from the server
-```
+```json
 {
 "_id": "592bb9d88ba21313281836ee",
 "slug": "javaman",
@@ -102,18 +101,18 @@ exports.getStoreBySlug = async (req, res) => {
 ### Houston We Have a Problem
 #### 404 page
 * If our query doesn't find anything it just returns `null`
-* We need to take care of this and force a 404
+* We need to take care of this and force a `404`
 
 ## Add a bad URL
 `http://localhost:7777/store/javamanx`
 
 * We just add a `x` at the end and this will break our site because that will just return `null` in the `res`
 
-### Next saves us!
-* We check if we have a store in the `res` and if not we use `next()` to go to the next middleware and that will eventually take us to a 404 error
+### next() saves us!
+* We check if we have a store in the `res` and if not we use `next()` to go to the next **middleware** and that will eventually take us to a `404` error
 * If we have the store than return the data
 
-```
+```js
 exports.getStoreBySlug = async (req, res) => {
   const store = await Store.findOne({ slug: req.params.slug });
   if (!store) {
@@ -122,9 +121,11 @@ exports.getStoreBySlug = async (req, res) => {
 };
 ```
 
-You may also see people use this (_both are valid, you choose which one you like_)
+* You may also see people use this
+* Both are valid
+  - Just choose which way you like better
 
-```
+```js
 exports.getStoreBySlug = async (req, res) => {
   const store = await Store.findOne({ slug: req.params.slug });
   if (!store) {
@@ -135,7 +136,7 @@ exports.getStoreBySlug = async (req, res) => {
 ```
 
 ## But since we are using `next()` we need to pass it
-```
+```js
 exports.getStoreBySlug = async (req, res, next) => {
   const store = await Store.findOne({ slug: req.params.slug });
   if (!store) {
@@ -144,22 +145,22 @@ exports.getStoreBySlug = async (req, res, next) => {
 };
 ```
 
-* That is all we need to do to render out a 404
+* That is all we need to do to render out a `404`
 
 ## What does `next()` do?
-It will assume that this (our controller) is a middleware and it will pass it along to the next steps
+* It will assume that this (_our controller_) is a **middleware** and it will pass it along to the next steps
 
 ### Drilling it home!
 1. Go to `app.js`
 2. We require our `routes/index` (_const routes = require('./routes/index');_)
 3. We find our routes (_app.use('/', routes);_)
-4. If the route is not found (next - move onto the next piece of middleware
+4. If the route is not found (_next - move onto the next piece of middleware_)
 5. `app.use(errorHandlers.notFound)` - and that will kick in
 
-### Troubleshoot
-If your page just hangs it is because you are not sending any data
+### Troubleshoot a "Hanging page"
+* If your page just hangs it is because you are not sending any data
 
-```
+```js
 exports.getStoreBySlug = async (req, res, next) => {
   const store = await Store.findOne({ slug: req.params.slug });
   if (!store) {
@@ -175,7 +176,7 @@ exports.getStoreBySlug = async (req, res, next) => {
 ## JSON is fun but it's time to render
 `res.render()` to be more exact
 
-```
+```js
 exports.getStoreBySlug = async (req, res, next) => {
   const store = await Store.findOne({ slug: req.params.slug });
   if (!store) {
@@ -231,9 +232,8 @@ block content
 ```
 
 ### Add static map (_Using Google Maps_)
-```
-<img class="single__map" src="https://maps.googleapis.com/maps/api/staticmap?center=33.93106849999999,-118.39625849999999&amp;zoom=14&amp;size=640x150&amp;key=AIzaSyAqRkWi3xFh1dSn5zq1TOoOD1NCkSlwl2A&amp;markers=33.93106849999999,-118.39625849999999&amp;scale=2">
-```
+* **note** You already set up a Google Maps API and that is **the same key** we'll use to create Google static maps
+* You don't need to create another API key!
 
 #### How many params does the static google map need?
 * Use source to view static map
@@ -255,6 +255,8 @@ block content
     - No. Instead, we'll use **Template helpers**
 
 `helpers.js`
+
+* Instead of hardcoding all the parameters static maps needs, we'll add a helper that makes it easy
 
 ```
 // Making a static map is really long - this is a handy helper function to make one
@@ -279,7 +281,7 @@ exports.staticMap = ([lng, lat]) => `https://maps.googleapis.com/maps/api/static
 
 We just call this helper function, pass in `lng` and `lat` and it will return to us this very long dynamically generating string
 
-### Now let's att that to our View
+### Now let's add that to our View
 `store.pug`
 
 ```
@@ -296,6 +298,12 @@ block content
       img.single__map(src=h.staticMap(store.location.coordinates))
 ```
 
+* Inspect the static map code in the Chrome inspector and you'll see something like this:
+
+```
+<img class="single__map" src="https://maps.googleapis.com/maps/api/staticmap?center=33.93106849999999,-118.39625849999999&amp;zoom=14&amp;size=640x150&amp;key=AIzaSyAqRkWi3xFh1dSn5zq1TOoOD1NCkSlwl2A&amp;markers=33.93106849999999,-118.39625849999999&amp;scale=2">
+```
+
 ### Having Problems visualizing the data?
 Use **dumps** to help you visualize your data
 
@@ -309,7 +317,11 @@ Use **dumps** to help you visualize your data
 ```
 
 #### Dump data
-```
+* If you don't see what you expect to see
+* Data dumps are a great way to troubleshoot
+* They'll show you the data that pug template has access to
+
+```json
 {
   "_id": "592bb9d88ba21313281836ee",
   "slug": "javaman",
@@ -332,7 +344,8 @@ Use **dumps** to help you visualize your data
 }
 ```
 
-* `store.location.coordinates` - gives us `lng` first and then `lat`
+* `store.location.coordinates`
+    - Gives us `lng` first and then `lat`
 
 ## Final single store layout
 `store.pug`
@@ -362,3 +375,10 @@ block content
                 //- show with parenthesees   span.tag__text (#{tag})
                 //- show with #   span.tag__text ##{tag}
 ```
+
+* Now we have:
+  - A super large image (we need to make this smaller)
+  - The name of the store
+  - A static map of where the store is
+  - The address of the store
+  - A description of the store

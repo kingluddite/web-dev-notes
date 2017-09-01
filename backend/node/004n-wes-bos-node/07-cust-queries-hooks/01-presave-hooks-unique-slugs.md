@@ -1,5 +1,5 @@
 # Presave Hooks Unique Slugs
-## Houston we have a problem
+## Houston we have a problem! - Duplicates
 * Create new entery called `coffee land`
 * fill in the rest of data for it
 * Create another entry called `coffee land`
@@ -22,16 +22,20 @@ storeSchema.pre('save', function (next) {
 });
 ```
 
-* We will modify this function to make it an `async` function because before we store our slug as `this.name` we want to first check if it currently exists and if it does, alert the user with a flash error
-* But WAIT
-    - Instead of flat out reject duplicates we'll just add an incremental number to duplicate slug names `coffee-land, coffee-land-1, coffee-land-2`
-    - We will make a **regex** that will search for stores that have a `slug` of `coffee-land, coffee-land-1, coffee-land-2`
-        + search for strings with `coffee-land`
+* We will modify this function to make it an `async` function
+* Because before we store our **slug** as `this.name` we want to first check if it currently exists and if it does, **alert the user with a flash error**
 
-## RegExp
+### But WAIT!
+* Instead of flat out rejecting duplicates we'll just add an incremental number to duplicate slug names `coffee-land, coffee-land-1, coffee-land-2`
+
+#### Regex to the Rescue!
+* We will make a **regex** that will search for stores that have a `slug` of `coffee-land, coffee-land-1, coffee-land-2`
+    - Search for strings with `coffee-land`
+
+##### RegExp
 * **regex** is a way to pattern match
 * `i` case insensitive
-* search for slugs that start with
+* search for slugs that start with:
 
 ```
 `new RegExp(`^($this.slug}), 'i');
@@ -43,8 +47,8 @@ storeSchema.pre('save', function (next) {
 ((-[0-9]*))$
 ```
 
-* any number a dash `-` and 0-9
-    `((-[0-9]*$))$`
+* Any number between... use a dash `-` (Use like this----> 0-9)
+    - `((-[0-9]*$))$`
         + Can have multiple numbers `*` (i.e. `100`)
         + `-[0-9]*$` - The number will end with these values
         + But since not all slugs will have numbers we need to make it optional so we add the `?` character `-[0-9]*$)?`
@@ -65,9 +69,9 @@ const storesWithSlug = await this.constructor.find({ slug: slugRegEx })
 ```
 
 ## Fuzzy Search makes everything so clear
-* When you are looking for a `fuzzy match` you can use a RegExp instead of a hard coded value
+* When you are looking for a `fuzzy match` you can use a `RegExp` instead of a hard coded value
 * If there is a match `if (storesWithSlug.length) {}`
-    - Set it to the slug name + a dynamic number
+    - Set it to the `slug` name + a dynamic number
 
 ```
 this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
@@ -101,4 +105,4 @@ storeSchema.pre('save', async function (next) {
 
 `http://localhost:7777/store/javaman-2`
 
-Our new code is working to make sure all our slugs are unique!
+* Our new code is working to make sure all our slugs are unique!

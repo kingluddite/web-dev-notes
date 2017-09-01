@@ -1,4 +1,4 @@
-# Multiple Query Promises with Async:Await
+# Multiple Query Promises with Async-Await
 ## Task
 * When you click on a tag you will only see the stores associated with that tag
 * This will be `two` queries inside of one controller method
@@ -8,7 +8,7 @@ We could do something like this...
 
 `storeController.js`
 
-```
+```js
 exports.getStoresByTag = async (req, res) => {
   const tags = await Store.getTagsList();
   const stores = await Store.find(PUT STUFF HERE); // add this line
@@ -17,25 +17,27 @@ exports.getStoresByTag = async (req, res) => {
 };
 ```
 
-### Houston We have a problem
-* But that will cause a problem
-* Await does exactly that it WAITS
+### Houston We have a problem!
+* Await does exactly that... It WAITS!
     - We first search for the tags: `const tags = await Store.getTagsList();`
     - Then the tags will come back
-    - Then we go and find the latest 10 stores or all of the stores (depending on how we want to do it)
-    - But the problem with that is that is synchronous and we shouldn't do that
-    - If `await Store.getTagsList();` and `await Store.find(PUT STUFF HERE);` are not dependent on each other, they should be fired off at the exact same time because that will be the fastest way to accomplish our end goal
-    - If you have 50 AJAX calls and none of them need to wait on the other ones, then you should make them all at the same time
+    - Then we go and find the latest 10 stores or all of the stores (_depending on how we want to do it_)
+    - But the **problem** with **that is that is synchronous**
+        + And we shouldn't do that!
+    - If `await Store.getTagsList();` and `await Store.find(PUT STUFF HERE);` are not dependent on each other
+    - They should be fired off at the exact same time because that will be the fastest way to accomplish our end goal
+    - If you have **50 AJAX calls** and none of them need to wait on the other ones
+        + Then you should make them **all at the same time**
 
 ### A better (more efficient way)
 * `const storesPromise = Store.find({ tags: tagName });`
     - This will find all tags where the `tagName` matches
     - No need to use `includes` as it will do the same thing
-    - This line will filter matching tagNames for us
+    - This line will filter matching `tagNames` for us
 
 `storeController.js`
 
-```
+```js
 exports.getStoresByTag = async (req, res) => {
   const tagName = req.params.tag;
   const tagsPromise = Store.getTagsList();
@@ -46,9 +48,9 @@ exports.getStoresByTag = async (req, res) => {
 ```
 
 ## Promise.all()
-Way to wait for multiple Promises to come back
+* Way to wait for multiple Promises to come back
 
-```
+```js
 exports.getStoresByTag = async (req, res) => {
   const tagName = req.params.tag;
   const tagsPromise = Store.getTagsList();
@@ -61,9 +63,9 @@ exports.getStoresByTag = async (req, res) => {
 ```
 
 * `result` will return our actual data
-* But we need to await still but instead of awaiting each individual one we group all our promises together and await them all
+* But we need to `await` still but instead of awaiting each individual one we **group all our promises together** and `await them all`
 
-```
+```js
 exports.getStoresByTag = async (req, res) => {
   const tagName = req.params.tag;
   const tagsPromise = Store.getTagsList();
@@ -76,7 +78,7 @@ exports.getStoresByTag = async (req, res) => {
 ```
 
 ### Test our data
-```
+```js
 exports.getStoresByTag = async (req, res) => {
   const tagName = req.params.tag;
   const tagsPromise = Store.getTagsList();
@@ -88,20 +90,20 @@ exports.getStoresByTag = async (req, res) => {
 };
 ```
 
-## Make sure you are viewing the `Wifi` tag page
+## Make sure you are viewing the `Sears` tag page
 * You need to run this in the browser on a particular tag page
 * The URL will look similar to this:
-    - `http://localhost:7777/tags/Wifi`
+    - `http://localhost:7777/tags/Sears`
 
 ### Result set
 * The result will be all your tag counts grouped
 * The second result will be a list all coffeeshops that have the `Wifi` tag
-![result of both Promises](https://i.imgur.com/xmjKvEz.png)
+![result of both Promises](https://i.imgur.com/T6dOJUJ.png)
 
 ### How should we access this result set?
 We could do this:
 
-```
+```js
 var tags = result[0];
 var stores = result[1];
 ```
@@ -119,7 +121,7 @@ Better way to deal with this
 
 `storeController.js`
 
-```
+```js
 // more code
 exports.getStoresByTag = async (req, res) => {
   const tagName = req.params.tag;
@@ -133,7 +135,7 @@ exports.getStoresByTag = async (req, res) => {
 ### View page in browser
 * It works just as it did before but now we have access to `stores` data
 
-#### Dump stores date
+#### Dump stores dats
 `tags.pug`
 
 ```

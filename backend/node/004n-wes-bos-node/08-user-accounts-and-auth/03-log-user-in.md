@@ -16,7 +16,7 @@
 
 `authController.js`
 
-```
+```js
 const passport = require('passport');
 ```
 
@@ -37,7 +37,7 @@ This will check if our **username** and **password** have been sent in correctly
 
 `authController.js`
 
-```
+```js
 const passport = require('passport');
 
 exports.login = passport.authenticate('local', {
@@ -48,14 +48,14 @@ exports.login = passport.authenticate('local', {
 });
 ```
 
-* We use the `local` **Strategy (handles username and password)
+* We use the `local` **Strategy** (_handles username and password_)
 * On bad login we can rely on the above to redirect to `/login` and send a Flash error message
-* On successful log in we redirect them to home page and flash them happy message
+* On a successful log in we redirect them to home page and flash them happy message
 
-## Import authController to our routes
+## Import `authController` to our routes
 `index.js`
 
-```
+```js
 const express = require('express');
 const storeController = require('./../controllers/storeController');
 const userController = require('./../controllers/userController');
@@ -68,7 +68,7 @@ const { catchErrors } = require('./../handlers/errorHandlers');
 ## Add our authController to our route
 `index.js`
 
-```
+```js
 // more code
 router.post('/register',
   userController.validateRegister,
@@ -78,23 +78,22 @@ router.post('/register',
 // more code
 ```
 
-## remove res.sent('it works')
+## remove res.sent('it works') and comment back in `next();`
 ![remove this line](https://i.imgur.com/hsZPsze.png)
 
 ## Configure Passport to use local
 * Before you use any Strategy you must configure them
 * If you use Github you need to give the the correct tokens
-* Same with Facebook or LinkedIn or any of them...
-
-* We need to tell our local Strategy what to do with our users once they've signed in
-* We want to put the user object on each request
+    - Same with Facebook or LinkedIn or any of them...
+* We need to tell our **local Strategy** what to do with our users once they've signed in
+* **We want to put the user object on each request**
 
 ## Create `/handlers/passport.js`
 This is a handler that will configure our passport
 
 `passport.js`
 
-```
+```js
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
@@ -104,7 +103,7 @@ passport.use(User.createStrategy());
 
 * We need to tell passport what to do with the user
 * We will log into passport
-* Passport will say, "Ok, now what? What informaton would you like on each request?"
+* Passport will say, "Ok, now what? What information would you like on each request?"
     - In our case we just want to pass along the actual user object
         + This will enable us to put their avatar in the top right corner
         + Show the stores they've created
@@ -112,7 +111,7 @@ passport.use(User.createStrategy());
 
 `passport.js`
 
-```
+```js
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
@@ -124,14 +123,15 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 ```
 
-* What will these two lines do?
-    - Everytime you have a request it will ask passport what should I do with the user now that I have confirmed they are properly logged in?
+### What will these two lines do?
+* Everytime you have a request it will ask passport, "What should I do with the user now that I have confirmed they are properly logged in?"
 
-We need to import `passport.js` somewhere in our Application
+### Import passport
+* We need to import `passport.js` somewhere in our Application
 
 `app.js`
 
-```
+```js
 // more code
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
@@ -140,8 +140,11 @@ require('./handlers/passport'); // add this line
 ```
 
 ## Register user
-* If you try to register with a duplicate email you'll get this error
-* It hangs so this is not a good solution
+* If you try to register with a duplicate email you'll get this error in the Terminal:
+
+`UserExistsError: A user with the given username is already registered`
+
+* The server "hangs" so this is not a good solution
 * For now, delete the email in Compass and register again
 * You will see success flash letting you know you are logged in
 * You are redirected to the home page
@@ -165,9 +168,9 @@ exports.validateRegister = (req, res, next) => {
 // more code
 ```
 
-If you use gmail and you have a `.` in your email like `john.doe@gmail.com`, normalizeEmail() will strip out the `.` so if you log in with `john.doe@gmail.com` you will get a failed log in
+* If you use gmail and you have a `.` in your email like `john.doe@gmail.com`, `normalizeEmail()` will strip out the `.` so if you log in with `john.doe@gmail.com` you will get a failed log in
+* You will have to add `gmail_remove_dots: false`
 
-You will have to add `gmail_remove_dots: false`
 ```
 req.sanitizeBody('email').normalizeEmail({
     remove_dots: false,
@@ -176,7 +179,15 @@ req.sanitizeBody('email').normalizeEmail({
   });
 ```
 
-I had this issue with my email and it took me an hour to figure it out
+* I had this issue with my email and it took me an hour to figure it out
 
+## Success
+* If all works according to plan you should see this after registering
+
+![logged in](https://i.imgur.com/mgGi8NQ.png)
+
+* You registered successfully,
+* You were redirected to the home page
+* You are now logged in!
 
 

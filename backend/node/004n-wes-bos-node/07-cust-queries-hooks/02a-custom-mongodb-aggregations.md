@@ -14,36 +14,39 @@
 4. Count instances of each tag
 
 * That will get slow when you have lots of pieces of content
-* If you have 1000 stores, it doesn't make sense to query 1000 stores, have that data come back and then to loop over each and every one of them
+* If you have 1000 stores
+    - It doesn't make sense to query 1000 stores
+    - Have that data come back
+    - And then to loop over each and every one of them
 * When you start to get into large data sets, following those steps will greatly slow down your site
     - You can run into problems with your server running out of memory
     - 10,000 Documents with 15 fields on them will eat up your memory quickly
 
-## How can we offload the heavy lifting off of `nodejs` and onto our database?
+## How can we offload the heavy lifting off of `Node.js` and onto our database?
 ### Why?
 * Because that's what Databases are good at:
     - Complex data queries and aggregations
     - They are able to look at the data and filter it for specific stuff that it needs
-    - We just want to write some code in node.js and pass it off to mongodb because mongodb is better at it
+    - We just want to write some code in `Node.js` and pass it off to `MongoDB` because `MongoDB` is better at it
 
 ## What is Aggregation?
 * The ability to do a complex query
 * Multiple stepped query, with filters, groups
-
-* Aggregation is an array where you can pass it multiple commands. You can first look for matches and then group them together
-* Similar to a `reduce()` function in JavaScript
+* Aggregation is an array where you can pass it multiple commands
+* You can first look for matches and then group them together
+* Aggregation is similar to a `reduce()` function in JavaScript
     - Take the raw data and process it into any format you want
     - We are going to take all of the stores and group the data
-[documentation link](https://docs.mongodb.com/manual/aggregation/)
+* [Aggregation documentation link](https://docs.mongodb.com/manual/aggregation/)
 
 ![diagram of aggregation](https://i.imgur.com/DgMVkfc.png)
 
 ## View the tags page
 We get a 404
 
-`routesindex.js`
+`routes/index.js`
 
-```
+```js
 // more code
 router.get('/tags', catchErrors(storeController.getStoresByTag));
 router.get('/tags/:tag', catchErrors(storeController.getStoresByTag));
@@ -51,11 +54,13 @@ router.get('/tags/:tag', catchErrors(storeController.getStoresByTag));
 
 **note**
 
-You could create one route for two routes like this:
+* You could create one route for two routes like this:
 
 `router.get('/tags/:tag*?', catchErrors(storeController.getStoresByTag));`
 
-* And that will mean `:tag` (:tag*? - is a RegEx route) is optional but two routes is more readible and explicit and that is what is recommended
+* And that will mean `:tag` (:tag*? - is a RegEx route) is optional
+    - But two routes is more readible and explicit
+    - And that is **what is recommended**
 
 `storeController.js`
 
@@ -78,19 +83,38 @@ exports.getStoresByTag = async (req, res) => {
 };
 ```
 
+## Update our navbar
+`helpers.js`
+
+```js
+// more code
+exports.menu = [
+  { slug: '/stores', title: 'Stores' },
+  { slug: '/about', title: 'About' },
+  { slug: '/add', title: 'Add' },
+  { slug: '/tags', title: 'Tags' },
+  { slug: '/contact', title: 'Contact' }
+];
+// more code
+```
+
 ## Add a method onto our schema
 `models/Store.js`
 
-```
+```js
+// more code
 storeSchema.statics.getTagsList = function() {
 
 }
+
+module.exports = mongoose.model('Store', storeSchema);
 ```
 
-* Important to use proper function here because we need to access `this` inside it
+* **Important** to use proper function here because we need to access `this` inside it
+    - Many times we use the ES6 arrow function
+    - But not this time because we need to access `this`
 * And this function will be bound to our Model
-* All of the static methods are bound to the model
-* If you use an arrow function you can not use `this` inside of it
+* All of the static methods are bound to the Model
 * `aggregate()` is a standard method
     - It takes an array of what we are looking for
     

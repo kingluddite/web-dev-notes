@@ -7,8 +7,8 @@
 ### What is REM?
 * When we use `rem` everything is relative to the root of the page
 * The root of every **HTML** page is `html`
-* Most browsers have a default size of `html` of 16px
-  - So if you want your font to be 24px
+* Most browsers have a default size of `html` of `16px`
+  - So if you want your font to be `24px`
       + `16px * 1.5rem = 24px`
 
 ### Why use REM?
