@@ -1,11 +1,54 @@
 # Creating an Ajax Search Interface
-Here is our search interface
+## Let's add our search Interface
+`layout.pug`
 
-![search box](https://i.imgur.com/DI2yFoX.png)
+* Add the following to our layout template
 
-Here is the HTML used to make it:
+![search template code](https://i.imgur.com/g67Yh1B.png)
 
-![html for search form](https://i.imgur.com/p0dwhFA.png)
+* Add our search css
+
+`_search.scss`
+
+```
+.search {
+  position: relative;
+  width: 100%;
+  display: flex;
+  &__results {
+    background: white;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    left: 0;
+  }
+  &__input {
+    font-size: 30px;
+    background: none;
+    color: white;
+    outline: 0;
+    border: 0;
+  }
+  &__result {
+    padding: 10px;
+    display: block;
+    border-bottom: 1px solid #ececec;
+    &--active {
+      background: #f1f1f1;
+    }
+  }
+}
+```
+
+* Don't forget to import `_search.scss` into `style.scss`!
+
+![search box](https://i.imgur.com/CDDsTlE.png)
+
+* Here is the HTML used to make it:
+
+![html for search form](https://i.imgur.com/6I4m4Mb.png)
 
 ```
 <div class="search">

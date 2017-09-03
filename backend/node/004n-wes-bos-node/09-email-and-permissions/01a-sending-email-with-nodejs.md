@@ -78,7 +78,7 @@ MAIL_PORT=2525
 ## Require all the packages
 `/handlers/mail.js`
 
-```
+```js
 const nodemailer = require('nodemailer');
 const pug = require('pug');
 const juice = require('juice');
@@ -89,12 +89,13 @@ const promisify = require('es6-promisify');
 ### Create our transport
 * Transport is a way to interface with different ways of sending email
 * SMTP being the most common one
+* Below is sample code from the nodemailer website
 
 ![sample from nodemailer website](https://i.imgur.com/TWhvJKX.png)
 
 `mail.js`
 
-```
+```js
 // more code
 const transport = nodemailer.createTransport({
   host: process.env.MAIL_HOST,

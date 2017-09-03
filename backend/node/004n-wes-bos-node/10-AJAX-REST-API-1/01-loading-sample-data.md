@@ -1,7 +1,13 @@
 # Loading Sample Data
 `package.json`
 
-```
+* We will add scripts to load in data and delete data
+* We have thousands of stores we need to add
+* Manually entering them all in is just too slow of a process
+* We also have to create developer users so we don't have to keep adding them
+* We can easily adjust the data files by delete them from the database, changing the JSON files and reimporting them all in one lump operation
+
+```json
 "scripts": {
     "prod": "node ./start.js",
     "watch": "nodemon ./start.js --ignore public/",
@@ -18,8 +24,7 @@
 
 `data/load-sample-files.data.js`
 
-* Not part of our application
-    - So we need to require all the environmental variables
+* This is not part of our application so we need to require all the environmental variables
 
 `require('dotenv').config({ path: __dirname + '/../variables.env' });`
 
@@ -33,7 +38,7 @@ mongoose.connect(process.env.DATABASE);
 ## What does `load-sample-data.js` do?
 1. Loads everything up
 2. Connect to Database
-3. Bring in our models
+3. Brings in all our models
 4. Read files from `stores.json`, `reviews.json`, `users.json`
     * View them to see what they look like
 5. `insertMany()` is used to insert all those records at one time
@@ -41,7 +46,7 @@ mongoose.connect(process.env.DATABASE);
 ### Comment out reviews as we haven't built that yet
 `load-sample-data.js`
 
-```
+```js
 const fs = require('fs');
 const mongoose = require('mongoose');
 
@@ -55,13 +60,12 @@ const Store = require('../models/Store');
 // const Review = require('../models/Review');
 const User = require('../models/User');
 
-
 const stores = JSON.parse(fs.readFileSync(__dirname + '/stores.json', 'utf-8'));
 // const reviews = JSON.parse(fs.readFileSync(__dirname + '/reviews.json', 'utf-8'));
 const users = JSON.parse(fs.readFileSync(__dirname + '/users.json', 'utf-8'));
 
 async function deleteData() {
-  console.log('😢😢 Goodbye Data...');
+  console.log('Goodbye Data...');
   await Store.remove();
   // await Review.remove();
   await User.remove();
@@ -74,10 +78,10 @@ async function loadData() {
     await Store.insertMany(stores);
     // await Review.insertMany(reviews);
     await User.insertMany(users);
-    console.log('👍👍👍👍👍👍👍👍 Done!');
+    console.log('Done!');
     process.exit();
   } catch(e) {
-    console.log('\n👎👎👎👎👎👎👎👎 Error! The Error info is below but if you are importing sample data make sure to drop the existing database first with.\n\n\t npm run blowitallaway\n\n\n');
+    console.log('\n Error! The Error info is below but if you are importing sample data make sure to drop the existing database first with.\n\n\t npm run blowitallaway\n\n\n');
     console.log(e);
     process.exit();
   }

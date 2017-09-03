@@ -16,8 +16,8 @@
 # Where do we create Indexes?
 In the Scheme
 
-* How can I check my current indexes?
-    - MongoDB Compass has a `INDEXES` tab
+## How can I check my current indexes?
+* MongoDB Compass has a `INDEXES` tab
 * By default `_id` is Indexed on every Collection
     - Store in `MongoDB` Compass shows `_id` with Index
     - Users has `_id` and `email` each with an Index
@@ -28,9 +28,12 @@ In the Scheme
 
 * When we added a plugin for our `users` (Passport) it introduced the email Index
 
+## Let's add our first indexes
+* We will index the `name` and `description` fields of our storeSchema
+
 `Store.js`
 
-```
+```js
 // more code
 
 // Defin our indexes
@@ -40,14 +43,17 @@ storeSchema.index({
 });
 
 storeSchema.pre('save', async function (next) {
-
+// more code
+});
 // more code
 ```
 
-* We tell MongoDB what we would like it to be indexed as (`text`) and this will make it possible to search the name and description text very efficiently and do stuff like case sensativity
+* We tell `MongoDB` what we would like it to be indexed as (`text`)
+* This will make it possible to search the name and description text very efficiently
+* And also do stuff like case sensativity
 
 ## Refresh `MongoDB` Compass
-Compound Index - two fields being indexed as one
+* **Compound Index** - two fields being indexed as one
 
 ![new Index added](https://i.imgur.com/JkOD8Y0.png)
 
@@ -58,9 +64,9 @@ Compound Index - two fields being indexed as one
 
 * Add a version `v1`, `v2`, `v3` so if people are using your API you can keep the old API and add a new one without breaking the old one for users who don't upgrade to the new API
 
-`index.js`
+`routes/index.js`
 
-```
+```js
 // more code
 
 
@@ -78,9 +84,9 @@ module.exports = router;
 ## Add searchStores() method inside our `storeController.js`
 * We also wire it up to make sure the route is working
 
-`index.js`
+`storeController.js`
 
-```
+```js
 // more code
 
 exports.searchStores = async (req, res) => {
@@ -88,6 +94,7 @@ exports.searchStores = async (req, res) => {
 };
 ```
 
+## Test route
 * Visit `http://localhost:7777/api/v1/search`
 * You should see:
 
@@ -101,31 +108,32 @@ Makes your JSON look pretty
 ### How do we add a query string?
 `storeController.js`
 
-```
+```js
 exports.searchStores = async (req, res) => {
   res.json(req.query);
 };
 ```
 
-Place this in your URL
+* Search the following route
 
 `http://localhost:7777/api/v1/search?q=wine&name=Gary&nice=true`
 
-Hit return and you'll see: (I added CSS to my JSON view :) )
+* You should see:
 
 ![query string](https://i.imgur.com/kbIjdJR.png)
 
 ### First let's query for all our stores
 `storeController.js`
 
-```
+```js
 exports.searchStores = async (req, res) => {
   const stores = await Store.find();
   res.json(stores);
 };
 ```
 
-* View in browser
+#### Test it out
+* View `http://localhost:7777/api/v1/search` in browser
 * You will see JSON of all our stores
 
 ## MongoDB $text operator
@@ -133,7 +141,7 @@ exports.searchStores = async (req, res) => {
 * `$text` performs a text search on the content of the fields indexed with a text index
 * A `$text` expression has the following syntax:
 
-```
+```json
 {
   $text:
     {
@@ -149,7 +157,7 @@ exports.searchStores = async (req, res) => {
 
 `storeController.js`
 
-```
+```js
 // more code
 
 exports.searchStores = async (req, res) => {
@@ -163,19 +171,20 @@ exports.searchStores = async (req, res) => {
 ```
 
 ### Test it out
-* We will search for all stores with `beer` in **name** or **description**
-* Our URL will be `http://localhost:7777/api/v1/search?q=beer`
+* We will search for all stores with kids in **name** or **description**
+* Our URL will be `http://localhost:7777/api/v1/search?q=kids`
 
-![all stores with beer](https://i.imgur.com/4fGfGYg.png)
+![all stores with kids](https://i.imgur.com/afC6tiu.png)
 
 ## Add Sorting
 * Currently all the term "hits" we get are sorted by `dataCreated` by default
-* We want to sort by "score" where it is an invisible field that aggregates the sum total of each "hit" and make the stores with most points first
+* We want to sort by **"score"**
+    * This is an invisible field that aggregates the sum total of each **"hit"** and make the stores with most points first
     - This is called **meta data** in `MongoDB` and we use `$meta`
 
 ## $meta
-* The $meta projection operator returns for each matching document the metadata (e.g. "textScore") associated with the query
-* `project` in mongo means "add a field"
+* The `$meta` projection operator returns for each matching document the `metadata` (e.g. "textScore") associated with the query
+* `project` in mongo means **"add a field"**
 * [read the documentation](https://docs.mongodb.com/manual/reference/operator/projection/meta/)
 * syntax
 
@@ -185,13 +194,13 @@ exports.searchStores = async (req, res) => {
 
 ### "textScore"
 * Returns the score associated with the corresponding `$text` query for each matching document
-* The text score signifies how well the document matched the search term or terms
-* If not used in conjunction with a `$text` query, returns a score of 0
+* The `text score` signifies how well the document matched the search term or terms
+* If not used in conjunction with a `$text` query, returns a score of `0`
 * Sort order is `Descending`
 
 `scoreController.js`
 
-```
+```js
 // more code
 
 exports.searchStores = async (req, res) => {
@@ -214,7 +223,7 @@ exports.searchStores = async (req, res) => {
 ## Sort in descending order
 `storeController.js`
 
-```
+```js
 // more code
 
 exports.searchStores = async (req, res) => {
@@ -236,7 +245,7 @@ exports.searchStores = async (req, res) => {
 ### Cleaning up and limiting stores in search
 `storeController.js`
 
-```
+```js
 // more code
 
 exports.searchStores = async (req, res) => {
@@ -249,7 +258,7 @@ exports.searchStores = async (req, res) => {
   }, {
     score: { $meta: 'textScore' }
   })
-  // then store matching stores
+  // then sort matching stores
   .sort({
     score: { $meta: 'textScore' }
   })

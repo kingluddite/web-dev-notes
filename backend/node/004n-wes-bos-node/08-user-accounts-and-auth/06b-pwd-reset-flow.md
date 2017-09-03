@@ -6,12 +6,12 @@
 * We will email them a token later on
 * What URL are we operating on?
     - ``http://${req.headers.host}``
-        + That will give you localhost when development mode
+        + That will give you **localhost when in development mode**
         + And give you your staging or production domains when in either environment
 
 `authController.js`
 
-```
+```js
 const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordToken}`;
   req.flash('success', `You have been emailed a password reset link. ${resetURL}`);
 ```
@@ -26,7 +26,7 @@ const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordT
 ## Final `forgotPassword()` controller
 `authController.js`
 
-```
+```js
 exports.forgotPassword = async (req, res) => {
   // 1. See if a user with that email exists
   const user = await User.findOne({ email: req.body.email });
@@ -39,7 +39,8 @@ exports.forgotPassword = async (req, res) => {
   user.resetPasswordExpires = Date.now() + 3600000;
   await user.save();
   // 3. Send them an email with the token
-  `http://${req.headers.host}/account/reset/${user.resetPasswordToken}`;
+  const resetURL = `http://${req.headers
+    .host}/account/reset/${user.resetPasswordToken}`;
   req.flash('success', `You have been emailed a password reset link. ${resetURL}`);
   // 4. redirect to login page
   res.redirect('/login');
@@ -47,27 +48,32 @@ exports.forgotPassword = async (req, res) => {
 ```
 
 ### Testing if it works
-Open Mongo Compass and see our current user fields
+* Open Mongo Compass and see our current user fields
 
 ![current user fields](https://i.imgur.com/8vJto7j.png)
 
-Enter email in reset password field and press `Send a reset` button
+* Enter email in reset password field and press `Send a reset` button
 
-![send a reset](https://i.imgur.com/3fqCIb6.png)
+![send a reset](https://i.imgur.com/ErXIgdY.png)
 
-You get redirected to `/login` with a flash message containing the link to the reset password
+* You get redirected to `/login` with a flash message containing the link to the reset password
+
+![redirect link](https://i.imgur.com/snbhsa3.png)
 
 ### Added token and expire date to MongoDB
 ![token and expire date in Mongo](https://i.imgur.com/LpzD3vU.png)
 
 * Check if a bad email doesn't exist
+
+![bad email doesn't exist](https://i.imgur.com/Op2qmWQ.png)
+
 * Enter a valid user email and copy and vist the URL link in the success flash message
     - We will get a 404 error, the route doesn't exist
 
 ### Add the reset link route
 `index.js`
 
-```
+```js
 router.post('/account/forgot', catchErrors(authController.forgotPassword));
 // add this line
 router.get('/account/reset/:token', catchErrors(authController.reset));
@@ -78,7 +84,8 @@ router.get('/account/reset/:token', catchErrors(authController.reset));
 
 `authController.js`
 
-```
+```js
+// more code
 exports.reset = async (req, res) => {
   res.json(req.params);
 };
@@ -91,7 +98,7 @@ exports.reset = async (req, res) => {
 
 `authController.js`
 
-```
+```js
 exports.reset = async (req, res) => {
   const user = await User.findOne({
     resetPasswordToken: req.params.token,
@@ -107,8 +114,8 @@ exports.reset = async (req, res) => {
 ```
 
 * We look for one particular record that has two requirements
-    - the token
-    - the time is greater than now
+    - The token
+    - The time is greater than now
         + Very cool feature of MongoDb
             * If the date is greater than now, it hasn't expired yet
     - If no user, the seach came up empty
@@ -116,18 +123,20 @@ exports.reset = async (req, res) => {
     - Redirect them to `/login`
 
 ### Test a bad token
-And you will be redirected to `/login` and get the flash error message
+* And you will be redirected to `/login` and get the flash error message
 
 ### Render the reset template form
-```
+```js
 // if there is a user, show the reset password form
 res.render('reset', { title: 'Reset your Password' });
 ```
 
-Create the pug template form
+* Create the pug template form
 
 ## HTML form tidbit
-When you submit a form without an `action` it will default to the current URL you are on (it will post to itself)
+* When you submit a form without an `action`
+* It <u>will default to the current URL you are on</u>
+    - In other words, it will post to itself
 
 ### Create our password reset template
 `view/reset.pug`
@@ -137,7 +146,7 @@ extends layout
 
 block content
   .inner
-    form.form(method="POST")
+    form.form(method="POST" class="card")
       h2 Reset Your Password
       label(for="password") Password
       input(type="password" name="password")
@@ -149,7 +158,7 @@ block content
 ### Test in browser
 Open URL of reset link from flash success message
 
-![reset password template](https://i.imgur.com/XXMoHpu.png)
+![reset password template](https://i.imgur.com/ybCsPXE.png)
 
 #### Cool tip to see your user data
 1. Open Terminal
@@ -157,7 +166,7 @@ Open URL of reset link from flash success message
 
 `authController.js`
 
-```
+```js
 exports.reset = async (req, res) => {
   const user = await User.findOne({
     resetPasswordToken: req.params.token,
@@ -178,11 +187,15 @@ exports.reset = async (req, res) => {
 ![terminal user data](https://i.imgur.com/5VxdiWn.png)
 
 ## Time to update the user password
-Since someone is filling out our reset form with their new and confirmed password we need to get both pieces of information, make sure they are the same and post them to our controller to insert the data into `MongoDB`
+* Since someone is filling out our reset form with their new and confirmed password
+* We need to:
+    - Get BOTH pieces of information
+    - Make sure THEY ARE THE SAME
+    - And POST them to our CONTROLLER to insert the data into `MongoDB`
 
 `index.js`
 
-```
+```js
 // more code
 router.get('/account', authController.isLoggedIn, userController.account);
 router.post('/account', catchErrors(userController.updateAccount));
@@ -196,13 +209,15 @@ router.post('/account/reset/:token',
 // more code
 ```
 
-* We will need to confirm password match and we will write this middleware
-* We will use `async-await` to update password so we use `catchErrors()`
+* We will need to `confirm password match`
+* And we will write this **middleware**
+* We will use `async-await` to update password
+    - So we use `catchErrors()`
 
 ### Add `confirmedPasswords()`
 `authController.js`
 
-```
+```js
 exports.confirmedPasswords = (req, res) => {
   if (req.body.password === req.body.password-confirm);
 };
@@ -210,9 +225,9 @@ exports.confirmedPasswords = (req, res) => {
 
 ## Houston we have a problem!
 * We can't use dashes in our variable name and `password-confirm` will give us an error
-* Easy Fix below - use square brackets
+* Easy Fix below - USE SQUARE BRACKETS!!!!
 
-```
+```js
 exports.confirmedPasswords = (req, res, next) => {
   if (req.body.password === req.body['password-confirm']) {
     next(); // keep it going!
@@ -230,7 +245,7 @@ exports.confirmedPasswords = (req, res, next) => {
 * If we don't have a match we flash that error and redirect them back to the reset password form page
 * Test to see if not matching passwords generate a flash error
 
-![password do not match flash](https://i.imgur.com/uzaxN1z.png)
+![password do not match flash](https://i.imgur.com/SAqDsYF.png)
 
 ### If passwords do match
 Then we go to `update` method of our middleware
@@ -242,7 +257,7 @@ Then we go to `update` method of our middleware
 ### Require `promisify`
 `authController.js`
 
-```
+```js
 const passport = require('passport');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
@@ -252,7 +267,7 @@ const promisify = require('es6-promisify'); // add this line
 ### Finish with `.update()` controller
 `authController.js`
 
-```
+```js
 exports.update = async (req, res) => {
   const user = await User.findOne({
     resetPasswordToken: req.params.token,
@@ -269,19 +284,22 @@ exports.update = async (req, res) => {
   user.resetPasswordToken = undefined;
   user.resetPasswordExpires = undefined;
   const updatedUser = await user.save();
+  await req.login(updatedUser);
+  req.flash('success', 'Your password has been reset! You are now logged in');
+  res.redirect('/');
 };
 ```
 
-## Trash the password token and exiration date
+## Trash the password token and expiration date
 * The way you get rid of fields in `MongoDB` is you set them to **undefined** and they will be removed
 
 ## Actually save the new document
 `const updatedUser = await user.save()`
 
 ## Save and automatically log user in
-* `req.login()` - Passportjs gives us access to this useful method
+* `req.login()` - `PassportJS` gives us access to this useful method
     - We pass it the updatedUser `req.login(updatedUser)`
-    - Very useful from Passwortjs, we can always pass `req.login(PUTUSERHERE)` and it will automatically log that user in (without us having to pass them in a username and password)
+    - Very useful from `PassportJS`, we can always pass `req.login(PUTUSERHERE)` and it will automatically log that user in (_without us having to pass them in a username and password_)
 * Flash them a success message and redirect them to `/login`
 
 ### Test to see if it works
@@ -291,5 +309,7 @@ exports.update = async (req, res) => {
 * View document in Mongo Compass (_you will see token and expiration date_)
 * Enter and confirm new password
 * You will be redirected to `/`
-* * View document in Mongo Compass (_you will see token and expiration date have been removed_)
-* If you try to use the reset link again you will get flash error that reset link [is invalid or expired](https://i.imgur.com/IXRBRNP.png)
+* View document in Mongo Compass (_you will see token and expiration date have been removed_)
+* If you try to use the reset link again you will get flash error that reset link 
+
+![is invalid or expired](https://i.imgur.com/y1GeZy0.png)

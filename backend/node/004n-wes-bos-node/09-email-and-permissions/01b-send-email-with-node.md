@@ -1,4 +1,4 @@
-# Sending email with Nodejs - Part 1
+# Sending email with Nodejs - Part 2
 ## Let's practice sending an email
 * Whenever the server starts up it will send an email
 * Let's configure that now
@@ -6,7 +6,7 @@
 ### Create an object to hold your mail options
 `mail.js`
 
-```
+```js
 // more code
 let mailOptions = {
   from: 'Johnny Ballgame <Johnny@ballgame.com>', // sender address
@@ -35,7 +35,7 @@ It will trigger `transport.sendMail()` and send us an email
 * We will temporarily place this at the bottom of `start.js`
 * <u>But we must remember to remove it later on</u>
 
-```
+```js
 // TEMP send email
 require('./handlers/mail');
 ```
@@ -47,15 +47,19 @@ require('./handlers/mail');
 ![email sent in Terminal message](https://i.imgur.com/7pGpEyc.png)
 
 ### Remove this from `start.js`
-```
+```js
 // TEMP send email
 require('./handlers/mail');
 ```
 
+* I just commented it out for the notes
+
+![commented out code](https://i.imgur.com/IPphF9h.png)
+
 ### Delete this code
 `mail.js`
 
-```
+```js
 // more code
 let mailOptions = {
   from: 'Johnny Ballgame <Johnny@ballgame.com>', // sender address
@@ -82,7 +86,7 @@ We will call a function called `send()`
 #### Add our options in the `send()` method
 `mail.js`
 
-```
+```js
 exports.send = async (options) => {
   const mailOptions = {
     from: 'Johnnie Ballgame <noreply@johnnyballgame.com>',
@@ -97,7 +101,7 @@ exports.send = async (options) => {
 #### Promisify our `send()` email function
 * By default `send()` works with **callbacks**
 
-```
+```js
 const sendMailPromisify = promisify(transport.sendMail, transport);
 ```
 
@@ -110,7 +114,7 @@ const sendMailPromisify = promisify(transport.sendMail, transport);
 ### All together
 `mail.js`
 
-```
+```js
 // more code
 exports.send = async (options) => {
   const mailOptions = {
@@ -129,7 +133,7 @@ exports.send = async (options) => {
 
 `authController.js`
 
-```
+```js
 // more code
 const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordToken}`;
   req.flash('success', `You have been emailed a password reset link. ${resetURL}`);
@@ -141,7 +145,7 @@ This is our current code that we have to alter to get our email sent via node
 ### Import our mail library
 `authController.js`
 
-```
+```js
 const passport = require('passport');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
@@ -152,19 +156,25 @@ const mail = require('./../handlers/mail'); // add this line
 ### Call the `send()` method controller
 `authController.js`
 
-```
+```js
 // more code
+const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordToken}`;
+// start adding the below code
 await mail.send({
     user,
     subject: 'Password Reset',
     resetURL,
     filename: 'password-reset'
   });
+// stop adding code
+req.flash('success', `You have been emailed a password reset link.`);
+  // 4. redirect to login page
+  res.redirect('/login');
 // more code
 ```
 
 * We also need to add `filename: 'password-reset'`
-    - When we try to render out our HTML this key/value pair will enable us to look for `password-reset.pug`
+    - When we try to render out our HTML this **key/value** pair will enable us to look for `password-reset.pug`
 * We use `await` to wait for the email to be sent
     - Once it is sent we will flash a success message
     - And redirect the user to the `/login` route
@@ -173,3 +183,5 @@ await mail.send({
 1. Log out
 2. Reset your email
 3. Check mailtrap and you should see your email was sent
+
+![mailtrap sent email](https://i.imgur.com/5hCfYp9.png)
