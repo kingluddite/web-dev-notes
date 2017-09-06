@@ -1,6 +1,5 @@
-
 # Sublime Text 3
-Is a text editor. A few years ago I was using `Dreamweaver` as were many people. There were other popular `Text Editors` like `Text Wranger` and `Coda` but Sublime Text came out of nowhere and took the coding world by storm. It was fast and free (if you could put up with the pop up alert windows or pay the low fee to own a copy yourself). 
+Is a text editor. A few years ago I was using `Dreamweaver` as were many people. There were other popular `Text Editors` like `Text Wranger` and `Coda` but Sublime Text came out of nowhere and took the coding world by storm. It was fast and free (if you could put up with the pop up alert windows or pay the low fee to own a copy yourself).
 
 Dreamweaver was a full `IDE` but was way too bulky for your average coder. It had a `FTP` program built into it which lots of people loved but the free Filezilla made FTP free and simple. People wanted to know why Sublime Text didn't have FTP baked into it, and it probably was because most developers began to use the more secure SSH. Now people with `SSH` power, could transfer files directly from the `Terminal`, that was faster and more secure.
 
@@ -18,7 +17,7 @@ Open sublime and use keyboard shortcut **(` + ctrl)** - that is the backtick key
 In the box that opens paste:
 
 ```
-import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) 
+import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
 ```
 
 * Restart Sublime
@@ -34,6 +33,7 @@ import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d
 * HTML-CSS-Javasript Prettify
 * LiveReload
 * Emmet
+* OpenInBrowser
 * Origami
 * Add Sublime Preferences
 * After they are installed [use this gist](https://gist.githubusercontent.com/kingluddite/0bd73f49cedeb95402436767ddbcdbfd/raw/cc10bb588f7d91662f4a2857dec3cf06e5d42a5b/Preferences.sublime-settings) to set their preferences
@@ -58,11 +58,11 @@ I really like this option for when I'm working with WordPress. Instead of having
 
 If I set this up for all the sites I'm developing, I can use the keyboard shortcut:
 
-`ctrl` + `cmd` + `p` 
+`ctrl` + `cmd` + `p`
 
 to quickly jump between Project files of different projects. A huge time saver.
 
-When you have a bunch of project files they can be hard to navigate so on a Mac here is how you clear them. 
+When you have a bunch of project files they can be hard to navigate so on a Mac here is how you clear them.
 
 Using the Terminal, go into the Session of ST and find this file
 
@@ -86,7 +86,7 @@ You can also go to `Project` > `open recent` > `clear all`
 [sublime project bliss](http://code.tutsplus.com/tutorials/sublime-text-2-project-bliss--net-27256)
 
 * The above link, although written for ST2, is still a very good resource for working with ST Project files
- 
+
 ## Install Sublime Text 3 (ST3)
 * Cost - It's free. Well, it's not really free but you can download and use it. If you don't [pay the fee ($70)](http://www.sublimetext.com/buy) you can use it for free as long as you want but you will get annoying popups that you can not remove until you pay for the license. The IDE is really cool and if you use it a lot and it helps you make money, you should shell out the cash to help the creators out for creating a great IDE.
 * IDE - Integrated Development Environment
@@ -163,7 +163,7 @@ To turn this on, simply put this in your settings file:
 * **JavaScript & Node JS Snippets** provide snippets for some of the most used JavaScript functions and methods.
 * editorconfig
   - helps developers define and maintain consistent coding styles between different editors and IDEs [editorconfig.org](http://editorconfig.org)
-    + [videos (3 parts)](https://www.youtube.com/watch?v=YbHw1VdjWbA) 
+    + [videos (3 parts)](https://www.youtube.com/watch?v=YbHw1VdjWbA)
 * Style Sorter
   - helps the messy CSS or SASS user by rearraging the stylesheet attributes based on the type and attribute.
 * MarkdownEditing
@@ -350,7 +350,7 @@ Escape Key |  Gets out of the current mode into the `command mode`  (_All keys a
 i | `Insert mode` for inserting text (_Keys behave as expected_)
 d | delete
 y | copy
-gu | lower case 
+gu | lower case
 gU | upper case
 g~ | swap case
 g? | [rot13](https://en.wikipedia.org/wiki/ROT13)
@@ -418,14 +418,14 @@ Add this in the terminal
 ```
 $ defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
 ```
-## Project File 
+## Project File
 
 Adding a project.sublime-project file can help speed up your workflow especially if you are working between multiple projects.
 [more info here](https://gist.github.com/kconragan/2510186)
 
 ### Sublime Text Useful keyboard shortcuts
 
-[Visual Mode info for copy and paste](http://vim.wikia.com/wiki/Cut/copy_and_paste_using_visual_selection) 
+[Visual Mode info for copy and paste](http://vim.wikia.com/wiki/Cut/copy_and_paste_using_visual_selection)
 
 Keyboard Shortcut | Function
 --- | --- |
@@ -470,7 +470,7 @@ $ npm install
 | highlight words, `f5` | alpha sort ignoring capital letters |
 | highlight words ctrl + f5 | alpha sort lines starting with capital letters first, then alphabetize lines starting with lowercase letters |
 | Edit > permute lines > unique | remove duplicates |
- `ctrl` + `shift` + `k`|delete current line 
+ `ctrl` + `shift` + `k`|delete current line
 `cmd` + `click` | multi-cursor add one at time
 
 ## Open ST3 from within iTerm
@@ -725,7 +725,7 @@ Use SublimeText console and SublimeLinter debug mode.
 Then open any JS file and run `Tools -> SublimeLinter -> Lint This View`. It must be an output in console after, something like that:
 
 ```
-SublimeLinter: eslint: 1.js ['/Projects/sample/node_modules/.bin/eslint', '--format', 'compact', '--stdin', '--stdin-filename', '@'] 
+SublimeLinter: eslint: 1.js ['/Projects/sample/node_modules/.bin/eslint', '--format', 'compact', '--stdin', '--stdin-filename', '@']
 ```
 
 ##### I've got 'SublimeLinter: ERROR: eslint cannot locate 'eslint' in ST console when I try to use locally installed `eslint`.
@@ -760,47 +760,47 @@ Add tab trigger for emmet
 
 ```
 {
-  "keys": ["tab"], 
-  "command": "expand_abbreviation_by_tab", 
+  "keys": ["tab"],
+  "command": "expand_abbreviation_by_tab",
 
-  // put comma-separated syntax selectors for which 
-  // you want to expandEmmet abbreviations into "operand" key 
+  // put comma-separated syntax selectors for which
+  // you want to expandEmmet abbreviations into "operand" key
   // instead of SCOPE_SELECTOR.
   // Examples: source.js, text.html - source
   "context": [
     {
-      "operand": "meta.group.braces.round.js, text.html", 
-      "operator": "equal", 
-      "match_all": true, 
+      "operand": "meta.group.braces.round.js, text.html",
+      "operator": "equal",
+      "match_all": true,
       "key": "selector"
-    }, 
+    },
 
     // run only if there's no selected text
     {
-      "match_all": true, 
+      "match_all": true,
       "key": "selection_empty"
     },
 
     // don't work if there are active tabstops
     {
-      "operator": "equal", 
-      "operand": false, 
-      "match_all": true, 
+      "operator": "equal",
+      "operand": false,
+      "match_all": true,
       "key": "has_next_field"
-    }, 
+    },
 
     // don't work if completion popup is visible and you
     // want to insert completion with Tab. If you want to
-    // expand Emmet with Tab even if popup is visible -- 
+    // expand Emmet with Tab even if popup is visible --
     // remove this section
     {
-      "operand": false, 
-      "operator": "equal", 
-      "match_all": true, 
+      "operand": false,
+      "operator": "equal",
+      "match_all": true,
       "key": "auto_complete_visible"
-    }, 
+    },
     {
-      "match_all": true, 
+      "match_all": true,
       "key": "is_abbreviation"
     }
   ]

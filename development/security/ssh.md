@@ -2,7 +2,7 @@
 
 **I want to copy my machines ssh public key and add it to my virtual machine's authorized_keys file. How can I do this?**
 
-this is if you are using a virutal box or a linux server
+this is if you are using a virtual box or a linux server
 
 Lots of ways. I like this way.
 You can have multiple keys in your authorized_keys file. I heard the max is 30 but double check on that.
