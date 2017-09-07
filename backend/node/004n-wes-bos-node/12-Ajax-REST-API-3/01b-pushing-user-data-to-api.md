@@ -10,7 +10,7 @@
 
 `- const heartStrings`
 
-### Show all id's inside heart array and current store id
+### Show all `id`'s inside heart array and current store `id`
 `_storeCard.pug`
 
 ```
@@ -25,11 +25,11 @@ form.heart(method="POST" action=`/api/v1/stores/${store._id}/heart`)
 ```
 
 ### View in stores page
-![ids showing](https://i.imgur.com/fN6JDmL.png)
+![ids showing](https://i.imgur.com/OAY8Jai.png)
 
-* We now just need to check if the store id is inside the hearts array of ids
-* If it's not we'll make it the color white
-* if it is, we'll make it the color red
+* We now just need to check if the store `id` is inside the hearts array of `ids`
+* If it's NOT we'll make it the color WHITE
+* if it IS, we'll make it the color RED
 
 `_storeCard.pug`
 
@@ -38,22 +38,33 @@ form.heart(method="POST" action=`/api/v1/stores/${store._id}/heart`)
 
 form.heart(method="POST" action=`/api/v1/stores/${store._id}/heart`)
     - const heartStrings = user.hearts.map(obj => obj.toString())
-    - const heartClass = heartStrings.includes(store._id.toString()) ? 'heart__button--hearted' : ''
+    - const heartClass = heartStrings.includes(store._id.toString()) ? 'heart__button--hearted' : '';
     button.heart__button(type="submit" name="heart" class=heartClass)
 
 // more code
 ```
 
-* The white background was because we didn't add the `heart__button` class
+* We get a white background on the heart if we don't have the `heart__button` class
+* We now are using variables in our server side templates to generate dynamic class names
+  - The user object has a hearts property that contains an array of store id's
+  - We will add the `heartClass` to dynamically hold red information or white information for our heart
+    + Red for stores that have been likes
+    + White for stores that have not been liked
+    + We use a ternary operator and the `includes()` array method to determine if the array has a matching store `id` string inside it
+      * If there is a match, we add the store in the variable the class name of `heart__button--hearted`
+      * If there is not we do not add a class (variable value is empty)
 
 ![color hearts added](https://i.imgur.com/hUj1JjF.png)
 
 ## Add functionality to make heart counter, heart update without leaving page
+* This means Ajax
+* This means a better user experience
+
 * Create `public/javascripts/modules/heart.js`
 
 `heart.js`
 
-```
+```js
 import axios from 'axios';
 
 function ajaxHeart(event) {
@@ -63,9 +74,11 @@ function ajaxHeart(event) {
 export default ajaxHeart;
 ```
 
-`delicious-app.js`
+`tra-app.js`
 
-```
+* Add `heart.js` to our main js app `tra-app.js`
+
+```js
 import '../sass/style.scss';
 
 import { $, $$ } from './modules/bling';
@@ -86,15 +99,15 @@ console.log(heartForms);
 
 ### We search for all heart forms on page
 * `$$` is from **bling.js** that users (uses `document.querySelectorAll()`)
-* 19 heart forms and 19 stores on our page
+* 216 heart forms and 216 stores on our page
 
-![all 19 heart forms](https://i.imgur.com/vn2fDmF.png)
+![all 216 heart forms](https://i.imgur.com/vn2fDmF.png)
 
-* `on` is bling.js for `addEventListener()`
+* `on` is **bling.js** for `addEventListener()`
 
-`delicious-app.js`
+`tra-app.js`
 
-```
+```js
 // more code
 
 makeMap($('#map'));
@@ -103,13 +116,14 @@ const heartForms = $$('form.heart');
 heartForms.on('submit', ajaxHeart);
 ```
 
+* Now we add an event listener on every form!
 * Great part of `bling.js`
-* We can listen for multiple events on multiple on a nodeList rather than having to loop over every single one
+* We can listen for multiple events on multiple forms on a nodeList rather than having to loop over every single one
 
 ### Turn off default form value
 `heart.js`
 
-```
+```js
 import axios from 'axios';
 
 function ajaxHeart(event) {
