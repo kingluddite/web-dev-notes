@@ -28,9 +28,12 @@ function loadPlaces(map, lat = 47.6, lng = -122.3) {
 }
 ```
 
+* If you have a bunch of places near each other you can show the all at one time on a Google map
+* Here is an example of what that would look like:
+
 ![markers on map](https://i.imgur.com/lqStUSH.png)
 
-And inside our markers object we have all the place date for each store
+* And inside our markers object we have all the place data for each store
 
 ![place data for each store](https://i.imgur.com/yWl6uRp.png)
 
@@ -71,11 +74,13 @@ function loadPlaces(map, lat = 43.2, lng = -79.8) {
       map.setCenter(bounds.getCenter());
       map.fitBounds(bounds);
     })
-    .catch(console.log(error));
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 ```
 
-* Bounds is useful
+## Bounds are useful
 * We set bound here
 
 ```js
@@ -95,18 +100,20 @@ const bounds = new google.maps.LatLngBounds();
 
 `map.fitBounds(bounds);`
 
-### Houston we have a problem
-When you click the marker, nothing happens
+### Houston we have a problem!
+* When you click the marker, nothing happens
 
 ### Info Windows
 * When you have a pop up in google maps they call it a **Info Window**
-* Google maps is all about a gazillion different pieces to the map
-  - like
+* Google Maps is all about a gazillion different pieces to the map
+  - Like
     + autocomplete
     + markers
     + map
     + info window
-* We will loop over each marker and attach an eventListener so that when anyone clicks on a marker we can show the info window
+* We will loop over each marker and attach an `eventListener` so that when anyone clicks on a marker we can show the info window
+
+## `.addListener()`
 * `.addListener()` is google maps version of `addEventListener()`
 
 `map.js`
@@ -145,7 +152,9 @@ function loadPlaces(map, lat = 47.6, lng = -122.3) {
       map.setCenter(bounds.getCenter());
       map.fitBounds(bounds);
     })
-    .catch(console.log(error));
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 ```
 

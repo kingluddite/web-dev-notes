@@ -16,6 +16,15 @@
 * We need to create a route
 * We need to handle it in our `storeController.js`
 
+## Group some stores together
+* To see how this works, Add some stores that are in the same city
+* Let's add all the Starbucks that are in Redondo Beach
+    - Starbucks, North Pacific Coast Highway, Redondo Beach, CA
+    - Starbucks, Artesia Boulevard, Redondo Beach, CA
+    - Starbucks, Kingsdale Avenue, Redondo Beach, CA
+    - Starbucks, Hawthorne Boulevard, Redondo Beach, CA
+    - Starbucks, Inglewood Avenue, Redondo Beach, CA
+
 ### Create our indexes
 * We need to make our Indexes geospacial
 
@@ -34,6 +43,8 @@ storeSchema.index({ location: '2dsphere' }); // add this line
 
 // more code
 ```
+
+* Make sure you spell `2dsphere` correctly or you will not see the index in your Mongo Database
 
 ### View `MongoDB` Compass
 * And you will see our new Geospatial 2sphere Index
@@ -72,7 +83,7 @@ exports.mapStores = async (req, res) => {
 
 ### View in browser
 * visit `http://localhost:7777/api/v1/stores/near`
-* You should see `{ "it": "Workded" }`
+* You should see `{ "it": "Worked" }`
 
 ### Adding queries
 * We will use two, `lat` and `lng`
@@ -169,8 +180,8 @@ exports.mapStores = async (req, res) => {
 * That will return an empty set
 * No stores are within `10km` of our coordinates
 * Comment `$maxDistance` out so you get all stores again
-* We see that the `Gmboree in Seattle` coordinates of stores are all near a lat of **47.6** and a lng of **-122.3**
-* Change URL to: `http://localhost:7777/api/v1/stores/near?lat=43.2&lng=-79.8`
+* We see that the `Gymboree in Seattle` coordinates of stores are all near a lat of **47.6** and a lng of **-122.3**
+* Change URL to: `http://localhost:7777/api/v1/stores/near?lat=47.6&lng=-122.3`
 * Comment in `$maxDistance`
 * And hit enter
 * You should see all stores near Hamilton (within 10km)
@@ -185,6 +196,7 @@ exports.mapStores = async (req, res) => {
 * description
 * photo
 * address
+    - But remember that we use `location` to get address
 * (everything else we don't need)
 
 #### Slim Ajax down with `.select()`
@@ -193,12 +205,21 @@ exports.mapStores = async (req, res) => {
 ```js
 // more code
 
-const stores = await Store.find(query).select('name slug description photo address'); // add this line
+const stores = await Store.find(query).select('slug name description location photo'); // add this line
   res.json(stores);
 };
 ```
 
 * Now we only get the fields we need
+* I accidentally used `address` instead of `location` and my code did not work because on the map page my code was looking for `location` and since I did not list it above, it was undefined
+  - Lesson learned - know your data structure
+  - Open Mongo DB in you are ever in doubt and see for yourself what the structure looks like
+* To see how this works, remove `name` and `slug` temporarily and view this url `http://localhost:7777/api/v1/stores/near?lat=47.6&lng=-122.3`
+* After experimenting with the code, put the select back:
+
+`const stores = await Store.find(query).select('slug name description location photo');`
+
+* Here after using `.select()` we have a limited number of fields
 
 ![selected fields](https://i.imgur.com/PKrG0yq.png)
 
@@ -212,7 +233,7 @@ const stores = await Store.find(query).select('name slug description photo addre
 ```js
 // more code
 
-  const stores = await Store.find(query).select('name slug description photo address').limit(10);
+  const stores = await Store.find(query).select('slug name description location photo').limit(10);
   res.json(stores);
 };
 ```

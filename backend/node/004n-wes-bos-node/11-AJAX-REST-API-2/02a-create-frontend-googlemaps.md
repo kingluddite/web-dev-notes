@@ -18,7 +18,7 @@ exports.menu = [
 * Click on `MAP` link in nav
 * We get a 404
 
-## Make our route
+## Make our route to our Map page
 `storeController.js`
 
 ```js
@@ -86,12 +86,13 @@ function loadPlaces(map, lat = 47.6, lng = -122.3) {
 ```
 
 * We set defaults because that is where our Pointers are in our default data
+* When the person first clicks on the `map` link, we want to show them some default values
+* We are going to be pulling data from behind the scenes so we need to add `axios`
 
 ### More to learn!
-Learn More About Geolocation - Wes Bos JavaScript30 `Geolocation based Speedometer and Compass`
-
-
-* Video will show how you could set the default to be where the current user is located using:
+* Learn More About Geolocation 
+    - Wes Bos JavaScript30 `Geolocation based Speedometer and Compass`
+    - Video will show how you could set the default to be where the current user is located using:
 
 `navigator.geolocation.getCurrentPosition`
 
@@ -128,6 +129,9 @@ typeAhead($('.search'));
 makeMap($('#map')); // add this line
 ```
 
+* We import the map file we are building
+* We also call the `makeMap()` function to target our id of `#map` in `map.pug`
+
 ### Test if we wired it up correctly
 `map.js`
 
@@ -159,6 +163,8 @@ block scripts
       script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)
 // more code
 ```
+
+* The reason all the other pages get this error is they don't have the map on their pages but map does, so to not get this error on pages that don't have `#id` we will write a short conditional check:
 
 `map.js`
 
