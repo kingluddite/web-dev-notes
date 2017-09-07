@@ -1,23 +1,23 @@
 # Plotting Stores on a Custom Google Map - Part 2
 ### How do we get the Google Map on our page?
-We need to add some map Options
+We need to add some map options
 
 `map.js`
 
-```
+```js
 import axios from 'axios';
 
 const mapOptions = {
-  center: { lat: 43.2, lng: -79.8 },
+  center: { lat: 47.6, lng: -122.3 },
   zoom: 8
 };
 // more code
 ```
 
-### Instatiate our map
+### Instantiate our map
 `map.js`
 
-```
+```js
 // more code
 function makeMap(mapDiv) {
   if (!mapDiv) return;
@@ -29,9 +29,40 @@ export default makeMap;
 ```
 
 ### View in browser
+* You won't see a map yet because you need to add the Sass
+
+`_map.scss`
+
+```
+.map {
+  padding: 20px;
+  background: white;
+  box-shadow: $shad;
+}
+#map {
+  height: 500px;
+}
+
+.popup {
+  width: 300px;
+  img {
+    width: 100%;
+  }
+}
+```
+
+#### Import map sass
+style.scss
+
+```
+// more code
+@import 'partials/map';
+```
+
+### View in browser
 You should see map on page
 
-![map on page](https://i.imgur.com/dK3h228.png)
+![map on page](https://i.imgur.com/EdIcm7e.png)
 
 ### Grab our `geolocate` name
 * We need to import `bling.js` to save us some typing
@@ -43,7 +74,7 @@ You should see map on page
 ### Code for grabbing input
 `map.js`
 
-```
+```js
 // more code
 
 function makeMap(mapDiv) {
@@ -65,7 +96,7 @@ You should see we captured the input
 ### Autocomplete the input (we did this before)
 `map.js`
 
-```
+```js
 // more code
 
 function makeMap(mapDiv) {
@@ -88,7 +119,7 @@ Now that we have our map, we need to load places nearby
 ### We call our `loadPlaces()` function
 `map.js`
 
-```
+```js
 // more code
 
 function makeMap(mapDiv) {
@@ -107,27 +138,29 @@ export default makeMap;
 ### We grab our Endpoint
 `map.js`
 
-```
+```js
 // more code
 const mapOptions = {
-  center: { lat: 43.2, lng: -79.8 },
+  center: { lat: 47.6, lng: -122.3 },
   zoom: 8
 };
 
 // update this function
-function loadPlaces(map, lat = 43.2, lng = -79.8) {
+function loadPlaces(map, lat = 47.6, lng = -122.3) {
   axios.get(`/api/v1/stores/near?lat=${lat}&lng=${lng}`)
     .then((res) => {
       const places = res.data;
       console.log(places);
     })
-    .catch(console.log(error));
+    .catch((error) => {
+      console.log(error);
+    });
 }
 // more code
 ```
 
-* We pass this function our map and lat an lng
-* We give default lat and lng values in case we need to fall back to them
+* We pass this function our map and `lat` an `lng`
+* We give default `lat` and `lng` values in case we need to fall back to them
 * We grab our API Endpoint and pass it `lat` and `lng`
 * We wait for the Promise and when the response returns we log out `places` which is holding `res.data`
 
@@ -144,8 +177,8 @@ You will see we get an array of 10 that comes back from our API Endpoint with th
 ## Test to see if we get our lng and lat
 `map.js`
 
-```
-function loadPlaces(map, lat = 43.2, lng = -79.8) {
+```js
+function loadPlaces(map, lat = 47.6, lng = -122.3) {
   axios.get(`/api/v1/stores/near?lat=${lat}&lng=${lng}`)
     .then((res) => {
       const places = res.data;
@@ -159,7 +192,9 @@ function loadPlaces(map, lat = 43.2, lng = -79.8) {
         console.log(placeLng, placeLat);
       });
     })
-    .catch(console.log(error));
+    .catch((error) => {
+      console.log(error);
+    });
 }
 ```
 
@@ -167,3 +202,7 @@ This will give us all the lng and lat
 
 ![all lng and lat](https://i.imgur.com/L64KU7f.png)
 
+* Now if we grouped a bunch of stores that were within 10 km of each other we would have an array with all of those stores
+* But we only have 1 store and therefore we only have 1 store in the array
+
+![one store in array](https://i.imgur.com/qjoT0kq.png)

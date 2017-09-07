@@ -14,14 +14,14 @@
 * Similar to what we did with our stores
 * We need to index our data
 * We need to create a route
-* We need to handle it in our storeController.js
+* We need to handle it in our `storeController.js`
 
 ### Create our indexes
 * We need to make our Indexes geospacial
 
 `Store.js`
 
-```
+```js
 // more code
 
 // Defin our indexes
@@ -30,7 +30,7 @@ storeSchema.index({
   description: 'text'
 });
 
-storeSchema.index({ location: '2dspere' }); // add this line
+storeSchema.index({ location: '2dsphere' }); // add this line
 
 // more code
 ```
@@ -44,7 +44,7 @@ storeSchema.index({ location: '2dspere' }); // add this line
 ## Create our route for mapping
 `index.js`
 
-```
+```js
 // more code
 
 router.get('/api/v1/search', catchErrors(storeController.searchStores));
@@ -59,7 +59,12 @@ module.exports = router;
 
 `storeController.js`
 
-```
+```js
+exports.searchStores = async (req, res) => {
+  // more code
+}
+
+// add this method below
 exports.mapStores = async (req, res) => {
   res.json({ it: 'Worked' });
 };
@@ -73,7 +78,7 @@ exports.mapStores = async (req, res) => {
 * We will use two, `lat` and `lng`
 * If we change our code to:
 
-```
+```js
 exports.mapStores = async (req, res) => {
   res.json(req.query);
 };
@@ -87,7 +92,7 @@ We'll see lat and long like this:
 
 * MongoDB expects to pass it an array of `lng` and `lat` numbers
 
-```
+```js
 exports.mapStores = async (req, res) => {
   const coordinates = [req.query.lng, req.query.lat];
   res.json(coordinates);
@@ -102,7 +107,7 @@ exports.mapStores = async (req, res) => {
 * That did not give us an "array of numbers", instead it gave us an array of strings
 * How do we convert an array of strings to an array of numbers?
 
-```
+```js
 exports.mapStores = async (req, res) => {
   const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
   res.json(coordinates);
@@ -116,7 +121,7 @@ exports.mapStores = async (req, res) => {
 ## Make a query that returns all the stores
 `storeController.js`
 
-```
+```js
 // more code
 
 exports.mapStores = async (req, res) => {
@@ -141,7 +146,7 @@ exports.mapStores = async (req, res) => {
 
 `storeController.js`
 
-```
+```js
 exports.mapStores = async (req, res) => {
   const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
   const query = {
@@ -162,9 +167,9 @@ exports.mapStores = async (req, res) => {
 ```
 
 * That will return an empty set
-* No stores are withing 10km of our coordinates
+* No stores are within `10km` of our coordinates
 * Comment `$maxDistance` out so you get all stores again
-* We see that the Hamilton coordinates of stores are all near a lat of **43.2** and a lng of **-79.8**
+* We see that the `Gmboree in Seattle` coordinates of stores are all near a lat of **47.6** and a lng of **-122.3**
 * Change URL to: `http://localhost:7777/api/v1/stores/near?lat=43.2&lng=-79.8`
 * Comment in `$maxDistance`
 * And hit enter
@@ -185,7 +190,7 @@ exports.mapStores = async (req, res) => {
 #### Slim Ajax down with `.select()`
 `storeController.js`
 
-```
+```js
 // more code
 
 const stores = await Store.find(query).select('name slug description photo address'); // add this line
@@ -204,7 +209,7 @@ const stores = await Store.find(query).select('name slug description photo addre
 ### Limit the Points on your map
 `storeController.js`
 
-```
+```js
 // more code
 
   const stores = await Store.find(query).select('name slug description photo address').limit(10);

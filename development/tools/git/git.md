@@ -22,6 +22,10 @@ Let's say one remote branch looks like this:
 
 `remotes/origin/pages`
 
+[this link discusses this at length](https://stackoverflow.com/questions/67699/how-to-clone-all-remote-branches-in-git/72156#72156)
+
+* Basically you don't get all your branches pulled down as you would expect. Instead you can view them all after using `$ git branch -a`. Then just type `$ git checkout someotherbranch` and that remote branch will now exist in a local branch named `someotherbranch` (assuming when you typed `$ git branch -a` the branch name was listed as `remotes/origin/someotherbranch`)
+
 Then do this:
 
 `$ git checkout -b pages origin/pages`

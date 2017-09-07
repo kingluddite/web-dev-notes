@@ -35,14 +35,45 @@
 * Advanced New File
 * Markdown Extended
 * Markdown Preview
+    - You need to set the default browser to Chrome (or it will keep opening in Safari)
+    - [In user settings](https://i.imgur.com/lvrdTdM.png) of Markdown Preview enter this code:
+    - You also want to install MarkdownEditing
+    - In order to see the default color setting, quit Sublime Text and reopen
+    - Than you can choose different themes with
+    - `cmd + shift + p` "MarkdownEditing: Change color scheme..."
+
+```
+{
+    /*
+        Sets the default opener for HTML files
+
+        default - Use the system default HTML viewer
+        other - Set a full path to any executable. ex: /Applications/Google Chrome Canary.app or /Applications/Firefox.app
+    */
+    "browser": "/Applications/Google Chrome.app"
+}
+```
 * Oceanic Next Color Scheme
 * Sass
 * Seti_UI
 * HTML-CSS-Javasript Prettify
 * LiveReload
+  - To use:
+    + cmd + shift + p
+    + live reload: enable/disable plugin
+    + enable simple reload
+    + Now when you want to view markdown preview with:
+      * cmd + shift + p
+      * preview in browser > markdown
+      * You will see your markdown formatted nicely in browser
+      * And changed you make to markdown file will automatically update in browser... in real time!
 * Emmet
+* JavaScript Next Snippets
 * Origami
 * OpenInBrowser
+* jsPrettier
+  - You also already installed this globally
+  - To get it working in Sublime Text, copy the default settings to user settings and just change the autosave setting to `true` and the single quotes setting to `true`
 
 ## Add Sublime Preferences
 * After they are installed [use this gist](https://gist.githubusercontent.com/kingluddite/0bd73f49cedeb95402436767ddbcdbfd/raw/cc10bb588f7d91662f4a2857dec3cf06e5d42a5b/Preferences.sublime-settings) to set their preferences
@@ -233,5 +264,16 @@ I like to add a keyboard shortcut to quickly enter Vintage Mode. There is an opt
         { "key": "setting.is_widget", "operand": false }
     ]
 }
+```
+
+## Install z
+* This make remember common files you were working on a snap
+* `$ touch ~/z.sh`
+* [Copy this code](https://github.com/rupa/z/blob/master/z.sh) and place it inside `~/z.sh`
+* Then, in your `.zshrc` file, include the following and then source your `.zshrc` file again.
+
+```
+# include Z, yo
+. ~/z.sh
 ```
 

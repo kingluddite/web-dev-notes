@@ -2,8 +2,8 @@
 ### Placing markers on the map
 `map.js`
 
-```
-function loadPlaces(map, lat = 43.2, lng = -79.8) {
+```js
+function loadPlaces(map, lat = 47.6, lng = -122.3) {
   axios.get(`/api/v1/stores/near?lat=${lat}&lng=${lng}`)
     .then((res) => {
       const places = res.data;
@@ -22,7 +22,9 @@ function loadPlaces(map, lat = 43.2, lng = -79.8) {
       });
       console.log(markers);
     })
-    .catch(console.log(error));
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 ```
 
@@ -36,13 +38,13 @@ And inside our markers object we have all the place date for each store
 
 ### Houston we have a problem
 * Changing the zoom level is problematic
-* If we arbitrarily change the zoom number it is either to large or too small
+* If we arbitrarily change the zoom number it is either too large or too small
 * And it doesn't center it
 
 #### Fix - Bounds
 `map.js`
 
-```
+```js
 function loadPlaces(map, lat = 43.2, lng = -79.8) {
   axios.get(`/api/v1/stores/near?lat=${lat}&lng=${lng}`)
     .then((res) => {
@@ -76,7 +78,7 @@ function loadPlaces(map, lat = 43.2, lng = -79.8) {
 * Bounds is useful
 * We set bound here
 
-```
+```js
 // create a bounds
 const bounds = new google.maps.LatLngBounds();
 ```
@@ -109,8 +111,8 @@ When you click the marker, nothing happens
 
 `map.js`
 
-```
-function loadPlaces(map, lat = 43.2, lng = -79.8) {
+```js
+function loadPlaces(map, lat = 47.6, lng = -122.3) {
   axios.get(`/api/v1/stores/near?lat=${lat}&lng=${lng}`)
     .then((res) => {
       const places = res.data;
@@ -149,7 +151,7 @@ function loadPlaces(map, lat = 43.2, lng = -79.8) {
 
 * Click on markers and you see we have access to tons of information and to `place` which holds our store info
 
-```
+```js
 // when someone clicks on a marker, show the details of that place
 markers.forEach((marker) => marker.addListener('click', function () {
   console.log(this.place);
@@ -161,7 +163,7 @@ markers.forEach((marker) => marker.addListener('click', function () {
 ## Create HTML for our Info Window
 `map.js`
 
-```
+```js
 // more code
 
 // when someone clicks on a marker, show the details of that place
@@ -185,7 +187,7 @@ map.fitBounds(bounds);
 
 `map.js`
 
-```
+```js
 const markers = places.map(place => {
         const [placeLng, placeLat] = place.location.coordinates;
         const position = { lat: placeLat, lng: placeLng };
@@ -217,7 +219,7 @@ const markers = places.map(place => {
 
 `map.js`
 
-```
+```js
 function makeMap(mapDiv) {
   if (!mapDiv) return;
   // make our map
@@ -237,7 +239,7 @@ function makeMap(mapDiv) {
 
 Update the function with:
 
-```
+```js
 function makeMap(mapDiv) {
   if (!mapDiv) return;
   // make our map

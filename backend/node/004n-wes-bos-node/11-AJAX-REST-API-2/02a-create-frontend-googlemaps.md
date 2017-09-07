@@ -1,11 +1,27 @@
 # Plotting Stores on a Custom Google Map - Part 1
+## Add Map to our navbar
+`/helpers.js`
+
+```js
+exports.menu = [
+  { slug: '/stores', title: 'Stores' },
+  { slug: '/about', title: 'About' },
+  { slug: '/map', title: 'Map' }, // add this line
+  { slug: '/add', title: 'Add' },
+  { slug: '/tags', title: 'Tags' },
+  { slug: '/contact', title: 'Contact' }
+];
+```
+
+![map added to nav](https://i.imgur.com/R50O2rg.png)
+
 * Click on `MAP` link in nav
 * We get a 404
 
 ## Make our route
 `storeController.js`
 
-```
+```js
 router.get('/map', storeController.mapPage);
 
 /*
@@ -18,7 +34,7 @@ router.get('/map', storeController.mapPage);
 ## Render our map page with a title
 `storeController.js`
 
-```
+```js
 exports.mapPage = (req, res) => {
   res.render('map', { title: 'Map' });
 };
@@ -56,15 +72,15 @@ block content
 
 * View in browser
 
-![map page](https://i.imgur.com/Awn3EL5.png)
+![map page](https://i.imgur.com/E2E2snG.png)
 
 ### Create map.js 
 `public/javascripts/modules/map.js`
 
-```
+```js
 import axios form 'axios';
 
-function loadPlaces(map, lat = 43.2, lng = -79.8) {
+function loadPlaces(map, lat = 47.6, lng = -122.3) {
   
 }
 ```
@@ -75,16 +91,15 @@ function loadPlaces(map, lat = 43.2, lng = -79.8) {
 Learn More About Geolocation - Wes Bos JavaScript30 `Geolocation based Speedometer and Compass`
 
 
-* Video will show how you could set the default to be where the current user is location using
+* Video will show how you could set the default to be where the current user is located using:
 
 `navigator.geolocation.getCurrentPosition`
 
 ### Back to map.js
-
-```
+```js
 import axios from 'axios';
 
-function loadPlaces(map, lat = 43.2, lng = -79.8) {
+function loadPlaces(map, lat = 47.6, lng = -122.3) {
 
 }
 
@@ -96,9 +111,9 @@ export default makeMap;
 ```
 
 ### Import and run our map.js code
-`delicious-app.js`
+`tra-app.js`
 
-```
+```js
 import '../sass/style.scss';
 
 import { $, $$ } from './modules/bling';
@@ -116,7 +131,7 @@ makeMap($('#map')); // add this line
 ### Test if we wired it up correctly
 `map.js`
 
-```
+```js
 // more code
 
 function makeMap(mapDiv) {
@@ -137,7 +152,7 @@ On other pages we get a `mapDiv` of **null** so we should always check for it's 
 ### We loaded in the Google Maps JavaScript Library
 `layout.pug`
 
-```
+```js
 // more code
 
 block scripts
@@ -145,3 +160,15 @@ block scripts
 // more code
 ```
 
+`map.js`
+
+```js
+// more code
+
+function makeMap(mapDiv) {
+  if (!mapDiv) return;
+  console.log(mapDiv);
+}
+
+// more code
+```

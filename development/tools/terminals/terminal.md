@@ -1,5 +1,10 @@
 # Terminal
 
+## How to Disable the “Last Login” / MOTD on New Terminal Session
+If you don’t want to see that login message or MOTD again, you can get rid of that ‘Last login’ message at the top of a new terminal by entering the following command to create a ‘hushlogin’ file:
+
+`$ touch .hushlogin`
+
 [10 Terminal Commands that will bost your productivity](https://code.tutsplus.com/articles/10-terminal-commands-that-will-boost-your-productivity--net-14105)
 
 ## How to DNS lookup with Mac Terminal
@@ -17,7 +22,7 @@ And when it got to `bash` in that command, it would open Sublime Text and the ba
 Here was my alias that caused the problem (I also had the alias in both .bash_profile and .zshrc so I had to comment them both out)
 
 `alias bash='sublime ~/.bash_profile'`
- 
+
 I just commented it out and, refreshed with `source ~/.bash_profile` and it worked again. But I wasted two hours trying to figure this out.
 
 ##iTerm2
@@ -718,7 +723,7 @@ you can drag and drop any folder from finder and it will put the full path into 
 
 `$ head style.css`
 
-Will show you the first lines of that file 
+Will show you the first lines of that file
 
 `$ tail style.css`
 

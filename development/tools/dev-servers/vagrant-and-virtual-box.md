@@ -25,7 +25,7 @@ But an easier way is to install homebrew.
 We just need to add the cask tap and then install brew cask.
 
 ```
-$ brew install caskroom/cask/brew-cask
+$ brew install cask
 ```
 
 [source of this info](http://sourabhbajaj.com/mac-setup/Vagrant/README.html)
@@ -51,6 +51,8 @@ Add the Vagrant box you want to use.
 $ vagrant box add precise64 http://files.vagrantup.com/precise64.box
 ```
 
+* This will create the Vagrant file
+* Make sure you are inside the place you want to run Vagrant from
 ```
 $ vagrant init precise64
 ```
