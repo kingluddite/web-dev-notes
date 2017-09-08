@@ -889,3 +889,21 @@ User settings;
 }
 
 ```
+
+## How to remove empty spaces in document
+1. Select the text
+2. Press:
+
+* `Ctrl` + H on PC, or
+* `Command` + `Alt` + `F` on Mac or
+* Click `Find->Replace`.
+* Make sure you have selected 'regular expression' by pressing:
+
+* `Alt` + `R` on PC or
+* `Command` + `Alt` + `R` on Mac or
+* Click `.*` in the Find box.
+* Find what: `^\n`
+* Replace With: (_nothing, leave in blank_)
+
+## Reg Ex Phone number
+`[0-9]{3}+[.]+[0-9]{3}+[.]+[0-9]{4}`
