@@ -254,7 +254,7 @@ module.exports = mongoose.model('User', userSchema);
 
 `User.js`
 
-```
+```js
 // more code
 const userSchema = new Schema({
   email: {

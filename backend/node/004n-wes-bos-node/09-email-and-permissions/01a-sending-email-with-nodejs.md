@@ -1,7 +1,7 @@
 # Sending email with Nodejs - Part 1
 * Take pug file and convert to HTML ready email
 * Take CSS and inline it
-    - HTML email is a nightmare (very hard)
+    - HTML email is a nightmare (_very hard_)
     - All CSS must be inlined into HTML emails in order to ensure it works across all different types of email Clients
 
 ## Mailtrap
@@ -30,7 +30,7 @@ Update these values:
 
 `variables.env`
 
-* port and host are already set up for mailtrap
+* `port` and `host` are already set up for mailtrap
 * Put in your username and password
 
 ```

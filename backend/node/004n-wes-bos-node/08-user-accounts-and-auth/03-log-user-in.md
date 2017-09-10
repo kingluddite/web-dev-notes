@@ -150,7 +150,7 @@ require('./handlers/passport'); // add this line
 * You are redirected to the home page
 
 ### Troubleshoot Login
-If you are having problems logging in it may be your email and normalizeEmail
+If you are having problems logging in it may be your `email` and `normalizeEmail`
 
 `userController.js`
 

@@ -38,7 +38,7 @@ block content
 ## Steps in resetting a password
 1. First check if that user has an email address on file
 2. If they do
-    * We will set a token in their user object
+    * We will set a token in their `user` object
         + A password reset token
     * And a expires date
         - The person requests the password be reset and they only have an hour to do the reset (_For security's sake_)
@@ -132,7 +132,7 @@ if (!user) {
 * That is where `crypto` comes in
 * It is built right into `Node.js`
 * Enables us to get **crytographically secure random strings**
-* This module is built into `Node.js` - You don't have to install in
+* This module is built into `Node.js` - You don't have to install it
     - `crypto.randomBytes(20).toString('hex')`
 
 ### Import crypt

@@ -7,7 +7,7 @@
 ### Create the route that points to the controller
 `index.js`
 
-```
+```js
 // 1. Validate the registration data
 // 2. Register the user
 // 3. We need to log them in
@@ -22,13 +22,13 @@ module.exports = router;
 ## Build our register controller
 `userController.js`
 
-```
+```js
 exports.register = async (req, res, next) => {
   
 };
 ```
 
-### Fix stuff - Why spelling is package.json can help us
+### Fix stuff - Why spelling is `package.json` can help us
 We made a couple mistakes
 
 #### Wrong import
@@ -44,7 +44,7 @@ This is wrong
 
 `package.json`
 
-```
+```js
 // more code
     "passport-local": "1.0.0",
     "passport-local-mongoose": "4.0.0",
@@ -56,11 +56,11 @@ This is wrong
 // more code
 ```
 
-So we update our require to the correctly spelled package
+* So we update our require to the correctly spelled package
 
 `User.js`
 
-```
+```js
 const mongoose = require('mongoose');
 const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
@@ -74,7 +74,7 @@ const Schema = mongoose.Schema;
 ### Import our User Model
 `start.js`
 
-```
+```js
 // more code
 
 // import all of our models
@@ -87,7 +87,7 @@ require('./models/User'); Add this line!
 ## Tell our controller about our User model
 `userController.js`
 
-```
+```js
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
@@ -95,7 +95,7 @@ const User = mongoose.model('User');
 ```
 
 ### Why are we not requiring the user model?
-* How can we do that?
+#### How can we do that?
 * Because we already imported `User` in `start.js`
 
 `start.js`
@@ -113,7 +113,7 @@ require('./models/User');
 
 `userController.js`
 
-```
+```js
 const mongoose = require('mongoose');
 const promisify = require('es6-promisify'); // add this line
 const User = mongoose.model('User');
@@ -132,16 +132,16 @@ const User = mongoose.model('User');
 ![access field names](https://i.imgur.com/yHLYeq8.png)
 
 * Those are the three fields we need to access
-    - req.body.name
-    - req.body.email
-    - req.body.password
+    - `req.body.name`
+    - `req.body.email`
+    - `req.body.password`
 
-#### .register(model, password, callback())
+#### `.register(model, password, callback())`
 * This method will take our password
 * Hash it
 * Save it to our database
-* Why are we using a callback()? Aren't we using asyn-await?
-    - Yes but the `.register()` library doesn't return a Promise
+* Why are we using a `callback()`? Aren't we using `async-await`?
+    - Yes but the `.register()` Library doesn't return a Promise
     - This is common when using external Libraries that are not using Promises just yet
         + When this happens you have two choices
             * Use their callback
@@ -163,14 +163,14 @@ userSchema.plugin(mongodbErrorHandler);
 module.exports = mongoose.model('User', userSchema);
 ```
 
-* We tell it that `email` will be the username field
+* We tell it that `email` will be the `username` field
     - Some sites use **username** instead of email and this just gives us a choice
     - We are using the **email** to log people in
 
 ##### Where did .register() come from?
 `User.js`
 
-```
+```js
 // more code
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 // more code
@@ -226,7 +226,7 @@ md5() -----> **"8b1a9953c4611296a827abf8c47804d7"**
 
 * Make the names make more sense
 
-```
+```js
 // more code
 exports.register = async (req, res, next) => {
   const user = new User({ email: req.body.email, name: req.body.name });

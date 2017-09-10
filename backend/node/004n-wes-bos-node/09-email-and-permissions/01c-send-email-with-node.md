@@ -355,7 +355,7 @@ const generateHTML = (filename, options = {}) => {
 * In our case it will be `password-reset.pug`
 
 ## Houston we have a problem!
-* Whenever you pass a function a reference to something on your `disc` you don't know where you are in the folder system
+* Whenever you pass a function a reference to something on your computer's physical disc you don't know where you are in the folder system
 * We know our `mail.js` is in the `handlers` folder but `renderFile()` is in a completely different folder and because of this it will get mixed up
 
 ### __dirname
@@ -451,7 +451,7 @@ const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordT
 
 ![mail.send() options](https://i.imgur.com/7J5hbpO.png)
 
-* Then when we called generateHTML() and passed it `options`
+* Then when we called `generateHTML()` and passed it `options`
 
 ![generateHTML options](https://i.imgur.com/3uRtEqn.png)
 
@@ -465,7 +465,7 @@ const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordT
 
 ## Whew!
 
-### We need to make a couple improvements
+### We need to make a couple of improvements
 * Our `text` hasn't been properly updated in our email
 * We need to add `inline CSS`
     - Our email looks fine in the Chrome browser but if you open it up in Windows XP 95, it will look really bad because CSS should be inlined
@@ -500,7 +500,7 @@ exports.send = async (options) => {
 };
 ```
 
-* Maybe some of the people you are sending this to are reading their emails on VIM so we can provide them with a text only email
+* Maybe some of the people you are sending this to are reading their emails on the VIM text editor so we can provide them with a text only email
 
 #### Test if text is working
 * Reset your password again and check mailtrap

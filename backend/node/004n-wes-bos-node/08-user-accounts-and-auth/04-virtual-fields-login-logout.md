@@ -270,7 +270,7 @@ const md5 = require('md5'); // add this line
 // more code
 userSchema.virtual('gravatar').get(function() {
   const hash = md5(this.email);
-  return `https://gravatar.com/avatar/${hash}?s=200`;
+  return `https://gravatar.com/avatar/${hash}?s=75`;
 });
 // more code
 ```

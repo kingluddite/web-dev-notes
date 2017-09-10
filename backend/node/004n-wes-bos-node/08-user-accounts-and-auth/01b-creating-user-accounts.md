@@ -269,7 +269,7 @@ module.exports = router;
 ## Test it!
 * Let's break it on purpose to see if this is working
 * Manually remove `require` from `_registerForm.pug`
-  - This will remove CLient side validation and leave us with just our server side validation
+  - This will remove Client side validation and leave us with just our server side validation
   - Inspect the code in the Chrome dev toolbar `Elements` tab and manually remove the `required="required"` from the **name** and **email** fields
 
 ![removing required](https://i.imgur.com/R1zbHpY.png)

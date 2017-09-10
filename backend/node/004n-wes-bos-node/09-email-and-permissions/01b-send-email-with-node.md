@@ -106,7 +106,7 @@ const sendMailPromisify = promisify(transport.sendMail, transport);
 ```
 
 * **Remember** `transport` is our mailtrap
-* Good News - ones you swap out your `variables.env` for a production one, that will all just naturally work and hook up when you move onto a production level email sending app like Postmark (which actually does send your email)
+* Good News - ones you swap out your `variables.env` for a production one, that will all just naturally work and hook up when you move onto a production level email sending app like `Postmark` (which actually does send your email)
 
 ### use your new promisified send() method
 `return sendMail(mailOptions);`

@@ -1,9 +1,16 @@
 # Pushing User Data to our API - Part 3
+* Let's finish up our work on the heart form
 
 ### Ajax working
+* We will add our Ajax using axios
+* This form will output `this` (will show us which form was clicked)
+* On click we post a request to the API
+* We collect the response in a Promise and just log out the data
+* We catch any errors if they happen to help us troubleshoot
+
 `heart.js`
 
-```
+```js
 import axios from 'axios';
 
 function ajaxHeart(event) {
@@ -14,24 +21,33 @@ function ajaxHeart(event) {
     .then((res) => {
       console.log(res.data);
     })
-    .catch(console.error);
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 export default ajaxHeart;
 ```
 
 ### Test
-* If you click on an `unhearted` heart and you'll see an object eventually appear in console
-* Expand the object and you'll see your hearts array
-* Expand the hearts array and it shows all store ids
-* Refresh page and you'll see a red heart
-* click Heart again and object appears in console
-* View hearts array and the store id has been removed
+Let's show the behavior of make a heart red (_you like_) or making a heart white (_you are indifferent_)
 
-### Make our heart number and heart colors update without page refresh
+* If you click on an `unhearted` heart and you'll see an object eventually appear in console
+* Expand the object and you'll see your `hearts` array
+* Expand the hearts array and it shows all **store** `id`s
+* Refresh page and you'll see a red heart
+* Click the heart again and object appears in console
+* View hearts array and the store `id` has been removed
+
+## Houston we have a problem!
+* Our hearts don't update without a page refresh
+
+### Solution!
+* Make our heart number and heart colors update without page refresh
+
 `heart.js`
 
-```
+```js
 import axios from 'axios';
 
 function ajaxHeart(event) {
@@ -48,27 +64,34 @@ function ajaxHeart(event) {
 export default ajaxHeart;
 ```
 
-* `this.heart` is the `form` and inside their is a button with a name of `heart`
-* If you have `this` (our form tag)
-* And you have any elements inside form that have a `name` attribute, you can access those element using `this.heart` (or this.(whatever the name attribute is))
+* `this.heart` is the `form` and inside there is a button with a name of `heart`
+* If you have `this` (_our form tag_)
+* And you have any elements inside form that have a `name` attribute
+* Then you can access those element using `this.heart`
+    - Or `this.[WHATEVER THE NAME ATTRIBUTE IS]`
 
 `const isHearted = this.heart.classList.toggle('heart__button--hearted');`
 
+### Watch out for this common error!
 * Make sure you don't preface the class name with a **dot** `.`
 * This would be wrong
     - `this.heart.classList.toggle('.heart__button--hearted');`
 
 ### View in browser
 * Click on hearts and you will see `true` or `false`
-    - `true` if it is heart
-    - `false` if it is unhearted
+    - `true` if it is heart (liked)
+    - `false` if it is unhearted (not liked)
 * Refresh page to see total heart count in nav updated
 * The red/white is now dynamic
 
-### We need to dynamically update our heart number in nav
+### Houston we have a problem!
+* We need to dynamically update our heart number in nav
+
+#### Solution
+
 `heart.js`
 
-```
+```js
 import axios from 'axios';
 import { $ } from './bling';
 

@@ -54,12 +54,11 @@ form.heart(method="POST" action=`/api/v1/stores/${store._id}/heart`)
       * If there is a match, we add the store in the variable the class name of `heart__button--hearted`
       * If there is not we do not add a class (variable value is empty)
 
-![color hearts added](https://i.imgur.com/hUj1JjF.png)
+![color hearts added](https://i.imgur.com/wfQknRW.png)
 
 ## Add functionality to make heart counter, heart update without leaving page
 * This means Ajax
 * This means a better user experience
-
 * Create `public/javascripts/modules/heart.js`
 
 `heart.js`
@@ -121,6 +120,10 @@ heartForms.on('submit', ajaxHeart);
 * We can listen for multiple events on multiple forms on a nodeList rather than having to loop over every single one
 
 ### Turn off default form value
+* We don't want to go to a new page when we click on the heart form
+* So we add `event.preventDefault()` in JavaScript
+* You will see this used a lot when working with Ajax
+
 `heart.js`
 
 ```js
@@ -128,6 +131,7 @@ import axios from 'axios';
 
 function ajaxHeart(event) {
   event.preventDefault();
+  console.log(this);
   console.log('hearted!');
 }
 
@@ -140,20 +144,5 @@ export default ajaxHeart;
 * We stop the default
 * And now we are ready to take over with JavaScript
 * We will now make the POST happen with JavaScript rather than have the browser POST the data for us
-
-### What will `this` be equal to?
-`delicious-app.js`
-
-```
-import axios from 'axios';
-
-function ajaxHeart(event) {
-  event.preventDefault();
-  console.log(this);
-}
-
-export default ajaxHeart;
-```
-
-* It will be equal to whatever form was submitted
+* We log out `this` and you'll see that it is equal to the heart form that was submitted
 
