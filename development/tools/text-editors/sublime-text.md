@@ -344,7 +344,11 @@ If you want to copy your vintage to the machine clipboard
 
 `"*y`
 
-Vintage includes most basic actions:
+### Select multiple cursors keyboard shortcut
+* `shift-alt-down` or `shift-alt-up` to put multi-cursor at multiple lines
+* Or you can select multiple lines first, then selection -- split into lines (in Mac, you can use `cmd-shift-L`
+
+## Vintage includes most basic actions:
 
 Key | Function
 --- | --- |
