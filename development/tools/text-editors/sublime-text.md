@@ -25,6 +25,8 @@ import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d
 ### Add the following packages using: `cmd` + `shift` + `p` (for each one)
 * SidebarEnhancements
 * Advanced New File
+* AutoFileName
+  - Give you dropdown of path to assets
 * Markdown Extended
 * Markdown Preview
 * Oceanic Next Color Scheme
@@ -841,6 +843,9 @@ Scopehunter - shows you the scope you are in, useful for stuff like you want tab
 
 ## Add closing comment tags HTML
 [article](http://iaintnoextra.tumblr.com/post/68089741466/automatically-add-closing-comments-to-html-using)
+
+* Just paste this code into the user emmet package
+* [emmet user settings for closing comments]( http://pastebin.com/RWd7MreL)
 
 ## Using jsPrettier package
 User settings;
