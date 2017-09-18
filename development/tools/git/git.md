@@ -477,3 +477,7 @@ Add a comment just so people know
 ### How do I push all tags?
 `$ git push --tags`
 
+### How do I rename the current branch?
+`$ git branch -m <newname>`
+
+

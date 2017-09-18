@@ -21,7 +21,7 @@ We need to create a new route
 ### Add our new route
 `index.js`
 
-```
+```js
 // more code
 
 // Do work here
@@ -42,7 +42,7 @@ We will use the `getStores()` method
 
 `storeController.js`
 
-```
+```js
 // more code
 
 exports.getStores = async (req, res) => {
@@ -87,7 +87,7 @@ page 2
 
 `storeController.js`
 
-```
+```js
 exports.getStores = async (req, res) => {
   // create variable for what page we are on
   const page = req.params.page || 1;
@@ -142,7 +142,7 @@ mixin pagination(page, pages, count)
 
 `storeController.js`
 
-```
+```js
 // more code
 
 exports.getStores = async (req, res) => {
@@ -196,7 +196,7 @@ To
 ## Bring it all together
 `storeController.js`
 
-```
+```js
 exports.getStores = async (req, res) => {
   // create variable for what page we are on
   const page = req.params.page || 1;
@@ -279,7 +279,7 @@ if (!stores.length && skip) {
 
 `storeController.js`
 
-```
+```js
 exports.getStores = async (req, res) => {
   // create variable for what page we are on
   const page = req.params.page || 1;
@@ -321,7 +321,7 @@ We will sort by last created
 
 `storeController.js`
 
-```
+```js
 exports.getStores = async (req, res) => {
   // create variable for what page we are on
   const page = req.params.page || 1;

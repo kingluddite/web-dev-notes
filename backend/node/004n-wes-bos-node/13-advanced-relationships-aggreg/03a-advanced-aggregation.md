@@ -1,17 +1,19 @@
 # Advanced Aggregation - Part 1
 * Working on `/top`
-* Listo fo top 10 stores based on their average rating
+* List of top 10 stores based on their average rating
 * How do you query stores on computed fields?
 * This is a perfect use case of an aggregation
 
 ## What is Aggregation again?
-What you use in `MongoDB` when you use multi-step, very complex queries
+* What you use in `MongoDB` when you use multi-step, very complex queries
 
 ### What is our multi-step, complex query?
 1. Grab a list of all our stores
 2. Populate their ratings
 3. Find out what the average rating of that store is
-4. We also want to filter out any stores that only have 1 rating because one person could rate it 5 stars and it goes right to the top
+4. We also want to filter out any stores that only have 1 rating
+    * Because one person could rate it 5 stars and it goes straight to the top
+    * Prevent users from `gaming the system`
 
 ### Create `/top` route
 * If we click on `Top` in navbar we get a 404
@@ -19,47 +21,52 @@ What you use in `MongoDB` when you use multi-step, very complex queries
 
 `index.js`
 
-```
+```js
 // more code
 
 router.get('/top', catchErrors(storeController.getTopStores));
 
+/*
+  API
+*/
 // more code
 ```
 
 ### Create the `getTopStores()` method in our controller
 `storeController.js`
 
-```
+```js
 exports.getTopStores = async (req, res) => {
   const stores = await Store.getTopStores();
-  res.render('topStores', { stores, title: '⭐ Top Stores' });
+  res.render('topStores', { stores, title: 'Top Stores' });
 };
 ```
 
 ### General rule
 * Any time you have a complex query, it is not great to do that inside of your controller, it is recommended to put that on the Model itself
-    - Using `find()` is find in the Controller
+    - Using `find()` is fine in the Controller
     - But when you have 7 or 8 lines of query, put that in the Model
 
 `Store.js`
 
-```
-storeSchema.statics.getTopStores = function () {
- return this.aggregate([
-  // Look Stores and populate their reviews
-  // filter for only items that have 2 or more reviews
-  // Add the average reviews filed
-  // sort it by our new field, highest reviews first
-  // limit to at most 10
- ]);
+```js
+storeSchema.statics.getTopStores = function() {
+  return this.aggregate(
+    [
+      // Lookup Stores and populate their reviews
+      // filter for only items that have 2 or more reviews
+      // Add the average reviews field
+      // Sort it by our new field, highest reviews first
+      // limit to at most 10
+    ]
+  );
 };
 ```
 
 * `aggregate()`
     - Is like a query function
     - Is similar to `.find()` but enables us to accomplish much more complex tasks
-    - We return `aggregate()` which returns a Promise so when we call this back in `storeController.js` we can **await** the result of `getTopStores()` and put it into our `stores` variable
+    - We return `aggregate()` which returns a **Promise** so when we call this back in `storeController.js` we can **await** the result of `getTopStores()` and put it into our `stores` variable
 
 
 `storeController.js`
@@ -68,7 +75,7 @@ storeSchema.statics.getTopStores = function () {
 
 ### Digging in to `aggregate()`
 #### Lookup stores and populate their reviews
-* Can we use virtual review thatw we used here?
+* Can we use virtual review that we used here?
 
 `Store.js`
 
@@ -76,25 +83,25 @@ storeSchema.statics.getTopStores = function () {
 storeSchema.virtual('reviews', {
   ref: 'Review', // what model to link
   localField: '_id', // which field on the store?
-  foreignField: 'store' // which field on the review?
+  foreignField: '_store' // which field on the review?
 });
 ```
 
-* No we can not use virtual reviews
+* **No!** we can not use virtual reviews
 * Because virtual reviews is a Mongoose specific thing
-* aggregate() is not Mongoose specific, it passes it straight through to `MongoDB`
+* `aggregate()` is not Mongoose specific, it passes it straight through to `MongoDB`
 * This is a con to Mongoose specific queries because you can't use them every possible place because something like aggregate is a lower level `MongoDB` method and it doesn't know about the higher level Mongoose methods
 
 ## Todo list
-1. Get list of all stores where each store has their list of reviews populated
+### 1. Get list of all stores where each store has their list of reviews populated
 
-```
+```js
 storeSchema.statics.getTopStores = function () {
  return this.aggregate([
   // Look Stores and populate their reviews
    {
      $lookup: {
-       from: 'reviews', localField: '_id', foreignField: 'store', as: 'reviews'
+       from: 'reviews', localField: '_id', foreignField: '_store', as: 'reviews'
      }
    }
   // filter for only items that have 2 or more reviews
@@ -105,7 +112,7 @@ storeSchema.statics.getTopStores = function () {
 };
 ```
 
-Notice how it is similar to what we did with Mongoose:
+* Notice how it is similar to what we did with Mongoose:
 
 ```
 storeSchema.virtual('reviews', {
@@ -115,18 +122,19 @@ storeSchema.virtual('reviews', {
 });
 ```
 
-But we use `from: 'reviews` and with mongoose we used `ref: 'Review'`
+* But we use `from: 'reviews'` and with mongoose we used `ref: 'Review'`
 
-What is happening with `MongoDB` is it Takes our Model `Review`, automatically makes it lowercase and adds an `s` at the end to generate `'reviews'`
+## What is happening with `MongoDB`?
+* MongoDB takes our Model `Review`, automatically makes it lowercase and adds an `s` at the end to generate `'reviews'`
 
 ### Now let's test to see what we have so far with JSON
 `storeController.js`
 
-```
+```js
 exports.getTopStores = async (req, res) => {
   const stores = await Store.getTopStores();
   res.json(stores);
-  // res.render('topStores', { stores, title: '⭐ Top Stores' });
+  // res.render('topStores', { stores, title: 'Top Stores' });
 };
 ```
 
@@ -134,17 +142,19 @@ exports.getTopStores = async (req, res) => {
 * You will see list of stores and all have a reviews field
 * `as` will name the field inside the list of stores
 
-2. Filter for stores that only have 2 or more reviews
+![as reviews](https://i.imgur.com/ZZMzaXQ.png)
+
+### 2. Filter for stores that only have 2 or more reviews
 
 `Store.js`
 
-```
+```js
 storeSchema.statics.getTopStores = function () {
   return this.aggregate([
   // Look Stores and populate their reviews
     {
       $lookup: {
-        from: 'reviews', localField: '_id', foreignField: 'store', as: 'reviews'
+        from: 'reviews', localField: '_id', foreignField: '_store', as: 'reviews'
       }
     },
    // filter for only items that have 2 or more reviews
