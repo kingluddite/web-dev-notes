@@ -42,8 +42,9 @@ exports.getTopStores = async (req, res) => {
 };
 ```
 
-### General rule
-* Any time you have a complex query, it is not great to do that inside of your controller, it is recommended to put that on the Model itself
+### General rule - Any time you have a complex query...
+* It is not great to do that inside of your controller
+* Instead, it is recommended to put that on the Model itself
     - Using `find()` is fine in the Controller
     - But when you have 7 or 8 lines of query, put that in the Model
 
@@ -88,9 +89,15 @@ storeSchema.virtual('reviews', {
 ```
 
 * **No!** we can not use virtual reviews
-* Because virtual reviews is a Mongoose specific thing
-* `aggregate()` is not Mongoose specific, it passes it straight through to `MongoDB`
-* This is a con to Mongoose specific queries because you can't use them every possible place because something like aggregate is a lower level `MongoDB` method and it doesn't know about the higher level Mongoose methods
+
+### Mongo vs Mongoose "specific"
+* Because virtual reviews is a **Mongoose specific** thing
+* `aggregate()` is **not Mongoose specific**, it passes it straight through to `MongoDB`
+
+#### Mongoose "Con" when using specific queries
+* Because you can't use them every possible place
+* Because something like `aggregate` is a lower level `MongoDB` method
+* And it doesn't know about the higher level Mongoose methods
 
 ## Todo list
 ### 1. Get list of all stores where each store has their list of reviews populated
@@ -114,7 +121,7 @@ storeSchema.statics.getTopStores = function () {
 
 * Notice how it is similar to what we did with Mongoose:
 
-```
+```js
 storeSchema.virtual('reviews', {
   ref: 'Review', // what model to link
   localField: '_id', // which field on the store?
@@ -122,10 +129,13 @@ storeSchema.virtual('reviews', {
 });
 ```
 
-* But we use `from: 'reviews'` and with mongoose we used `ref: 'Review'`
+* But we use `from: 'reviews'` with Mongo
+* And we use `ref: 'Review'` with Mongoose
 
-## What is happening with `MongoDB`?
-* MongoDB takes our Model `Review`, automatically makes it lowercase and adds an `s` at the end to generate `'reviews'`
+## What is happening with `MongoDB` and our collection name?
+1. Mongo takes our Model `Review`
+2. Mongo automatically makes it lowercase
+3. And Mongo adds an `s` at the end to generate `'reviews'`
 
 ### Now let's test to see what we have so far with JSON
 `storeController.js`
@@ -167,11 +177,12 @@ storeSchema.statics.getTopStores = function () {
 ```
 
 * We are looking for a match of `reviews.1`
-    - This is how you find the second review in MongoDB
-    - JavaScript would use arrays and say reviews[1]
+    - This is how you **find the second review in MongoDB**
+        + JavaScript would use arrays and say reviews[1]
     - But this way if there is only 1 review, then that review will be filtered out
-    - Only 2 review or more will be in the query
-    - Here is a screenshot of a store with no reviews
+    - Only 2 reviews or more will be in the query
+  
+* Here is a screenshot of a store with no reviews
 
 ![no review](https://i.imgur.com/8CwIsUN.png)
 
@@ -185,6 +196,36 @@ I only now have 3 stores with 2 or more reviews
 ### We need more data
 * Before we didn't have a reviews field when we loaded sample data
 * Now we will delete our existing data and repopulate with review data
+
+#### Exporting data from MongoDB
+* If you sign onto `mlab.com`, it will give you the code you need to type in the terminal if you log in and click on your database and then select the `Tools` option in the navbar
+
+`% mongoexport -h ds019028.mlab.com:19028 -d the-retail-apocalypse -c <collection> -u <user> -p <password> -o <output file>`
+
+* You need to enter the `username` and `password` for this datbase (and not the username and password to log into the site)
+* You need to install `mongodb` locally
+  - `$ brew install 
+* Run the above `mongoexport` command in the terminal with the correct collection name, username, and path to the output file
+    - You do not need to first create this file
+    - If you do not specify a path it will create the file in the current directory
+    - I like to navigate to the spot I want to place it in the computer, then type `$ pwd` to get the path and then I enter that path
+      + Here is an example:
+
+```
+mongoexport -h ds019028.mlab.com:19028 -d the-retail-apocalypse -c reviews -u my-user-name-here -p lamepassword -o /Users/howley/Desktop/reviews.json
+```
+
+mongodump -h ds019028.mlab.com:19028 -d the-retail-apocalypse -c reviews -u peh2admin -p j2V7TXrTKBIITK3gzUsv -o /Users/howley/Desktop/test.csv --csv -f
+
+mongoexport -h ds019028.mlab.com:19028 -d the-retail-apocalypse -c <collection> -u <user> -p <password> -o <output .csv file> --csv -f <comma-separated list of field names>
+
+  mongo ds019028.mlab.com:19028/the-retail-apocalypse -u peh2admin -p j2V7TXrTKBIITK3gzUsv
+
+mongodump -h ds019028.mlab.com:19028 -d the-retail-apocalypse -c <collection> -u <user> -p <password> -o <output directory>
+
+mongo ds019028.mlab.com:19028/the-retail-apocalypse -u <dbuser> -p <dbpassword>ort a collection as JSON
+
+
 
 #### Comment in the lines we previously commented out
 All lines have to do with the `Review` Model
