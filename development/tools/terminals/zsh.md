@@ -1,5 +1,20 @@
 # The ZSH shell
 
+## truncate the shell
+1. Open .zshrc
+2. Add this function
+
+```
+# more code
+prompt_dir() {
+    prompt_segment blue black "%-53<...<%~%<<"
+}
+```
+
+3. Refresh your `.zshrc`
+
+`$ source ~/.zshrc`
+
 ## Install Z
 # Download to latest to home dir
 wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O ~/z.sh
