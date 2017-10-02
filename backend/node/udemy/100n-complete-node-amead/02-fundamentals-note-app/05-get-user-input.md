@@ -201,6 +201,34 @@ module.exports = {
 
 `$ node app.js remove --title=secret`
 
+* or
 
+`$ node app.js remove --title accounts`
+
+* Output is:
+
+![yargs output](https://i.imgur.com/gbLflml.png)
+
+## Takeaway
+* Parsing `process.argv` is not easy
+* **yargs** parses it for us and makes the arguments more accessible
+* We now have a mechanism for CRUD
+  - Saving, Reading, Deleting, Adding notes
+
+### Quick update
+`app.js`
+
+```js
+// more code
+const argv = yargs.argv;
+// const command = process.argv[2];
+const command = argv._[0];
+// more codes
+```
+
+* Now we are using `yargs` everywhere
+
+## Next
+* Using JSON to store our notes inside our file system
 
 
