@@ -1,4 +1,19 @@
 # Intro to Vim
+## Set up Vim
+* here is my [.vimrc](https://gist.github.com/kingluddite/c32c77724c4705bd05fa17080cfed95e)
+* here is my [.zshrc](https://gist.github.com/kingluddite/773fa05efffe05b6b56e7d599cef1dfa)
+* Install Firacode with brew
+
+`$ brew tap caskroom/fonts`
+
+`$ brew cask install font-fira-code` (ref - https://github.com/tonsky/FiraCode/wiki)
+
+* Make this your setting in iTerm2
+
+![iterm preferences](https://i.imgur.com/tUqDvl3.png)
+
+* I use Vundle instead of pathogen
+
 ## Keyboard Shortcuts
 * vim
     - Enter vim
