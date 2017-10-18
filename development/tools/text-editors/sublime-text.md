@@ -34,6 +34,8 @@ import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d
 * Seti_UI
 * HTML-CSS-Javasript Prettify
 * LiveReload
+* JavaScript ES6 Next Syntax
+* JavaScript Babel (if you are working with React)
 * Emmet
 * OpenInBrowser
 * Origami

@@ -1,5 +1,20 @@
 # The ZSH shell
 
+## truncate the shell
+1. Open .zshrc
+2. Add this function
+
+```
+# more code
+prompt_dir() {
+    prompt_segment blue black "%-53<...<%~%<<"
+}
+```
+
+3. Refresh your `.zshrc`
+
+`$ source ~/.zshrc`
+
 ## Install Z
 # Download to latest to home dir
 wget https://raw.githubusercontent.com/rupa/z/master/z.sh -O ~/z.sh
@@ -100,26 +115,58 @@ Open that file in Sublime Text and change the `ZSH_THEME`.
 ZSH_THEME="agnoster"
 ```
 
-## Take the shorter PATH 
-One of the first things that bugged me is the long file paths in the Zsh. It made working in zsh problematic. There is an easy solution where you just show the parent and grandparent directorires only.
+## `.zshrc` Make your terminal cool looking
+* [link to my .zshrc](https://gist.github.com/kingluddite/773fa05efffe05b6b56e7d599cef1dfa)
+* shorten the path
 
-This is the function that creates the path you see output in the `zsh`
 
-```bash
-prompt_dir() {
-  prompt_segment blue black '%2/'
-  #echo $(pwd | sed -e "s,^$HOME,~," | sed "s@\(.\)[^/]*/@\1/@g")
-  #echo $(pwd | sed -e "s,^$HOME,~,")
-}
+### Add useful plugins 
+* Add [syntax highlighting plugin](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+  - install
+    + `$ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
+    + add to plugin list `.zshrc`
+      * ` plugins=( [plugins...] zsh-syntax-highlighting)`
+    + **zfrash!**
+* Add [autosuggest](git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions)
+* The font may be hard to see on augosuggest so go into iTerm2 and adjust it accordingly
+  - install
+    + `$ git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions`
+    + add to plugin list in `.zshrc`
+      * `plugins=(zsh-autosuggestions)`
+    + **zfrash!**
+* [alias-tips](https://github.com/djui/alias-tips)
+
+## ag
+Z is great when you’re moving to a specific directory, but what if you want to find a certain file or line of code? That’s where the silver searcher comes in. The silver search, aka ag, is great. It is an improvement over the many tools there are for searching on the command line. The biggest thing is that it is SUPER FAST. There are a lot of technical things in does in the background to get that speed, but the thing you should know is that it is fast.
+
+You can easily search your entire codebase for a certain function call, or for a file you can’t remember where it was, anything you want. To put it in perspective, I just searched the entire WordPress codebase for wp_insert_post(), and it returned all the results in less than 1/10 of a second. And this is on a four year old machine. Pretty good.
+
+To install `ag`, simply do `$ brew install the_silver_searcher`, and you’re all good to go.
+
+## Install Z
+* Tracks your most used directories, based on **frecency**
+* [link to z](https://github.com/rupa/z)
+  - install with:
+    + Download `z.sh` file
+    + Copy the `raw` code and save to $HOME directory
+    + Save as `z.sh`
+    + [watch video of installing z.sh](https://www.youtube.com/watch?v=qbNn5zJLZU0)
+    + Open `~/.zshrc` and add this after your alias'
+    
+    ```
+    # include Z
+    . ~/z.sh
+    ```
+
+    + Works with a small DB so the more the use it the more it **learns**
+
+## Start .zshrc in your `experiments` folder
+`.zshrc`
+
 ```
-
-Since I have the number 2, I will only ever see 2 directories
-
-Something that looks like this:
-![long zsh path](https://i.imgur.com/PvHKlxX.png)
-
-Can be made to look like this:
-![short zsh path](https://i.imgur.com/IJWU6Gg.png)
+# Start in experiments
+cd ~/Documents/dev/experiments
+```
 
 ### What is my Path?
 If you ever need to find out the full path, just type `$ pwd`.
@@ -141,132 +188,6 @@ $ cd ~/.oh-my-zsh/themes/
 ```
 
 I'm using the `cobalt2` theme so I opened that theme up and commented out the existing code _(comments are made using #)_
-
-### Some cool alias' and other butes for your .zshrc
-
-`.zshrc`
-
-* Add this to your .zshrc file
-
-```
-# =================
-# Aliases
-# =================
-
-# =================
-# Web Dev Tools
-# =================
-
-# open bash config file (.bash_profile)
-alias bsh='sublime ~/.bash_profile'
-
-# open zsh config file (.zshrc)
-alias zash='sublime ~/.zshrc'
-
-# refresh the bash
-alias refrash='source ~/.bash_profile'
-
-# refrash the zsh
-alias zfrash='source ~/.zshrc'
-
-# sass
-alias sasswatch='sass --watch scss:css'
-
-# =================
-# My Web Dev Notes
-# =================
-alias notes='cd ~/Documents/dev/web-dev-notes'
-
-# =================
-# Navigate Files
-# =================
-
-alias md='mkdir'
-alias sites='cd ~/Sites/'
-alias dev='cd ~/Documents/dev'
-alias desk='cd ~/Desktop'
-alias ..='cd ../'
-# go back one directory
-alias b='cd ..'
-alias ...='cd ../../'                       # Go back 2 directory levels
-alias .3='cd ../../../'                     # Go back 3 directory levels
-alias .4='cd ../../../../'                  # Go back 4 directory levels
-alias .5='cd ../../../../../'               # Go back 5 directory levels
-alias .6='cd ../../../../../../'            # Go back 6 dir
-
-# History lists your previously entered commands
-alias h='history'
-
-# confirm before executing and be verbose
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias rm='rm -iv'
-alias mkdir='mkdir -pv'
-
-# ================
-# OS Aliases
-# ================
-
-# Show all processes running
-alias ps='ps aux'
-
-# Hide/show all desktop icons (useful when presenting)
-alias hide_desktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias show_desktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-# Hide/show hidden files in Finder
-alias hide_files="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
-alias show_files="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
-
-# ================
-# Application Aliases
-# ================
-alias chrome='open -a "Google Chrome"'
-alias db='cd ~/Dropbox'
-alias sop='sublime .'
-alias phub='hub browse .'
-
-# =================
-# Mongo Stuff
-# =================
-# Kill Mongo process when it gets hung up
-alias monkill='ps aux | grep mongod'
-alias fm='ps aux | grep mongo'
-
-# http://jorge.fbarr.net/2011/03/24/making-your-bash-history-more-efficient/
-# Larger bash history (allow 32Â³ entries; default is 500)
-export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
-
-# don't put duplicate lines in the history.
-export HISTCONTROL=ignoredups
-
-# ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
-
-# Make some commands not show up in history
-export HISTIGNORE="h"
-
-# ====================
-# Git Aliases
-# ====================
-alias gs='git status'
-alias gap='git add -p'
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
-alias gd='git diff'
-alias go='git checkout '
-alias gob='git checkout -b '
-alias gk='gitk --all&'
-alias gx='gitx --all'
-alias glog='git log --pretty=oneline --abbrev-commit'
-alias up='git pull upstream master'
-alias upandaway='git pull upstream master && git push origin master'
-# when I mispell git commands the following 2 commands help
-alias got='git '
-alias get='git '
-```
 
 ## Keyboard shortcuts
 Task | Keyboard shortcut
@@ -426,17 +347,3 @@ That will log you in. If you **don't** do that you will have to refresh your `.b
 ```
 $ source ~/.bash_profile
 ```
-
-## Z.sh
-
-https://github.com/rupa/z
-
-## Useful plugins
-* [alias-tips](https://github.com/djui/alias-tips)
-
-## ag
-Z is great when you’re moving to a specific directory, but what if you want to find a certain file or line of code? That’s where the silver searcher comes in. The silver search, aka ag, is great. It is an improvement over the many tools there are for searching on the command line. The biggest thing is that it is SUPER FAST. There are a lot of technical things in does in the background to get that speed, but the thing you should know is that it is fast.
-
-You can easily search your entire codebase for a certain function call, or for a file you can’t remember where it was, anything you want. To put it in perspective, I just searched the entire WordPress codebase for wp_insert_post(), and it returned all the results in less than 1/10 of a second. And this is on a four year old machine. Pretty good.
-
-To install `ag`, simply do `$ brew install the_silver_searcher`, and you’re all good to go.
