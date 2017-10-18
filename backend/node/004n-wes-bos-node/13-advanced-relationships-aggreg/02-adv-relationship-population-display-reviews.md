@@ -299,7 +299,7 @@ block content
 ```
 mixin review(review)
   .review__header
-    .review__author
+    .review__user
     .review__stars
     time.review__time
   .review__body
@@ -392,7 +392,7 @@ module.exports = mongoose.model('Review', reviewSchema);
 #### Check out our new output
 ![_user autopopulated](https://i.imgur.com/sxWbSV3.png)
 
-* We need to get rid of this line of code (**p=review.author**):
+* We need to get rid of this line of code (**p=review._user**):
 
 `_review.pug`
 

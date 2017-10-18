@@ -177,9 +177,9 @@ require('./models/Review'); // add this line
 
 ## What fields do we need on our Schema?
 * created
-* author
+* user
     - Will be a relationship
-    - You need one of existing users to be an author
+    - You need one of existing users to be an user
 * store
     - Will be a relationship 
 * text
@@ -199,7 +199,7 @@ const reviewSchema = new mongoose.Schema({
   _user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
-    required: 'You must supply an author'
+    required: 'You must supply an user'
   },
   _store: {
     type: mongoose.Schema.ObjectId,
@@ -395,7 +395,7 @@ mixin reviewForm(store)
 ### View in browser
 * Roll over the bottom and you'll see stars (we'll update the color with CSS)
 
-`_reviews.scss`
+`_reviewer.scss`
 
 ```
 .reviewer {
