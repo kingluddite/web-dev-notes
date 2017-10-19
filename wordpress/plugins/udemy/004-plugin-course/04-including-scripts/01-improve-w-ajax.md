@@ -94,7 +94,11 @@ wp_register_script('snappy-list-builder-js-public', plugin    s_url('/js/public/
   wp_enqueue_script('snappy-list-builder-js-public');
 
 }
- ```
+```
+
+ * View plugin and see if it has been included in source
+ 
+ ![source code with plugin](https://i.imgur.com/vWKxvKe.png)
 
  
 
