@@ -73,3 +73,27 @@ function slb_get_subscriber_id( $email ) {
 ## Return subscriber id
 * Finally we return the subscriber id
 * We cast it as a integer to make sure it is a number
+
+```php
+  switch( $field_name ) {
+
+  case 'slb_fname':
+    $field_key = 'field_59e8cf2830c53';
+    break;
+  case 'slb_lname':
+    $field_key = 'field_59e8cf4d30c54';
+    break;
+  case 'slb_email':   
+    $field_key = 'field_59e8d03430c55';
+    break;
+  case 'slb_subscriptions':
+    $field_key = 'field_59e8d05430c56';
+    break;
+
+  }
+```
+
+* Replace these field id's with your own
+* I forgot to change $key to `$field_key`
+
+

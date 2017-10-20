@@ -25,13 +25,13 @@ function slb_subscriber_column_headers( $columns ) {
 
 * `cb` stands for checkbox
 * We keep the checkbox
-* But we add a title and email column
+* But we add a `title` and `email` column
 * __()
   - Built in function in WordPress
   - To be used with other languages (French, Japanese...)
     + Good Practice to use
     + So changing languages is easy
-* We finally return `$columns` back to WordPress and it will override our out of the box WordPress column titles
+* We finally return `$columns` back to WordPress and it will override our out of the box WordPress column `titles`
 * We now need to call this function inside of a hook so that our code will run
 * [WordPress filter codex](https://developer.wordpress.org/reference/functions/add_filter/)
 * Add this code to call our filter
@@ -278,7 +278,7 @@ function slb_subscriber_column_data( $column, $post_id ) {
 }
 
 // 3.2.2
-// hint: registers specia custom admin title columns
+// hint: registers special custom admin title columns
 function slb_register_custom_admin_titles() {
 
   add_filter(
@@ -288,6 +288,10 @@ function slb_register_custom_admin_titles() {
     2
   );
 }
+
+* `99` - lower in priority because we want it to run last
+* `2` - We want two excepted arguments passed in (column and post id)
+
 
 // 3.2.3
 // hint: handles custom admin title "title" column for post types without titles
@@ -310,7 +314,20 @@ function slb_custom_admin_titles( $title, $post_id ) {
   return $output;
 
 }
+```
+* Then you need to add a new hook
 
+```php
+// 1.3
+// hint: register custom admin column data
+add_filter('manage_slb_subscriber_posts_custom_column','slb_subscriber_column_data',1,2);
+add_action('admin_head-edit.php', 'slb_register_custom_admin_titles');
+```
+
+* After making this change you will now see the name of the subscriber
+* This code was needed to make this work in modern versions of wordpress
+
+```
 // 3.3
 function slb_list_column_headers( $columns ) {
 

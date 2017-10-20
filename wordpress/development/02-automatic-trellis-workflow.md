@@ -78,7 +78,7 @@ Most of our time will be spent inside this folder
 * First we are working locally
 * We will start in the `groupvars/development` folder
 * Open `wordpress_sites.yml`
-  - **note** all `.yml` files are white space senstive
+  - **note** all `.yml` files are white space sensitive
   - Spaces are used to express data
   - Each indent level creates an object
 
@@ -166,6 +166,16 @@ Congrats Local Development is set up.
 I recommend setting up LastPass and saving your login credentials.
 
 **note** Bedrock keeps WordPress in a subdirectory, `wp/`, which helps us keep all of the WordPress core files separate from the rest of our app. This is helpful for managing the WordPress version with Composer.
+
+## Install ZSH
+* login `$ vagrant ssh`
+* install zsh `$ sudo apt-get install zsh`
+* chsh -s $(which zsh)
+  - (password is `vagrant` by default)
+
+## Install Oh-my-zsh
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+
 
 ## Vagrant
 * Pro

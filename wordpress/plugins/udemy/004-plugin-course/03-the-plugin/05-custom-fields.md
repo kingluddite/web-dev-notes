@@ -23,7 +23,7 @@
     + Close field button
     + Add another field
     + Last Name
-    + sbl_lname
+    + slb_lname
     + NOT required
     + close field
     + Field Label Email Address
