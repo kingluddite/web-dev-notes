@@ -1,4 +1,5 @@
 # This is how I like to set up my Mac
+* yo
 * [Install Homebrew](https://brew.sh/)
 * Install tree `$ brew install tree`
 * Install node `$ brew install node`

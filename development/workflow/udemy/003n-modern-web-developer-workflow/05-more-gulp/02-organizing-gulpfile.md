@@ -52,7 +52,7 @@ gulp.task('watch', function() {
 
 `gulpfile.js`
 
-```
+```js
 require('./gulp/tasks/styles');
 require('./gulp/tasks/watch');
 ```

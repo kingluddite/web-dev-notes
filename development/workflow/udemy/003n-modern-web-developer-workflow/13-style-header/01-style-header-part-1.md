@@ -248,7 +248,7 @@ Or you could use this CSS
   }
 
   a {
-    color: #fff;
+    color: $purple;
     font-weight: 300;
     text-decoration: none;
     display: block;
