@@ -46,7 +46,7 @@
 `styles.css`
 
 ```css
-@import 'modules/_headline';
+@import 'modules/_headline.css';
 ```
 
 * How to measure
@@ -90,6 +90,7 @@
 ![size of orange text](https://i.imgur.com/gma9xZY.png)
 
 * 30 / 16 = 1.875rem
+* Or if you use 62.5% in html font-size you can just use 3rem
 
 `_headline.css`
 
@@ -100,11 +101,11 @@
   }
 
   &--small {
-    font-size: 1.875rem;
+    font-size: 3rem;
   }
 
   &--narrow {
-    max-width: 500px;
+    max-width: 50;
   }
 }
 ```
@@ -166,7 +167,7 @@
 `_headline.css`
 
 ```css
-&--bottom-margin-small {
+  &--bottom-margin-small {
     margin-bottom: 0.5em;
   }
 
@@ -190,9 +191,9 @@
 ```
 
 ### Too many modifers?
+#### Class name fatigue
 * Modular development is common these days
 * Using lots of modifiers beats having to come up with lots and lots of new class names as the designs get updated
-* Class name fatigue
 * 6 months later revisiting site for revamp, then you have to dig through all your class names to figure out what is going on
 
 ![too many class names](https://i.imgur.com/q37PFka.png)
@@ -227,14 +228,14 @@
 
 ```css
 .wrapper {
-  padding-left: 18px;
-  padding-right: 18px;
-  max-width: 1200px;
+  padding-left: 1.8rem
+  padding-right: 1.8rem;
+  max-width: 120rem;
   margin-left: auto;
   margin-right: auto;
 
   &--medium {
-    max-width: 976px;
+    max-width: 97.6rem
   }
 }
 ```
@@ -269,7 +270,7 @@
   font-weight: 300;
   color: $mainBlue;
 
-  @mixin atSmall {
+  @mixin atSmall  {
     font-size: 2.875rem;
   }
 
@@ -287,7 +288,7 @@
 ### Hand holding image on tiny screens looks bad
 * On small screens it should use full available width
 * We see that we have a wrapper nested inside another wrapper
-    - We just need to look for any wrapper nested inside another wrapper and set the padding-left and padding-right to `0`
+    - We just need to look for any wrapper nested inside another wrapper and set the **padding-left** and **padding-right** to `0`
 
 `_wrapper.css`
 

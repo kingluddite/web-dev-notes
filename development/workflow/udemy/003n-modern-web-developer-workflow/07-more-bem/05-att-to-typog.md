@@ -182,4 +182,7 @@ On smallest devices it is smaller and grows in size on small and larger devices
 ```
 
 * By not adding a `font-size` to the paragraph on smallest devices it will default to 1rem which is the default size
-* Remove the `-i` from all images
+
+## Update our images
+* Remove the `-i` from all images (when you are ready for production)
+* This is just to test how the images will work

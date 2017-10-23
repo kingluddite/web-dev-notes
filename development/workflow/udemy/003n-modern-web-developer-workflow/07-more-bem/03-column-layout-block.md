@@ -77,7 +77,7 @@
 `styles.css`
 
 ```css
-@import 'modules/_row';
+@import 'modules/_row.css';
 ```
 
 ![no clear](https://i.imgur.com/JoWFeTL.png)
@@ -227,7 +227,7 @@ Since we may use our clear float solution more than once, we should move it insi
 * Our second column gets pushed to a second line
 * This is a **common problem**
     - When the width of the entire row exceeds `100%`, the columns then appear on their own rows
-    - This happens because the padding we just added + our `33.33%` and `66.66% `exceeds 100%
+    - This happens because the padding we just added + our `33.33%` and `66.66%` exceeds 100%
 
 ## By Default
 Web browsers calculate the **true width** of an element by taking the declared with and then adding on any padding or borders
@@ -248,7 +248,7 @@ Web browsers calculate the **true width** of an element by taking the declared w
 
 ### Tip - Global rule
 * In recent years developers have been setting `box-sizing` globally to all elements on the page
-* We'll move `box-sizing: border-box;` in `_row.css` and we'll move it to `_global.css`
+* We'll move `box-sizing: border-box;` out of `_row.css` and we'll move it into `_global.css`
 
 `_global.css`
 
@@ -293,7 +293,7 @@ img {
     - But that would effect the ratio of our columns
     - The first column is exactly 1/3 available width
     - The second column is exactly 2/3 available width
-    - If we told the final column to now have any padding it would no longer be exactly 2/3
+    - If we told the final column to not have any padding it would no longer be exactly 2/3
 
 `_row.css`
 
@@ -305,11 +305,11 @@ img {
   @mixin clearfix;
 
   &--gutters {
-    margin-right: -65px;
+    margin-right: -6.5rem;
   }
 
   &--gutters > div {
-    padding-right: 65px;;
+    padding-right: 6.5rem;
   }
 // more code
 ```
@@ -319,10 +319,10 @@ img {
 `_wrapper.css`
 
 ```
-.wrapper {
-  padding-left: 18px;
-  padding-right: 18px;
-  max-width: 1200px;
+.wrapper 
+  padding-left: 1.8rem;
+  padding-right: 1.8rem;
+  max-width: 120rem;
   margin-left: auto;
   margin-right: auto;
 

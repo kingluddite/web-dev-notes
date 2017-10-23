@@ -17,21 +17,10 @@
 
 `/app/assets/styles/modules/_section-title.css`
 
-```
-? what goes here
-```
-
-## Import it
-`styles.css`
-
-```css
-@import 'modules/_section-title';
-```
-
 * Measure Our Features font size `50px` (rem 50/16 = 3.125rem)
 * We need to make our strong tags bolder when inside a `section-title`
 
-`_section_title.css`
+`_section-title.css`
 
 ```css
 .section-title {
@@ -43,6 +32,13 @@
     font-weight: 500;
   }
 }
+```
+
+## Import it
+`styles.css`
+
+```css
+@import 'modules/_section-title';
 ```
 
 * Align the star next to the heading

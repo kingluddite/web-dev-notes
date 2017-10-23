@@ -50,7 +50,7 @@
 ## Demo
 `gulpfile.js`
 
-```
+```js
 var gulp = require('gulp');
 ```
 
@@ -59,7 +59,7 @@ var gulp = require('gulp');
 
 `gulpfile.js`
 
-```
+```js
 var gulp = require('gulp');
 
 gulp.task('default', function() {
@@ -74,7 +74,7 @@ Add another task
 
 `gulpfile.js`
 
-```
+```js
 var gulp = require('gulp');
 
 gulp.task('default', function() {

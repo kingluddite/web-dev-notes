@@ -251,7 +251,7 @@ Git took our commits from another branch and merged them into the commits on the
 
 * Click `Compare & pull request`
 
-## What is a pull request?
+## What is a pull request? `PR`
 A request to merge one branch into another
 
 * The `master` branch will be our **base**

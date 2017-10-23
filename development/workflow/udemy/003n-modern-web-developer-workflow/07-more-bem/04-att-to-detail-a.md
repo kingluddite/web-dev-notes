@@ -22,6 +22,7 @@
 
 * We measure 62px for the design mockup measurement
     - `62px / 16px = 3.875rem` for **top-margin**
+    - Or use `6.2rem` ---- so much easier!
 
 `_wrapper.css`
 
@@ -114,15 +115,15 @@
     - The difference between a good developer and a great developer is a great developer is totally cool with adjusting things here and there to match the design
 
 ## Border box side effect
-* We gave our site a `max-width` of 1200px
+* We gave our site a `max-width` of **120rem**
 
 `_wrapper.css`
 
 ```
 .wrapper {
-  padding-left: 18px;
-  padding-right: 18px;
-  max-width: 1200px;
+  padding-left: 1.8rem;
+  padding-right: 1.8rem;
+  max-width: 120rem;
 
 // more code
 ```
@@ -144,6 +145,8 @@
 
 ## More breathing room!
 * Subtle change but now our design has more room to breathe
+
+## More fun with images!
 
 ### Make image landscape in mobile design
 `index.html`
@@ -185,6 +188,7 @@ To this code:
 
 ### How to install/uninstall chrome extensions
 [read how to install/uninstall chrome extensions](https://support.google.com/chrome_webstore/answer/2664769?hl=en)
+
 * Add Viewport Dimensions to Chrome browser
 
 ![Viewport Dimensions](https://i.imgur.com/nsQuNXh.png)
