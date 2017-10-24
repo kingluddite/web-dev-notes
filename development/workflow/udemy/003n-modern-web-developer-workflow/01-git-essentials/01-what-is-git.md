@@ -88,8 +88,14 @@ Only when we actively commit changes does Git save them
 ## Create new reop
 `$ git init`
 
-### .gitignore
+# .gitignore
+* Git keeps track of all of the files you are working on
+* You need a way to ignore some files so Git doesn't waste it's time and resources on watching them
+  - That is the purpose of `.gitignore`
+
+## Example of .gitignore files
 * `.DS_Store` - system file on Macs
+* `node_modules`
 * We will add this to our `.gitignore`
 
 ## Clone
@@ -98,9 +104,12 @@ Only when we actively commit changes does Git save them
     - Everyone in world can see your code (_doesn't mean they can change your code_)
 
 ## BitBucket - offers private repos for free
+Github is the main kid on the block with online git repos but it is not the only game in town
 
 ## Repo-names: use dashes on Github
 * Won't allow you to have projects with spaces in their names
+
+## Local vs. origin vs upstream
 
 ### Add origin
 * Use this so you can push/pull your repo to/from Github

@@ -32,12 +32,14 @@
 }
 ```
 
-* We align the image toward the top of the section
-* Horizonally we align the image to the center
-* We make sure the image does not repeat (_aka title - only displays once_) (default behavior is to repeat)
+* We **align** the image toward the **top** of the section
+* **Horizonally** we **align** the image to the `center`
+* We make sure the image **does not repeat** (_aka title - only displays once_) (default behavior is to repeat)
+
+### cover
 * `background-size: cover` - this will shrink or stretch the image to always be large or small enough to always perfectly cover the containing `div`
 
-## Adjust Testimonial width
+### Adjust Testimonial width
 * We don't it want to use full width but jus the middle of the screen
     - We can use our resusuable `wrapper` block to do this for us
 

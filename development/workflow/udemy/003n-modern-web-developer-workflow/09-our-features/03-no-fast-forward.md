@@ -27,18 +27,18 @@
 `$ git merge our-features --no-ff`
 
 * We'll show what this does in a moment
-* Certain teams, employers will want you to merge using this option
+* Certain **teams/employers** will want you to merge using this option
 * When you use this option, Git gives you a chance to leave a merge message
     - 9.99 out of 10 you will just agree to the merge message Git provides
-* Press `esc` key, Type `:wq` and press `enter`
+* Press `esc` key, Type `:wq!` (write, quit and force)and press `enter`
     - Git opens `Vim` inside the terminal
     - This is just a text editor
-    - `:wq` is a command that stands for `write` and `quit`
+    - `:wq!` is a command that stands for `write` and `quit`
     - That will exit you out of `vim` and it has written and saved your commit message
     - `Vim` is an old, super powerful editor that many developers worship
         + [watch this video to learn more about VIM](https://vimeo.com/album/2838732/video/6999927)
 
-## Push master branch up to GitHug
+## Push master branch up to GitHub
 `$ git push origin master`
 
 * Go to main page of your travel site repo
@@ -57,12 +57,16 @@
 
 ![no dedicated commit for the merge](https://i.imgur.com/Gx6YdeM.png)
 
-* When we merged that branch back into master because we didn't include the `--no-ff` option, Git simply fast forwarded the master's branch history to point towards the last commit from the top-ten-list branch
-* There is no right or wrong way to merge a branch
+* When we merged that branch back into master branch
+* Because we didn't include the `--no-ff` option
+    - Git simply `fast forwarded` the master's branch history
+    - To point towards the last commit from the top-ten-list branch
+
+## There is no right or wrong way to merge a branch
 * You should be aware of the differences
 * Certain teams have certain preferences
 * Click on your dedicated commit for the merge (on Github)
-* This will show us the DIFF (what changed) in which files when we performed the merge
+* This will show us the `Diff` (what changed) in which files when we performed the merge
     - We only merged in one commit in this case
     - But if was a larger feature with dozens of commits and it took us a week to complete
     - Most team members won't want to dig through ten separate commits to see what changed

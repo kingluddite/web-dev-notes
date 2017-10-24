@@ -63,42 +63,20 @@
   }
 
   &__icon {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 }
 ```
 
-* Now we'll need to create two columns that each take up available width
+## Now we'll need to create two columns
+* That each take up available width
 
 `index.html`
 
 ```html
 <h2 class="section-title"><img class="section-title__icon" src="assets/images/icons/star.svg">Our <strong>Features</strong></h2>
 
-      <div class="row row--gutters">
-        <div class="row__medium-6">
-          <img src="assets/images/icons/rain.svg">
-          <h3>We&rsquo;ll Watch the Weather</h3>
-          <p>Download our app and we&rsquo;ll send you a notice if it&rsquo;s about to rain in the next 20 minutes around your current location. A good rain can be refreshing, but sometimes you just want to stay dry.</p>
-
-          <img src="assets/images/icons/globe.svg">
-          <h3>Global Guides</h3>
-          <p>We&rsquo;ve scoured the entire planet for the best retreats and beautiful vistas. If there&rsquo;s a corner of the world you want to escape to we know the most scenic and inspiring locations.</p>
-        </div>
-        <!-- /.row__medium-6 -->
-
-        <div class="row__medium-6">
-          <img src="assets/images/icons/wifi.svg">
-          <h3>Wi-Fi Waypoints</h3>
-          <p>We only send you on trips to places we can personally vouch for as being amazing. Which means we&rsquo;ve mapped out where local wi-fi spots are and marked them in our app&rsquo;s map view.</p>
-
-          <img src="assets/images/icons/fire.svg">
-          <h3>Survival Kit</h3>
-          <p>Everytime you book an escape with us we send you a survival kit with the finest materials. The kit will allow you to setup a tent, start a fire, scratch your own back and lower your taxes.</p>
-        </div>
-        <!-- /.row__medium-6 -->
-      </div>
-      <!-- /.row -->
+jj
 ```
 
 `_row.css`
@@ -184,8 +162,9 @@
 
 `@import 'modules/_feature-item';`
 
-* Measure left of icon to left of text: 94px
-* Meaure top of `W` to bottom of `y` 30px --> 30/16 = 1.875rem
+* Measure left of icon to left of text: `94px`
+* Meaure top of `W` to bottom of `y` `30px` --> 30/16 = 1.875rem
+  - Or the easier `3rem`
 
 ## Change font weight of `p`
 `_generic-content-container`
@@ -289,7 +268,8 @@
 ```
 
 * In mobile features
-* Icon should be full width and stacked on top of its title/description
+* Icon should be full width
+    - And stacked on top of its **title/description**
 
 `_feature-item.css`
 
