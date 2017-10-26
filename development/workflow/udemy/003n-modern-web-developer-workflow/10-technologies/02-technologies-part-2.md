@@ -1,58 +1,58 @@
-# Testimonials Part 2
+# technologies - Part 2
 * The `font-size` and `line-height` CSS properties can be the same as **our-features** so we reuse our `generic-content-container` class
 
 ```html
-<div id="testimonials" class="page-section page-section--testimonials">
+<div id="technologies" class="page-section page-section--technologies">
     <div class="wrapper">
-      <h2 class="section-title section-title--blue"><img class="section-title__icon" src="assets/images/icons/comment.svg">Real <strong>Testimonials</str
+      <h2 class="section-title section-title--blue"><img class="section-title__icon" src="assets/images/icons/comment.svg">Real <strong>technologies</str
       <div class="row row--gutters generic-content-container">
 ```
 
-* Now apply same HTML pattern to other two testimonials
+* Now apply same HTML pattern to other two technologies
 
 ```html
-<div id="testimonials" class="page-section page-section--testimonials">
+<div id="technologies" class="page-section page-section--technologies">
   <div class="wrapper">
-    <h2 class="section-title section-title--blue"><img class="section-title__icon" src="assets/images/icons/comment.svg">Real <strong>Testimonials</strong></h2>
+    <h2 class="section-title section-title--blue"><img class="section-title__icon" src="assets/images/icons/comment.svg">Real <strong>technologies</strong></h2>
 
     <div class="row row--gutters generic-content-container">
       <div class="row__medium-4">
-        <div class="testimonial">
-          <div class="testimonial__photo">
-            <img src="assets/images/testimonial-jane.jpg">
+        <div class="technologies">
+          <div class="technologies__photo">
+            <img src="assets/images/technologies-jane.jpg">
           </div>
-           <!-- /.testimonial__photo -->
-          <h3 class="testimonial__title">Jane Doe</h3>
-          <h4 class="testimonial__subtitle">9 Time Escaper</h4>
+           <!-- /.technologies__photo -->
+          <h3 class="technologies__title">Jane Doe</h3>
+          <h4 class="technologies__subtitle">9 Time Escaper</h4>
           <p>&ldquo;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&rdquo;</p>
         </div>
-        <!-- /.testimonial -->
+        <!-- /.technologies -->
       </div>
       <!-- /.row__medium-4 -->
       <div class="row__medium-4">
-        <div class="testimonial">
-          <div class="testimonial__photo">
-            <img src="assets/images/testimonial-john.jpg">
+        <div class="technologies">
+          <div class="technologies__photo">
+            <img src="assets/images/technologies-john.jpg">
           </div>
-          <!-- /.testimonial__photo -->
-          <h3 class="testimonial__title">John Smith</h3>
-          <h4 class="testimonial__subtitle">4 Time Escaper</h4>
+          <!-- /.technologies__photo -->
+          <h3 class="technologies__title">John Smith</h3>
+          <h4 class="technologies__subtitle">4 Time Escaper</h4>
           <p>&ldquo;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur.&rdquo;</p>
         </div>
-        <!-- /.testimonial -->
+        <!-- /.technologies -->
       </div>
       <!-- /.row__medium-4 -->
       <div class="row__medium-4">
-        <div class="testimonial">
-          <div class="testimonial__photo">
-            <img src="assets/images/testimonial-cat.jpg">
+        <div class="technologies">
+          <div class="technologies__photo">
+            <img src="assets/images/technologies-cat.jpg">
           </div>
-          <!-- /.testimonial__photo -->
-          <h3 class="testimonial__title">Cat McKitty</h3>
-          <h4 class="testimonial__subtitle">6 Time Escaper</h4>
+          <!-- /.technologies__photo -->
+          <h3 class="technologies__title">Cat McKitty</h3>
+          <h4 class="technologies__subtitle">6 Time Escaper</h4>
           <p>&ldquo;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.&rdquo;</p>
         </div>
-        <!-- /.testimonial -->
+        <!-- /.technologies -->
       </div>
       <!-- /.row__medium-4 -->
     </div>
@@ -62,9 +62,9 @@
 </div>
 ```
 
-![3 testimonials styled](https://i.imgur.com/ZByrxUB.png)
+![3 technologies styled](https://i.imgur.com/ZByrxUB.png)
 
-## Fix Real Testimonials spacing issue
+## Fix Real technologies spacing issue
 * This happened because we used `position` **relative** to pull the images up out of their normal positions
     - We pull them up `80px`
     - We can counteract that by adding `80px` to the row
@@ -109,7 +109,7 @@
 // more code
 ```
 
-* Each of our testimonials is a different height
+* Each of our technologies is a different height
 
 ![different heights](https://i.imgur.com/pci8PHx.png)
 
@@ -167,11 +167,11 @@
 
 // more code
 
-&--testimonials {
+&--technologies {
     background-color: #e0e6ef;
 
     @mixin atMedium {
-      background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+      background: url('/assets/images/technologies-bg.jpg') top center no-repeat;
       background-size: cover;
     }
   }
@@ -181,7 +181,7 @@
 * Remove right and left padding so white testimonial background uses full screen
 
 ```html
-<div id="testimonials" class="page-section page-section--testimonials">
+<div id="technologies" class="page-section page-section--technologies">
   <div class="wrapper wrapper--no-p-until-medium">
 ```
 
@@ -208,12 +208,12 @@
   }
 ```
 
-* Make our `testimonial` **padding** match our other `section` **padding**
+* Make our `technologies` **padding** match our other `section` **padding**
 
-`_testimonial.css`
+`_technologies.css`
 
 ```
-.testimonial {
+.technologies {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0 18px 1px 18px;
 
@@ -231,28 +231,28 @@
 * But on mobile screens they are stacked on top of each other
 * To fix we just add a margin bottom on smaller screens
 
-`_testimonial.css`
+`_technologies.css`
 
 ```
-.testimonial {
+.technologies {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0 18px 1px 18px;
   margin-bottom: 80px;
 ```
 
-But a little extra vertical spacing (18px) will make look better
+* But a little extra vertical spacing (18px) will make look better
 
 ```
-.testimonial {
+.technologies {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0 18px 1px 18px;
   margin-bottom: 98px;
 ```
 
-On larger screens we don't need that margin-bottom
+* On larger screens we don't need that margin-bottom
 
 ```
-.testimonial {
+.technologies {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 0 18px 1px 18px;
   margin-bottom: 98px;
@@ -268,16 +268,16 @@ On larger screens we don't need that margin-bottom
 
 ![gap](https://i.imgur.com/CuCpmsp.png)
 
-* Caused by `margin-bottom` we just added to testimonials
+* Caused by `margin-bottom` we just added to technologies
 * And also by `padding-bottom` of `page-section` element
 * We add `testimonial--last` modifier to our 3rd and last testimonial
 
 ```html
 <div class="row__medium-4">
-  <div class="testimonial testimonial--last">
+  <div class="technologies technologies--last">
 ```
 
-`_testimonial.css`
+`_technologies.css`
 
 ```
 // more code
@@ -288,10 +288,10 @@ On larger screens we don't need that margin-bottom
 ```
 
 * That gets rid of most of the gap
-* We can get rid of the rest by adding a modifier class to the testimonials page-section element
+* We can get rid of the rest by adding a modifier class to the technologies page-section element
 
 ```html
-<div id="testimonials" class="page-section page-section--no-b-padding-until-medium page-section--testimonials">
+<div id="technologies" class="page-section page-section--no-b-padding-until-medium page-section--technologies">
 ```
 
 * We add the `page--section--no-b-padding-until-medium` modifier

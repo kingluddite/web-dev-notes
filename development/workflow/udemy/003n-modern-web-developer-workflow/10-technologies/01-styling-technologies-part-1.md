@@ -40,7 +40,7 @@
 * `background-size: cover` - this will shrink or stretch the image to always be large or small enough to always perfectly cover the containing `div`
 
 ### Adjust Testimonial width
-* We don't it want to use full width but jus the middle of the screen
+* We don't it want to use full width but just the middle of the screen
     - We can use our resusuable `wrapper` block to do this for us
 
 ```html
@@ -181,11 +181,11 @@
 <!-- /.row__medium-4 -->
 ```
 
-`/app/assets/styles/modules/_testimonials.css`
+`/app/assets/styles/modules/_technology.css`
 
 ```css
-.testimonial {
-  background-color: rgba(255, 255, 255, 0.8);
+.technology {
+  background-color: rgba( 0.8);
   padding: 0 1.875rem 1px 1.875rem;
 
   &__photo {
@@ -201,14 +201,6 @@
 }
 ```
 
-* We can make background colors transparent
-* Why `1px` bottom padding?
-    - Change it to `0` and see what happens, it collapses
-    - When we use `1px` we see more than `1px` of space
-        + That is because the bottom margin on the `<p>` ([screenshot](https://i.imgur.com/GvPW54Q.png)) can create space for us
-        + But if the containing element doesn't have any padding (set to `0`), the paragraph will still have bottom margin but it will bleed outside of its containing element
-        + By giving the containing element just `1px` of padding, it gives the bottom margin of this content something to push up against
-
 ## Import testimonials
 `styles.css`
 
@@ -216,9 +208,25 @@
 @import from 'modules/_testimonials';
 ```
 
-```
+* **note** We can make background colors transparent
+
+## Why `1px` bottom padding? (Common Issue)
+* Change it to `0` and see what happens, it collapses
+* When we use `1px` we see more than `1px` of space
+    - That is because the bottom margin on the `<p>`
+    - ([screenshot](https://i.imgur.com/GvPW54Q.png))
+    - Can create space for us
+        + But if the containing element doesn't have any padding
+        + (set to `0`)
+        + he paragraph will still have bottom margin
+        + But it will **bleed outside of its containing element**
+        + By giving the containing element just `1px` of padding
+        + It gives the bottom margin of this content something to push up against
+
+
+```css
 &__photo {
-    border-radius: 30px
+    border-radius: 30px;
   }
 ```
 
@@ -228,12 +236,16 @@
 ![rounded edges](https://i.imgur.com/cCijQ7P.png)
 
 * The left side is only rounded because that containing `div` is using the full available width
-* We can give the allusion that the image is round by setting the container to have the same height and width as the image
-* How to find out dimensions of image
-    1. Right click
-    2. Open in new tab
-    3. Look at tab for dimensions
-* To make the image a circle we just make the `border-radius` be 1/2 of the width or length of the image (_1/2 of 160px = 80px_)
+* We can give the allusion that the image is round by setting the container to have the same **width** and **height** as the image
+
+### How to find out dimensions of image
+1. Right click
+2. Open in new tab
+3. Look at tab for dimensions
+
+### Make image circle
+* Just make the `border-radius` be 1/2 of the width or length of the image
+* (_1/2 of 160px = 80px_)
 
 ![image dimensions](https://i.imgur.com/wSthxBB.png)
 
@@ -246,7 +258,7 @@
   }
 ```
 
-* Now the testimonial image is round
+* Now the technologies image is round
 
 ## Image violate the top edge
 ```css
@@ -265,18 +277,20 @@
 
 ![violate top edge](https://i.imgur.com/5XaXhVR.png)
 
-* When you use position relative, the surrounding content is not aware of the change
+* When you use position relative
+    - The surrounding content is not aware of the change
 * We counteract that by giving the image negative `margin-bottom`
 
 ```css
 &__photo {
-    border-radius: 80px;
-    overflow: hidden;
-    height: 160px;
-    width: 160px;
-    margin: 0 auto -80px auto;
     position: relative;
     top: -80px;
+
+    border-radius: 80px;
+    height: 160px;
+    margin: 0 auto -80px auto;
+    overflow: hidden;
+    width: 160px;
   }
 ```
 
@@ -285,14 +299,15 @@
 * Add 6px border to image
 ```css
 &__photo {
-    border-radius: 80px;
-    overflow: hidden;
-    height: 160px;
-    width: 160px;
-    margin: 0 auto -80px auto;
     position: relative;
     top: -80px;
+
     border: 6px solid rgba(255, 255, 255, 0.8);
+    border-radius: 80px;
+    height: 160px;
+    overflow: hidden;
+    margin: 0 auto -80px auto;
+    width: 160px;
   }
 ```
 
@@ -300,16 +315,16 @@
 
 ```html
 <!-- /.testimonial__photo -->
-<h3 class="testimonial__title">Jane Doe</h3>
-<h4 class="testimonial__subtitle">9 Time Escaper</h4>
+<h3 class="technologies__title">Jane Doe</h3>
+<h4 class="technologies__subtitle">9 Time Escaper</h4>
 ```
 
 * We change second `h3` to `h4` for semantic reasons
     - [read more about heading structure and semantics](http://accessiblehtmlheadings.com/)
 
-`_testimonial.css`
+`_technologies.css`
 
-```
+```css
 // more code
   &__title {
      color: $mainBlue;

@@ -1,6 +1,7 @@
-# Medium Sized Testimonial Screens
-* 3 col layout for medium screens it too little **screen real estate** for 3 columns
-* We'll change our atLarge from 1200 to 1010
+# Medium Sized Technologies Screens
+## 3 col layout for medium screens
+* It is too little **screen real estate** for 3 columns
+* We'll change our **atLarge** from `1200` to `1010`
 
 `_mixins.css`
 
@@ -15,7 +16,7 @@
 * Using the `atMedium` for 3 columns is too small, we'll change it to `atLarge`
 
 ```html
-<div id="testimonials" class="page-section page-section--no-b-padding-until-large page-section--testimonials">
+<div id="technologies" class="page-section page-section--no-b-padding-until-large page-section--technologies">
 ```
 
 `_page-section.css`
@@ -41,7 +42,7 @@
 `index.html`
 
 ```html
-<div id="testimonials" class="page-section page-section--no-b-padding-until-large page-section--testimonials">
+<div id="technologies" class="page-section page-section--no-b-padding-until-large page-section--technologies">
     <div class="wrapper wrapper--no-p-until-large">
 ```
 
@@ -123,7 +124,8 @@
 
 `_row.css`
 
-Copy the medium section, paste and rename to:
+1. Copy the medium section
+2. Paste and rename to:
 
 ```css
 @mixin atLarge {
@@ -157,11 +159,11 @@ Copy the medium section, paste and rename to:
   }
 ```
 
-* We need to fix our padding and margin in testimonials
+* We need to fix our padding and margin in technologies
 
-`_testimonial.css`
+`_technologies.css`
 
-```
+```css
 @mixin atMedium {
     margin-bottom: 0;
     padding: 0 1.875rem 1px 1.875rem;
@@ -170,7 +172,7 @@ Copy the medium section, paste and rename to:
 
 To
 
-```
+```css
 @mixin atLarge {
     margin-bottom: 0;
     padding: 0 1.875rem 1px 1.875rem;
@@ -181,24 +183,25 @@ And change our `page-section` rule so background is not used until the large bre
 
 `_page-section.css`
 
-```
-&--testimonials {
+```css
+&--technologies {
     background-color: #e0e6ef;
 
     @mixin atLarge {
-      background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+      background: url('/assets/images/technologies-bg.jpg') top center no-repeat;
       background-size: cover;
     }
   }
 ```
 
-* Testimonial section is now complete for every size
+## Congrats!
+* The Technologies section is now complete for every size
 
 ## Add high dpi images for each of the testimonial images
 
 `index.html`
 
-```
+```html
 // more code
 <div class="testimonial__photo">
   <img sizes="160px" srcset="assets/images/testimonial-jane.jpg 160w, assets/images/testimonial-jane-hi-dpi.jpg 320w" alt="Jane Doe">
@@ -223,7 +226,7 @@ And change our `page-section` rule so background is not used until the large bre
 
 `$ git add -A`
 
-`$ git commit -m 'Complete Testimonials section'`
+`$ git commit -m 'Complete technologies section'`
 
 `$ git checkout master`
 
@@ -234,7 +237,7 @@ And change our `page-section` rule so background is not used until the large bre
 * Go to other Terminal tab in project
 * Merge
 
-`$ gulp merge testimonials`
+`$ gulp merge technologies`
 
 * Push to GitHub
 
