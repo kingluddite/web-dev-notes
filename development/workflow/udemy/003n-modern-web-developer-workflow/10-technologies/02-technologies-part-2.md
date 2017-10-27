@@ -72,7 +72,7 @@
 ```html
 <div class="row row--gutters row--t-padding generic-content-container">
     <div class="row__medium-4">
-      <div class="testimonial">
+      <div class="technologies">
 ```
 
 `_row.css`
@@ -187,7 +187,7 @@
 
 `_wrapper.css`
 
-```
+```css
 .wrapper {
   padding-left: 18px;
   padding-right: 18px;

@@ -1,5 +1,7 @@
 # Automated Sprites Part 2
-* We will remove our images of our icons and replace it and all the others with their corresponding sprite image
+* We will remove the images of our icons
+* And replace it and all the others
+    - With their corresponding sprite image
 
 ## Import auto-generated `templates/sprite.css`
 * Instead of doing this:
@@ -12,8 +14,9 @@
 @import '/app/temp/sprite/css/sprite.css';
 ```
 
-* We will use gulp to automatically move into our modules folder
-* That way all of our CSS will live in a centralized folder
+# We will use gulp
+* To automatically move into our `modules` folder
+* That way all of our CSS will live in one **centralized** folder
 * And we can import it into the `styles.css` file the same way we did for all the other CSS files
 
 ### Remove this line from `styles.css`
@@ -134,8 +137,8 @@ gulp.task('copySpriteCSS', function() {
 ## Automate Gulp more
 * We may add more sprites
 * Currently for every new sprite we'd need to:
-    1. run createSprite
-    2. And then run copySpriteCSS
+    1. run `createSprite`
+    2. And then run `copySpriteCSS`
     3. Every time!
 * We'll modify this so we only need to run one task
 * We do this by created a new task that runs both of those tasks
@@ -159,11 +162,14 @@ gulp.task('copySpriteCSS', function() {
 gulp.task('icons', ['createSprite', 'copySpriteCSS']); // add this new task
 ```
 
-* We just give the task a **name** and told it what to run when the name is called
-    - We put all the tasks we want to run inside an array
-    - But we will have a **problem**, `they will both run at the same time`
-    - We need the tasks to run one after the other
-        + Only run the `copySpriteCSS` task only when the `createSprite` task is fully completed
+## The icons task
+* We just give the task a **name** (_icons_) and told it what to run when the name is called
+    - We put all the tasks we want to run inside an **array**
+
+### Houston We Have a Problem!
+* But we will have a **problem**, `they will both run at the same time`
+* We need the tasks to run one after the other
+    - Only run the `copySpriteCSS` task only when the `createSprite` task is fully completed
 
 ### Dependencies
 To make this work we need to tell Gulp that `copySpriteCSS` depends on `createSprite`

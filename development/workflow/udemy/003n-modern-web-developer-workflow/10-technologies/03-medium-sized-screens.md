@@ -248,3 +248,201 @@ And change our `page-section` rule so background is not used until the large bre
 * We will take multiple SVG icon files
 * Configure Gulp to combine them into one sprite file
     - Allows website to load faster for visitors
+
+## Finished Technologies
+`index.html`
+
+```html
+<!doctype html>
+<html lang="eng">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="/temp/styles/styles.css">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+    <!-- Add your site or application content here -->
+    <header class="site-header" style="display: none">
+      <div class="wrapper">
+        <div class="site-header__logo">
+          <img src="assets/img/logo.gif" alt="Jay Skript and the Domsters" />
+        </div>
+      </div>
+    </header>
+      <nav class="primary-nav primary-nav--pull-right" style="display:none">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="photos.html">Photos</a></li>
+          <li><a href="live.html">Live</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- .product-list -->
+      <div class="product-list"></div>
+      <!-- /.product-list -->
+        <div class="large-hero">
+          
+          <picture>
+            <source srcset="assets/images/hero--large.jpg 1920w,
+            assets/images/hero--large-hi-dpi.jpg 3840w" media="(min-width:
+            1380px)" />
+            <source srcset="assets/images/hero--medium.jpg 1380w, assets/images/hero--medium-hi-dpi.jpg 2760w" media="(min-width:
+            990px)" />
+            <source srcset="assets/images/hero--small.jpg 990w, assets/images/hero--small-hi-dpi.jpg 1980w" media="(min-width:
+            640px)" />
+            <img src="assets/images/hero--smaller.jpg" srcset="assets/images/hero--smaller.jpg 640w, assets/images/hero--smaller-hi-dpi.jpg 1280w" alt="Coastal view of ocean and mountains" class="large-hero__image" />
+          </picture>
+
+      <div class="large-hero__text-content">
+          <div class="wrapper">
+            <h1 class="large-hero__title">The Domsters Redux</h1>
+            <h2 class="large-hero__subtitle">New and Improved!</h2>
+            <p class="large-hereo__description">Domsters was a cool site back
+              in the day but it grew old and needed a facelift with a dose of
+              modern technology. That was what we did with <strong>The Domsters
+                Redux</strong>. Enjoy and let us know what you think.</p>
+            <p><a class="btn btn--orange btn--large" href="contact.html">Do You Like?</a></p>
+        </div><!-- /.wrapper -->
+      </div>  
+    </div><!-- /.large-hero -->
+      
+    <div class="page">
+        <h1 class="headline headline--centered">Welcome</h1>
+        <p class="intro">Welcome to the official website of Jay Skript and the Domsters. Here, you can <a href="about.html">learn more about the band</a>, view <a href="photos.html">photos of the band</a>, find out about <a href="live.html">tour dates</a> and <a href="contact.html">get in touch with the band</a>.</p>
+      </div><!-- ./page -->
+      <div id="our-beginning" class="page-section">
+        <p>OUR BEGINNING
+          Sit ut sapiente maxime maiores quibusdam Veniam laboriosam officia suscipit voluptate rerum Explicabo inventore facere maxime quas hic. Necessitatibus ipsum cupiditate commodi consequatur dolorum Provident voluptatum alias ut nemo error
+        </p>
+        
+      </div><!-- #/our-beginning -->
+      <div id="features" class="page-section page-secton--blue">
+        <div class="wrapper">
+          <h2 class="section-title"><span class="icon icon--star section-title__icon"></span> Our <strong>Features</strong></h2>
+          
+          <div class="row row--gutters-large generic-content-container">
+            
+        <div class="row__medium-6">
+
+          <div class="feature-item">
+            <span class="icon icon--rain feature-item__icon"></span>
+            <h3 class="feature-item__title">We&rsquo;ll Watch the Weather</h3>
+            <p>Download our app and we&rsquo;ll send you a notice if it&rsquo;s about to rain in the next 20 minutes around your current location. A good rain can be refreshing, but sometimes you just want to stay dry.</p>
+          </div>
+
+          <div class="feature-item">
+            <span class="icon-icon--globe feature-item__icon"></span>
+            <h3 class="feature-item__title">Global Guides</h3>
+            <p>We&rsquo;ve scoured the entire planet for the best retreats and beautiful vistas. If there&rsquo;s a corner of the world you want to escape to we know the most scenic and inspiring locations.</p>
+          </div>
+        </div>
+        <!-- /.row__medium-6 -->
+
+        <div class="row__medium-6">
+          <div class="feature-item">
+            <span class="icon icon--wifi feature-item__icon"></span>
+            <h3 class="feature-item__title">Wi-Fi Waypoints</h3>
+            <p>We only send you on trips to places we can personally vouch for as being amazing. Which means we&rsquo;ve mapped out where local wi-fi spots are and marked them in our app&rsquo;s map view.</p>
+          </div>
+          <div class="feature-item">
+            <span class="icon icon--fire feature-item__icon"></span>
+            <h3 class="feature-item__title">Survival Kit</h3>
+            <p>Everytime you book an escape with us we send you a survival kit with the finest materials. The kit will allow you to setup a tent, start a fire, scratch your own back and lower your taxes.</p>
+          </div>
+        </div>
+        <!-- /.row__medium-6 -->
+        
+      </div>
+      <!-- /.row -->
+
+    </div><!-- ./wrapper -->
+
+  </div><!-- #features -->
+
+  <div id="technologies" class="page-section
+    page-section--no-b-padding-until-large
+        page-section--technologies">
+    <div class="wrapper wrapper--no-p-until-large">
+      <h2 class="section-title section-title--blue">
+        <span class="icon icon--comment section-title__icon"></span> Real<strong>Technologies</strong>
+      </h2>
+
+      <!-- .row -->
+      <div class="row row--gutters row--equal-height-at-medium row--gutters-small generic-content-container">
+        <!-- .row__medium-4 -->
+        <div class="row__medium-4">
+          <div class="technologies">
+            <div class="technologies__photo">
+              <img class="technologies__photo" src="assets/images/technologies-gulp.jpg" alt="jane photo">
+              <h2 class="technologies__title">Gulp</h2>
+              <h3 class="technologies__subtitle">Build tasks</h3>
+              <p><strong>Gulp</strong> is useful for code minification, code concatenation,
+              image optimization... and a whole lot more. It is built with
+              Node so we get a lot of power with Gulp. If  you need to build
+              automation into your website workflow, Gulp is something you
+              should look into.</p>
+            </div>
+          </div>
+        </div>
+        <!-- /.row__medium-4 -->
+          
+        <!-- .row__medium-4 -->
+        <div class="row__medium-4">
+          <!-- .technologies -->
+          <div class="technologies">
+            <div class="technologies__photo">
+              <img src="assets/images/technologies-postcss.png" alt="PostCSS logo">
+            </div>
+            <!-- /.technologies__photo -->
+            <h2 class="technologies__title">PostCSS</h2>
+            <h3 class="technologies__subtitle">Transforming styles with JS plugins</h3>
+            <p><strong>PostCSS</strong> is a tool for transforming styles with JS plugins. These plugins can lint your CSS, support variables and mixins, transpile future CSS syntax, inline images, and mores.</p>
+              </div>
+              <!-- /.technologies -->
+            </div>
+            <!-- /.row__medium-4 -->
+
+            <!-- .row__medium-4 -->
+            <div class="row__medium-4">
+              <div class="technologies technologies--last">
+                <div class="technologies__photo">
+                  <img class="technologies__photo" src="assets/images/technologies-babel.png" alt="Cat photo">
+                  <h2 class="technologies__title">Babel</h2>
+                  <h3 class="technologies__subtitle">JavaScript compiler</h3>
+                  <p><strong>Babel</strong> has support for the latest version of JavaScript through syntax transformers. These plugins allow you to use new syntax, right now without waiting for browser support.</p>
+                </div>
+              </div>
+           </div>
+            <!-- /.row__medium-4 -->
+
+          </div>
+          <!-- /.row -->
+          
+        </div><!-- ./wrapper -->
+      </div><!-- #/testimonals -->
+
+      <footer class="site-footer">
+        <div class="wrapper">
+          <p><span class="site-footer__text">Copyright &copy; 2017</span> <a href="#" class="btn btn--orange
+          btn--large">Get in Touch</a></p>    
+        </div>
+        <!-- /.wrapper --> 
+      </footer>
+<script src="assets/js/global.js"></script>
+<script src="assets/js/home.js"></script>
+</body>
+
+</html>
+```
