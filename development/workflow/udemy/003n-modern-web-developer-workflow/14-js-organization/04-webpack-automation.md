@@ -22,7 +22,7 @@ gulp.task('scripts', function(callback) {
 });
 ```
 
-* Before Webpack knew where our `webpack.config.js` file was
+* Before, when we were just working with webpack, Webpack knew where our `webpack.config.js` file was
     - Inside Gulp we have to explicitly tell **Webpack** where that file is
     - `webpack(require('../../webpack.config.js'));`
 * We provide a second argument that is just an anonymous function that will run when `webpack` completes (this is a **callback** function)
@@ -59,6 +59,18 @@ require('./gulp/tasks/scripts');
 
 ![webpack completed](https://i.imgur.com/ymmHdGK.png)
 
+* Update our js file
+
+```js
+`App.js`
+
+```
+var $ = require('jquery');
+var Person = require('./modules/Person');
+
+console.log('Webpack Automation test#2');
+```
+
 * Refresh the browser and you will see `Webpack Automation test` console message showing
 
 ![webpack console message](https://i.imgur.com/56leA7p.png)
@@ -70,26 +82,26 @@ require('./gulp/tasks/scripts');
 
 `watch.js`
 
-```js
+```
 // more code
   watch('./app/assets/styles/**/*.css', function() {
     gulp.start('cssInject');
   });
 
   // add this task
-  watch('./app/assets/scripts/**/*.js', function() {
+  watch('./app/assets/js/**/*.js', function() {
     gulp.start('scripts');
   });
 
 });
 ```
 
+* Run `$ gulp scripts`
 * Restart `$ gulp watch`
-* Change some JavaScript code
 
 `App.js`
 
-```js
+```
 var $ = require('jquery');
 var Person = require('./modules/Person');
 
@@ -100,6 +112,7 @@ console.log('Webpack Automation test#2');
 * Refresh browser
 * Look how easy it is to import jQuery
 * `Webpack Automation test#2` should now be in console
+* Change some JavaScript code you will see webpack is watching as well as gulp and you do not have to restart them
 
 ## Have Browsersync refresh JavaScript
 Any changes to JavaScript and browsersync refreshes our browser
@@ -128,7 +141,7 @@ gulp.task('watch', function() {
   });
 
   // modify this task
-  watch('./app/assets/scripts/**/*.js', function() {
+  watch('./app/assets/js/**/*.js', function() {
     gulp.start('scriptsRefresh');
   });
 

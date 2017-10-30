@@ -82,9 +82,9 @@ for (var i = 0; i < 10; i++) {
 const path = require('path');
 
 module.exports = {
-  entry: './app/assets/scripts/App.js',
+  entry: './app/assets/js/App.js',
   output: {
-    path: path.join(__dirname, './app/temp/scripts'),
+    path: path.join(__dirname, './app/temp/js'),
     filename: 'App.js'
   },
   module: {

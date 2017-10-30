@@ -47,6 +47,7 @@
 `_large-hero.css`
 
 ```css
+/* more code */
 &__text-content {
   position: absolute;
   top: 50%;
@@ -60,10 +61,11 @@
 ```
 
 ## Now we'll optimize the header for small screens
-* It doens't look good
+* It doesn't look good
 
 ![bad mobile header](https://i.imgur.com/n3c6oWp.png)
 
+### Hide the nav on mobile screens
 * We'll hide the top right `nav` and button until the user clicks a menu icon
 * We will show a smaller logo on small screens
     - We can get rid of the transparent blue blackground

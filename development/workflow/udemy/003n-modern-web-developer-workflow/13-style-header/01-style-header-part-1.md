@@ -2,7 +2,10 @@
 ## Git stuff
 `$ git checkout -b header`
 
+## Run gulp watch
 `$ gulp watch`
+
+## Add this class to `header` if it is not there
 
 ```html
 <body>
@@ -43,10 +46,14 @@
 
 ### z-index
 * Whichever HTML positioned element has a higher `z-index` will be placed on top
-* Default `z-index` of any element is `auto` with exception of `<html>` which has default `z-index:0`
+* Default `z-index` of any element is `auto` with exception of `<html>`
+    - `<html>` has a default `z-index:0`
 * `auto` means that element gets `z-index` from its **parent**
-* the `large-hero` block doesn't have a `z-index` value at all (_it is positioned `relative` which also takes it out of the flow of the document_)
-    - Since `large-hero` is positioned but has no `z-index`, `site-header` will appear on top because it has a larger `z-index` value
+* the `large-hero` block doesn't have a `z-index` value
+    - It is positioned `relative`
+    - Which also takes it out of the flow of the document
+    - Since `large-hero` is positioned but has no `z-index`, `site-header` will appear on top
+      + Because it has a larger `z-index` value
 
 You can see this by using Developer Tools (_in Chrome_) or any similar tool in other browser
 
@@ -64,6 +71,7 @@ You can see this by using Developer Tools (_in Chrome_) or any similar tool in o
 .site-header {
   position: absolute;
   z-index: 2;
+  
   background-color: rgba(47, 85, 114, .3);
 }
 ```
@@ -110,6 +118,7 @@ gulp.task('styles', function() {
 .site-header {
   position: absolute;
   z-index: 2;
+
   background-color: rgba($mainBlue, 0.3);
 }
 ```
@@ -126,10 +135,10 @@ gulp.task('styles', function() {
 ```css
 .site-header {
   position: absolute;
+  z-index: 2;
   
   background-color: rgba($mainBlue, 0.3);
   width: 100%;
-  z-index: 2;
 }
 ```
 
@@ -283,10 +292,10 @@ With this HTML
 ```css
 .site-header {
   position: absolute;
+  z-index: 2;
   
   background-color: rgba($mainBlue, 0.3);
   width: 100%;
-  z-index: 2;
 
   &__btn-container {
     float: right;
@@ -308,11 +317,11 @@ With this HTML
 ```
 .site-header {
   position: absolute;
+  z-index: 2;
 
   background-color: rgba($mainBlue, 0.3);
   padding: 10px 0; /* add this line */
   width: 100%;
-  z-index: 2;
 
   // more code
   &__logo {
@@ -328,6 +337,7 @@ With this HTML
 `_primary-nav.css`
 
 ```
+/* more code */
   a {
     color: #fff;
     display: block;
@@ -335,6 +345,7 @@ With this HTML
     text-decoration: none;
     padding: 12px 0;
   }
+}
 ```
 
 * Use Chrome inspector to move links with arrow key 1px at a time to get it perfect to what you want

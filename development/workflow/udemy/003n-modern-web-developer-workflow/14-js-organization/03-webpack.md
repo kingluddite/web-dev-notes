@@ -2,13 +2,14 @@
 ## Install Webpack globally
 * We will remove this but for now let's use it globally
 
-`npm i webpack -g`
+`$ npm i webpack -g`
 
-## /webpack.config.js
-* This is the config file for Webpack
+## Create the webpack config file
+* It is placed in the root of your project
+* It is named `webpack.config.js`
+* This is the config file for webpack
 * It needs to be named this
-* Should be installed in the root of the project
-* We'll create a object that tells webpack what to do
+* We'll create a `object` that tells webpack what to do
 
 `webpack.config.js`
 
@@ -16,9 +17,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: './app/assets/scripts/App.js',
+  entry: './app/assets/js/App.js',
   output: {
-    path: path.join(__dirname, './app/temp/scripts'),
+    path: path.join(__dirname, './app/temp/js'),
     filename: 'App.js'
   }
 }
@@ -26,17 +27,19 @@ module.exports = {
 
 * `entry` - Points to were our entry point is
 * `output` 
-    - `path` - Where will Webpack put our finished files
+    - `path` - Where will `webpack` put our finished files
     - `filename` - What do we want the output file to be named
-## Run Webpack
+
+## Run `webpack`
 `$ webpack`
 
 * When we run this, webpack will automatically know to look for `webpack.config.js` and then it will read our settings
-* After running you will see the bundled file created inside `/app/temp/scripts/App.js`
+* After running you will see the bundled file created inside `/app/temp/js/App.js`
 
-## Update index.html to include `App.js`
+## Update `index.html` to include `App.js`
+
 ```html
-  <script src="/temp/scripts/App.js"></script>
+  <script src="/temp/js/App.js"></script>
 </body>
 </html>
 ```
@@ -48,7 +51,60 @@ module.exports = {
 * Check console
 * We get an **error** `Person is not a constructor`
 
-## We have export `Person.js`
+### Troubleshooting
+* If you are having issues make sure you have created `app/assets/js/modules/Person.js` and inside this file is should look like this:
+
+`Person.js`
+
+```js
+function Person(fullName, color) {
+  this.name = fullName;
+  this.favColor = color;
+  this.greet = function() {
+    console.log(
+      'Yo ' + this.name + '.' + ' Your favorite color is ' + this.favColor + '.'
+    );
+  };
+}
+```
+
+* Then make sure this is inside `app/assets/js/App.js`
+
+`App.js`
+
+```js
+var Person = require('./modules/Person');
+
+var john = new Person('John Doe', 'red');
+john.greet();
+console.log(john);
+
+var jane = new Person('Jane Doe', 'green');
+jane.greet();
+```
+
+* And make sure you have this at the bottom of `index.html`
+
+```html
+<!-- more code -->
+<script src="assets/js/global.js"></script>
+<script src="assets/js/home.js"></script>
+<!-- <script src="/assets/js/App.js"></script> -->
+<script src="/temp/js/App.js"></script>
+</body>
+
+</html>
+```
+
+* Stop gulp with `cntrl` + `c`
+* Run webpack with `$ webpack`
+* Run gulp watch with `$ gulp watch`
+
+Then you should see this error
+
+![Person constructor error](https://i.imgur.com/QRnMpj2.png)
+
+## We have to export `Person.js`
 * `module.exports`
 * We need to spell out exactly what this file should export or return when another file tries to require it
 
@@ -87,6 +143,8 @@ function Person(fullName, color) {
 }
 
 console.log('Hello from Person.js');
+
+module.exports = Person;
 ```
 
 * Comment out some code
@@ -105,8 +163,7 @@ var Person = require('./modules/Person');
 ```
 
 ## Run webpack
-
-`$ webpack`
+* `$ webpack`
 
 ## Immediate code execution
 * Refresh browser
@@ -114,13 +171,15 @@ var Person = require('./modules/Person');
 * You will see `Hello from Person.js`
 
 ## Lesson Learned: What we can glean from this
-When you require a file, the code from that imported file is immediately executed (_otherwise we wouldn't see the log statement in the console_)
+* When you require a file, the code from that imported file is immediately executed
+* Otherwise we wouldn't see the log statement in the console
 
 ## We want to do more than immediately execute required code
 * But we want to do more then immediately run the `Person` modular code
-* We want to also export and expose certain parts of that `Person` file and make those parts accessible or callable from witin our main `App.js`
+* We want to also export and expose certain parts of that `Person` file
+* And make those parts accessible or callable from witin our main `App.js`
 
-## What is being stored inside the Person variable that we set to be the `require` call
+## What is being stored inside the Person variable that we set to be the `require` call?
 `App.js`
 
 ```js
@@ -129,7 +188,7 @@ var Person = require('./modules/Person');
 console.log(Person);
 ```
 
-## Run **webpack** again 
+## Run webpack again 
 `$ webpack`
 
 * Refresh browser
@@ -159,6 +218,7 @@ exports.sampleProperty = "I am a test property. I come in Peace.";
 exports.sampleFunction = function() {
   console.log('I am a function that does nothing but log');
 }
+// module.exports = Person;
 ```
 
 ## Run `webpack` to bundle up our files again
@@ -198,9 +258,10 @@ I am a function that does nothing but log
     - We just need to export the one **constructor function**
 * We don't want the exports object to contain this constructor function
     - We want the exports object to be the constructor function
-* The `exports` module's parent is `module`
-    - `module.exports`
-    - `module.exports = Person` (_our constructor function_)
+
+## The `exports` module's parent is `module`
+* `module.exports`
+* `module.exports = Person` (_our constructor function_)
 
 `Person.js`
 
@@ -251,9 +312,15 @@ jane.greet();
 ## Install jQuery
 `$ npm i jquery -S`
 
-* **note** jQuery is a **dependency** not a **devdependency**
+* Or use yarn with
+
+`$ yarn add jquery`
+
+* **note** jQuery is a **dependency** not a **dev dependency**
 
 ![jQuery dependency](https://i.imgur.com/w32FRgY.png)
+
+## Test if jQuery is working
 
 `App.js`
 

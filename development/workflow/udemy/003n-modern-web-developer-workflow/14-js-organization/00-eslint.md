@@ -1,5 +1,6 @@
 # ESLint
-* Eslint seems to be the pick of the js community
+* In the modern developers toolbelt they are using jsprettier to autoformat JavaScript and they are using eslint to quickly spot (and fix if you want) errors
+* There are other apps that do something similar to Eslint but Eslint seems to be the pick of the js community
 * config is broken on [eslint test page](https://eslint.org/demo/#configuration)
   - browser
     + fixes global issues like using `document`
@@ -8,29 +9,40 @@
     + cranking ECMA version to 8 gets rid of `const` errors
 
 ## Install ESLint
-* node is a requirement
+* **note** `node` is a requirement
 * node -v
-  - welcome to use yarn or npm
+  - Use yarn or npm to install it
   - `$ npm i -g eslint@4.9.0`
   - `$ yarn i -g eslint@4.9.0`
 
-### which version of eslint is running?
+### Find out which version of eslint is running?
 `$ eslint --version`
 
 ### Where to install eslint?
-* Don't install it globally
-* Better to install it on a project by project basis
+* **tip** Don't install it globally
+* Better to install it on a project-by-project basis
 
-## Create .eslintrc
-* Eslint configuration file
-* JSON file
+## Create `.eslintrc`
+* This is the special Eslint configuration file
+* It is a json JSON file so make sure it is in that format
+
+### JSON Syntax Rules
+* JSON syntax is derived from JavaScript object notation syntax:
+  - Data is in name/value pairs
+  - Data is separated by commas
+  - Curly braces hold objects
+  - Square brackets hold arrays
+      + **note** JSON names require double quotes
+      + JavaScript names don't
+      + Your `package.json` is a great example of a properly formated JSON file
+
 
 ## Run ESLint
 `$ eslint app/assets/js/about.js`
 
 `.eslintrc`
 
-```
+```json
 {
   "extends": "eslint:recommended",
   "parserOptions": {
@@ -59,11 +71,11 @@
 ## Save ESlint to your local project
 `$ npm i -D eslint@4.9.0`
 
-Or Yarn
+* Or Yarn
 
 `$ yarn add -D eslint@4.9.0`
 
-Code Studio plugin (ESLint - Dirk Beaumer)
+* Code Studio plugin (ESLint - Dirk Beaumer)
 [Vim install eslint tutorial](https://medium.com/@hpux/vim-and-eslint-16fa08cc580f)
 
 * Add to `~/.vimrc`
@@ -99,7 +111,7 @@ let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 ```
 
 * You are all set
-* Running `:SyntasticInfo` should return some information about version and enabled checkers
+* **note** (vim note) Running `:SyntasticInfo` should return some information about version and enabled checkers
 
 ## Start linting
 * Open js file and type away you should she linting working its magic
@@ -122,7 +134,7 @@ let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 `package.json`
 
-```
+```json
 {
   "name": "aaron-mobile-design",
   "version": "1.0.0",
@@ -158,11 +170,11 @@ let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 }
 ```
 
-## Update .eslintrca
+## Update .eslintrc
 
 `.eslintrc`
 
-```
+```json
 {
   "extends": "airbnb",
   "parserOptions": {
@@ -185,7 +197,7 @@ let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 ## Rules
 `.eslintrc`
 
-```
+```json
 {
   "extends": "airbnb",
   "parserOptions": {
@@ -243,7 +255,7 @@ let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 }
 ```
 
-React rules
+## React rules
 
 [documentation for eslintplugin react](https://github.com/yannickcr/eslint-plugin-react)
 
@@ -252,7 +264,7 @@ Can use numbers instead of strings
 * 1 - warning
 * 2 - error
 
-```
+```json
 {
   "extends": "airbnb",
   "parserOptions": {

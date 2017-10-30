@@ -3,24 +3,32 @@
 * Learn how to write highly organized JavaScript
 
 ## What is Object-oriented programming?
-### We'll answer by giving a code example
-`/app/assets/scripts/App.js`
+* We'll answer by giving a code example
+* Create the following file:
+
+`/app/assets/js/App.js`
+
+* Add this simple log statement inside that file
 
 ```js
 console.log('Test');
 ```
 
-## Point to JavaScript from HTML
-```html
-// more code
+## Connect to this file
+* Point to `App.js` file from `index.html`
 
-<script src="/assets/scripts/App.js"></script>
+`index.html`
+
+```html
+<!-- more code -->
+
+<script src="/assets/js/App.js"></script>
 </body>
 </html>
 ```
 
-## Test
-`cmd` + `opt` + `j` - opens inspector
+## Test the file in the browser
+`cmd` + `opt` + `j` ----> opens Chrome browser inspector tool
 
 * You should see `Test`
 * If you do, our JavaScript is working
@@ -32,8 +40,9 @@ console.log('Hello, my name is John Doe and my favorite color is blue');
 console.log('Hello, my name is Jane Doe and my favorite color is green');
 ```
 
+## Refactor Repetitive Code
 * The output should not be surprising
-* But this `code` is **repetitive**
+* But this `code` is repetitive
 * The lines are identical except for the **name** and **color**
 * Everything else is part of a pattern that we can define once and then recycle
 
@@ -45,6 +54,8 @@ function person(name, color) {
 person('John Doe', 'blue');
 person('Jane Doe', 'green');
 ```
+
+* We get the same output but we made our code more efficient
 
 ## Using variables
 ```js
@@ -82,7 +93,7 @@ person(janeName, janeFavColor);
 ```
 
 ### OK we are using Objects in OOP
-But what's the big deal?
+* But what's the big deal?
 
 ### We can also store functions in objects
 ```js
@@ -102,7 +113,7 @@ john.greet();
     - And begin thinking in terms of cohesive, self-sufficient objects
 
 ## What is an Object?
-* An entity that has Data and behavior
+* An entity that has `Data` and `Behavior`
   - Or think of it as an entity that has nouns and verbs
 
 ### Our Object
@@ -148,20 +159,26 @@ var jane = new Person();
 jane.greet(); // Yo!
 ```
 
+## Important Naming Convention
 * Begin classes with a Capital letter
-    - Common naming convention is to spell constructors with a Capital letter
-* `new` is a keyword in JavaScript that will create a new **instance** of the Person object type
-  - (_We could also say we will create a new object using our Person blueprint_)
+  - App.js
+  - Car.js
+  - Boat.js
+    - Common naming convention is to spell **constructors** with a Capital letter
 
-## What is `this` keyword
+## Constructors
+* `new` is a keyword in JavaScript that will create a new **instance** of the Person object type
+* We could also say we will create a new object using our Person blueprint
+
+## What is `this` keyword?
 * Allows our Object to be flexible
 * The value of `this` changes depending on 
-  - **how**
-  - **when**
-  - and **where** it is called
+  - **how** it is called
+  - **when** it is called
+  - **where** it is called
 * When we call this after called `john.greet()` `this` refers to **john**
 * When we call this after called `jane.greet()` `this` refers to **jane**
-* Within the **signature** of our constructor function we add parameters to receive incoming stuff like names and favorite color
+* Within the **signature** of our `constructor` function we add parameters to receive incoming stuff like names and favorite color
 
 ```js
 function Person(fullName, color) {
@@ -181,8 +198,11 @@ jane.greet();
 ```
 
 ## Now our code is Object Oriented
-* JavaScript does not technically have classes like Java and C#
+* **note** JavaScript does not technically have classes like Java and C#
 * ES6 introduces the `class` keyword to make JavaScript look like is uses classes but it is not a **true** JavaScript language
 * It is a difference but I will refer to the blueprint code as a `class`
-* It would be nice if we could put our `class` in its own file so we don't have it mudding up our other code
-* We can't import files/libraries using native JavaScript but we can using a tool called **Webpack** 
+
+### How we'll structure our JavaScript `classes`
+* It would be nice if we could put our `class` in its own file
+    - So we don't have it mudding up our other code
+* We can't import files/libraries using native JavaScript but we can using a very powerful tool called **Webpack** 

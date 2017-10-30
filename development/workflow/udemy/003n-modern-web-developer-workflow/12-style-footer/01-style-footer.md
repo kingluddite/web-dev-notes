@@ -7,8 +7,14 @@
 
 ```html
 <footer class="site-footer">
-    <p>Copyright &copy; 2016 Clear View Escapes. All rights reserved. <a href="#" class="btn btn--orange">Get in Touch</a></p>
-  </footer>
+  <div class="wrapper">
+    <p><span class="site-footer__text">Copyright &copy;
+      Domsters Redux 2017</span> <a href="#" class="btn btn--orange
+      btn--large">Get in Touch</a>
+    </p>    
+  </div>
+  <!-- /.wrapper --> 
+</footer>
 ```
 
 * We add a new `site-footer` class

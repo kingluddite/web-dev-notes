@@ -42,16 +42,30 @@ Only when we actively commit changes does Git save them
 ### Staging
 * We `stage` our changes before we `commit` them
 * **analogy** Before you sell a home, you first have to get it ready or staged
-* Staging means preparing, getting ready
+* Staging means "preparing" or  "getting ready"
 * Staging enables us to control what gets committed
 * We don't always want to push every change we made into a commit
-* We `add` files to **Staging area** and when we are happy they are what we want to `commit`, we `commit` them
+* We `add` files to **Staging area**
+* And when we are happy they are in a state that we are happy with, we `commit`them
 
-`$ git status`
+## Git in the habit of checking the `status` of your local git repo
 
-`$ git add -A` (_add all changes_)
+* `$ git status`
 
-`$ git commit -m 'your message here'`
+## Add all files to staging
+* You can also just add an individual file by specifying the file name
+* `$ git add -A` (_add all changes_)
+
+## Make a commit
+* Take a snapshot of your current state of your project
+* Use these as breadcrumbs to track the progress of your project
+* You can use `$ git log` to see all your commits
+* You can checkout a past snapshot using `$ git checkout HASH`
+    - Here is an example of a HASH (the really long number to the right of `commit`)
+![commit hash](https://i.imgur.com/vFyR16f.png) 
+
+### Here is your commit statement syntax
+* `$ git commit -m 'your message here'`
 
 ## Bring back lost files
 * If all your files were deleted, you can bring them back to life with the following command:
@@ -66,12 +80,10 @@ Only when we actively commit changes does Git save them
 * Github is the most popular
 
 ### Push changes to Github
-
-`$ git push origin master`
+* `$ git push origin master`
 
 ### Pull changes from Github
-
-`$ git pull origin master`
+* `$ git pull origin master`
 
 ### Tell git about you
 * `$ git config --global user.name "PEH2"`
