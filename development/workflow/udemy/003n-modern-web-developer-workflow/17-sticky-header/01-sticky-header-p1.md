@@ -100,8 +100,8 @@ export default StickyHeader;
         + We use `that = this` to bind `that` to `this`
 * Waypoint has a `direction` argument that will know when the user is scrolling `down`
     - We use a conditional `if` statement to either:
-      + Add the dark background class if scrolling down
-      + Or remove the class if scrolling up
+        + Add the dark background class if scrolling down
+        + Or remove the class if scrolling up
 * We want the Waypoint object to be created as soon as the page loads so we place it in the constructor and call it `this.createHeaderWaypoint();`
 
 ## Need Native DOM Element

@@ -17,7 +17,10 @@ class RevealOnScroll {
 
 * Now when we scroll down testimonials appears just like feature items
 * We want to be able to alter this part and the offset
-* Classes are great because they are reusable, recyclable blueprints that we can use to create multiple objects
+* Classes are great because they are:
+    - reusable
+    - recyclable 
+* blueprints that we can use to create multiple objects
 
 `App.js`
 

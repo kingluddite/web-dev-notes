@@ -3,11 +3,12 @@
 
 ![mobile menu](https://i.imgur.com/z2imkaI.png)
 
-* Push content down only on mobil and center
+* Push content down only on mobile
+* And center it too
 
 `_site-header.css`
 
-```
+```css
 // more code
   &__menu-content {
       text-align: center;
@@ -27,12 +28,12 @@
   }
 ```
 
-* Remove the float only on mobile
+### Remove the float only on mobile (button)
 * Change this:
 
 `_site-header.css`
 
-```
+```css
 &__btn-container {
   float: right;
 }
@@ -40,7 +41,7 @@
 
 * To this:
 
-```
+```css
 &__btn-container {
   @mixin atMedium {
     float: right;
@@ -48,11 +49,11 @@
 }
 ```
 
-* Remove floats on mobile
+### Remove floats on mobile (nav)
 
 `_primary-nav.css`
 
-```
+```css
 .primary-nav {
 
   &--pull-right {
@@ -99,11 +100,11 @@ export default MobileMenu;
 ```
 .site-header {
   position: absolute;
+  z-index: 2;
   
   padding: 10px 0;
   transition: background-color 0.3s ease-out;
   width: 100%;
-  z-index: 2;
 
   &--is-expanded {
     background-color: rgba($mainBlue, .55);
@@ -112,6 +113,22 @@ export default MobileMenu;
 
 * 0.3s (300 milliseconds)
 * Learn more about [CSS transition property](https://css-tricks.com/almanac/properties/t/transition/)
+
+#### Troubleshooting
+* Sometimes you look at the browser and it doesn't show you what you think your site will look like
+* You make sure gulp watch is running and it may be but you still have an strange error
+* You need to know that if the website is not looking right you may have a bug and it will be hard to find
+* Here is such an example
+
+`_site-header.css`
+
+`transition: background-color: 0.3s ease-out;`
+
+* This is a mistake
+* I added another `colon` (:) after background-color and this will cause an issue
+* If you view the Chrome inspector you will see that the _site-header.css is not loading but you did not load this file individually
+* The problem is this is the side effect of bad code
+* Remove the colon from the code and all is well
 
 ### Also have Menu items fade in
 `_site-header.css`
@@ -122,8 +139,8 @@ export default MobileMenu;
     /*display: none;*/
     opacity: 0;
     padding-top: 100px;
-    transition: opacity .3s ease-out;
     text-align: center;
+    transition: opacity .3s ease-out;
 
     @mixin atMedium {
       display: block;
@@ -142,6 +159,9 @@ export default MobileMenu;
 ## Opacity over Display
 * Instead of `display none` and then `display block` to show and hide menu items
     - We use **opacity** `0` (_invisible_) and the **transition** to **opacity** `1` (_fully opaque_)
+* If you want to work with transitions in **CSS** you need to use the **opacity** property and not the **display** property
+
+## The invisible clickable problem
 * One problem is now our item is opacity 0 and invisible it can still be clicked on
     - We don't want our user to be able to click on invisible content
 
@@ -176,14 +196,19 @@ export default MobileMenu;
 
 * We use a large negative `z-index` to make sure our invisible element is stacked behind all the other elements in the page
     - This ensures the user won't click on it
-* `z-index` is only recognized by the browser if `position` is **relative** or **absolute**
+* **note** `z-index` is only recognized by the browser if `position` is **relative** or **absolute**
 * We set `z-index` to `1` when it is visible so it can easily be clicked on
 
-## Transition all
+## Houston we have a problem!
+* We click on the menu icon and the menu appears
+* But when we click on it again it does not disappear
+* We'll tackle this problem after we work with transitions and CSS a little more
+
+## Transition "all"
 * We can use `all` in transition to transition all properties
-    - You can specify a particular property as we have above, or use a value of "all" to refer to transition properties
-    - The following is just a code sample and has nothing to do with the project
-* This is just sample code and not part of this project
+    - You can specify a particular property as we have above
+    - Or use a value of "all" to refer to transition properties
+* **note** The following is just a code sample and has nothing to do with the project
 
 ```css
 div {
@@ -202,17 +227,17 @@ div:hover {
 
 `_site-header.css`
 
-```
-// more code
+```css
+/* more codea */
 &__menu-content {
-  position: relative; /* add this line */
+  position: relative;
+  z-index: -10;
   
   opacity: 0;
   padding-top: 100px;
   text-align: center;
   transition: all .3s ease-out; /* modify this line */
-  z-index: -10;
-// more code
+/* more code */
 ```
 
 ## Add `zoom out` effect
@@ -221,26 +246,28 @@ div:hover {
 ```css
   &__menu-content {
     position: relative;
+    z-index: -10;
 
     opacity: 0;
     padding-top: 90px; /* add this line */
+    text-align: center;
     transform: scale(1.2); /* add this line */
     transition: all .3s ease-out;
-    text-align: center;
-    z-index: -10;
 
     @mixin atMedium {
       opacity: 1;
+      z-index: 1;
+
       padding-top: 0;
       text-align: left;
       transform: scale(1); /* add this line */
-      z-index: 1;
     }
 
     &--is-visible {
+      z-index: 1;
+
       opacity: 1;
       transform: scale(1); /* add this line */
-      z-index: 1;
     }
   }
 }
@@ -254,16 +281,18 @@ div:hover {
 
 `_site-header.css`
 
-```
+```css
+/* more code */
 &__menu-icon {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 10; /* add this line */
   
-  background-color: #fff;
+  background-color: $white;
   height: 20px;
   width: 20px;
-  z-index: 10; /* add this line */
+/* more code */
 ```
 
 ### Fix mobile links
@@ -280,7 +309,7 @@ div:hover {
 
   a {
     background-color: rgba($mainBlue, .5);
-    color: #fff;
+    color: $white;
     display: block;
     font-size: .8rem;
     font-weight: 300;

@@ -8,9 +8,13 @@ In `index.html` we need to create relationships between each section of the page
 ```html
 <nav class="primary-nav primary-nav--pull-right">
   <ul>
-    <li><a href="#our-beginning" id="our-beginning-link">Our Beginning</a></li>
+    <li><a href="#our-beginning" id="out-beginning-link">Our Beginning</a></li>
     <li><a href="#features" id="features-link">Features</a></li>
-    <li><a href="#testimonials" id="testimonials-link">Testimonials</a></li>
+    <li><a href="#technologies" id="technologies-link">Technologies</a></li>
+    <li><a href="#home" id="home-link">Home</a></li>
+    <li><a href="#about" id="about-link">About</a></li>
+    <li><a href="#photos" id="photos-link">Photos</a></li>
+    <li><a href="#live" id="live-link">Live</a></li>
   </ul>
 </nav>
 ```

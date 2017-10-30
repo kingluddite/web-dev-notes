@@ -24,11 +24,14 @@ import MobileMenu from './modules/MobileMenu';
 const mobileMenu = new MobileMenu();
 ```
 
+## Naming Variables Properly
 * `MobileMenu` is just a variable name
-  - We can name it anything but good to name it what we are importing
-* Just importing does nothing so we create a new `MobileMenu()` and store it in a variable (_mobileMenu_)
+    - We can name it anything but good to name it what we are importing
+* Just importing does nothing
+    - So we create a new `MobileMenu()` and store it in a variable (_mobileMenu_)
 
 ## Capitalize Constructors
+### mobileMenu vs MobileMenu
 * Notice the different spellings between the object using the `new` constructor `MobileMenu()` and the variable `mobileMenu`
 * If you save you will see the console log of `testing mobile menu`
 
@@ -109,6 +112,9 @@ export default MobileMenu;
 ## Console sees our click!
 * We click on icon and we see `clicked` in console
 
+## `this` can be a problem
+* Let's show you why and how to fix it
+
 `MobileMenu.js`
 
 ```js
@@ -136,14 +142,17 @@ export default MobileMenu;
 * Test in browser
 * We get an error when we click on mobile icon `Cannot read property "toggleClass" of undefined
     - this problem is because of `this`
-* Why does `this` work in the constructor and events but not inside `toggleTheMenu()`?
-    - Because the value of `this` changes depending on when and where we use it
-    - Normally when we use the `this` keyword inside an object method, it points to the object
-    - But this time (inside `toggleTheMenu()`) .... `this` is not pointing back to the object
+
+## Why does `this` work in the constructor and events but not inside `toggleTheMenu()`?
+* Because the value of `this` changes depending on when and where we use it
+* Normally when we use the `this` keyword inside an object method, it points to the object
+* But this time (inside `toggleTheMenu()`) .... `this` is not pointing back to the object
 
 ## Why?
-* Because when that method runs, we didn't call it directly, instead it is running in response to the `click` event
-  - And in JavaScript, when a function is used as an event handler, the `this` keyword within that function, gets set to the DOM element the event fired from (_in this case, the element that got clicked on, which would be the `menuIcon_`)
+* Because when that method runs, we didn't call it directly
+* Instead it is running in response to the `click` event
+  - **note** In JavaScript, when a function is used as an event handler, the `this` keyword within that function, gets set to the DOM element the event fired from
+      + In this case, the element that got clicked on, which would be the `menuIcon`
 
 ## Testing `this`
 `MobileMenu.js`
@@ -189,7 +198,9 @@ toggleTheMenu() {
 ```
 
 * Now when you click on the icon, it disappears
-* We need to change the `this` keyword from equaling the element that was clicked on, instead we want the `this` keyword to point back to our object so we can use it to access the `menuContent` property
+* We need to change the `this` keyword from equaling the element that was clicked on
+* Instead we want the `this` keyword to point back to our object
+    - So we can use it to access the `menuContent` property
 
 ## How can we do that?
 * How can we override JavaScript's default behavior?
@@ -228,12 +239,18 @@ class MobileMenu {
 export default MobileMenu;
 ```
 
-* Test in browser
+## Test in browser using Chrome Dev Tool
 * Have large and small browser window open
 * Click on white box in small window and look at inspector in large chrome window
 * You will see every time you click the white square `site-header__menu-content--is-visible` toggles on and off the `div` with `site-header__menu-content`
 
 ![is-visible appears](https://i.imgur.com/EMLWjbw.png)
+
+* **note** You need to search for this chunk of text under `Elements` tab of Chrome instpector
+
+`<div class="site-header__menu-content">...</div>`
+
+* And then click the white square icon to see the toggled class effect
 
 ### Adjust CSS to make this work
 `_site-header.css`
