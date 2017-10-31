@@ -44,6 +44,10 @@ del = require('del'), // don't forget comma
 svg2png = require('gulp-svg2png'); // add this line
 // more code
 
+gulp.task('beginClean', function() {
+  return del(['./app/temp/sprite', './app/assets/images/sprites']);
+});
+
 gulp.task('createSprite', ['beginClean'], function() {
   return gulp.src('./app/assets/images/icons/**/*.svg')
     .pipe(svgSprite(config))
@@ -62,15 +66,19 @@ gulp.task('copySpriteGraphic', ['createPngCopy'], function() {
     .pipe(gulp.dest('./app/assets/images/sprites'));
 });
 
+gulp.task('endClean', ['copySpriteGraphic', 'copySpriteCSS'], function() {
+  return del('./app/temp/sprite');
+});
+
 // more code
 gulp.task('icons', ['beginClean', 'createSprite', 'createPngCopy', 'copySpriteGraphic', 'copySpriteCSS', 'endClean']);
 ```
 
-* We want to make sure the `createPngCopy` task doesn't begin until the task that creates the sprite `createSpite` ends
+* We want to make sure the `createPngCopy` task doesn't begin until the task that creates the sprite `createSprite` ends
 * The copySpriteGraphic task is responsible from moving the temp folder to our real images folder and it should have as it's dependency our new `createPngCopy` instead of the original `createSprite` task
     - We also have to change the `gulp.src()` from just pointing to `svg` to pointing to `svg` and `.png`
         + So this: `return gulp.src('./app/temp/sprite/css/**/*.svg')`
-        + Becoms this: `return gulp.src('./app/temp/sprite/css/**/*.{svg,png}')`
+        + Becomes this: `return gulp.src('./app/temp/sprite/css/**/*.{svg,png}')`
 * We also add the `createPngCopy` to our `icons` task
 
 ## Run our new task
@@ -89,7 +97,7 @@ gulp.task('icons', ['beginClean', 'createSprite', 'createPngCopy', 'copySpriteGr
 * Example
     - If a user's browser supports SVG files, modernizr will add a class named `svg` to the root `<html>` element
     - If a user's browser doesn't support SVG files, it will add a class of `no-svg` to the `<html>` element of the page
-    - We then customizer our CSS to send different icons depending on the CSS class
+    - We then customize our CSS to send different icons depending on the CSS class
 
 ### Use JavaScript to generate a modernizr file to use in the browser
 `/gulp/tasks/moderizr.js`

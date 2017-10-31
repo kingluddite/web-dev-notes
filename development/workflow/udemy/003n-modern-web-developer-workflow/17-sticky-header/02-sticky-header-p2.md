@@ -1,5 +1,9 @@
 # Sticky Header Part 2
-Highlight navigation links based on where you scrolled
+* Highlight navigation links based on where you scrolled
+* What we will do is create the ability to highlight the current section of the page based on where you scroll to
+* This will use the `id` attribute in the nav anchro tags
+* They will be tied to the **data-matching-link** (which is a custom HTML5 attribute)
+* Here is one example of this: `data-matching-link="#testimonials-link"`
 
 ## Create relationships
 In `index.html` we need to create relationships between each section of the page and its matching header link
@@ -33,8 +37,8 @@ In `index.html` we need to create relationships between each section of the page
 // more code
 ```
 
-* Now we'll use JavaScript and Waypoints so that when this section of the page gets scrolled to we'll use `#our-beginning-link` as a custom attribute as a jQuery selector and we give that element a modifier css class that makes it yellow
-* We'll add this code inside our `StickyHeader` JavaScript class
+* Now we'll use JavaScript and Waypoints so that when this section of the page gets scrolled to we'll use `#our-beginning-link` as a custom attribute as a jQuery selector and we give that element a modifier css class that makes it yellowk
+* We'll add this code inside our `HighlightSection` JavaScript class
 
 `/app/assets/scripts/modules/HighlightSection.js`
 
@@ -87,18 +91,18 @@ const highlightSection = new HighlightSection(); // add this line
 
 ```css
 a {
-  color: #fff;
-  font-weight: 300;
-  text-decoration: none;
-  display: block;
-  padding: 5px 8px; /* make sure this is correct */
-  font-size: .8rem; /* check this too */
   background-color: rgba($mainBlue, .5);
+  color: $white; 
+  display: block;
+  font-size: .8rem; /* check this too */
+  font-weight: 300;
+  padding: 0.5rem 0.8rem; /* make sure this is correct */
+  text-decoration: none;
 
   @mixin atMedium {
-    font-size: 1rem;
-    padding: 12px 0; /* make sure this is correct */
     background-color: transparent; /* make sure this is correct */
+    font-size: 1rem;
+    padding: 1.2rem 0; /* make sure this is correct */
 
     &.is-current-link { /* add this rule */
       color: #fabb69;
@@ -108,18 +112,22 @@ a {
 ```
 
 ## Removing class
+* When you add a class you also have to remove it
+* The functionality will be add a class with a color font style when the user has scrolled to that part of the page
+* Then remove that class when they are no longer at that section
 * We need to remove the `is-current-link` class for the yellow links
 * Right before this line:
 
 `HighlightSection.js`
+
+* We could use jQuery to select the `is-current-link` like this:
 
 ```js
 $(matchingHeaderLink).addClass('is-current-link');
 ```
 
 * We want to remove `is-current-link` from any/all nav links
-* We could use jQuery to select the `is-current-link` like this:
-* It is a good idea to deal with all DOM selection in the constructor
+* **tip** It is a good idea to deal with all DOM selection in the constructor
 
 `HighlightSection.js`
 

@@ -18,17 +18,18 @@
 .modal {
   position: fixed;
   z-index: 5;
-  background-color: rgba(255, 255, 255, .94);
+
+  background-color: rgba($white, 0.94);
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 
   &__description {
-    text-align: center;
     font-size: 1.3rem;
     font-weight: 300;
     line-height: 1.65;
+    text-align: center;
   }
 
   &__close {
@@ -52,7 +53,7 @@
 ## Vertical Center Modal content in viewport
 `index.html`
 
-* We put everything in our modal (_except the X_) inside a `div` with a class of `modal__iner`
+* We put everything in our modal (_except the X_) inside a `div` with a class of `modal__inner`
 
 ```html
 <div class="modal">
@@ -116,7 +117,7 @@
   z-index: 5;
 ```
 
-## Visibility: hidden
+## Houston we have a slight problem
 * But if you hover over the page you will still see that the social icons are still clickable
 * So just add `visability: hidden` and that will prevent the hand cursor from appearing over the social icons
 
@@ -169,6 +170,8 @@ const modal = new Modal(); // add this line
 
 ## Less generic class name
 * We add `open-modal` class name in case we have other `btn` instances on our page
+* We obviously don't want the modal to open on every button click
+* So we differentiate the buttons we want to open a modal by giving them a distinctive class name
 
 ```html
 <div class="site-header__menu-content">
@@ -177,9 +180,10 @@ const modal = new Modal(); // add this line
   </div>
 ```
 
-* `return false` - Our links have `href="#"`
-    - When links are clicked and have the `#` the browser default behavior is to scroll up to the top of the page
-    - We want to turn that default behavior off so we use `return false`
+### Default link behvior - (return false)
+* Our links have `href="#"`
+* When links are clicked and have the `#` the browser default behavior is to scroll up to the top of the page
+* We want to turn that default behavior off so we use `return false`
 
 `Modal.js`
 
@@ -228,7 +232,7 @@ export default Modal;
   bottom: 0;
   left: 0;
 
-  background-color: rgba(255, 255, 255, .94);
+  background-color: rgba($white, 0.94);
   opacity: 0;
   transform: scale(1.2);
   transition: all .3s ease-out;

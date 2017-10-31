@@ -26,6 +26,9 @@
 ## Create a Modal/Overlay (aka Lightbox)
 `index.html`
 
+* **note** We now have a `wrapper--narrow` class that we will use to house our modal description
+* **note** We also added `section-title--less-margin"`
+
 ```html
 // more code
   <div class="modal">
@@ -46,18 +49,19 @@
 </html>
 ```
 
-## Create css module
+## Create CSS module
 `/app/assets/styles/modules/_modal.css`
 
 ```css
 .modal {
+  /* we want the modal to cover the entire browser */
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 
-  background-color: rgba(255, 255, 255, .94);
+  background-color: rgba($white, 0.94);
   z-index: 5;
 
   &__description {

@@ -77,11 +77,11 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    App: './app/assets/scripts/App.js',
-    Vendor: './app/assets/scripts/Vendor.js'
+    App: './app/assets/js/App.js',
+    Vendor: './app/assets/js/Vendor.js'
   },
   output: {
-    path: path.join(__dirname, './app/temp/scripts'),
+    path: path.join(__dirname, './app/temp/js'),
     filename: '[name].js'
   },
 // more code
@@ -106,7 +106,7 @@ module.exports = {
 
 ![lazyfiles loading](https://i.imgur.com/RnZ9A37.png)
 
-* Check for `/app/temp/scripts/Vendor.js`
+* Check for `/app/temp/js/Vendor.js`
     - It should be a bundled JavaScript file
 * We now need to include this file inside `index.html`
 
@@ -114,7 +114,7 @@ module.exports = {
 * Normally we'll put all our JavaScript at the bottom like where we put `App.js`
 
 ```html
-  <script src="/temp/scripts/App.js"></script>
+  <script src="/temp/js/App.js"></script>
 </body>
 </html>
 ```
@@ -123,7 +123,7 @@ module.exports = {
 
 ```html
   <link rel="stylesheet" href="temp/styles/styles.css"/>
-  <script src="/temp/scripts/Vendor.js"></script>
+  <script src="/temp/js/Vendor.js"></script>
 </head>
 <body>
 ```
@@ -138,20 +138,20 @@ module.exports = {
 
 `index.html`
 
-* We create a container and give it the `testimonial__photo` class
+* We create a container and give it the `technologies__photo` class
   - And inside we have our image with the `.lazyload` class
 
 ```html
 // more code
-<div class="testimonial__photo">
+<div class="technologies__photo">
   <img class="lazyload" sizes="160px" data-srcset="assets/images/testimonial-jane.jpg 160w, assets/images/testimonial-jane-hi-dpi.jpg 320w" alt="Jane Doe">
 </div>
 // more code
-<div class="testimonial__photo">
+<div class="technologies__photo">
   <img class="lazyload" sizes="160px" data-srcset="assets/images/testimonial-john.jpg 160w, assets/images/testimonial-john-hi-dpi.jpg 320w" alt="John Smith">
 </div>
 // more code
-<div class="testimonial__photo">
+<div class="technologies__photo">
   <img class="lazyload" sizes="160px" data-srcset="assets/images/testimonial-cat.jpg 160w, assets/images/testimonial-cat-hi-dpi.jpg 320w" alt="Cat McKitty">
 </div>
 // more code
@@ -171,7 +171,7 @@ module.exports = {
 * Find the HTML element the background image is applied to and give that element a class of `lazyload` and then as we get to that part of the page, lazyload will swap the `lazyload` class name out with `lazyloaded` and we can use that class name to load our image using our CSS file
 
 ```html
-<div id="testimonials" class="page-section page-section--no-b-padding-until-large page-section--testimonials lazyload" data-matching-link="#testimonials-link">
+<div id="technologies" class="page-section page-section--no-b-padding-until-large page-section--technologies lazyload" data-matching-link="#technologies-link">
 ```
 
 `_page-section.css`
@@ -179,7 +179,7 @@ module.exports = {
 * Change this:
  
 ```css
-&--testimonials {
+&--technologies {
   background-color: #e0e6ef;
 
   @mixin atLarge {
@@ -192,7 +192,7 @@ module.exports = {
 * To this:
 
 ```css
-&--testimonials {
+&--technologies {
   background-color: #e0e6ef;
 
   @mixin atLarge {
@@ -207,7 +207,7 @@ module.exports = {
 * That will output to this CSS (production CSS)
 
 ```css
-.page-section--tools.lazyloaded {
+.page-section--technologies.lazyloaded {
     background: url(/assets/images/textured-paper-bg.jpg) top center no-repeat;
     background-size: cover;
 }
