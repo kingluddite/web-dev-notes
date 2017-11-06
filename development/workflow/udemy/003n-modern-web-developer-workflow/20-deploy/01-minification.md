@@ -177,9 +177,9 @@ gulp.task('build', ['deleteDistFolder', 'optimizeImages']);
 * `/temp/scripts/App.js`
 
 ## Compress and Revision files
-* We not only want to copy these files but we all want to:
+* We not only want to copy these files but we also want to:
     - Compress
-    - Revision
+    - Revise
 
 ### What does revision mean?
 * We just want to add a unique string of numbers and letters after the file name
@@ -189,7 +189,8 @@ gulp.task('build', ['deleteDistFolder', 'optimizeImages']);
 #### Cache-busting
 * This is for cache-busting
     - Which means, we force the browsers to re-download the file if we made any changes
-    - If we don't revision, browsers will cache the file and a visitor won't see any changes to our site if they visited our site and didn't clear their browser cache
+    - If we don't use revision, browsers will cache the file and a visitor won't see any changes to our site if they visited our site and didn't clear their browser cache
+
 * There is a great tool that will `copy to dist folder, compress files and revision them for us` and this tool is called `usemin`
 
 ## Install usemin tool
@@ -237,11 +238,11 @@ gulp.task('build', ['deleteDistFolder', 'optimizeImages', 'usemin']);
 <!-- endbuild -->
 
 <!-- build:js /assets/scripts/Vendor.js -->
-<script src="/temp/scripts/Vendor.js"></script>
+<script src="/temp/js/Vendor.js"></script>
 <!-- endbuild -->
 // more code
 <!-- build:js /assets/scripts/App.js -->
-<script src="/temp/scripts/App.js"></script>
+<script src="/temp/js/App.js"></script>
 <!-- endbuild -->
 ```
 

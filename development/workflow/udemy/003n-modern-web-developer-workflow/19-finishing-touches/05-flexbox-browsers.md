@@ -27,7 +27,7 @@
 
 ```
 /* Begin Equal Height Rules */
-&--equal-height-at-medium {
+&--equal-height-at-large {
   @mixin atMedium {
     display: flex;
   }
@@ -126,7 +126,7 @@ var config = {
   transform: translateX(0) scale(1);
 
   .site-header--dark & {
-    transform: scale(.555);
+    transform: scale(.56);
   }
 }
 // more code
