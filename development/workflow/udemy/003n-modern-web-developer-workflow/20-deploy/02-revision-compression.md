@@ -15,8 +15,10 @@
 gulp.task('usemin', ['deleteDistFolder'], function() {
   return gulp.src('./app/index.html')
     .pipe(usemin({
-      css: [function() {}, function() {}],
-      js: []
+      css: [function() { return rev()}, function() {
+        return cssnano()
+        }],
+      js: [function() { return rev()}, function() { return uglify()}],
     }))
     .pipe(gulp.dest('./dist'));
 });
