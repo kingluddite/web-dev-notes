@@ -267,4 +267,27 @@ gulp.task('usemin', ['styles', 'scripts'], function() {
 
 gulp.task('build', ['deleteDistFolder', 'copyGeneralFiles', 'optimizeImages', 'useminTrigger']);
 ```
+
+`index.html`
+
+```html
+<!-- head -->
+    <!-- build:css /assets/styles/styles.css -->
+    <link rel="stylesheet" href="temp/styles/styles.css"/>
+    <!-- endbuild -->
+
+    <!-- build:js /assets/js/Vendor.js -->
+    <script src="/temp/js/Vendor.js"></script>
+    <!-- endbuild -->
+<!-- end head stuff -->
+<!-- MORE CODE -->
+
+<!-- bottom stuff -->
+<!-- <script src="assets/js/global.js"></script> -->
+<!-- <script src="assets/js/home.js"></script> -->
+<!-- <script src="/assets/js/App.js"></script> -->
+<!-- build:js /assets/js/App.js -->
+<script src="/temp/js/App.js"></script>
+<!-- endbuild -->
+```
  
