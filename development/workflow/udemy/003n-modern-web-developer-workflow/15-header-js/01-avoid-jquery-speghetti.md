@@ -139,7 +139,7 @@ class MobileMenu {
 export default MobileMenu;
 ```
 
-* Test in browser
+## Test in browser
 * We get an error when we click on mobile icon `Cannot read property "toggleClass" of undefined
     - this problem is because of `this`
 
