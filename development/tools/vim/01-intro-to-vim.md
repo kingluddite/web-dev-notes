@@ -148,3 +148,59 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic aliquid ex odio iu
 * t
     - Until
     - Use like search, if you search for comma it will take you up and until the first comma
+
+## ultisnips
+* Had problems with this
+* The issue was where it was creating the snippet. this explains is:
+
+```
+Let say I am working in the folder /home/me/myProject, my vim configuration folder is /home/me/.vim. I am currently working on a JavaScript file.
+
+If I have an already /home/me/.vim/UltiSnips/javascript.snippets file and I do a :UltiSnipsEdit: I open and edit /home/me/.vim/UltiSnips/javascript.snippets.
+
+If I do not have a /home/me/.vim/UltiSnips/javascript.snippets file and I do a :UltiSnipsEdit: I open and edit /home/me/myProject/UltiSnips/javascript.snippets.
+
+In a nutshell: UltiSnipsEdit creates a snippet in the local folder, instead of in the configuration folder, if no snippet file was already present in the configuration folder. Also, the snippets in this local file are not recognized.
+```
+
+Solution: put this in your vimrc
+
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+
+add this
+
+`Plugin 'sirver/ultisnips'`
+
+this video helps understand: http://vimcasts.org/episodes/meet-ultisnips/
+
+type this to create your snippet (it will be saved to correct location if you follow first big paragraph above)
+
+`:UltiSnipsEdit`
+
+Here is a simple example of a snippet (it will create a snippet in the folder of the file type you are currently working inside)
+
+```
+snippet log
+console.log(${1:value});$2
+$0
+endsnippet
+```
+
+* You have snippet delimiters
+* snippet trigger
+* tabstops
+
+`~/.vimrc`
+
+```
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+```
+now you can ctrl j to go to next tabstop and ctrl + k to go to previous tab stop
+
+look more into vim supertab
+look more into youcomplete me
+
