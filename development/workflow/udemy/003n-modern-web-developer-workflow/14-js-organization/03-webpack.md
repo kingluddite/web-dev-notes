@@ -306,13 +306,14 @@ jane.greet();
 * We can use it to require in module files that we create
 * We can also use `webpack` to require in and bundle 3rd party packages from **npm**
 
-## We will add jquery with Webpack
+## Proof of concept
+### We will add jQuery with Webpack
 * We'll test that it is working (_proof of concept_) by removing all `h2` elements from our `index.html`
 
-## Install jQuery
+## Install jQuery with npm:
 `$ npm i jquery -S`
 
-* Or use yarn with
+### Or install with yarn:
 
 `$ yarn add jquery`
 
