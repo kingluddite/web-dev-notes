@@ -1,15 +1,23 @@
 # This is how I like to set up my Mac
-* yo
+
+## I have come up with a fast way to install Sublime Text and all my apps
+* [Install Sublime Text super fast](https://github.com/kingluddite/sublime-text-bootstrap)
+* [My dotfiles](https://github.com/kingluddite/dotfiles)
+
 * [Install Homebrew](https://brew.sh/)
 * Install tree `$ brew install tree`
 * Install node `$ brew install node`
 * Install yarn `$ brew install yarn`
+* Install cask `$ brew tap caskroom/cask`
 
 * Install gulp globally `$ sudo npm install gulp-cli -g`
 * Add prettier globally `$ yarn global add prettier`
 * [Install Sublime Text 3](https://www.sublimetext.com/3)
 * Install iTerm2
   - Settings (Preferences)
+
+## [My .zshrc](https://gist.github.com/kingluddite/773fa05efffe05b6b56e7d599cef1dfa)
+
 * [Install oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 [Install Pip](https://stackoverflow.com/questions/17271319/how-do-i-install-pip-on-macos-or-os-x)
 
@@ -267,7 +275,7 @@ I like to add a keyboard shortcut to quickly enter Vintage Mode. There is an opt
 }
 ```
 
-## Install z
+## [Install z](https://github.com/rupa/z)
 * This make remember common files you were working on a snap
 * `$ touch ~/z.sh`
 * [Copy this code](https://github.com/rupa/z/blob/master/z.sh) and place it inside `~/z.sh`
@@ -278,3 +286,59 @@ I like to add a keyboard shortcut to quickly enter Vintage Mode. There is an opt
 . ~/z.sh
 ```
 
+[Install zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+
+[Install zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+
+Install tree `$ brew install tree`
+
+Then make sure your directories aren't too long
+
+# Put this in your .zshrc or .bashrc file
+# Install `tree` first — brew install tree
+function t() {
+  # Defaults to 3 levels deep, do more with `t 5` or `t 1`
+  # pass additional args after
+  tree -I '.git|node_modules|bower_components|.DS_Store' --dirsfirst --filelimit 15 -L ${1:-3} -aC $2
+}
+
+Use Trash CLI instead of the more dangerous and permanent `$ rm -rf yada-yada-yada`
+
+`$ npm install --global trash-cli`
+
+Make your return key escape (great for vim)
+
+![convert caps lock to escape](https://i.imgur.com/wnNXmh7.png)
+
+## Make sure you have php7 running
+### First install Brew on your MAC
+1. `$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+1. `$ brew update`
+2. `$ brew tap homebrew/php`
+3. Install PHP 7.0.+ 
+
+`$ brew install php70`
+
+4. Install mcrypt
+
+`$ brew install mcrypt php70-mcrypt`
+
+5. Finally, install composer
+
+`$ brew install composer`
+
+6. Test
+* Now if you run `$ php -v`, you will get PHP 5.5 or something
+* This is the default PHP version that is shipped with OSX and cannot be removed
+* You just need to edit your path to ensure that PHP 7.0 is picked up in your `.zshrc` file
+
+`export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"`
+
+* You can add multiple paths - just separate each path with colons `:`
+  - Like this:
+
+`export PATH="$HOME/.npm-packages/bin:$(brew --prefix homebrew/php/php70)/bin:$PATH"`
+
+* To debug any issue with any package, you can run `$ brew info php70` etc
+* Also, if you are getting seemingly unrelated errors, make sure to update bash/zsh: `$ brew upgrade bash` and `$ brew upgrade zsh`
+* If everything is setup correctly, running `$ php -v` should give you 7.0.+
