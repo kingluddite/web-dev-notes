@@ -1,5 +1,14 @@
 # iTerm2
 
+## Multiple windows
+* You can open preferences and under tab choose
+* Light (High Contrast)
+* Increase dimming (to help show active terminal)
+* Check dim inactive split panes
+* Check dim background windows
+(This will help make sure your current terminal is easily seen)
+
+
 ## Change keyboard shortcuts to move faster by words left and right
 [stackoverflow](http://stackoverflow.com/questions/81272/is-there-any-way-in-the-os-x-terminal-to-move-the-cursor-word-by-word/8250989#8250989)
 I used the above tutorial to make `cmd` + `left arrow` move left one word and `cmd` + `right arrow` move right one word
