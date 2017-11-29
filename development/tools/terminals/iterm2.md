@@ -1,5 +1,14 @@
 # iTerm2
 
+## Dim others except focused window
+* This is great if your workflow involves using multiple terminal windows open at one time
+
+## High contrast tab
+* Makes you see active tab better
+
+## Hide from command tab switch and dock
+* I like this because I use `esc` to toggle iterm
+
 ## Multiple windows
 * You can open preferences and under tab choose
 * Light (High Contrast)
