@@ -204,3 +204,17 @@ now you can ctrl j to go to next tabstop and ctrl + k to go to previous tab stop
 look more into vim supertab
 look more into youcomplete me
 
+## Why is trigger not working?
+You may add a rule inside vimrc. You first need to check that you are using the correct vimrc? Usually it is inside `~/.vimrc` but you can check by using `:version` inside vim and it will give you info like this:
+
+```
+ system vimrc file: "$VIM/vimrc"
+     user vimrc file: "$HOME/.vimrc"
+      user exrc file: "$HOME/.exrc"
+  system gvimrc file: "$VIM/gvimrc"
+    user gvimrc file: "$HOME/.gvimrc"
+    system menu file: "$VIMRUNTIME/menu.vim"
+```
+
+Then you need to see if another Plugin/keymap is overwriting your keymap/trigger. A good example of this is I wanted to use tab trigger with the emmet vim plugin but after adding the code necessary to the vimrc file it did not work. I then used this code `:verbose imap <tab>` to find out that the ultisnips plugin was using tab and that is why it was not working. Have tab work for both plugins didn't look easy so I just commented out Ultisnips because I use emmet more and I'll just comment it back in when I need it. Not a perfect solution but it works
+
