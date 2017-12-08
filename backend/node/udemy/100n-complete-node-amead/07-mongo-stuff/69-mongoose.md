@@ -17,10 +17,6 @@ Object Relational Mapping
 ## Create new folder and file
 `server/server.js`
 
-```js
-
-```
-
 * Mongoose has a lot going on compaired to how we connected before
 * We can keep our connection simple
     - If we want to save something using mongoose

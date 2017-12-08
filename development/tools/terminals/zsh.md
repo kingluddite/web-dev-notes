@@ -1,5 +1,18 @@
 # The ZSH shell
 
+## Search history without using command line and move around
+```
+Up     Ctrl+P
+Down   Ctrl+N
+Left   Ctrl+B
+Right  Ctrl+F
+Home   Ctrl+A
+End    Ctrl+E
+Delete Ctrl+D
+```
+
+* Alternatively, you could set up your shell to use vi command edition mode, by adding `set -o vi` to your shell startup file
+
 ## truncate the shell
 1. Open .zshrc
 2. Add this function
