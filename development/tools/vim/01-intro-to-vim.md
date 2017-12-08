@@ -1,9 +1,26 @@
 # Intro to Vim
 ## [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb)
 
-* Add vim to Chrome so you don't need a mouse when you serf the web
+## YCM [link](https://valloric.github.io/YouCompleteMe/)
+* `$ brew install cmake`
 
-## Set up Vim
+```$ cd ~/.vim/bundle/YouCompleteMe
+./install.py --clang-completer
+```
+
+* Install latest version of macvim
+* Latest version of XCode
+* `$ softwareupdate --list`
+
+## Vim speed
+* Log your speed
+* `$ vim --startuptime s.log s.log`
+* Sort your log
+  - Open log and type:
+  - `$ :.,$!sort -n -r -k 2`
+* Add vim to Chrome so you don't need a mouse when you serf the web   
+
+## Set up Vim   
 * here is my [.vimrc](https://gist.github.com/kingluddite/c32c77724c4705bd05fa17080cfed95e)
 * here is my [.zshrc](https://gist.github.com/kingluddite/773fa05efffe05b6b56e7d599cef1dfa)
 * Install Firacode with brew
