@@ -253,7 +253,7 @@ Because of the above we need to update the way our `index.html` references our C
 }
 ```
 
-* Delete the old dist folder
+* Delete the old `dist` folder
 * Run a fresh rebuild
 
 `$ gulp build`
@@ -287,7 +287,7 @@ Because of the above we need to update the way our `index.html` references our C
 
 ## Log into your Github Account and browse to your travel-site repo
 * Click Settings
-* Scroll down and click master branch / docs folder and then click save
+* Scroll down and click **master branch / docs** folder and then click `save`
 
 ![docs folder](https://i.imgur.com/i8CNLqY.png)
 

@@ -1,5 +1,29 @@
 # Essential Web Dev Tools
 
+# gtmetrix.com
+* Find out how your site ranks
+* Cloudflare - free option speeds your site up
+    -  Switch your DNS to cloudflare
+    -  People visiting your site first go to cloudflare, cloudflare caches your site
+    -  Tries tomake your site run faster and this is possible because of a CDN (Content Delivery Network)
+        +  They have numerous servers throughout the world that your visitors can connect to to load their website
+        +  Distance matters for speed
+        +  30 miles (fast) vs 3000 (slower) miles vs from New York to China (very slow)
+        +  Your cached site will be served to the visitor closer to where they are
+        +  Make your site more secure
+            *  Cloudflare controls access to your website
+            *  They are able to allow and block traffic to your website
+                -  based on information they know or info you give it
+                -  hackers trying to hack your website
+                -  spammers trying to spam your website
+                -  if it sees a spambot trying to connect to the website it can block 
+            * Google Analytics - don't have to put it on every page with Cloudflare, put it on one page (WordPress already has a plugin for this) but for a custom site, adding tons of pages, it would take a lot of time
+            *  Go to who is hosting your website (Godaddy or DigitalOcean or AWS)
+            *  Go to your DNS host (GoDaddy or Namecheap)
+            *   Change the Name Servers to Cloudflare nameservers
+            *   Wait 5 minutes to 5 hours  for everything to replicate out and you are good to 
+semrush - compare products iterm2 vs hyper.is
+
 [beginners guide to best command line tools](https://webdevstudios.com/2015/02/10/a-beginners-guide-to-the-best-command-line-tools/)
 
 * homebrew (mac) install

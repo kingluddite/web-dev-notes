@@ -1,9 +1,26 @@
 # Intro to Vim
 ## [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb)
 
-* Add vim to Chrome so you don't need a mouse when you serf the web
+## YCM [link](https://valloric.github.io/YouCompleteMe/)
+* `$ brew install cmake`
 
-## Set up Vim
+```$ cd ~/.vim/bundle/YouCompleteMe
+./install.py --clang-completer
+```
+
+* Install latest version of macvim
+* Latest version of XCode
+* `$ softwareupdate --list`
+
+## Vim speed
+* Log your speed
+* `$ vim --startuptime s.log s.log`
+* Sort your log
+  - Open log and type:
+  - `$ :.,$!sort -n -r -k 2`
+* Add vim to Chrome so you don't need a mouse when you serf the web   
+
+## Set up Vim   
 * here is my [.vimrc](https://gist.github.com/kingluddite/c32c77724c4705bd05fa17080cfed95e)
 * here is my [.zshrc](https://gist.github.com/kingluddite/773fa05efffe05b6b56e7d599cef1dfa)
 * Install Firacode with brew
@@ -203,4 +220,18 @@ now you can ctrl j to go to next tabstop and ctrl + k to go to previous tab stop
 
 look more into vim supertab
 look more into youcomplete me
+
+## Why is trigger not working?
+You may add a rule inside vimrc. You first need to check that you are using the correct vimrc? Usually it is inside `~/.vimrc` but you can check by using `:version` inside vim and it will give you info like this:
+
+```
+ system vimrc file: "$VIM/vimrc"
+     user vimrc file: "$HOME/.vimrc"
+      user exrc file: "$HOME/.exrc"
+  system gvimrc file: "$VIM/gvimrc"
+    user gvimrc file: "$HOME/.gvimrc"
+    system menu file: "$VIMRUNTIME/menu.vim"
+```
+
+Then you need to see if another Plugin/keymap is overwriting your keymap/trigger. A good example of this is I wanted to use tab trigger with the emmet vim plugin but after adding the code necessary to the vimrc file it did not work. I then used this code `:verbose imap <tab>` to find out that the ultisnips plugin was using tab and that is why it was not working. Have tab work for both plugins didn't look easy so I just commented out Ultisnips because I use emmet more and I'll just comment it back in when I need it. Not a perfect solution but it works
 

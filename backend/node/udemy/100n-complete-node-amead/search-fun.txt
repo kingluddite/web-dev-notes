@@ -1,4 +1,0 @@
-Takes you to the real end of a word, ignores special characters and doesn't treat them as words
-Takes you to the real end of a word,
-Takes you to the real end of a word, ignores special characters and doesn't treat them as words
-

@@ -1,6 +1,6 @@
 # Intro to Vim
 * Never use arrow keys!
-
+* [vim + tmux tute](https://www.youtube.com/watch?v=5r6yzFEXajQ&t=3568s)
 ## .vimrc
 config file
 

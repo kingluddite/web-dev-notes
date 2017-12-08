@@ -1,4 +1,13 @@
-### VVV
+# VVV
+
+## sshpass
+* You will need to install this to get Wordmove to work
+* Without it you can still send and get the database
+* But to push and pull files you need sshpass install on the virtual vagrant box (after you ssh vagrant)
+* Install with `apt-get install sshpass`
+    - source - `https://gist.github.com/arunoda/7790979`
+* You will get a permission error if you don't use `sudo`
+* After that you can send and push templates, plugins, upload and core WordPress files
 
 Where are the local hosts defined on a mac?
 

@@ -18,7 +18,7 @@ console.log(typeof person);
 console.log(person);
 ```
 
-```
+```js
 const fs = require('fs');
 
 const originalNote = {
