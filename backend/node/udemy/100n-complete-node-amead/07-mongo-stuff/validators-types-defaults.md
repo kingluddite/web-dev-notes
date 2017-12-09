@@ -36,7 +36,7 @@ otherTodo.save().then((doc) => {
 `$ node server/server.js`
 
 ```json
-{
+{        
   "__v": 0,
   "text": "123",
   "_id": "5a2a055e818315123a01bc3f",
