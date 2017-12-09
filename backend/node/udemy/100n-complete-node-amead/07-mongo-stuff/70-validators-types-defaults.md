@@ -200,5 +200,109 @@ const Todo = mongoose.model('Todo', {
 * Insert a record and watch how completed is set to `false` by default
 
 ## Mongoose Schemas
-* [link to documntation](http://mongoosejs.com/docs/guide.html)
+* [link to documentation](http://mongoosejs.com/docs/guide.html)
+
+## Houston we have a problem
+* Our text prop expects a String and if we provide it an Object we'll get an error
+* But if we provided it a Boolean or a Number it would NOT error out because Mongoose would cast the Number and Boolean into a String
+
+```js
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/TodoApp');
+
+const Todo = mongoose.model('Todo', {
+  text: {
+    type: String,
+    required: true,
+    minlength: 2,
+    trim: true
+  },
+  completed: {
+    type: Boolean,
+    default: false
+  },
+  completedAt: {
+    type: Number
+  }
+});
+
+const newTodo = new Todo({
+  text: 'Wash Ferrari'
+});
+
+const anotherNewTodo = new Todo({
+  text: true
+});
+
+anotherNewTodo.save().then((doc) => {
+  console.log(JSON.stringify(doc, undefined, 2));
+}, (err) => {
+  console.log('Unable to save todo', err);
+});
+```
+
+* Run code and you'll see `true` was cast to a String and entered as a String value of "true"
+* Remember that **type casting** does exist inside mongoose and will cause type casting errors
+
+## Challenge
+* Create a new User model
+* Setup email property
+    - required
+    - trim
+* Set type to String
+* minlength of 2
+
+```js
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/TodoApp');
+
+const Todo = mongoose.model('Todo', {
+  text: {
+    type: String,
+    required: true,
+    minlength: 2,
+    trim: true
+  },
+  completed: {
+    type: Boolean,
+    default: false
+  },
+  completedAt: {
+    type: Number
+  }
+});
+
+const User = mongoose.model('User', {
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 2
+  }
+});
+
+
+const newUser = new User({
+  email: 'john@john.com'
+});
+
+newUser.save().then((doc) => {
+  console.log(JSON.stringify(doc, undefined, 2));
+}, (err) => {
+  console.log('Unable to save user', err);
+});
+```
+
+* Create a stripped down user to see if the required
+* Test minlength
+* Test
+* Trim
+* Then enter an email and test that it works
+
+## Next
+* Adding Postman to test our API
 
