@@ -104,5 +104,9 @@ describe('GET /todos/:id', () => {
 });
 ```
 
+* Make sure mongod is running `$ mongod`
+* Make sure test server is running `$ node run test-watch`
+* All 3 tests should pass
+
 ## Challenge
 * Write two test cases on your own
