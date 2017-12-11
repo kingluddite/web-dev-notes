@@ -180,7 +180,7 @@ If I do not have a /home/me/.vim/UltiSnips/javascript.snippets file and I do a :
 In a nutshell: UltiSnipsEdit creates a snippet in the local folder, instead of in the configuration folder, if no snippet file was already present in the configuration folder. Also, the snippets in this local file are not recognized.
 ```
 
-Solution: put this in your vimrc
+Solution: put this in your `vimrc`
 
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 

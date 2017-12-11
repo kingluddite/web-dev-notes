@@ -1,5 +1,56 @@
 # VIM Keyboard shortcuts
 
+## Terminal
+| Command | Description |
+| ------- | -------- |
+| `ctrl` + `p` | See previous command in history | This saves from stretching to see previous terminal history using up arrow
+
+## Git
+| Command | Description |
+| ------- | -------- |
+| `git commit -am` | Adds modified files and commits in one step | 
+
+## Basic Vim
+| Command | Description |
+| ------- | -------- |
+| `:PluginInstall` | Install Vundle Plugins |
+| `:UltiSnipsEdit` | Creates a Ultisnip Snippet |
+| `:version` | Gives you vimrc info |
+| `h j k l` | Navigate left, down, up, right
+| `w` | move to next word
+| `b` | move back a word
+| `e` | move to end of word
+
+## NerdTree
+| Command | Description |
+| ------- | -------- |
+| `r` | Refresh current directory listing |
+| `R` | Refresh root directory listing |
+
+## Prettier
+| Command | Description |
+| ------- | -------- |
+| `<leader>` + `p` | If I have eslint and prettier installed I can use my leader key (which I set to the spacebar) + `p` and that will format my javascript using prettier |
+
+## CtrlP
+| Command | Description | Use Case
+| ------- | -------- |
+| `F5` | Clear Cache | You are searching for a file, you know it exist but it's not there, clear the cache and you will see it in your search
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## [My current `.vimrc` file](https://gist.github.com/kingluddite/c32c77724c4705bd05fa17080cfed95e)
 
 ## VimAwesome
