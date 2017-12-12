@@ -1,7 +1,7 @@
 # Stuff you need (setup)
 **note** we are using yarn for installs but if you ever get an error installing with yarn just revert to installing with `npm` (the two are supposed to be the same but sometimes there are glitches -- currently I prefer to use yarn as it is faster)
 
-* node.js
+* `node.js`
     - webpack needs this
     - > v8
     - install with brew
