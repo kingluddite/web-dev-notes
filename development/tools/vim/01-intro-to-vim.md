@@ -5,7 +5,7 @@
 * `$ brew install cmake`
 
 ```$ cd ~/.vim/bundle/YouCompleteMe
-./install.py --clang-completer
+./install.py --clang-completer --js-completer
 ```
 
 * Install latest version of macvim
