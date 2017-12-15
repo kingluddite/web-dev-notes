@@ -7,7 +7,7 @@
     - No - don't show any error message
 
 ## Stuff we'll use
-* if statements
+* `if` statements
 * ternary operators
 * logical `and` operator
 
