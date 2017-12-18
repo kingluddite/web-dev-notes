@@ -63,6 +63,38 @@
 | ------- | -------- |
 | `F5` | Clear Cache | You are searching for a file, you know it exist but it's not there, clear the cache and you will see it in your search
 
+## Vimdiff
+* `$ vimdiff file1 file2`
+* line command
+  - `:diffthis`
+  - `:difft`
+* `$ gvimdiff file1 file2`
+  - brings up mavvim
+
+## Git difftool
+git config --global diff.tool vimdiff
+git config --global difftool.prompt false
+git config --global alias.d difftool
+
+## Mac Terminal tip: pbcopy and pbpaste
+Let you write and read from the OS X clipboard
+
+`$ cat file.txt | pbcopy`
+
+* That's a lot faster than:
+
+1. opening the file
+2. Selecting everything
+3. Copying it!
+
+`$ pbpaste > example.css`
+
+* Quicker than firing up Sublime/Atom/VS Code...
+
+Even do fancier things like:
+
+`$ tail -n 10 /var/log/messages | pbcopy`
+
 
 
 
