@@ -1,14 +1,40 @@
 # VIM Keyboard shortcuts
 
+## HTML comments (todo: fix)
+(Emmet - broken (tab doesn't work because of conflict ultisnip tab))
+* I like to add closing comments when I type an HTML block tag
+* `.product-list|c`
+  - That will add a closing comment
+  - 
 ## Terminal
 | Command | Description |
 | ------- | -------- |
 | `ctrl` + `p` | See previous command in history | This saves from stretching to see previous terminal history using up arrow
 
+## Multi-change word
+1. Search for word using `/`
+2. Press enter (that will highlight all words that match search)
+3. Type `cgn` and type new word
+4. Enter into **Normal** mode
+5. Type `n` to get to next word match
+6. Type `.` to repeat (keep typing to keep repeating changes)
+
 ## Git
 | Command | Description |
 | ------- | -------- |
 | `git commit -am` | Adds modified files and commits in one step | 
+
+## Folding
+| Command | Description |
+| ------- | -------- |
+| `zM` | close everthing | 
+| `zR` | open everything | 
+| `za` | toggle state of the current fold | 
+| `zj` | jump down to next fold | 
+| `zk` | jump up to previous fold | 
+| `zk` | jump up to previous fold | 
+| `zO` | Open all of the nested folds | 
+| `zc` | Close all of the nested folds | 
 
 ## Basic Vim
 | Command | Description |
