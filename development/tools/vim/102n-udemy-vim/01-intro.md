@@ -32,7 +32,7 @@
 * `b` moves left one word (uses punctuation as boundries)
 * `B` moves left one word ignores punctuation
 
-* (super cool feature) You navigate to a spot but it is too low on your screen `z` + `enter` keeps the cursor where it is but moves the page up for a better UX
+* (**super cool feature**) You navigate to a spot but it is too low on your screen `z` + `enter` keeps the cursor where it is but moves the page up for a better UX
 
 ## Move to first character in line
 `shift` + `6` (^)
