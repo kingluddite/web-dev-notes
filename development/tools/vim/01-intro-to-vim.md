@@ -235,3 +235,15 @@ You may add a rule inside vimrc. You first need to check that you are using the 
 
 Then you need to see if another Plugin/keymap is overwriting your keymap/trigger. A good example of this is I wanted to use tab trigger with the emmet vim plugin but after adding the code necessary to the vimrc file it did not work. I then used this code `:verbose imap <tab>` to find out that the ultisnips plugin was using tab and that is why it was not working. Have tab work for both plugins didn't look easy so I just commented out Ultisnips because I use emmet more and I'll just comment it back in when I need it. Not a perfect solution but it works
 
+## Nerd fonts
+* I like the icons beside the files
+* Here is how to get the icons showing up in iterm
+* https://github.com/ryanoasis/nerd-fonts/issues/13
+* I installed with homebrew using
+
+`brew cask install font-firacode-nerd-font-mono`
+
+Add this bundle: vim-devicons
+* I had to update my ctrlp package
+
+https://github.com/ryanoasis/vim-devicons
