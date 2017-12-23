@@ -94,3 +94,41 @@ ReactDOM.render((
   document.getElementById('app')
 );
 ```
+
+* When it is nested like this it makes it clear that it makes it clear tha `p` is a child of `Layout`
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import IndecisionApp from './components/IndecisionApp';
+
+const Layout = props => {
+  return (
+    <div>
+      <p>header</p>
+      {props.children}
+      <p>footer</p>
+    </div>
+  );
+};
+
+ReactDOM.render(
+  <Layout>
+    <div>
+      <h1>Page Title</h1>
+      <p>This is my page</p>
+    </div>
+  </Layout>,
+  document.getElementById('app')
+);
+```
+
+## Important to understand this technique
+* Because it is used a lot in 3rd party components
+* We will install lots of components we did not write
+* They will have their own APIs and they will expect certain things to be passed in
+    - A lot will be us passing in JSX
+
+## Takeaway
+* We can pass JSX into a component and that component can choose to use it as it wants
