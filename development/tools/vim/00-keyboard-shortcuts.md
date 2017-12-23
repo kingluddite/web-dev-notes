@@ -53,6 +53,11 @@
 | `r` | Refresh current directory listing |
 | `R` | Refresh root directory listing |
 
+## EasyMotion
+| Command | Description |
+| ------- | -------- |
+| `<Leader><Leader>w` | I set my leader to <space> so type <space> twice + `w` and type letter you want to move to - so awesome! |
+
 ## Prettier
 | Command | Description |
 | ------- | -------- |
