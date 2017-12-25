@@ -1,5 +1,11 @@
 # VIM Keyboard shortcuts
 
+## Undo/Redo
+| Command | Description |
+| ------- | -------- |
+| `u` | Undo
+| `ctrl` + `r` | Redo Undo
+
 ## HTML comments (todo: fix)
 (Emmet - broken (tab doesn't work because of conflict ultisnip tab))
 * I like to add closing comments when I type an HTML block tag
