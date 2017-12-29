@@ -112,3 +112,110 @@ describe('POST /users', () => {
   it.skip('should not create user if email is in use', () => {});
 });
 ```
+
+### add test to make sure we create a user
+```js
+it('should create a user', done => {
+  const email = 'john@john.com';
+
+  request(app)
+    .post('/users')
+    .send({ email, password })
+    .expect(200)
+    .expect(res => {
+      // update to toExist() to toBeTruthy()
+      expect(res.headers['x-auth']).toBeTruthy();
+      // update to toExist() to toBeTruthy()
+      expect(res.body._id).toBeTruthy();
+      // emails match
+      expect(res.body.email).toBe(email);
+    })
+    .end(err => {
+      if (err) {
+        return done(err);
+      }
+      
+      // find by user email
+      User.findOne({ email }).then(user => {
+        // update to toExist() to toBeTruthy()
+        expect(user).toBeTruthy();
+        // update from toNotBe() to not.toBe()
+        expect(user.password).not.toBe(password);
+        done();
+      });
+    });
+});
+```
+
+* We can go further
+* Instead of passing in done, we can pass in one of our custom functions
+* If there is no errors in assertions above:
+* We query to find an email match then we get a Promise and we can make assertions about the Document stored in the db
+  - Expect that the user exists
+  - expect that the password does not equal the password above (if it did, it means it wasn't hashed)
+  - Then we finishe with calling `done`
+
+### Run it
+`$ npm test`
+
+### Challenge
+* Complete other two tests
+
+#### Solution
+```js
+describe('POST /users', () => {
+  it('should create a user', done => {
+    const email = 'john@john.com';
+    const password = 'sithlord';
+
+    request(app)
+      .post('/users')
+      .send({ email, password })
+      .expect(200)
+      .expect(res => {
+        expect(res.headers['x-auth']).toBeTruthy();
+        expect(res.body._id).toBeTruthy();
+        expect(res.body.email).toBe(email);
+      })
+      .end(err => {
+        if (err) {
+          return done(err);
+        }
+
+        User.findOne({ email }).then(user => {
+          expect(user).toBeTruthy();
+          expect(user.password).not.toBe(password);
+          done();
+        });
+      });
+  });
+
+  it('it should return validation errors if request invalid', done => {
+    // send an invalid email and invalid password
+    request(app)
+      .post('/users')
+      .send({ email: 'bad-email', password: 'bad-password' })
+      .expect(400)
+      .end(done);
+  });
+
+  it('should not create user if email is in use', done => {
+    // dupe email
+
+    const password = 'sithlord';
+
+    request(app)
+      .post('/users')
+      .send({ email: users[0].email, password })
+      .expect(400)
+      .end(done);
+  });
+});
+```
+
+### Git
+`$ git add .`
+
+`$ git commit -m 'Add tests for GET /users/me and POST /users'`
+
+`$ git push origin master`
