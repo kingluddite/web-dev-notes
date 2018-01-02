@@ -12,7 +12,7 @@
 * What is node?
     - V8 engine
     - machine code - make node fast
-        + low level code, that machine can process fast because it can run code directly without having to interpret it
+        + Low level code, that machine can process fast because it can run code directly without having to interpret it
         + V8 takes our JavaScript, converts it to machine code and machine processes is lightning fast
         + V8 engine written in C++
             * To extend Node, you don't write Node, you write C++ that will build off of what V8 already has in place
@@ -46,7 +46,7 @@
 * Run it with `> process`
     - Will give us specific information about the node process that is being executed
     - There is also methods available here to shut down the current node process
-    - `> proces.exit(0)`
+    - `> process.exit(0)`
         + That will take us back out of node into our normal Terminal
         + I can also leave node by typing `ctrl` + `c` (twice)
 
