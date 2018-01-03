@@ -1,14 +1,16 @@
 # Avoid Global Modules
 * We installed 2 global modules
-    - babel cli
-    - live-server
-* Our package.json no longer defines all the dependencies someone needs to run this app
-    - They have no idea they need babel-cli and live-server
-    - On team is causing problems
-    - On open source same thing because we are not giving them all the tools they need
+    - `babel cli`
+    - `live-server`
+* Our `package.json` no longer defines all the dependencies someone needs to run this app
+    - They have no idea they need `babel-cli` and `live-server`
+    - This causes team problems
+    - On open source same thing because we are NOT giving them all the tools they need
 * All apps are stuck using the same global version and that's not a good idea
-    - best practice is define all dependencies and dev-dependencies in your project
-* having to type out the full name is a pain
+
+## BEST PRACTICE
+* Define all dependencies and dev-dependencies in your project
+* Having to type out the full name is a pain
 * It would be nice if we had a an alias to make us type less
 
 ## Step 1 - Uninstall global dependencies

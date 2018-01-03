@@ -53,6 +53,6 @@ module.exports = {
 * **note** You will need to restart webpack
 * Why?
     - `--watch` isn't watching `webpack.config.js` it's watching for any changes inside `src/`
-* After making that we see that it is now telling us the error is in AddOption line #16!
+* After making that we see that it is now telling us the error is in `AddOption` line #16!
 * Now we can go in and delete that line and our bug is fixed
 * Added bonus if if you add `console.log()` statements in your code it will tell you where that log statement is located (filename and line number)

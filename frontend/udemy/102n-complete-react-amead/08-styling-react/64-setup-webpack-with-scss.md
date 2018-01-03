@@ -49,10 +49,10 @@ module.exports = {
 * That's all it takes to setup CSS inside of webpack
 
 ### Summary
-* THe rule says whenever webpack encounters a `.css` file it will read that file in with `css-loader` and it will dump its contents into the DOM using `style-loader`
+* The rule says whenever webpack encounters a `.css` file it will read that file in with `css-loader` and it will dump its contents into the DOM using `style-loader`
     - End result === our styles showing up
 
-## Import oue css file
+## Import our css file
 `import './styles/styles.css'`
 
 * We don't need a from and we don't need a named export or default export
