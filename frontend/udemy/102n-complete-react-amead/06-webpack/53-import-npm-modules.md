@@ -15,10 +15,13 @@
 
 `$ yarn add validator`
 
-* Do we use default or named exports?
+### Do we use `default` or `named` exports?
 * The documentation should tell you
-* You should use the ES6 format
-* No relative path for importing 3rd party modules, the name points to a place inside `node_modules` and when webpack sees no relative path, it knows to look in the same named folder inside `node_modules`
+
+### You should use the ES6 format
+
+### No relative path for importing 3rd party modules
+* The name points to a place inside `node_modules` and when webpack sees no relative path, it knows to look in the same named folder inside `node_modules`
 
 `app.js`
 
@@ -39,8 +42,8 @@ console.log(validator.isEmail('test'));
 ```
 
 * Will output `false`
-* Change to a valid email and it will return `true`
-* The output in webpack will show you the bundle.js grew in size
+* Change to a **valid email** and it will return `true`
+* The output in webpack will show you the **bundle.js** grew in size
     - Webpack hides 65 hidden modules that are needed for the 3rd party modules to work
     - It hides them because if it showed them all the terminal window would be useless as it would be stuffed with thousands of lines of verbose output
     - If you comment out the import of validator, webpack won't load it and our app gets smaller

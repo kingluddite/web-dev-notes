@@ -64,7 +64,7 @@ console.log(square(4));
 
 ## We get an error!
 * Why is `square` not defined?
-* But we see utils.js and app.js are both running? How can this be?
+* But we see `utils.js` and `app.js` are both running? How can this be?
 
 ## Super important detail about all your files inside webpack
 * Each one maintains its own local scope
@@ -78,7 +78,7 @@ console.log(square(4));
 * That is why export and import work hand in hand
 
 ### default export vs named exports
-* You can only have 1 `default` export per file
+* You can only have one `default` export per file
 * You can have as many `named` exports as you like
 
 ## named exports
