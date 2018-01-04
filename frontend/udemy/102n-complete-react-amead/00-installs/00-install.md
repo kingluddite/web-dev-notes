@@ -58,3 +58,33 @@
 * Install this:
 
 `$ yarn global add live-server`
+
+`package.json`
+
+```json
+// MORE CODE
+"babel": {
+    "presets": [
+      "env"
+    ]
+},
+"browserslist": [
+  "> 1%",
+  "ie > 9"
+],
+
+// MORE CODE
+```
+
+* I'm only supporting browsers that more than 1% of people use
+* And I'm supporting IE > 9
+
+* Install as dev dependencies
+  - autoprefixer
+  - postcss_loader
+
+`$ yarn add autoprefixer postcss_loader -D`
+
+* And we remove .babelrc and just add babel to transpile (based on the browser list what needs to be transpiled and what doesn't)
+* This may cause errors because you will need to install babel and I walk through that later
+* If it causes errors just comment out the babel part until my notes talk about .babelrc and use this instead of the .babelrc file

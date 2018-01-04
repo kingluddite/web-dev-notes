@@ -44,6 +44,10 @@
 ## Install our 2 presets
 `$ yarn add babel-preset-react babel-preset-env`
 
+### What is babel-preset-env?
+* http://babeljs.io/env
+* Instead of continuing yearly presets, the team recommends using babel-preset-env. By default, it has the same behavior as previous presets to compile ES2015+ to ES5
+
 ### Difference between global yarn and local yarn installs
 * Global are places in a location all projects can access
 * Non global get installed in our project's `node_modules` and placed in the `package.json` as a **dependency** or a **dev-dependency**
