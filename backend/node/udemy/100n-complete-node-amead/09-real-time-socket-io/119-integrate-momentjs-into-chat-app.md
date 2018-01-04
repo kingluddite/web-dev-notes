@@ -69,4 +69,7 @@ import moment from 'moment';
 // MORE CODE
 ```
 
+* In a perfect world our webpack dev server would be updating all our JavaScript code into the bundle on save
+* If it's not, you'll need to re-run your build script
+
 
