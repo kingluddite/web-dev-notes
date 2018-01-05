@@ -72,4 +72,60 @@ import moment from 'moment';
 * In a perfect world our webpack dev server would be updating all our JavaScript code into the bundle on save
 * If it's not, you'll need to re-run your build script
 
+`app.js`
 
+* This will add the time when you create a message
+
+```js
+import io from 'socket.io-client';
+import jQuery from 'jquery';
+import moment from 'moment';
+// import validator from 'validator';
+
+import 'normalize.css/normalize.css';
+import './styles/styles.scss';
+
+// // MORE CODE
+socket.on('newMessage', message => {
+  const formattedTime = moment(message.createdAt).format('h:mm a');
+  const li = jQuery('<li></li');
+  li.text(`${message.from}: ${formattedTime} ${message.text}`);
+
+  jQuery('#messages').append(li);
+});
+// // MORE CODE
+```
+
+* Will look like this:
+
+![new formatted time](https://i.imgur.com/8U403Gx.png)
+
+## Challenge
+* Add formatted time to newLocationMessage
+
+`app.js`
+
+```js
+socket.on('newLocationMessage', message => {
+  const li = jQuery('<li></li>');
+  const a = jQuery('<a target="_blank">My current Location</a>');
+  const formattedTime = moment(message.createdAt).format('h:mm a');
+
+  li.text(`${message.from}: ${formattedTime} `);
+  a.attr('href', message.url);
+  li.append(a);
+  jQuery('#messages').append(li);
+});
+```
+
+### Git
+```
+$ gs
+$ ga .
+$ gc -m 'Format timestamps using momentjs'
+$ gpush
+$ gph
+```
+
+## Next up - Mustache
+* A templating language
