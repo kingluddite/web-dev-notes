@@ -57,3 +57,21 @@ app.use(express.static(publicPath));
 ```
 
 
+`server.js`
+
+```
+// MORE CODE
+socket.on('join', (params, callback) => {
+  if (!isRealString(params.name) || !isRealString(params.room)) {
+    return callback('Name and room name are required');
+  }
+
+  socket.join(params.room);
+  // after user joins we remove them from any
+  // previous rooms
+  users.removeUser(socket.id);
+  users.addUser(socket.io, params.name, params.room);
+
+  io.to(params.room).emit('updateUserList', users.getUserList(params.room));
+  // MORE CODE
+```
