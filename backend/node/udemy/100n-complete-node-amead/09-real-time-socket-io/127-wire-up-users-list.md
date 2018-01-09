@@ -8,6 +8,10 @@
 ## Start up app
 `$ nodemon server/server.js`
 
+* You need to run through webpack with
+
+`$ yarn build`
+
 * Enter name and room
 
 `chat.js`
@@ -19,7 +23,7 @@ socket.on('disconnect', () => {
 });
 
 socket.on('updateUserList', function(users) {
-  console.log('Users list', user);
+  console.log('Users list', users);
 });
 
 socket.on('newMessage', message => {
@@ -56,7 +60,6 @@ app.use(express.static(publicPath));
 // MORE CODE
 ```
 
-
 `server.js`
 
 ```
@@ -75,3 +78,17 @@ socket.on('join', (params, callback) => {
   io.to(params.room).emit('updateUserList', users.getUserList(params.room));
   // MORE CODE
 ```
+
+* This will output your user's list in Chrome console:
+
+`Users list (3) ["sadf", "sadf", "sadf"]`
+
+* Refresh and you will see 4 users
+* Why?
+  - Because we are not removing users from the list when they leave the chat app
+
+## Update users when they leave app
+** Fix:
+* Removing users not working
+* style list of users in chat
+* git add and commit adding and removing users
