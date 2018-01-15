@@ -73,11 +73,11 @@ module.exports = {
 ## Take dev server for a test drive
 * In AddOption change the button text and see how UX updates without page refresh
 * You could delete `bundle.js` and it would still work
-    - This is possible because dev-server is using it's memory to create those files
+    - This is possible because `dev-server` is using it's memory to create those files
     - This makes it very fast for development changes
 
 ## Re-Generate real `bundle.js`
-* dev server will never regenerate it
+* `dev-server` will never regenerate it
 * But `$ yarn run build` will generate it
     - Try it now
     - But the size is approx 1.89MB which is HUGE!

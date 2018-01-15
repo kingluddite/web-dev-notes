@@ -164,7 +164,7 @@ module.exports = {
 ![loader error for scss](https://i.imgur.com/ODqP7fc.png)
 
 * We can't load in `styles.scss` to the browser as browsers don't understand `.scss` files
-* How can we transpile the scss file to css?
+* How can we transpile the `scss` file to `css`?
 
 ### Install sass loaders needed for transpiling scss to css
 `$ yarn add sass-loader node-sass`

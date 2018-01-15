@@ -16,7 +16,7 @@
 // MORE CODE
 ```
 
-* For now we will have a separate command for babel and webpack
+* For now we will have a separate command for `babel` and `webpack`
     - I change the names to avoid a collision
     - Eventually there will be only one command as webpack can run itself and babel at the same time
 * We won't add any extra stuff for `webpack` in scripts as we'll use the special `webpack.config.js` for that info
