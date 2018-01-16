@@ -59,3 +59,6 @@ test: /\.s?css$/,
 * Check it out in the browser
 * The change won't be drastic but rest assured, we just made a change that ensures the sites we build will be build on a foundation of cross-browser consistency
 
+### Cool tip - Ways to Add Google fonts to React apps
+* [link to article](https://scotch.io/@micwanyoike/how-to-add-fonts-to-a-react-project)
+

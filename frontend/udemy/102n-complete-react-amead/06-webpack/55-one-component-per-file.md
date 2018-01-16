@@ -357,7 +357,7 @@ export default Options;
 
 `export default const Option = (props) => {`
 
-## Bad Anonymus Components
+## Bad Anonymous Components
 * Will use `Unknown` as the component name
 
 * You could do this:
