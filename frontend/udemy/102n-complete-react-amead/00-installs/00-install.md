@@ -1,7 +1,29 @@
+# Stuff you need (setup)
+**note** we are using yarn for installs but if you ever get an error installing with yarn just revert to installing with `npm` (the two are supposed to be the same but sometimes there are glitches -- currently I prefer to use yarn as it is faster)
+
+* `node.js`
+    - webpack needs this
+    - > v8
+    - install with brew
+    - `$ node -v`
+    - comes with npm (node package manager)
+* npm
+    - enables us to install project dependencies
+* yarn
+    - npm and yarn do same thing
+    - `$ brew install yarn`
+
+## Run the app
+* [run the app](http://indecision.mead.io)
+* [checkout the final code](https://github.com/andrewjmead/react-course-2-indecision-app)
+* 
 # Troubleshoot
 
-## Uninstall jshint
-* If you installed jshint globally time to delete it. You'll never need to use that again now that eslint is around.
+## ESLint replaces jshint/jslint
+* If you don't know what jshint or lint is, skip this section
+
+### Uninstall jshint
+* If you installed `jshint` globally time to delete it. You'll never need to use that again now that eslint is around.
 * You may see warnings to set this `"esversion": 6` if you see that warning it is a jshint warning
     - I use eslint but never get eslint errors because jshint overrides eslint
     - Delete jslint with this:
@@ -19,11 +41,21 @@
 ## Add eslint
 * My dotfiles have an alias tied to a function
 * Go into the project you want to add eslint
-* Just type: `$ e-bp` + return and you will have a folder with all the eslint stuff added
-* cd into `eslint-boilerplate` with `$ cd eslint-boilerplate`
+* `$ take eslint`
+* type: `$ e-bp` + `return` and you will have a folder with all the eslint stuff 
+* `$ mv node_modules ../`
+* `$ mv package.json ../`
 * `$ mv .eslintignore ../`
+* `$ mv .gitignore ../`
 * `$ mv .eslintrc ../`
-* Manually copy and paste the dev dependencies of `package.json`
+* `$ b (moves back a directory`
+* `$ rm -rf eslint`
+
+## Install all those packages
+`$ yarn install`
+
+* `$ yarn install`
+* You moved `node_modules` so they are already installed but it doens't hurt to make sure they are all there
 
 ```json
 // more code
@@ -41,8 +73,26 @@
 // more code
 ```
 
-* And finall `$ yarn install`
-* Close vim and reopen and now prettier and eslint should be working in your project like a charm
+## Take it for a test drive
+* create `junk.js` in site root
+* Add
+
+`junk.js`
+
+```
+console.log("yo");
+```
+
+* Save the file
+* If the double quotes change to single quotes you know prettier and eslint is set up properly
+
+## If you are using the vim editor
+* Close `vim` and reopen and now **prettier** and **eslint** should be working in your project like a charm
+* **note** Other editors will require different steps to make eslint work with prettier
+  - The good news is a quick online search and in minutes you will be up in running in Sublime or VSCode
+
+* Delete `junk.js` 
+  - You don't need it
 
 ## Errors
 ### babel
@@ -72,7 +122,7 @@
   "> 1%",
   "ie > 9"
 ],
-
+"keywords": [],
 // MORE CODE
 ```
 
@@ -85,6 +135,7 @@
 
 `$ yarn add autoprefixer postcss_loader -D`
 
-* And we remove .babelrc and just add babel to transpile (based on the browser list what needs to be transpiled and what doesn't)
+* And we remove `.babelrc `and just add babel to transpile (based on the browser list what needs to be transpiled and what doesn't)
 * This may cause errors because you will need to install babel and I walk through that later
-* If it causes errors just comment out the babel part until my notes talk about .babelrc and use this instead of the .babelrc file
+* If it causes errors just comment out the babel part until my notes talk about `.babelrc` and use this instead of the .babelrc file
+* **takeaway** I like less files so if I can put babel code inside `

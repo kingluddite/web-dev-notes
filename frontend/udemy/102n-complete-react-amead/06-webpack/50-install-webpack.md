@@ -16,9 +16,9 @@
 // MORE CODE
 ```
 
-* For now we will have a separate command for babel and webpack
+* For now we will have a separate command for `babel` and `webpack`
     - I change the names to avoid a collision
-    - Eventually there will be only one command as webpack can run itself and babel at the same time
+    - Eventually there will be only one command as webpack can run itself and `babel` at the same time
 * We won't add any extra stuff for `webpack` in scripts as we'll use the special `webpack.config.js` for that info
     - The reason for this file is there are a ton of settings that would just make the `scripts` in `package.json` way too bulky
 
@@ -44,7 +44,7 @@
 ## Webpack needs to know two required pieces of information
 * As a minimum to run
 
-1. Where is our app entry point?
+1. Where is our app `entry point`?
 2. Where do we want to put our output?
     * This is the final `bundle.js` webpack will create for us
 
@@ -230,7 +230,7 @@ module.exports = {
 </html>
 ```
 
-* Make sure to delete the `/public/scripts` folder (and the app.js file inside of it)
+* Make sure to delete the `/public/scripts` folder (and the `app.js` file inside of it)
 
 ## Test if it is running
 * You should see that console log out `app.js` is running

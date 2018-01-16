@@ -24,7 +24,7 @@
     - They are both available because of our script tags
 
 ## Test if React is running
-`app.js`
+`/public/scripts/app.js`
 
 ```js
 console.log('App.js is running');
@@ -73,16 +73,17 @@ ReactDOM.render(template, appRoot);
 ## Houston we have a problem
 * Chrome or any other browser doesn't know how to deal with JSX
 * We need to convert our JSX into old JavaScript that all browsers understand
-* We transpile code from Sass to CSS
-* We'll use [Babel](https://babeljs.io) to transpile our JSX into JavaScript
+* Just like we transpile code from Sass to CSS
+* We'll also use [Babel](https://babeljs.io) to transpile our JSX into JavaScript
 
 ## Babel
 * Is a transpiler
 * ES6 and ES7... so many new versions of JavaScript, I will just refer to all future JavaScript versions as **JavaScript Next**
-* Babel transpiles JavaScript Next to old JavaScript (I call it old JavaScript but it is really JavaScript ES5 (2015)) - 99% browsers support ES5 JavaScript
+* Babel transpiles JavaScript Next to old JavaScript
+  - I call it "old JavaScript" but it is really JavaScript ES5 (2015)) - 99% browsers support ES5 JavaScript
 
 ### Try it out Babel page
-* Put our JSX code into the left side of try it out and see what gets transpiled on the right
+* Using the babeljs.io demo, put our JSX code into the left side of try it out and see what gets transpiled on the right
 * The browser understands the right
 
 ```js
@@ -102,8 +103,8 @@ ReactDOM.render(template, appRoot);
 ```
 
 * The browser understands regular function calls
-* We'll never write out React like it is on the right as it would take longer and be tedious
-* React was meant to speed up our workflow so that is why we use JSX - easier to code
+* We'll never write out React like it is on the right as it would take longer and be unbearably tedious
+* React was meant to speed up our workflow so that is why we use JSX - It is SOOOO much easier to code
 
 ```js
 var template = React.createElement(
@@ -112,6 +113,12 @@ var template = React.createElement(
   'This is JSX from app.js'
 );
 ```
+
+## Separations of concerns?
+* First hurdle to get over with JSX is yes we are making a mashup of JavaScript and HTML and all previous classes in web told us to separate them
+* Forget those rules as JSX will grow on you and make development so much simpler
+* But it does take some time for this format to grow on you
+* Fight through it!
 
 * 1st arg - element
 * 3rd arg - content
@@ -125,7 +132,7 @@ var template = React.createElement(
 );
 ```
 
-* The attributes will be an object using name/value pairs
+* The attributes will be an object using `name/value` pairs
 
 ## Make our site work using real JavaScript
 `app.js`

@@ -85,9 +85,9 @@ const templateTwo = (
 
 ## Challenge
 * Create app object
-* app obj has 2 props title and subtitle both are strings
+* app obj has 2 props `title` and `subtitle` both are strings
     - choose values you want
-* use title and subtitle in template
+* use `title` and `subtitle` in template
 * render the template
 
 That will generate an error `{user}` is an object

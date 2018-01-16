@@ -20,7 +20,7 @@
 
 `$ npm uninstall -g babel-cli live-server`
 
-* Try to run eiter one
+* Try to run either one
 
 `$ babel` or `$ live-server`
 
@@ -36,7 +36,7 @@
 ```
 "scripts": {
     "serve": "live-server public/",
-    "build": 'babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch'
+    "build": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
   },
 ```
 

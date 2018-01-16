@@ -37,17 +37,20 @@
 * Comes with live reload (no browser refresh needed)
     - Later
         + More tools like:
-            * Express for production
-            * The webpack dev server for development
-* We use Live Server because it is super easy to install, use and get coding
+            * **Express** for production
+            * The **webpack dev server** for development
+
+#### Why are we using Live Server?
+* We use **Live Server** because it is super easy to install, use and get coding
 
 #### Liver Server install
 * Install globally
     - So we can access it from the command line
+    - We already installed this
 
 `$ yarn global add live-server`
 
-* Give us new command **live-server**
+* Gives us new command **live-server**
 * Did live-server install correctly `$ live-server -v`
 * Troubleshoot - sometimes yarn doesn't properly install modules globally
     - If this happens use npm with `$ npm install -g live-server`

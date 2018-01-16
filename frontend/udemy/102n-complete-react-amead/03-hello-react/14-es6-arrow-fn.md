@@ -349,7 +349,7 @@ console.log(user.printPlacesLived());
 const multiplier = {
     // numbers = array of numbers
     // multiplyBy - single number
-    // multiploy - return a new array where the numbers have been multiplied
+    // multiply - return a new array where the numbers have been multiplied
 };
 
 console.log(multiplier.multiply()); // [1, 2, 3] ---> [2, 4, 6]

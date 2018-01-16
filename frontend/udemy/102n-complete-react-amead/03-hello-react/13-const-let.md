@@ -3,7 +3,7 @@
 
 `$ babel src/playground/es6-let-const.js --out-file=public/scripts/app.js --presets=env,react --watch`
 
-```
+```js
 var nameVar = 'John';
 
 console.log('nameVar', nameVar);
@@ -11,7 +11,7 @@ console.log('nameVar', nameVar);
 
 * Outputs: nameVar John
 
-```
+```js
 var nameVar = 'John';
 nameVar = 'Joe';
 console.log('nameVar', nameVar);

@@ -11,9 +11,11 @@
 * So we will need to install the react preset locally to get babel to transpile
 * [learn about presets](http://babeljs.io/docs/plugins/)
     - We will use 2 presets
-        + react
-    - If you click the react preset you will see all the plugins it uses, it would take time to individually install all those plugins so it is faster and easier to just install a preset that comes bundled with all of those plugins
-        + env
+        1. `react`
+    - If you click the **react preset** you will see all the plugins it uses
+    - It would take time to individually install all those plugins
+    - It is faster and easier to just install a **preset** that _comes bundled with all of those plugins_
+        2. `env`
             * This gives us access to es2015, es2016, and es2017 presets
             * This gives us access to new JavaScript stuff like:
                 - const
@@ -29,7 +31,7 @@
 3. react preset
 
 #### Global install babel-cli
-`$ yarn global add babel-cli`
+`$ yarn global add babel-cli` (we already did this)
 
 * After intalling we'll have access to a new command called **babel**
 
@@ -37,7 +39,7 @@
 `$ babel --help`
 
 ## Create package.json with yarn
-`$ yarn init -y`
+`$ yarn init -y` (we already have our `package.json` created so we don't need to do this --- it is included here so you remember to do this for future projects)
 
 * Now we're ready to install our project dependencies
 
@@ -46,21 +48,22 @@
 
 ### What is babel-preset-env?
 * http://babeljs.io/env
-* Instead of continuing yearly presets, the team recommends using babel-preset-env. By default, it has the same behavior as previous presets to compile ES2015+ to ES5
+* Instead of continuing yearly presets, the team recommends using babel-preset-env
+* By default, it has the same behavior as previous presets to compile ES2015+ to ES5
 
 ### Difference between global yarn and local yarn installs
 * Global are places in a location all projects can access
 * Non global get installed in our project's `node_modules` and placed in the `package.json` as a **dependency** or a **dev-dependency**
     - When you install dependencies, those dependencies have other dependencies and on... and on... and on
         + This means when you install one dependency it can create the installion of dozens of other dependent packages
-        + node_modules is a generated folder
-    - yarn.lock also was added
+        + `node_modules` is a generated folder
+    - `yarn.lock `also was added
         + We won't manualy change this file
         + Open it to examine it
         + You never directly change it as it will change automatically as we update the dependencies
         + It helps keep our dependencies in sync on all machines we use it on
 
-## src folder
+## `src` folder
 * This will hold all the React code
 * `$ mkdir src`
 * `$ touch src/app.js`
@@ -78,7 +81,7 @@
 
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
 
-* Make a change to `public/scripts/app.js` to see if it in fact, does change
+* Make a change to `src/app.js` to see if it in fact, does change
 
 `src/app.js`
 
@@ -92,18 +95,39 @@ const appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
 ```
 
+* The browser should update with `Does this really change?`
 * View `pubic/scripts/app.js` and see that it did change on the save
+
+`public/scripts/app.js`
+
+```js
+'use strict';
+
+console.log('App.js is running');
+
+// JSX - JavaScript XML
+var template = React.createElement(
+  'p',
+  null,
+  'Does this really change?'
+);
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(template, appRoot);
+```
+
+* If your public `app.js` looks similar to above, you now know that babel is transpiling JSX into ES5 JavaScript and the browser understands it
 
 ## Two iterm tabs are better than one
 * We'll run the babel watch in one tab watching for changes to our JSX
     - `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
-change src/app.js`
 * And in the other tab we'll run our server using:
     - `$ live-server public`
 * Make a change to your JSX or your html and watch how the web app updates
     - Now our workflow has improved greatly!
 
 ## Delete node_modules
+* This is not required and just here to show you that at any time you can delete `node_modules` and if you want to bring pack all your project dependencies, just type `$ yarn install`
 
 ```
 node_modules

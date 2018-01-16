@@ -68,6 +68,7 @@ ReactDOM.render(template, appRoot);
 
 ## Indent for sanity
 * It just looks better this way
+* Prettier does this for you!
 
 ```
 const template = (
