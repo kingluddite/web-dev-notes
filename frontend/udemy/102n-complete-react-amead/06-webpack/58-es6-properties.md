@@ -30,7 +30,7 @@ class Bork {
 * The above will greatly simplify our JavaScript classes
 
 ## Install plugin
-`$ yarn add babel-plugin-transform-class-properties`
+`$ yarn add babel-plugin-transform-class-properties -D`
 
 ### Add plugin to .babelrc
 `.babelrc`

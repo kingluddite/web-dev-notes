@@ -2,7 +2,7 @@
 * Local install
     - Which means I have access to it via `scripts` in `package.json`
 
-`$ yarn add webpack`
+`$ yarn add webpack -D`
 
 `package.json`
 
