@@ -82,7 +82,7 @@ const ExpenseListFilters = props => (
 );
 
 const mapStateToProps = state => ({
-  filters: state.filters,
+  f ilters: state.filters,
 });
 export default connect(mapStateToProps)(ExpenseListFilters);
 ```
