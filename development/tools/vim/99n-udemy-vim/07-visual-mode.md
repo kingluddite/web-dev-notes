@@ -26,3 +26,27 @@
 - `A` (lowercase a doesn't work)
 - `a` will enter into insert mode
 - type stuff and hit return and after a brief pause, you'll see the text apended onto every line
+
+## Add comments using vim
+* shift + v (capital V) enter visual line mode
+* `:ce` so center text
+* `ctrl` + `v` to enter block visual mode (vertical columns)
+* select all lines for comment
+* `j` down and replace spaces with `#`
+
+```
+################################################################################
+#                                 Episode V:
+#                           The Empire Strikes Back
+################################################################################
+```
+
+### visual range
+* When you highlight a range of lines
+* You'll see range separate by comma at bottom
+
+```
+:'<,'>
+```
+
+* Highlight recent highlight `ctrl` + `g`
