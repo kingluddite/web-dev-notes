@@ -1,7 +1,7 @@
 # Writing to Firebase
 `firebase.js`
 
-```
+```js
 import * as firebase from 'firebase';
 
 const config = {
