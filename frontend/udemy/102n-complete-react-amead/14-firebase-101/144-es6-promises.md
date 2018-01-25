@@ -64,3 +64,160 @@ promise.then(data => {
 ```
 
 * After 3 seconds you'll see `This is my resolved data`
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('This is my resolved data');
+  }, 3000);
+});
+
+console.log('before');
+
+promise.then(data => {
+  console.log(data);
+});
+
+console.log('after');
+```
+
+1. We log `before`
+2. We get to the Promise and it does it's thing
+3. We go to the next line and log `after`
+4. We wait the 3 seconds for the last log to trigger
+
+## Promises are great
+* We can now fetch data and wait for data to come back
+
+## Multiple Promises
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('This is my resolved data');
+  }, 3000);
+});
+
+console.log('before');
+
+promise.then(data => {
+  console.log('1', data);
+});
+
+promise.then(data => {
+  console.log('2', data);
+});
+
+console.log('after');
+```
+
+## Promises can be resolved or rejected
+* You can't resolve and reject a Promise
+* You can only resolve or reject a single time
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('This is my resolved data');
+    resolve('resolve #2');
+  }, 3000);
+});
+```
+
+* The second resolve never gets triggered because if the first resolve triggers it never goes to next one
+* You can only pass a single argument to resolve or reject
+* This won't work
+
+```
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('This is my resolved data', 'does not work');
+    resolve('resolve #2');
+  }, 3000);
+});
+
+console.log('before');
+
+promise.then((data, other) => {
+  console.log('1', data, other);
+});
+
+console.log('after');
+```
+
+* If you need to resolve more than one value, resolve an object
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve({
+      name: 'John',
+      age: 22,
+    });
+  }, 3000);
+});
+
+console.log('before');
+
+promise.then(data => {
+  console.log('1', data);
+});
+
+console.log('after');
+```
+
+* After 3 seconds ---> {name: "John", age: 22}
+
+## Reject
+* When things go wrong we use `reject`
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    // resolve({
+    //   name: 'John',
+    //   age: 22,
+    // });
+    reject('bad news!');
+  }, 3000);
+});
+
+console.log('before');
+
+promise.then(data => {
+  console.log('1', data);
+});
+
+console.log('after');
+```
+
+* After 3 seconds we don't get log we get a JavaScript error
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    // resolve({
+    //   name: 'John',
+    //   age: 22,
+    // });
+    reject('bad news!');
+  }, 3000);
+});
+
+console.log('before');
+
+promise
+  .then(data => {
+    console.log('1', data);
+  })
+  .catch(error => {
+    console.log('error: ', error);
+  });
+
+console.log('after');
+```
+
+* Now we have an error message but we're not firing a javascript error
+
+### attaching handlers
+* We won't be writing Promises
+* We'll be coding handlers to deal with the Promise resolve or reject
