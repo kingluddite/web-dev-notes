@@ -106,8 +106,8 @@ ReactDOM.render(routes, document.getElementById('app'));
 * But if you manually navigate to `/create` you will get an error
 
 ## Houston we have a problem
-* We want to navigate via client side route but by default we are navigating to server side route and that will give us a 404 because that route does not work
-* The first time we visit our app the browser needs to grab the initial html and load the javascript before it can do anything (before the react router code even runs)
+* We want to navigate via client side route but by default we are navigating to server side route and that will give us a 404 because that route does not work because it does not exist
+* The first time we visit our app the browser needs to grab the initial HTML and load the javascript before it can do anything (before the react router code even runs)
     - And that's what's happening here
     - The browser's trying to fetch `/create` from the server and the server is saying that it doesn't exist and that is why we are getting `Cannot GET /create`
 
@@ -141,6 +141,7 @@ To this:
 };
 ```
 
+## We're doing this the "Client-Side" Way!
 * This tells the dev server that we're going to handle routing via our client-side code
 * And that it should return `index.html` for all 404 routes
 * Save and restart dev server

@@ -1,0 +1,1 @@
+# Full bleed blog layout

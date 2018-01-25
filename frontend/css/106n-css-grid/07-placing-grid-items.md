@@ -92,7 +92,7 @@
 * `grid-column: 2 / 5;`
     - start at 1 and span 2
         + `grid-column: 1 / span 2;`
-* This is great becaus it is very flexible
+* This is great because it is very flexible
 
 ## Width 100%
 * No matter how long it is, even if you don't know how many tracks you can use:
@@ -119,4 +119,35 @@
 ![row and col](https://i.imgur.com/BX99ZxX.png)
 
 
+## Make Item 5 double span 2 cols and rows
+* span a column and a row
+```css
+.item5 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+```
+![span row and col](https://i.imgur.com/xMSjgxR.png)
+
+```css
+    /* Make Item 8 two rows high */
+    .item8 {
+      grid-row: span 2;
+    }
+
+    /* Make Item 15 span the entire grid width */
+    .item15 {
+      grid-column: 1 / -1;
+    }
+    /* Make item 18 span 4 widths, but end at 9 */
+    /* https://i.imgur.com/GuT7xyV.png */
+    .item18 {
+      grid-column: span 4 / 9;
+    }
+    /* Make item 20 start at row 4 and go for 3 */
+    /* https://i.imgur.com/vTnnatx.png */
+    .item20 {
+      grid-row: 4 / span 3;
+    }
+```
 

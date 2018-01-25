@@ -84,7 +84,7 @@
 .container {
   display: grid;
   grid-template-columns: 200px auto 500px 50px;
-    grid-gap: 20px;
+  grid-gap: 20px;
 }
 ```
 
@@ -102,7 +102,7 @@
 .container {
   display: grid;
   grid-template-columns: repeat(5, 100px);
-    grid-gap: 20px;
+  grid-gap: 20px;
 }
 ```
 

@@ -50,8 +50,8 @@
 ```
 
 * But we get horizontal scroll? Why?
-    - This is because we also have a gap of 20px and that make us 60px over (20x3)
-    - % can be used but a better unit is the `fr` unit
+    - This is because we also have a gap of `20px` and that make us `60px` over (20x3)
+    - `%` can be used but a better unit is the `fr` unit
 
 ## Fractional Unit
 ```css
