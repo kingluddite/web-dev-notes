@@ -1,0 +1,1 @@
+# Snapshot testing dynamic components
