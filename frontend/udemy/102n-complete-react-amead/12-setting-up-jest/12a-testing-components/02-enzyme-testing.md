@@ -56,3 +56,27 @@ Enzyme.configure({
 * Restart the test suite
 
 `$ yarn test --watch`
+
+### Enzyme API
+* [docs](http://airbnb.io/enzyme/docs/api/)
+    - [shallow rendering API](http://airbnb.io/enzyme/docs/api/shallow.html)
+
+`Header.test.js`
+
+```js
+import React from 'react';
+import { shallow } from 'enzyme';
+import Header from '../../components/Header';
+// MORE CODE
+```
+
+* We imported enzyme
+* We removed react-shallow-renderer
+* Examples
+```
+expect(wrapper.find('.someClass')).length.toBe(1);
+expect(wrapper.find('#someId')).length.toBe(1);
+expect(wrapper.find('h1')).length.toBe(1);
+```
+
+
