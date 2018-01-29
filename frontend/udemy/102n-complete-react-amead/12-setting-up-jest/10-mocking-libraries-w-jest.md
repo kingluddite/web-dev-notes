@@ -1,1 +1,0 @@
-# Mocking Libraries with Jest
