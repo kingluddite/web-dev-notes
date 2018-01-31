@@ -93,4 +93,5 @@ database.ref('expenses').on('child_changed', snapshot => {
 
 * child_added
     - fires every single time a child is added
-    - gets called for both existing items and new items 
+    - gets called for both existing items and new items
+    - [docs for on](https://firebase.google.com/docs/reference/js/firebase.database.Reference?authuser=0#on) 
