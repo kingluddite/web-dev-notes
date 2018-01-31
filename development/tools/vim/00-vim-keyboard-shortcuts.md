@@ -361,3 +361,15 @@ nnoremap zz :update<cr>
 
 * With leader key changed to `,` (comma)
 * `,,w`
+
+## Remove next character multiple lines
+```
+d/}/e
+does the job.
+
+d/} deletes until the } but adding the /e flag moves the cursor on the last char of the match, effectively deleting everything between the cursor and the }, inclusive.
+
+Using visual selection works too, in a slightly more intuitive way:
+
+v/}<CR>d
+```
