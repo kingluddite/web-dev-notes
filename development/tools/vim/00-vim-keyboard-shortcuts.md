@@ -1,5 +1,10 @@
 # VIM Keyboard shortcuts
 
+## Uppercase
+* visual mode
+* U uppercase
+* u lowercase
+
 ## switch tabs
 gt - next tab
 gT - previous tab
@@ -63,6 +68,16 @@ gT - previous tab
 | `r` | Refresh current directory listing |
 | `R` | Refresh root directory listing |
 
+:help NERDTreeMappings
+
+t: Open the selected file in a new tab
+i: Open the selected file in a horizontal split window
+s: Open the selected file in a vertical split window
+I: Toggle hidden files
+m: Show the NERD Tree menu
+R: Refresh the tree, useful if files change outside of Vim
+?: Toggle NERD Tree's quick help
+
 ## EasyMotion
 | Command | Description |
 | ------- | -------- |
@@ -109,6 +124,13 @@ Let you write and read from the OS X clipboard
 Even do fancier things like:
 
 `$ tail -n 10 /var/log/messages | pbcopy`
+
+### screens
+```
+<C-w>s - :split window horizontally (editing current buffer)
+<C-w>v - :vsplit window vertically (editing current buffer)
+```
+
 
 
 

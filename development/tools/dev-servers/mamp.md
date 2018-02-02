@@ -52,17 +52,17 @@ You know this is all good for local development when your following queries both
 $ which mysql
 ```
 
-Output
+* Output
 /Applications/MAMP/Library/bin/mysql
 
 if you don't get out it means the program doesn't see mysql
 
 ## Troubleshooting
-if you have mysql command not found, open up your `~.zshrc` file
+* If you have `mysql command not found`, open up your `~.zshrc` file
+* `can't connect through socket error`
+    - Try this sym link solution
 
-can't connect through socket error
-try this sym link solution
-```
+```bash
 sudo ln -s /Applications/MAMP/Library/bin/mysql /usr/local/bin/mysql
 ```
 
@@ -103,3 +103,65 @@ After you follow the instructions in the blog post link mentioned above, be sure
 
 ## Manually stop MAMP MySQL
 `$ /Applications/MAMP/bin/stopMysql.sh`
+
+## ZSH
+* You have the the z shell .zshrc
+
+```
+## MAMP stuff
+PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+# MAMP and MYSQL
+export PATH="/Applications/MAMP/Library/bin:$PATH"
+```
+
+* You need to put MAMP on your path so that it uses the latest PHP version and MySQL version and not the system defaults
+* Make sure to comment them out when not using MAMP
+
+```
+## MAMP stuff
+# PHP_VERSION=`ls /Applications/MAMP/bin/php/ | sort -n | tail -1`
+# export PATH=/Applications/MAMP/bin/php/${PHP_VERSION}/bin:$PATH
+# MAMP and MYSQL
+# export PATH="/Applications/MAMP/Library/bin:$PATH"
+```
+
+* MAMP messes with python path and so to fix this with homebrew
+
+`$ brew doctor`
+
+`$ brew update`
+
+* If you have permissions error (on Sierra OS)
+
+`$ sudo chown -R $(whoami) $(brew --prefix)/*`
+
+`$ which python`
+
+* See vim error below with python problem
+
+`/Applications/MAMP/Library/bin/python` (MAMP python path)
+
+* If you have permissions error (on Sierra OS)
+
+`$ sudo chown -R $(whoami) $(brew --prefix)/*`
+
+`$ brew update`
+
+* Open new tab in iTerm (start new session)
+
+`$ which python`
+
+`/usr/bin/python`
+
+* You need to get to the youcompleteme folder
+* I have my own dotfiles and in that I have symlinks set up so I browse into it
+
+`$ cd ~/dotfiles/vim/plugged/YouCompleteMe`
+
+* Than install python
+
+`$ ./install.py`
+
+## Vim error
+![you complete me error](https://i.imgur.com/5q4gzYQ.png)
