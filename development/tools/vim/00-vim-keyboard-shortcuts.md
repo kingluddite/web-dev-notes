@@ -1,5 +1,9 @@
 # VIM Keyboard shortcuts
 
+## switch tabs
+gt - next tab
+gT - previous tab
+
 ## Undo/Redo
 | Command | Description |
 | ------- | -------- |
