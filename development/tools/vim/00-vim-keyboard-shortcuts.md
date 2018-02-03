@@ -131,21 +131,6 @@ Even do fancier things like:
 <C-w>v - :vsplit window vertically (editing current buffer)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## [My current `.vimrc` file](https://gist.github.com/kingluddite/c32c77724c4705bd05fa17080cfed95e)
 
 ## VimAwesome
