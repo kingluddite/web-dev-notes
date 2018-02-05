@@ -89,4 +89,21 @@ public/dist/
 .env.development
 ```
 
- 
+### Git stuff
+`$ git add .`
+
+`$ git commit -m 'Setup test database env`
+
+`$ git push`
+
+`$ git push heroku master` 
+
+`$ heroke open`
+
+* Make sure you can see your app in the browser with a heroku URL
+* Create an expense
+* Make sure you see it inside your production database
+
+## Check if dev database is working too
+* This should work on same DB (production)
+* **note** process.env not native to the browser

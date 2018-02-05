@@ -49,7 +49,7 @@
 * Scroll down to see DOM attributes
 * They are all camelcased inside JSX
 
-## Set attributes equalt to a JavaScript expression
+## Set attributes equal to a JavaScript expression
 ```
 let count = 0;
 const someId = 'myIdHere';
