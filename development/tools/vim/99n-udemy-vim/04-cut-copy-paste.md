@@ -55,7 +55,7 @@ ctrl + r = redo
     - `"Ayy`
 * show only specific registers
     - `:reg a b`
-* delete to named registers
+* delete two named registers
     - "dzw"
 
 ## Repeating with Registers

@@ -1,11 +1,11 @@
 # VIM Keyboard shortcuts
 
-## Uppercase
+## Toggle Uppercase/Lowercase
 * visual mode
 * U uppercase
 * u lowercase
 
-## switch tabs
+## Switch tabs
 gt - next tab
 gT - previous tab
 
@@ -92,6 +92,9 @@ R: Refresh the tree, useful if files change outside of Vim
 | Command | Description | Use Case
 | ------- | -------- |
 | `F5` | Clear Cache | You are searching for a file, you know it exist but it's not there, clear the cache and you will see it in your search
+| `<c-v>` | split vertical |
+| `<c-x>` | split horizontal |
+
 
 ## Vimdiff
 * `$ vimdiff file1 file2`

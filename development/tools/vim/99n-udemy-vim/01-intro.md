@@ -68,5 +68,5 @@ or
 
 `:set noruler`
 
-## toggle rules
+## toggle rulers
 :set ruler! (toggles on and off)
