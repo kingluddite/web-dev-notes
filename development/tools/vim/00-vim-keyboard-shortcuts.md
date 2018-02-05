@@ -200,6 +200,9 @@ Even do fancier things like:
 
 `csw<strong>` will turn `word` into `<strong>word</strong>`
 
+* surround word with {}
+  - ysiw} makes hello become `{hello}`
+
 Add this plugin to `.vimrc`
 
 `Plugin 'tpope/vim-surround'`
