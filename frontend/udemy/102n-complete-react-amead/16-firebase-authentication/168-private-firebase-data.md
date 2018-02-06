@@ -468,5 +468,76 @@ test('should edit expense from firebase', done => {
 * 72 tests pass
 
 ## Next - Lock down data
+### Security and Rules - Firebase
+* [link to security rules](https://firebase.google.com/docs/database/security/?authuser=0)
+  - Same for all platforms
+  - [secure user data](https://firebase.google.com/docs/database/security/user-security?authuser=0)
 
+### Let's lock our site down!
+* Make read and write false (Rules)
 
+```js
+{
+  "rules": {
+    ".read": false,
+    ".write": false
+  }
+}
+```
+
+* Now we'll allow people to read and write but only to specific parts of the db
+
+```js
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+      "users": {
+        "$user_id": {
+          ".read": "$user_id === auth.uid",
+          ".write": "$user_id === auth.uid"
+        }
+      }
+  }
+}
+```
+
+* `$user_id` is a dynamic value
+* This is weird JavaScript "$user_id === auth.uid" but it is the way the people at firebase chose to do this but it just means that the user id must match the creator of the content in order to read or write on the db
+* Make sure to click `Publish`
+
+## Simulator
+* Inside Firebase
+* Click Simulate
+* Click write
+
+```
+{
+  "key": "value"
+}
+```
+
+* Click run
+* Will tell you "Simuated write denied"
+* Click read
+* Click run
+* Will tell you "Simuated write denied"
+* Now toggle the `Authenticate` button
+  - Can I read from root `/`?
+  - Click run
+  - IT will deny the simulation and show you the rule viotated
+
+![read auth denied](https://i.imgur.com/NeOo5hM.png)
+
+* Same would happen to write
+
+## But if you authenticate simlulator
+* Paste this: `/users/3d041ceb-66b5-4c1e-a1ba-1d83317ou812`
+  - But substitute your own user id from the UID field
+  - Click run
+  - It will say 'Simulated write allowed'
+  - You can also write to that user stuff
+  - Plug in a different UID and you will get denied
+
+## Takeaway
+* Users can only work with data that they own
