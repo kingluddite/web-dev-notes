@@ -1,6 +1,7 @@
 # [WP CLI](http://wp-cli.org/)
 
 ## 5 steps to installing WordPress with MAMP and WP-CLI
+
 This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
 
 ### Step One - Create Your WordPress Project folder
@@ -28,21 +29,23 @@ This will create the file to connect you to your MySQL databse. The above code i
 **important** Make sure you remember this is the name of your database. It needs to exactly match your database name that you will create in the next step.
 
 ### Step Four - Create your empty database
+
 Open phpMyAdmin and create a database making sure your database matches the name you used in the previous step (In my example I used `my_wordpress_project` so I would created a database with that name. Substitute your database name for my database name)
 
 ### Step Five - Populate your database
+
 With the default WordPress tables and content
 
 ```
 $  wp core install --url=http://localhost/my-wordpress-project --title=MyWordPressProject --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com
 ```
 
-**important** - Many people make mistakes at this point 
+**important** - Many people make mistakes at this point
 
 * This is what to watch out for to ensure you don't make the same mistakes
 
 * **Make sure your port is correct**
-    - Did you use an Apache port of `8888` (default MAMP port) or did you change your MAMP port to be `80`? If you used `8888` as your port your wp-cli command should be:
+  * Did you use an Apache port of `8888` (default MAMP port) or did you change your MAMP port to be `80`? If you used `8888` as your port your wp-cli command should be:
 
 ```
 wp core install --url=http://localhost:8888/my-wordpress-project --title=MyWordPressProject --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com
@@ -68,6 +71,7 @@ export PATH="/Applications/MAMP/Library/bin:$PATH"
 Update your `~/.bash_profile` with `$ source ~/.bash_profile` and you now should see the `MAMP` string somewhere in the output from `$ which php` and `$ which mysql`
 
 ## Make sure you turn debugging on
+
 This will help you track down errors in WordPress. By default all error notices are turned off in WordPress so if problems arise you will only see a white screen commonly referred to as the [`white screen of death`](https://codex.wordpress.org/Common_WordPress_Errors#The_White_Screen_of_Death). Turning this option on in `wp-config.php` will prevent the `white screen of death` from ruining your day.
 
 `wp-config.php`
@@ -80,6 +84,7 @@ define( 'WP_DEBUG', true );
 Happy coding!
 
 ## How to update WP-CLI in vvv
+
 ```
 cd /srw/www/wp-cli
 git checkout -- .
@@ -88,14 +93,16 @@ composer update
 ```
 
 ## Query the database with WP-CLI
+
 `$ wp db query 'SELECT id, post_type, post_name FROM wp_posts'`
 
 ## Step-by-step instructions - Install WordPress with WP-CLI
+
 ### Core download install
+
 download the `wp-cli.phar` file using curl:
 
-`$ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-`
+`$ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar`
 Next, check if it is working:
 
 `$ php wp-cli.phar --info`
@@ -127,7 +134,7 @@ If you get the above error try to change the file permissions:
 $ chmod 644 wp-config.php
 ```
 
-* If you get success, wordpress has been installed on command line. 
+* If you get success, wordpress has been installed on command line.
 * Log in with the credentials you just created.
 
 **IMPORTANT:** Manually Check `Discourage search engines from indexing this site`
@@ -158,7 +165,7 @@ $ wp db export
 * tar -vczf yourbackupfilename.gz .
 * move backup to secure location
 
-### Update all plugins 
+### Update all plugins
 
 ```
 wp plugin update --all
@@ -211,6 +218,7 @@ $ php wp-cli.phar --info
 ```
 
 ### WP command
+
 We want to just have to type `wp` as the command instead of `php wp-cli.phar` so in order to accomplish this, do this:
 
 ```
@@ -248,6 +256,7 @@ If you want to install a new plugin but you don’t know the slug for it, you ca
 Of course, take care to only install plugins and themes from trusted sources because pirated and nulled themes and plugins are dangerous and often contain some nasty backdoors.
 
 ### Problems with MAMP and WP-CLI
+
 * Check out [mamp.md](https://github.com/kingluddite/web_dev_notes/blob/master/workflow/development/mamp.md)
 
 This is a common error. I've run into a bunch of different ones and spend more time then I would have liked to troubleshoot and resolve them. The main error has to do with something like `database connection`. MAMP is usually the problem. I think because I moved from MAMP to virtual box, vagrant, vvv I ran into problems because I first started with MAMP and set my .zshrc to be working with MAMP and then when I moved to virtualbox and went back and forth between MAMP and virtual box, I think I just had to update my .zshrc with the correct info. Just make sure whatever you are using the PHP and MySQL are pointing to the right place.
@@ -267,11 +276,13 @@ export PATH="$MAMP_PHP:$PATH:/Applications/MAMP/Library/bin"
 ```
 
 ## HUGE problems with database can't connect and MAMP
+
 The solution will be found by typing `$ which php` and `$ which mysql`. If you type it and you don't see MAMP somewhere in the paths for both, then you are not pointing to the MAMP install of php or mysql respectively. So you need to type something similar to the above code inside your `~/.bash_profile` or `~/.zhrc` files. Make sure you are using the latest PHP in your MAMP install. You can find the latest versions here: `$ cd /Applications/MAMP/bin/php/`. Chose the latest and greatest and substitute that php version with `php.5.5.10` from above code snippet. Then refresh `~/.bash_profile` or `~/.zshrc` with `$ source ~/.bash_profile` or `$ source ~/.zshrc`
 
 [ref](http://laurenpittenger.com/wpcli-error-establishing-database-connection-mamp/)
 
 **IMPORTANT:** Remember to refresh bash or zshr with:
+
 ```
 $ source ~/.bash_profile
 # or
@@ -348,7 +359,7 @@ Now you need to install `WP-CLI`. Here's how.
 SSH into their server, something like:
 
 * you can find the server name by looking at your URL once you are logged into the cpanel
-    - don't forget the port number (-p21098) for shared host
+  * don't forget the port number (-p21098) for shared host
 
 ```
 $ ssh codegod@server333.web-hosting.com -p21098
@@ -365,6 +376,7 @@ Should be something like
 ```
 
 ## Install WP-CLI
+
 Create a `wp` folder and `cd` into it
 
 ```
@@ -386,7 +398,7 @@ $ cd ../
 
 ## Add aliases to .bashrc
 
-If you don't see it look for it using 
+If you don't see it look for it using
 
 ```
 $ ls -la
@@ -454,7 +466,6 @@ curl -O https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completi
 Then in your home directory add this to your `.bash_profile`
 
 ```
-
 # .bash_profile
 
 # Get the aliases and functions
@@ -482,6 +493,7 @@ And that's it. You will have `WP-CLI` and tab completing installed and working.
 Navigate to a folder you want to install WordPress on your remote namecheap shared hosting server.
 
 Create the folder.
+
 ```
 $ mkdir some-wordpress-project
 ```
@@ -501,6 +513,7 @@ $ wp core download
 If it works, you did it. Congrats!
 
 ## Troubleshooting
+
 If you get `mysql command not found` error, add this to your .zshrc and refresh that file.
 
 `export path=$PATH:/Applications/MAMP/Library/bin`
@@ -520,4 +533,13 @@ Wordpress update to 4.6 bug Fatal Error call to undefined function apply_filters
 `sudo mv wp-cli.phar /usr/local/bin/wp`
 
 ### Problem updating core WordPress with WP-CLI
-if you get an error using WP-CLI after updating, [try this link out](http://ryanbenhase.com/solved-plugin-updates-fail-using-wp-cli-wordpress-4-6-upgrade/).
+
+if you get an error using WP-CLI after updating, [try this link out](http://ryanbenhase.com/solved-plugin-updates-fail-using-wp-cli-wordpress-4-6-upgrade/)
+
+## Roles
+
+* Turn SuperAdmin to Admin
+
+`$ wp cap list administrator`
+
+`$ wp cap list superadmin | xargs wp cap add administrator`
