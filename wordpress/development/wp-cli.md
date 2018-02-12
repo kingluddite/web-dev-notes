@@ -37,7 +37,9 @@ With the default WordPress tables and content
 $  wp core install --url=http://localhost/my-wordpress-project --title=MyWordPressProject --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com
 ```
 
-**important** - Many people make mistakes at this point. This is what to watch out for to ensure you don't make the same mistakes
+**important** - Many people make mistakes at this point 
+
+* This is what to watch out for to ensure you don't make the same mistakes
 
 * **Make sure your port is correct**
     - Did you use an Apache port of `8888` (default MAMP port) or did you change your MAMP port to be `80`? If you used `8888` as your port your wp-cli command should be:
@@ -88,7 +90,7 @@ composer update
 ## Query the database with WP-CLI
 `$ wp db query 'SELECT id, post_type, post_name FROM wp_posts'`
 
-## Install WordPress with WP-CLI
+## Step-by-step instructions - Install WordPress with WP-CLI
 ### Core download install
 download the `wp-cli.phar` file using curl:
 
@@ -116,8 +118,6 @@ WP-CLI global config:   /home/wp-cli/.wp-cli/config.yml
 WP-CLI project config:
 WP-CLI version: 0.23.0
 ```
-
-
 
 * sometimes you may have to rename localhost in wp-config.php to `127.0.0.1` to avoid database connection error (see trouble shooting tips at the bottom of this file for more tips/suggestions)
 
@@ -153,6 +153,10 @@ $ wp plugin deactivate --all
 ```
 $ wp db export
 ```
+
+* Then backup all files and zip
+* tar -vczf yourbackupfilename.gz .
+* move backup to secure location
 
 ### Update all plugins 
 

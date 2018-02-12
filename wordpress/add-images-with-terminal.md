@@ -9,5 +9,5 @@ Use this code to grab a proper dimensioned `screenshot.png` to give you a cute e
 * Make sure you are inside the custom theme folder when entering this code
 
 ```
-$ curl -O https://make.wordpress.org/training/files/2013/10/screenshot.png
+$ curl -O https://make.wordpress.org/training/files/2017/05/screenshot.png
 ```

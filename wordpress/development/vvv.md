@@ -1,5 +1,21 @@
 # VVV
 
+## Install oh-my-zsh on VVV
+```
+# Added zsh shell.
+sudo apt-get install zsh
+wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh 
+sudo chsh -s /bin/zsh vagrant
+zsh
+```
+
+As an nice addition, so that your terminals don't look too similar on the different boxes
+
+```
+# Change the oh my zsh default theme.
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="3den"/g' ~/.zshrc
+```
+
 ## sshpass
 * You will need to install this to get Wordmove to work
 * Without it you can still send and get the database

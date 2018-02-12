@@ -1,4 +1,6 @@
 # Yarn
+* You can use npm or yarn but when you deploy you could find a error if you have a package-lock.json and a yarn-lock.json... you'l need to keep one and remove the one you are not using
+
 [yarn official website](https://yarnpkg.com/en/)
 
 * Designed by Facebook

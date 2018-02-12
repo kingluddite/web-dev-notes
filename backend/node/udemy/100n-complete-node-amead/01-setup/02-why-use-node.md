@@ -32,7 +32,7 @@
 * It just takes a little bit of time because we are not waiting for the data
 * We kick off another event just takes a little bit of time
 * The sum is not I/O we don't have to wait, so we can just add them and print them to the screen
-* Then we use a dotted box to similulate the time for our event to be responded to
+* Then we use a dotted box to simulate the time for our event to be responded to
 * It is the same length as our blocking first box
 * Using non-blocking does not make our apps any faster but it does let us run more than one operation at same time
 * The result is our app finishes much quicker
@@ -40,14 +40,14 @@
 * non-blocking 1.5 (difference of 50%)
 * So our request each take 3 seconds but the non-blocking run at the same time
 * We attach events in non-blocking by attaching callbacks and these callbacks get called later
-* We still print out user1 and user2 but we just do it when the data comes back
-* In of Node.js the event loop attaches a listener for the event to finish (the db to respond back) when it does it passes in the callback and then we print it to the screen
+* We still print out **user1** and **user2** but we just do it when the data comes back
+* In of `Node.js` the event loop attaches a listener for the event to finish (_the db to respond back_) when it does it passes in the callback and then we print it to the screen
 
 ### Imagine this was a web server
-* node.js is single-threated, your app is running on one single thread
-* because node is non-blocking this is not a problem
-* on blocking we have to beef up the amount of ram memory resources for each request
-* with non-blocking we don't waste resources and do everything on one thread
+* `node.js` is single-threated, your app is running on one single thread
+* Because node is non-blocking this is not a problem
+* On blocking we have to beef up the amount of RAM memory resources for each request
+* With non-blocking we don't waste resources and do everything on one thread
 
 ![execution difference](https://i.imgur.com/ozjTnjt.png)
 
@@ -58,3 +58,14 @@
 * Node saved time
 
 ![saves time](https://i.imgur.com/UQSbdeM.png)
+
+# Why use node?
+* `Node.js` uses an event-driven, non-blocking I/O model that makes it lightweight and efficient
+* `Node.js` package ecosystem, **npm**, is the largest ecosystem of open source libraries in the world
+
+## What is I/O?
+* Input/Output
+    - This is the communication from your node app to other things inside the IOT (Internet of Things)
+        + Database read/write request
+        + Changing files on your file system
+        + Making a HTTP request to a separate web server

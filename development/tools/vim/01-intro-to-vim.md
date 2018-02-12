@@ -5,7 +5,7 @@
 * `$ brew install cmake`
 
 ```$ cd ~/.vim/bundle/YouCompleteMe
-./install.py --clang-completer
+./install.py --clang-completer --js-completer
 ```
 
 * Install latest version of macvim
@@ -180,7 +180,7 @@ If I do not have a /home/me/.vim/UltiSnips/javascript.snippets file and I do a :
 In a nutshell: UltiSnipsEdit creates a snippet in the local folder, instead of in the configuration folder, if no snippet file was already present in the configuration folder. Also, the snippets in this local file are not recognized.
 ```
 
-Solution: put this in your vimrc
+Solution: put this in your `vimrc`
 
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
@@ -235,3 +235,15 @@ You may add a rule inside vimrc. You first need to check that you are using the 
 
 Then you need to see if another Plugin/keymap is overwriting your keymap/trigger. A good example of this is I wanted to use tab trigger with the emmet vim plugin but after adding the code necessary to the vimrc file it did not work. I then used this code `:verbose imap <tab>` to find out that the ultisnips plugin was using tab and that is why it was not working. Have tab work for both plugins didn't look easy so I just commented out Ultisnips because I use emmet more and I'll just comment it back in when I need it. Not a perfect solution but it works
 
+## Nerd fonts
+* I like the icons beside the files
+* Here is how to get the icons showing up in iterm
+* https://github.com/ryanoasis/nerd-fonts/issues/13
+* I installed with homebrew using
+
+`brew cask install font-firacode-nerd-font-mono`
+
+Add this bundle: vim-devicons
+* I had to update my ctrlp package
+
+https://github.com/ryanoasis/vim-devicons

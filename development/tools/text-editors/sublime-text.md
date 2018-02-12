@@ -14,6 +14,9 @@ I like ST3 and use it exclusively. [Atom](https://atom.io/) is also very popular
 ### Package Controller
 Open sublime and use keyboard shortcut **(` + ctrl)** - that is the backtick key + control key
 
+## TrailingWhiteSpaces
+* I hate this plugin, all your spaces are highlighted and so distracting
+
 In the box that opens paste:
 
 ```

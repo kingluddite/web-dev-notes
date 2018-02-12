@@ -17,10 +17,6 @@ Object Relational Mapping
 ## Create new folder and file
 `server/server.js`
 
-```js
-
-```
-
 * Mongoose has a lot going on compaired to how we connected before
 * We can keep our connection simple
     - If we want to save something using mongoose
@@ -96,5 +92,54 @@ newTodo.save().then((doc) => {
 `Saved todo { __v: 0, text: 'Wash Ferrari', _id: 5a284a5835c3d8d2e5a93daa }`
 
 * `__v` is internal to mongoose
+* Not important right now
+* But it keeps track of various model changes over time
+
+## Troubleshoot
+An instance of mongod is already running and it held a lock on `mongod.lock` file
+
+* Run `$ ps -eaf | grep mongod` to find the running instance
+* If running, kill the process: 
+
+`$ sudo kill **<pID>**` 
+
+* Obtained from above `grep` command
 
 ## Challenge
+* Create new todo
+  - text value
+  - completed boolean (true)
+  - completeAt timestamp (set to any number you want)
+  - Save it
+  - Print it to the screen (if it saves successfully)
+  - Print error if it prints poorly
+
+`$ node server/server.js`
+
+```js
+const anotherNewTodo = new Todo({
+  text: 'Watch Game of Thrones',
+  completed: true,
+  completedAt: 21
+});
+
+anotherNewTodo.save().then((doc) => {
+  console.log(JSON.stringify(doc, undefined, 2));
+}, (err) => {
+  console.log('Unable to save todo', err);
+});
+```
+
+```
+Saved todo { __v: 0, text: 'Wash Ferrari', _id: 5a28cd87f541c4ec7f35c0a0 }
+Saved todo { __v: 0,
+  text: 'Watch Game of Thrones',
+  completed: true,
+  completedAt: 21,
+  _id: 5a28cd87f541c4ec7f35c0a1 }
+```
+
+* Verify in robomongo too
+
+## Summary
+* We now no how to use Mongoose to make a connection, create a model and save that model to the database

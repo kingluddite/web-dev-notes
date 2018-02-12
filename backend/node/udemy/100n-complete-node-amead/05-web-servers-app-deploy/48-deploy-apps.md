@@ -63,7 +63,7 @@ app.listen(3000, () => {
 * We need to make the port dynamic
 * So we'll need to use a variable
 * We will use an environment variable that heroku will set
-* Heroku will tell your app which port to use because that port will change as you deploy your app, this is internal to heroku and we have no choice as to which port we can use (like we can on our own machine)
+* Heroku will tell your app which `port` to use because that port will change as you deploy your app, this is internal to heroku and we have no choice as to which port we can use (like we can change it on our own machine)
 * If we had to swap out our port every time we deploy would be a time suck if not impossible
 * we set an environment variable, heroku populates the value of that environment variable with their internal server port number and it will use it for our app
 
@@ -134,12 +134,12 @@ app.listen(PORT, () => {
 `$ heroku create`
 
 * Will create a remote app on heroku web app
-* Well add a new remote to your local git repo
-    - origin remote points to our github repo
-    - heroku remote points to our heroku git repo
-    - When you push to heroku, they will see the changes and then deply them to the web
+* Will add a new remote to your local git repo
+    - `origin` remote points to our github repo
+    - `heroku` remote points to our heroku git repo
+    - When you push to heroku, they will see the changes and then deploy them to the web
     - We still have to push to heroku to initiate the deploy process
-    - `$ git push heroku`
+    - `$ git push heroku master`
         + You will see normal process
         + Then you will see logs
         + Logs letting you know how your app is deploying

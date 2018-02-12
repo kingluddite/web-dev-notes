@@ -1,5 +1,19 @@
 # Node.js
 
+## PATH issues
+`$ npm bin -g` will tell you the path for npm
+
+* If it is not in your PATH 
+
+```
+/Users/PUTYOURUSERNAMEHERE/.npm-packages/bin
+(not in PATH env variable)
+```
+
+add it like this to your `.zshrc` (if you are using zsh like me)
+
+`export PATH=$PATH:/Users/PUTYOURUSERNAMEHERE/.npm-packages/bin`
+
 [Why Now is the Best Time to Learn JavaScript](http://blog.teamtreehouse.com/learn-javascript)
 
 [Things Built with Node.js](http://blog.teamtreehouse.com/7-awesome-things-can-build-node-js)
