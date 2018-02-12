@@ -1,5 +1,12 @@
 # GIT
 
+## Get rid of all changes in branch
+* I messed up and want to start again
+  - `$ git checkout -f` (you delete and they are gone forever)
+  - `$ git reset --hard HEAD^`
+  - `$ git clean -n` will tell you what will be deleted (unstaged)
+  - `$ git clean -f` Makes the branch like brand new
+
 ## [Hot tips for Git](http://wesbos.com/git-hot-tips/)
 
 ## [Intro to git](01-intro-git.md)

@@ -1,17 +1,17 @@
 # Conditional Rendering
 * If user is logged in?
-    - Yes - show logged out button
-    - No - show logged in button
+    - `Yes` --> show logged out button
+    - `No` --> show logged in button
 * Has user submitted form with an error?
-    - Yes - show them the error and how they can fix it
-    - No - don't show any error message
+    - `Yes` --> show them the error and how they can fix it
+    - `No` --> don't show any error message
 
 ## Stuff we'll use
 * `if` statements
 * ternary operators
 * logical `and` operator
 
-**note** Inside `{}` in jsx you can only have expressions
+**note** Inside `{}` in JSX you can only have expressions
 
 ```
 function getLocation() {
@@ -30,7 +30,9 @@ const templateTwo = (
 ```
 
 * That renders `unknown` to browser
-* We'll add conditional logic that shows the location if it exists and unknown if it doesn't
+* We'll add conditional logic that shows:
+    - The **location** if it exists
+    - And **unknown** if it doesn't
 * Although we can only use expressions in our `{}` inside JSX we can call a function that can have the logic baked inside it
 
 ```
@@ -67,7 +69,7 @@ const appRoot = document.getElementById('app');
 ReactDOM.render(templateTwo, appRoot);
 ```
 
-* Now if there is a location it will show and if not it will render `unknown`
+* Now if there is a `location` it will show and if not it will render `unknown`
 
 ## Nested JSX
 * We can include JSX nested inside of JSX
@@ -106,7 +108,7 @@ function getLocation(location) {
 }
 ```
 
-* Because if there is no location the function will implicitly return `undefined`
+* Because if there is no `location` the function will implicitly return `undefined`
 * Now we add a paragraph with a location or no paragraph at all
 
 ## undefined
@@ -115,22 +117,26 @@ function getLocation(location) {
 * If something has a value of `undefined` it will not be rendered
 
 ## Ternary operator
-* Benefit is that is a little more concise than an if statement
-* Test inside Chrome console
+* Benefit ---> more concise than an `if` statement
+
+### Take it for a test drive
+* Inside Chrome console
 
 `true ? 'Pip' : 'Anonymous'`
 
 * returns `Pip`
 
-### How ternary operator works
-(if condition passes) ? DO THIS : ELSE DO THIS
+### How the ternary operator works
+`(if condition passes) ? DO THIS : ELSE DO THIS`
 
 * Which means this:
 
 `false ? 'Pip' : 'Anonymous'`
 
 * Will be "Anonymous"
-* The ternary operator is an expression and not a statement so we don't need to break it out inside a different function call, we can just add this expression right in line
+* The ternary operator is an expression and not a statement
+* So we don't need to break it out inside a different function call
+* We can just add this expression right in line
 
 ```
 const app = {
@@ -164,8 +170,9 @@ const appRoot = document.getElementById('app');
 ReactDOM.render(templateTwo, appRoot);
 ```
 
-* Now we see the ternary operator is working and showing `No title`
-* Great tool to use and you'll use it often
+* Now we see the `ternary operator` is working and showing `No title`
+* Great tool to use
+* And you'll use it often
 
 ## The logical `and` operator `(&&)`
 * Boolean values **true** and **false** are ignored by JSX

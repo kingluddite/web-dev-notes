@@ -1,5 +1,15 @@
 # VIM Keyboard shortcuts
 
+## replace all spaces with underscore
+`:%s/ /_/g`
+
+* Makes this: `One Two Three` into this `One_Two_Three`
+* You need to add a `\` in front of the period – 
+
+`:%s/\./ /g`
+
+* since regular expressions use `.` as an "any character" wildcard
+
 ## close all tabs
 * `:qa`
 * `:wqa` - save and close all tabs

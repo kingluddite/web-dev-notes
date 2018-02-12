@@ -29,12 +29,12 @@
 ```
 
 ## Serve up this stuff
-* Serve up the public folder so we can view this in the browser
+* Serve up the `public` folder so we can view this in the browser
 
 ### Live Server
 * Simple Development Web Server
-* Will allow us to server up our public folder
-* Comes with live reload (no browser refresh needed)
+* Will allow us to server up our `public` folder
+* Comes with "live reload" (no browser refresh needed)
     - Later
         + More tools like:
             * **Express** for production
@@ -43,7 +43,7 @@
 #### Why are we using Live Server?
 * We use **Live Server** because it is super easy to install, use and get coding
 
-#### Liver Server install
+### live-server install
 * Install globally
     - So we can access it from the command line
     - We already installed this
@@ -51,12 +51,17 @@
 `$ yarn global add live-server`
 
 * Gives us new command **live-server**
-* Did live-server install correctly `$ live-server -v`
-* Troubleshoot - sometimes yarn doesn't properly install modules globally
-    - If this happens use npm with `$ npm install -g live-server`
+* Did `live-server` install correctly?
+
+`$ live-server -v`
+
+#### Troubleshoot
+* Sometimes `yarn` doesn't properly install modules globally
+* If this happens use `npm` with `$ npm install -g live-server`
 
 ### Run live-server
-`$ live-server FOLDER` like this: `$ live-server public`
-
-* That will run the server (opens browser window automatically)
-* Change stuff inside your body tag of `index.html` and watch how the browser updates without a page refresh
+* signature - `live-server FOLDER`
+* Like this: `$ live-server public`
+* That will run the server
+    - Opens browser window automatically
+* Change stuff inside your body tag of `index.html` and watch how the browser updates **without a page refresh**

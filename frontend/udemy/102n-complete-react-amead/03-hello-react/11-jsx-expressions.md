@@ -55,6 +55,7 @@ const user = {
   age: 44,
   location: 'LA',
 };
+
 const username = 'Joe';
 const userAge = 44;
 const userLocation = 'LA';
@@ -84,10 +85,9 @@ const templateTwo = (
 ```
 
 ## Challenge
-* Create app object
-* app obj has 2 props `title` and `subtitle` both are strings
-    - choose values you want
-* use `title` and `subtitle` in template
-* render the template
-
-That will generate an error `{user}` is an object
+* Create `app` object
+  - `app` obj has 2 props `title` and `subtitle`
+  - Both are strings
+    - Choose any string values you want
+* Use `title` and `subtitle` in template
+* Render the template that will generate an error `{user}` as an object

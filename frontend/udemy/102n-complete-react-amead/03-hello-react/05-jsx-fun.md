@@ -13,16 +13,16 @@ console.log('yo');
 ```
 
 ## Tips
-* syntax jsx syntax highlighting
+* syntax JSX syntax highlighting
     - Atom (Babel ES6/ES7)
-    - Atom (Path Intellisense - add nice autocompletion features)
+    - Atom (Path Intellisense - add nice auto-completion features)
     - After installing (if using atom you should see Babel ES6/7 on bottom right)
 
 * Type this:
 
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react`
 
-* Then to run live-server
+* Then to run `live-server`
 
 `$ live-reload public`
 
@@ -36,7 +36,8 @@ const appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
 ```
 
-* Test and you will see we have an error
+### Take it for a test drive
+* You will see we have an error
 * You have to have nodes inside one parent
 
 ```
@@ -68,7 +69,8 @@ ReactDOM.render(template, appRoot);
 
 ## Indent for sanity
 * It just looks better this way
-* Prettier does this for you!
+* `Prettier` does this for you!
+  - Make sure it is installed
 
 ```
 const template = (
@@ -79,9 +81,9 @@ const template = (
 );
 ```
 
-* Using `prettier` it does this for you
-* I am use vim and with vim I have ale and prettier setup together and in my `.vimrc` file I have it auto fix/format on save (major time saver!)
-* You can do the same with Atom/Sublime/Visual Code but you'll have to google it yourself to get them working
+### Vim notes
+* I am use `vim` and with `vim` I have **ale** and **prettier** setup together and in my `.vimrc` file I have it auto fix/format on save (major time saver!)
+* You can do the same with Atom/Sublime/Visual Code but you'll have to Google it yourself to get them working
 
 ## Complex code
 ```
