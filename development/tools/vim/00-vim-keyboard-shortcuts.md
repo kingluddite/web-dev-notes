@@ -1,5 +1,27 @@
 # VIM Keyboard shortcuts
 
+## close all tabs
+* `:qa`
+* `:wqa` - save and close all tabs
+* But they close vim too
+* :tabo (is better) closes all but current tab
+* :on (closes all windows except current)
+
+## Paste inline into tag
+* Go to beginning of line `^`
+* `D` to delete until end (inline)
+* Place cursor `<h3></h3>` (over open p tag's closing chevron)
+  - changes this:
+
+```
+<h3></h3>
+      {numeral(amount / 100).format('$0,0.00')}
+```
+
+* into this:
+
+`<h3>{numeral(amount / 100).format('$0,0.00')}</h3>`
+
 ## Toggle Uppercase/Lowercase
 * visual mode
 * U uppercase
@@ -49,7 +71,7 @@ gT - previous tab
 | `zk` | jump up to previous fold | 
 | `zk` | jump up to previous fold | 
 | `zO` | Open all of the nested folds | 
-| `zc` | Close all of the nested folds | 
+| `zc` | Close all of the nested folds |
 
 ## Basic Vim
 | Command | Description |
@@ -77,6 +99,20 @@ I: Toggle hidden files
 m: Show the NERD Tree menu
 R: Refresh the tree, useful if files change outside of Vim
 ?: Toggle NERD Tree's quick help
+
+### Directories
+Direct­ories
+o: open & close
+O: recurs­ively open
+x: close parent
+X: close all children recurs­ively
+e: explore selected dir
+
+### Tree navigation
+p: go to parent
+P: go to root
+K: go to first child
+J: go to last child
 
 ## EasyMotion
 | Command | Description |
@@ -152,6 +188,7 @@ Even do fancier things like:
 * Think of this as the equivalent to refreshing our bash/zsh shells
 * The old fashioned way is to close and reopen but that is too slow
 * The faster way is `:e` or force refresh with `:e!`
+
 ## HTML comments
 * Add a beginning and closing commet
 * Type this in Text 
@@ -260,12 +297,7 @@ vmap <c-k> xkP`[V`]
 vmap <c-j> xp`[V`]
 ```
 
-## Folding
-* `zM` close everything
-* `zR` open everything
-* `za` toggle state of current fold
-* `zj` jump to next fold
-* `zk` jump to previous fold
+
 
 `.vimrc`
 
