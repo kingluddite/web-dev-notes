@@ -124,6 +124,20 @@ P: go to root
 K: go to first child
 J: go to last child
 
+* You created a file/folder and Nerdtree isn't showing it to you
+* You need to refresh Nerdtree
+    - `r` ---> refresh current directory
+    - R ----> refresh root directory's listing
+
+### Adding files using Nerdtree
+1. `m` ---> toggles menu open/closed
+2. `a` ---> to add a file
+
+* No `/` ----> it's a file
+* Has `/` ---> it's a folder
+* **note** After adding refresh Nerdtree with `r`
+* You can also delete, rename and move files/directories
+
 ## EasyMotion
 | Command | Description |
 | ------- | -------- |
@@ -141,6 +155,16 @@ J: go to last child
 | `<c-v>` | split vertical |
 | `<c-x>` | split horizontal |
 
+## CtrlP
+`Plugin 'kien/ctrlp.vim' "Fuzzy searching if dmenu isn't available`
+
+* Refresh it's cache
+* Many times you'll be searching for a file you know exists (because you just created it) but it's not there
+  - The reason is CtrlP uses a cache to keep things quick
+  - Clear the cache by clicking the `F5` key after hitting the CtrlP keyboard trigger of `ctrl` + `p`
+  - **note** If on Mac you need to check the `Use F1, F2, etc. keys as standard function keys` inside `Apple > System Preferences > Keyboard`
+
+![f keys as standard function keys](https://i.imgur.com/QHLj3ZS.png)
 
 ## Vimdiff
 * `$ vimdiff file1 file2`
@@ -214,32 +238,6 @@ Even do fancier things like:
 * `Vjj` ---> Deselects automatically
 * `gu` ---> reselects or `.` (period) to redo last task
 * **note** Added `.vimrc` way to use **shift** to keep selection selected
-
-## Nerdtree
-* You created a file/folder and Nerdtree isn't showing it to you
-* You need to refresh Nerdtree
-    - `r` ---> refresh current directory
-    - R ----> refresh root directory's listing
-
-### Adding files using Nerdtree
-1. `m` ---> toggles menu open/closed
-2. `a` ---> to add a file
-
-* No `/` ----> it's a file
-* Has `/` ---> it's a folder
-* **note** After adding refresh Nerdtree with `r`
-* You can also delete, rename and move files/directories
-
-## CtrlP
-`Plugin 'kien/ctrlp.vim' "Fuzzy searching if dmenu isn't available`
-
-* Refresh it's cache
-* Many times you'll be searching for a file you know exists (because you just created it) but it's not there
-  - The reason is CtrlP uses a cache to keep things quick
-  - Clear the cache by clicking the `F5` key after hitting the CtrlP keyboard trigger of `ctrl` + `p`
-  - **note** If on Mac you need to check the `Use F1, F2, etc. keys as standard function keys` inside `Apple > System Preferences > Keyboard`
-
-![f keys as standard function keys](https://i.imgur.com/QHLj3ZS.png)
 
 ## Vim Surround
 * Useful plugin for easily surrounding tags or text with what you want

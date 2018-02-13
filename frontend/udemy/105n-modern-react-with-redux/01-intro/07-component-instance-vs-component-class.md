@@ -8,7 +8,7 @@
 * We currently have one Component `App`
 * We could have many different intstances of `App`
 
-```
+```js
 const App = function () {
   return <div>Hello</div>;
 }

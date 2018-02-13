@@ -1,30 +1,34 @@
 # Handling User Events
-Web applications are constantly using events
-
-* type something into input
-* move mouse around
-* page loads
-* page unloads
+* Web applications are constantly using events
+  * type something into input
+  * move mouse around
+  * page loads
+  * page unloads
 
 ## How can we detect if a user enters something into an input text box?
 * We want to know a user typed something
 * And we want to know what they typed
 
 ## Handling Events in React
+
 ### Two Steps
 1. Declare an Event Handler
-    * An Event Handler is a function that should be ran whenever that event occurs
-2. We pass the event handler to the element that we want to monitor for events
+    * An `Event Handler` is a function that should be ran whenever that event occurs
+2. We pass the `Event Handler` to the element that we want to monitor for events
     * We want to know whenever the `input` element inside our SearchBar Component has its text changed
 
-#### How should we name our event handler?
+### How should we name our event handler?
 * onInputChange()
 * handleInputChange()
 
-General it is `on/handle` then the name of the element you are watching for the event and then the name of the event itself
+* General it is:
+* `on` or `handle` +  `the name of the element you are watching for the event` + `the name of the event itself`
+
+`handleInputChange()`
 
 ```
 class SearchBar extends Component {
+  // define event handler here
   handleInputChange() {
     
   }
@@ -35,7 +39,8 @@ class SearchBar extends Component {
 }
 ```
 
-Now, after defining our event handler we need to pass it to the element we want to monitor
+* Now, after defining our event handler we need to pass it to the element we want to monitor
+
 
 ```
 class SearchBar extends Component {
@@ -49,20 +54,25 @@ class SearchBar extends Component {
 }
 ```
 
-**note** All HTML elements emit a `change` event whenever the user interacts with them by typing something in (This is not a React thing, this is a normal Vanilla HTML thing)
+**note** All HTML elements emit a `change` event whenever the user interacts with them by typing something in
+  - This is not a React thing, this is a normal Vanilla HTML thing
 
-Whenever we are writing JSX and we're writing JavaScript variables (like `this.handleInputChange`) we wrap it with curly braces `{this.handleInputChange}`
+* Whenever we are writing JSX and we're writing JavaScript variables
+* Just like `this.handleInputChange` we wrap it with curly braces like this:
+
+`{this.handleInputChange}`
+
+* And inside JSX like this:
 
 `return <input onChange={this.handleInputChange} />;`
 
-Write a new `input` element and pass it a `prop` **onChange** with a value of `this.handleInputChange`
+* Write a new `input` element and pass it a `prop` **onChange** with a value of `this.handleInputChange`
 
 ## Event Object
-Whenever we define an Event Handler we end up passing it an `event`
-
-The event object describes the context or the information about the event that occured (so it has a lot of very specific techical properties inside of it)
-
-In our particular case we can use the event object to get access to the value of the input (aka - what the text was that was changed)
+* Whenever we define an `Event Handler` we end up passing it an `event`
+* The `event object` describes the context or the information about the event that occurred
+  - So it has a lot of very specific technical properties inside of it
+* In our particular case we can use the event object to get access to the value of the input (aka - what the text was that was changed)
 
 ```
 handleInputChange(event) {
@@ -90,7 +100,7 @@ export default SearchBar;
 ```
 
 ### View in browser
-Type in input and see that everything you type in the input is output in the console
+* Type in input and see that everything you type in the input is output in the console
 
 #### Change the console.log() to this
 ```
@@ -99,15 +109,17 @@ handleInputChange(event) {
   }
 ```
 
-Save and refresh browser. Type in input box and you will see all the stuff that is inside of the event object. It's a ton of stuff
+1. Save and refresh browser
+2. Type in input box
+3. And you will see all the stuff that is inside of the event object
 
 ## Refactor our code with ES6
 
-Change this:
+* Change this:
 
 `return <input onChange={this.handleInputChange} />;`
 
-To this:
+* To this:
 
 ```
 import React, { Component } from 'react';
@@ -126,7 +138,7 @@ export default SearchBar;
 ```
 
 * More refactoring
-    - If I have a single argument I can drop off the leading parenthesees in ES6
+    - If I have a single argument I can drop off the leading parenthese in ES6
 
 ```
 render() {

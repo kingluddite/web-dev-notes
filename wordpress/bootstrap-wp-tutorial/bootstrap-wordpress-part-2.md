@@ -9,9 +9,10 @@
 # Bootstrap and WordPress
 
 ## SEO Yoast
-This is a free useful plugin to help make your site SEO Friendly
+* This is a free useful plugin to help make your site SEO Friendly
+* Remove this in `header.php`
 
-remove this in `header.php`
+`header.php`
 
 ```php
     <meta name="description" content="">
@@ -24,16 +25,17 @@ remove this in `header.php`
 * SEO Yoast also helps you set up Google Analytics
 
 ## Favicon
-When making a site one of your tasks will be to create a favicon added to the tab in the browser. It helps with branding your site.
+* When making a site one of your tasks will be to create a favicon added to the tab in the browser
+* It helps with branding your site
 
-You can create your own favicon or use a site like the link below to generate one for yourself:
+### Custom Favicon
+* You can create your own favicon or use a site like the link below to generate one for yourself:
 
 [Grab a sample favicon](http://www.freefavicon.com/freefavicons/objects/)
 
-
 `header.php`
 
-Now we need to change the hardcoded favicon to use the WordPress `bloginfo()` function to point to our current theme.
+* Now we need to change the hardcoded favicon to use the WordPress `bloginfo()` function to point to our current theme
 
 **Change this**
 
@@ -49,7 +51,7 @@ Now we need to change the hardcoded favicon to use the WordPress `bloginfo()` fu
 
 **Refresh and you will see favicon**
 
-* You may have to use a hard refresh with `cmd` + `r`
+* **note** You may have to use a hard refresh with `cmd` + `r`
 
 ![favicon in action](https://i.imgur.com/bogZOuv.png)
 
@@ -71,16 +73,14 @@ Now we need to change the hardcoded favicon to use the WordPress `bloginfo()` fu
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 ```
 
-* There is a Bug - doesn't show title on static home page.
-  - See if you can troubleshoot this to determine a way to get this to work on the home page.
-
-`wp_title()` will display WordPress site title by itself if on home page
-
-* It will also display title and `|` separate if on another page.
-* The last parameter places separator on `left` or `right`.
+* There is a Bug - doesn't show title on static home page
+  - **Challenge** See if you can troubleshoot this to determine a way to get this to work on the home page
+* `wp_title()` will display WordPress site `title` by itself if on home page
+* It will also display title and `|` separate if on another page
+* The last parameter places separator on `left` or `right`
 
 ## Useful Copyright in Footer
-When working with WordPress sometimes you will use WordPress function and in the following case you will use plain old, traditional PHP to add a copyright date in our footer.
+* When working with WordPress sometimes you will use WordPress function and in the following case you will use plain old, traditional PHP to add a copyright date in our footer
 
 `footer.php`
 
@@ -92,31 +92,36 @@ When working with WordPress sometimes you will use WordPress function and in the
 [more code here]
 ```
 
-WordPress is constantly updated. From time to time you will need to update to the most recent version of WordPress. [Using WP-CLI](development/wp-cli.md) to make this task easy.
+* WordPress is constantly updated
+* From time to time you will need to update to the most recent version of WordPress
+* **note** [Using WP-CLI](development/wp-cli.md) to make this task easy
 
 # The WordPress Hierarchy
-This will help us build our pages. If we view any of our pages in the browser, they will all be the same because they are all based on `index.php`.
-
-[template hierarchy in WordPress](https://wphierarchy.com/). This diagram visually explains how WordPress determines which template file(s) to use on individual pages.
+* This will help us build our pages
+* If we view any of our pages in the browser, they will all be the same because they are all based on `index.php`
+* [template hierarchy in WordPress](https://wphierarchy.com/)
+    - This diagram visually explains how WordPress determines which template file(s) to use on individual pages
 
 ## front-page.php
-Static Front Page
-
-Save `index.php` as [`front-page.php`](https://codex.wordpress.org/Creating_a_Static_Front_Page).
-
-By default, WordPress shows your most recent posts in reverse chronological order on the front page of your site. But some people like to have their Blog on a different page and a static home page. Use `front-page.php` if you want a static home page.
+* Static Front Page
+* Save `index.php` as [`front-page.php`](https://codex.wordpress.org/Creating_a_Static_Front_Page)
+* By default, WordPress shows your most recent posts in reverse chronological order on the front page of your site
+* But some people like to have their Blog on a different page and a static home page
+* Use `front-page.php` if you want a static home page
 
 ### Assign Home and Blog pages
-Use `Administration` > `Settings` > `Reading` in the Dashboard to assign your `home` page and `blog` page.
+* Use `Administration` > `Settings` > `Reading` in the Dashboard to assign your `home` page and `blog` page
 
 ![home and blog page in Dashboard](https://i.imgur.com/mNYhMSV.png)
 
-* WordPress knows to automatically use `front-page.php` template any time you have a static homepage set.
+* WordPress knows to automatically use `front-page.php` template any time you have a static homepage set
 
-We want Bootstrap's `jumbotron homepage` text to be editable in admin area
+### Editable Areas
+* We want Bootstrap's `jumbotron homepage` text to be editable in admin area
 
 ## [The Loop](https://codex.wordpress.org/The_Loop)
-One of the main features of WordPress is `The Loop`. Every page and post will use it.
+* One of the main features of WordPress is `The Loop`
+* Every page and post will use it
 
 **Replace this**
 
@@ -148,24 +153,26 @@ One of the main features of WordPress is `The Loop`. Every page and post will us
     </div>
 ```
 
-Now you can go to home page and edit that section
+1. Now you can go to home page and edit that section
+2. Use Bootstrap plugin to style and add button
+3. Hard link it if you want
+  + Not best practice
+  + If it changes later, you'll have to update this code
 
-* Use Bootstrap plugin to style and add button
-* Hard link it if you want
-  + Not best practice. If it changes later, you'll have to update this code.
+## Widgets
+* When working with custom themes in WordPress you will at times want to add widgets
 
-# Widgets
-
-When working with custom themes in WordPress you will at times want to add widgets.
-
-Adding a widget is a three step process.
-
+### Adding a widget
+#### Is a three step process
 1. In `functions.php` use the create widget function to establish the parameters you will be working with
   * Inside this function you will use the `register_sidebar()` function that will take and use the parameter values when you call `create_widget()`
-2. In `functions.php` call the `create_widget()` function and pass it the parameter values you want.
-3. You can now visit `Widgets` will now appear under `Appearance` in the Dashboard [(view)](https://i.imgur.com/9ZH7FYV.png).
-  * Drop text or whatever you want inside the widgets and click `Save`
-4. In the template you're using (_example: page.php_) call `dynamic_sidebar("unique widget name here")` and that will pull in the data you set inside the Widget when you were in the Dashboard.
+2. In `functions.php` call the `create_widget()` function and pass it the parameter values you want
+3. You can now visit `Widgets` will now appear under `Appearance` in the Dashboard 
+
+![(view)](https://i.imgur.com/9ZH7FYV.png)
+
+4. Drop text or whatever you want inside the widgets and click `Save`
+5. In the template you're using (_example: page.php_) call `dynamic_sidebar("unique widget name here")` and that will pull in the data you set inside the Widget when you were in the Dashboard
 
 ## Add Widget Areas to the Front Page
 
@@ -191,14 +198,12 @@ create_widget( 'Front Page Center', 'front-center', 'Displays on the center of t
 create_widget( 'Front Page Right', 'front-right', 'Displays on the right of the hompage');
 ```
 
-This will create 3 widgets that we can put in a row with Twitter Bootstrap
-
-When you are in the WP Dashboard, you can go to `Appearance > Widgets`
-
-You will see the 3 widgets you created for the front Page. Drag and drop `Text` widget into each of these boxes.
+* This will create 3 widgets that we can put in a row with Twitter Bootstrap
+* When you are in the WP Dashboard, you can go to `Appearance > Widgets`
+* You will see the 3 widgets you created for the front Page
+* Drag and drop `Text` widget into each of these boxes
 
 ### Add the widget to your page
-
 `front-page.php`
 
 ```php
@@ -216,52 +221,47 @@ You will see the 3 widgets you created for the front Page. Drag and drop `Text` 
 </div>
 ```
 
-Notice we are using the names that we created in `functions.php` (`front-left`, `front-center`, `front-right`)
-
-This will pull in the text from the 3 Text Widgets you created in the Dashboard
-
-View your WordPress page and you should see the 3 widgets in one horizontal row
-
-In WP Dashboard add a `Text` Widget [looks like this](https://i.imgur.com/4W1IGJf.png)
+* Notice we are using the names that we created in `functions.php` (`front-left`, `front-center`, `front-right`)
+* This will pull in the text from the 3 Text Widgets you created in the Dashboard
+* View your WordPress page and you should see the 3 widgets in one horizontal row
+* In WP Dashboard add a `Text` Widget [looks like this](https://i.imgur.com/4W1IGJf.png)
 
 #### Common Error with `functions.php`
+* If you have space after the closing `?>` php tag you will get an error. Open `functions.php` and add space after the closing `?>` php tag
 
-If you have space after the closing `?>` php tag you will get an error. Open `functions.php` and add space after the closing `?>` php tag.
-
-Refresh WordPress site in browser. Do you see an error?
-
-If not, you may need to adding some code to your `wp-config.php`.
+### Take it for a test spin
+* Refresh WordPress site in browser
+* Do you see an error?
+* If not, you may need to adding some code to your `wp-config.php`
 
 ##### The White Screen of Death
-Avoided with some simple troubleshooting.
+* Avoided with some simple troubleshooting.
+* You don't have debugging on which is a good thing in production but when developing you [want debugging on](https://codex.wordpress.org/Debugging_in_WordPress)
+* If you see the `white screen of death`, turn on [WordPress Debug Mode](https://codex.wordpress.org/Debugging_in_WordPress)
+* Set that inside your `wp-config.php` file
 
-You don't have debugging on which is a good thing in production but when developing you [want debugging on](https://codex.wordpress.org/Debugging_in_WordPress).
-
-If you see the `white screen of death`, turn on [WordPress Debug Mode](https://codex.wordpress.org/Debugging_in_WordPress). Set that inside your `wp-config.php` file.
-
-## Solutions for common WordPress errors.
-
-[Read this article](https://codex.wordpress.org/FAQ_Troubleshooting) for more debug information on common problems.
+## Solutions for common WordPress errors
+* [Read this article](https://codex.wordpress.org/FAQ_Troubleshooting) for more debug information on common problems
 
 ## WYSIWYG Plugin
-This plugin enables you to add marked up code without writing HTML. Great for your clients that hate writing (or don't know how) to write code.
+* This plugin enables you to add marked up code without writing HTML
+* Great for your clients that hate writing (or don't know how) to write code
 
-[Black Studio TinyMCE Widget](https://wordpress.org/plugins/black-studio-tinymce-widget/)
+### TinyMCE
+* [Black Studio TinyMCE Widget](https://wordpress.org/plugins/black-studio-tinymce-widget/)
 
-## page.php
-Our Page template.
-
-As it stands now, our theme has two different pages.
-
-`front-page.php` (our home page) and all the other pages we create based on `index.php`.
-
-Save `index.php` as `page.php`
-
-This is the `page.php` template. When we create templates they now will use `page.php`. We want `page.php` to have a different layout then `front-page.php` and `index.php` so we will now create a page with two columns.
-
-Make `page.php` look like:
+## page.php (and pages vs templates)
+* Our Page template
+* As it stands now, our theme has two different pages
+* `front-page.php` (our home page) and all the other pages we create based on `index.php`
+* Save `index.php` as `page.php`
+* This is the `page.php` template
+* When we create templates they now will use `page.php`
+* We want `page.php` to have a different layout then `front-page.php` and `index.php`
+* So we will now create a page with two columns
 
 ### Two column layout
+* Make `page.php` look like:
 
 `page.php`
 
@@ -284,19 +284,19 @@ Make `page.php` look like:
 <?php get_footer(); ?>
 ```
 
-`page.php` is a special file name in WordPress. It will automatically be the new template for pages
+* `page.php` is a special file name in WordPress
+* It will automatically be the new template for pages
 
 _(if that doesn't make sense check out the [WPHeirarchy](http://www.elegantthemes.com/blog/tips-tricks/understanding-the-wordpress-template-hierarchy))_
 
-The best way to see this is if you click on the page we created `page-with-sidebar` in the browser you will see it has a 2 column layout.
-
-Since we want dynamic content for the first column we need to put in our dynamic loop (This is `The Loop` WordPress uses)
+* The best way to see this is if you click on the page we created `page-with-sidebar` in the browser you will see it has a 2 column layout
+* Since we want dynamic content for the first column we need to put in our dynamic loop (This is `The Loop` WordPress uses)
 
 #### What are templates?
-Think of them like cookie cutters. You don't view the actual templates, you view the pages dynamically creating using those templates.
+* Think of them like cookie cutters
+* You don't view the actual templates, you view the pages dynamically creating using those templates
 
 ## Let's make our page.php super cool
-
 `page.php`
 
 ```php
@@ -335,26 +335,27 @@ Think of them like cookie cutters. You don't view the actual templates, you view
 ```
 
 #### We Added the `WordPress Loop`
-The Loop enables us to edit our page content in the Dashboard
-
+* **The Loop** enables us to edit our page content in the Dashboard
 * `the_title()` function pulls the title of our page
 * `the_content()` pulls the page content into this page
 * **conditional logic** to show or hide depending on content or no content
 
-View page in browser and you'll see it's empty
+### Take it for a test drive
+* View page in browser and you'll see it's empty
 
 ### Let's install a couple of WordPress productivity tools
+#### Ipsum Generator
+* [Ipsum Generator for Chrome](https://chrome.google.com/webstore/detail/lorem-ipsum-generator-def/mcdcbjjoakogbcopinefncmkcamnfkdb)
+* Add this to your Chrome browser
+* Since you are creating a lot of empty pages, having a quick way to generate fake text will save you time
 
-## [Ipsum Generator for Chrome](https://chrome.google.com/webstore/detail/lorem-ipsum-generator-def/mcdcbjjoakogbcopinefncmkcamnfkdb)
-Add this to your Chrome browser. Since you are creating a lot of empty pages, having a quick way to generate fake text will save you time.
-
-## [GhostText](https://chrome.google.com/webstore/detail/ghosttext/godiecgffnchndlihlpaajjcplehddca)
-This enables you to code WordPress in your favorite editor (Sublime Text or Atom). [This will show you how you can install it.](https://github.com/GhostText/GhostText)
+#### [GhostText](https://chrome.google.com/webstore/detail/ghosttext/godiecgffnchndlihlpaajjcplehddca)
+* This enables you to code WordPress in your favorite editor (Sublime Text or Atom)
+* [This will show you how you can install it](https://github.com/GhostText/GhostText)
 
 #### Let's create a sidebar
-Static sidebar in `page.php`
-
-Let's add a sidebar in our `page.php.`
+* Static sidebar in `page.php`
+* Let's add a sidebar in our `page.php.`
 
 `page.php`
 
@@ -415,7 +416,7 @@ Notice we now are using `get_sidebar()`. This function works like `get_header()`
 
 `sidebar.php`
 
-Inside sidebar we will put the following chunk of code.
+* Inside sidebar we will put the following chunk of code
 
 ```php
 <?php if ( ! dynamic_sidebar( 'page' ) ): ?>
@@ -425,7 +426,7 @@ Inside sidebar we will put the following chunk of code.
 <?php endif; ?>
 ```
 
-Add this code to the bottom `functions.php`
+* Add this code to the bottom `functions.php`
 
 ```php
 [more code here]
@@ -438,12 +439,11 @@ create_widget( 'Page Sidebar', 'page', 'Displays on side of pages with sidebar')
 
 * Add Text widget (or if you are feeling daring, experiment with the `Visual Editor` widget) to `Page Sidebar` widget.
 * Add some Latin filler text
-* Test if it works in the browser.
+* Test if it works in the browser
 
 ## Let's Style our Sidebar
-What if we want to adjust how our sidebar looks?
-
-Add some CSS that targets your `.sidebar` class.
+* What if we want to adjust how our sidebar looks?
+* Add some CSS that targets your `.sidebar` class
 
 `css/style.css`
 
@@ -457,14 +457,17 @@ Add some CSS that targets your `.sidebar` class.
 }
 ```
 
-We look at our page the color has not changed. Why not?
+* We look at our page the color has not changed
+* Why not?
 
 ## Alter Widget HTML
-Use the Dashboard to open `Sample Page`. If you inspect the sidebar code you will see our widget is using `H2` elements for our headings. How can we change them to `H3`?
+* Use the Dashboard to open `Sample Page`
+* If you inspect the sidebar code you will see our widget is using `H2` elements for our headings
+* How can we change them to `H3`?
 
 `functions.php`
 
-Change `H2` to `H3` so new CSS in `style.css` will work.
+* Change `H2` to `H3` so new CSS in `style.css` will work
 
 ```php
 function create_widget($name, $id, $description) {
@@ -480,42 +483,51 @@ function create_widget($name, $id, $description) {
 }
 ```
 
-View the source and you will now see the widget is using `H3`. That browser shows that H3 styled.
+* View the source and you will now see the widget is using `H3`
+* That browser shows that H3 style
 
 ### Adding More Widgets to Sidebar
-This is easy. In the WP Dashboard, drag and drop `Recent Posts` into your sidebar widget.
+* This is easy
+* In the WP Dashboard, drag and drop `Recent Posts` into 
+our sidebar widget
+* The widgets are to close together
+* Need to add some padding between them
 
-The widgets are to close together. Need to add some padding between them.
-
-Add this CSS to `css/style.css`
-
+#### Add this CSS to `css/style.css`
 ```css
 .widget {
   margin: 10px 0 30px;
 }
 ```
 
-Inside `functions.php` we have the `register_sidebar()` function and inside that function we gave the class of `widget` to the `DIV`.
+* Inside `functions.php` we have the `register_sidebar()` function and inside that function we gave the class of `widget` to the `DIV`
 
 # Full Width Pages
-Right now we have `front-page.php`, `index.php`, `page.php` and now we want to create a new template that will enable us to have a full width layout. It's time to use a new cookie cutter template. WordPress has lots of different templates, using different special names to achieve different outcomes. The naming of these templates is specific and if you spell it wrong, it may cause WordPress to break. [interactive WordPress hierachy page](https://wphierarchy.com/) shows the entire WordPress hierarchy.
+* Right now we have `front-page.php`, `index.php`, `page.php` and now we want to create a new template that will enable us to have a full width layout
+* It's time to use a new cookie cutter template
+* WordPress has lots of different templates, using different special names to achieve different outcomes
+* The naming of these templates is specific and if you spell it wrong, it may cause WordPress to break
+* [interactive WordPress hierachy page](https://wphierarchy.com/) shows the entire WordPress hierarchy
 
 ### page-full-width.php
-Save `page.php` as `page-full-width.php`
+* Save `page.php` as `page-full-width.php`
+* Check out the `comment` at the top of this template
+* This comment has special instructions for our template
 
-Check out the `comment` at the top of this template. This comment has special instructions for our template
+#### Remember the special comments `style.css` has?
+* Well, `page.php` doesn't need those special comments
+* But if we want to create different layouts in other pages, we need to create a new template that will have the word `page` at the start of the template name, followed by dashes and the `.php` extension
 
-Remember the special comments `style.css` has? Well, `page.php` doesn't need those special comments but if we want to create different layouts in other pages, we need to create a new template that will have the word `page` at the start of the template name, following by dashes and the `.php` extension.
+##### Examples:
+* `page-three-columns.php`
+* `page-ten-columns.php`
 
-Examples:
-`page-three-columns.php`
-`page-ten-columns.php`
-
-Let's get back to our example with a page layout that is the full width.
+### Let's get back to our example
+* The one with a page layout that is the full width
 
 `page-full-width.php`
 
-* Once again pay particular attention to the comment at the top of the template.
+* Once again pay particular attention to the comment at the top of the template
 
 ```php
 <?php
@@ -555,21 +567,24 @@ Let's get back to our example with a page layout that is the full width.
 
 ## Don't forget to select the full-width-page template in the Dashboard
 
-In the WP Dashboard Create a new page and name it `About`. Throw some Latin Filler Text inside the body of the page. Save it.
+1. In the WP Dashboard Create a new page and name it `About`
+2. Throw some Latin Filler Text inside the body of the page
+3. Save it
+4. Under `Page Attributes` in the Dashboard select `Full Width Template` under Template
+5. View the `About` page in the browser and you will see it has no sidebar!
 
-Under `Page Attributes` in the Dashboard select `Full Width Template` under Template.
+### Add Sass and WordPress
+* Create a `scss` folder in your theme root
+* Create all your `scss` files inside that folder
+* A simple way to start would be to have a `style.scss` and import all the partial files
+* Files like `_nav.scss` and `_variables.scss`
 
-View the `About` page in the browser and you will see it has no sidebar!
+### Run Sass
+* `$ sass --watch scss:css`
 
-# Ass Sass and WordPress
-
-Create a `scss` folder in your theme root. Create all your `scss` files inside that folder. A simple way to start would be to have a `style.scss` and import all the partial files. Files like `_nav.scss` and `_variables.scss`.
-
-Run `$ sass --watch scss:css` in your terminal.
-
-That should generate all the css you need and put it inside your `css` folder. We already enqueued that file so when you transfer all your css code to be `scss` code, your WordPress site should look the same.
-
-If not, open the Chrome inspector and see if you can troubleshoot.
+* That should generate all the css you need and put it inside your `css` folder
+* We already enqueued that file so when you transfer all your css code to be `scss` code, your WordPress site should look the same
+* If not, open the Chrome inspector and see if you can troubleshoot
 
 * [part 1](bootstrap-wordpress-part-1.md)
 * [part 2](bootstrap-wordpress-part-2.md)
