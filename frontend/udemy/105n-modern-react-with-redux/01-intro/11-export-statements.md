@@ -1,9 +1,8 @@
 # Export Statements
-We will talk about:
-
-* Exporting Modules
-* Classes
-* State
+* We will talk about three things:
+    1. Exporting Modules
+    2. Classes
+    3. State
 
 `SearchBar.js`
 
@@ -14,7 +13,7 @@ const SearchBar = () => {
 ```
 
 ## Important to `import` 
-Even though we are not making use of React inside this Component we still need to include it
+* Even though we are not making use of `React` inside this Component we still need to include it because we are using JSX
 
 ```
 import React from 'react';
@@ -27,24 +26,24 @@ const SearchBar = () => {
 **note** When we write JSX like `<input />` the transpile to Babel will be `React.createElement()` so you need to import `React`
     * If you don't believe me go [babel](https://babeljs.io/repl) and try it yourself
 
-**important** React need to be imported into all of our Components when we write JSX
+**important** `React` need to be imported into all of our Components when we write JSX
 
 ## Do something so that use can see it
-If we can get our SearchBar over and into `index.js` we can render it to the page
+* If we can get our `SearchBar` over and into `index.js` we can render it to the page
 
-One problem. To render the SearchBar Component, `index.js` needs a reference
+### Houston we have a problem
+* To render the `SearchBar` Component, `index.js` needs a reference
+* **note** All of our Components are **siloed** from each other unless we explicitly declare a connection between them
+* We have learned how to **import** code but we have yet to learn how to **export** code 
 
-**note** All of our Components are **siloed** from each other unless we explicitly declare a connection between them
+## exporting code the ES6 way
+* We only want to export a subset of our file so we write this at the bottom of `SearchBar.js`
 
-We have learned how to **import** code but we have yet to learn how to **export** code 
-
-We only want to export a subset of our file so we write this at the bottom of `SearchBar.js`
-
-```
+```js
 export default SearchBar;
 ```
 
-Now any file that **imports** `SearchBar` will get our `SearchBar` component
+* Now any file that **imports** `SearchBar` will get our `SearchBar` component
 
 ```
 const SearchBar = () => {
@@ -52,7 +51,7 @@ const SearchBar = () => {
 }
 ```
 
-Complete `SearchBar.js`
+* Complete `SearchBar.js`
 
 ```
 import React from 'react';
@@ -64,7 +63,7 @@ const SearchBar = () => {
 export default SearchBar;
 ```
 
-If we changed the export like this:
+* If we changed the export like this:
 
 ```
 import React from 'react';
@@ -92,6 +91,7 @@ export default SearchBar;
 ```
 
 ### Now import SearchBar into `index.js`
+`index.js`
 
 ```
 import React from 'react';
@@ -115,10 +115,10 @@ ReactDOM.render(<App />, document.querySelector('.container'));
 * Make sure the path is correct
     - `import SearchBar from './components/SearchBar';`
     - Whenever we import code that we write we have to give an actual file reference to the file we are trying to import
-    - We don't have to do that with Libraries we import (like React) because they are **namespaced**
+    - We don't have to do that with Libraries we import (like `React`) because they are **namespaced**
         + We can only have one installed package called `React`
             * Go into the `node_modules` folder and get the directory called `react` (Same thing with `ReactDOM`)
-    - So with your custom code inside your React app, make sure you import using relative paths from the file you are in to where the file is where you are importing it from
+    - So with your custom code inside your `React` app, make sure you import using relative paths from the file you are in to where the file is where you are importing it from
     - `./` This represents the **current directory**
     - You do not need `.js` suffix as long as it is a JavaScript file
 
@@ -134,10 +134,9 @@ return (
 **important** Have one parent tag for your JSX
 
 ### Tree of Components
-We are now starting to form a `tree of components`
-
-At the very top of the tree we have our `App` Component
-The first child inside of this tree is our `SearchBar` Component
+* We are now starting to form a `tree of components`
+* At the very top of the tree we have our `App` Component
+* The first child inside of this tree is our `SearchBar` Component
 
 ## Test in browser
-You should see an input element on the screen
+* You should see an input element on the screen

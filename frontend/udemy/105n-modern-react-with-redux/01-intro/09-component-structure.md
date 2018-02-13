@@ -2,7 +2,9 @@
 ![wireframe](https://i.imgur.com/ry9Pse2.png)
 
 * Don't pull all your JSX in one huge Component
-* Create many Components, each with their own purpose and React does a great job of pulling them all together and rendering them to the screen
+* Create many Components
+    - Each with their own purpose
+    - React will do a fantastic job of pulling them all together and rendering them to the screen
 
 ## Our Components (5)
 * The search box
@@ -15,11 +17,11 @@
 
 ![red box wireframe diagram](https://i.imgur.com/oZEjVx9.png)
 
-## Reusability of Components
-One of the great benefits
+## Re-usability of Components
+* One of the great benefits
 
 ## Rule
-One Component per file
+* One Component per file
 
 ### Create these files inside `src/components`
 * SearchBar.js
