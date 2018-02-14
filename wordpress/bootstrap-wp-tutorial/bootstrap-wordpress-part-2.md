@@ -6,6 +6,54 @@
 * [part 4](bootstrap-wordpress-part-4.md)
 * [part 5](bootstrap-wordpress-part-5.md)
 
+# Migration
+* **note** Make sure student #1 and student #2 both have the most up to date MAMP or else you may run into problems like `collation` issues with older versions of MySQL
+
+## How do you get your WordPress site from local to production?
+* Not an easy answer
+* To speed up this workflow you could research [Desktop Server](https://serverpress.com/) or [Moveword](https://github.com/welaika/wordmove/wiki/Getting-Wordmove-installed-in-VVV-(or-any-Vagrant)
+* But let's go through a simple example of moving wordpress from one student computer in the classroom to another student in the same classroom.
+* Student #1 installs WordPress inside the Sites folder on a Mac using WP-CLI and MAMP
+  - They created a database inside phpMyAdmin
+* Here is the [Bootstrap 4 theme](https://github.com/kingluddite/han-solo-theme) we created - super basic custom theme
+  - There is a `.sql` file inside `assets/db/han_solo_wp`
+
+### Move WordPress custom theme
+* From student #1 to student #2 (assuming both are on Macs)
+* Student #1 has their custom theme working on their local computer
+* Now it's time for student #2 to get it working on his/her computer
+* Grab the theme and clone it to your Desktop
+* Open MAMP and make sure the configured the same on student #1 an #2
+  - [Follow this tutorial](https://www.youtube.com/watch?v=VXxvWanpjcs)
+    + But make sure you point the local server to `~/Sites`
+* Student #2 creates an empty DB in phpMYAdmin named `han_solo_wp`
+* Student selects the new empty db named `han_holo_wp` inside the phpMyAdmin GUI and imports `han_solo_wp.sql` from the custom theme
+* Student #2 creates a folder inside `Sites` called `han-solo-wp`
+* Student #2 uses wp-cli to install core WordPress inside `han-solo-wp`
+* Student #2 moves the custom theme into the `themes` folder of their local WordPress install
+* Student #2 uses wp-cli to create the `wp-config.php`
+  - DB
+    + user: root
+    + password: root
+* No need to run the other wp-cli to create the DB because we just imported it:
+  - user: phildev
+  - password: password
+* Student #2 can now view site at `http://localhost/han-solo-wp`
+* Student #2 can login to WordPress with `http://localhost/han-solo-wp/wp-admin` using this info:
+  - user: phildev
+  - password: password
+
+### Congrats! Migrations Complete
+* Things to watch out for during migration
+  - Where is the MAMP server root? (You set this in MAMP)
+  - Did you convert the port number away from :8888?
+  - What did you name the folder holding your WordPress site? Did you use that info inside wp-cli command?
+  - Did you export your sql from the site?
+  - Did you import the sql into the new site?
+  - Did you add your custom theme?
+  - Is your MAMP Apache and MySQL running?
+  - Did you restart it if you made any config changes?
+
 # Bootstrap and WordPress
 
 ## SEO Yoast
