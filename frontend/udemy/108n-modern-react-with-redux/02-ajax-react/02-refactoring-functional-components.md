@@ -1,70 +1,74 @@
 # Refactoring functional Components
-We will refactor `App` Component from a functional based Component to a class-based Component
+* We will refactor `App` Component from a **Functional based Component (FBC)** to a **class-based Component (CBC)**
+  - FBC --> CBC
 
-We are doing this because we need our `App` Component to have state so it can keep track of the list of videos
+* We are doing this because we need our `App` Component to have `state` 
+* So it can keep track of the list of videos
+* You will do this often in React apps
 
-## Steps in converting a functional Component into a class-based Component
-This is where we are starting from:
+## Steps in converting FBC --> CBC
+* This is where we are starting from:
 
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
-import SearchBar from './components/SearchBar';
-const API_KEY = 'AIzaSyC9bJsdEJpmtGcBb_c7ck0NvOvyShMx47I';
 
-YTSearch({key: API_KEY, term: 'surfboards'}, function(data) {
+import SearchBar from './components/SearchBar';
+
+const GOOGLE_API_KEY = '???';
+
+YTSearch({ key: GOOGLE_API_KEY, term: 'soccer' }, data => {
   console.log(data);
 });
-
-const App = () => {
+// Create a new Component. This Component should produce some HTML
+const App = function() {
   return (
     <div>
       <SearchBar />
     </div>
-  )
+  );
+};
+// Take this Component's generated HTML and put it on the page (inside the DOM)
+ReactDOM.render(<App />, document.querySelector('.container'));
+```
+
+* And this is what it looks like after the FBC is converted to a CBC
+
+```
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import YTSearch from 'youtube-api-search';
+import SearchBar from './components/SearchBar';
+const API_KEY = '???';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { videos: [] };
+
+    YTSearch({key: API_KEY, term: 'surfboards'}, (data) => {
+      this.setState({videos: data });
+    });
+  }
+  
+  render() {
+    return (
+      <div>
+        <SearchBar />
+      </div>
+    );
+  }
 }
 
 ReactDOM.render(<App />, document.querySelector('.container'));
 ```
 
-## Extend the Component
-We need to pull off the `Component` property from React so we can create a class and extend that Component property
+## Let's analyze what we just did to convert into a CBC
+### We need to set up our `constructor()` function
+`App.js`
 
-`import React, { Component } from 'react';`
-
-And update this:
-
-```
-class App extends Component {
-  return (
-    <div>
-      <SearchBar />
-    </div>
-  )
-}
-```
-
-## Need to add a render() method
-```
-class App extends Component {
-  return (
-    <div>
-      <SearchBar />
-    </div>
-  )
-}
-```
-
-### Test in browser
-No errors after refresh and you'll still see our Youtube videos from the console.log()
-
-## Data will change over time
-As the user changes the search, the videos will change and this means data will change over time which is a great case for using `state`
-
-So whenever a user conducts a new search we need to update state with the new search results
-
-## We need to set up our constructor() function
 ```
 class App extends Component {
   constructor(props) {
