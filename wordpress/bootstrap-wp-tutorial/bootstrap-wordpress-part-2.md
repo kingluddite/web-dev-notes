@@ -58,7 +58,7 @@
 
 ## SEO Yoast
 * This is a free useful plugin to help make your site SEO Friendly
-* Remove this in `header.php`
+* Remove this code in `header.php`
 
 `header.php`
 
@@ -69,8 +69,11 @@
 
 * Remove meta description (author, description)
   + _SEO Yoast plugin display dynamic descriptions on each page_
-* Instead of hard coding this info you can add it per page using SEO Yoast
+* Instead of hard coding this info you can add it per page using **SEO Yoast**
 * SEO Yoast also helps you set up Google Analytics
+
+## Add SEO Yoast using wp-cli
+`$ wp plugin install wordpress-seo --activate`
 
 ## Favicon
 * When making a site one of your tasks will be to create a favicon added to the tab in the browser
@@ -121,8 +124,8 @@
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 ```
 
-* There is a Bug - doesn't show title on static home page
-  - **Challenge** See if you can troubleshoot this to determine a way to get this to work on the home page
+* There is a Bug - doesn't show `title` on **static home page**
+  - **Homework** See if you can troubleshoot this to determine a way to get this to work on the home page
 * `wp_title()` will display WordPress site `title` by itself if on home page
 * It will also display title and `|` separate if on another page
 * The last parameter places separator on `left` or `right`
@@ -144,7 +147,7 @@
 * From time to time you will need to update to the most recent version of WordPress
 * **note** [Using WP-CLI](development/wp-cli.md) to make this task easy
 
-# The WordPress Hierarchy
+## The WordPress Hierarchy
 * This will help us build our pages
 * If we view any of our pages in the browser, they will all be the same because they are all based on `index.php`
 * [template hierarchy in WordPress](https://wphierarchy.com/)
@@ -204,8 +207,8 @@
 1. Now you can go to home page and edit that section
 2. Use Bootstrap plugin to style and add button
 3. Hard link it if you want
-  + Not best practice
-  + If it changes later, you'll have to update this code
+  * **important** Hard links are not best practice
+     - If it changes later, you'll have to update this code
 
 ## Widgets
 * When working with custom themes in WordPress you will at times want to add widgets
@@ -275,7 +278,8 @@ create_widget( 'Front Page Right', 'front-right', 'Displays on the right of the 
 * In WP Dashboard add a `Text` Widget [looks like this](https://i.imgur.com/4W1IGJf.png)
 
 #### Common Error with `functions.php`
-* If you have space after the closing `?>` php tag you will get an error. Open `functions.php` and add space after the closing `?>` php tag
+* If you have space after the closing `?>` php tag you will get an error
+* Open `functions.php` and add space after the closing `?>` php tag
 
 ### Take it for a test spin
 * Refresh WordPress site in browser
@@ -283,7 +287,7 @@ create_widget( 'Front Page Right', 'front-right', 'Displays on the right of the 
 * If not, you may need to adding some code to your `wp-config.php`
 
 ##### The White Screen of Death
-* Avoided with some simple troubleshooting.
+* Avoided with some simple troubleshooting
 * You don't have debugging on which is a good thing in production but when developing you [want debugging on](https://codex.wordpress.org/Debugging_in_WordPress)
 * If you see the `white screen of death`, turn on [WordPress Debug Mode](https://codex.wordpress.org/Debugging_in_WordPress)
 * Set that inside your `wp-config.php` file
@@ -337,7 +341,7 @@ create_widget( 'Front Page Right', 'front-right', 'Displays on the right of the 
 
 _(if that doesn't make sense check out the [WPHeirarchy](http://www.elegantthemes.com/blog/tips-tricks/understanding-the-wordpress-template-hierarchy))_
 
-* The best way to see this is if you click on the page we created `page-with-sidebar` in the browser you will see it has a 2 column layout
+* The best way to see this is if you click on the page we created `page-with-sidebar` in the browser you will see it has a 2-column-layout
 * Since we want dynamic content for the first column we need to put in our dynamic loop (This is `The Loop` WordPress uses)
 
 #### What are templates?
@@ -442,7 +446,9 @@ _(if that doesn't make sense check out the [WPHeirarchy](http://www.eleganttheme
 <?php get_footer(); ?>
 ```
 
-Notice we now are using `get_sidebar()`. This function works like `get_header()` and `get_footer()` except that it will pull in code from a file named `sidebar.php`.
+* Notice we now are using `get_sidebar()`
+* This function works like `get_header()` and `get_footer()`
+    - except that it will pull in code from a file named `sidebar.php`
 
 `page.php`
 
@@ -464,7 +470,7 @@ Notice we now are using `get_sidebar()`. This function works like `get_header()`
 
 `sidebar.php`
 
-* Inside sidebar we will put the following chunk of code
+* Inside `sidebar` we will put the following chunk of code
 
 ```php
 <?php if ( ! dynamic_sidebar( 'page' ) ): ?>
@@ -485,12 +491,12 @@ create_widget( 'Page Sidebar', 'page', 'Displays on side of pages with sidebar')
 
 `Dashboard > Widgets`
 
-* Add Text widget (or if you are feeling daring, experiment with the `Visual Editor` widget) to `Page Sidebar` widget.
+* Add Text widget (or if you are feeling daring, experiment with the `Visual Editor` widget) to `Page Sidebar` widget
 * Add some Latin filler text
 * Test if it works in the browser
 
 ## Let's Style our Sidebar
-* What if we want to adjust how our sidebar looks?
+* What if we want to adjust how our `sidebar` looks?
 * Add some CSS that targets your `.sidebar` class
 
 `css/style.css`
@@ -510,7 +516,7 @@ create_widget( 'Page Sidebar', 'page', 'Displays on side of pages with sidebar')
 
 ## Alter Widget HTML
 * Use the Dashboard to open `Sample Page`
-* If you inspect the sidebar code you will see our widget is using `H2` elements for our headings
+* If you inspect the `sidebar` code you will see our widget is using `H2` elements for our headings
 * How can we change them to `H3`?
 
 `functions.php`
@@ -532,7 +538,7 @@ function create_widget($name, $id, $description) {
 ```
 
 * View the source and you will now see the widget is using `H3`
-* That browser shows that H3 style
+* That browser shows that `H3` style
 
 ### Adding More Widgets to Sidebar
 * This is easy
