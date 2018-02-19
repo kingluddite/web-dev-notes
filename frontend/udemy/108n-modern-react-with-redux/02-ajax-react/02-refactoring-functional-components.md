@@ -96,10 +96,13 @@ constructor(props) {
   }
 ```
 
-* We are going to set our `state` equal to at the start to an empty array for `videos`. Since we are going to have a bunch of videos, `videos` seems like an appropriate name. We will have an array of objects (which will be videos) so that is why we use the empty array to start with
+* We are going to set our `state` equal to at the start to an empty array for `videos`
+* Since we are going to have a bunch of videos, `videos` sees like an appropriate name
+* We will have an array of objects (which will be videos) so that is why we use the empty array to start with
 
 ## Do we want video data to be empty at the start of our app?
-No. We should pre-populate our app with video data right from the start
+* No
+* We should **pre-populate** our app with video data right from the start
 
 ```
 import React, { Component } from 'react';
@@ -130,7 +133,8 @@ class App extends Component {
 ReactDOM.render(<App />, document.querySelector('.container'));
 ```
 
-* We intialize our state and then we make an API call to Youtube and grab our 5 surf starter videos and then we `this.setState()` to be those 5 videos. This is done inside our constructor() method so it will happen as soon as we initialize our `App` Component
+* We intialize our state and then we make an API call to Youtube and grab our 5 surf starter videos and then we `this.setState()` to be those 5 videos
+* This is done inside our `constructor()` method so it will happen as soon as we initialize our `App` Component
 
 ## Refactor from `function` keyword to `fat arrow function`
 
@@ -165,15 +169,16 @@ ReactDOM.render(<App />, document.querySelector('.container'));
 ```
 
 ## We can name the `data` object whatever we want so...
-```
+```js
 YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
   this.setState({videos: videos });
 });
 ```
 
-Which can be refactored in ES6 to this: (we can do this when the `key` and the `value` of an object are the same terms)
+* Which can be refactored in ES6 to this:
+* We can do this when the `key` and the `value` of an object are the same terms
 
-```
+```js
 YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
   this.setState({videos });
 });

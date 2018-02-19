@@ -1,20 +1,25 @@
 # Searching for Videos
-* We will pass a callback to SearchBar
-* callback will take a string and make a new YTSearch and when search is complete it will set the `state` of the new list of videos
+* We will pass a callback to `SearchBar`
+* callback will take a string and make a new `YTSearch` 
+* And when search is complete
+    - It will set the `state` of the new list of videos
 
 `index.js`
 
 ```
+// MORE CODE
 videoSearch(term) {
     
   }
+// MORE CODE
 ```
 
-* We will cut and paste YTSearch() into `videoSearch()`
+* We will cut and paste `YTSearch()` into `videoSearch()`
     - No use in having duplicate code
     - We will rename the default search term from the static hardcoded `surf` to `term`
 
 ```
+// MORE CODE
 videoSearch(term) {
     YTSearch({key: API_KEY, term: term}, (videos) => {
       this.setState({
@@ -23,9 +28,10 @@ videoSearch(term) {
       });
     });
   }
+// MORE CODE
 ```
 
-But inside our constructor() we still want to do the initial search so we add:
+* But inside our `constructor()` we still want to do the initial search so we add:
 
 `index.js`
 
@@ -78,11 +84,14 @@ ReactDOM.render(<App />, document.querySelector('.container'));
 ```
 
 ### Pass new method into SearchBar Component
-We can pass this method down into `SearchBar`
+* We can pass this method down into `SearchBar`
 
 `<SearchBar onSearchTermChange={term => this.videoSearch(term)} />`
 
-* When `SearchBar` calls `onSearchTermChange()` it will do so with a search term `term` and that will be sent right into `this.videoSearch(term)` and that function will run and do the YouTube video search
+* When `SearchBar` calls `onSearchTermChange()`
+    - It will do so with a search term `term`
+    - And that will be sent right into `this.videoSearch(term)`
+    - And that function will run and do the YouTube video search
 
 `SearchBar`
 
@@ -101,7 +110,11 @@ render() {
 ```
 
 ## Adding a separate method
-Our current handler for the input change is tucked away on `state` (on the onChange) it is its own little function. If we add a callback in here our code will start to look ugly so we will split our event handler out into a separate method
+* Our current handler for the input change is tucked away on `state`
+    - (on the onChange) it is its own little function
+* If we add a callback in here
+    - Our code will start to look ugly
+    - So we will split our event handler out into a separate method
 
 `SearchBar`
 
@@ -139,17 +152,20 @@ export default SearchBar;
     2. We also want to call the **callback** that we got from `index.js` (from `App`) with the new search term
 
 ```
+// MORE CODE
 handleInputChange(term) {
     this.setState({term});
     this.props.onSearchTermChange(term);
 }
+// MORE CODE
 ```
 
 ## Test in browser
-Save and refresh and type in search bar and the youtube videos update
+* Save and refresh and type in search bar and the youtube videos update
 
 ## Video is lagging during search
-Searching on every key typed is hurting performance, let's change it to only search every half second
+* Searching on every key typed is hurting performance
+* Let's change it to only search every half second
 
 ## Review of what we did
 1. We refactored the Youtube search into it's own method
@@ -157,6 +173,7 @@ Searching on every key typed is hurting performance, let's change it to only sea
 `index.js`
 
 ```
+// MORE CODE
 videoSearch(term) {
     YTSearch({key: API_KEY, term: term}, (videos) => {
       this.setState({
@@ -165,32 +182,46 @@ videoSearch(term) {
       });
     });
   }
+// MORE CODE
 ```
 
-That method just takes a single string (which is a search term)
+* That method just takes a single string (which is a search term)
 
 2. We took this method `videoSearch()` and we passed it down into `SearchBar` under the property `onSearchTermChange`
 
 `<SearchBar onSearchTermChange={term => this.videoSearch(term)} />`
 
-3. So all SearchBar has to do is call `props.onSearchTermChange()` with a new search term and that will call our searching function `videoSearch()` (inside `index.js` (App Component)) which will call the YouTube API and fetch a new list of videos
+3. So all `SearchBar` has to do is call `props.onSearchTermChange()` with a new search term
+    * And that will call our searching function `videoSearch()`
+        + Inside `index.js` (App Component))
+        + Which will call the YouTube API
+        + And fetch a new list of videos
 
 `SearchBar`
 
-4. Inside of SearchBar we refactored the onChange event (whenever the content of the input changed it now calls handleInputChange(with the new input value (`event.target.value`)))
+4. Inside of `SearchBar` we refactored the **onChange** event
+    * Whenever the content of the input changed it now calls **handleInputChange(with the new input value (`event.target.value`))**
 
-We have two purposes
+* We have two purposes
 
 ```
+// MORE CODE
 handleInputChange(term) {
       this.setState({term});
       this.props.onSearchTermChange(term);
   }
+// MORE CODE
 ```
 
-* We set the state to the updated term
-* It fires off the callback function onSearchTermChange
+* We set the `state` to the updated term
+* It fires off the callback function `onSearchTermChange`
 
-**note**
+**note** In `SearchBar`:
 
-In `SearchBar` we have two callback functions and it might be too superfluous to have them both. We could have condensed them into one but this way we keep our one callback clean and just simply pass it one search term. One may argue our code is verbose but it is more readable. Beauty is in the eye of the beholder :) 
+* We have two callback functions
+* And it might be too superfluous to have them both
+* We could have condensed them into one
+    - But this way we keep our one callback clean
+    - And just simply pass it one search term
+    - One may argue our code is verbose but it is more readable
+    - Beauty is in the eye of the coder :) 

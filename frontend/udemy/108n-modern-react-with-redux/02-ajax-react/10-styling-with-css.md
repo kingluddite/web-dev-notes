@@ -49,12 +49,11 @@ render() {
   }
 ```
 
-**tip** In general, give your top level Component a className that is the same as the Component name (use lowercase separated-by-dashes like `search-bar`
+**tip** In general, give your top level Component a `className` that is the same as the Component name (use lowercase separated-by-dashes like `search-bar`
 
 * `SearchBar` is the Component name
 * `search-bar` is the className
-
-This makes it easier to have one CSS file per component which makes styling very straight forward
+* This makes it easier to have one CSS file per component which makes styling very straight forward
 
 ![What is should look like in browser](https://i.imgur.com/wcZlXyh.png)
 
