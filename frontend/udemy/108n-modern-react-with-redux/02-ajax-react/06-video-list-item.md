@@ -1,4 +1,4 @@
-# Video List Item
+# VideoListItem
 * Let's make our list of videos inside `VideoList` look a lot nicer
 * Do you remember in `VideoList`?
 
@@ -92,9 +92,38 @@ export default VideoListItem;
 
 * We use Bootstrap 4 classes to build our HTML structure
 
-```
-
 ## View in browser
 You will see **heading** and **thumbnails** of 5 `soccer` videos
+
+`VideoListItem.js`
+
+```
+import React from 'react';
+
+const VideoListItem = ({ video }) => {
+  if (!video) {
+    return <div>Loading...</div>;
+  }
+  const url = video.snippet.thumbnails.default.url;
+  const title = video.snippet.title;
+  console.log(video);
+
+  return (
+    <li className="list-group-item">
+      <div className="video-list media">
+        <div className="media-left">
+          <img src={url} alt={title} className="media-object" />
+        </div>
+
+        <div className="media-body">
+          <div className="media-heading">{title}</div>
+        </div>
+      </div>
+    </li>
+  );
+};
+
+export default VideoListItem;
+```
 
 

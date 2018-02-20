@@ -15,10 +15,10 @@ const VideoList = () => {
 export default VideoList;
 ```
 
-* Is a parent Component of VideoListItem and VideoDetail
-* VideoList has no need for `state`
+* Is a parent Component of `VideoListItem` and `VideoDetail`
+* `VideoList` has no need for `state`
     + It doesn't record any user interaction
-    + It doesn't rerender itself in any fashion
+    + It doesn't re-render itself in any fashion
 
 * This means we can make it a plain **functional Component**
 
@@ -34,7 +34,7 @@ import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/SearchBar';
 import VideoList from './components/VideoList'; // add this line
-const API_KEY = 'AIzaSyC9bJsdEJpmtGcBb_c7ck0NvOvyShMx47I';
+const API_KEY = '???';
 ```
 
 ## Add Component to `App`
@@ -72,8 +72,9 @@ render() {
 * Passing data like this down to child Components is referred to as **passing props** in React
   - We are passing **prop** `videos` to the `VideoList` Component
 
-**note** Anytime that `App` re-renders (like when we `setState()` on that Component), `VideoList` will get the new list of videos as well
-
+* **note** Anytime that `App` re-renders
+    - Like when we `setState()` on that Component
+* `VideoList` will get the new list of videos as well
 * When we use a functional Component, the **props** object will arrive as an argument to the function
 * So this:
 

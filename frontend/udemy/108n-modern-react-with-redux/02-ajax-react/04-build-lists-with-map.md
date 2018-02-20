@@ -18,7 +18,6 @@ export default VideoList;
 * So we just need to loop over each video and for each iteration we need to generate one instance of `<VideoListItem />`
 
 ## JavaScript for loops are "for the birds"
-* Leave a little to be desired
 * It is advised to stay away from `for loops` as much as possible
 * Instead try to use built-in iterators instead
     - Like the built-in `.map()` iterator

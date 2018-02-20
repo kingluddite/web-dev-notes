@@ -36,14 +36,7 @@ videoSearch(term) {
 `index.js`
 
 ```
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import YTSearch from 'youtube-api-search';
-import SearchBar from './components/SearchBar';
-import VideoList from './components/VideoList';
-import VideoDetail from './components/VideoDetail';
-
-const API_KEY = 'AIzaSyC9bJsdEJpmtGcBb_c7ck0NvOvyShMx47I';
+// MORE CODE
 
 class App extends Component {
   constructor(props) {
@@ -56,28 +49,7 @@ class App extends Component {
 
     this.videoSearch('Pele');
   }
-
-  videoSearch(term) {
-    YTSearch({key: API_KEY, term: term}, (videos) => {
-      this.setState({
-        videos: videos,
-        selectedVideo: videos[0]
-      });
-    });
-  }
-
-  render() {
-
-    return (
-      <div>
-        <SearchBar />
-        <VideoDetail video={this.state.selectedVideo} />
-        <VideoList
-          onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
-          videos={this.state.videos} />
-      </div>
-    );
-  }
+  // MORE CODE
 }
 
 ReactDOM.render(<App />, document.querySelector('.container'));
@@ -86,9 +58,9 @@ ReactDOM.render(<App />, document.querySelector('.container'));
 ### Pass new method into SearchBar Component
 * We can pass this method down into `SearchBar`
 
-`<SearchBar onSearchTermChange={term => this.videoSearch(term)} />`
+`<SearchBar handleSearchTermChange={term => this.videoSearch(term)} />`
 
-* When `SearchBar` calls `onSearchTermChange()`
+* When `SearchBar` calls `handleSearchTermChange()`
     - It will do so with a search term `term`
     - And that will be sent right into `this.videoSearch(term)`
     - And that function will run and do the YouTube video search
@@ -155,7 +127,7 @@ export default SearchBar;
 // MORE CODE
 handleInputChange(term) {
     this.setState({term});
-    this.props.onSearchTermChange(term);
+    this.props.handleSearchTermChange(term);
 }
 // MORE CODE
 ```
@@ -187,11 +159,11 @@ videoSearch(term) {
 
 * That method just takes a single string (which is a search term)
 
-2. We took this method `videoSearch()` and we passed it down into `SearchBar` under the property `onSearchTermChange`
+2. We took this method `videoSearch()` and we passed it down into `SearchBar` under the property `handleSearchTermChange`
 
-`<SearchBar onSearchTermChange={term => this.videoSearch(term)} />`
+`<SearchBar handleSearchTermChange={term => this.videoSearch(term)} />`
 
-3. So all `SearchBar` has to do is call `props.onSearchTermChange()` with a new search term
+3. So all `SearchBar` has to do is call `props.handleSearchTermChange()` with a new search term
     * And that will call our searching function `videoSearch()`
         + Inside `index.js` (App Component))
         + Which will call the YouTube API

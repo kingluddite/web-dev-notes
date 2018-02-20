@@ -127,7 +127,7 @@ YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
 // MORE CODE
 ```
 
-* So we just defined a function
+## So we just defined a function
 * All it does is it takes a **video** (selectedVideo)
 * And it defines it on `App`'s **state**
 * And updates `App` **state** with a new video
@@ -140,7 +140,7 @@ YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
 #### This is confusing
 * Let's continue building and then review to help build clarity around the functionality we are building
 
-**note** We are passing this as a property to `VideoList` so that means that VideoList now has a property on `props` called `props.onVideoSelect`
+**note** We are passing this as a property to `VideoList` so that means that `VideoList` now has a property on `props` called `props.onVideoSelect`
 
 `VideoList`
 
@@ -175,7 +175,7 @@ const videoItems = props.videos.map((video) => {
 // MORE CODE
 ```
 
-* Add our new function
+## Add our new function
 * All we are doing here is we are taking the `prop` that was passing down from `App` and we are passing it down to `VideoListItem`
 
 ```
@@ -267,7 +267,8 @@ return (
 
 `VideoListItem`
 
-`VideoListItem` takes that property `const VideoListItem = ({video, onVideoSelect}) => {` and says,
+* `VideoListItem` takes that property `const VideoListItem = ({video, onVideoSelect}) => {` and says
+    - "Whenever I get clicked call that function with the video I was passed"
 
 ```
 // MORE CODE
@@ -276,18 +277,19 @@ return (
 // MORE CODE
 ```
 
-* "Whenever I get clicked call that function with the video I was passed"
 * And since each `VideoListItem` has a different video
 * You will end up with the correct video
 
 ### Passing callbacks from a parent Component to a child Component
 * Is kind of a rare thing to go more than two levels deep
-    - It is not a rare thing but a rare thing to go more than two levels deep
 * We went from `App` to `VideoList` to `VideoListItem`
 
 ### Passing callbacks
 * Is a great way to do small communication between a parent Component and a child Component
 * Because we passed it down three Component's if we were working on a team and someone joined our team they would be inside `VideoListItem` and they would have to do a treasure hunt to figure out where the `onVideoSelect()` function came from
+* This is not fun and needs a better way
+  - That is why Redux was created
+  - One single store of state for the app that the Components can all interact with
 
 
 
