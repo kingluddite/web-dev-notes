@@ -1,4 +1,5 @@
-# Nerdtree
+# Vim Plugins
+## Nerdtree
 
 * [Github](https://github.com/scrooloose/nerdtree)
 
@@ -97,14 +98,60 @@ Finally, let's try out visual mode. Press a capital V (for linewise visual mode)
 </p>
 ```
 
-
 ## add ctrlp
 `~/.vimrc`
 
 `Plugin kien/ctrlp.vim`
 
+```
 " ignore node_modules and git
-`let:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'`
+let:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+```
+
+## Ctrlp
+* :CtrlPBuffer
+  - Open files in buffer and use this command to search through buffer files
+* :CtrlPMRUFiles
+  - All most recent files updated
+  - Add to key binding if you go back to key files a lot
+* With CtrlP search open ctlr K and ctrl J to scroll up and down file list
+* You can search by path (default search)
+* Search for file only when after Ctrl + p type ctrl + d and you will see >d which means path is not used to match search, only the file name is now matched
+* If in ctrlp you can use `ctrl` + `f` to switch between file mode, path mode, buffer mode, and MRUF mode
+* open file in new tab (ctrl + t)
+* open file in vertical split (ctrl + v)
+* open it in a horizontal split (ctrl + x)
+* to create new files in path `ctrl + y`
+    - save you from doing this:
+
+```
+$ mkdir -p test/test2
+$ cd test/test2
+$ touch test
+```
+
+* To use it open ctrlp search
+* You must type exact path match
+* Create files and folder and save!
+
+## Open lots of files at once
+* ctrl p then
+* search using ctrl j (down) and ctrl k (up)
+* then ctrl z (to mark that file) (again to unmark)
+* mark all files you want to open
+
+### clear cache
+* f5
+* New files won't be seen until you do this
+* **note** ctrl y files are seen and are not cached
+
+### :CtrlPLine
+* It will search all buffer files for the words you type in the search
+* So if I was looking for `jquery` it would highlight the line number in `package.json` (just a simple example)
+
+### :CtrlPMixed
+* Allow me to search through files, buffers, MRUs all in one
+* This will prevent you from double opening a buffer (example)
 
 ## speed up keyboard
 * Open settings on mac os sierra
