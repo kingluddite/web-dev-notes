@@ -3,6 +3,8 @@
 ## ReduxSimpleStarter
 [clone this repo](https://github.com/StephenGrider/ReduxSimpleStarter)
 
+`$ git clone git@github.com:StephenGrider/ReduxSimpleStarter.git`
+
 ## Install
 `$ yarn install`
 

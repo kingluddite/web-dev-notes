@@ -41,7 +41,7 @@ render() {
 * When the `App` first renders, it runs the `App` **constructor()** function which initializes the `state` to be an empty array and then it kicks off the request to go and get some more videos
 * While still waiting for the request to the Youtube API to render a response, the `App` Component `render()` method still tries to render itself
 * It doesn't pause and say "Oh, I'm still waiting for data, I don't want to render myself yet"
-    - It just goes ahead and tries to render itself and at that time `this.state.videos` is still an empty array and when we try to access index 0 of videos `this.state.videos[0]` and so when we pass in `video=undefined` into `VideoDetail` Component
+    - It just goes ahead and tries to render itself and at that time `this.state.videos` is still an empty array and when we try to access index `0` of videos `this.state.videos[0]` and so when we pass in `video=undefined` into `VideoDetail` Component
 * So then we go inside `VideoDetail` to see what is manifested when we pass it a value of `undefined` for **video**
 
 `VideoDetail`
@@ -73,7 +73,7 @@ const VideoDetail = ({ video }) => {
   }
 ```
 
-* Now if no video is provided, we return `Loading...` in a **div**
+* Now if no `video` is provided, we return `Loading...` in a **div**
     - It's a **return** statement
     - So the other code inside this functional Component won't run, but if a video is provided, then we don't show `Loading...` and instead render the Component with the **video**
 

@@ -4,8 +4,8 @@
 ## What the heck does that definition mean?
 ![traditional JavaScript app diagram](https://i.imgur.com/tR84QKA.png)
 
-We are making an app that displays a list of books
-When a user clicks on one of those books in the book list, the app will show details of that book on the right
+* We are making an app that displays a list of books
+* When a user clicks on one of those books in the book list, the app will show details of that book on the right
 
 ### Talk about this app
 And juxtapose the view layer (what we see) and the data layer

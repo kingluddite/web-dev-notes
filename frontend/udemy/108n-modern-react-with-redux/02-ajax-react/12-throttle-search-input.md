@@ -11,6 +11,9 @@
 ## Install lodash
 `$ npm install --save lodash`
 
+### Install with yarn
+`$ yarn add lodash`
+
 ## Import lodash into `index.js`
 
 `index.js`
@@ -39,10 +42,10 @@ import React, { Component } from 'react';
 ```
 // MORE CODE
 render() {
-    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
+    const videoSearchDebounce = _.debounce((term) => { this.videoSearch(term) }, 300);
     return (
       <div>
-        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+        <SearchBar onSearchTermChange={term => this.videoSearchDebounce(term)} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
