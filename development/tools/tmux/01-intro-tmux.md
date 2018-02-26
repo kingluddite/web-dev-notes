@@ -1,4 +1,6 @@
 # Tmux Intro
+* [tmux cheat sheet](https://gist.github.com/afair/3489752)
+
 * Terminal multiplixer
 * [documentation](https://github.com/tmux/tmux/wiki)
 * If you are using multiple terminal windows and want to make life easier for yourself, switch to tmux
@@ -30,6 +32,9 @@
 
 ## Move between windows
 `$ ctrl b + w`
+
+## kill pane
+`ctrl` + `b` + `x`
 
 ## Move between panes
 `$ ctrl b + arrow` (Use your direction)

@@ -1,15 +1,13 @@
 # More on Consuming Actions in Reducers
-We just added the `ActiveBook` reducer which produced a new piece of Application `state` whenever the **BOOK_SELECTED** `action` was triggered
+* We just added the `ActiveBook` reducer which produced a new piece of Application `state` whenever the **BOOK_SELECTED** `action` was triggered
 
 ## Let's work on the BookDetailView
-This will render whenever there is a selected book
+* This will render whenever there is a selected book
 
 ### Are we making a Component or a Container?
-We make Containers whenever we want to have a Component that can touch the Redux `state` directly
-
-We know what our book is and we know when it changes so it makes sense that this book detail should be a `Container`. Our `App` doesn't care about the `ActiveBook` as `App`s only purpose is to render the `BookList` and our soon-to-be-created `BookDetail`
-
-Only the `BookDetail` Component cares about what the `ActiveBook` is so we will make the `BookDetail` Component a `Container`
+* We make Containers whenever we want to have a Component that can touch the Redux `state` directly
+* We know what our book is and we know when it changes so it makes sense that this book detail should be a `Container`. Our `App` doesn't care about the `ActiveBook` as `App`s only purpose is to render the `BookList` and our soon-to-be-created `BookDetail`
+* Only the `BookDetail` Component cares about what the `ActiveBook` is so we will make the `BookDetail` Component a `Container`
 
 `src/containers/BookDetail.js`
 
@@ -30,7 +28,7 @@ export default BookDetail;
 ```
 
 ### Render BookDetail inside App
-Import and add the BookDetail instance
+* Import and add the BookDetail instance
 
 `src/components/App.js`
 
@@ -53,14 +51,14 @@ export default class App extends Component {
 ```
 
 ### View in browser
-Refresh and you should now see `BookDetail` text rendered to page
+* Refresh and you should now see `BookDetail` text rendered to page
 
 ![current app rendered](https://i.imgur.com/2lE9TBS.png)
 
 * We have our `BookDetail` wired up to be displayed by the `App` Component
 
 ## Hook up `BookDetail` to Redux store
-We also have to hook up the `BookDetail` to the **Redux store** so it gets told about changes to the `ActiveBook` piece of `state`
+* We also have to hook up the `BookDetail` to the **Redux store** so it gets told about changes to the `ActiveBook` piece of `state`
 
 `BookDetail`
 
@@ -72,19 +70,19 @@ We also have to hook up the `BookDetail` to the **Redux store** so it gets told 
 
 `src/containers/BookDetail.js`
 
-```
+```js
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; // add this line
 ```
 
 ### Add our helper function `mapStateToProps()`
-This has the argument of the Application `state`
+* This has the argument of the Application `state`
 
 `function mapStateToProps(state)`
 
 **note** The object we return from `mapStateToProps()` will show up as `props` inside of our `BookDetail` `Container`
 
-```
+```js
 function mapStateToProps(state) {
   return {
     book: state.activeBook
@@ -101,15 +99,15 @@ function mapStateToProps(state) {
 ### Export our Container
 `src/containers/BookDetail.js`
 
-Change the last line from this:
+* Change the last line from this:
 
 `export default BookDetail;`
 
-To this:
+* To this:
 
 `export default connect(mapStateToProps)(BookDetail);`
 
-We now have a connected Component
+* We now have a connected Component
 
 ### Next up
-Conditional Rendering
+* Conditional Rendering
