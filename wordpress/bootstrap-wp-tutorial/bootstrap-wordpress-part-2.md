@@ -556,17 +556,33 @@ our sidebar widget
 
 * Inside `functions.php` we have the `register_sidebar()` function and inside that function we gave the class of `widget` to the `DIV`
 
+## Project
+* Use [this site](https://domscripting.com/domsters/index.html) as a starting point
+* Using the skills you learned so far create a custom WordPress theme that looks like this site
+
 # Full Width Pages
-* Right now we have `front-page.php`, `index.php`, `page.php` and now we want to create a new template that will enable us to have a full width layout
-* It's time to use a new cookie cutter template
-* WordPress has lots of different templates, using different special names to achieve different outcomes
-* The naming of these templates is specific and if you spell it wrong, it may cause WordPress to break
-* [interactive WordPress hierachy page](https://wphierarchy.com/) shows the entire WordPress hierarchy
+* Right now we have the following templates: 
+  - `front-page.php`
+  - `index.php`
+  - `page.php`
+
+## Create a new template
+* That will enable us to have a **full width layout**
+* WordPress has lots of different templates
+* Each template has a special name to achieve different outcomes
+* The naming of these templates is specific and if you spell it wrong, it won't work!
+
+### WPHierarchy is a great learning resource
+* [interactive WordPress hierachy page](https://wphierarchy.com/)
+* It shows a dynamic representation of the entire WordPress theming template hierarchy
 
 ### page-full-width.php
 * Save `page.php` as `page-full-width.php`
-* Check out the `comment` at the top of this template
-* This comment has special instructions for our template
+
+#### Comments are special in WordPress!
+* We saw this in `style.css` in the root of our theme
+* They also are important in communicating to WordPress what template we are using
+* This [article shows how comments](http://www.wpbeginner.com/wp-themes/how-to-create-a-full-width-page-in-wordpress/) make pages look the way you want
 
 #### Remember the special comments `style.css` has?
 * Well, `page.php` doesn't need those special comments
@@ -619,8 +635,10 @@ our sidebar widget
 <?php get_footer(); ?>
 ```
 
-## Don't forget to select the full-width-page template in the Dashboard
+## IMPORTANT!!!!
+* Don't forget to select the full-width-page template in the Dashboard
 
+### Steps to follow
 1. In the WP Dashboard Create a new page and name it `About`
 2. Throw some Latin Filler Text inside the body of the page
 3. Save it
