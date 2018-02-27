@@ -8,11 +8,13 @@
 $ wp core download
 ```
 
-Create a folder in `Sites` and name it what you want. `cd` inside that folder and use `$ wp core download`.
+1. Create a folder in `Sites` and name it what you want
+2. `cd` inside that folder
+3. And use `$ wp core download`
 
 This will grab all the current WordPress files from the github WordPress repo, extract them and put them inside your site project folder. This is a huge time saver as it can install WordPress in seconds (with a fast internet connection)
 
-## Create the wp-config.php file
+## Create the `wp-config.php` file
 
 ```
 $ wp core config --dbuser=root --dbpass=root --dbname=stranger_things_wp

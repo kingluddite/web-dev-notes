@@ -17,7 +17,7 @@ Fast, unopinionated minimalist web framework for `Node.js`
 * We'll learn about everything in this file as we build our app
 
 ### package.json
-* Notice this part of package.json
+* Notice this part of `package.json`
 
 ```
 // more code

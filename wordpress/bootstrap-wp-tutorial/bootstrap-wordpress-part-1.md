@@ -21,6 +21,7 @@
     - WAMP
     - Desktop Server
     - VVV, Virtual Box and Vagrant
+    - Sage, Trellis, Bedrock
 
 ## The Sites folder
 * Where do we put all our WordPress sites?
