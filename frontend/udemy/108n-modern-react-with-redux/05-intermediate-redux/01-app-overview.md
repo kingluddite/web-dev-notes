@@ -7,7 +7,7 @@
 ![weather app](https://i.imgur.com/r12RJmb.png)
 
 ## What we are building
-Weather Forecast browser
+* Weather Forecast browser
 
 ## The purpose of our app
 * User will be able to search for a city
@@ -21,7 +21,7 @@ Weather Forecast browser
 
 col1: City | col2: temperature | col3: pressure | col4: humidity
 
-As values for each we will do a simple line chart
+* As values for each we will do a simple line chart
 
 ## Challenges
 ### Challenge #1

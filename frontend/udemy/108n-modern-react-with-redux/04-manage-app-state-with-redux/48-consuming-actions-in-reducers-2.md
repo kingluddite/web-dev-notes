@@ -2,29 +2,30 @@
 * We just added the `ActiveBook` reducer which produced a new piece of Application `state` whenever the **BOOK_SELECTED** `action` was triggered
 
 ## Let's work on the BookDetailView
-* This will render whenever there is a selected book
+* This will render whenever there is a **selectedBook**
 
-### Are we making a Component or a Container?
+### Component or a Container?
 * We make Containers whenever we want to have a Component that can touch the Redux `state` directly
-* We know what our book is and we know when it changes so it makes sense that this book detail should be a `Container`. Our `App` doesn't care about the `ActiveBook` as `App`s only purpose is to render the `BookList` and our soon-to-be-created `BookDetail`
-* Only the `BookDetail` Component cares about what the `ActiveBook` is so we will make the `BookDetail` Component a `Container`
+* We know what our **book** is and we know when it changes
+* So it makes sense that this BookDetail should be a `Container`
+
+#### App doesn't care :(
+* Our `App` doesn't care about the `ActiveBook`
+* As `App`s only purpose is to render the `BookList` and our soon-to-be-created `BookDetail`
+* Only the `BookDetail` Component cares about what the `ActiveBook` is 
+* So we will make the `BookDetail` Component a `Container`
 
 `src/containers/BookDetail.js`
 
-```
-import React, { Component } from 'react';
+* We start off created a stateless functional component
 
-class BookDetail extends Component {
-  render() {
-    return (
-      <div>
-        BookDetail
-      </div>
-    );
-  }
-}
+```
+import React from 'react';
+
+const BookDetail = () => <div>Book Detail</div>;
 
 export default BookDetail;
+
 ```
 
 ### Render BookDetail inside App
@@ -60,9 +61,27 @@ export default class App extends Component {
 ## Hook up `BookDetail` to Redux store
 * We also have to hook up the `BookDetail` to the **Redux store** so it gets told about changes to the `ActiveBook` piece of `state`
 
+### Convert BookDetail to a Container
+
 `BookDetail`
 
-* We'll import our `connect()` helper and connect our Application state to the props of the `BookDetail` Container
+```
+import React from 'react';
+import { connect } from 'react-redux';
+
+export const BookDetail = () => <div>Book Detail</div>;
+
+function mapStateToProps(state) {
+  return {
+    book: state.activeBook,
+  };
+}
+
+export default connect(mapStateToProps)(BookDetail);
+```
+
+* We'll import our `connect()` helper
+* And connect our App `state` to the **props** of the `BookDetail` Container
   - **note** Remember we do that using a function called `mapStateToProps()` and then we connect `mapStateToProps()` with `BookDetail`
   - **note** Everytime we want to create a `Container` it is always the exact same number of steps
 

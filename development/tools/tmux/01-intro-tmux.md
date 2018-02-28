@@ -5,8 +5,58 @@
 * [documentation](https://github.com/tmux/tmux/wiki)
 * If you are using multiple terminal windows and want to make life easier for yourself, switch to tmux
 
+## dot-tmux
+* [my tmux dotfile](https://github.com/kingluddite/dot-tmux)
+
+## kill all tmux sessions
+`tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill`
+
+
+
+## Refresh tmux
+* After adding the tmux dotfile you need to refresh it to make the changes take effect
+* This can be done either:
+
+### From within tmux
+* `Ctrl` + `b` and then `:` to bring up a command prompt, 
+* And typing:
+
+`:source-file ~/tmux.conf`
+
+### Or simply from a shell:
+`$ tmux source-file ~/tmux.conf`
+`$ tfresh` (dotfile alias)
+
 ## Install tmux on remote server
 * [Youtube video tutorial](https://www.youtube.com/watch?v=BHhA_ZKjyxo)
+
+## Vi mode (these are inside the tmux dotfile)
+* enable Vi mode in tumux (add to ~/.tmux/tmux.conf)
+
+### Test if Vi mode is working
+* `ctrl` + `b` + `:` ---> `list-keys -T copy-mode-vi`
+    - Will list all vi-like functionality available in this mode
+
+### Vi mode tricks
+* With this done, within a tmux instance, pressing `Ctrl` + `B` and then `[`` will enter copy mode
+    - Allowing you to copy text or view the history of the buffer
+    - Including searching with `/` and `?`
+
+#### Most of the basic `vi` movements work
+* Including
+    - **Screenwise vertical movement** commands like:
+        + `Ctrl` +`f` and `Ctrl` +`B`
+    - **Leave this mode**
+        + Press `Enter`
+    - **Start a selection**
+        + By:
+            1. Pressing space on a character
+            2. Moving to another
+            3. And then pressing `Enter`
+* **note** If you have text copied like this you can paste it into any tmux window in that session by pressing` Ctrl+B` and then `]`
+
+## more like vim
+*  `v` starts a selection and `y` finishes it in the same way that Space and Enter do (dotfile)
 
 ## Install homebrew
 `$ brew install tmux`
@@ -24,7 +74,7 @@
 `$ ctrl b + ,`
 
 ## Create new window
-`$ ctrl b + c
+`$ ctrl b + c`
 
 * tmux windows start at 0
 * Next window is 1

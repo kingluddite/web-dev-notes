@@ -6,13 +6,15 @@
 * We will add an actual `action` to it
     - An `action` with a **type**
     - And we will replace our current `console.log()` and we return an `action` that is usable by our different **reducers**
+
+`BookList`
+
 * Whenever a user clicks on a line item for a particular book we can call our `Action Creator`
 * In the last section when we connected the `Action Creator` to the Component/Container we made it available as a prop (_specifically `this.props.selectBook`_)
 * We will add a click event handler on our `BookList` **LI** we can then call the `Action Creator` as `this.props.selectBook`
 * **note** We want to call the `Action Creator` with the actual book that was clicked on
 
 ## Adding click event handler to LI of BookList
-
 ```
 class BookList extends Component {
   renderList() {
@@ -28,13 +30,8 @@ class BookList extends Component {
     })
   }
 
-  render() {
-    return (
-      <ul className="list-group col-sm-4">
-        {this.renderList()}
-      </ul>
-    );
-  }
+// MORE CODE
+
 }
 ```
 
@@ -43,6 +40,7 @@ class BookList extends Component {
 
 ```
 // MORE CODE
+
 class BookList extends Component {
   renderList() {
     return this.props.books.map(book => (
@@ -59,13 +57,7 @@ class BookList extends Component {
       </li>
     ));
   }
-  render() {
-    return (
-      <div>
-        <ul className="list-group-col-sm-4">{this.renderList()}</ul>
-      </div>
-    );
-  }
+  // MORE CODE
 }
 // MORE CODE
 ```
@@ -84,22 +76,18 @@ class BookList extends Component {
     return this.props.books.map((book) => {
       return (
         <li
-          key={book.title}
-          onClick={() => this.props.selectBook(book)}
-          className="list-group-item">
-          {book.title}
+          role="button"
+                    onClick={() => this.props.selectBook(book)}
+                    onKeyPress={() => this.props.selectBook(book)}
+                    tabIndex={0}
+                    className="list-group-item">
+                   {book.title}
         </li>
       );
     });
   }
 
-  render() {
-    return (
-      <ul className="list-group col-sm-4">
-        {this.renderList()}
-      </ul>
-    );
-  }
+  // MORE CODE
 }
 ```
 
