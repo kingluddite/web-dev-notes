@@ -80,6 +80,9 @@
 * Next window is 1
 * Next window is 2...
 
+## kill window
+`ctrl` + `b` + `&`
+
 ## Move between windows
 `$ ctrl b + w`
 
@@ -89,6 +92,11 @@
 ## Move between panes
 `$ ctrl b + arrow` (Use your direction)
 
+## Scroll in pane
+`$ ctrl b + [` then use normal nav keys to scroll (arrows)
+or crl b + PgUp
+or vi mode skift k down or shift j (up)
+
 ## Connect to remote server from 3 different panes in one window at the same time
 * We would have to do this 3 separate times in 3 separate times
 * But with tmux we can sync panes and type once and ssh 3 times simultaneously
@@ -96,7 +104,6 @@
 `$ ctrl + b + :setw synchronize-panes on`
 
 ## Turn sync panes off
-
 `$ ctrl + b + :setw synchronize-panes off`
 
 ## Create a session that sticks
