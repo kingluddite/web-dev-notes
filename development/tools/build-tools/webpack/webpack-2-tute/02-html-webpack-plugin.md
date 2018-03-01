@@ -143,3 +143,8 @@ module.exports = {
 ## View in browser
 * The `index.html` is now minified to 1 line!
 * Save space === save bandwidth
+
+## Hashbusting
+* If you don't want to worry about the cache just hash and each build will show your changes
+
+
