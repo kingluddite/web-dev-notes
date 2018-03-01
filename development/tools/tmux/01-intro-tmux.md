@@ -11,8 +11,6 @@
 ## kill all tmux sessions
 `tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill`
 
-
-
 ## Refresh tmux
 * After adding the tmux dotfile you need to refresh it to make the changes take effect
 * This can be done either:
