@@ -1,5 +1,25 @@
 # Tmux Intro
 * [tmux cheat sheet](https://gist.github.com/afair/3489752)
+* [greatest tmux sheet](https://gist.github.com/spicycode/1229612)
+
+* `bind-key v split-window -h`
+* `bind-key s split-window -v`
+
+## Cycle through windows
+* Use C-b ' to select the window index
+* Use C-b w to get an interactive index to choose from (0-9a-z)
+
+## Add bindings to cycle through quickly in tmux.conf
+```
+bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+
+```
+
+## close pane
+* ctrl + d
+
+## Make alt + arrow keys move panes
+![image of iterm meta keys](https://i.imgur.com/r6J9r98.png)
 
 * Terminal multiplixer
 * [documentation](https://github.com/tmux/tmux/wiki)
@@ -10,6 +30,14 @@
 
 ## kill all tmux sessions
 `tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill`
+
+You can use `tmux kill-server` to cleanly and gracefully kill all tmux open sessions (and server).
+
+If you are inside a tmux session you would like to keep, use `tmux kill-session -a` to close all other sessions.
+
+To close a specific session, use tmux list-sessions to identify the session you want to kill, and then use `tmux kill-session -t targetSession` to kill that specific session.
+
+Also you can grossly kill all tmux processes with `pkill -f tmux`.
 
 ## Refresh tmux
 * After adding the tmux dotfile you need to refresh it to make the changes take effect

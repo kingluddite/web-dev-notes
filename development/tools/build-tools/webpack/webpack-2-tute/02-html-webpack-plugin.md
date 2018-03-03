@@ -147,4 +147,33 @@ module.exports = {
 ## Hashbusting
 * If you don't want to worry about the cache just hash and each build will show your changes
 
+```js
+// MORE CODE
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: __dirname + '/dist',
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new HTMLPlugin({
+      title: 'Custom template222',
+      minify: {
+        collapseWhitespace: true
+      },
+      hash: true,
+      // Load a custom template (lodash by default see the FAQ for details)
+      template: './src/index.html'
+    })
+  ]
+}
+```
 
+* Check `dist/index.html`
+
+```html
+<!DOCTYPE html><html><head><meta http-equiv="Content-type" content="text/html; charset=utf-8"><title>Custom template222</title></head><body><p>My custom stuff</p><script type="text/javascript" src="bundle.js?febfcc9b40b8a8b34060"></script></body></html>
+```
+
+* This is the hash `src="bundle.js?febfcc9b40b8a8b34060`
+* No cache on every build
