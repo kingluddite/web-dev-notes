@@ -172,3 +172,61 @@ module.exports = {
 * At the end of the day, you now have `bundle.css`
 * `$ yarn run prod`
 * The CSS will be minified too!
+
+## final webpack.config.js
+```js
+const HTMLPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: __dirname + '/dist',
+    filename: 'bundle.js',
+  },
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                url: false,
+                minimize: true,
+                sourceMap: true,
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        }),
+      },
+    ],
+  },
+  plugins: [
+    new HTMLPlugin({
+      title: 'Custom template22',
+      minify: {
+        collapseWhitespace: true,
+      },
+      hash: true,
+      // Load a custom template (lodash by default see the FAQ for details)
+      template: './src/index.html',
+    }),
+    new ExtractTextPlugin({
+      filename: 'bundle.css',
+      disable: false,
+      allChunks: true,
+    }),
+  ],
+};
+```
+
