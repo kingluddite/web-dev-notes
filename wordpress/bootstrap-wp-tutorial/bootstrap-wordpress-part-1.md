@@ -42,15 +42,15 @@
 * Read my MAMP notes to learn how to do this (seach my notes (should be downloaded to your computer) for `mamp.md`)
 
 # WP-CLI
-* **note name** how-to-install-wp-cli.md
+* **note name** `how-to-install-wp-cli.md`
+* **tip** Remember searching for files in Sublime text is easy with `ctrl` + `p` and type `how-to-install` and select the file from the dropdown
 
 ## Install WordPress the fast way using WP-CLI
 * After you install WordPress more than 10 times you will get tired of installing it the long way
 * WP-CLI is a command line interface for making installing WordPress less painful
 
 ## Troubleshoot MAMP/WP-CLI install problems
-* troubleshoot-mamp-wpcli-install-problems.md
-
+* `troubleshoot-mamp-wpcli-install-problems.md`
 
 ### Where is our WordPress custom theme located?
 * In the themes folder `wp-content/themes`
@@ -152,6 +152,8 @@ body {
 2. Name it `style.css`
 3. **caution** If you name it something different like `styles.css` you will break your theme
 
+`style.css`
+
 ```css
 /*
 Theme Name: Kingluddite Magazine Theme
@@ -231,6 +233,8 @@ Code and take over the world line-by-line
 * In `index.php` select and cut from the `HR` element to end of the `HTML` element and paste into `footer.php`.
 * Replace cut code in `index.php` with the following PHP code:
 
+`index.php`
+
 ```php
 [rest of index.php code here]
 <?php get_footer(); ?>
@@ -274,6 +278,8 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ## Follow this instruction:
 * In `header.php` add this PHP before the closing HEAD element
 
+`header.php`
+
 ```php
 <?php wp_head(); ?>
 </head>
@@ -308,6 +314,8 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ### Follow these instructions
 * On the original static source if you click on the link it will take you to `jumbotron.css` and show you this code:
 
+`jumbotron.css`
+
 ```css
 body {
   padding-bottom: 2rem;
@@ -320,6 +328,8 @@ body {
 
 ### Enqueue our new css files
 * To enqueue it (add it to our list of needed css files) adjust our `functions.php` file to look like the following:
+
+`functions.php`
 
 ```php
 /* add css */
@@ -340,6 +350,8 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 
 ### Clean up time
 * You can now delete the "hardcoded" `<link>` tag inside your `header.php` file that points to `jumbotron.css`
+
+`header.php`
 
 ```html
     <!-- DELETE THIS LINE in header.php -->
@@ -371,6 +383,8 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 * The last parameter is Boolean which enable you to have:
     - The JavaScript file in the `<head>` element of our `header.php` (false)
     - Or in the `footer.php` file before the closing `</body>` tag (true)
+
+`functions.php`
 
 ```php
 <?
@@ -404,6 +418,8 @@ because you forgot to include the footer hook
 * Notice that as we enqueue CSS and JavaScript we need to delete all the hard coded `<link>` and `<script>` tags in our `header.php` and `footer.php` files
 
 **note** your code may be slightly different but make sure you delete any hardcoded links to JavaScript
+
+`footer.php`
 
 ```html
  <!-- Bootstrap core JavaScript
@@ -470,12 +486,10 @@ add_filter( 'show_admin_bar', '__return_false' );
 ## body_class()
 * This is a powerful dynamic function that generates a bunch of classes inside the `<body>` element
 * You can use these classes to style a WordPress page the way you want depending on the situation
-
-**tip** In your final project you will use a class generated to style the images located inside the `domsters` header.
+* **tip** In your final project you will use a class generated to style the images located inside the `domsters` header
+* If you add the following code and then view the source code, you'll see a bunch of classes added to the body
 
 `header.php`
-
-* If you add the following code and then view the source code, you'll see a bunch of classes added to the body
 
 ```php
 <body <?php body_class(); ?>>
@@ -485,11 +499,10 @@ add_filter( 'show_admin_bar', '__return_false' );
 ![body class php function output](https://i.imgur.com/5SljR6O.png)
 
 ### Push down the admin bar when logged in
-* `body_class()` gives you the ability to style the admin panel without affecting the public facing UI of your site.
+* `body_class()` gives you the ability to style the admin panel without affecting the public facing UI of your site
+* Add this underneath our existing code
 
 `style.css`
-
-* Add this underneath our existing code
 
 ```css
 .admin-bar .navbar.fixed-top {
@@ -528,6 +541,8 @@ add_filter( 'show_admin_bar', '__return_false' );
 1. Create your pages in WordPress that you want to be in your navigation
   * Let's say for the sake of simplicity you create three pages `home`, `about`, `contact`.
 2. Add this code to your `functions.php`
+
+`functions.php`
 
 ```php
 /*=============================
@@ -613,7 +628,7 @@ $ wp menu create "Primary"
 **note** The `id` will be different when you create yours
 
 ##### Create a new menu link item
-* You can make your own menu links.
+* You can make your own menu links
 
 `$ wp menu item add-custom primary Apple http://apple.com`
 
@@ -631,7 +646,7 @@ $ wp menu create "Primary"
 ```
 
 #### Menu locations
-* To create a location for you menu, you need to drop this code into your theme's `functions.php`.
+* To create a location for you menu, you need to drop this code into your theme's `functions.php`
 
 `functions.php`
 
@@ -682,12 +697,11 @@ add_action('init', 'domsters_register_menu');
 
 ### How can I highlight the current page?
 * Great to let the user know what page they are on
-
-`style.css`
-
 * This will highlight the selected page in WordPress
 * Twitter Bootstrap uses different CSS for an active page
 * And this shows you how to alter this code using what class WordPress uses for the current page
+
+`style.css`
 
 ```css
 .current-menu-item > a {
@@ -703,17 +717,14 @@ add_action('init', 'domsters_register_menu');
 * It makes your URL much more SEO friendly
 
 ### Before Permalinks
-
 ![Before Permalinks](https://i.imgur.com/zukfE79.png)
 
 ### After Permalinks
-
 ![After Permalinks](https://i.imgur.com/gRCsfkk.png)
 
 ## Install Bootstrap Shortcodes
 * This will let your client to add Bootstrap code without having to type it
 * Remember that Bootstrap 3 and 4 use different classes Make sure this plugin is the one you want. You may need to find a more updated plugin for Bootstrap 4 snippets.
-
 * [link](https://wordpress.org/plugins/bootstrap-shortcodes/)
 * Kevin Attfield
 * Install and Activate
@@ -722,7 +733,7 @@ add_action('init', 'domsters_register_menu');
 ## Add Google Fonts
 [What is the proper way to use Google fonts with WordPress?](http://www.wpbeginner.com/wp-themes/how-add-google-web-fonts-wordpress-themes/)
 
-Add this code:
+* Add this code:
 
 `functions.php`
 
