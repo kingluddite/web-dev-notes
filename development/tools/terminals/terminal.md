@@ -1,4 +1,89 @@
 # Terminal
+## !
+* One of the most useful shortcuts is using !! to represent the last command you ran
+    - example, if you run a command that needs root privileges but forget to add sudo to the beginning, there's no need to retype the command
+
+`$ sudo !!`
+
+* This will run your last used command with root privileges
+
+## Run the last command
+* If the command you want to run is a bit further back in your history, you can use the bang in conjunction with the original string to find it
+* For example, if you want to run the last command that used cat, you could just type:
+
+`$ !cat`
+
+## See what the last command you ran was
+
+`$ !cat:p`
+
+## Now run that last command
+
+`$ !!`
+
+## run a different command that you ran last, but with the same argument
+
+`$ mkdir /new/awesome/folder`
+
+* To then cd into that directory, you could just type:
+
+`$ cd !$`
+
+The `!$` represents the arguments from your last command
+
+## Fix mistakes
+* mistyping the command you want to run
+* Say you wanted to run nano, but accidentally typed `nanp`:
+
+`$ nanp /path/to/a/document/buried/deep/in/the/filesystem`
+
+* Instead of retyping the whole thing, you could just run:
+
+`^nanp^nano`
+
+## Specific search history
+* If you want to see all the recent commands you ran that included `nano`
+
+`$ history | grep nano`
+
+* That will generate a history like:
+
+```
+9713  vim vimrc
+9714  vim zshrc
+9721  vim .tmux/tmux.conf
+```
+
+* Tor run 9721 just `$ !9721`
+
+## Keep commands out of your history
+* Just preface them with a space
+
+## Expansions
+### `{}`
+* easily perform batch operations on multiple versions of a file
+Say you want to rename just part of a filename. Instead of typing out 
+
+`$ mv /path/to/file.txt /path/to/file.xml`
+
+* you could just run:
+
+`$ mv /path/to/file.{txt,xml}`
+
+#### Backup up
+*  most common example of this is when you're backing up a file that you're making changes to
+    - example: if you are tweaking your `rc.conf`, you'll want to make a backup in case the new one doesn't work
+
+`$ sudo cp /etc/rc.conf{,-old}`
+
+* Putting nothing before the comma will just append `-old` to the filename after copying it with `cp`
+* If your new file doesn't work out and you want to restore the backed up file to its original location
+* Moving the comma to the other end of the brace will remove -old from the end of the file and restore it to its original name
+
+`$ sudo mv /etc/rc.conf{-old,}`
+
+### Create 3 numbered directories
+`$ mkdir myfolder{1,2,3}`
 
 ## How to Disable the “Last Login” / MOTD on New Terminal Session
 If you don’t want to see that login message or MOTD again, you can get rid of that ‘Last login’ message at the top of a new terminal by entering the following command to create a ‘hushlogin’ file:
