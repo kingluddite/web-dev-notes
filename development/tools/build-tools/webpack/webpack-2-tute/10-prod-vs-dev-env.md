@@ -187,3 +187,9 @@ body {
 
 * Now make changes and it loads
 * Look at console and you'll see HMR is working
+
+## Test in production
+`$ yarn run prod`
+
+* Should generate new files
+* You should see the new dark blue color in the dist css folder and that means extract-text-plugin is working fine in production
