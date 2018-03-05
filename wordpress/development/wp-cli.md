@@ -37,7 +37,7 @@ Open phpMyAdmin and create a database making sure your database matches the name
 With the default WordPress tables and content
 
 ```
-$  wp core install --url=http://localhost/my-wordpress-project --title=MyWordPressProject --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com
+$ wp core install --url=http://localhost/my-wordpress-project --title=MyWordPressProject --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com
 ```
 
 **important** - Many people make mistakes at this point

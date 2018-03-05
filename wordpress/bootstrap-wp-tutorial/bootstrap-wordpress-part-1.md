@@ -49,6 +49,31 @@
 * After you install WordPress more than 10 times you will get tired of installing it the long way
 * WP-CLI is a command line interface for making installing WordPress less painful
 
+## Example of wp-cli WordPress install
+1. Start from scratch
+2. Create a folder called `coca-cola-wp` in Sites
+3. CD into that folder
+4. Create a new database inside **phpMyAdmin** called `coca_cola_wp`
+5. While inside `coca-cola-wp` use **wp-cli** with:
+
+`$ wp core download`
+
+  * Downloads WordPress core files
+
+6. `$ wp core config --dbuser=root --dbpass=root --dbname=coca_cola_wp`
+
+  * reates `wp-config.php` with DB connection
+
+7. `$ wp core install --url=http://localhost/coca-cola-wp --title=CocaCola --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com`
+
+  * Creates all the WordPress tables inside your DB and creates the super admin user
+
+8. Visit `http://localhost/coca-cola-wp`
+
+  * You should see your WordPress site
+
+9. Log into WordPress site with `localhost/coca-coloa-wp/wp-admin.php` and use username: **admin** and password: **password**
+
 ## Troubleshoot MAMP/WP-CLI install problems
 * `troubleshoot-mamp-wpcli-install-problems.md`
 
