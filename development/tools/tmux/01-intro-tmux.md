@@ -16,7 +16,7 @@ bind -r C-l select-window -t :+
 ```
 
 ## close pane
-* ctrl + d
+* ctrl + b + x
 
 ## Make alt + arrow keys move panes
 ![image of iterm meta keys](https://i.imgur.com/r6J9r98.png)

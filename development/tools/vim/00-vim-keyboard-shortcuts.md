@@ -1,5 +1,14 @@
 # VIM Keyboard shortcuts
 
+## To Clean out ALL vim Swap Files in a Directory
+`$ find . -type f -name "*.sw[klmnop]" -delete`
+
+* If you are sure you don’t need any vim swap files in a directory tree and want to get rid of them, you can use the following command in the directory while vim is not running (not even in another window or even a different login session):
+* This will delete all files whose names end with .swk, .swl, .swm, .swn, .swo, or .swp in the current directory tree
+
+## Open html file in Chrome browser (file:///)
+`:!open % -a Google\ Chrome`
+
 ## replace all spaces with underscore
 `:%s/ /_/g`
 
