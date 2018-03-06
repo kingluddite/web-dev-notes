@@ -10,7 +10,7 @@
 ```
 // MORE CODE
 "scripts": {
-  "dev": "webpack --mode development --watch",
+  "dev": "webpack --mode development",
   "prod": "webpack --mode production"
 },
 // MORE CODE
@@ -58,6 +58,7 @@ devServer: {
 devServer: {
   contentBase: path.join(__dirname, 'dist'),
   compress: true,
+  open: true,
   port: 9000,
   stats: 'errors-only',
 },

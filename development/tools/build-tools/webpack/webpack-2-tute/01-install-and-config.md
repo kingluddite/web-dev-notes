@@ -15,7 +15,7 @@ Create `src` and `dist` folders
 ## .gitignore (node_modules)
 
 ## test file
-* src/index.js ---> dist/bundle.js
+* `src/index.js` ---> `dist/bundle.js`
     - **note** must be named `index.js`
 
 `console.log('hello form app.js)`
@@ -57,7 +57,7 @@ module.exports = {
   "main": "index.js",
   "scripts": {
     "dev": "webpack --watch",
-    "dev": "webpack"
+    "prod": "webpack"
   },
   "license": "MIT",
   "devDependencies": {
@@ -69,6 +69,6 @@ module.exports = {
 
 * Now to run webpack just:
 
-`$ webpack run dev`
+`$ yarn run dev`
 
 ## question - do we need to use `-p` or `-d` for dev and production?

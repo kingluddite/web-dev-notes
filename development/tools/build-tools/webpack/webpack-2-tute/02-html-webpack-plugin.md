@@ -34,6 +34,8 @@
 
 `webpack.config.js`
 
+* As of webpack 2 you can use `const` and `let` instead of `var`
+
 ```js
 const HTMLPlugin = require('html-webpack-plugin')
 
@@ -41,7 +43,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: __dirname + '/dist',
-    filename: 'index_bundle.js'
+    filename: 'index.bundle.js'
   },
   plugins: [
     new HTMLPlugin()
@@ -96,7 +98,7 @@ module.exports = {
 }
 ```
 
-* The title we put in above will be injected into our dynamically generated HTML file
+* The `title` we put in above will be injected into our dynamically generated HTML file
 
 `src/index.html`
 
@@ -142,7 +144,7 @@ module.exports = {
 
 ## View in browser
 * The `index.html` is now minified to 1 line!
-* Save space === save bandwidth
+* Save space `===` save bandwidth
 
 ## Hashbusting
 * If you don't want to worry about the cache just hash and each build will show your changes
@@ -176,4 +178,4 @@ module.exports = {
 ```
 
 * This is the hash `src="bundle.js?febfcc9b40b8a8b34060`
-* No cache on every build
+* Now you will cache bust on every build

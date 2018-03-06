@@ -21,8 +21,6 @@ devServer: {
   open: true,
 },
 plugins: [
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new HTMLPlugin({
 // MORE CODE
     new ExtractTextPlugin({
@@ -30,6 +28,8 @@ plugins: [
       disable: true, // modify this line
       allChunks: true,
     }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
 // MORE CODE
 ```
 
@@ -93,7 +93,7 @@ hot load replacement working!
 [WDS] Hot Module Replacement enabled.
 ```
 
-* Change the sass and watch it update in real time
+* Change the `sass` and watch it update in real time
 
 `index.scss`
 
@@ -108,9 +108,10 @@ body {
 ```
 
 * Background turns to pink almost instantly!
-* Why is it so fast?
+
+### Why is it so fast?
 * It just changes the parts that need to be changed, very powerful in really large apps
 
 ## Get extract-text-plugin working
 * We had to turn if off
-* Now we will get it running but only in production mode
+* Now we will get it running **but only in production mode**

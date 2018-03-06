@@ -6,7 +6,7 @@
 `$ yarn add -D react react-dom`
 
 ## Enable ES6 and JSX
-`$ yarn add -D babel babel-preset-react babel-preset-es2015`
+`$ yarn add -D babel babel-preset-react babel-preset-env`
 
 ## create .babelrc in root of your project
 `$ touch .babelrc`
@@ -15,7 +15,7 @@
 
 ```
 {
-    "presets": ["es2015", "react"]
+    "presets": ["env", "react"]
 }
 ```
 

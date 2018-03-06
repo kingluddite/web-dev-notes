@@ -43,7 +43,7 @@ module: {
 ```
 
 * Stop and start dev `$ yarn run dev`
-* Change scss
+* Change `scss`
 
 `index.scss`
 
@@ -57,7 +57,7 @@ body {
 }
 ```
 
-* It will update to lightblue but only if you refresh the browser
+* It will update to `lightblue` but only if you refresh the browser
 * How can we make Hot Module Replacement only work in development mode and use the ExtractTextPlugin only for production
 
 `package.json`
@@ -73,7 +73,7 @@ body {
 // MORE CODE
 ```
 
-* We want to disable ExtractTextPlugin if it is in development mode
+* We want to disable `ExtractTextPlugin` if it is in development mode
 * So if `isProd` is true we will just that variable with `!isProduction` because if we are not in production mode, we are in devMode and we will set disable: false
 
 `webpack.config.js`

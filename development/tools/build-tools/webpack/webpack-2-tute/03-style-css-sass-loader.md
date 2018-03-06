@@ -40,8 +40,8 @@ import css from './index.css';
 console.log('hello from webpack');
 ```
 
-* But the css is not applied to the index.html in the browser
-* It is in the bundle.js
+* But the css is not applied to the `index.html` in the browser
+* It is in the `bundle.js`
 * But the browser doesn't know how to interpret CSS inside javascript
 
 ### style-loader
@@ -123,13 +123,13 @@ module: {
 * Refresh browser
 * Paragraph should be red text
 
-## All css is inside the bundle.js
-* We want to put css inside its own file
-* We will extract all css from javascript
+## All CSS is inside the `bundle.js`
+* We want to put CSS inside its own file
+* We will extract all CSS from javascript
 * We need `extract-text-webpack-plugin`
     - `[extract-text-webpack-plugin](https://www.npmjs.com/package/extract-text-webpack-plugin)`
 
-`$ yarn add -D extract-text-webpack-plugin`
+`$ yarn add -D extract-text-webpack-plugin@next`
 
 ### Import it into webpack
 ```
@@ -143,7 +143,7 @@ module.exports = {
       rules: [
         {
           test: /\.scss$/,
-          use: ExtractTextPlugin(['style-loader', 'css-loader', 'sass-loader']),
+          use: ExtractTextPlugin.extract(['style-loader', 'css-loader', 'sass-loader']),
         },
       ],
     },
@@ -162,10 +162,10 @@ module.exports = {
     };
 ```
 
-* We name it at the end and we can test and see if the file and our sass and css are working
+* We name it at the end and we can test and see if the file and our `sass` and `css` are working
 * Lots of fixes here:
 * Entry point---> Need to install a specific version of extract-text-webpack-plugin
-* **troubleshoot tip** npm isn't always up to date so check webpack site for compatibility issues
+* **troubleshoot tip** `npm` isn't always up to date so check webpack site for compatibility issues
 
 `$ yarn add -D extract-text-webpack-plugin@next`
 
@@ -230,3 +230,4 @@ module.exports = {
 };
 ```
 
+`$ yarn run prod`

@@ -24,7 +24,7 @@
 // MORE CODE
 ```
 
-* Now run `$ yarn run dev` to run the webpack-dev-server
+* Now run `$ yarn run dev` to run the `webpack-dev-server`
 
 ## Path
 `webpack.config.js`
@@ -52,8 +52,10 @@ module.exports = {
 
 ```
 // MORE CODE
+const path = require('path'); // add this line
+// MORE CODE
 output: {
-  path: path.resolve(__dirname + '/dist'),
+  path: path.resolve(__dirname + '/dist'), // modify this line
   filename: 'bundle.js',
 },
 devtool: 'inline-source-map',
@@ -68,4 +70,4 @@ devtool: 'inline-source-map',
 * You'll see the same site we saw before but now we are viewing it through our very own webpack server
 
 ## Webpack dev server is automatically in watch mode
-* Change your console.log inside `index.js` to anything and watch how it updates (without us refreshing page!)
+* Change your `console.log` inside `index.js` to anything and watch how it updates (without us refreshing page!)

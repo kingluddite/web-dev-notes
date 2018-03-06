@@ -188,9 +188,9 @@ output: {
 ## Run it
 `$ yarn run dev`
 
-* That will run the contact.js on all html pages
+* That will run the `contact.js` on all HTML pages
 
-## Just run contact.js on the contact.html page
+## Just run `contact.js` on the `contact.html` page
 
 `webpack.config.js`
 

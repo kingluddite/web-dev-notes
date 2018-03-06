@@ -53,7 +53,7 @@ body {
 * The puma logo appears in middle of page
 
 ## Load image into template
-* We'll use html and not pug (pug we'll do later)
+* We'll use HTML and not pug (pug we'll do later)
 * We'll use a svg
 * Don't forget to change from `.pug` to `.html`
 
@@ -293,6 +293,8 @@ loaders: [{
 ```
 
 * I installed `html-loader` (https://github.com/webpack-contrib/html-loader)
+
+`$ yarn add -D html-loader`
 
 `webpack.config.js`
 
