@@ -27,7 +27,7 @@
 * Where do we put all our WordPress sites?
 * Not required but used a lot on Mac WP development teams
 
-`$ touch ~/Sites`
+`$ mkdir ~/Sites`
 
 * We will create the `Sites` folder in our home directory * This is not mandatory but it will help if we all put our sites in the same location
 * `Sites` was the traditional folder for older Mac OS systems but they removed it in recent OS systems
@@ -283,12 +283,13 @@ Code and take over the world line-by-line
 <?php
 function theme_styles() {
     wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css' );
-}
+
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ?>
 ```
 
 * The `add_action` will tie the function to the `wp_enqueue_scripts` WordPress `hook`.
+* **Note** Leave off the closing PHP in `functions.php` is a good practice
 
 ## What are Hooks in WordPress?
 * [What are WordPress hooks?](https://www.smashingmagazine.com/2011/10/definitive-guide-wordpress-hooks/)
