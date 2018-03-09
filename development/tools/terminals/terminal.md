@@ -1,4 +1,10 @@
 # Terminal
+
+## Search for file names
+`$ find . -name 'wp-config-beta-internal.php'`
+
+## Search history of grep
+`$ history | grep grep`
 ## !
 * One of the most useful shortcuts is using !! to represent the last command you ran
     - example, if you run a command that needs root privileges but forget to add sudo to the beginning, there's no need to retype the command
