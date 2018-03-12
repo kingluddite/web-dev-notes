@@ -5,6 +5,17 @@
 
 ## Search history of grep
 `$ history | grep grep`
+
+## How to move all files from current directory to upper directory?
+`$ mv * .[^.]* ..`
+
+* Explanation: the `mv` command moves files and directories
+* The last argument to `mv` is the target (in this case the directory one step "up" in the tree, ..)
+* The arguments before that are the source files and directories
+* The asterisk (*) is a wildcard which matches all files which do not start with a dot
+* Files that start with a dot (dotfiles) are "hidden"
+  - They are matched using the pattern .[^.]*
+
 ## !
 * One of the most useful shortcuts is using !! to represent the last command you ran
     - example, if you run a command that needs root privileges but forget to add sudo to the beginning, there's no need to retype the command

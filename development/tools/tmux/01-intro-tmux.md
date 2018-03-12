@@ -1,6 +1,42 @@
 # Tmux Intro
 * [tmux cheat sheet](https://gist.github.com/afair/3489752)
 * [greatest tmux sheet](https://gist.github.com/spicycode/1229612)
+* https://danielmiessler.com/study/tmux/
+
+## sessions
+### create session
+`$ tmux new -s backupsession`
+
+* Will create a new session called `backupsession`
+* just like starting tmux but this is a named session
+* `htop`
+    - keeps polling proc every second
+    - if I close ssh session it will kill htop
+* but if you detach from a session
+
+### detach from a session
+`ctrl` + `b` + `d` will detach you from the session
+
+* Will bring you back to the shell but that htop process is still running
+
+`$ ps aux | grep htop`
+
+* If you log out of session `$ logout` (normally would kill all process)
+* That would close connection and bring you back to original machine
+* Log out of client
+* Go home for the day
+* Problem at night
+* SSH back into server
+* `$ tmux list-sessions`
+
+* You will see `backupsession`
+* You can reattach to it
+
+`$ tmux attach -t backupsession`
+
+* So htop was tied to session on tmux as opposed to tied to shell
+
+#### Windows
 
 * `bind-key v split-window -h`
 * `bind-key s split-window -v`
@@ -29,15 +65,13 @@ bind -r C-l select-window -t :+
 * [my tmux dotfile](https://github.com/kingluddite/dot-tmux)
 
 ## kill all tmux sessions
-`tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill`
-
-You can use `tmux kill-server` to cleanly and gracefully kill all tmux open sessions (and server).
-
-If you are inside a tmux session you would like to keep, use `tmux kill-session -a` to close all other sessions.
-
-To close a specific session, use tmux list-sessions to identify the session you want to kill, and then use `tmux kill-session -t targetSession` to kill that specific session.
-
-Also you can grossly kill all tmux processes with `pkill -f tmux`.
+* You can use `tmux kill-server` to cleanly and gracefully kill all tmux open sessions (and server)
+* If you are inside a tmux session you would like to keep, use 
+    - `tmux kill-session -a` to close all other sessions
+* To close a specific session, use tmux list-sessions to identify the session you want to kill, and then use
+    - `tmux kill-session -t targetSession` to kill that specific session
+* Also you can grossly kill all tmux processes with 
+    - `pkill -f tmux`
 
 ## Refresh tmux
 * After adding the tmux dotfile you need to refresh it to make the changes take effect
