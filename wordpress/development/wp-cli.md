@@ -161,9 +161,11 @@ $ wp plugin deactivate --all
 $ wp db export
 ```
 
-* Then backup all files and zip
-* `$ tar -vczf yourbackupfilename.gz .`
-* move backup to secure location
+## Then backup all files and zip
+
+`$ tar -vczf yourbackupfilename.gz .`
+
+* **important** move backup to secure location
 
 ### Update all plugins
 

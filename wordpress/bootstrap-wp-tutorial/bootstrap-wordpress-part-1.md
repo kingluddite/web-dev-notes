@@ -62,7 +62,7 @@
 
 6. `$ wp core config --dbuser=root --dbpass=root --dbname=coca_cola_wp`
 
-  * reates `wp-config.php` with DB connection
+  * creates `wp-config.php` with DB connection
 
 7. `$ wp core install --url=http://localhost/coca-cola-wp --title=CocaCola --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com`
 
@@ -72,7 +72,7 @@
 
   * You should see your WordPress site
 
-9. Log into WordPress site with `localhost/coca-coloa-wp/wp-admin.php` and use username: **admin** and password: **password**
+9. Log into WordPress site with `localhost/coca-coloa-wp/wp-admin` and use username: **admin** and password: **password**
 
 ## Troubleshoot MAMP/WP-CLI install problems
 * `troubleshoot-mamp-wpcli-install-problems.md`
@@ -283,6 +283,7 @@ Code and take over the world line-by-line
 <?php
 function theme_styles() {
     wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css' );
+}
 
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ?>
