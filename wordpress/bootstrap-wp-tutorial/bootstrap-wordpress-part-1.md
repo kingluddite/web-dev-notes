@@ -414,13 +414,13 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 `functions.php`
 
 ```php
-<?
+// MORE CODE
 function theme_js() {
   wp_enqueue_script( 'tether_js', get_template_directory_uri() . '/assets/js/tether.min.js', '', '', true );
     wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '', true );
 }
 add_action( 'wp_enqueue_scripts', 'theme_js' );
-?>
+// MORE CODE
 ```
 
 ## Another hook - wp_footer()
@@ -572,14 +572,20 @@ add_filter( 'show_admin_bar', '__return_false' );
 `functions.php`
 
 ```php
-/*=============================
-=            Menus            =
-=============================*/
+// MORE CODE
+/**
+ *
+ * Add Menu
+ *
+ */
+
 add_theme_support( 'menus' );
+
 function domsters_register_menu() {
-  register_nav_menu('main-menu', __( 'Main Menu') );
+  register_nav_menu( 'main-menu', __( 'Main Menu' ) );
 }
-add_action('init', 'domsters_register_menu');
+
+add_action( 'init', 'domsters_register_menu' );
 ```
 
 3. In the WP Dashboard, you select `Menus`
@@ -597,6 +603,21 @@ add_action('init', 'domsters_register_menu');
 `header.php`
 
 ```php
+// MORE CODE
+<body <?php body_class(); ?>>
+    <div id="header">
+        <img src="images/logo.gif" alt="Jay Skript and the Domsters" />
+    </div>
+<!-- <div id="navigation">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="photos.html">Photos</a></li>
+        <li><a href="live.html">Live</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</div> -->
+
   <?php
   $defaults = array(
     'theme_location'  => 'main-menu',

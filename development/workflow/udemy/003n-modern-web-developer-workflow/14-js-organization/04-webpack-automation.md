@@ -61,8 +61,8 @@ require('./gulp/tasks/scripts');
 
 * Update our js file
 
-```js
 `App.js`
+
 
 ```
 var $ = require('jquery');
