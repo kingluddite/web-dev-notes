@@ -2,7 +2,7 @@
 
 ## Adding a virtual host in MAMP for Mac
 *[docs](http://eppz.eu/blog/virtual-host-for-mamp-on-osx/)
-
+* [docs](https://stackoverflow.com/questions/35251032/how-to-create-virtual-hosts-in-mamp)
 ### host file
 * Open your host file by pasting the following in your terminal:
 
