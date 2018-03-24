@@ -1,4 +1,52 @@
 # MAMP
+https://jonathanmh.com/using-virtual-hosts-with-mamp-free/
+
+* edit in vim (sublime might add characters)
+
+## Use this free program to manually add remove
+https://github.com/specialunderwear/Hosts.prefpane
+
+
+How to get hosts working on free mamp
+
+Can you ping it?
+ping webpackhmr.local
+
+```
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    DocumentRoot "/Users/philiphowley/Sites/webpackhmr.local/"
+    ServerName webpackhrm.local
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "/Users/philiphowley/Sites/"
+    ServerName localhost
+</VirtualHost>
+```
+
+* You need to end file with this:
+
+```
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    DocumentRoot "/Users/philiphowley/Sites/webpackhmr.local/"
+    ServerName webpackhrm.local
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "/Users/philiphowley/Sites/"
+    ServerName localhost
+</VirtualHost>
+```
+
+###clear DNS
+
+`$ sudo killall -HUP mDNSResponder`
+
+
 
 ## Adding a virtual host in MAMP for Mac
 *[docs](http://eppz.eu/blog/virtual-host-for-mamp-on-osx/)
@@ -47,6 +95,10 @@ NameVirtualHost *:80
  ServerName webpack-fun.local
 </VirtualHost>
 ```
+
+`$ sudo killall -HUP mDNSResponder`
+
+* That will flush your Mac's DNS cache, so it doesn't get confused by any changes you've made to the Hosts file
 
 * I am assumuning that you altered the default MAMP config and moved the server root to `~/Sites`
 * For Every domain name you added inside your host file you will need to add a `<VirtualHost>` block
