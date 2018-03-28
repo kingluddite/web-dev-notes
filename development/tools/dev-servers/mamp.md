@@ -1,4 +1,22 @@
 # MAMP
+## flush DNS mac sierra
+`$ sudo killall -HUP mDNSResponder`
+
+
+Upgrade to mamp4
+use port 80 (defaults)
+
+## Apache errors
+`$ sudo apachectl stop`
+
+If that doesn't work find all apache running
+
+`$ ps -A | grep httpd`
+
+Stop them all
+
+`$ sudo /usr/sbin/apachectl stop`
+
 
 ## Adding a virtual host in MAMP for Mac
 *[docs](http://eppz.eu/blog/virtual-host-for-mamp-on-osx/)
@@ -25,6 +43,23 @@
 127.0.0.1 mydomainname.dev
 255.255.255.255 broadcasthost
 ::1 localhost
+```
+
+`$ cd /Applications/MAMP/conf/apache/httpd.conf`
+
+* Once opened you’ll probably find these lines:
+
+```
+# Virtual hosts
+#Include /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf
+```
+
+* So simply uncomment the Include
+* If you don’t find it, do not hesitate to paste it from here
+
+```
+# Virtual hosts
+Include /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf
 ```
 
 ### vhost file
