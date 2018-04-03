@@ -1,5 +1,12 @@
 # WordMove
 
+## zsh
+* I like zsh but this is a problem my zshrc is not configured properly and it doesn't know about my latest version of ruby so I need to switch back to bash and that .bash_profile (default with vvv install) works
+
+`$ exec bash -l`
+
+* Remember you have to do this each time when running the shell (I've wasted a couple of hours trying to figure this out)
+
 ## Gotchas
 the WordFence security plugin
 It broke wordfence because of database type. It uses Latin. Just unintalling won't work. In addition, you have to go into the database and remove all wp_wf table names. Once you do that it will work. I used the all in one security plugin instead.
