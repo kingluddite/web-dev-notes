@@ -1,5 +1,8 @@
 # Virtual Box and Vagrant
 
+## Upgrade Vagrant box
+`$ vagrant box update`
+
 You need to install Virtual box first
 * there are multiple ways to install virtual box
 

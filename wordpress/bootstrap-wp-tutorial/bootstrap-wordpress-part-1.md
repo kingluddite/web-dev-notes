@@ -62,7 +62,7 @@
 
 6. `$ wp core config --dbuser=root --dbpass=root --dbname=coca_cola_wp`
 
-  * reates `wp-config.php` with DB connection
+  * creates `wp-config.php` with DB connection
 
 7. `$ wp core install --url=http://localhost/coca-cola-wp --title=CocaCola --admin_user=admin --admin_password=password --admin_email=myemail@gmail.com`
 
@@ -72,7 +72,7 @@
 
   * You should see your WordPress site
 
-9. Log into WordPress site with `localhost/coca-coloa-wp/wp-admin.php` and use username: **admin** and password: **password**
+9. Log into WordPress site with `localhost/coca-coloa-wp/wp-admin` and use username: **admin** and password: **password**
 
 ## Troubleshoot MAMP/WP-CLI install problems
 * `troubleshoot-mamp-wpcli-install-problems.md`
@@ -283,6 +283,7 @@ Code and take over the world line-by-line
 <?php
 function theme_styles() {
     wp_enqueue_style( 'bootstrap_css', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css' );
+}
 
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 ?>
@@ -413,13 +414,13 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 `functions.php`
 
 ```php
-<?
+// MORE CODE
 function theme_js() {
   wp_enqueue_script( 'tether_js', get_template_directory_uri() . '/assets/js/tether.min.js', '', '', true );
     wp_enqueue_script( 'bootstrap_js', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array('jquery'), '', true );
 }
 add_action( 'wp_enqueue_scripts', 'theme_js' );
-?>
+// MORE CODE
 ```
 
 ## Another hook - wp_footer()
@@ -571,14 +572,20 @@ add_filter( 'show_admin_bar', '__return_false' );
 `functions.php`
 
 ```php
-/*=============================
-=            Menus            =
-=============================*/
+// MORE CODE
+/**
+ *
+ * Add Menu
+ *
+ */
+
 add_theme_support( 'menus' );
+
 function domsters_register_menu() {
-  register_nav_menu('main-menu', __( 'Main Menu') );
+  register_nav_menu( 'main-menu', __( 'Main Menu' ) );
 }
-add_action('init', 'domsters_register_menu');
+
+add_action( 'init', 'domsters_register_menu' );
 ```
 
 3. In the WP Dashboard, you select `Menus`
@@ -596,6 +603,21 @@ add_action('init', 'domsters_register_menu');
 `header.php`
 
 ```php
+// MORE CODE
+<body <?php body_class(); ?>>
+    <div id="header">
+        <img src="images/logo.gif" alt="Jay Skript and the Domsters" />
+    </div>
+<!-- <div id="navigation">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="photos.html">Photos</a></li>
+        <li><a href="live.html">Live</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</div> -->
+
   <?php
   $defaults = array(
     'theme_location'  => 'main-menu',

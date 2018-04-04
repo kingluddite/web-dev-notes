@@ -1,10 +1,161 @@
 # MAMP
+## flush DNS mac sierra
+`$ sudo killall -HUP mDNSResponder`
 
-So if you are using MAMP you are not alone. It is free (there also is a pro version). It gets you set up pretty quickly with Apache, PHP, MySQL and phpMyAdmin. It's default port is :8888 so your local URL for development is http://localhost:8888. I'm not a fan of this and suggest you change the configuration to http://localhost.
 
-Another thing I don't like about MAMP out of the box is how deep it is stored in your file system. The dev sites are stored in the `htdocs` folder. You can also change this in the configuration setup of MAMP. I recommend, if you're using a MAC which is what I use, that you create a `Sites` folder in your home directory (`~/your-use-name`). This is the way it used to be set up out of the box on Mac OS systems but in the recent past, they removed this folder. You'll see a lot of people use it.
+Upgrade to mamp4
+use port 80 (defaults)
 
-I also don't like how you can mimick the box your prod site is on. If this is something you want you should checkout, Virtual Box and Vagrant.
+## Apache errors
+`$ sudo apachectl stop`
+
+If that doesn't work find all apache running
+
+`$ ps -A | grep httpd`
+
+Stop them all
+
+`$ sudo /usr/sbin/apachectl stop`
+
+https://jonathanmh.com/using-virtual-hosts-with-mamp-free/
+
+* edit in vim (sublime might add characters)
+
+## Use this free program to manually add remove
+https://github.com/specialunderwear/Hosts.prefpane
+
+
+## How to get hosts working on free mamp
+
+### Can you ping it?
+ping webpackhmr.local
+
+```
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    DocumentRoot "/Users/philiphowley/Sites/webpackhmr.local/"
+    ServerName webpackhrm.local
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "/Users/philiphowley/Sites/"
+    ServerName localhost
+</VirtualHost>
+```
+
+* You need to end file with this:
+
+```
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    DocumentRoot "/Users/philiphowley/Sites/webpackhmr.local/"
+    ServerName webpackhrm.local
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "/Users/philiphowley/Sites/"
+    ServerName localhost
+</VirtualHost>
+```
+
+###clear DNS
+
+`$ sudo killall -HUP mDNSResponder`
+
+## Adding a virtual host in MAMP for Mac
+*[docs](http://eppz.eu/blog/virtual-host-for-mamp-on-osx/)
+* [docs](https://stackoverflow.com/questions/35251032/how-to-create-virtual-hosts-in-mamp)
+### host file
+* Open your host file by pasting the following in your terminal:
+
+`$ atom /etc/hosts`
+
+* **You will see something like below**
+*   Add a “development” domain name
+*   Just make one up, it will only be locally known to your computer
+*   Be sure to match the ip address with the one before “localhost”
+*   Saving this file will prompt you for your password
+
+```
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting. Do not change this entry.
+##
+127.0.0.1 localhost
+127.0.0.1 mydomainname.dev
+255.255.255.255 broadcasthost
+::1 localhost
+```
+
+`$ cd /Applications/MAMP/conf/apache/httpd.conf`
+
+* Once opened you’ll probably find these lines:
+
+```
+# Virtual hosts
+#Include /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf
+```
+
+* So simply uncomment the Include
+* If you don’t find it, do not hesitate to paste it from here
+
+```
+# Virtual hosts
+Include /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf
+```
+
+### vhost file
+* Next, open up your MAMP vhost conf file:
+
+`$ atom /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf`
+
+* Clear all of the file contents and paste the following:
+
+```
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+ DocumentRoot /Applications/MAMP/htdocs
+ ServerName localhost
+</VirtualHost>
+
+<VirtualHost *:80>
+ DocumentRoot "/Users/philiphowley/Sites/wordpress-webpack-browsersync/wp"
+ ServerName webpack-fun.local
+</VirtualHost>
+```
+
+`$ sudo killall -HUP mDNSResponder`
+
+* That will flush your Mac's DNS cache, so it doesn't get confused by any changes you've made to the Hosts file
+
+* I am assumuning that you altered the default MAMP config and moved the server root to `~/Sites`
+* For Every domain name you added inside your host file you will need to add a `<VirtualHost>` block
+* This block contains your project location and a **ServerName**
+* Set the **ServerName** exactly the same as the domain you added inside your host file and point the **DocumentRoot** to the root of your project
+
+### Restart Mamp
+* Restart Mamp
+* Be sure have a project or `index.html` file inside your project folder
+* By browsing to the domain that you configured your project will show
+
+### MAMP intro
+* It is free (there also is a pro version)
+* It gets you set up pretty quickly with Apache, PHP, MySQL and phpMyAdmin
+* It's default port is `:8888`
+    - So your local URL for development is http://localhost:8888
+    - I'm not a fan of this and suggest you change the configuration to http://localhost.
+* Another thing I don't like about MAMP out of the box is how deep it is stored in your file system
+* The dev sites are stored in the `htdocs` folder
+* You can also change this in the configuration setup of MAMP
+* I recommend, if you're using a MAC which is what I use, that you create a `Sites` folder in your home directory (`~/your-use-name`)
+* This is the way it used to be set up out of the box on Mac OS systems but in the recent past, they removed this folder
+* You'll see a lot of people use it like this
+* I also don't like how you can mimick the box your prod site is on. If this is something you want you should checkout, **Virtual Box** and **Vagrant**.
 
 If you want to easily migrate sites, I hear that many people love [DesktopServer](https://serverpress.com/get-desktopserver/)
 

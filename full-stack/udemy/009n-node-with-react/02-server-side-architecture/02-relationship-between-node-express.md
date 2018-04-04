@@ -38,7 +38,7 @@ $ cat package.json
         + Node is listening on that port `let's say port 5000` and it waits for some traffic to flow through it
         + Node will take that info that is coming in and it will hand it off to Express
         + All could be done with Node and Node alone, it is what handles all the HTTP traffic
-            * But we want to use express because it makes our lives easier
+            * But we want to use Express because it makes our lives easier
         + Express will look at the request and it will decide what chunk of code will "handle" or **respond** to the **request**
         + **Route Handlers**
             * We will route handlers to respond to incoming requests

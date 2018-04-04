@@ -9,6 +9,9 @@
 ## Open html file in Chrome browser (file:///)
 `:!open % -a Google\ Chrome`
 
+## Find each occurrence of 'foo' (in all lines), and replace it with 'bar'
+`:%s/foo/bar/g`
+
 ## replace all spaces with underscore
 `:%s/ /_/g`
 

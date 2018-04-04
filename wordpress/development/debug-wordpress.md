@@ -2,11 +2,16 @@
 
 ## Built-in WordPress Debugging Tools:
 ```php
-WP_DEBUG define('WP_DEBUG', true);
-WP_DEBUG_LOG define('WP_DEBUG_LOG', true);
-WP_DEBUG_DISPLAY define('WP_DEBUG_DISPLAY', true);
-SCRIPT_DEBUG define('SCRIPT_DEBUG', true);
-SAVEQUERIES define('SAVEQUERIES', true);
+# WP_DEBUG 
+define('WP_DEBUG', true);
+# WP_DEBUG_LOG
+define('WP_DEBUG_LOG', true);
+# WP_DEBUG_DISPLAY
+define('WP_DEBUG_DISPLAY', true);
+# SCRIPT_DEBUG
+define('SCRIPT_DEBUG', true);
+# SAVEQUERIES
+define('SAVEQUERIES', true);
 ```
 
 ## WordPress Debuggin Plugins

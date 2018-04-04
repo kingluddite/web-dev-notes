@@ -1,5 +1,11 @@
 # The ZSH shell
 
+## can't find zsh
+* You may get this error from time to time
+* Just reinstall zsh and it should fix it
+
+`$ brew reinstall zsh`
+
 ## Search history without using command line and move around
 ```
 Up     Ctrl+P

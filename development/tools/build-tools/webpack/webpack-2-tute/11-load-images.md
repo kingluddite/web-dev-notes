@@ -5,6 +5,8 @@
 ## image-webpack-loader
 * [documentation](https://github.com/tcoopman/image-webpack-loader)
 
+`$ yarn add -D image-webpack-loader`
+
 ## file-loader
 * [documentation](https://github.com/webpack-contrib/file-loader)
 * Install
