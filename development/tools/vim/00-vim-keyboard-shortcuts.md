@@ -314,8 +314,6 @@ vmap <c-k> xkP`[V`]
 vmap <c-j> xp`[V`]
 ```
 
-
-
 `.vimrc`
 
 ```
