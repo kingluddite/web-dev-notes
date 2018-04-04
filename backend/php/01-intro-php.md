@@ -1,7 +1,10 @@
-# How do I upgrade to PHP 7
+# PHP
+* Get phpinfo from terminal `$ php -i`
+
+## How do I upgrade to PHP 7
 [Quick Start Tutorial](https://jason.pureconcepts.net/2016/09/upgrade-php-mac-os-x/)
 
-# PHP
+
 * released in 1995
 * PHP Hypertext Pre-Processor
 Server side language

@@ -41,9 +41,12 @@ let g:airline_theme = 'tender'
 * Install cmake
   * https://geeksww.com/tutorials/operating_systems/linux/installation/downloading_compiling_and_installing_cmake_on_linux.php
 
-`$ cd ~/.vim/bundle/YouCompleteMe ./install.py --clang-completer --js-completer`
+`$ cd ~/.vim/bundle/YouCompleteMe`
+
+`$ ./install.py --clang-completer --js-completer`
 
 * https://github.com/Valloric/YouCompleteMe
+
 * Install ZSH `$ apt install zsh`
 * Install Oh-my-zsh
 

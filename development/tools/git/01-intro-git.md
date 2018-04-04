@@ -1,5 +1,13 @@
 # Intro to Git
 
+## clean unattached files
+* remove directories `$ git clean -fd`
+* remove ignored files `$ git clean -fX`
+* both ignored and non-ignored files `$ git clean -fx`
+
+## remove all changes to files added to staging
+`$ git checkout -- .`
+
 ## VCS
 Version Control System
 
