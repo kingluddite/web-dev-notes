@@ -1,25 +1,50 @@
 # Loading CSS into our React App
-Can be loaded many different ways:
+* Can be loaded many different ways:
+  - Inline styles
+  - Separate CSS files for every single Component
+  - Traditional way using a Sass/CSS file and then they load it into the HTML
 
-* Inline styles
-* Separate CSS files for every single Component
-* Traditional way using a Sass/CSS file and then they load it into the HTML
-
-No problem if you just want to have `link` element and point to your CSS
+## Can I use `<link>`?
+* No problem if you just want to have `link` element and point to your CSS
 
 ## Styles for CSS and Components
-Some people create CSS files for every single Component that they work on and that enables them to scope the CSS to that specific Component
+* Some people create CSS files for every single Component that they work on
+* And that enables them to scope the CSS to that specific Component
 
 ### First, grab our starting assets
-Images, Fonts and CSS
+* Images
+* Fonts
+* CSS
 
 [github assets for this react project](https://github.com/kingluddite/starting-react-assets)
 
-Make sure you are inside the `src` folder of your project and clone the folder without the repo name:
+## Clone the assets
+* Make sure you are inside the `src` folder of your project
+* And clone the folder without the repo name:
+  - **Cloning into an existing folder will cause an error** so you need to do it like this:
 
-`$ git clone https://github.com/kingluddite/starting-react-assets.git .`
+  `$ git clone https://github.com/kingluddite/starting-react-assets.git .`
 
-**note** When cloning, you can use `.` to say grab the repo and put all the files inside where I currently am and don't put them inside a containing folder (which is the default behavior)
+  ## Clone without creating a parent folder
+  * **note** When cloning, you can use `.` to say grab the repo and put all the files inside where I currently am and don't put them inside a containing folder
+      - Putting contents inside a parent folder is the default behavior)
+
+```
+# clone assets into temp folder
+$ git clone https://github.com/kingluddite/starting-react-assets.git temp
+# remove css folder
+$ rm -rf css
+# remove temp's .git folder
+$ rm -rf temp/.git
+$ cd temp
+# move css, js and fonts up to parent directory
+$ mv css ../
+$ mv js ../
+$ mv fonts ../
+$ cd ../
+# remove temp folder
+$ rm -rf temp 
+```
 
 ### Add your style
 Create `src/css/style.css` and copy and paste the following code inside that file:
@@ -669,16 +694,25 @@ button.twitter:after, input[type=submit].twitter:after {
 ```
 
 ## Load CSS using Webpack
-Don't add `link` tag to `index.html` manually. Import the css into the `index.js` file like this:
+* Don't add `link` tag to `index.html` manually
+* Import the css into the `index.js` file like this:
 
 `index.js`
 
-```
+```js
 import React from 'react';
 import { render } from 'react-dom';
 import './css/style.css'; // Add this line
 ```
 
-**note** We don't say the name of the package we are loading for `style.css` because there is no package. We are just loading the file
+## Don't need to say the name of the package
+**note** We don't say the name of the package we are loading for `style.css` because there is no package
+* We are just loading the file
 
-**important** Remove in `index.html` the `<link href="css/style.css >` and add the import line above to let webpack import all the css. You won't see a css file but if you search the `bundle.min.js` you will see the css is inside that JavaScript file!
+## Two steps to get our CSS working
+1. Remove in `index.html` the `<link href="css/style.css >` and
+2. Add the import line above to let webpack import all the css
+
+### CSS inside the JavaScript?
+* You won't see a css file but if you search the `bundle.min.js`
+* You will see the css is inside that JavaScript file!
