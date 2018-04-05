@@ -1,5 +1,7 @@
 # Helper and Utility Functions
-Things you need to use throughout your app. Not a module. Not big enough but are useful and can be used anywhere
+* Things you need to use throughout your app
+* There are not big enough to be a module
+* But are useful and can be used anywhere
 
 `src/helpers.js`
 
@@ -31,9 +33,9 @@ export function getFunName() {
 ```
 
 ## TeamPicker
-We don't want to set a `value` attribute of the `input` because that would be tied to something called `state`. We just want a default value when we load the page
-
-We are using a `named export` from `helpers.js`
+* We don't want to set a `value` attribute of the `input` because that would be tied to something called `state`
+* We just want a default value when we load the page
+* We are using a `named export` from `helpers.js`
 
 `TeamPicker.js`
 
@@ -58,7 +60,8 @@ export default TeamPicker;
 ```
 
 * Notice how we import the `getFunName()` named `export`
-* We set a `defaultValue={getFunName()}` and that will call the function and if you view in the browser you will see it randomly generates a fun name
+* We set a `defaultValue={getFunName()}` and that will call the function
+* And if you view in the browser you will see it randomly generates a fun name
 * Every time you refresh a new random fun name will appear on the home page
 
 

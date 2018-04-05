@@ -1,26 +1,29 @@
 # Working with React Events
-Events in React are same as events in JavaScript
-
-## [SyntheticEvent](https://facebook.github.io/react/docs/events.html)
-
-The only difference is all React events are wrapped in the cross-browser `SyntheticEvent`. The only reason for this is to make sure it works across all browsers
+* Events in React are same as events in JavaScript
+* [SyntheticEvent](https://facebook.github.io/react/docs/events.html)
+* The only difference is all React events are wrapped in the cross-browser `SyntheticEvent`
+* The only reason for this is to make sure it works across all browsers
 
 ## inline JavaScript? WTF???
-Yes, in React, you write your events inline. You probably have been taught that the separation of concerns is good (put html in html, css in css and JavaScript in JavaScript). In React, they all come back together and go against what you were taught... but for a good reason. It makes sense.
+* Yes, in React, you write your events inline
+* You probably have been taught that the separation of concerns is good (put html in html, css in css and JavaScript in JavaScript)
+* In React, they all come back together and go against what you were taught... but for a good reason
 
 ## Our first event
-We need to do **2** things:
+* We need to do **2** things:
 
 1. When the user submits the TeamPicker's button we need to grab the value the user entered into the input field and get that value into React
 2. We need to change the URL from `/` to `/team/value-they-type-in-input-field`
 
 ### Which event should we use?
-We need `click` but also if someone hits the `return/enter` key and that event is the `onSubmit` event
+* We need `click` but also if someone hits the `return/enter` key and that event is the `onSubmit` event
 
 #### Creating our own method
-What do we want to happen when the `onSubmit` is fired? We will create a function above the `render()` that will have what we want to happen coded inside that custom function. We will then call that function by name at the value for our `onSubmit()` event
+* What do we want to happen when the `onSubmit` is fired? 
+* We will create a function above the `render()` that will have what we want to happen coded inside that custom function
+* We will then call that function by name at the value for our `onSubmit()` event
 
-**important** ES6 classes DO NOT have any commas inside them
+## Important Rule! - No commas inside ES classes
 
 `src/components/TeamPicker.js`
 
@@ -48,37 +51,38 @@ export default TeamPicker;
 ```
 
 ### We use `this.goToTeam` and not just `goToTeam`
-Why `this`?
-Because `render()` methods are bound to the class they are inside of
+* Why `this`?
+    - Because `render()` methods are bound to the class they are inside of
 
 ### Bind or not to Bind
-But all the other methods that we create will not be bound to the class so we need to use `this` to associate that method with the class
+* But all the other methods that we create will not be bound to the class so we need to use `this` to associate that method with the class
 
-### How can we bind these methods to the component (class)? 
-There is a way that we will talk about later
+### How can we bind these methods to the component (class) 
+* There is a way that we will talk about later
 
 ### Using `this`
-Because `render()` is bound to the Component, we can use `this` inside the `render()` method and it will always equal the Component
+* Because `render()` is bound to the Component, we can use `this` inside the `render()` method and it will always equal the Component
 
 ### Flash in the pan
-Why when we `press enter` or `click` the button does the `console.log()` first and then disappear?
+* Why when we `press enter` or `click` the button does the `console.log()` first and then disappear?
+    - Because the page refreshes
 
-Because the page refreshes
-
-**note** We do not use `goToTeam()` but rather `goToTeam` because we don't want to fire the event as soon as the page loads, so we omit the `()` and just reference the function name and wait for the user to `click` submit button or `press enter` before we call the function and trigger the `console.log()`
+* **note** We do not use `goToTeam()` but rather `goToTeam` because we don't want to fire the event as soon as the page loads
+* So we omit the `()` and just reference the function name and wait for the user to `click` submit button or `press enter` before we call the function and trigger the `console.log()`
 
 ## Preserve the log
-To preserve the log and prevent it from quickly disappearing we can click the `Preserve log` checkbox in the inspect. Check it and click the button
-
-You will see:
+* To preserve the log and prevent it from quickly disappearing we can click the `Preserve log` checkbox in the inspect
+* Check it and click the button
+    - You should see:
 
 ![Preserve log](https://i.imgur.com/6i4Z0f4.png)
 
 ## Why is `console.log()` flashing and leaving?
-Forms by default take the data you enter into them and then it will send that data to whatever the action of the form is (or it will just refresh the page if we didn't provide an action
+* Forms by default take the data you enter into them and then it will send that data to whatever the action of the form is
+    - Or it will just refresh the page if we didn't provide an action
 
 ### preventDefault()
-In vanilla JavaScript we just use `preventDefault()` to stop a form from submitting or refreshing the page
+* In vanilla JavaScript we just use `preventDefault()` to stop a form from submitting or refreshing the page
 
 #### Update our `goToTeam()` method
 ```js
@@ -93,7 +97,8 @@ goToTeam(e) {
 * `e` is the event that we are now passing to our `goToTeam()` method
 * `e.preventDefault()` prevents the form from refreshing the page
 * You can uncheck the `Preserve log` checkbox
-* View the console tab and you will see every time you click or press enter or goToTeam() method is fired and the default page refresh on submit does not happen because we turned off the default JavaScript form behavior
+* View the console tab and you will see every time you click or press enter or `goToTeam()` method is fired
+* And the default page refresh on submit does not happen because we turned off the default JavaScript form behavior
 
 ## Can't Touch This... The DOM that is
 ### Grabbing the input text value

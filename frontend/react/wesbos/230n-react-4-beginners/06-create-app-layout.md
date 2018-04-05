@@ -85,6 +85,7 @@ export default App;
 * Nothing changes because `index.js` is still rendering `<TeamPicker />`
 
 ## Update `index.js`
+
 ```
 import React from 'react';
 import { render } from 'react-dom';
@@ -98,6 +99,7 @@ render(<App/>, document.querySelector('#main'));
 
 ## Why do we get an error?
 * We get errors like `Header is not defined` because we did not define those components yet
+* **time saving tip** If you have an error in your component, click the error and it will open that component in your default text editor
 
 ![errors](https://i.imgur.com/nLblST3.png)
 
@@ -127,12 +129,13 @@ import Header from './Header';
 class App extends React.Component {
   render() {
     return (
-      <div className="team-of-the-day">
-        <div className="menu">
-          <Header />
-        </div>
-      </div>
-    )
+      <header className="top">
+        <h2>Teams</h2>
+        <h3 className="tagline">
+          <span>EPL</span>
+        </h3>
+      </header>
+    );
   }
 }
 
