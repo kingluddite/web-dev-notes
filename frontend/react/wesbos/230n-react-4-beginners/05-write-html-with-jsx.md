@@ -1,11 +1,13 @@
 # Writing HTML with JSX
-Old way of concatenating string in JavaScript is a pain. ES6 templating strings is a huge improvement but it is still a pain. A better way is JSX
+* Old way of concatenating string in JavaScript is a pain
+* ES6 templating strings is a huge improvement but it is still a pain
+* A better way is JSX
 
 ## What is JSX
-The ability to write JSX inside our JavaScript
+* The ability to write JSX inside our JavaScript
 
 ## What if I didn't want to use JSX?
-Then your code would look like this and it will work.
+* Then your code would look like this and it will work
 
 ```
 class TeamPicker extends React.Component {
@@ -16,7 +18,9 @@ class TeamPicker extends React.Component {
 ```
 
 ## Multiple lines
-We need to return but we will be using multiple lines. If we just have `return` it will never get to the next line and just return. We need to use parentheses like this:
+* We need to return but we will be using multiple lines
+* If we just have `return` it will never get to the next line and just return
+* We need to use parentheses like this:
 
 ```
 return (
@@ -26,12 +30,19 @@ return (
 ```
 
 ### Emmet expand
+#### keyboard shortcut
 `ctrl` + `e`
 
-Writing JSX can be annoying as the usual Emmet `tab` doesn't work. You have to use the `ctrl` + `e` shortcut ([Wes Box video on this](http://wesbos.com/emmet-react-jsx-sublime/))
+### Writing JSX
+* Writing JSX can be annoying as the usual Emmet `tab` doesn't work
+* You have to use the `ctrl` + `e` shortcut
+    - [Wes Box video on this](http://wesbos.com/emmet-react-jsx-sublime/)
 
-**note** At the time of these notes I get an error when I run the Atom react package and language-babel. Atom cautions me with a blue window that the two packages conflict with each other. I still use them together because if I turn off language-babel, **emmet tab completion** doesn't work in JSX
+**Atom text editor error note** At the time of these notes I get an error when I run the Atom react package and language-babel
+* Atom cautions me with a blue window that the two packages conflict with each other
+* I still use them together because if I turn off language-babel, **emmet tab completion** doesn't work in JSX
 
+### Tip writing JSX with Emmet
 **tip** When writing template strings inside JSX with emmet use this syntax before you hit `ctrl` + `e`
 
 `li.person{${person.name}}+p.age{${person.age}}` - Then hit `tab` and you will get the expanded JSX you expect
@@ -47,25 +58,24 @@ Add this to `keymap.cson`
 ```
 
 **note** - If it's not properly syntax highlighted, select Babel ES6 JavaScript or JSX as the syntax, this won't work otherwise
-
-Now tab completion works!
+* Now tab completion works!
 
 ##### Atom language-babel
 Make sure this is installed and active
 
 ## JSX has no class
-Just a joke. React has lots of class but class is a `reserved` word in JavaScript and so React and JSX have disallowed it. 
+* **class** but class is a `reserved` word in JavaScript and so React and JSX have disallowed it 
 
 ### You must use `className` instead
-**note** - Update - emmet now adds `className` instead of `class`
-~~But with Emmet you can use `ctrl` + `e` and it will automatically (if you are inside JSX file) type `className` instead of `class`~~
+**note**
+* Update - emmet now adds `className` instead of `class`
 
-**JSX rule** In JSX you can only return one parent element
-
+### JSX rule
+* In JSX you can only return one parent element
 * Workaround - Wrap a `div` parent container around both sibling elements
+* **Fragment** is new way to avoid adding extra `div`
 
-### What does this rule mean? Easy
-
+### What does this rule mean? 
 ```
 // this is good
 class TeamPicker extends React.Component {
@@ -90,11 +100,13 @@ class TeamPicker extends React.Component {
 }
 ```
 
-The second bad option above will generate a `Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag (8:6)`
+* The second bad option above will generate a error similar to: `Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag (8:6)`
 
-**note** Note how cool our terminal output error is. It is very clear and way more user friendly in letting us know about the error than before
+**note** Note how cool our terminal output error is
+* It is very clear and way more user friendly in letting us know about the error than before
 
-**JSX rule** You must self close your tags
+**JSX rule** - Close your tags
+* You must self close your tags
 
 ```
 // BAD
@@ -104,10 +116,10 @@ The second bad option above will generate a `Syntax error: Adjacent JSX elements
 ```
 
 ### Tags to remember to close
-* input
-* hr
-* br
-* img
+* input ----> `<input />`
+* hr ------> `<hr />`
+* br ----> `<br />`
+* img -----> `<img />`
 
 ```
 import React from 'react';
@@ -128,12 +140,12 @@ export default TeamPicker;
 ```
 
 ### What it looks like in the browser
-No CSS yet but it is what it is
+* No CSS yet but it is what it is
 
 ![app so far](https://i.imgur.com/86gzcGa.png)
 
 ## Comments in JSX
-Use this syntax
+* Use this syntax
 
 ```
 <form className="team-selector">
@@ -144,9 +156,9 @@ Use this syntax
 </form>
 ```
 
-Only when inside JSX do you need to use this syntax for comments. When outside JSX and in JavaScript, use the standard `//` or `/* multi-line` comments
-
-Emmet makes this super easy!
+* Only when inside JSX do you need to use this syntax for comments
+* When outside JSX and in JavaScript, use the standard `//` or `/* multi-line` comments
+* Emmet makes this super easy!
 
 **tip** Don't use JSX comments like this
 
@@ -162,4 +174,4 @@ Emmet makes this super easy!
 The reason is it violates the `only return one parent rule`
 
 ### Add comments in Atom
-* Have React and language-babel activated and you can comment out JSX code and your tab for emmet should work to (_if you added keybindings above for tab_)
+* Have `React` and `language-babel` activated and you can comment out JSX code and your tab for emmet should work to (_if you added keybindings above for tab_)

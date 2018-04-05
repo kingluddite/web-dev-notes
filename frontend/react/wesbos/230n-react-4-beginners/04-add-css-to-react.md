@@ -1,8 +1,11 @@
 # Loading CSS into our React App
 * Can be loaded many different ways:
-  - Inline styles
-  - Separate CSS files for every single Component
-  - Traditional way using a Sass/CSS file and then they load it into the HTML
+
+1. Inline styles
+2. Separate CSS files for every single Component
+    * Import css that only relates to that component
+    * That will tightly couple the CSS with the component that gets rendered out
+3. Traditional way using a Sass/CSS file and then they load it into the HTML
 
 ## Can I use `<link>`?
 * No problem if you just want to have `link` element and point to your CSS
@@ -35,12 +38,10 @@ $ git clone https://github.com/kingluddite/starting-react-assets.git temp
 # remove css folder
 $ rm -rf css
 # remove temp's .git folder
-$ rm -rf temp/.git
+$ <!-- rm -rf temp/.git -->
 $ cd temp
 # move css, js and fonts up to parent directory
 $ mv css ../
-$ mv js ../
-$ mv fonts ../
 $ cd ../
 # remove temp folder
 $ rm -rf temp 
