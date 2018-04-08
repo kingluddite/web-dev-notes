@@ -34,11 +34,13 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT);
 ```
 
-* The above line says, "If there is a defined environment variable than use that other wise use port 5000"
+* The above line says, 
+    - "If there is a defined environment variable than use that
+    - otherwise use port 5000"
 
 * `Specify Node Environment`
-    - We want to use a specific version of Node, so we need to tell Heroku which version we want
-    - By default Heroku attempts to use an older version of Node and it will crash our app
+    - We want to use a specific version of `Node`, so we need to tell **Heroku** which version we want
+    - By default **Heroku** attempts to use an older version of `Node` and it will crash our app
 
 `package.json`
 
@@ -69,17 +71,16 @@ app.listen(PORT);
     - You find out your versions of each using
         + `$ node -v`
         + `$ npm -v`
-    - Make sure you use double quotes and not single quotes
+    - Make sure you **use double quotes** (and not single quotes)
         + It won't work if you don't
     - Don't forget the necessary commas I use above
     - That's it
-        + When Heroku boots up it will see our `package.json` and look at engines and then it will use the node and npm versions I specify
+        + When Heroku boots up it will see our `package.json` and look at engines and then it will use the `node` and `npm` versions I specify
         + And whenever we deploy our Application, Heroku will use those versions
 
-* `Specify start script`
-    - Instruct Heroku what command to run to start our server running
-    - This is mandatory
-    - Here is where we tell Heroku exactly how to start up our server
+## `Specify start script` ----- This is mandatory!
+* Instruct `Heroku` what command to run to start our server running
+* Here is where we tell `Heroku` exactly **how to start up our server**
 
 `package.json`
 
@@ -95,14 +96,18 @@ app.listen(PORT);
 // more code
 ```
 
+## Heroku runs the start script
 * That is how we started our server when we were testing it `$ node index.js`
-    - And Heroku has to start it the same way
-* Whenever Heroku runs our Application it will attempt to run the start script in `package.json`
+    - And `Heroku` has to start it the same way
+* Whenever `Heroku` runs our Application it will attempt to run the start script in `package.json`
 
+## Time to ignore some stuff
 * `Create .gitignore file`
-    - We don't want to include dependencies, Heroku will do that for us
-    - We have a `node_modules` folder with all our 3rd party dependencies and devDependencies
-    - We do not deploy node_modules to Heroku but we let Heroku install all of our dependencies itself
+    - We don't want to include dependencies, `Heroku` will do that for us
+    - We have a `node_modules` folder with all our 3rd party **dependencies** and **devDependencies**
+    - We do not deploy `node_modules` to Heroku
+
+## We let Heroku install all of our dependencies itself
 
 `$ touch .gitignore`
 

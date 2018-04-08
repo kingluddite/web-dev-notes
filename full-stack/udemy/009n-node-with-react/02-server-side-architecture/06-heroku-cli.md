@@ -12,10 +12,13 @@
         - Sounds easy
         - But can be very confusing
 
+## Move index.js and package.json to the root of your project
+* This is mandatory or your won't be able to push your site to heroku
+
 ### Git stuff
 * Make sure you have Git installed on your machine `$ git --version`
 * If not, install it from [download git](https://git-scm.com/downloads)
-* Or install homebrew and install Git with homebrew - [watch video](https://www.youtube.com/watch?v=WUviVWnvBM8)
+* Or install `homebrew` and install Git with homebrew - [watch video](https://www.youtube.com/watch?v=WUviVWnvBM8)
 * `$ git init`
     - That will initialize an empty Git repo
     - Add code to staging `$ git add .`
@@ -28,18 +31,19 @@
     * I recommend installing it with homebrew `$ brew install heroku`
     * After installing check install was successful with `$ heroku -v`
         - If you see a version you are ready to proceed to next step
-        - If not - time to troubleshoot
+        - If not ----------> Time to troubleshoot!
 
 4. Create a new Heroku App
     * Log into your Heroku account via the terminal with: `$ heroku login`
     * Enter your heroku `email` and `password`
     * Create heroku app with `$ heroku create`
-        - You will see two links
-            + First link is URL to our live site
-            + Second link is URL to heroku Git repo
-                * The second link is one we really care about
-                * It is our deployment target
-                    - It is a Git repository that we can push our local server to
+
+### You will see two links
+1. First link is URL to our **live site**
+2. Second link is URL to **heroku Git repo**
+    * The second link is one we really care about
+        - It is our deployment target
+        - It is a Git repository that we can push our local server to
                 * We already committed our entire code base to Git
                 * We are now going to push that local repo to the remote repo that is managed by Heroku
                     - The minute we do this, Heroku will then deploy our entire application and start it up automatically
@@ -50,6 +54,7 @@
     * We first need to set up a remote Git repo
         - We do this by copying the second link (remote Heroku Git repo)
         - Then typing `$ git remote add heroku https://git.heroku.com/mysterious-sierra-29112.git`
+            + **note** This will be set up automatically when you use the Heroku CLI
         - (Make sure to use your own remote Heroku link)
         - You may not see any feedback if it was successful
         - If you did this already you will see 'fatal: remote heroku already exists' which you can safely ignore
@@ -68,6 +73,7 @@
     * Open our new application
         - `$ heroku open`
         - You should see it opens the browser and navigates to our deployed Project!
+        - Just says **'hi there'** inside JSON object on our live heroku domain
 
 ## Heroku Troubleshooting
 * `$ heroku logs`
