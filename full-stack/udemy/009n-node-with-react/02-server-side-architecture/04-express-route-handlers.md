@@ -16,13 +16,15 @@ app.listen(5000);
 
 ![route handler diagram](https://i.imgur.com/OZ0LhiR.png)
 
-* `app` - Represents the underlying Express server
-    - The Express server has some amount of route handlers associated with it
-* `get` - By calling `get` we are creating a brand new route handler
+* `app` - Represents the underlying `Express` server
+    - The `Express` server has some amount of route handlers associated with it
+
+## What is a `route handler`?
+* `get` - By calling `get` we are creating a brand new `route handler`
     - `app.get()` and everything inside it we refer to as a **route handler**
-    - Our specific route handler in this example is watching for incoming HTTP requests with a very specific method
-    - HTTP request methods are used to indicate the type or what the request is attempting to accomplish
-    - Express has access to several other HTTP methods
+    - Our specific `route handler` in this example is watching for **incoming HTTP requests** with a very specific `method`
+    - `HTTP request methods` are used to indicate the **type** or what the request is attempting to accomplish
+    - `Express` has access to **several other HTTP methods**
 
 ![Http methods diagram](https://i.imgur.com/6ZMIpgO.png)
 
@@ -32,20 +34,21 @@ app.listen(5000);
 * `delete` - Delete something
 * `patch` - Update one or two properties of something
 
-## `/`
+## What is the `route portion of the handler`?
+### `/`
 * This tells the Express server to watch for requests trying to access a very particular route
     - Our example here is watching the root route `/`
     - This is known as the `route portion of the handler`
     - Anytime someone visits `localhost:5000/`, they will hit this route
-    - Even if you just type `localhost:5000` and no forward slash, it still interprets it as the root route
-        + It is an implied forward slash
+    - Even if you just type `localhost:5000` and no forward slash, it still interprets it as the **root route**
+        + **note** It is an `implied` forward slash
 * We could create another route pointing to `/about` and if someone visits `localhost:5000/about` then it would execute our route handler for that route
 
 ## Arguments to the arrow function
 `(req, res) => {}`
 
 * `req` - short for **request**
-    - It is a JavaScript object that represents the incoming request
+    - It is a JavaScript object that represents the incoming `request`
     - The object has a lot of data about who is making the request and a bunch of other data like the browser... 
 * `res` - short for **response**
     - This is the `res` object

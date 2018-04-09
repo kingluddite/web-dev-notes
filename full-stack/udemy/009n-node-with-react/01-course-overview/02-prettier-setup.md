@@ -62,7 +62,7 @@
 ## Create .eslintrc.json
 `$ touch .eslintrc`
 
-`eslintrc`
+`.eslintrc`
 
 ```
 {
