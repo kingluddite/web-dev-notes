@@ -1,19 +1,24 @@
 # Understanding State - Core fundamental concept!
 
 ## What is state?
-The representation of all of the data in our application
+* `state` is just an object that holds data that itself needs as well some children may need
 
+## "single source of truth"
+* Sometimes in jquery your data lives in multiple places
+  - maybe in a variable and some in a data attribute on a DOM element
+  - Pull it out of there and put it back in and use that as a place to store your data
+* The representation of all of the data in our application
 * Each Component can have its own `state`
 * Think of `state` as one object that holds the data of all of our application or a piece of our application
+* We just want to update our data and let react take it from there
 
 ### `state` in team of the day app
-We have state with: 
-
-* How many players we have
-* How many rosters we have
+* We have state with: 
+  - How many players we have
+  - How many rosters we have
 
 ### `state` in jQuery
-You could save **data** in `attributes`. 
+* You could save **data** in `attributes`. 
 
 1. Save **data** in the **DOM**
 2. Then pull it out
@@ -22,24 +27,27 @@ You could save **data** in `attributes`.
 5. And where the application is currently at is done entirely in the **DOM**
 
 ### React is different!
-
-In React you store all of your **data** in this master object called `state`. 
-
+* In React you store all of your **data** in this master object called `state` 
 * Whenever you want to change anything on the page
   - You edit your `state`
   - **React** will handle updating the **DOM**
 
-Coming from **HTML** directly you may want to touch the **HTML**. 
-
-In **React**, you edit the **data** and **React** will edit the **HTML**
+### Fight the urge to directly touch the HTML 
+* Coming from **HTML** directly you may want to touch the **HTML** 
+    - In **React** you edit the **data**
+        + And **React** will edit the **HTML**
 
 ### Huge idea behind `state`
-If you view a website made with **React** in the browser and you change the `state` inside one of it's Component, that will change everywhere that state is pulled from and **React** will update the HTML
-
-The great thing is you have all these balls in the air but you don't have to id them, grab their contents and change them all. Just change the state and React handles the rest. It really is a great concept.
+* If you view a website made with **React** in the browser and you change the `state` inside one of it's Components
+    - that will change everywhere that state is pulled from and **React** will update the HTML
+* The great thing is you have all these balls in the air but you don't have to:
+    - **id** them,
+    - Grab their contents
+    - And change them all
+    - Just change the `state` and React handles the rest
 
 ## Adding the player form
-We will create a new Component called `src/components/AddPlayerForm.js`
+* We will create a new Component called `src/components/AddPlayerForm.js`
 
 ```
 import React from 'react';
@@ -48,18 +56,18 @@ class AddPlayerForm extends React.Component {
   render() {
     return (
       <form className="player-edit">
-      <input type="text" placeholder="Player First Name" />
-      <input type="text" placeholder="Player Last name" />
+      <input type="text" placeholder="First Name" />
+      <input type="text" placeholder="Last name" />
       <select>
         <option value="available">Available</option>
         <option value="injured">Injured</option>
-        <option value="excused">Excused Absence</option>
-        <option value="unexcused">Unexcused Absence</option>
+        <option value="excused">Excused</option>
+        <option value="unexcused">Unexcused</option>
       </select>
-      <input type="text" placeholder="Player Position" />
-      <input type="text" placeholder="Player Fee" />
-      <input type="text" placeholder="Player Jersey Number" />
-      <input type="text" placeholder="Player Email" />
+      <input type="text" placeholder="Position" />
+      <input type="text" placeholder="Fee" />
+      <input type="text" placeholder="Jersey Number" />
+      <input type="text" placeholder="Email" />
       <textarea placeholder="Comments"></textarea>
       <button type="submit">+ Add Player</button>
       </form>
@@ -71,7 +79,7 @@ export default AddPlayerForm
 ```
 
 ## Update Roster.js
-We **import** and **add** our new Component to `Roster.js`
+* We **import** and **add** our new Component to `Roster.js`
 
 ```
 import React from 'react';
@@ -92,72 +100,33 @@ export default Roster;
 ```
 
 ### View in browser
-You should see the `AddPlayerForm` in the Roster section
+* You should see the `AddPlayerForm` in the Roster section
 
 ### Add the event handler
-When the player is added we need to submit the form so we add an `onSubmit` event handler inside our opening `<form>` element
-
+* When the player is added we need to submit the form so we add an `onSubmit` event handler inside our opening `<form>` element
 * `onSubmit` works with both pressing the `enter` key or clicking the submit button
 * `this` works inside `render()`
 
 ```
-import React from 'react';
-
-class AddPlayerForm extends React.Component {
-
-  render() {
-    return (
-      <form className="players-edit" onSubmit={this.createPlayer}>
-      // MORE CODE
-```
-
-## Add are `createPlayer()` method
-Test app in browser and notice when we test for `this` inside our `createPlayer()` method, it returns `null`
-
-```
-import React from 'react';
-
-class AddPlayerForm extends React.Component {
-  constructor() {
-    super();
-    this.createPlayer = this.createPlayer.bind(this);
-  }
-  createPlayer(e) {
-    e.preventDefault();
+// MORE CODE
+class AddPlayerForm extends Component {
+  createPlayer = event => {
+    event.preventDefault();
     console.log(this);
-  }
+  };
+
   render() {
     return (
-      <form className="players-edit" onSubmit={this.createPlayer}>
-      // MORE CODE
+      <form className="player-edit" onSubmit={this.createPlayer}>
+// MORE CODE
 ```
 
-## Binding `this` to our component
-
-```
-import React from 'react';
-
-class AddPlayerForm extends React.Component {
-  constructor() {
-    super();
-    this.createPlayer = this.createPlayer.bind(this);
-  }
-  createPlayer(e) {
-    e.preventDefault();
-    console.log(this);
-  }
-  render() {
-    return (
-      <form className="players-edit" onSubmit={this.createPlayer}>
-      // MORE CODE
-```
-
-* Now when we check, we see that our AddPlayerForm appears in the console after we submit the form
+* We see `this` works and our button is working
 
 ## How do you take all the text entered into the text fields, selects and text areas and put it into an object?
-We want to create a `player` object with all their properties inside that object
-
-* We have now way of accessing individual fields in our form yet. We didn't give them names or ids but with React the way we access them is with using `ref`
+* We want to create a `player` object with all their properties inside that object
+* We have no way of accessing individual fields in our form yet
+* We didn't give them `names` or `ids` but with React the way we access them is with using `ref`
 
 ### Adding `ref` to our form
 

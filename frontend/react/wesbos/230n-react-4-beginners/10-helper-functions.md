@@ -7,7 +7,10 @@
 
 ```js
 export function formatPrice(cents) {
-  return `$${(cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+  return (cents / 100).toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
 }
 
 export function rando(arr) {
@@ -15,18 +18,88 @@ export function rando(arr) {
 }
 
 export function slugify(text) {
-  return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start of text
-    .replace(/-+$/, '');            // Trim - from end of text
+  return text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 }
 
 export function getFunName() {
-  const adjectives = ['adorable', 'beautiful', 'clean', 'drab', 'elegant', 'fancy', 'glamorous', 'handsome', 'long', 'magnificent', 'old-fashioned', 'plain', 'quaint', 'sparkling', 'ugliest', 'unsightly', 'angry', 'bewildered', 'clumsy', 'defeated', 'embarrassed', 'fierce', 'grumpy', 'helpless', 'itchy', 'jealous', 'lazy', 'mysterious', 'nervous', 'obnoxious', 'panicky', 'repulsive', 'scary', 'thoughtless', 'uptight', 'worried'];
+  const adjectives = [
+    'adorable',
+    'beautiful',
+    'clean',
+    'drab',
+    'elegant',
+    'fancy',
+    'glamorous',
+    'handsome',
+    'long',
+    'magnificent',
+    'old-fashioned',
+    'plain',
+    'quaint',
+    'sparkling',
+    'ugliest',
+    'unsightly',
+    'angry',
+    'bewildered',
+    'clumsy',
+    'defeated',
+    'embarrassed',
+    'fierce',
+    'grumpy',
+    'helpless',
+    'itchy',
+    'jealous',
+    'lazy',
+    'mysterious',
+    'nervous',
+    'obnoxious',
+    'panicky',
+    'repulsive',
+    'scary',
+    'thoughtless',
+    'uptight',
+    'worried',
+  ];
 
-  const nouns = ['women', 'men', 'children', 'teeth', 'feet', 'people', 'leaves', 'mice', 'geese', 'halves', 'knives', 'wives', 'lives', 'elves', 'loaves', 'potatoes', 'tomatoes', 'cacti', 'foci', 'fungi', 'nuclei', 'syllabuses', 'analyses', 'diagnoses', 'oases', 'theses', 'crises', 'phenomena', 'criteria', 'data'];
+  const nouns = [
+    'women',
+    'men',
+    'children',
+    'teeth',
+    'feet',
+    'people',
+    'leaves',
+    'mice',
+    'geese',
+    'halves',
+    'knives',
+    'wives',
+    'lives',
+    'elves',
+    'loaves',
+    'potatoes',
+    'tomatoes',
+    'cacti',
+    'foci',
+    'fungi',
+    'nuclei',
+    'syllabuses',
+    'analyses',
+    'diagnoses',
+    'oases',
+    'theses',
+    'crises',
+    'phenomena',
+    'criteria',
+    'data',
+  ];
 
   return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
 }
@@ -59,9 +132,12 @@ class TeamPicker extends React.Component {
 export default TeamPicker;
 ```
 
+* If you just want default text in input you need to use the `defaultValue`
 * Notice how we import the `getFunName()` named `export`
 * We set a `defaultValue={getFunName()}` and that will call the function
-* And if you view in the browser you will see it randomly generates a fun name
+
+## View the page in browser
+* You will see it randomly generates a fun name
 * Every time you refresh a new random fun name will appear on the home page
 
 
