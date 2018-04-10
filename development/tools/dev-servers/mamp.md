@@ -2,9 +2,8 @@
 ## flush DNS mac sierra
 `$ sudo killall -HUP mDNSResponder`
 
-
-Upgrade to mamp4
-use port 80 (defaults)
+**note** Upgrade to mamp4
+* use port 80 (defaults)
 
 ## Apache errors
 `$ sudo apachectl stop`
@@ -17,13 +16,12 @@ Stop them all
 
 `$ sudo /usr/sbin/apachectl stop`
 
-https://jonathanmh.com/using-virtual-hosts-with-mamp-free/
+[how to set up virtual host using mamp](https://jonathanmh.com/using-virtual-hosts-with-mamp-free/)
 
 * edit in vim (sublime might add characters)
 
 ## Use this free program to manually add remove
 https://github.com/specialunderwear/Hosts.prefpane
-
 
 ## How to get hosts working on free mamp
 
@@ -91,7 +89,7 @@ NameVirtualHost *:80
 ::1 localhost
 ```
 
-`$ cd /Applications/MAMP/conf/apache/httpd.conf`
+`$ vim /Applications/MAMP/conf/apache/httpd.conf`
 
 * Once opened you’ll probably find these lines:
 
