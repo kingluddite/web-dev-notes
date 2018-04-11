@@ -103,7 +103,7 @@
       {
         "trailingComma": "es5",
         "singleQuote": true,
-        "printWidth": 120,
+        "printWidth": 120
       }
     ],
     "jsx-a11y/href-no-hash": "off",
@@ -117,7 +117,6 @@
     ]
   },
   "plugins": [
-    // "html",
     "prettier"
   ]
 }

@@ -81,7 +81,7 @@ export default Header;
 (_but that would be old school and you would not be using the awesome powers of ES6_)
 
 ### Improvement
-* Implicit return - If we only have one line we can remove the return
+* **Implicit return** - If we only have one line we can remove the return
 * De-structuring
 
 `Header.js`

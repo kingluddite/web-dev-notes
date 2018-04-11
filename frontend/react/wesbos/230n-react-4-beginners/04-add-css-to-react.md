@@ -3,21 +3,21 @@
 
 1. Inline styles
 2. Separate CSS files for every single Component
-    * Import css that only relates to that component
+    * Import CSS that only relates to that component
     * That will tightly couple the CSS with the component that gets rendered out
 3. Traditional way using a Sass/CSS file and then they load it into the HTML
 
 ## Can I use `<link>`?
-* No problem if you just want to have `link` element and point to your CSS
+* Yes - if you just want to have `link` element and point to your CSS
 
 ## Styles for CSS and Components
 * Some people create CSS files for every single Component that they work on
 * And that enables them to scope the CSS to that specific Component
 
 ### First, grab our starting assets
-* Images
-* Fonts
 * CSS
+  - Images
+  - Fonts
 
 [github assets for this react project](https://github.com/kingluddite/starting-react-assets)
 
@@ -28,27 +28,27 @@
 
   `$ git clone https://github.com/kingluddite/starting-react-assets.git .`
 
-  ## Clone without creating a parent folder
-  * **note** When cloning, you can use `.` to say grab the repo and put all the files inside where I currently am and don't put them inside a containing folder
-      - Putting contents inside a parent folder is the default behavior)
+## Clone without creating a parent folder
+* **note** When cloning, you can use `.` to say grab the repo and put all the files inside where I currently am and don't put them inside a containing folder
+  - Putting contents inside a parent folder is the default behavior
 
 ```
 # clone assets into temp folder
 $ git clone https://github.com/kingluddite/starting-react-assets.git temp
-# remove css folder
-$ rm -rf css
-# remove temp's .git folder
-$ <!-- rm -rf temp/.git -->
 $ cd temp
-# move css, js and fonts up to parent directory
+# move css up to parent directory
 $ mv css ../
 $ cd ../
 # remove temp folder
 $ rm -rf temp 
 ```
 
+* Now we have Sass, an image and fonts
+* But we just want to use a simple CSS file for starters
+
 ### Add your style
-Create `src/css/style.css` and copy and paste the following code inside that file:
+1. Create `src/css/style.css`
+2. Copy and paste the following code inside that file:
 
 ```css
 @font-face {
@@ -696,7 +696,7 @@ button.twitter:after, input[type=submit].twitter:after {
 
 ## Load CSS using Webpack
 * Don't add `link` tag to `index.html` manually
-* Import the css into the `index.js` file like this:
+* Import the CSS into the `index.js` file like this:
 
 `index.js`
 

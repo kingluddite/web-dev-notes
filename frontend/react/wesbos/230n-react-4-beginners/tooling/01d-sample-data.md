@@ -1,12 +1,17 @@
 # Sample Data
-## [Mockaroo](https://www.mockaroo.com/) - Generate random data
+* We will need sample data to get our app looking real and useful
+
+## Mockaroo - Generate random data
+* [Mockaroo](https://www.mockaroo.com/)
 
 ## [format JSON](https://jsonformatter.curiousconcept.com/)
+
+## Create our own sample data
 
 `src/sample-player-data.js`
 
 ```js
-// This is just some sample data so you don't have to think of your own!
+// This is just some sample data so you don't have to create your own!
 const players = {
  player01 : {
    comments : "Duis bibendum, felis sed interdum venenatis",

@@ -1,5 +1,10 @@
 # Create `src/helpers.js`
-Used to solve common problems
+* We will use vanilla JavaScript to help us do common tasks inside our app
+  - formatPrice
+  - random numbers
+  - slugify
+  - getFunName
+* Used to solve common problems
 
 ```js
 export function formatPrice(cents) {

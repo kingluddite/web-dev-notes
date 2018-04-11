@@ -9,7 +9,7 @@
 ## What if I didn't want to use JSX?
 * Then your code would look like this and it will work
 
-```
+```js
 class TeamPicker extends React.Component {
   render() {
     return React.createElement('p', {className: 'Testing'}, 'This is a test');
@@ -22,30 +22,35 @@ class TeamPicker extends React.Component {
 * If we just have `return` it will never get to the next line and just return
 * We need to use parentheses like this:
 
-```
+```js
 return (
  // code all html we need here
  // code all html we need here
 );
 ```
 
-### Emmet expand
-#### keyboard shortcut
-`ctrl` + `e`
-
-### Writing JSX
+### Writing JSX --> Emmet expand
 * Writing JSX can be annoying as the usual Emmet `tab` doesn't work
-* You have to use the `ctrl` + `e` shortcut
-    - [Wes Box video on this](http://wesbos.com/emmet-react-jsx-sublime/)
 
-**Atom text editor error note** At the time of these notes I get an error when I run the Atom react package and language-babel
-* Atom cautions me with a blue window that the two packages conflict with each other
-* I still use them together because if I turn off language-babel, **emmet tab completion** doesn't work in JSX
-
-### Tip writing JSX with Emmet
+#### keyboard shortcut
 **tip** When writing template strings inside JSX with emmet use this syntax before you hit `ctrl` + `e`
 
-`li.person{${person.name}}+p.age{${person.age}}` - Then hit `tab` and you will get the expanded JSX you expect
+`ctrl` + `e`
+
+* Using Emmet is a must for any text editor
+* It is smart enough to convert it to JSX
+  - class ---> className
+* **note** Emmet is built into **Visual Studio Code** but you need to add this setting (`cmd` + `,`):
+
+```
+"emmet.triggerExpansionOnTab": true
+```
+
+* That will make hitting tab convert your Emmet shortcut syntax to full JSX
+* Try it out!
+* Here are instructions for using Sublime and Emmet with JSX support
+    - You have to use the `ctrl` + `e` shortcut
+    - [Wes Box video on this](http://wesbos.com/emmet-react-jsx-sublime/)
 
 #### Emmet and Atom
 [Use emmet tab completion in Atom](https://gist.github.com/mxstbr/361ddb22057f0a01762240be209321f0)
@@ -57,23 +62,20 @@ Add this to `keymap.cson`
   'tab': 'emmet:expand-abbreviation-with-tab'
 ```
 
-**note** - If it's not properly syntax highlighted, select Babel ES6 JavaScript or JSX as the syntax, this won't work otherwise
+**note** - If it's not properly syntax highlighted, select `Babel ES6 JavaScript` or `JSX` as the syntax, this won't work otherwise
 * Now tab completion works!
 
-##### Atom language-babel
-Make sure this is installed and active
+##### Atom `language-babe`l
+* Make sure this is installed and active
 
-## JSX has no class
+## JSX has no `class`
+* Uses `className` instead of `class`
 * **class** but class is a `reserved` word in JavaScript and so React and JSX have disallowed it 
 
-### You must use `className` instead
-**note**
-* Update - emmet now adds `className` instead of `class`
-
-### JSX rule
+### JSX rule - Only one parent
 * In JSX you can only return one parent element
 * Workaround - Wrap a `div` parent container around both sibling elements
-* **Fragment** is new way to avoid adding extra `div`
+* **Fragment** is new way to avoid adding extra `div` in React
 
 ### What does this rule mean? 
 ```
@@ -87,7 +89,9 @@ class TeamPicker extends React.Component {
     )
   }
 }
+```
 
+```
 // this is bad (had 2 parents)
 class TeamPicker extends React.Component {
   render() {
@@ -100,26 +104,36 @@ class TeamPicker extends React.Component {
 }
 ```
 
+* Because of this part:
+
+```
+<form className="team-selector">
+</form>
+<p>This is Bad</p>
+```
+
 * The second bad option above will generate a error similar to: `Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag (8:6)`
 
-**note** Note how cool our terminal output error is
-* It is very clear and way more user friendly in letting us know about the error than before
-
-**JSX rule** - Close your tags
+## Close your tags - JSX Rule
 * You must self close your tags
 
 ```
 // BAD
 <input type="text" required placeholder="This is not self closed">
+```
+
+```
 // GOOD
 <input type="text" required placeholder="This is not self closed" />
 ```
 
-### Tags to remember to close
+### Remember to close these tags when writing JSX
 * input ----> `<input />`
 * hr ------> `<hr />`
 * br ----> `<br />`
 * img -----> `<img />`
+
+## Update TeamPicker.js
 
 ```
 import React from 'react';
@@ -147,28 +161,34 @@ export default TeamPicker;
 ## Comments in JSX
 * Use this syntax
 
+`TeamPicker.js`
+
 ```
+// MORE CODE
 <form className="team-selector">
     {/* Look here */}
     <h2>Please Enter a Team</h2>
     <input type="text" required placeholder="Team Name" />
     <button type="submit">Visit Team</button>
 </form>
+// MORE CODE
 ```
 
 * Only when inside JSX do you need to use this syntax for comments
 * When outside JSX and in JavaScript, use the standard `//` or `/* multi-line` comments
-* Emmet makes this super easy!
+* Emmet makes this easy
 
 **tip** Don't use JSX comments like this
 
 ```
+// MORE CODE
 {/* Look here */}
 <form className="team-selector">
     <h2>Please Enter a Team</h2>
     <input type="text" required placeholder="Team Name" />
     <button type="submit">Visit Team</button>
 </form>
+// MORE CODE
 ```
 
 The reason is it violates the `only return one parent rule`

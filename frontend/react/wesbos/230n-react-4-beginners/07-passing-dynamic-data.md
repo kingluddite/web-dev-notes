@@ -14,7 +14,7 @@
 
 ### Good metaphor
 * Think of `state` like the home for data
-* This of `props` as the **car** to get the data from Component to component
+* This of `props` as the **car** to get the data from Component to Component
 
 ### Add a `tagline` prop to our Header Component
 `src/components/App.js`
@@ -68,21 +68,22 @@ class Header extends React.Component {
 export default Header;
 ```
 
+## Static vs Dynamic values
 * Now we have our HTML and we have included our `tagline` prop but it ONLY HAS A STATIC VALUE
 * We will eventually make this A DYNAMIC VALUE
 
 ## View in browser
-You'll see `Soccer Stars` is styled and the `tagline` says `Static Text Here`
+* You'll see `Soccer Stars` is styled and the `tagline` says `Static Text Here`
 
 ### View React tab in Dev Tools
 * You'll see Header has a tagline and on the right panel we see `Props` and `tagline: Soccer Stars`
     - Which is the value we gave `tagline` in `App.js`
 
 #### What can I name my prop?
-* You can name your props whatever you want
+* You can name your `props` whatever you want
 
 ### React Dev Tools Tip
-* All the attributes you give the Component are all listed under `Props` in React tab of Dev tools
+* All the attributes you give the Component are all listed under `Props` in **React** tab of Dev tools
 
 `<Header tagline="Soccer Stars" color="blue" hitpoints="100" />`
 
@@ -91,7 +92,7 @@ You'll see `Soccer Stars` is styled and the `tagline` says `Static Text Here`
 * All the `props` we added are now listed under `Props`
 
 ## Update App.js
-* You can add as many props as you want
+* You can add as many `props` as you want
 * Remove them all 
 * Just keep tagline by updating our code to just have the following `prop`:
 
@@ -120,7 +121,8 @@ export default Header;
 #### How do you put variables into JSX?
 `{this.props.tagline}`
 
-#### What is `this.props`?
+#### The use of `this`
+* What is `this.props`?
 * `this` will refer to the Component and `props` is an Object that we can use to gain access to all the `Props` available to it
 
 ## View in browser
@@ -128,8 +130,6 @@ export default Header;
 * If you change the text for `tagline` in `App.js`, and save, the text will update with your change
 
 ![props value showing](https://i.imgur.com/h0MPja0.png)
-
-### Let's talk about `this`
 
 ```
 class Header extends React.Component {
@@ -165,10 +165,10 @@ class Header extends React.Component {
 
 #### Think about this
 * The whole react component is really just an object
-  - this.props.tagline
+  - `this.props.tagline`
 
 #### And think about this
-* If you create 2 <Header /> components
+* If you create 2 `<Header />` components
 * Pass them different props like:
 
 ```
@@ -196,6 +196,7 @@ export default App;
 * So each Component is an instance of that component
 * The same component can get different prop values passed to it
 
+### $0
 **Debug** Elements in **Elements** tab of dev tools with `$0`
 
 1. Just select element you want to inspect
@@ -204,11 +205,12 @@ export default App;
 4. Let's say you select a `<div class="menu">...</div>`
 5. Then type `$0.classList` and you will see `["menu"]`
 
-**note** $1 is send last item you click, $2, is 3rd last item you clicked
+**note** `$1` is send last item you click, `$2`, is 3rd last item you clicked
 
 `Header.js`
 
-* Final Header code
+* Final `Header` code
+* Check out the value of `this` in the Chrome console
 ```
 import React from 'react';
 
@@ -228,4 +230,3 @@ class Header extends React.Component {
 
 export default Header;
 ```
-
