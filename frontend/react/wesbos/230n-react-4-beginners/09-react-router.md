@@ -19,11 +19,12 @@
 * If you are passing items other than "Strings" you need to wrap them inside `{}` curly braces
 * 
 
-`index.js`
+Router.js`
 
 ```
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import TeamPicker from './TeamPicker';
 import App from './App';
 import NotFound from './NotFound';
@@ -32,7 +33,7 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={TeamPicker} />
-      <Route path="/team/:123" component={App} />
+      <Route path="/team/:teamId" component={App} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
@@ -64,4 +65,21 @@ const NotFound = (props) => {
 export default NotFound;
 ```
 
-* We need to import this Component into our `index.js
+* We need to import this Component into our `index.js`
+
+`index.js`
+
+```
+import React from 'react';
+import { render } from 'react-dom';
+import './css/style.css';
+
+import Router from './components/Router';
+
+render(<Router />, document.querySelector('#root'));
+```
+
+## Browse to 3 different routes
+* http://localhost:8080/ (TeamPicker form)
+* http://localhost:8080/team/123 (App)
+* http://localhost:8080/anything/else (NotFound)

@@ -2,15 +2,17 @@
 
 ## What is state?
 * `state` is just an object that holds data that itself needs as well some children may need
+* This of `state` as a single source of truth
 
 ## "single source of truth"
-* Sometimes in jquery your data lives in multiple places
+* Sometimes in `jquery` your data lives in multiple places
   - maybe in a variable and some in a data attribute on a DOM element
   - Pull it out of there and put it back in and use that as a place to store your data
 * The representation of all of the data in our application
 * Each Component can have its own `state`
 * Think of `state` as one object that holds the data of all of our application or a piece of our application
 * We just want to update our data and let react take it from there
+* Remember in React we "don't want to touch the DOM"
 
 ### `state` in team of the day app
 * We have state with: 
@@ -18,7 +20,9 @@
   - How many rosters we have
 
 ### `state` in jQuery
-* You could save **data** in `attributes`. 
+
+### One way to go about it
+* You could save **data** in `attributes`
 
 1. Save **data** in the **DOM**
 2. Then pull it out
@@ -39,7 +43,7 @@
 
 ### Huge idea behind `state`
 * If you view a website made with **React** in the browser and you change the `state` inside one of it's Components
-    - that will change everywhere that state is pulled from and **React** will update the HTML
+    - That will change everywhere that `state` is pulled from and **React** will update the **HTML**
 * The great thing is you have all these balls in the air but you don't have to:
     - **id** them,
     - Grab their contents
@@ -50,32 +54,27 @@
 * We will create a new Component called `src/components/AddPlayerForm.js`
 
 ```
-import React from 'react';
+import React, { Component } from 'react';
 
-class AddPlayerForm extends React.Component {
+class AddPlayerForm extends Component {
   render() {
     return (
       <form className="player-edit">
-      <input type="text" placeholder="First Name" />
-      <input type="text" placeholder="Last name" />
-      <select>
-        <option value="available">Available</option>
-        <option value="injured">Injured</option>
-        <option value="excused">Excused</option>
-        <option value="unexcused">Unexcused</option>
-      </select>
-      <input type="text" placeholder="Position" />
-      <input type="text" placeholder="Fee" />
-      <input type="text" placeholder="Jersey Number" />
-      <input type="text" placeholder="Email" />
-      <textarea placeholder="Comments"></textarea>
-      <button type="submit">+ Add Player</button>
+        <input type="text" name="name" placeholder="Name" />
+        <input type="text" name="price" placeholder="Price" />
+        <select name="status">
+          <option value="available">Starter</option>
+          <option value="unavailble">Substitute</option>
+        </select>
+        <textarea name="desc" placeholder="Desc" />
+        <input type="text" name="image" placeholder="Image" />
+        <button>Add Player</button>
       </form>
-    )
+    );
   }
 }
 
-export default AddPlayerForm
+export default AddPlayerForm;  
 ```
 
 ## Update Roster.js
@@ -131,65 +130,80 @@ class AddPlayerForm extends Component {
 ### Adding `ref` to our form
 
 ```
-render() {
-    return (
-      <form ref={(input) => this.playerForm = input} className="player-edit" onSubmit={this.createPlayer}>
-      <input ref={(input) => this.firstName = input} type="text" placeholder="Player First Name" />
-      <input ref={(input) => this.lastName = input} type="text" placeholder="Player Last name" />
-      <select ref={(input) => this.status = input}>
-        <option value="available">Available</option>
-        <option value="injured">Injured</option>
-        <option value="excused">Excused Absence</option>
-        <option value="unexcused">Unexcused Absence</option>
-      </select>
-      <input ref={(input) => this.position = input} type="text" placeholder="Player Position" />
-      <input ref={(input) => this.fee= input} type="text" placeholder="Player Fee" />
-      <input ref={(input) => this.number = input} type="text" placeholder="Player Jersey Number" />
-      <input ref={(input) => this.email = input} type="text" placeholder="Player Email" />
-      <textarea ref={(input) => this.comments = input} placeholder="Comments"></textarea>
-      <button type="submit">+ Add Player</button>
-      </form>
+import React, { Component } from 'react';
 
-    )
-  }
-```
+class AddPlayerForm extends Component {
+  nameRef = React.createRef();
+  priceRef = React.createRef();
+  statusRef = React.createRef();
+  descRef = React.createRef();
+  imageRef = React.createRef();
 
-### Update the `createPlayer(`) method
-```
-createPlayer(e) {
+  createPlayer = e => {
     e.preventDefault();
     const player = {
-      firstName: this.firstName.value,
-      lastName: this.lastName.value,
-      status: this.status.value,
-      position: this.position.value,
-      fee: this.fee.value,
-      number: this.number.value,
-      email: this.email.value,
-      comments: this.comments.value,
-    }
+      name: this.nameRef.current.value,
+      price: this.priceRef.current.value,
+      status: this.statusRef.current.value,
+      desc: this.descRef.current.value,
+      image: this.imageRef.current.value,
+    };
     console.log(player);
+  };
+
+  render() {
+    return (
+      <form className="player-edit" onSubmit={this.createPlayer}>
+        <input type="text" name="name" ref={this.nameRef} placeholder="Name" />
+        <input type="text" name="price" ref={this.priceRef} placeholder="Price" />
+        <select name="status" ref={this.statusRef}>
+          <option value="available">Starter</option>
+          <option value="unavailble">Substitute</option>
+        </select>
+        <textarea name="desc" ref={this.descRef} placeholder="Desc" />
+        <input type="text" name="image" ref={this.imageRef} placeholder="Image" />
+        <button>Add Player</button>
+      </form>
+    );
   }
+}
+
+export default AddPlayerForm;
 ```
 
-### Test it out. 
-Enter some fake data and submit. You will see an object with all our data nicely inside
+### Test it out
+* Enter some fake data and submit
+* You will see an object with all our data nicely inside
+
+### Make our money a number and not a string
+`price: parseFloat(this.priceRef.current.value),`
+
+* Test and you'll see `priceRef` is blue in chrome dev tools because it is a number
+* Doing it like this will keep us from worrying about decimals
 
 ## How do we get our player object into our state?
-We will put our `state` on our `App` Component (_the parent of all our other Components_)
+* We will put our `state` on our `App` Component (_the parent of all our other Components_)
 
 ## How do you use state on a React Component?
 **note** In older React apps it was called `getInitialState`
 
+### Good to know
+* Right now our data is only available in our `AddPlayerForm` component
+* We will put our `state` in our app and pass down that `state` to nested components using `props`
+
 ### React needs to know:
-
-* What state you are going to have?
-* What type of state it is going to be?
+* What `state` you are going to have?
+* What type of `state` it is going to be?
 * What to expect?
-
-When our `App` Component initializes we will tell `App` we will have a **players** `state` and a **lineup** `state`
-
+* When our `App` Component initializes we will tell `App` we will have a **players** `state` and a **lineup** `state`
 * We do that using a **ES6** class `constructor` method
+* You can't pass data up but you can always pass data down
+
+## How do we set state in our App
+* We could use a constructor
+* But my preferred way is to use a property
+
+
 
 ## Constructor methods to state
 **note** You can not use the keyword `this` until you use `super()` and that is because the **React.Component** we are extending needs to be initialized

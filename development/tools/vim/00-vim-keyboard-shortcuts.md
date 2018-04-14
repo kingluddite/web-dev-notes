@@ -6,6 +6,14 @@
 * If you are sure you don’t need any vim swap files in a directory tree and want to get rid of them, you can use the following command in the directory while vim is not running (not even in another window or even a different login session):
 * This will delete all files whose names end with .swk, .swl, .swm, .swn, .swo, or .swp in the current directory tree
 
+## Visual Block Mode
+`ctrl` + `v`
+select column
+move to right to highlight all words
+x to cut them
+shift + i to type new word
+esc and all words will be updated at same time
+
 ## Open html file in Chrome browser (file:///)
 `:!open % -a Google\ Chrome`
 

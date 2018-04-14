@@ -5,6 +5,8 @@
 * Save `TeamPicker.js` as `App.js`
 * Make App.js look like this:
 
+`App.js`
+
 ```
 import React from 'react';
 import Header from './Header'; // Add this line

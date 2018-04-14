@@ -173,20 +173,20 @@ class Header extends React.Component {
 
 ```
 // MORE CODE
-class App extends React.Component {
-  render() {
-    return (
-      <div className="team-of-the-day">
-        <div className="menu">
-          <Header tagline="Soccer Stars" />
-          <Header tagline="Tennis Stars" />
+  class App extends React.Component {
+    render() {
+      return (
+        <div className="team-of-the-day">
+          <div className="menu">
+            <Header tagline="Soccer Stars" />
+            <Header tagline="Tennis Stars" />
+          </div>
+          <Lineup />
+          <Roster />
         </div>
-        <Lineup />
-        <Roster />
-      </div>
-    );
+      );
+    }
   }
-}
 
 export default App;
 ```

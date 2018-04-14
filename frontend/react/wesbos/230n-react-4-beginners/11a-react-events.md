@@ -11,13 +11,70 @@
 * You probably have been taught that the separation of concerns is good (put html in html, css in css and JavaScript in JavaScript)
 * In React, they all come back together and go against what you were taught... but for a good reason
 
+## Simple example of event
+```
+// MORE CODE
+class TeamPicker extends React.Component {
+  handleClick() {
+    alert('yo');
+  }
+
+  render() {
+    return (
+      <form className="team-selector">
+        <h2>Please Enter a Team Name</h2>
+
+        <button onClick={this.handleClick}>Click Me!</button>
+
+        <input type="text" required placeholder="Team Name" defaultValue={getFunName()} />
+        <button type="submit">Visit Team</button>
+      </form>
+    );
+  }
+}
+// MORE CODE
+```
+
+* Refresh page
+* Click button
+* You will see alert window pop up with 'yo'
+
 ## Our first event
+```
+import React from 'react';
+import { getFunName } from './../utilities/helpers';
+
+class TeamPicker extends React.Component {
+  goToTeam() {
+    console.log('goToTeam function called');
+  }
+
+  render() {
+    return (
+      <form className="team-selector" onSubmit={this.goToTeam}>
+        <h2>Please Enter a Team Name</h2>
+
+        <input type="text" required placeholder="Team Name" defaultValue={getFunName()} />
+        <button type="submit">Visit Team</button>
+      </form>
+    );
+  }
+}
+
+export default TeamPicker;
+```
+
+## View in browser
+* There is a flicker
+* Add `preserve log` inside chrome dev tools (in console)
+  - Check the checkbox
+
 * We need to do **2** things:
 
-1. When the user submits the TeamPicker's button we need to grab the value the user entered into the input field and get that value into React
+1. When the user submits the `TeamPicker`'s button we need to grab the value the user entered into the input field and get that value into React
 2. We need to change the URL from `/` to `/team/value-they-type-in-input-field`
 
-### Which event should we use?
+### Which event should we use? click or submit?
 * We need `click` but also if someone hits the `return/enter` key and that event is the `onSubmit` event
 
 #### Creating our own method
@@ -92,13 +149,16 @@ export default TeamPicker;
 * In vanilla JavaScript we just use `preventDefault()` to stop a form from submitting or refreshing the page
 
 #### Update our `goToTeam()` method
-```js
-goToTeam(event) {
-    event.preventDefault();
-    console.log('goToTeam() method fired!');
-    // first grab text from text field
-    // second change URL from / to /team/:teamId
-}
+```
+// MORE CODE
+class TeamPicker extends React.Component {
+  goToTeam(e) {
+    // 1. Stop the form from submitting
+    e.preventDefault();
+    // 2. get the text from that input
+    // 3. Change the page to /team/whatever-they entered
+  }
+// MORE CODE
 ```
 
 * `event` is the event that we are now passing to our `goToTeam()` method
@@ -108,6 +168,7 @@ goToTeam(event) {
 * And the default page refresh on submit does not happen because we turned off the default JavaScript form behavior
 
 ## Grabbing the input text value
+**note** golden rule in React is **don't touch the DOM**
 * React handles the DOM - not you!
 * We can't use jQuery with something like `const value = $('input').val();`
 * But in React you want to avoid touching the DOM as much as possible
@@ -133,12 +194,17 @@ render(
 
 * So what the above code is doing is when the input is added to the page, it will have a reference added to it on the class itself
 * I don't like referencing like above so below is a better solution and the one I recommend
+* `ref="myInput"` is **deprecated**
+* **function ref** (harder to understand)
+  - `ref={(myInput) => this.myInput = myInput`
+    + Was the standard way to do references and React is keeping but there is a much simpler way to use references
+    + Can be used for any element on the page
 
 ## New "cleaner" way to use `ref`
 
 ```
 import React from 'react';
-import { getFunName } from './../helpers';
+import { getFunName } from './../utilities/helpers';
 
 class TeamPicker extends React.Component {
   teamInput = React.createRef();
@@ -146,7 +212,7 @@ class TeamPicker extends React.Component {
   goToTeam(e) {
     e.preventDefault();
     // console.log('goToTeam() method fired!');
-    this.teamInput;
+    console.log(this.teamInput);
   }
 
   render() {
@@ -169,8 +235,21 @@ class TeamPicker extends React.Component {
 export default TeamPicker;
 ```
 
+* This is the new way to add references in React
+
+```
+// MORE CODE
+teamInput = React.createRef()
+// MORE CODE
+<input
+  type="text"
+  ref={this.teamInput}
+// MORE CODE
+```
+
 ## View in browser
 * We get an error `teamInput` of undefined
+  - `Cannot read property 'teamInput' of undefined`
 * Why is `this` undefined?
 
 ```
@@ -186,41 +265,49 @@ goToTeam(e) {
 
 * This error is a weird part of React
 * The fix is simple but you need to understand why this is happening
+* Above we just log out `this` and see that it is **undefined**
 
 ### more on `this`
-* Inside `render()` `this` is defined as the component it is inside
-* But outside of the render, `this` is undefined
+* Inside `render()` `this` is defined as the component it is inside (so this is defined inside the component)
+* But outside of the `render`, `this` is **undefined**
+* This is because of **binding** in react
 
 ## Binding in React
-* React has a bunch of built-in methods
+* React has a bunch of built-in methods:
   - render()
   - LifeCycle events
     + example:
-      * componentDidMount() {}
+      * `componentDidMount() {}`
         - Runs as soon as component is put on the page (aka mounted to the page)
 
 `TeamPicker.js`
 
 ```
 // MORE CODE
-componentDidMount() {
-  console.log('Mounted');
-  console.log(this);
-}
+class TeamPicker extends React.Component {
+  componentDidMount() {
+    console.log('Mounted');
+    console.log(this);
+  }
 
-render() {
+  teamInput = React.createRef();
+
+  goToTeam(e) {
 // MORE CODE
 ```
 
 ## View in browser
 * As soon as page loads we see that `componentDidMount()` is working because we see `Mounted` in the console
 * We also see that `this` is bound to the `TeamPicker` component
-* All built-in React methods are bound by default
-* But any methods we extend, are not bound by 
+* **note** All built-in React methods are bound by default
+* But any methods we `extend`, are not bound by 
   - This makes it hard to reference a component from inside one of our custom methods
+  - So when you use `extends` on the **mamma** React component, any method you create on that extended component is not bound by default
+    + This makes it hard to reference a method from inside your custom components
+    + When working with state and trying to reference it with `this.setState` not accessing `this` will be a problem
 
 ### What is the solution to this problem?
-* Bind our own methods
+* Bind our own methods as well
 
 ## Why is there so many elements in our React tab?
 * So check out **React tab**
@@ -257,73 +344,13 @@ var TeamPicker = React.createClass({
 
 ### Three ways to manually bind `this` to our Component
 1. In the constructor
+2. Inline
+3. Use a property instead of a method (preferred)
 
-```
-constructor() {
-  super();
-  this.goToTeam = this.goToTeam.bind(this);
-}
-```
-
-* We use the `constructor()` method to that will take all the methods from the parent class (`React.Component`)
-    - `super()` allows us to create a new instance of `React.Component` and name it **TeamPicker** and then sprinkle onto it our own methods like `goToTeam`
-        + Then we can, through the constructor, specifically bind `this.goToTeam` by assigning it `this.goToTeam.bind(this);`
-        + This is strange for people to wrap their head around
-        + Knowing how ES6 classes work will help but you then have to do this for every method you want to bind to this
-            * React developers use this for methods they use more than once
-
-## 2. `{this.goToTeam.bind(this)}`
-
-```
-<form className="team-selector" onSubmit={this.goToTeam.bind(this)}>
-```
-
-```
-import React from 'react';
-import { getFunName } from '../helpers';
-
-class TeamPicker extends React.Component {
-  // no constructor used here
-  goToTeam(e) {
-    e.preventDefault();
-    console.log('goToTeam() method fired!');
-    // first grab text from text field
-    console.log(this.teamInput );
-    // second change URL from / to /team/:teamId
-  }
-
-  render() {
-    return (
-      <form className="team-selector" onSubmit={this.goToTeam.bind(this)}>
-        {/* Look here */}
-        <h2>Please Enter a Team</h2>
-        <input type="text" required placeholder="Team Name" defaultValue={getFunName()} ref={(input) => { this.teamInput = input }} />
-
-        <button type="submit">Visit Team</button>
-      </form>
-    )
-  }
-}
-
-export default TeamPicker;
-```
-
-### View in browser and you will see clicking the button returns the `input`
-* If you change `console.log(this.teamInput )` to `console.log(this)` you will see the `TeamPicker` Component
-
-## Binding with the Arrow function (The ES6 way)
-* Binding the ES6 way with a fat arrow
-    - Change this:
-
-`onSubmit={this.goToTeam.bind(this)}`
-
-To this:
-
-`onSubmit={(e) => this.goToTeam(e)}`
-
-### A better way to bind
-* inline make your code verbose
-* binding inside constructor can take up a lot of space
+### A better way to bind - Make it a property
+* (_instead of a method_)
+* inline make your code verbose (con)
+* binding inside constructor can take up a lot of space (con)
 
 `TeamPicker.js`
 
@@ -334,9 +361,7 @@ class TeamPicker extends React.Component {
 
   goToTeam = (event) => {
     event.preventDefault();
-    // console.log('goToTeam() method fired!');
     console.log(this);
-    // this.myInput;
   }
 
   render() {
@@ -347,3 +372,11 @@ class TeamPicker extends React.Component {
 * Instead of creating a **method** on the Component we declare a **property** which will be set to an arrow function
   - since properties are bound to the instance rather than nothing
   - Now we're able to access `this` inside of it
+* You may have wondered why we would use the arrow function over a regular function and the reason it was created was to handle `this`
+  - When we have an arrow function the `this` inside that arrow function is bound to the parent (which would be the class)
+
+## Test in browser
+* Now we see that `this` is defined and represents the Component
+
+## Reading Assignment
+* [What is the DOM?](https://css-tricks.com/dom/)

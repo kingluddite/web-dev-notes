@@ -13,7 +13,7 @@
 
 ```json
 {
-  "name": "team-picker-app",
+  "name": "team-builder-app",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "dev-server": "webpack-dev-server",
     "precommit": "lint-staged",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "start": "node server/server.js",
+    "start": "node src/index.js",
     "heroku-postbuild": "yarn run build:prod",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json"
   },
@@ -49,7 +49,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
-    "eslint": "4.15.0",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-last": "0.0.5",
     "eslint-config-prettier": "2.9.0",
@@ -64,7 +64,7 @@
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-standard": "^3.0.1",
     "express": "^4.16.2",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "firebase": "^4.9.0",
     "history": "^4.7.2",
     "husky": "^0.14.3",
@@ -82,14 +82,13 @@
     "react-dom": "^16.2.0",
     "react-modal": "^3.1.10",
     "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "^4.3.0-rc.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "uuid": "^3.1.0",
-    "validator": "^9.2.0",
-    "webpack": "^3.10.0"
+    "validator": "^9.2.0"
   },
   "devDependencies": {
     "cross-env": "^5.1.3",
@@ -97,7 +96,9 @@
     "jest": "^22.1.4",
     "react-test-renderer": "^16.2.0",
     "redux-mock-store": "^1.5.1",
-    "webpack-dev-server": "^2.9.7"
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3"
   }
 }
 ```
@@ -202,7 +203,9 @@ module.exports = env => {
         },
       ],
     },
+    mode: 'development',
     plugins: [
+      new webpack.LoaderOptionsPlugin({ options: {} }),
       CSSExtract,
       new webpack.DefinePlugin({
         'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),

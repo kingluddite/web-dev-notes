@@ -133,7 +133,7 @@ export default TeamPicker;
 ```
 
 * If you just want default text in input you need to use the `defaultValue`
-* Notice how we import the `getFunName()` named `export`
+* Notice how we import the `getFunName()` **named export**
 * We set a `defaultValue={getFunName()}` and that will call the function
 
 ## View the page in browser
