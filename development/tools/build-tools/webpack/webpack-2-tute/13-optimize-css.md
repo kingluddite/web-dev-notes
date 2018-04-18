@@ -26,7 +26,8 @@
 // MORE CODE
 const bootstrapEntryPoints = require('./webpack.bootstrap.config');
 const glob = require('glob'); // add this line
-const PurifyCSSPlugin = require('purifycss-webpack'); // add this line
+// ADD THE NEXT LINE
+const PurifyCSSPlugin = require('purifycss-webpack'); 
 // MORE CODE
 ```
 
