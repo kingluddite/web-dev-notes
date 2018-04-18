@@ -61,7 +61,7 @@ document.body.appendChild(button);
 ![diagram System](https://i.imgur.com/kJs1Mqy.png)
 
 * System is a global variable inside of JavaScript
-* System.import()
+* `System.import()`
     - Special function of ES6 (ES2015) spec
     - takes an argument (name of module) we want to import
     - If the module we are pulling in has its own imports, those would be pulled in as well

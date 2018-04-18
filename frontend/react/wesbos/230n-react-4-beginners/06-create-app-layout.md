@@ -8,7 +8,7 @@
 `App.js`
 
 ```
-import React from 'react';
+  import React from 'react';
 import Header from './Header'; // Add this line
 
 class App extends React.Component {

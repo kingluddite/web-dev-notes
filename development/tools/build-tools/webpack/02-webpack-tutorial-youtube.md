@@ -74,23 +74,34 @@ module.exports = {
 ```
 
 `context: __dirname (the directory we're in)`
-if you're app lived in a directory called app do this
+
+* If you're app lived in a directory called `app` do this
+
 `context: __dirname + '/app'`
 
 `var debug = process.env.NODE_ENV !== "production";`
-says if our environment is production then do minification and don't do source mapping
 
-if it's not production we will consider that debug mode
+## Environment
+* Says if our environment is `production`:
+    - Then do minification
+    - And don't do source mapping
+* If it's not production we will consider that `debug` mode
+* If debug we will inline source maps, otherwise we will have no dev tool at all
 
-if debug we will inline source maps, otherwise we will have no dev tool at all
+## Entry Point
+* Our entry point is `scripts.js` (this is where we're starting off)
 
-our entry point is `scripts.js` (this is where we're starting off)
-
+## Output
 our output will be put in the `/js` folder and we'll create a file called `scripts.min.js`
 
-if we are in `debug mode`, no plugins (empty array)
-if we are in `production environment` we are going to dedupe (strip out duplicate code)
-run uglify - get rid of sourcemaps, comments make it production ready
+## Debug Mode
+* If we are in `debug mode`, no plugins (empty array)
+
+## Production
+* If we are in `production environment` we are going to: 
+    - dedupe (strip out duplicate code)
+    - run uglify - get rid of sourcemaps/comments
+    - make our code production ready
 
 run webpack
 `$ webpack`

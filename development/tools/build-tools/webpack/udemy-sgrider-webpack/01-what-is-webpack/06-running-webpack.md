@@ -24,16 +24,16 @@
 
 ![webpack script](https://i.imgur.com/HtSNaNZ.png)
 
-You could install webpack globally `$ yarn add -g webpack` and then later you could just run webpack with `$ webpack`
+* You could install webpack globally `$ yarn add -g webpack` and then later you could just run webpack with `$ webpack`
 
 #### That is a bad approach to take
 * When you install webpack globally and then run it
   - Your computer will then look at all your globally installed modules it will find one called webpack and run it
 
-* But if you install it per project you get benefits
-
-If you install globally you can only install one version of webpack at a time
-If you want two different projects running two different versions of webpack our second way is superior
+### Install Webpack per project benefits
+* But if you install it per project you get benefits:
+    - If you install globally you can only install one version of webpack at a time
+    - If you want two different projects running two different versions of webpack our second way is superior
 
 `$ npm run build`
 
@@ -64,8 +64,9 @@ The we can see inside the **index.js** function that it references the function 
 * Stuffs those functions into an array
 * Then calls those different functions in that array
 
-There is no big magic going on. It is all plain vanilla javascript code that webpack is spitting out
-
+## No magic here
+* There is no big magic going on
+* It is all plain vanilla javascript code that webpack is spitting out
 * remember everything webpack does will run on older browsers
 
 ## Run our app inside the browser
@@ -84,4 +85,4 @@ By convention SPA's have one `index.html`
 
 `$ open index.html`
 
-Check the console and you should see `> 600`
+* Check the console and you should see `> 600`

@@ -127,7 +127,9 @@ module.exports = {
 * This is a large app (3.36 MB)
 * We get warnings because it is so large
 * `$ open index.html`
-* Different pages? Code splitting might help
+* Different pages? 
+
+## Code splitting might help
 
 ## Vendor Asset Caching
 * Webpack doesn't make fetching data faster
@@ -213,12 +215,13 @@ import Routes from './router';
 
 ![crude wireframe](https://i.imgur.com/Zb7mvJS.png)
 
-* How we have it coded so far webpack won't go through our vendor and bundle and just make sure files are only included one time. I have redux dependency for bundle and for vendor and it will bring them both in
+* How we have it coded so far webpack won't go through our vendor and bundle and just make sure files are only included one time
+* I have redux dependency for bundle and for vendor and it will bring them both in
 * To reduce duplications we'll use a plugin
 
-## Plugins
-* Plugins are like loaders but they are looking at the total sum of inputs or outputs that is going through webpack
-* Loaders - look at individual files
+## Plugins vs Loaders
+* **Plugins** are like loaders but they are looking at the total sum of inputs or outputs that is going through webpack
+* **Loaders** - look at individual files
 
 `webpack.config.js`
 
@@ -233,13 +236,13 @@ import Routes from './router';
 };
 ```
 
-* Tells webpack to look at the total sum of all of our files between both bundle and vendor entry points
+* This tells webpack to look at the total sum of all of our files between both bundle and vendor entry points
 * If any modules in all those files are identical (aka duplicates)
 * Pull them out and only add them to the `vendor` entry point
 
 `$ npm run build`
 
-We save space!
+## We save space!
 
 ![smaller file](https://i.imgur.com/8ga9ONx.png)
 

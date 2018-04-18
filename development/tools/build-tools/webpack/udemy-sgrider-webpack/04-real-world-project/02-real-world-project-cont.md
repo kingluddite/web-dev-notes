@@ -113,8 +113,8 @@ module.exports = {
 </html>
 ```
 
-## Disable cache (while DevTools is open)
-`ctrl` + `j` > `Settings`
+## Disable cache (while DevTools is open) - IMPORTANT
+`ctrl` + `j` > `Settings` (under Network)
 
 ![Disable cache (while DevTools is open)](https://i.imgur.com/amRltjy.png)
 
@@ -146,7 +146,7 @@ module.exports = {
 ```
 
 * one small gotcha
-* When we build webpack will think we also changed our vendor
+* When we build webpack, it will think we also changed our vendor
 
 #### The fix
 Update this:
@@ -173,12 +173,12 @@ plugins: [
 
 * With that change, a new file will be created `manifest` that's purpose is to better tell the browser whether or not the vendor file actually got changed
 
-Chunked cache with manifest
+## Chunked cache with manifest
 
 ![chunked cache](https://i.imgur.com/cF4cPp4.png)
 
-* separate caches for bundle.js and vendor.js
-* if we change something in our custom code, the bundle will change but vendor will be same chunk cache
+* Separate caches for `bundle.js` and `vendor.js`
+* If we change something in our custom code, the bundle will change but vendor will be same chunk cache
 
 `src/index.js`
 

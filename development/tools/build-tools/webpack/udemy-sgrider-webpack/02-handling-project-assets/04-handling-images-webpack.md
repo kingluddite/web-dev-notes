@@ -101,14 +101,14 @@ document.body.appendChild(bigImage);
 `$ yarn build`
 
 ### Error!
-You need to install file-loader
+You need to install `file-loader`
 
 * You need to update brew with `$ brew install libpng`
 * Also add `$ yarn add file-loader`
 
 `$ yarn build`
 
-It should work now
+## It should work now
 
 * You should see a super large image filename inside `dist`
 * The small image has been converted to **base64**
@@ -132,7 +132,7 @@ const config = {
 
 `$ npm build`
 
-Refresh `index.html` in brower and our image appears
+Refresh `index.html` in browser and our image appears
 
 ![publicPath diagram](https://i.imgur.com/Mf6JYkB.png)
 

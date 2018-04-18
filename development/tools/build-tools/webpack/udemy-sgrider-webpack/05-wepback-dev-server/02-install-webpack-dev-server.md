@@ -19,7 +19,7 @@
 
 * It will run and tell us our site is running at http://localhost:8080
 * visit that page
-* make a change to the console.log() and watch how the web page updates automatically
+* make a change to the `console.log()` and watch how the web page updates automatically
 * the big key is that it does not rebuild the whole project
     - If you scroll up in the terminal you will see that only 1 file was rebuilt
 

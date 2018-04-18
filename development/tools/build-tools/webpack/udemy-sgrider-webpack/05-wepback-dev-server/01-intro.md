@@ -1,8 +1,7 @@
 # Introduction to Webpack Dev Server
-How does webpack fit into our overall architecture
-
-* currently we are running webpack manually
-* getting tired running this build command every time
+* How does webpack fit into our overall architecture?
+    - Currently we are running webpack manually
+    - Getting tired running this build command every time
 
 ## How Webpack works in a server-based world
 ![how we are currently using webpack](https://i.imgur.com/kpIGdL3.png)
@@ -23,10 +22,10 @@ How does webpack fit into our overall architecture
     - It only updates the individual files that have changed, not everything
     - When we make changes we won't have to wait 10 minutes for a build, it will just be a fraction of a second
 * Webpack will serve our `index.html` back to us so we won't have to open it up and refresh it
-* Our browser will connect directly to webpack-dev-server
+* Our browser will connect directly to `webpack-dev-server`
     - We don't have access to the 'guts' of this server
-    - webpack-dev-server is only about developing a client-side web app single page app with zero server side logic
-        + We don't get the opportunity to add any logic to webpack-dev-server
+    - `webpack-dev-server` is only about developing a client-side web app single page app with zero server side logic
+        + We don't get the opportunity to add any logic to `webpack-dev-server`
 
 ### So how can we:
 * Access a Database?
