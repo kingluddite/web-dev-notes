@@ -20,13 +20,13 @@
 `$ yarn add -D purifycss-webpack purify-css`
 
 ## Add glob and purifycss-webpack
-`webpack.config.css`
+`webpack.config.js`
 
 ```
 // MORE CODE
+// ADD these lines
 const bootstrapEntryPoints = require('./webpack.bootstrap.config');
 const glob = require('glob'); // add this line
-// ADD THE NEXT LINE
 const PurifyCSSPlugin = require('purifycss-webpack'); 
 // MORE CODE
 ```

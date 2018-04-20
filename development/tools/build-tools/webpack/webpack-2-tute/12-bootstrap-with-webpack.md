@@ -2,9 +2,10 @@
 ## Install bootstrap-loader
 * [documentation](https://github.com/shakacode/bootstrap-loader)
 * `$ yarn add bootstrap-loader -D`
+* `$ yarn add bootstrap@4.0.0-beta`
 * Also install dependencies
 
-`$yarn add -D resolve-url-loader url-loader`
+`$ yarn add -D resolve-url-loader url-loader`
 
 ## We will install bootstrap 4
 
@@ -304,7 +305,7 @@ new ExtractTextPlugin({
 bootstrapCustomizations: ./path/to/bootstrap/customizations.scss
 ```
 
-* Comment in the above line
+* "Comment in" the above line
 * Create that file `/bootstrap/customizations.scss`
 * In that file you can override an values inside `_variables.scss` (bootstrap)
 
@@ -316,7 +317,12 @@ bootstrapCustomizations: ./path/to/bootstrap/customizations.scss
 
 ```
 @import './bootstrap/customizations.scss';
+// MORE CODE
+```
 
+`./bootstrap/customizations.scss`
+
+```
 html, body {
   height: 100%;
   min-height: 100%;

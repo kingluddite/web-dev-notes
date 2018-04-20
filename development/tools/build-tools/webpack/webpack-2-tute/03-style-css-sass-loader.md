@@ -1,4 +1,13 @@
 # Style, CSS and Sass loaders
+## Flash of CSS (Flash of Unstyled Content)
+* If all your CSS is baked inside the JavaScript, this is not good for producton
+* This solution doesn't allow cache CSS
+* You can also get a Flash of Unstyled Content (FOUC)
+  - FOUC happens because the browser takes a while to load JavaScript and the styles would be applied only then
+  - Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately
+* Webpack provides a means to generate a separate CSS bundles using ExtractTextPlugin
+* [How to avoid FOUC](https://survivejs.com/webpack/styling/separating-css/)
+
 ## Loaders
 * webpack enables use of loaders to preprocess files
 * This allows you to bundle any static resource way beyond JavaScript
