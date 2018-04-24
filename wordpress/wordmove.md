@@ -1,7 +1,7 @@
 # WordMove
 
-## zsh
-* I like zsh but this is a problem my zshrc is not configured properly and it doesn't know about my latest version of ruby so I need to switch back to bash and that .bash_profile (default with vvv install) works
+## zsh - SUPER IMPORTANT
+* I like zsh but this is a problem my `zshrc` is not configured properly and it doesn't know about my latest version of ruby so I need to switch back to bash and that .bash_profile (default with vvv install) works
 
 `$ exec bash -l`
 

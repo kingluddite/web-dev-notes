@@ -1,5 +1,20 @@
 # VVV
 
+## HOw to create a new WP site
+custom config file
+
+```
+testsite:
+ repo: https://github.com/Varying-Vagrant-Vagrants/custom-site-template
+ hosts:
+   - testsite.test
+```
+
+Then run this line:
+
+* `$ vagrant provision --provision-with=site-testsite`
+* Obviously change `testsite` to your site name
+
 ## Install oh-my-zsh on VVV
 ```
 # Added zsh shell.
