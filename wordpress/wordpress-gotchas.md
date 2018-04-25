@@ -81,8 +81,15 @@ Turn on debug mode
 * turn on debugging only use in development 
 
 ```php
+// MORE CODE
+$table_prefix = 'wp_';
+
+
 // Set to false when in Production
 define( 'WP_DEBUG', true );
+
+/* That's all, stop editing! Happy blogging. */
+// MORE CODE
 ```
 
 ## File Permissions

@@ -65,22 +65,15 @@ NameVirtualHost *:80
 * The last Virtual host will point to the Sites folder (that is where we told MAMP our server root is located)
     - Browsing to localhost will show you all sites inside the Sites folder
 
-<<<<<<< Updated upstream
+
 ### host file
 * Open your host file by pasting the following in your terminal:
 
 `$ sudo code /etc/hosts`
-=======
+
 ## Adding a virtual host in MAMP for Mac
 *[docs](http://eppz.eu/blog/virtual-host-for-mamp-on-osx/)
 * [docs](https://stackoverflow.com/questions/35251032/how-to-create-virtual-hosts-in-mamp)
-
-### host file
-* Open your host file by pasting the following in your terminal:
-
-`$ code /etc/hosts`
->>>>>>> Stashed changes
-
 * **You will see something like below**
 *   Just make one up, it will only be locally known to your computer
 *   Be sure to match the IP address with the one before “localhost”
