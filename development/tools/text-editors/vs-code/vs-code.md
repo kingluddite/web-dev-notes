@@ -1,5 +1,10 @@
 # VS Code
 
+## Choose cool theme
+1. Install Material Theme and Reload
+2. cmd shift p > type theme
+3. choose material theme palenight high contrast
+
 ## Essential Configurations for React Apps
 
 ### Make VS Code use Sublime Text keyboard shortcuts

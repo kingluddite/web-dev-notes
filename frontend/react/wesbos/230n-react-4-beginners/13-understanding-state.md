@@ -201,9 +201,205 @@ export default AddPlayerForm;
 
 ## How do we set state in our App
 * We could use a constructor
-* But my preferred way is to use a property
 
+```
+// MORE CODE
+class App extends React.Component {
+constructor() {
+  super();
+  this.state = {
+    // stuff in here
+  }
+}
+// MORE CODE
+```
 
+* But my preferred way is to use a **property**
+
+```js
+state = {
+  fishes: {},
+  order: {}
+}
+```
+
+* You could also set them to arrays, strings, null
+* Just make them the shape they will be when they are set at a later point in time
+
+## How do we get an item into `state`?
+* We can't update directly from AddPlayerForm because the methods that update state and the actual state ALWAYS need to live in the exact same component
+* So we will put all our methods inside App
+  - We'll use arrow function because we need to access `this` inside of it
+
+`App.js`
+
+```
+// MORE CODE
+ class App extends React.Component {
+    state = {
+      players: {},
+      order: {},
+    };
+
+   addPlayer = player => {
+     console.log('Adding player');
+   };
+
+   render() {
+// MORE CODE
+```
+
+* This will cause a prop type error because we are sending AddPlayerForm a string when our prop type requires a function
+  - Just change it to accept a string (temporary change)
+
+## Now how do we call state?
+  - We have our method inside `App` but we want to call it two levels deeper inside `AddPlayerForm`
+
+![3 levels deep](https://i.imgur.com/VZ3kj0z.png)
+
+* This screenshot shows App > Roster > AddPlayerForm
+
+### How do we get a function that lives in App all the way down to AddPlayerForm?
+* The answer is `props`
+  - That's the only way we can get something into a component
+  - We will first pass it to `Roster`
+    + And then inventory will in turn pass it over to `AddPlayerForm`
+
+## Add addPlayer to Roster
+
+`App`
+
+*  We will first pass our function down into `Roster`
+
+```
+// MORE CODE
+render() {
+  return (
+    <div className="team-of-the-day">
+      <div className="menu">
+        <Header tagline="Soccer Stars" />
+      </div>
+      <Lineup />
+      <Roster addPlayer={this.addPlayer} />
+    </div>
+  );
+}
+// MORE CODE
+```
+
+* View `Roster` inside React tab and you'll see the one `Props` listed as `addFish`
+* **tip** Good to keep name of function the same so you will recognize it inside the other nested components
+
+### Now pass it to `AddPlayerForm` inside `Roster`
+
+`Roster`
+
+```
+// MORE CODE
+class Roster extends React.Component {
+  render() {
+    return (
+      <div className="roster">
+        <h2>Roster</h2>
+        <AddPlayerForm addPlayer="this.props.addPlayer" />
+      </div>
+    );
+  }
+}
+// MORE CODE
+```
+
+* We change it from `this.addPlayer` to `this.props.addPlayer` because the function doesn't live on `Roster` its just been passed in via **props**
+
+![addPlayer inside AddPlayerForm](https://i.imgur.com/sUw3kQE.png)
+
+* This is an error because it is a string `"this.props.addPlayer"` and not `{this.props.AddPlayer}`
+
+`AddPlayerForm.js`
+
+```
+// MORE CODE
+createPlayer = e => {
+  e.preventDefault();
+  const player = {
+    name: this.nameRef.current.value,
+    price: parseFloat(this.priceRef.current.value),
+    status: this.statusRef.current.value,
+    desc: this.descRef.current.value,
+    image: this.imageRef.current.value,
+  };
+  this.props.addPlayer(player);
+};
+
+render() {
+// MORE CODE
+```
+
+* Put at top of `Roster.js` and `AddPlayerForm`
+* We'll use prop types later
+* You should see `addPlayer: fn()` in `Roster` and `AddPlayerForm` props (React tab of Chrome dev)
+
+## Click AddPlayerForm button and notice the console
+
+## Now how do we get it into our `state`?
+* `this.state.fishes.push(fish)` (if it was an array)
+* `this.state.fishes.fish1 = fish` (if it was an object)
+* But they would both be wrong
+  - You need to use React's `setState()` API
+
+## Steps to update State
+* Using Reacts existing setState() API otherwise it will not work
+
+1. Take a copy of the existing `state`
+* You never want to reach into state and modify it directly
+* That is called a `mutation` in JavaScript
+  - That is when you reach directly into an object
+  - That can cause issues with performance
+  - It can cause issues with things updating out of order
+  - `const players = {...this.state.fishes}`
+    + This will make a copy of everything inside `state`
+    + It is called and **object spread**
+2. Add our new piece to the the copy of state held in the `player` variable
+  - `players[`player${Date.now()}`] = player;
+  - That will make sure each player is unique
+3. Set the new players object to state
+```
+  this.setState({
+    players
+    });
+```
+
+* Now when you add players that will be added to the `state`
+
+![added to state](https://i.imgur.com/CMWkiTi.png)
+
+## Final code
+`App.js`
+
+```
+// MORE CODE
+class App extends React.Component {
+  state = {
+    players: {},
+    // order: {},
+  };
+
+  addPlayer = player => {
+    // 1. Take a copy of the existing state
+    const players = { ...this.state.players };
+    // 2. Add our new fish to that players variable
+    players[`player${Date.now()}`] = player;
+    // 3. Set the new players object to state
+    this.setState({
+      players,
+    });
+  };
+
+  render() {
+// MORE CODE
+```
+
+### OLD CODE
 
 ## Constructor methods to state
 **note** You can not use the keyword `this` until you use `super()` and that is because the **React.Component** we are extending needs to be initialized

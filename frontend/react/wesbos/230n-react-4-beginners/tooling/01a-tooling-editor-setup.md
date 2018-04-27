@@ -1,5 +1,15 @@
 # Tooling & Editor Setup
 
+## Eslint
+* Prop types errors might cause problems
+* Turn them off with:
+
+`/* eslint react/prop-types: 0 */`
+
+* Put at top of `Roster.js` and `AddPlayerForm`
+* We'll use prop types later
+* You should see `addPlayer: fn()` in Roster and AddPlayerForm props (React tab of Chrome dev)
+
 ## Tooling Needed
 ### You need Node
 `$ node -v` (_must be > 6_)
