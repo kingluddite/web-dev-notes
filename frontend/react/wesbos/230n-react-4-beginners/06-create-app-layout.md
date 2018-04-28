@@ -3,12 +3,12 @@
 ## `src/components/App.js`
 * Let's turn our Component into a layout that will hold other components
 * Save `TeamPicker.js` as `App.js`
-* Make App.js look like this:
+* Make `App.js` look like this:
 
 `App.js`
 
 ```
-  import React from 'react';
+import React from 'react';
 import Header from './Header'; // Add this line
 
 class App extends React.Component {
@@ -27,11 +27,10 @@ export default App;
 ```
 
 ## View in browser
-* Nothing changed?
-* Our `index.js` is still pointing to `TeamPicker.js`
+* Hmmm. But nothing changed?
+    - Our `index.js` is still pointing to `TeamPicker.js`
 
 ## Update `index.js`
-
 ```
 import React from 'react';
 import { render } from 'react-dom';
@@ -53,9 +52,15 @@ render(<App/>, document.querySelector('#main'));
 ## TeamPicker warning
 * We get a warning about `TeamPicker.js`
 * If you don't use a file that is imported you will get this warning
+* Warnings won't break your code but they let you know when something isn't quite write
+* I like this because React Components are built with only stuff they use
+  - Nothing is wasted
+  - If you are not using it, why is it in your code
+  - It helps keep your code clean
 
 ## Create `/src/components/Header.js`
-* Save `App.js` as `Header.js` and modify the code to look like:
+1. Save `App.js` as `Header.js`
+2. Modify the code to look like:
 
 `Header.js`
 
@@ -96,7 +101,7 @@ export default App;
 
 ## View in browser and you'll see our `Header`
 
-## Make our Header cooler
+## Make our Header cooler looking
 
 `Header.js`
 
@@ -188,6 +193,11 @@ export default App;
     - Lineup
     - Roster
 
-#### Use React in Dev Tools to see the App, Header, Lineup and Roster Components
+#### Use React in Dev Tools
+* To see:
+    - The App
+    - Header
+    - Lineup
+    - Roster Components
 
 

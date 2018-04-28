@@ -17,9 +17,8 @@
 **note** Our router will be a Stateless Functional Component (SFC)
 
 * If you are passing items other than "Strings" you need to wrap them inside `{}` curly braces
-* 
 
-Router.js`
+`Router.js`
 
 ```
 import React from 'react';
@@ -45,11 +44,10 @@ export default Router;
 * We can set a dynamic URL in the pattern `/team/133434` would match the pattern
 
 ## What the heck is `:teamId`?
-* That is how we create a dynamic route
+* That is how we create a **dynamic route**
 * We can set a dynamic URL in the pattern `/team/133434` would match the pattern
 * If the pattern doesn't match, we send them to our `404`
     - We make the `NotFound` Component a Stateless Functional Component
-    - We use `Miss` and point it to our `NotFound` Component
 
 ```
 import React from 'react';

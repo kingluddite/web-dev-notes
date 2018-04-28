@@ -6,7 +6,7 @@
 
 `<img src="cloud.jpg" alt="A Cloudy Day">`
 
-### Kinda like HTML attributes, yo!
+### They are similar to HTML attributes
 * HTML elements have **attributes**
 * Attributes are extra properties on that particular element
 * In React, `props` work the same way
@@ -14,7 +14,7 @@
 
 ### Good metaphor
 * Think of `state` like the home for data
-* This of `props` as the **car** to get the data from Component to Component
+* This of `props` as the **vehicle** to get the data from Component to Component
 
 ### Add a `tagline` prop to our Header Component
 `src/components/App.js`
@@ -78,9 +78,9 @@ export default Header;
 ### View React tab in Dev Tools
 * You'll see Header has a tagline and on the right panel we see `Props` and `tagline: Soccer Stars`
     - Which is the value we gave `tagline` in `App.js`
-
-#### What can I name my prop?
-* You can name your `props` whatever you want
+* **notes**
+    - You can name your `props` whatever you want
+    - You can add as many `props` as you want
 
 ### React Dev Tools Tip
 * All the attributes you give the Component are all listed under `Props` in **React** tab of Dev tools
@@ -89,14 +89,8 @@ export default Header;
 
 ![props in react tab dev tools](https://i.imgur.com/yWcnN9r.png)
 
-* All the `props` we added are now listed under `Props`
-
 ## Update App.js
-* You can add as many `props` as you want
-* Remove them all 
-* Just keep tagline by updating our code to just have the following `prop`:
-
-`<Header tagline="Soccer Stars" />`
+* Remove all props except `tagline` from the Header component
 
 ### Accessing Prop Values from inside Component
 ```
@@ -123,7 +117,9 @@ export default Header;
 
 #### The use of `this`
 * What is `this.props`?
-* `this` will refer to the Component and `props` is an Object that we can use to gain access to all the `Props` available to it
+* `this` will refer to the Component
+* And `props` is an Object
+    - We can use `Props` to gain access to all the `props` available to it
 
 ## View in browser
 * You will now see our `h3` is populated by data we supplied to the `<Header>` component inside `App.js`
@@ -152,16 +148,7 @@ class Header extends React.Component {
 
 ![props is an Object](https://i.imgur.com/tMGRkbK.png)
 
-* We only have tagline as the solo prop but if we had other inside our Header component they would show up like in the screenshot above
-
-## $r
-* Debug Component in console with `$r`
-
-### Steps on how to use $r
-1. Select Component in **React** tab of dev tools
-2. Switch to console
-3. Type `$r` in console and you'll see Component
-4. Type `$r.props` and you'll see all the props on that Component
+* We only have tagline as the solo prop but if we had other inside our `Header` component they would show up like in the screenshot above
 
 #### Think about this
 * The whole react component is really just an object
@@ -195,17 +182,6 @@ export default App;
 
 * So each Component is an instance of that component
 * The same component can get different prop values passed to it
-
-### $0
-**Debug** Elements in **Elements** tab of dev tools with `$0`
-
-1. Just select element you want to inspect
-2. Switch to console tab 
-3. Type `$0` and you can start debugging that element
-4. Let's say you select a `<div class="menu">...</div>`
-5. Then type `$0.classList` and you will see `["menu"]`
-
-**note** `$1` is send last item you click, `$2`, is 3rd last item you clicked
 
 `Header.js`
 
