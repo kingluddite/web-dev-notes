@@ -30,7 +30,7 @@
 
 ```
 {
-  allMarkdownRemark(limit: 1000) {
+  allMarkdownRemark(limit: 10) {
     edges {
       node {
         frontmatter {
