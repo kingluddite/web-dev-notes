@@ -22,76 +22,87 @@ export default Roster;
 ```
 
 ### Where do we put our `loadSamples()` method?
-Not in `Roster.js`. We need to include it where our `state` lives and that lives in our `App` Component
+* Not in `Roster.js`
+* We need to include it where our `state` lives and that lives in our `App` Component
 
-## Open App.js
-We need to import our `sample-players.js` file into `App`
+## Let's start by wiring up the function
 
-`import samplePlayers from '../sample-players';`
-
-### Bind `this`
-Inside our `loadSamples()` method we need to bind this to our App Component
-
-```js
-constructor() {
-    super();
-    this.addPlayer = this.addPlayer.bind(this);
-    this.loadSamples = this.loadSamples.bind(this); // add this to bind `this`
-    this.state = {
-      players: {},
-      lineup: {}
-    };
-  }
-```
-
-### our `loadSamples()` method
-
-```js
-loadSamples() {
-    this.setState({
-      players: samplePlayers
-    });
-  }
-```
-
-## How do we get the `loadSamples()` method to work?
-How can we get it to work on our `load sample players` button inside `Roster.js`
-
-### Update `render()` in `App.js`
+`App.js`
+* We need to import our `sample-players.js` file into `App`
 
 ```
+// MORE CODE
+loadSamplePlayers = () => {
+  alert('Loading Sample');
+};
+
 render() {
-    return (
-      <div className="team-of-the-day">
-        <div className="menu">
-          <Header tagline="Great Players" />
-        </div>
-        <Lineup />
-        <Roster addPlayer={this.addPlayer} loadSamples={this.loadSamples}/>
-      </div>
-    )
-  }
+// MORE CODE
 ```
 
-We just need to give the `Roster` Component our `loadSamples()` method
-
-### Update`render()`
-
-`Roster.js`
+* Pass the prop to Roster
 
 ```
-render() {
+// MORE CODE
+<Roster addPlayer={this.addPlayer} loadSamplePlayers={this.loadSamplePlayers} />
+// MORE CODE
+```
+
+* Add the event on the button
+
+```
+// MORE CODE
+class Roster extends React.Component {
+  render() {
     return (
-      <div>
+      <div className="roster">
         <h2>Roster</h2>
         <AddPlayerForm addPlayer={this.props.addPlayer} />
-        <button onClick={this.props.loadSamples}>Load Sample Players</button>
+        <button onClick={this.props.loadSamplePlayers}>Load Sample Players</button>
       </div>
-    )
+    );
   }
+}
+// MORE CODE
 ```
 
-We gain access to the `loadSamples()` method in our child Component using `props`
+* Click the **Load Sample Players** button and the alert will fire
+* The button is wired up
+
+## Now we need sample data
+* Grab this code `https://gist.github.com/kingluddite/08e15d765530f11b00728bacab9fa805`
+* And save it in `/src/sample-data/sample-players.js`
+
+`import samplePlayers from '../data/sample-players';`
+
+## public/images
+* You can create images and put them in the public folder
+* Point the paths in your json to that folder
+* The path would be `/images/mussels.jpg`
+  - Because we don't need to include `public` in the path as our root server points to `public`
+
+`App.js`
+
+```
+import React from 'react';
+// MORE CODE
+import Roster from './Roster';
+import samplePlayers from './../sample-data/sample-player-data';
+
+class App extends React.Component {
+// MORE CODE
+
+  loadSamplePlayers = () => {
+    this.setState({
+      players: samplePlayers,
+    });
+  };
+// MORE CODE
+```
+
+* CLick the button and the React tab will be populated with all our players
+* But they do not render to the page
+  - Because we didn't tell them to... yet
 
 ### View in browser
 1. Click **Load Sample Players** button

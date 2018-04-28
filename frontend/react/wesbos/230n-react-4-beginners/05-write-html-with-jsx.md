@@ -3,7 +3,7 @@
 * ES6 templating strings is a huge improvement but it is still a pain
 * A better way is JSX
 
-## What is JSX
+## What is JSX?
 * The ability to write JSX inside our JavaScript
 
 ## What if I didn't want to use JSX?
@@ -28,45 +28,6 @@ return (
  // code all html we need here
 );
 ```
-
-### Writing JSX --> Emmet expand
-* Writing JSX can be annoying as the usual Emmet `tab` doesn't work
-
-#### keyboard shortcut
-**tip** When writing template strings inside JSX with emmet use this syntax before you hit `ctrl` + `e`
-
-`ctrl` + `e`
-
-* Using Emmet is a must for any text editor
-* It is smart enough to convert it to JSX
-  - class ---> className
-* **note** Emmet is built into **Visual Studio Code** but you need to add this setting (`cmd` + `,`):
-
-```
-"emmet.triggerExpansionOnTab": true
-```
-
-* That will make hitting tab convert your Emmet shortcut syntax to full JSX
-* Try it out!
-* Here are instructions for using Sublime and Emmet with JSX support
-    - You have to use the `ctrl` + `e` shortcut
-    - [Wes Box video on this](http://wesbos.com/emmet-react-jsx-sublime/)
-
-#### Emmet and Atom
-[Use emmet tab completion in Atom](https://gist.github.com/mxstbr/361ddb22057f0a01762240be209321f0)
-
-Add this to `keymap.cson`
-
-```
-'atom-text-editor[data-grammar~="jsx"]:not([mini])':
-  'tab': 'emmet:expand-abbreviation-with-tab'
-```
-
-**note** - If it's not properly syntax highlighted, select `Babel ES6 JavaScript` or `JSX` as the syntax, this won't work otherwise
-* Now tab completion works!
-
-##### Atom `language-babe`l
-* Make sure this is installed and active
 
 ## JSX has no `class`
 * Uses `className` instead of `class`
@@ -114,7 +75,8 @@ class TeamPicker extends React.Component {
 
 * The second bad option above will generate a error similar to: `Syntax error: Adjacent JSX elements must be wrapped in an enclosing tag (8:6)`
 
-## Close your tags - JSX Rule
+## Close all tags - JSX Rule
+* `<Header />`  and `<Layout></Layout>`
 * You must self close your tags
 
 ```
@@ -134,7 +96,6 @@ class TeamPicker extends React.Component {
 * img -----> `<img />`
 
 ## Update TeamPicker.js
-
 ```
 import React from 'react';
 

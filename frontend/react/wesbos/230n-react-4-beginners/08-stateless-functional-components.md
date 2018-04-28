@@ -61,25 +61,6 @@ export default Header;
   - This means we no longer have access to `this`
   - Because it is no longer bound to the Component because we are now using a stateless functional Component (**SFC**)
 
-**note** You could also code a Stateless Functional Component (**SFC**) like this: 
-
-```
-import React from 'react';
-
-function Header() {
-  return (
-    <header>
-    ...
-    </header>
-  )
-}
-
-export default Header;
-```
-
-## Not Good - Better to use ES6 and stay modern
-(_but that would be old school and you would not be using the awesome powers of ES6_)
-
 ### Improvement
 * **Implicit return** - If we only have one line we can remove the return
 * De-structuring
@@ -105,5 +86,25 @@ export default Header;
 
 * Look how cool ( {tagline }) destructuring is!
 * Read a [great article](https://medium.com/@npverni/how-to-declare-react-components-in-2017-2a90d9f7984c) that summarizes all of the above
+
+## Miscellaneous
+* You could also code a Stateless Functional Component (**SFC**) like this: 
+
+```
+import React from 'react';
+
+function Header() {
+  return (
+    <header>
+    ...
+    </header>
+  )
+}
+
+export default Header;
+```
+
+## Not Good - Better to use ES6 and stay modern
+(_but that would be old school and you would not be using the awesome powers of ES6_)
 
 

@@ -26,11 +26,15 @@
 * And clone the folder without the repo name:
   - **Cloning into an existing folder will cause an error** so you need to do it like this:
 
-  `$ git clone https://github.com/kingluddite/starting-react-assets.git .`
+`$ git clone https://github.com/kingluddite/starting-react-assets.git .`
 
 ## Clone without creating a parent folder
 * **note** When cloning, you can use `.` to say grab the repo and put all the files inside where I currently am and don't put them inside a containing folder
   - Putting contents inside a parent folder is the default behavior
+
+### Follow these steps
+* We clone the assets into a `tmp` directory and move css out of that `tmp` directory and then delete the `temp` directory 
+* `#` are comments and just read them for instructions
 
 ```
 # clone assets into temp folder
@@ -43,8 +47,15 @@ $ cd ../
 $ rm -rf temp 
 ```
 
-* Now we have Sass, an image and fonts
+* Now we have `Sass`, an `images` and `fonts`
 * But we just want to use a simple CSS file for starters
+
+## Adding Sass
+* You may just want to start using Sass but one of the limitations of create-react-app is Sass is not available out of the box
+* For simplicity, we are just using one CSS file
+
+### To add Sass support
+* You would need to **eject** from `create-react-app`
 
 ### Add your style
 1. Create `src/css/style.css`
@@ -707,13 +718,18 @@ import './css/style.css'; // Add this line
 ```
 
 ## Don't need to say the name of the package
-**note** We don't say the name of the package we are loading for `style.css` because there is no package
+* No need for this:
+
+`import SomeCSS from './css/style.css'`
+
+### Why not?
+* We don't say the name of the package we are loading for `style.css` because there is no package
 * We are just loading the file
 
 ## Two steps to get our CSS working
 1. Remove in `index.html` the `<link href="css/style.css >` and
-2. Add the import line above to let webpack import all the css
+2. Add the import line above to let Webpack import all the CSS
 
 ### CSS inside the JavaScript?
-* You won't see a css file but if you search the `bundle.min.js`
-* You will see the css is inside that JavaScript file!
+* You won't see a CSS file but if you search the `bundle.min.js`
+* You will see the CSS is inside that JavaScript file!

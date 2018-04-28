@@ -1,5 +1,26 @@
 # Tooling & Editor Setup
 
+## Chrome dev tool
+### $r
+* Debug Component in console with `$r`
+
+#### Steps on how to use $r
+1. Select Component in **React** tab of dev tools
+2. Switch to console
+3. Type `$r` in console and you'll see Component
+4. Type `$r.props` and you'll see all the props on that Component
+
+### $0
+**Debug** Elements in **Elements** tab of dev tools with `$0`
+
+1. Just select element you want to inspect
+2. Switch to console tab 
+3. Type `$0` and you can start debugging that element
+4. Let's say you select a `<div class="menu">...</div>`
+5. Then type `$0.classList` and you will see `["menu"]`
+
+**note** `$1` is send last item you click, `$2`, is 3rd last item you clicked
+
 ## Eslint
 * Prop types errors might cause problems
 * Turn them off with:
@@ -39,6 +60,47 @@
     - react
 * Vim
     - vim-jsx
+
+##### Instructions for using Sublime and Emmet with JSX support
+* You have to use the `ctrl` + `e` shortcut
+* [Wes Box video on this](http://wesbos.com/emmet-react-jsx-sublime/)
+
+#### Emmet and Atom
+[Use emmet tab completion in Atom](https://gist.github.com/mxstbr/361ddb22057f0a01762240be209321f0)
+
+Add this to `keymap.cson`
+
+```
+'atom-text-editor[data-grammar~="jsx"]:not([mini])':
+  'tab': 'emmet:expand-abbreviation-with-tab'
+```
+
+**note** - If it's not properly syntax highlighted, select `Babel ES6 JavaScript` or `JSX` as the syntax, this won't work otherwise
+* Now tab completion should work!
+
+##### Atom `language-babel`
+* Make sure this is installed and active
+
+### Emmet is awesome
+### Writing JSX --> Emmet expand
+* Writing JSX can be annoying as the usual Emmet `tab` doesn't work
+* But we can re-wire by binding to a keyboard shortcut
+
+#### keyboard shortcut
+**tip** When writing template strings inside JSX with emmet use this syntax before you hit `ctrl` + `e`
+
+`ctrl` + `e`
+
+* Using Emmet is a must for any text editor
+* It is smart enough to convert it to JSX
+  - class ---> className
+* **note** Emmet is built into **Visual Studio Code** but you need to add this setting (`cmd` + `,`):
+
+```
+"emmet.triggerExpansionOnTab": true
+```
+
+* That will make hitting tab convert your Emmet shortcut syntax to full JSX
 
 ### Terminal
 * In modern web development the Terminal is essential and part of everyday developer activities

@@ -223,4 +223,4 @@ class Player extends React.Component {
 export default Player;
 ```
 
-View in browser and you'll see our players nicely formatted
+* View in browser and you'll see our players nicely formatted

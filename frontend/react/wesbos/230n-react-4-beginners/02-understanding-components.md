@@ -3,7 +3,8 @@
 
 ## What is a Component?
 * A reusable piece of your website
-* Think of tags in HTML
+
+### Think of tags in HTML
 * **React** lets you build your own tags and you can put information inside these tags and these two things together is a `Component`
 
 ### Benefit of using Components
