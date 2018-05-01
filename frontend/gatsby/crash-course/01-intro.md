@@ -26,6 +26,8 @@ module.exports = {
 ```
 
 * If you change config file you need to restart the server
+* **note** I've found that if you add plugins you need to restart the server but updating variable values is fine
+  - When in doubt, restart
 
 ## Change meta for page
 `layouts/index.js`
@@ -362,6 +364,33 @@ export default SiteNavi
      - It is pure React code
 
 ## get one page of our blog
+
+`$ npm i gatsby-plugin-catch-links gatsby-plugin-sass gatsby-source-filesystem gatsby-transformer-remark`
+
+```
+module.exports = {
+  siteMetadata: {
+    title: 'Ironcove Solutions',
+  },
+  plugins: [
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-twitter',
+    'gatsby-plugin-catch-links',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: 'pages',
+      },
+    },
+    'gatsby-transformer-remark',
+    'gatsby-plugin-sass',
+  ],
+}
+```
+
+
+
 ```
 import React from 'react'
 import Link from 'gatsby-link'
@@ -396,3 +425,55 @@ export const postQuery = graphql`
 ```
 
 
+## Add StyledComponents
+npm i styled-components gatsby-styled-components
+
+```
+module.exports = {
+  siteMetadata: {
+    title: 'Ironcove Solutions',
+  },
+  plugins: [
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-twitter',
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-catch-links',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: 'pages',
+      },
+    },
+    'gatsby-transformer-remark',
+    'gatsby-plugin-sass',
+  ],
+}
+```
+
+## Example of using styled components
+```
+/* eslint import/no-extraneous-dependencies: 0 */
+import React from 'react'
+import Link from 'gatsby-link'
+import styled from 'styled-components'
+import './../layouts/gatstrap.scss'
+import './../layouts/colors.scss'
+import logo from './../images/ics-logo.png'
+
+const HeaderWrapper = styled.header`
+  background-image: linear-gradient(to top, #f0f0f0, #f4f4f4);
+  padding-top: 0.5rem;
+`
+const Header = ({ siteTitle }) => (
+  <HeaderWrapper>
+    <div className="container">
+      <Link to="/">
+        <img src={logo} alt={siteTitle} />
+      </Link>
+    </div>
+  </HeaderWrapper>
+)
+
+export default Header
+```
