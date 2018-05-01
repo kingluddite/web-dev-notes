@@ -6,136 +6,144 @@ Our button need to be dynamic. It needs to say `Add to Lineup`, `Injured`, `Out`
 `Player.js`
 
 ```
-const isAvailable = details.status === 'active';
+class Player extends Component {
+  render() {
+    const { imageURL, firstName, lastName, comments, email, fee, fieldPosition, status } = this.props.details;
+    const isAvailable = status !== 'injured';
+    return (
+      <li className="menu-player">
+        <img src={imageURL} alt={firstName} />
+        <h3 className="player-name">
+          {firstName} {lastName}
+          <span className="price">{formatPrice(fee)}</span>
+        </h3>
+        <p>{status}</p>
+        <p>{fieldPosition}</p>
+        <p>{email}</p>
+        <p>{comments}</p>
+        <button disabled={isAvailable}>Add To Cart</button>
+      </li>
+    );
+  }
+}
 ```
 
-We check each of our players to find their **status**. We set variable `isAvailable` to **true** if our player has a status of **"active"**
+* We check each of our players to find their **status**
+* We set variable `isAvailable` to **true** if our player has a status of ** not equal to "injured"**
 
-`Player.js`
+## Test it out in browser
+* If a player is not injured he is available for the game
 
-`const buttonText = isAvailable ? 'Add To Lineup' : 'Out!';`
+* Here is our css
 
-We create dynamic text on our button to either show `Add To Lineup` if player if `isAvailable` or `Out!` if they are not
+```css
+button[disabled], input[type=submit][disabled] {
+    color: #d12028;
+    background: #fff;
+    border-color: #d12028;
+    transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
+}
+```
+
+* And here is the button
+
+`<button disabled={isAvailable}>Add To Cart</button>`
 
 ## Use React tab
-Change status of first player and watch the button update dynamically
+* Find `Player` and change `status` of the first player to `active` and watch the button update dynamically
+* It has a **CSS3 transition** applied to it so it will animate
 
-It has a **CSS3 transition** applied to it so it will animate
-
-`_button.scss`
+* We improve on the logic and show a different button on the results of that logic
 
 ```
-button,input[type=submit] {
-  text-transform: uppercase;
-  background: none;
-  border: 1px solid #000;
-  font-weight: 600;
-  font-size: 1.5rem;
-  font-family: 'Open Sans';
-  transition: all 0.2s;
-  position: relative;
-  z-index: 2;
+// MORE CODE
+class Player extends Component {
+  render() {
+    const { imageURL, firstName, lastName, comments, email, fee, fieldPosition, status } = this.props.details;
+    const isAvailable = status === 'active';
+    return (
+      <li className="menu-player">
+        <img src={imageURL} alt={firstName} />
+        <h3 className="player-name">
+          {firstName} {lastName}
+          <span className="price">{formatPrice(fee)}</span>
+        </h3>
+        <p>{status}</p>
+        <p>{fieldPosition}</p>
+        <p>{email}</p>
+        <p>{comments}</p>
+        <button disabled={!isAvailable}>{isAvailable ? 'Add To Game' : 'Injured'}</button>
+      </li>
+    );
+  }
 }
-
-button[disabled],input[type=submit][disabled] {
-  color: #d12028;
-  background: #fff;
-  border-color: #d12028;
-  transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
-}
+// MORE CODE
 ```
 
-### Disable button if not available
-If player isn't active we need to disable their button
+* **tip** Use Chrome dev tool, click on element in Elements tab, flip over to React tab and it will show you the equivalent DOM element in the React tab
 
-`Player.js`
+## How to add Players to Lineup
+* Our order state is empty
+* Let's change it to `lineup` as it makes more sense
 
-Update button with: 
-
-`<button disabled={!isAvailable}>{buttonText}</button>`
-
-* This is the **HTML5** disabled property that we set to `true` if player status is not `active`
-
-## Where do we create a method to add to the Lineup Component?
 `App.js`
 
 ```
-import React from 'react';
-import Header from './Header';
-import Lineup from './Lineup';
-import Roster from './Roster';
-import samplePlayers from '../sample-players';
-import Player from './Player';
-
+// MORE CODE
 class App extends React.Component {
+  state = {
+    players: {},
+    lineup: {},
+  };
+// MORE CODE
+```
 
-  constructor() {
-    super();
-    this.addPlayer = this.addPlayer.bind(this);
-    this.loadSamples = this.loadSamples.bind(this);
-    this.addToLineup = this.addToLineup.bind(this);
-    // initial state (was known as 'getinitialstate' with React createClass)
-    this.state = {
-      players: {},
-      lineup: {}
-    };
-  }
+### Structure of component tips
+1. `state` at top
+2. lifecycle events
+3. custom stuff
+4. last but not least... render()
 
-  addPlayer(player) {
-    // update our state
-    const players = {...this.state.players};
-    // add in our new player
-    const timestamp = Date.now();
-    players[`player-${timestamp}`] = player;
-    // this.state.players.player1 = player;
-    // set state
-    this.setState({ players });
-  }
+* Not mandatory but eslint airbnb rules inforce this
 
-  loadSamples() {
-    this.setState({
-      players: samplePlayers
-    });
-  }
+`App.js`
 
-  addToLineup(key) {
-    // take a copy of our state
-    const lineup = {...this.state.lineup};
-    // update or add the new number of players added to lineup
-    lineup[key] = lineup[key] + 1 || 1;
-    // update our state
-    this.setState({ lineup });
-  }
+```
+// MORE CODE
 
-  render() {
-    return (
-      <div className="team-of-the-day">
-        <div className="menu">
-          <Header tagline="Great Players" />
-          <ul className="list-of-players">
-            {
-              Object
-              .keys(this.state.players)
-              .map(key =>
-                <Player
-                  key={key}
-                  details={this.state.players[key]} addToLineup={this.addToLineup}
-                />)
-            }
-          </ul>
-        </div>
-        <Lineup />
-        <Roster
-          addPlayer={this.addPlayer}
-          loadSamples={this.loadSamples}
-        />
-      </div>
-    )
-  }
+addToGame = (key) => {
+  // 1. take a copy of state
+  const lineup = { ...this.state.lineup };
+  // 2. add to team
+  lineup[key] = 1;
+  // 3. call setState to update our state object
+  this.setState({ lineup });
 }
 
-export default App;
+render() {
+
+// MORE CODE
 ```
+
+## Manually test if button is working
+* chrome dev console
+* react tab
+* search for `App`
+* See lineup under state is an empty object
+* **tip** escape key toggles chrome dev console
+
+`> $r.addToTeam('player1')`
+
+`< undefined`
+
+`> $r.addToTeam('player4')`
+
+`< undefined`
+
+### View lineup `state`
+* You will see two players have been added to lineup
+
+## Hook up `addToOrder` to our `Add To Game` button inside `Player`
 
 ## View in browser
 Load sample players
@@ -144,97 +152,125 @@ Load sample players
 ## Update `Player.js`
 
 ```
-return (
-        <li className="menu-players">
-          <img src={details.image} alt={details.firstName} />
-          <h3 className="player-name">
-            <span>{details.firstName}</span> <span>{details.lastName}</span>
-            <span className="price">{formatPrice(details.fee)}</span>
-          </h3>
-          <p>{details.comments}</p>
-          <button disabled={!isAvailable} onClick={this.props.addToLineup}>{buttonText}</button>
-        </li>
-    )
-```
-
-We add a click event to our button `<button disabled={!isAvailable} onClick={this.props.addToLineup}>{buttonText}</button>`
-
-### How do you pass an argument to `addToLineup`?
-We don't want the `addToLineup` to fire on page load but when they click the button
-
-`<button disabled={!isAvailable} onClick={() =>this.props.addToLineup('player01')}>{buttonText}</button>`
-
-Now if you view in browser > `React` tab > Search for App > Look at lineup state > click `Add to Lineup` and you will see it increases every time
-
-## Passing a dynamic argument
-We don't want to hardcode `player-1`, `player-2`...
-
-### Can we access the Player instance key inside a Component? 
-No. Not right now
-
-* If you need to access the `key` attribute, you need to explicitly pass it down
-* **React** make it hard because the `key` is not for us, but if we do need it, we have to pass it down ourselves
-* To get around this we create another attribute called `index` that will pass the same `key` value. Something like this:
-
-```
-<ul className="list-of-players">
-            {
-              Object
-              .keys(this.state.players)
-              .map(key =>
-                <Player
-                  key={key} index={key}
-                  details={this.state.players[key]} addToLineup={this.addToLineup}
-                />)
-            }
-          </ul>
-```
-
-Notice how we added the `key` value with both `key` and `index` attributes
-
-View `Player` in React tab and you will now see index
-
-### Update button with index
-`Player.js`
-
-```
-<button disabled={!isAvailable} onClick={() => this.props.addToLineup(this.props.index)}>{buttonText}</button>
-```
-
-Now view in `browser` > `Load sample players` > `Click` add to lineup > Search for App and you will see when you expand `lineup` that you added that specific player you added
-
-![player index added](https://i.imgur.com/HEdPhfi.png)
-
-## Refactor our code with ES6
-
-**note** 
-
-```
-// this ES6 destructuring 
-const { details, index } = this.props;
-// is the same as this
-const details = this.props.detail;
-const index = this.props.index;
-```
-
-Let's refactor with ES6 as it saves us typing
-
-```
+// MORE CODE
 render() {
-    const { details, index } = this.props;
-    const isAvailable = details.status === 'active';
-    const buttonText = isAvailable ? 'Add To Lineup' : 'Out!';
-    return (
-        <li className="menu-players">
-          <img src={details.image} alt={details.firstName} />
-          <h3 className="player-name">
-            <span>{details.firstName}</span> <span>{details.lastName}</span>
-            <span className="price">{formatPrice(details.fee)}</span>
-          </h3>
-          <p>{details.comments}</p>
-          <button disabled={!isAvailable} onClick={() => this.props.addToLineup(index)}>{buttonText}</button>
-        </li>
-    )
+  return (
+    <div className="team-of-the-day">
+      <div className="menu">
+        <Header tagline="Soccer Stars" />
+        <ul className="players">
+          {Object.keys(this.state.players).map(key => (
+            <Player key={key} details={this.state.players[key]} addToGame={this.addToGame} />
+          ))}
+        </ul>
+      </div>
+      <Lineup />
+      <Roster addPlayer={this.addPlayer} loadSamplePlayers={this.loadSamplePlayers} />
+    </div>
+  );
 }
+// MORE CODE
+```
+
+## Player component
+* We have a button inside Player that when clicked expects a `key`
+
+### How do you access a key inside a Player
+* We use React tab and click Player and see the key in sidebar:
+
+![key in sidebar](https://i.imgur.com/mpShMAd.png)
+
+* But if you then click on chrome dev console and type $r and press return, you WILL NOT SEE THE KEY
+
+**important** If you need access to the `key` you have to pass `key` a second time with a `prop` that is something other than `key`
+
+```
+// MORE CODE
+render() {
+  return (
+    <div className="team-of-the-day">
+      <div className="menu">
+        <Header tagline="Soccer Stars" />
+        <ul className="players">
+          {Object.keys(this.state.players).map(key => (
+            <Player key={key} index={key} details={this.state.players[key]} addToGame={this.addToGame} />
+          ))}
+        </ul>
+      </div>
+      <Lineup />
+      <Roster addPlayer={this.addPlayer} loadSamplePlayers={this.loadSamplePlayers} />
+    </div>
+  );
+}
+// MORE CODE
+```
+
+* Now view React tab under Player and you'll see we have access to the key using `index`
+
+![key as index](https://i.imgur.com/cNEEKG0.png)
+
+* We don't have access to `key`
+  - Can't do `this.props.key` to access that key
+  - Only way to access it is to pass it a second time as another prop
+
+```
+// MORE CODE
+class Player extends Component {
+  handleAddToGameClick = () => {
+    this.props.addToGame(this.props.index);
+  };
+
+  render() {
+    const { imageURL, firstName, lastName, comments, email, fee, fieldPosition, status } = this.props.details;
+    const isAvailable = status === 'active';
+    return (
+      <li className="menu-player">
+        <img src={imageURL} alt={firstName} />
+        <h3 className="player-name">
+          {firstName} {lastName}
+          <span className="price">{formatPrice(fee)}</span>
+        </h3>
+        <p>{status}</p>
+        <p>{fieldPosition}</p>
+        <p>{email}</p>
+        <p>{comments}</p>
+        <button disabled={!isAvailable} onClick={this.handleAddToGameClick}>
+          {isAvailable ? 'Add To Game' : 'Injured'}
+        </button>
+      </li>
+    );
+  }
+// MORE CODE
+```
+
+* We add a handler click event to the Add to Game button:
+
+```
+// MORE CODE
+<button disabled={!isAvailable} onClick={this.handleAddToGameClick}>
+  {isAvailable ? 'Add To Game' : 'Injured'}
+</button>
+// MORE CODE
+```
+
+* We add the **event handler** that will pass the `key` into the lineup `state` inside App
+
+```
+// MORE CODE
+handleAddToGameClick = () => {
+  this.props.addToGame(this.props.index);
+};
+```
+
+### In case you want to do the same thing inline
+* Rule of thumb is this is fine if you only have to do it once
+* Otherwise it clutters up your code
+
+```
+// MORE CODE
+<button disabled={!isAvailable} onClick={() => this.props.addToOrder(this.props.index)}>
+  {isAvailable ? 'Add To Game' : 'Injured'}
+</button>
+// MORE CODE
 ```
 
