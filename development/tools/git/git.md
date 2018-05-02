@@ -1,5 +1,9 @@
 # GIT
 
+## Bulk delete github repos
+* Nice to keep it clean and get rid of junk
+* [link to repo](https://github.com/kingluddite/bulk-clean-repos)
+
 ## Get rid of all changes in branch
 * I messed up and want to start again
   - `$ git checkout -f` (you delete and they are gone forever)
