@@ -1,5 +1,8 @@
 # SSH
 
+## Best way to set up SSH on github (and and 3rd party site)
+[meteor chef instructions](https://themeteorchef.com/tutorials/setting-up-an-ssh-config-file)
+
 **I want to copy my machines ssh public key and add it to my virtual machine's authorized_keys file. How can I do this?**
 
 this is if you are using a virtual box or a linux server
