@@ -1,5 +1,25 @@
 # SSH
 
+## why does it keep asking for my passphrase?
+
+* You need to use an ssh agent. Short answer: try
+
+`$ ssh-add`
+
+* before pushing. Supply your passphrase when asked.
+
+* If you aren't already running an ssh agent you will get the following message:
+
+`Could not open a connection to your authentication agent.`
+
+* In that situation, you can start one and set your environment up thusly
+
+`$ eval $(ssh-agent)`
+
+* Then repeat the `ssh-add` command.
+
+* It's worth taking a look at the ssh agent manpage
+
 ## Best way to set up SSH on github (and and 3rd party site)
 [meteor chef instructions](https://themeteorchef.com/tutorials/setting-up-an-ssh-config-file)
 
