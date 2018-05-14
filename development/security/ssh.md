@@ -20,6 +20,12 @@
 
 * It's worth taking a look at the ssh agent manpage
 
+**note** if you still get errors you need to add the right ssh agent
+
+* Here is an example
+
+`ssh-add ~/.ssh/doug.funnie@bluffington.edu`
+
 ## Best way to set up SSH on github (and and 3rd party site)
 [meteor chef instructions](https://themeteorchef.com/tutorials/setting-up-an-ssh-config-file)
 

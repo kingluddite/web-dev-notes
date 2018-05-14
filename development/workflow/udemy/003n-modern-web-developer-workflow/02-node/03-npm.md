@@ -3,6 +3,16 @@
 `P`ackage
 `M`anager
 
+## Problems updating npm to latest version
+* This is a problem and I've wasted time trying to solve it
+* Here's the solution
+
+`$ npm install npm@latest -g`
+
+* I installed node via brew and it seemed to mess things up and then when I installed node globally it caused glitches
+* The above solution got it to work
+* Upgrading `$ brew upgrade npm` did not work
+
 ## What is NPM?
 * Centralized place where developers share their code with the world
 * Oh, and it's FREE!

@@ -1,0 +1,104 @@
+# Mutations and Composing Queries
+`queries.js`
+
+```
+// MORE CODE
+export const getBooksQuery = gql`
+  {
+    books {
+      name
+      id
+    }
+  }
+`;
+
+// add the below query
+export const addBookMutation = gql`
+  mutation {
+    addBook(name: "", genre: "", authorId: "") {
+      name
+      id
+    }
+  }
+`;
+```
+
+```
+import React, { Component } from 'react';
+import { graphql, compose } from 'react-apollo';
+import { getAuthorsQuery, addBookMutation } from '../queries/queries';
+
+class AddBook extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: '',
+      genre: '',
+      authorId: '',
+    };
+  }
+
+  displayAuthors() {
+    const data = this.props.getAuthorsQuery;
+    if (data.loading) {
+      return <option>Loading authors...</option>;
+    } else {
+      return data.authors.map(author => {
+        return (
+          <option key={author.id} value={author.id}>
+            {author.name}
+          </option>
+        );
+      });
+    }
+  }
+
+  submitForm(e) {
+    e.preventDefault();
+    this.props.addBookMutation();
+  }
+
+  render() {
+    return (
+      <form id="add-book" onSubmit={this.submitForm.bind(this)}>
+        <div className="field">
+          <label>Book name:</label>
+          <input
+            type="text"
+            onChange={e => this.setState({ name: e.target.value })}
+          />
+        </div>
+        <div className="field">
+          <label>Genre:</label>
+          <input
+            type="text"
+            onChange={e => this.setState({ genre: e.target.value })}
+          />
+        </div>
+        <div className="field">
+          <label>Author:</label>
+          <select onChange={e => this.setState({ authorId: e.target.value })}>
+            <option>Select author</option>
+            {this.displayAuthors()}
+          </select>
+        </div>
+        <button>+</button>
+      </form>
+    );
+  }
+}
+
+export default compose(
+  graphql(getAuthorsQuery, { name: 'getAuthorsQuery' }),
+  graphql(addBookMutation, { name: 'addBookMutation' })
+)(AddBook);
+```
+
+* Add a form
+* It looks like nothing happened
+* But we did add a book with empty values (look at mlab)
+
+![empty strings in db](https://i.imgur.com/oRHEV4Z.png)
+
+## Next Query Variables

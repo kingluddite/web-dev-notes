@@ -1,4 +1,462 @@
 # Crash Course on Gatsby
+
+## cache
+* if you have issues, delete the cache folder and restart develop (cache is buggy sometimes)
+
+* you can't have spaces in your image names
+* remove static from path
+* this is a pain so to not have to do this again use this in your config.yml
+
+```
+// MORE CODE
+media_folder: static/assets
+public_folder: /assets
+
+// MORE CODE
+```
+
+## images
+* helps us transform and manipulate imagees
+
+### gatsby-transformer-sharp and gatsby-plugin-sharp
+* will allow us to use the sharp image manipulation tools
+
+`$ npm i gatsby-image gatsby-transformer-sharp gatsby-plugin-sharp`
+
+## styled components
+`$ npm i --save styled-components gatsby-plugin-styled-components babel-plugin-styled-components`
+
+`gatsby-config.js`
+
+```js
+module.exports = {
+  siteMetadata: {
+    title: 'Gatsby Default Starter',
+    desc: 'A new blog',
+  },
+  plugins: [
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+  ],
+}
+```
+
+## Make gatsby aware that we will have files available for it
+* We need to query our system with graphql
+    - By default gatsby does not know how to do that
+
+### Tell gatsby we want to also query images and we show where they are location
+
+```js
+module.exports = {
+  siteMetadata: {
+    title: 'Gatsby Default Starter',
+    desc: 'A new blog',
+  },
+  plugins: [
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'img',
+        path: `${__dirname}/src/images`
+      }
+    },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+  ],
+}
+```
+
+* Restart gatsby process
+  - ctrl + c
+  - gatsby develop
+  - always smart to do after changing config to make sure takes are taken into effect
+
+**note** We will get an error because we tried to use but did not install
+
+`$ npm i gatsby-source-filesystem`
+
+```
+{
+  site {
+    siteMetadata {
+      title
+      desc
+    }
+  }
+  imageSharp(id: {regex: "/bg.jpeg"})
+}
+```
+
+* This does not work and we get an error, graphyql buggy on searching for images
+* We need to paste it into our site and work from it through there
+* gatsby does some things it's own way
+* Through gatsby we will assign an image to a background
+
+## this works:
+
+![access to image info](https://i.imgur.com/iKGvZtd.png)
+
+`pages/index.js`
+
+```
+import React from 'react'
+import Link from 'gatsby-link'
+
+const IndexPage = ({ data }) => (
+  <div>
+    <h1>Hello people</h1>
+    <p>data.site.siteMetadata.title</p>
+    <p>data.site.siteMetadata.desc</p>
+    <p>Now go build something great.</p>
+  </div>
+)
+
+export default IndexPage
+
+export const query = graphql`
+  query SiteMeta {
+    site {
+      siteMetadata {
+        title
+        desc
+      }
+    }
+    background: imageSharp(id: { regex: "/bg.jpeg/" }) {
+      sizes(maxWidth: 1240) {
+        ...GatsbyImageSharpSizes
+      }
+    }
+  }
+`
+```
+
+* This is a long process but comes with great time saving benefits
+* Now we need to drop in the image data we have available to our home page 
+
+`pages/index.js`
+
+```
+import React from 'react'
+import Link from 'gatsby-link'
+import Img from 'gatsby-image'
+
+const IndexPage = ({ data }) => (
+  <div>
+    <h1>Hello people</h1>
+    <Img sizes={data.background.sizes} />
+    <p>{data.site.siteMetadata.title}</p>
+    <p>{data.site.siteMetadata.desc}</p>
+    <p>Now go build something great.</p>
+  </div>
+)
+// MORE CODE
+```
+
+* Now we have a bg image on our page
+
+### Why is this cool?
+* for "fee"
+  - Gatsby progressively loads your images
+    + common technique so a low res image loads first then the higher quality img loads... this means you images load faster to the end user
+    + all we had to do is use imageSharp and other image plugins, give our image a name and we get all these benefits
+    + other options
+      * change max height of image, change quality of give it grey scale
+
+## make it grayscale
+
+```
+// MORE CODE
+export const query = graphql`
+  query SiteMeta {
+    site {
+      siteMetadata {
+        title
+        desc
+      }
+    }
+    background: imageSharp(id: { regex: "/bg.jpeg/" }) {
+      sizes(maxWidth: 1240, grayscale: true) {
+        ...GatsbyImageSharpSizes
+      }
+    }
+  }
+`
+```
+
+duotone
+
+```
+background: imageSharp(id: { regex: "/bg.jpeg/" }) {
+  sizes(
+    maxWidth: 1240
+    duotone: { highlight: "#f00e2e", shadow: "#192550" }
+  ) {
+    ...GatsbyImageSharpSizes
+  }
+}
+```
+
+* [documentation on gatsby image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-sharp)
+* This is almost like the holy grail for images
+  - we had a large image and we made it more manageable
+
+## Warning
+* Can't use graphql queries on `components` just for pages and layouts directories inside gatsby
+* The natural size of this image is a whole swath of different sizes (inspect the bg image for yourself)
+* ![background image sizes](https://i.imgur.com/BuQ8WVq.png)
+* because we have all the different sizes per viewport width which means we can have the image load with as good as quality as it needs to per viewport size, which is incredible!
+
+# we move the image sharp bg image from index page to header
+* we put the graphql query inside layout (can't put it inside components folder)
+* we move the import Img to header img
+* we put the Img component underneath the HeaderContainer
+
+### Style a react component (Img) (different than our custom StyleComponents)
+* We could do this (but it won't work without a bunch of overriding)
+
+```
+import React from 'react'
+import Link from 'gatsby-link'
+import styled from 'styled-components'
+import Img from 'gatsby-image'
+
+import logo from '../../images/logo.svg'
+// import womenVid from '../../videos/women-bg-dropbox.mp4'
+// console.log(logo)
+
+const HeaderWrapper = styled.div`
+  background: #524763;
+  margin-bottom: 1.45rem;
+  h1 {
+    img {
+      height: 80px;
+    }
+  }
+`
+
+const HeaderContainer = styled.div`
+   margin: 0 auto,
+   max-width: 960px,
+   padding: 1.45rem 1.0875rem,
+`
+
+const Billboard = styled(Img)`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+`
+
+const Header = ({ data }) => (
+  <HeaderWrapper>
+    <HeaderContainer>
+      <h1 style={{ margin: 0 }}>
+        <Link
+          to="/"
+          style={{
+            color: 'white',
+            textDecoration: 'none',
+          }}
+        />
+        <img src={logo} alt="Logo" />
+      </h1>
+      <p>{data.site.siteMetadata.title}</p>
+      <p>{data.site.siteMetadata.desc}</p>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Homee</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+      </nav>
+    </HeaderContainer>
+    <Billboard sizes={data.background.sizes} />
+  </HeaderWrapper>
+)
+
+export default Header
+```
+
+convert header component to Header (class based component)
+
+```
+import React, { Component } from 'react'
+import Link from 'gatsby-link'
+import styled from 'styled-components'
+import Img from 'gatsby-image'
+import logo from '../../images/logo.svg'
+// import womenVid from '../../videos/women-bg-dropbox.mp4'
+// console.log(logo)
+
+const HeaderWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+  height: 70vh;
+  background: #524763;
+  margin-bottom: 1.45rem;
+  h1 {
+    img {
+      height: 80px;
+    }
+  }
+`
+
+const HeaderContainer = styled.div`
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1.45rem 1.0875rem;
+  position: relative;
+  z-index: 2;
+`
+
+class Header extends Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    const { data } = this.props
+    return (
+      <HeaderWrapper>
+        <HeaderContainer>
+          <h1 style={{ margin: 0 }}>
+            <Link
+              to="/"
+              style={{
+                color: 'white',
+                textDecoration: 'none',
+              }}
+            />
+            <img src={logo} alt="Logo" />
+          </h1>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Homee</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+            </ul>
+          </nav>
+        </HeaderContainer>
+        <Img
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%',
+          }}
+          sizes={data.background.sizes}
+        />
+      </HeaderWrapper>
+    )
+  }
+}
+
+export default Header
+```
+
+## Build Gatsby
+* `$ gatsby build`
+* creates a public folder with all your assets to drag to godaddy
+* `$ gatsby serve`
+  - It won't work unless you first run `$ gatsby build`
+  - Because all serve does is run a server (it needs that `public` folder that `$ gatsby build` creates)
+  - use the IP for testing on other devices (not quite as cool as browser sync)
+
+## gatsby-plugin-netlify-cms
+* `$ npm i gatsby-plugin-netlify-cms netlify-cms`
+
+`/static/admin/config.yml`
+
+```
+backend:
+  name: test-repo
+
+media_folder: static/assets
+
+collections:
+  - name: post
+    label: Posts
+    folder: src/Posts
+    create: true
+```
+
+browse to `http://localhost:8000/admin/#/`
+
+* Should see Login page
+
+## Make blog user friendly (just a test environment not persistent)
+
+```
+backend:
+  name: test-repo
+
+media_folder: static/assets
+
+collections:
+  - name: post
+    label: Posts
+    folder: src/Posts
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: date, label: Create At, widget: date }
+      - { name: body, label: Post, widget: markdown }
+```
+
+## Create git locally and remote origin and push
+
+```
+backend:
+  name: github 
+  repo: kingluddite/levelup-pro
+
+media_folder: static/assets
+
+collections:
+  - name: post
+    label: Posts
+    folder: src/Posts
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: date, label: Create At, widget: date }
+      - { name: body, label: Post, widget: markdown }
+```
+
+/admin/
+
+* you will see this
+
+![no auth](https://i.imgur.com/jjWnOVh.png)
+
+you need to get oauth access from github get client id and secret
+on netflify add that info inside it's access under settings
+make sure to get netlify callback url from this page
+
+https://www.netlify.com/docs/authentication-providers/
+
+this is the callback `https://api.netlify.com/auth/done`
+
+when you create posts it commits to your repo and netlify updates
+this is super cool
+remember to pull down new posts to your local repo!
+
+`gatsby-source-contentful`
+
+
 ## install gatsby cli globally
 
 `$ npm i -g gatsby -cli`
