@@ -1,5 +1,9 @@
 # Intro to GraphQL
 
+## Shortcuts
+alt + spacebar brings up autocomplete (if you don't have alfred app it will be ctrl + spacebar)
+
+ctrl + enter ---> executes query
 ## What is GraphQL?
 ![client server](https://i.imgur.com/xr5WXxT.png)
 * A query language

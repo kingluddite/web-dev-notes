@@ -1,5 +1,8 @@
 # VS Code
 
+## Sync VS code across your computers
+* [https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync](link to sync vs code)
+
 ## Choose cool theme
 1. Install Material Theme and Reload
 2. cmd shift p > type theme

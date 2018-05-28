@@ -2,17 +2,17 @@
 
 ## why does it keep asking for my passphrase?
 
-* You need to use an ssh agent. Short answer: try
+* You need to use an ssh agent. Short answer: do this
 
 `$ ssh-add`
 
-* before pushing. Supply your passphrase when asked.
-
-* If you aren't already running an ssh agent you will get the following message:
+* before pushing
+* Supply your passphrase when asked
+* If you aren't already running an **ssh agent** you will get the following message:
 
 `Could not open a connection to your authentication agent.`
 
-* In that situation, you can start one and set your environment up thusly
+* In that situation, you can start one and set your environment up doing this:
 
 `$ eval $(ssh-agent)`
 
@@ -24,28 +24,31 @@
 
 * Here is an example
 
-`ssh-add ~/.ssh/doug.funnie@bluffington.edu`
+`$ ssh-add ~/.ssh/doug.funnie@bluffington.edu`
 
 ## Best way to set up SSH on github (and and 3rd party site)
+* Use this is you have a work github and a personal github
+* Helps keep those worlds separated
+
+### Here are the instructions on how to do this:
 [meteor chef instructions](https://themeteorchef.com/tutorials/setting-up-an-ssh-config-file)
 
 **I want to copy my machines ssh public key and add it to my virtual machine's authorized_keys file. How can I do this?**
-
-this is if you are using a virtual box or a linux server
-
-Lots of ways. I like this way.
-You can have multiple keys in your authorized_keys file. I heard the max is 30 but double check on that.
-
-There is a very cool command that you can install with `brew`
+* This is if you are using a virtual box or a linux server
+* Lots of ways
+* I like this way
+* You can have multiple keys in your **authorized_keys** file
+* I heard the max is 30 but double check on that
+* There is a very cool command that you can install with `brew`
 
 `$ brew install ssh-copy-id`
 
-Then
+* Then
 
 `$ ssh-copy-id root@193.241.235.95`
 
-And that will add your SSH public key from your machine to the authorized_keys file on your virtual machine located at your IP (193.241.235.95 in my example). Also I am using the `root` user here but you can substitute whatever user you want.
->>>>>>> mystuff
+* And that will add your **SSH public key** from your machine to the authorized_keys file on your virtual machine located at your IP (193.241.235.95 in my example)
+* Also I am using the `root` user here but you can substitute whatever user you want
 
 ## copy your id_rsa.pub
 
@@ -65,7 +68,7 @@ And that will add your SSH public key from your machine to the authorized_keys f
 3. `y` - to save
 4. press enter
 
-`ls` - you should see a file authorized_keys with up to 30 different keys
+`ls` - you should see a file **authorized_keys** with up to 30 different keys
 
 ###SSH into a remote machine
 
@@ -275,7 +278,9 @@ ssh-keygen -t rsa -C "your_email@example.com"
 * The passphrase is optional. It adds extra security if you need it. If you don't add it, it won't ask you for it every time.
 4. You just generated a SSH key. Congrats!
 
-But don't get too excited because we still have unfinished business. You still need to grab that SSH key and copy it.
+### But don't get too excited
+* Because we still have unfinished business
+* You still need to grab that SSH key and copy it
 
 ## Add an SSH Agent
 What the heck is an [ssh-agent](https://en.wikipedia.org/wiki/Ssh-agent)?
