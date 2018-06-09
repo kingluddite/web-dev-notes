@@ -17,6 +17,32 @@
 
 ![code command in path](https://i.imgur.com/pyuAEdH.png)
 
+* Type `shell` and install
+    - Now you can open VS code inside terminal using `$ code .` (`.` means current directory)
+* **important** make sure you install VS code inside Applications folder!
+
+## Preview Markdown files (icon top right)
+
+## Split Screen (icon top right)
+
+## Show/Hide sidebar
+cmd + b
+
+## Show/Hide Terminal
+cmd + ~
+
+## Search
+cmd + shift + f
+
+## Search through folder
+cmd + shift + p
+
+## go to line
+cmd + p +type `:` and line number
+
+## f1
+* gives you list of stuff you can use
+
 ### language mode === React
 * You will get tired of choosing JavaScript react or your react project files
 * Follow these instructions to avoid that:
