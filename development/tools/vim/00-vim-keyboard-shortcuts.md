@@ -1,4 +1,23 @@
+
 # VIM Keyboard shortcuts
+
+* swp files are for backing up and you really shouldn't turn the backup system off
+* A better solution is to add this in your vimrc
+
+```
+" create backups
+set backup
+" tell vim where to put its backup files
+set backupdir=/tmp
+```
+
+* After adding that to your vimrc file, make sure to refresh your source 
+
+`$ source ~/.zshrc`
+
+* If you have a lot of files ending with `~` you can delete them with:
+
+`$ find . -name '*~' -exec rm {} \;`
 
 ## To Clean out ALL vim Swap Files in a Directory
 `$ find . -type f -name "*.sw[klmnop]" -delete`
