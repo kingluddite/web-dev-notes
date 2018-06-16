@@ -1,4 +1,49 @@
 # VVV
+## How to migrate a DB
+[link to how to do it](http://chronicoverengineering.com/pressable-vvv/)
+
+### Import database
+* During provisioning VVV imports any SQL dump file in `database/backups/` dir mapped by filename to the specific database
+* First you need to make sure the custom database with permissions exists by editing `database/init-custom.sql` to contain:
+
+```sql
+CREATE DATABASE IF NOT EXISTS `mysite`;
+GRANT ALL PRIVILEGES ON `mysite`.* TO 'root'@'localhost' IDENTIFIED BY 'root';
+```
+
+* Then copy your SQL dump file into `database/backups/mysite.sql`
+* In case you have the database dump as separate files, just combine them into one with 
+
+`$ cat *.sql > mysite.sql`
+
+* Now with Vagrant running, run the provisioning vagrant provision to set up the database, or alternatively boot it up with:
+
+`$ vagrant up --provision`
+
+### Replace database strings
+* As WordPress uses absolute urls for posts in the database, you need to convert each url to pointing to your earlier domain to the local development environment
+
+#### ExampleEg
+* `Pressable.com` site was accessed at `http://mysite.mystagingwebsite.com` and needs to be changed to `http://mysite.dev`
+
+#### Search and Replace with WP-CLI
+* VVV comes with WP-CLI installed that allows easy search and replace for the database
+* Connect view ssh to your machine, navigate to site `www` directory and replace all string in database:
+
+`$ vagrant ssh`
+
+`$ cd /vagrant/www/mysite/public_html`
+
+# Dry run first to check what would be replaced
+`$ wp search-replace 'mysite.mystagingwebsite.com 'mysite.dev' --dry-run`
+
+# After checking validating dry run output, run
+`$ wp search-replace 'mysite.mystagingwebsite.com 'mysite.dev'`
+
+* Alternatively a tool such as **Search Replace DB** can be used for doing replacements
+
+### Done!
+* Now (if you're lucky) the site should be accessible at `http://mysite.dev` on your local machine
 
 ## HOw to create a new WP site
 custom config file
