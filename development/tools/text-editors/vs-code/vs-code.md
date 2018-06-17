@@ -1,11 +1,22 @@
 # VS Code
 
+
 keyboard shortcuts
 alt + up/down moves lines
 shift + alt + up/down copy lines
 
 ## Sync VS code across your computers
 * [https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync](link to sync vs code)
+    - have problems with this
+    - make sure no errors in vs user settings (fix them all)
+    - create your unique gist key like it shows you (save in safe spot)
+    - open vs code
+    - reset with cmd pallette and select reset
+    - restart vs code
+    - upload settings and provide gist code
+    - that should create a gist with all your settings
+    - restart vs code just to be safe
+    - download your settings on another machine and provide same gist api # and it should sync
 
 ## Choose cool theme
 1. Install Material Theme and Reload

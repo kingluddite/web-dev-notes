@@ -1,4 +1,23 @@
+
 # VIM Keyboard shortcuts
+
+* swp files are for backing up and you really shouldn't turn the backup system off
+* A better solution is to add this in your vimrc
+
+```
+" create backups
+set backup
+" tell vim where to put its backup files
+set backupdir=/tmp
+```
+
+* After adding that to your vimrc file, make sure to refresh your source 
+
+`$ source ~/.zshrc`
+
+* If you have a lot of files ending with `~` you can delete them with:
+
+`$ find . -name '*~' -exec rm {} \;`
 
 ## To Clean out ALL vim Swap Files in a Directory
 `$ find . -type f -name "*.sw[klmnop]" -delete`
@@ -274,10 +293,11 @@ Add this plugin to `.vimrc`
 
 `Plugin 'tpope/vim-surround'`
 
-## Multi-Change word
+## Sublime had a cool feature to highlight a word and change all words with that spelling. How can I do that in Vim?
 * I love multi-cursor in Sublime Text
 * There is a plugin in Vim to mimic this behavior but it is buggy and vim default functionality is better and far more powerful
-* Steps to replace many
+
+### Steps to replace many
 
 1. Search for word using `/mysearch`
 2. Press `enter` on your keyboard
@@ -285,6 +305,7 @@ Add this plugin to `.vimrc`
 * That will highlight all occurrences of that query
 
 3. `cgn` + your new word
+4. switch to normal mode (`jk` (my keyboard shortcut))
 4. Type `n` (next word)
 5. Type `.` (dot) to repeat change
 
