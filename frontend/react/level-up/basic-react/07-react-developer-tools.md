@@ -71,7 +71,8 @@ module.exports = {
   "extends": "airbnb",
   "rules": {
     "react/jsx-filename-extension": 0,
-    "function-paren-newline": 0
+    "function-paren-newline": 0,
+    "jsx-a11y/anchor-is-valid": [ "error", { "components": [ "Link" ], "specialLink": [ "to" ] } ]
   }
 };
 ```
@@ -105,5 +106,5 @@ or be specific with what you want to turn off
 
 turn off rule for entire file
 
-/* eslint-disable-line react/no-did-mount-set-state: 0 */
+`/* eslint-disable-line react/no-did-mount-set-state: 0 */``
 
