@@ -22,6 +22,7 @@ console.log(store);
 ![the output of a basic store](https://i.imgur.com/XfGntG4.png)
 
 * dispatch (helps you run actions)
+    - aaaa
 * getState (will get our actual state)
 
 ```
