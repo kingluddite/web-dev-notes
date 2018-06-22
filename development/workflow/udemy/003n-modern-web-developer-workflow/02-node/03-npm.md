@@ -3,6 +3,9 @@
 `P`ackage
 `M`anager
 
+## Install specific version (example... lodash)
+`$ npm install lodash@4.17.4`
+
 ## Problems updating npm to latest version
 * This is a problem and I've wasted time trying to solve it
 * Here's the solution

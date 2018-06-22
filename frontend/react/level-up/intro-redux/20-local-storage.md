@@ -100,4 +100,6 @@ const MovieGrid = styled.div`
 `;
 ```
 
-
+## Resources
+* https://redux.js.org/
+* https://github.com/xgrommx/awesome-redux
