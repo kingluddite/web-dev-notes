@@ -42,3 +42,9 @@ createApolloServer({});
         + think of a `resolver` as the thing that hits the db and gets the data
         + type is where you define your schemas
         + mutations are what updates your DB
+
+## What apollo does
+* It will replace the meteor part of the API in our project
+* It will replace your meteor methods with mutations (they replace your server side stuff.. server side routes/meteor methods)
+* It will be our server side code that will grab data from db, choosing how to make it available to apollo or graphql on the client side and at the end of the data it will be as simple as writing a data container that has a query that pulls what data you want
+* if you ever used mini mongo in meteor is great to query the db directly from your client, having an api and watching the data come back and apollo stands on that same idea in a way that is far superior 

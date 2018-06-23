@@ -79,3 +79,19 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 Open up finder and make sure sdk is in `/Library/Android/sdk`
 
 # Start Android Virtual Device
+1. Open Android Studio
+2. Click configure again
+3. We can't start an AVD without starting a new project so we need to do that and hit next through everythigng
+4. click purple icon to open emulator
+5. That will open up virtual devices
+6. We can add as many as we want
+7. click and then system and choose marshmallow and ok
+8. Click yes to wipe it
+9. Click play button which opens emulator
+10. navigate to inside tipcalc
+11. `$ npm run android`
+12. It will run what it ran before
+13. open emulator
+14. click oke to enable drawing over apps'
+15. toggle to allow display over other apps
+16. Search for Expo and select it
