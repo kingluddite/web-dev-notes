@@ -1,5 +1,10 @@
 # The ZSH shell
 
+## go to previous directory
+`$ cd -`
+
+* more tips - https://opensourcehacker.com/2012/09/19/five-zsh-tricks-to-optimize-your-shell-workflow/
+
 ## can't find zsh
 * You may get this error from time to time
 * Just reinstall zsh and it should fix it
