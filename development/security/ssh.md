@@ -1,5 +1,26 @@
 # SSH
 
+## if you get this error:
+
+```
+ERROR: Repository not found.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+```
+
+* And even if you add ssh-add
+* Or add ssh-add with your specific key
+* It still doesn't work? wtf?
+* here is the solution:
+
+`$ eval "$(ssh-agent -s)"`
+
+* Then ssh-add `$ ssh-add ~/.ssh/YOURKEYHERE`
+* Then try git commands and you should be good to go
+* If you are working with a private git repo and multiple SSH keys this may be a problem and this is the solution
+
+
 ## why does it keep asking for my passphrase?
 
 * You need to use an ssh agent. Short answer: do this

@@ -1,5 +1,10 @@
 # Node.js
 
+## install and update node with brew
+`$ brew install node`
+`$ brew update`
+`$ brew upgrade node`
+
 ## PATH issues
 `$ npm bin -g` will tell you the path for npm
 
