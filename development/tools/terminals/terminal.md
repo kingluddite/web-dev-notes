@@ -9,7 +9,8 @@
 ## How to move all files from current directory to upper directory?
 `$ mv * .[^.]* ..`
 
-* Explanation: the `mv` command moves files and directories
+### Explanation: the `mv` command
+* Moves files and directories
 * The last argument to `mv` is the target (in this case the directory one step "up" in the tree, ..)
 * The arguments before that are the source files and directories
 * The asterisk (*) is a wildcard which matches all files which do not start with a dot
@@ -42,15 +43,15 @@
 
 `$ mkdir /new/awesome/folder`
 
-* To then cd into that directory, you could just type:
+* To then change into that directory, you could just type:
 
 `$ cd !$`
 
 The `!$` represents the arguments from your last command
 
 ## Fix mistakes
-* mistyping the command you want to run
-* Say you wanted to run nano, but accidentally typed `nanp`:
+* Mistyping the command you want to run
+* Say you wanted to run `nano`, but accidentally typed `nanp`:
 
 `$ nanp /path/to/a/document/buried/deep/in/the/filesystem`
 
@@ -71,7 +72,7 @@ The `!$` represents the arguments from your last command
 9721  vim .tmux/tmux.conf
 ```
 
-* Tor run 9721 just `$ !9721`
+* To run **9721** just `$ !9721`
 
 ## Keep commands out of your history
 * Just preface them with a space
@@ -79,11 +80,13 @@ The `!$` represents the arguments from your last command
 ## Expansions
 ### `{}`
 * easily perform batch operations on multiple versions of a file
-Say you want to rename just part of a filename. Instead of typing out 
+
+#### Say you want to rename just part of a filename
+* Instead of typing out 
 
 `$ mv /path/to/file.txt /path/to/file.xml`
 
-* you could just run:
+* You could just run:
 
 `$ mv /path/to/file.{txt,xml}`
 
@@ -103,33 +106,38 @@ Say you want to rename just part of a filename. Instead of typing out
 `$ mkdir myfolder{1,2,3}`
 
 ## How to Disable the “Last Login” / MOTD on New Terminal Session
-If you don’t want to see that login message or MOTD again, you can get rid of that ‘Last login’ message at the top of a new terminal by entering the following command to create a ‘hushlogin’ file:
+* If you don’t want to see that login message or MOTD again, you can get rid of that ‘Last login’ message at the top of a new terminal by entering the following command to create a ‘hushlogin’ file:
 
 `$ touch .hushlogin`
 
-[10 Terminal Commands that will bost your productivity](https://code.tutsplus.com/articles/10-terminal-commands-that-will-boost-your-productivity--net-14105)
+* [10 Terminal Commands that will bost your productivity](https://code.tutsplus.com/articles/10-terminal-commands-that-will-boost-your-productivity--net-14105)
 
 ## How to DNS lookup with Mac Terminal
 `$ dig ns www.domain.com`
 
-# curl command would open Sublime and can't write to body error in terminal.
-I had to jump into `.bashrc` `.zshrc` and `.bash_profile`. I found out that if you type `alias` in the terminal it will list all your alias' in alphabetical order and which file they are in. Turns out I used a reserved word for an alias which was `bash`. I need to find and comment out all of them to get curl to work again. the curl command was using the `bash` word in the script
+# `curl` command would open Sublime and can't write to body error in terminal
+* I had to jump into `.bashrc` `.zshrc` and `.bash_profile`
+* I found out that if you type `alias` in the terminal it will list all your alias' in alphabetical order and which file they are in
+* Turns out I used a reserved word for an alias which was `bash`
+* I need to find and comment out all of them to get curl to work again
+* The `curl` command was using the `bash` word in the script
 
 `curl -s https://php-osx.liip.ch/install.sh | bash -s 7.1`
 
 * I was trying to download the latest version of PHP
-
-And when it got to `bash` in that command, it would open Sublime Text and the bash file.
-
-Here was my alias that caused the problem (I also had the alias in both .bash_profile and .zshrc so I had to comment them both out)
+* And when it got to `bash` in that command, it would open Sublime Text and the bash file
+* Here was my alias that caused the problem (I also had the alias in both` .bash_profile` and `.zshrc` so I had to comment them both out)
 
 `alias bash='sublime ~/.bash_profile'`
 
-I just commented it out and, refreshed with `source ~/.bash_profile` and it worked again. But I wasted two hours trying to figure this out.
+* I just commented it out and, refreshed with `source ~/.bash_profile` and it worked again
+* But I wasted two hours trying to figure this out
 
 ##iTerm2
-Add visor
-preferences > keys > Hotkey
+* Add visor
+
+`preferences > keys > Hotkey`
+
 * check Hotkeytoggle a dedicated window with profile
 * Choose Hotkey Window from dropdown
 * [more info](http://apple.stackexchange.com/questions/48796/iterm-as-a-slide-out-terminal-from-the-top-of-the-screen)
@@ -138,14 +146,17 @@ preferences > keys > Hotkey
 
 ## select beginning of line
 `ctrl` + `a`
+
 ## select end of line
 `ctrl` + `e`
+
 ## kill to end-of-line
 `ctrl` + `shift` + k
-[sample osx bash profile article](https://natelandau.com/my-mac-osx-bash_profile/)
+
+* [sample osx bash profile article](https://natelandau.com/my-mac-osx-bash_profile/)
 
 ## Terminal Cheatsheet
-[terminal cheatsheet](https://github.com/0nn0/terminal-mac-cheatsheet/wiki/Terminal-Cheatsheet-for-Mac-(-basics-))
+* [terminal cheatsheet](https://github.com/0nn0/terminal-mac-cheatsheet/wiki/Terminal-Cheatsheet-for-Mac-(-basics-))
 
 ## Terminal Commands
 
@@ -903,7 +914,7 @@ on local computer and grabbing remote file and placing on desktop
 myusername.sql
 ```
 
-Look on your desktop and there it shall be. And no FTP needed!
+* Look on your desktop and there it shall be. And no FTP needed!
 
 #### Move folder contents into parent folder
 * Make sure you are in the root of your project folder
