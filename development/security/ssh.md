@@ -1,5 +1,14 @@
 # SSH
 
+* If you are using a public library that may block ports so if you need to push to github you need to switch to https using this
+
+`$ git config --local -e`
+
+* Then change to https (you can copy your repo https URL from github) and paste into file
+* You may still get an error when you push and that is because mac os ties your username to accesskeys so just delete your github access key using this info:
+
+https://stackoverflow.com/questions/21615431/git-pushes-with-wrong-user-from-terminal
+
 ## if you get this error:
 
 ```
