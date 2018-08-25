@@ -1,0 +1,103 @@
+# Create GraphQL schema
+`schema.js`
+
+### Tip
+* open both graphql `schema.js` and `User.js` side by side
+* Use the VS code `2 tabs icon`
+
+![2 tabs icon](https://i.imgur.com/HEvaNtZ.png)
+
+* GraphQL syntax looks different than our model syntax
+* Exclamation point (means it is required) 
+        - `!` === `required: true`
+* `@unique` === `unique: true`
+* GraphQL has no commas
+* Common to add returns between lines for legibility
+
+```
+exports.typeDefs = `
+  type Genealogy {
+
+    firstName: String!
+
+    lastName: String!
+
+    dateOfBirth: String
+
+    living: String
+
+    description: String
+
+    createdDate: String
+
+    likes: Int
+
+    userName: String
+
+  }
+
+  type User {
+
+    username: String! @unique
+
+    password: String!
+
+    email: String! @unique
+
+    joinDate: Date
+
+    favorites: []
+
+  }
+`;
+```
+
+## more about our `User.js` model `favorites` field
+`User.js`
+
+```
+// MORE CODE
+
+  favorites: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Genealogy',
+  },
+});
+
+module.exports = mongoose.model('User', UserSchema);
+```
+
+* We are referencing our Genealogy model
+* Later we will use a mongoose method called `populate()` and this will change all the IDs we have in that array to Genealogy objects themselves
+
+## Question
+* Why in graphql schema `joindate: string` where in mongo schema `joindate: Date`?
+
+### Answer
+* GraphQL doesn't include a scalar type of `Date` (unlike other scalar types like `String`, `Int`, and `Boolean`). What the MLab database will return to us is a String, so that's the type we need to apply to our Mongoose schema
+
+## Big problem - TypeError: graphiqlExpress is not a function (as of 8/17/2018)
+* This is because Apollo Server 2 has changed how it connects with graphql and it will break our code so to fix things we need to revert to an older version of Apollo
+* If you update to Apollo Server 2 it will break
+* Look at package.json to see your versions
+
+`package.json`
+
+```
+// MORE CODE
+
+"apollo-server-express": "^1.3.6",
+
+// MORE CODE
+
+"graphql-tools": "^3.0.2",
+
+// MORE CODE
+```
+
+* Update version to the above in your code
+* Then install update with `$ npm i`
+* Run `$ npm run dev`
+* Test in Terminal and you should see you are connected to your mongo DB
+
+
