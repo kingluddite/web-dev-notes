@@ -29,7 +29,7 @@
 * We have to make more requests
 * This is where facebook developers ran into problems, it ran into the limitation of using a REST API
     - We have to build out long nested paths
-    - We have to build out the functionality for each path and assiate each with a HTTP verb
+    - We have to build out the functionality for each path and associate each with a HTTP verb
 * All these requests are an expensive operation
 
 ## We have a problem so let's fix it
@@ -39,19 +39,21 @@
 ### Benefits of GraphQL
 * In terms of functions
 
-1. we can request the exact data we want
-2. and we only have to make one request
+1. We can request the exact data we want
+2. And we only have to make one request
 
-* GraphQL has built in type system
-    - you will understand this if you are familiar with a language like Java (which is a typed language)
+* GraphQL has built-in type system
+    - You will understand this if you are familiar with a language like Java (which is a typed language)
 * This means you have to declare the type of data you are working with
     - This offer a huge benefit because with typed languages everything is much more predictable
     - If you make a mistake writing that type, you'll get an error
-* GraphQL comes with built in developer tools
-    - REST APIs tools you have to use 3rd party tools like Postman, or use CURL in your terminal to make sure requests and responses were working properly
-    - GraphQL has a built in tool that makes 3rd party tools unneccesary
+* GraphQL comes with built-in developer tools
+    - REST APIs tools you have to use 3rd party tools
+        + Like Postman
+        + Or use CURL in your terminal to make sure requests and responses were working properly
+    - GraphQL has a built in tool that makes 3rd party tools unnecessary
 * We don't have to version our version APIs
-    - With REST apis this was common
+    - With REST APIs this was common
         + `facebook.com/v1/user/friends/friends`
         + `facebook.com/v2/user/friends/friends`
     - This means if you wanted to update your api and didn't version it people using it for their apps, their apps could break
