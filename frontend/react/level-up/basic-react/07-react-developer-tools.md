@@ -11,7 +11,6 @@ $r.input = 'hello'
 Then type $r and you'll see that you set the input inside React's component
 so you have access to your live JavaScript components to play around with
 
-
 ## Linting in VS Code for react
 * Add Eslint to VS code
 * Add these dependencies
@@ -28,14 +27,14 @@ so you have access to your live JavaScript components to play around with
 `$ npm i -g eslint`
 
 ## Answer these questions like this:
-How do you want to configure ESLint? Use popular style guide, Airbnb
-Do you use React? Yes
-What format? Javascript
-Do yo want to upgrade: yes
+* How do you want to configure ESLint? Use popular style guide, Airbnb
+* Do you use React? Yes
+* What format? Javascript
+* Do yo want to upgrade: yes
 
+**note** You should see it did this:
 
-YOu should see it did this:
-created .eslintrc
+* created `.eslintrc`
 
 ```
 module.exports = {
@@ -77,16 +76,13 @@ module.exports = {
 };
 ```
 
-vs code settings
-eslint - set eslint.autoFixOnSave: true
-
-
-f8 to show errors
+## vs code settings
+* eslint - set eslint.autoFixOnSave: true
+* f8 to show errors
 
 ## turn off eslint rules you don't want
-use f8 to find rule name
-open .eslintrc.js file and add rules
-
+* use f8 to find rule name
+* open `.eslintrc.js` file and add rules
 
 ```
 // MORE CODE
@@ -100,11 +96,10 @@ open .eslintrc.js file and add rules
 ## disable for just one line
 `this.setState({ // eslint-disable-line`
 
-or be specific with what you want to turn off
+* or be specific with what you want to turn off
 
 `this.setState({ // eslint-disable-line react/no-did/mount-set-state`
 
-turn off rule for entire file
+* turn off rule for entire file
 
-`/* eslint-disable-line react/no-did-mount-set-state: 0 */``
-
+`/* eslint-disable-line react/no-did-mount-set-state: 0 */`

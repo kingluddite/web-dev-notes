@@ -1,5 +1,7 @@
 # iTerm2
 
+`cmd` + `d` - split window
+
 ## Dim others except focused window
 * This is great if your workflow involves using multiple terminal windows open at one time
 
