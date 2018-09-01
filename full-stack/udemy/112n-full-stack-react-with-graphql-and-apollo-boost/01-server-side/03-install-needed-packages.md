@@ -13,7 +13,7 @@
         + Window > Extensions > hamburger icon > open chrome webstore > search for [react dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en-US)
 
 ## Install Prettier and ESLint
-`.eslint`
+`.eslintrc`
 
 ```
 {

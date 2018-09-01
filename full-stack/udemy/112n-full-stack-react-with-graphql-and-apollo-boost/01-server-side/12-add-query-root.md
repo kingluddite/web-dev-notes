@@ -29,6 +29,31 @@ type User {
 `;
 ```
 
+## Note - I removed @unique to prevent error
+```
+// MORE CODE
+
+type User {
+
+    username: String!
+
+    password: String!
+
+    email: String!
+
+    joinDate: String
+
+    favorites: [Genealogy]
+
+  }
+
+  type Query {
+
+    
+  }
+`;
+```
+
 ## Add type Query inside our resolvers.js
 `resolvers.js`
 
@@ -40,7 +65,8 @@ exports.resolvers = {
 
 ## Test - Houston we have a problem
 * error `GraphQLError: Syntax Error: Expected Name, found }`
-* This means we can't have an empty type in our schema.js. We need to add a **name**
+* This means we can't have an empty type in our `schema.js`
+* We need to add a **name**
 
 `schema.js`
 
@@ -65,7 +91,7 @@ exports.resolvers = {
 ```
 
 ## Test - no more errors
-* visit `http://localhost:4444/graphiql`
+* Visit `http://localhost:4444/graphiql`
 * That error is gone too
 
 ### View Document Explorer in graphiql

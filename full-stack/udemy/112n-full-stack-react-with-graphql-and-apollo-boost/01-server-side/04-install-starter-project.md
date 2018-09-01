@@ -11,7 +11,7 @@
 * This has a bunch of stuff you'll need
 
 ### Dev Dependencies
-* nodemon
+* nodemon `$ npm i nodemon eslint babel-eslint eslint-plugin-jsx-a11y eslint-plugin-flowtype eslint-plugin-import eslint-config-react-app eslint-plugin-prettier -D`
 
 ### Dependencies
 * apollo-server-express

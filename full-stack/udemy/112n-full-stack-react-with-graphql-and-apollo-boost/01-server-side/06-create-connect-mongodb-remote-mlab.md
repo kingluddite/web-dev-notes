@@ -52,7 +52,7 @@ require('dotenv').config({ path: 'variables.env'})
 ### Mongoose
 * Connect our app's backend to mLab
 * We'll do this using a package called `mongoose` (which we've already installed)
-* We can now user our MONGO_URI varables we set in `variables.env` so we can use Mongoose to connect to our remote Mongo DB on mLab.
+* We can now user our `MONGO_URI` varables we set in `variables.env` so we can use Mongoose to connect to our remote Mongo DB on mLab
 * We access environment variables using `process.env`
 * We'll connect or throw an error
 
@@ -81,7 +81,7 @@ const app = express();
 ## Houston we have a problem!
 * We get an error `missing script dev`
 
-### Solution
+### Solution - Add nodemon and a npm script
 * Install `nodemon`
     - nodemon will save you time as you won't have to keep restarting your server after you make changes, once nodemon is installed and running it will automatically restart your server each time you make a change to your code
 
@@ -108,11 +108,40 @@ const app = express();
 * If all is well you will see DB connected in terminal
 * But sometimes you might get SSH errors to connect to mLab if you are working in a public library or a secure environment so to install mongo locally you can do the following
 
+## Another potential error
+* Check if mongo is > 4 `$ mongo --version`
+* If you need to upgrade (I'm using brew).... `$ brew update mongo`
+
+## Another potential error
+* `DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.`
+
+### Solution to getting rid of errors
+`server.js`
+
+* [Source of solution](https://github.com/Automattic/mongoose/issues/4135)
+
+```
+// MORE CODE
+mongoose
+  .connect(
+    process.env.MONGO_URI,
+    { useNewUrlParser: true }
+  )
+  .then(() => {
+    console.log('DB connected');
+  })
+  .catch(err => {
+    console.log('Error on start: ' + err.stack);
+    process.exit(1);
+  });
+// MORE CODE
+```
+
 ## I want to connect to a local instance of mongodb
 * View `07-create-connect-mongodb-local.md`
 
 ### Additonal Resources: Difference between `require` and `import`
-* JavaScript introduced a great way to compartmentalize JavaScript. In the pass you had to use [IFFE](https://stackoverflow.com/questions/8228281/what-is-the-function-construct-in-javascript) statments but now you can use **import** and **export**
+* JavaScript introduced a great way to compartmentalize JavaScript. In the pass you had to use [IFFE](https://stackoverflow.com/questions/8228281/what-is-the-function-construct-in-javascript) statements but now you can use **import** and **export**
 * But you will also see we are using **require** and this is often a point of confusion with people learning JavaScript
 * Currently, on the server side, `import` does not work so we need to use the older way to import JavaScript and that is `require`
 * `require` is from **NODE JS**

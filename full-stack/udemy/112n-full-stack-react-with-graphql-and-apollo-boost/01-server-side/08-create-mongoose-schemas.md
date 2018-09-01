@@ -1,6 +1,6 @@
 # Create Mongoose Schemas
 * Create `models/` folder in the root of your app
-* Create `Users.js` and `Genealogy.js`
+* Create `User.js` and `Genealogy.js`
     - Make sure both are capitalized
 * Schemas are the _blueprint_ of every instance of that Schema that is created in our database
 

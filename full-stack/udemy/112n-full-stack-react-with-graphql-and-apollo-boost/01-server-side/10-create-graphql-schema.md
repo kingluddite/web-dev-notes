@@ -7,6 +7,7 @@
 
 ![2 tabs icon](https://i.imgur.com/HEvaNtZ.png)
 
+#### Graphql is different than Model syntax!
 * GraphQL syntax looks different than our model syntax
 * Exclamation point (means it is required) 
         - `!` === `required: true`
@@ -32,7 +33,7 @@ exports.typeDefs = `
 
     likes: Int
 
-    userName: String
+    username: String
 
   }
 
@@ -44,7 +45,7 @@ exports.typeDefs = `
 
     email: String! @unique
 
-    joinDate: Date
+    joinDate: String
 
     favorites: []
 
@@ -74,7 +75,7 @@ module.exports = mongoose.model('User', UserSchema);
 * Why in graphql schema `joindate: string` where in mongo schema `joindate: Date`?
 
 ### Answer
-* GraphQL doesn't include a scalar type of `Date` (unlike other scalar types like `String`, `Int`, and `Boolean`). What the MLab database will return to us is a String, so that's the type we need to apply to our Mongoose schema
+* GraphQL doesn't include a scalar type of `Date` (unlike other scalar types like `String`, `Int`, and `Boolean`). What the mLab database will return to us is a String, so that's the type we need to apply to our Mongoose schema
 
 ## Big problem - TypeError: graphiqlExpress is not a function (as of 8/17/2018)
 * This is because Apollo Server 2 has changed how it connects with graphql and it will break our code so to fix things we need to revert to an older version of Apollo
@@ -99,5 +100,24 @@ module.exports = mongoose.model('User', UserSchema);
 * Then install update with `$ npm i`
 * Run `$ npm run dev`
 * Test in Terminal and you should see you are connected to your mongo DB
+
+## Problem again - schema @unique not recognized
+* Change this:
+
+`schema.js`
+
+```
+type User {
+  _id: ID,
+  username: String!
+  password: String!
+  email: String!
+  joinDate: String
+  favorites: [Genealogy]
+}
+```
+
+## Test in terminal
+* Should work and be connected to Terminal
 
 
