@@ -54,7 +54,7 @@ require( './db/db' ); // ADD THIS LINE
 ## If you use mLab
 * You need to create the Database
 * You need to create the user and password for that user
-* I suggest using MongoDB Compass and for a good UI connect by copying the mLab connection informationa nd pasting it into your MongoDB Compass
+* I suggest using MongoDB Compass and for a good UI connect by copying the mLab connection informationa and pasting it into your MongoDB Compass
 
 ### Config
 * We want to separate our important information in the config file
