@@ -1,17 +1,7 @@
 # Install starter for project
-## Clone this repo
-[repo starter](https://github.com/reedbarger/react-recipes)
-
-* You could clone this to a spot on your computer
-* If you do you'll need to run `$ npm install`
-* Then you'll need to remove `.git` to start keeping track of all of your changes and get rid of the changes from the repo you cloned
-
-`$ rm -rf .git`
-
-* This has a bunch of stuff you'll need
 
 ### Dev Dependencies
-* nodemon `$ npm i nodemon eslint babel-eslint eslint-plugin-jsx-a11y eslint-plugin-flowtype eslint-plugin-import eslint-config-react-app eslint-plugin-prettier -D`
+* `$ npm i nodemon eslint babel-eslint eslint-plugin-jsx-a11y eslint-plugin-flowtype eslint-plugin-import eslint-config-react-app eslint-plugin-prettier -D`
 
 ### Dependencies
 * apollo-server-express
@@ -27,8 +17,6 @@
 * mongoose
 
 ### Start from scratch
-* Just to know you can start from scratch to create this let's create our project folder
-    - `$ take they-came-before-me`
 * `$ npm i apollo-server-express bcrypt body-parser concurrently cors dotenv express graphql graphql-tools jsonwebtoken mongoose`
 
 ### Add `.gitignore`

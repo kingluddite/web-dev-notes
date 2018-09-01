@@ -11,7 +11,7 @@
 
 `facebook.com/user/1234`
 
-* Now you create a route and now you need to associate that route with a HTTP verb
+* Now you create a route and now you need to associate that route with a [HTTP verb](https://www.restapitutorial.com/lessons/httpmethods.html)
 * This verb specifies how you want to react with a specific resource
 * In this case we want to get a user's information
     - So in this case we would use the HTTP verb GET

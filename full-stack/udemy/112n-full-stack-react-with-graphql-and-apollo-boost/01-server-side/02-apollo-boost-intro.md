@@ -23,10 +23,18 @@
 * We will set up Apollo using `apollo-boost`
     - This package contains a number of individual packages
     - [apollo boost docs](https://www.apollographql.com/docs/react/advanced/boost-migration.html)
-    - Create `package.json` using `$ npm init -y`
+
+## package.json
+* Create `package.json` using `$ npm init -y`
 * Here are the individual packages
 
 `$ npm install apollo-client apollo-cache-inmemory apollo-link-http apollo-link-error apollo-link`
+
+## tip - brew --- keep node updated
+```
+$ brew doctor (5 minutes)
+$ brew update node (10 minutes) (might be $ brew upgrade node)
+```
 
 ## Why Apollo Boost?
 * It used to take a long time to set up Apollo inside react app

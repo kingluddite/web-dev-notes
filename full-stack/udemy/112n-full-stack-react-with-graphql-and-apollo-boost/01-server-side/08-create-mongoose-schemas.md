@@ -93,4 +93,4 @@ const User = require('./models/User');
 ```
 
 ## Test if still working
-* Open your terminal. Any Errors? No. Good!
+* Open your terminal. Any Errors? No? Good!

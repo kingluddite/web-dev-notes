@@ -41,6 +41,8 @@ MONGO_URI=mongodb://admin:a12346@ds219672.mlab.com:19672/peh2-they-came-before-m
 ```
 
 ### Let our app know about our `.env` file
+`server.js`
+
 ```
 const express = require('express');
 const app = express();
@@ -60,9 +62,12 @@ require('dotenv').config({ path: 'variables.env'})
 
 ```
 const express = require('express');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // add this
 require('dotenv').config({ path: 'variables.env' });
 
+const PORT = process.env.PORT || 4444;
+
+// connect to db (add these lines)
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log('DB connected'))
@@ -82,10 +87,8 @@ const app = express();
 * We get an error `missing script dev`
 
 ### Solution - Add nodemon and a npm script
-* Install `nodemon`
-    - nodemon will save you time as you won't have to keep restarting your server after you make changes, once nodemon is installed and running it will automatically restart your server each time you make a change to your code
-
-`$ npm i -D nodemon`
+* We already installed `nodemon`
+    - `nodemon` will save you time as you won't have to keep restarting your server after you make changes, once nodemon is installed and running it will automatically restart your server each time you make a change to your code
 
 * Add your dev script
 

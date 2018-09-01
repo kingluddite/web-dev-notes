@@ -2,8 +2,6 @@
 ## add `body-parser`
 * We will need this for all our JSON requests and responses
 
-`$ npm i body-parser`
-
 ## Create two new files
 * In root of your app
 
@@ -32,6 +30,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config({ path: 'variables.env' });
 
+const PORT = process.env.PORT || 4444;
+
 // MORE CODE
 
 // graphql
@@ -44,12 +44,6 @@ const { resolvers } = require('./resolvers');
 ## apollo-server-express and graphql-tools
 * packages that will allow us to add our graphql middleware
     - this essentially allows us to connect graphql with express
-
-### Add `apollo-server-express`
-* `$ npm i apollo-server-express`
-
-### Add `graphql-tools`
-* `$ npm i graphql-tools`
 
 `server.js`
 

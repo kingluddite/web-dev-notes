@@ -4,7 +4,7 @@
 * This is a cool app that will make working with graphql in our app very easy
 * Visit the endpoint
 
-`localhost:4444/graphql`
+`localhost:4444/graphiql`
 
 * That will show you GraphiQL in your browser
 
