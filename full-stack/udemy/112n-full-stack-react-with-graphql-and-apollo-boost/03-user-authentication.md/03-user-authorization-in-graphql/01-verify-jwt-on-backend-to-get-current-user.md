@@ -2,13 +2,16 @@
 * We are sending our local token to our backend 
 
 ## But...
-* Whenever we signin and there is no value in localStorage
-* Open Application and delete the token
-* Then sign in again
+* Whenever we `signin` and there is no value in `localStorage`
+
+### Let's try this now:
+1. Open Application and delete the token
+2. Then sign in again
+
 * You will get `null` sent to the backend
 
 ## Why is token null?
-* Add this check to server.js
+* Add this check to `server.js`
 
 ```
 // MORE CODE
@@ -74,3 +77,5 @@ app.use(async (req, res, next) => {
 [server]   iat: 1535035353,
 [server]   exp: 1535038953 }
 ```
+
+## Next - add getCurrentUser query

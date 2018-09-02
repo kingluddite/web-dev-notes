@@ -32,7 +32,7 @@ class Signup extends Component {
 ```
 
 * We will create an event handler called 
-* We need this to be an arrow function and not method syntax or our `onChange` event won't be bound correctly
+* We need this to be an arrow function and not method syntax (_or our `onChange` event won't be bound correctly_)
 
 ```
 handleChange = event => {
@@ -91,6 +91,8 @@ render() {
 
 ## Replace log with setting state
 * Now we will remove the log and set the state to be the value
+
+### **Rule** Never set state directly 
 * You never set state directly but instead use `setState({})`
 
 `Signup.js`
@@ -118,7 +120,10 @@ handleChange = event => {
 
 ![react dev tools](https://i.imgur.com/T1wYiPk.png)
 
-## Set the values of the form field to be our state
+## Destructure and set values of form fields
+* Our form fields will never show what is inside them unless you explicitly set their values to what is stored in `state`
+* Destructuring will save you typing and make your code more readable 
+* Set the values of the form field to be our state
 
 `Signup.js`
 
@@ -167,4 +172,8 @@ handleChange = event => {
 // MORE CODE
 ```
 
+## Test
+* Fill out form and watch the values typed in fields appear in fields
 
+## Next - Add Mutation
+* When form is submitted we want to write a mutation that will alter our db

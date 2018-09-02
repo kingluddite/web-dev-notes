@@ -1,5 +1,6 @@
 # Add Routing with react-router-dom
 ## Add a new package into `client` folder
+
 `$ npm i react-router-dom`
 
 * Return to root folder
@@ -21,13 +22,17 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
 
 import './index.css';
 import App from './components/App';
 import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';
 
-// MORE CODE
+const client = new ApolloClient({
+  uri: 'http://localhost:4444/graphql',
+});
 
 const Root = () => (
   <Router>

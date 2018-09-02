@@ -48,4 +48,6 @@ const Root = ({ refetch }) => (
 ```
 
 ## Test
-Test and you'll see that the navbar is showing and as you click on nav links those pages are highlighted in navbar
+Test and you'll see that the `navbar` is showing and as you click on nav links those pages are highlighted in `navbar`
+
+## Next - add the auth navbar

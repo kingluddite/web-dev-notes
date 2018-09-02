@@ -43,9 +43,9 @@ const Root = ({ refetch, session }) => (
 // MORE CODE
 ```
 
-## pull out session from props of Navbar
-* Set up conditional to show auth nav or unauth nav
-* If we have a current user and it is not null we'll learn `navbarAuth` otherwise load `navbarUnAuth`
+## pull out `session` from props of `Navbar`
+* Set up conditional to show `auth nav` or `unauth nav`
+* If we have a current user and it is not `null` we'll learn `navbarAuth` otherwise load `navbarUnAuth`
 
 `Navbar.js`
 
@@ -69,8 +69,8 @@ const Navbar = ({ session }) => {
 
 ## Welcome user when logged in
 * Use a `<h2>Welcome, user name</h2>`
-* Pass down session to NavbarAuth
-* Use Fragment to prevent common parent tag error
+* Pass down `session` to `NavbarAuth`
+* Use `Fragment` to prevent common parent tag error
 
 `index.js`
 

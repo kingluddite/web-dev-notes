@@ -1,5 +1,5 @@
 # Add getCurrentUser Query
-* Pass currentUser variable down to this piece of graphql express middleware
+* Pass `currentUser` variable down to this piece of graphql express middleware
 
 `server.js`
 
@@ -23,7 +23,7 @@ app.use(
 // MORE CODE
 ```
 
-## Add currentUser to our request object
+## Add currentUser to our request object (`req`)
 `server.js`
 
 ```
@@ -41,8 +41,8 @@ if (token !== 'null') {
 // MORE CODE
 ```
 
-* wrap graphqlExpress with parenthesees
-* destructure `currentUser`
+1. Wrap graphqlExpress with parentheses
+2. Destructure `currentUser`
 
 `server.js`
 
@@ -126,7 +126,7 @@ const UserSchema = new Schema({
 
 `schema.js`
 
-* Our favorites has an array of IDs
+* Our `favorites` has an array of IDs
 
 ```
 type User {
@@ -140,7 +140,7 @@ type User {
 ```
 
 ## Calling `populate()` method
-* When populate() is called it will inject an entire Genealogy model within it
+* When `populate()` is called it will inject an entire Genealogy model within it
 
 ```
 getCurrentUser: async (root, args, { currentUser, User }) => {
@@ -158,7 +158,7 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
   },
 ```
 
-* We return the user variable we just created
+* We return the `user` variable we just created
 * So we will just get back an array of Genealogies instead of just IDs
 
 ## withSession
@@ -182,11 +182,11 @@ const withSession = Component => props => (
 );
 ```
 
-* One arrow function where we'll pass in props
+* One arrow function where we'll pass in `props`
 * A nested arrow function where we'll have the body of the component
-* Inside that will be our Query component which will have its render props
-* We will only use data and loading inside Query
-* We will return a Component (so this withSession HOC will wrap various components and we'll be able to return it and we'll pass down all those props for each of those components (we pass it down with `{...props}` in the component itself))
+* Inside that will be our Query component which will have its `render props`
+* We will only use `data` and `loading` inside Query
+* We will return a Component (so this `withSession` HOC will wrap various components and we'll be able to return it and we'll pass down all those props for each of those components (we pass it down with `{...props}` in the component itself))
 
 ## Inside our queries folder we'll create `GET_CURRENT_USER`
 
@@ -210,7 +210,7 @@ export const GET_CURRENT_USER = gql`
 ```
 
 ## Add that query to our client component
-* withSession will be used on many pages so that is why this component is different then the others
+* `withSession` will be used on many pages so that is why this component is different then the others
 
 `withSession.js`
 
@@ -231,7 +231,8 @@ const withSession = Component => props => (
 );
 ```
 
-## Add withSession to client/index.js
+## Add `withSession` to `client/index.js`
+
 `index.js`
 
 ```
@@ -243,12 +244,10 @@ import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';
 import withSession from './components/withSession'; // add
 
-import ApolloClient from 'apollo-boost';
-
 // MORE CODE
 ```
 
-## Use withSession to wrap our Components
+## Use `withSession` to wrap our Components
 * Best way to do this is to wrap our `Root` Component with **withSession**
 
 `client/index.js`
@@ -295,7 +294,7 @@ export default withSession; // don't forget to export it
 
 ## Review our work to see what we did
 * `server.js`
-    - We are passing our currentUser down to our graphqlExpress middleware
+    - We are passing our `currentUser` down to our graphqlExpress middleware
 
 ```
 // MORE CODE
@@ -341,25 +340,26 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 // MORE CODE
 ```
 
-* We get the current user from the `currentUser` variable
+* We get the **current logged in user** from the `currentUser` variable
 * Once we find it in our database 
 
 `User.findOne({ username: currentUser.username })`
 
 * Once we find it, we return it
 
-## Then in withSession.js
+## Then in `withSession.js`
 * We perform the `GET_CURRENT_USER` Query
-* We get the data of our current user and withSession will allow us to pass all the data down to every component that we choose
+* We get the data of our **current logged in user** and `withSession` will allow us to pass all the data down to every component that we choose
     - And we can do that using the `withSession` HOC
     - Later on we'll see the logic we'll apply to give it to every component
 
 ## Test
 * `http://localhost:3000/signin`
-* You will get null for getCurrentUser (chrome console) if no user is logged in
+* You will get `null` for `getCurrentUser` (chrome console) if no user is logged in
 * Log in and see what you get when you refresh page
 
 ## Houston we have a problem
+* Error ` MissingSchemaError: Schema hasn't been registered for model "Genealogies".`
 * We misspelled the Model name `Genealogy`
 
 `resolvers.js`
@@ -383,7 +383,7 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
     // MORE CODE
 ```
 
-## Testing locally
+## Testing locally using mongoDB
 * You may have to shut down both servers mongo and app
 * Kill node and mongod
 * Restart them both
@@ -391,7 +391,7 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 
 ![getCurrentUser user object returned](https://i.imgur.com/mO1vkty.png)
 
-* Above is from the token that we are getting from our client that is being sent through our backend, it is [verifying our token](https://i.imgur.com/ic2mYxt.png), we perform a query to get all that user data, and now our client knows all about it
+* Above is from the `token` that we are getting from our `client` that is being sent through our backend, it is [verifying our token](https://i.imgur.com/ic2mYxt.png), we perform a query to get all that user data, and now our client knows all about it
 
 ## Try this test
 1. Sign in again with a different user

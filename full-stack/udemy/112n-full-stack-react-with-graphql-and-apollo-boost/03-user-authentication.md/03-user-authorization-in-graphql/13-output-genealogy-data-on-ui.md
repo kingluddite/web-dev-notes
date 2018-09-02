@@ -46,6 +46,6 @@ export default withRouter(GenealogyPage);
 ```
 
 * View the UI and you'll see all fields populated
-* except Created By field is not populated
+* Except Created By field is not populated
 
 ## Associate the name of the user that created the genealogy by adding it to the form that creates genealogies

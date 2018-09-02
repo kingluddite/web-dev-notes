@@ -3,7 +3,8 @@
 * Right after we get back our data we want to clear our form
 
 ## Create new function `clearState()`
-* We want our state object to look like it does initially (all fields are empty)
+* We want our `state` object to look like it does initially
+* all fields are empty
 
 `Signup.js`
 
@@ -64,7 +65,7 @@ class Signup extends Component {
 ```
 
 ## Set the state inside our `clearState` function to the value of `initialState`
-* Just use the object spread one more time
+* Just use the `object spread` one more time
 * This saves you typing again!
 
 `Signup.js`
@@ -112,16 +113,17 @@ class Signup extends Component {
 ```
 
 ## Houston we have a problem
-* After clearning our form we can still hit submit and we get a nasty error
+* After clearing our form we can still hit submit and we get a nasty error
 
 ```
 GraphQL error: User validation failed: username: Path `username` is required., email: Path `email` is required., password: Path `password` is required.
 ```
 
+## Prevent blank form submission
 * We need a way to prevent submitting if all fields are empty
 
 ## Prevent our form from submitting
-* Disable our button on two occassions
+* Disable our button on two occasions
 
 1. If we are still loading the Mutation (still in the process of executing)
 2. It failed our client side validation (we'll create a new function for this called `validateForm`
@@ -142,7 +144,7 @@ GraphQL error: User validation failed: username: Path `username` is required., e
 
 ## validateForm
 * Make sure all form fields have some value
-* Make sure password and confirmPassword are equal to each other
+* Make sure `password` and `confirmPassword` are equal to each other
 
 ```
 // MORE CODE
@@ -164,8 +166,11 @@ render() {
 ```
 
 ## Test
+### Try to submit empty form
 * Try to submit an empty form and you will not be able to
 * The submit button has been disabled
+
+### Try submitting with passwords that don't match
 * Try to submit with not matching passwords and it won't let you
 * Try submitting with empty fields and it won't let you
 

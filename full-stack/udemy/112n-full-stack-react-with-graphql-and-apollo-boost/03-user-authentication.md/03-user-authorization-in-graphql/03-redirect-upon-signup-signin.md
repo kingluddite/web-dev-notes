@@ -1,11 +1,15 @@
 # Redirect Upon Signup/Signin
-* We are now getting information about our current user on the client
+* We are now getting information about our **current user** on the `client`
 
-## But there are still a couple of problems we need to fix
-* Whenever we signin, whenever we get our token, when it is successful, we want to redirect back to the home page
+### I want to go home!
+### But there are still a couple of problems we need to fix
+* Whenever we signin
+* Whenever we get our token
+* When it is successful
+* We want to redirect back to the home page
 
-## Let's start in Signin.js first
-* After we clear our state in handleSubmit that is where we will redirect back to the home page
+## Let's start in `Signin.js` first
+* After we clear our `state` in `handleSubmit` that is where we will `redirect` back to the home page
 * To do this we will use `withRouter` from **react-router-dom**
 
 `Signin.js`
@@ -86,13 +90,13 @@ class Signup extends Component {
 export default withRouter(Signup);
 ```
 
-* Test in browser
-* Signin and Signup correctly redirect
+## Test in browser
+* `Signin` and `Signup` correctly redirect
 
-## Houston we have a problem
+## Houston we have a problem - I lost my token!
 * We login and we are correctly redirected
 * But when we are redirected we lose our token
-* We refresh the page and we get our currentUser but only when we refresh
+* We refresh the page and we get our `currentUser` but only when we refresh
 
 ### Solution - refetch that query
 * That's what we'll do next

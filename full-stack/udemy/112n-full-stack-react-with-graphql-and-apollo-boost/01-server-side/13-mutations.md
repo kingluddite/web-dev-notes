@@ -1,8 +1,9 @@
 # Create a mutation
-* Queries will be useful for us from returning data from our database
+* Queries will be useful for us from **returning data from our database**
 
 ## Add new `type` to our `schema.js`
-* It will be a function that will need parameters passed to it which will be all the fields that the Genealogy needs to be created, it will also take the type required
+* It will be a function that will need parameters passed to it which will be all the fields that the Genealogy needs to be created
+* It will also take the type required
 
 `schema.js`
 

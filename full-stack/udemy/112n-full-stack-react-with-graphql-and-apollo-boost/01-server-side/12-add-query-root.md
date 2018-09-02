@@ -10,31 +10,6 @@
 
 type User {
 
-    username: String! @unique
-
-    password: String!
-
-    email: String! @unique
-
-    joinDate: String
-
-    favorites: [Genealogy]
-
-  }
-
-  type Query {
-
-    
-  }
-`;
-```
-
-## Note - I removed @unique to prevent error
-```
-// MORE CODE
-
-type User {
-
     username: String!
 
     password: String!
@@ -96,9 +71,13 @@ exports.resolvers = {
 
 ### View Document Explorer in graphiql
 * We now see the Docs have our Query defined
-* ![Query now defined](https://i.imgur.com/Kw1XQ0n.png)
+
+![Query now defined](https://i.imgur.com/Kw1XQ0n.png)
+
 * Click on that link and you'll see the fields
-* ![fields](https://i.imgur.com/oC7hOgP.png)
+
+![fields](https://i.imgur.com/oC7hOgP.png)
+
 * And if you click the link for type you will see all fields for Genealogy
 
 ![genealogy fields](http://localhost:4444/graphiql)

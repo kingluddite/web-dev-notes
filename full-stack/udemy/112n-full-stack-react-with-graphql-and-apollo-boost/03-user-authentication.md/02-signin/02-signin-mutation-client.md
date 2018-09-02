@@ -59,7 +59,7 @@ class Signin extends Component {
 
   handleSubmit = (event, signinUser) => {
     event.preventDefault();
-    // call our signupUser function
+    // call our signinUser function
     // it is a promise so we can use `then()`
     // within `then()` we get our return `data`
     signinUser().then(data => {
@@ -121,13 +121,15 @@ class Signin extends Component {
 export default Signin;
 ```
 
-* Signin will be very similar to Signup.js
+* `Signin.js` will be very similar to `Signup.js`
 * Make the logical changes (see above)
 
 ## Visit route
 `http://localhost:3000/signin`
 
 * Log in and you will see the data object returned from our **console.log()** and you'll see token if successfully logged in
+
+## Next - Add token to localStorage
 
 
 

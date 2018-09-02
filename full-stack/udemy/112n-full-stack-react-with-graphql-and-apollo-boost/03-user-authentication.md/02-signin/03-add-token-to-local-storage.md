@@ -1,5 +1,5 @@
 # Add token to Local Storage
-* We need to use the token we get back to authenticate our user
+* We need to use the `token` we get back to authenticate our user
 
 ## Sign in first and analyze the `data` object returned
 ![data object returned](https://i.imgur.com/uTsytHW.png)
@@ -26,6 +26,7 @@ Now look at `data` object returned
 
 ![data object returned](https://i.imgur.com/RumJ86v.png)
 
+* We now see signinUser > token
 * easier access to our token with `data.signinUser.token`
 
 ## Add token to localStorage
@@ -63,10 +64,12 @@ signinUser().then(({ data: { signinUser } }) => {
 {token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ…k5N30.IB90rAyATAGfM8nbsh8px8WJ3DIRGMn1yFXcVdd8Bjg", __typename: "Token"}
 ```
 
-* Your token will obviously be different
+* **note** Your token will obviously be different
 
 ## Update Signup component with same localStorage code
 * We'll update the destructured variables
+
+`SignupUser.js`
 
 ```
 // MORE CODE
@@ -94,7 +97,9 @@ handleSubmit = (event, signupUser) => {
 
 ![localStorage Application tab](https://i.imgur.com/qae7lid.png)
 
-## Get item (token) from localStorage and we need to send it to the back end to authenticate our user
+## Get item (token) from localStorage and we need to send it to the backend to authenticate our user
+
+* Here we are taking app information from our client and sending it to our server
 
 `client/src/index.js`
 
@@ -154,9 +159,15 @@ app.use(async (req, res, next) => {
 // MORE CODE
 ```
 
-* Make sure you call next() to go to next middleware
-    - Very important - if you forget this your app will "hang" aka - stop working
+* Make sure you call `next()` to go to next middleware
+    - **Very important** - if you forget this your app will "hang"
+        + aka - stop working
+        + aka - break
 * For now let's just log token
+
+## Test
+* Log in with a valid user
+* This time you will see our token output on the server (terminal)
 
 #### Where do we get authorization from?
 * We set that in our headers here:

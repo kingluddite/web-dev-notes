@@ -42,7 +42,7 @@ const NavbarAuth = () => (
       <NavLink to="/genealogy/add">Add Genealogy</NavLink>
     </li>
     <li>
-      <NavLink to="profile">Profile</NavLink>
+      <NavLink to="/profile">Profile</NavLink>
     </li>
     <li>
       <button>Signout</button>
@@ -54,10 +54,10 @@ const NavbarAuth = () => (
 ```
 
 ## Test it in browser
-* Now we see our Navbar Auth
+* Now we see our `NavbarAuth`
 
 ## AddGenealogy
-* Create it in Genealogy folder
+* Create it inside our `Genealogy` folder
 * It will be a SFC
 
 `components/Genealogy/AddGenealogy.js`
@@ -69,10 +69,12 @@ const AddGenealogy = () => {
   return <div>Add Genealogy</div>;
 };
 
-export de`fault AddGenealogy;
+export default AddGenealogy;
 ```
 
 ## Create Profile component
+* Create a new `profile` folder
+
 `components/Profile/Profile.js`
 
 ```
@@ -116,7 +118,9 @@ const Root = ({ refetch }) => (
 // MORE CODE
 ```
 
-# Test in browser
+## Test in browser
 * Make sure correct components are loading
+
+## Next - Make Navbar dynamic 
 
 

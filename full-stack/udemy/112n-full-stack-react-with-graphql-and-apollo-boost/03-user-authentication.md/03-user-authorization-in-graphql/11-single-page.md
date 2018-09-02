@@ -53,8 +53,8 @@ const Root = ({ refetch, session }) => (
 
 ## How do we get string at end of path?
 ### withRouter
-* We will need to use `withRouter` again from 'react-router-dom'
-* We will destructure `match` from our props
+* We will need to use `withRouter` again from `react-router-dom`
+* We will destructure `match` from our `props`
 
 `GenealogyPage`
 
@@ -110,6 +110,6 @@ const GenealogyItem = ({ _id, firstName, lastName }) => {
 export default GenealogyItem;
 ```
 
-* Now when on home page you can click on link headings of each Genealogy and it will take you to single page
+* Now when on home page you can click on link headings of each `Genealogy` and it will take you to single page
 
 

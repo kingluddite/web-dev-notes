@@ -20,7 +20,6 @@ type Query {
 
 ## Now build query in our `resolvers.js`
 
-
 ```
  // MORE CODE
 
@@ -36,11 +35,11 @@ getCurrentUser: async (root, args,
 
 `http://localhost:4444/graphiql`
 
-* Look for getGenealogy in the docs of grahiql
+* Look for `getGenealogy` in the docs of **graphiql**
 
 ## Try query to see if it works
-* Built it in graphiql
-* Click in docs to get all the fields of Genealogy
+* Build it in graphiql
+* Click in docs to get all the fields of `Genealogy`
 
 ![all genealogy fields](https://i.imgur.com/RY1PXja.png)
 
@@ -74,7 +73,7 @@ query($_id: ID!) {
 }
 ```
 
-* Click execute/play button
+* Click execute/play button (obviously your `_id` will be different)
 
 ### Output from graphiql will look similar to: (below)
 
@@ -95,6 +94,11 @@ query($_id: ID!) {
 ```
 
 ## Copy and Paste into `index.js` inside queries
+* Make sure to click `Prettify` button first to make you code clean
+* But if you have eslint and prettier set up it will format it after you paste and save inside `queries/index.js`
+
+`queries/index.js`
+
 ```
 // MORE CODE
 
@@ -122,9 +126,9 @@ export const GET_GENEALOGY = gql`
 * Inside **return** Replace `div` with `QUERY` component
     - Add render props inside Query
     - Make sure to destructure `data`, `loading` and `error`
-    - return what we returned before
+    - Return what we returned before
     - Also need to pass variables prop and its value will be `_id`
-    - check for loading and error
+    - Check for `loading` and `error`
     - log out `data` to test if proper data is coming back (the single document we are querying for)
 
 `GenealogyPage`
@@ -158,4 +162,4 @@ export default withRouter(GenealogyPage);
 `http://localhost:3000/genealogy/5b7721b8b2f9066cad5f7ad8`
 
 * Refresh
-* You now see all the content we want for this Genealogy
+* You now see all the content we want for this `Genealogy`

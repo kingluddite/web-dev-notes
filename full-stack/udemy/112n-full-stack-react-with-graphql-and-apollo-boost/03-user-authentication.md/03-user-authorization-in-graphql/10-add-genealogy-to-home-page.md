@@ -38,7 +38,11 @@ export default App;
 ```
 
 * Whenever we output a list of items we need to use a unique key to prevent a warning about inefficient use of react
-* To make react fast you need to add key prop
+* To make react fast you need to add key `prop`
+* If you do not see anything new on the home page make sure you add a Genealogy (at least one)
+* Add another Genealogy (use graphiql to add this as we didn't create a form yet)
+
+## Add an _id (will help us get rid of "key" prop error)
 
 `src/queries/index.js`
 
@@ -85,7 +89,7 @@ type Genealogy {
 
 * Remove unnecessary fields in `getAllGenealogies`
 
-`index.j`
+`index.js`
 
 ```
 // MORE CODE
@@ -102,8 +106,25 @@ export const GET_ALL_GENEALOGIES = gql`
 `;
 ```
 
+## Add key prop
+`App.js`
+
+```
+// MORE CODE
+
+return (
+          <ul>
+            {data.getAllGenealogies.map(genealogy => (
+              <li key={genealogy._id}>{genealogy.firstName}</li>
+            ))}
+          </ul>
+        );
+
+// MORE CODE
+```
+
 # Refresh browser
-* We now only see _id, firstName, and lastName
+* We now only see `_id`, `firstName`, and `lastName`
 * Our key warning is gone
 
 ## Make li it's own component
@@ -136,7 +157,7 @@ const App = () => (
 export default App;
 ```
 
-`GenealogyItem.js`
+`components/Genealogy/GenealogyItem.js`
 
 ```
 import React from 'react';

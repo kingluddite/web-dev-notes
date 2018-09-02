@@ -17,6 +17,7 @@ export default Navbar;
 `index.js`
 
 ```
+import React, { Fragment } from 'react';
 // MORE CODE
 
 import App from './components/App';
@@ -38,14 +39,14 @@ const Root = ({ refetch }) => (
 // MORE CODE
 ```
 
-* We put Navbar above Switch so it will be on all pages
-* We put both Switch and Navbar inside Fragment to avoid error
+* We put `Navbar` above Switch so it will be on all pages
+* We put both `Switch` and `Navbar` inside `Fragment` to avoid error
 
 ## Unauthorized nav items
 * This will show on logic if user not logged in
 
 ### NavLink vs Link
-* NavLink gives us access to extra features using `react-router-dom`
+* `NavLink` gives us access to extra features using `react-router-dom`
 
 ```
 // MORE CODE

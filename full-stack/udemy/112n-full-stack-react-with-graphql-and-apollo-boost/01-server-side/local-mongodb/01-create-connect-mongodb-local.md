@@ -1,5 +1,8 @@
 # Create and Connect to local mongodb
-* This has many steps and make sure to follow all of them
+* There may be times when you need mongodb on your computer and not remotely like on mongodb
+  - You may need this if you are on a plane and there is no internet
+  - You can not access it because of internet security at work or at a public library
+* If you want to do this is has more steps involved than setting up a remote mongodb
 
 ## Did you install mongodb?
 * The easiest way is to use homebrew

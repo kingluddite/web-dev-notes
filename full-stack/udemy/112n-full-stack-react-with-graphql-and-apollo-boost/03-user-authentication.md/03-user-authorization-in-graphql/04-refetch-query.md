@@ -44,10 +44,12 @@ const withSession = Component => props => (
 ```
 
 ### How do we pass things down via HOCs?
+* How do we pass props down through our routes?
+
 1. Go to component that's been wrapped
-2. Restructure our props (will get our refetch property)
+2. Restructure our `props` (will get our refetch property)
 3. Now we can pass them down to whatever components we want to
-    * In this case we'll pass it down to Signup and Signin
+    * In this case we'll pass it down to `Signup` and `Signin`
     * But to pass individual props into a specific route is that we'll change the component prop with render and this will enable us to call our component with an arrow function (this will give us space to provide properties)
 
 `index.js`
@@ -70,8 +72,8 @@ const Root = ({ refetch }) => (
 ```
 
 ## Make async await to refetch
-* In Signin we'll use the now available `refetch`
-* We'll perform refetch before we clear the state
+* In `Signin` we'll use the now available `refetch`
+* We'll perform refetch before we clear the `state`
 
 `Signin.js`
 
@@ -86,7 +88,7 @@ handleSubmit = (event, signinUser) => {
   signinUser().then(async ({ data: { signinUser } }) => {
     console.log(signinUser);
     localStorage.setItem('token', signinUser.token);
-    await this.props.refetch();
+    await this.props.refetch(); // add this
     this.clearState();
     this.props.history.push('/');
   });
@@ -97,8 +99,9 @@ handleSubmit = (event, signinUser) => {
 
 ## Test
 * Remove token in client
-* Login in
+* Login again
 * You will see the current user token is available because the refetch is now working
     - We are getting the fresh value of 
 
-
+## Next - Add a navbar
+* Let's make navigating our app a lot easier

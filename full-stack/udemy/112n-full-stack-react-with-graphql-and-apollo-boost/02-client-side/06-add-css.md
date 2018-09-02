@@ -10,7 +10,7 @@
 <!-- MORE CODE -->
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-  <title>React App</title>
+  <title>Recipes App</title>
 </head>
 
 <!-- MORE CODE -->
@@ -22,7 +22,7 @@
 ## Add CSS 
 `App.css`
 
-```
+```css
 .App {
   text-align: center;
 }
@@ -75,6 +75,6 @@ textarea {
 ```
 
 ## Test
-* No visual change but we now have lots of styles baked into our app
+* Slight visual change but we now have lots of styles baked into our app
 
 

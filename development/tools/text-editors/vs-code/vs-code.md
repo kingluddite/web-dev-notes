@@ -1,5 +1,5 @@
 # VS Code
-
+autosave - `"files.autoSave": "afterDelay"`
 
 keyboard shortcuts
 alt + up/down moves lines

@@ -9,12 +9,11 @@
 
 ### Where do we use brcrypt?
 * We will use it in `models/User.js`
-* We will use mongoose schema `pre()` method to do somethind before the user saves to the database
-`User.js`
+* We will use mongoose schema `pre()` method to do something before the user saves to the database
 * Check if the password was not modified because that means we are not signing up a new user and just updating the password
-* We will use `bcrypt` **genSalt(rounds, function(error, salt))** method to check if their is an error
+* We will use `bcrypt` **genSalt(rounds, function(error, salt))** method to check if there is an error
 * If no error hash with salt by setting the hash to the password
-* next() moves us onto the next middleware in node express
+* `next()` moves us onto the next middleware in node express
 
 `User.js`
 
@@ -45,7 +44,9 @@ module.exports = mongoose.model('User', UserSchema);
 ```
 
 ## Test if it works
-* Delete User from mongodb
+* Delete User from mongodb (remotely)
+
+### or locally (instructions below)
 * `$ mongo` in another terminal tab
 * `$ use they_came_before_me`
 * `$ db.users.deleteMany({})`

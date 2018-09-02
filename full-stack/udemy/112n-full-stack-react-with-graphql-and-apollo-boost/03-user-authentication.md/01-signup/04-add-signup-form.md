@@ -1,7 +1,11 @@
 # Add Signup Form
 `Auth/Signup.js`
 
+* Convert to a class-based component
+
 ```
+import React, { Component } from 'react';
+
 class Signup extends Component {
   render() {
     return (

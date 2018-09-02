@@ -32,7 +32,7 @@ export default Signup;
 
 ## Add render props
 * Just like we did inside our Query component we can also do this with the `Mutation` component
-* We will return JSX (which will be our form element)
+* We will return JSX (_which will be our `<form>` element_)
 
 `Signup.js`
 
@@ -76,6 +76,7 @@ return (
     // MORE CODE
 ```
 
+## But we didn't create our SIGNUP_USER yet
 * Now we need to create `SIGNUP_USER` inside our `queries` folder:
 
 `queries/index.js`
@@ -84,6 +85,30 @@ return (
     - We'll have two sections
         1. Genealogy Queries
         2. Genealogy Mutations
+
+```
+import { gql } from 'apollo-boost';
+
+// Genealogy Queries
+
+export const GET_ALL_GENEALOGIES = gql`
+  query {
+    getAllGenealogies {
+      firstName
+      lastName
+      likes
+      createdDate
+    }
+  }
+`;
+
+// Genealogy Mutations
+
+// User Queries
+
+// User Mutations
+
+```
 
 `schema.js`
 * We use this file to see what we will use in our query
@@ -96,15 +121,28 @@ return (
 `;
 ```
 
-* Grab that mutation and run it in graphiql
-* This will enable us to set up how we want our mutation to run on the client
-* Before when we ran this we were using static values for `username`, `email` and `password`
+* We need `username`, `email` and `password` and we need to return a `Token`
 
 ## Test in graphiql
+* sample graphiql with static values
+* Will output a `token` after running
+
+```
+mutation {
+  signupUser(username: "John", email: "john@john.com", password: "a12345") {
+    token
+  }
+}
+```
+
+* Grab that mutation and run it in `graphiql`
 
 `http://localhost:4444/graphiql`
 
-## Houston we may have a problem
+* This will enable us to set up how we want our mutation to run on the client
+* Before when we ran this we were using static values for `username`, `email` and `password`
+
+## Houston we may have a problem (Occassional error when using local mongodb)
 * If you get the graphiql error "Topology was destroyed"
 * Find `node` process, kill it and rerun
 * Rerun mongo and dev server
@@ -135,19 +173,7 @@ return (
 }
 ```
 
-## sample graphiql with static values
-
-```
-mutation {
-  signupUser(username: "joe", email: "you@me.com", password: "a12345") {
-    token
-  }
-}
-```
-
-* Will output a token
-
-## Using varibles
+## Using variables
 * Because it will change for everyone that signs in
 
 ### How do I provide variables to graphql?
@@ -162,13 +188,22 @@ mutation($username: String!, $email: String!, $password: String!) {
 ```
 
 ### Now how can we run this on the backend if we don't have a place to enter any actual values for our variables?
-* Use the `Query Variables` sectin in graphiql
+* Use the `Query Variables` section in graphiql
 * Click it to expand it
 
 ![using variables in graphiql](https://i.imgur.com/nddPEHm.png)
 
+```
+{
+  "username": "mike",
+  "email": "mike@mike.com",
+  "password": "a12345"
+}
+```
+
 ### Cool use of graphiql
-* After running query and getting new token returned you can now just copy the entire definiion of the mutation you just wrote and paste it into the SIGNUP_USER variable you just declared
+* After **running query** and **getting new token** returned
+* You can now just copy the entire definition of the mutation you just wrote and paste it into the `SIGNUP_USER` variable you just declared
 
 `queries/index.js`
 
@@ -185,4 +220,4 @@ export const SIGNUP_USER = gql`
 `;
 ```
 
-
+## Next - Add and run mutation

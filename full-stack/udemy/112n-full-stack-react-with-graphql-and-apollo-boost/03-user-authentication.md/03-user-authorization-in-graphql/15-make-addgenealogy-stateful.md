@@ -1,5 +1,5 @@
 # Make AddGenealogy stateful
-* Signin and Signup were stateful components because we needed them to handle `onChange` and `onSubmit`
+* `Signin` and `Signup` were stateful components because we needed them to handle `onChange` and `onSubmit`
 
 ## 5 steps to Convert from SFC to CBC (Class based stateful component)
 1. wrap parentheses in curly braces
@@ -100,10 +100,10 @@ state = {
 ```
 
 ## Set state
-* when fields are filled in we'll set the state we'll use [brackets] to dynamically update the property based on the name of the input that we are typing in as well as the corresponding value
+* When fields are filled in we'll set the `state` we'll use [brackets] to dynamically update the property based on the `name` of the input that we are typing in as well as the corresponding `value`
 
 ## Test
-* Use react dev tools to view AddGenealogy component
+* Use react dev tools to view `AddGenealogy` component
 * Type in fields and watch the state populate with the value typed in the fields
 
 `AddGenealogy`
@@ -160,6 +160,5 @@ render() {
 // MORE CODE
 ```
 
-## How do we populate the username field?
+## Next - How do we populate the username field?
 * We will get this from our `withSession` HOC
-* We'll do that next

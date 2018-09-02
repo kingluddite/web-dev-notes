@@ -32,7 +32,7 @@ import App from './components/App';
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-* Remove both lines referring to registerServiceWorker
+* Remove both lines referring to `registerServiceWorker`
 * Update paths because you will soon have a `components` folder
 
 ## Create `components` folder
@@ -65,6 +65,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 `$ npm run dev`
 
+## Run script from app root (not client root)
 * You will get an error because you are inside your `client` folder
 * Back out of the folder into the root of your app
 
@@ -73,6 +74,8 @@ ReactDOM.render(<App />, document.getElementById('root'));
 * Now run the same script as before
 
 `$ npm run dev`
+
+* A new browser window will open that is running your react app and all you'll see is `Home`
 
 
 

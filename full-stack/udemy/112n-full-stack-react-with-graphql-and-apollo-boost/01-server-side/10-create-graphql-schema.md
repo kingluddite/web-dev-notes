@@ -39,15 +39,15 @@ exports.typeDefs = `
 
   type User {
 
-    username: String! @unique
+    username: String
 
     password: String!
 
-    email: String! @unique
+    email: String!
 
     joinDate: String
 
-    favorites: []
+    favorites: [Genealogy]
 
   }
 `;
@@ -72,7 +72,7 @@ module.exports = mongoose.model('User', UserSchema);
 * Later we will use a mongoose method called `populate()` and this will change all the IDs we have in that array to Genealogy objects themselves
 
 ## Question
-* Why in graphql schema `joindate: string` where in mongo schema `joindate: Date`?
+* Why in graphql schema `joinDate: string` where in mongo schema `joinDate: Date`?
 
 ### Answer
 * GraphQL doesn't include a scalar type of `Date` (unlike other scalar types like `String`, `Int`, and `Boolean`). What the mLab database will return to us is a String, so that's the type we need to apply to our Mongoose schema
@@ -120,4 +120,15 @@ type User {
 ## Test in terminal
 * Should work and be connected to Terminal
 
+## Error - DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead
+* [Stackoverflow solution](https://stackoverflow.com/questions/51960171/node63208-deprecationwarning-collection-ensureindex-is-deprecated-use-creat?noredirect=1&lq=1)
 
+```
+The issue is that mongoose still uses collection.ensureIndex and should be updated by them in the near future. To get rid of the message you can downgrade by using version 5.2.8 in your package.json (and delete any caches, last resort is to uninstall it the install it with npm install mongoose@5.2.8):
+
+"mongoose": "^5.2.8"
+```
+
+`$ npm i mongoose@5.2.8`
+
+`$ npm run dev` and the error will be gone

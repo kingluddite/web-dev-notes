@@ -34,7 +34,6 @@ type Mutation {
 ```
 
 ### We need `jsonwebtoken` package
-`$ npm i jsonwebtoken --save`
 
 `resolvers.js`
 
@@ -67,12 +66,12 @@ SECRET=sdfkj0easdfadfj;lkjelkj93j3
 ```
 // MORE CODE
 signupUser: async (root, { username, email, password }, { User }) => {
-      // check if use already exists
+      // check if user already exists
       const user = await User.findOne({ username });
       if (user) {
         throw new Error('User already exists');
       }
-      // use doesn't exist, create one
+      // user doesn't exist, create one
       const newUser = await new User({
         username,
         email,
@@ -119,8 +118,10 @@ mutation {
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBoaWwiLCJlbWFpbCI6Im1lQHlvdS5jb20iLCJpYXQiOjE1MzQ3MjA2MTEsImV4cCI6MTUzNDcyNDIxMX0.B_BcJvfgbqu9RmML85c2075IZy0xATBuOrsR9SIP0HA"
 ```
 
-## Check your local mongodb
+## Check your remote mongodb (or local mongodb if that is what you are using)
 * You will see the user was added
+
+### local mongodb instructions
 
 ```
 $ mongo

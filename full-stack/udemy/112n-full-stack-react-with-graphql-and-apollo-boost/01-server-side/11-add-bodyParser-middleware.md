@@ -51,7 +51,7 @@ app.use(
 ```
 
 * Restart server
-* Refresh browser
+* Refresh browser on `http://localhost:4444/graphiql`
 
 ## Houston we have another problem
 * This error tells us `Query root type must be provided`

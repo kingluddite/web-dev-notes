@@ -41,23 +41,23 @@ signinUser: async (root, { username, password }, { User }) => {
 // MORE CODE
 ```
 
-* require `bcrypt`
-* Try to find a user using the username
+* Require `bcrypt`
+* Try to find a `user` using the `username`
     - Not found... throw an error
-* compare password provided with user password
+* Compare `password` provided with user `password`
     - Not the same... throw an error
-* if after both checks, all good, create a token with the user using the secret and for 1 hour
+* If after both checks pass, then everything is copacetic, create a token with the user using the secret and for 1 hour
 
 ## We don't have a form, how can we test this?
 * No problem, just use graphiql
-* First check graphiql docs to make sure you see the signinUser mutation
+* First check graphiql docs to make sure you see the `signinUser` mutation
     - Refresh graphiql
 
 `http://localhost:4444/graphiql`
 
 ![we see signinUser](https://i.imgur.com/yM6NGB7.png)
 
-* Create a signinUser mutation in graphiql
+* Create a `signinUser` mutation in graphiql
 
 ![using graphiql for signinUser](https://i.imgur.com/KzNqGFu.png)
 
@@ -84,7 +84,7 @@ mutation($username: String!, $password: String!) {
 * Put in wrong password and you will get error "invalid password"
 
 ## Caution
-* If you don't use await with bcrypt you will never get an error for signing in
+* If you don't use **await** with `bcrypt` you will never get an error for signing in
 
 ```
 // MORE CODE
@@ -92,4 +92,4 @@ const isValidPassword = await bcrypt.compare(password, user.password);
 // MORE CODE
 ```
 
-
+## Next - Signin mutation client
