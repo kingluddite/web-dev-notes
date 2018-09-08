@@ -19,6 +19,21 @@
 ### Start from scratch
 * `$ npm i apollo-server-express bcrypt body-parser concurrently cors dotenv express graphql graphql-tools jsonwebtoken mongoose`
 
+## Make your file a git repo
+`$ git init`
+
+## Add to staging with git
+`$ git add -A`
+
+## Commit with git
+`$ git commit -m 'initialize repo`
+
+## Use hub to create remote github repo
+`$ hub create`
+
+## Push to github
+`$ git push origin master`
+
 ### Add `.gitignore`
 
 ```
@@ -91,4 +106,6 @@ typings/
 .serverless
 ```
 
+## Add another commit to github
+* Do the same steps as before
 

@@ -29,3 +29,9 @@ const NavbarAuth = () => ()
 ## Make sure you know what environment you are working in
 * Production or Development
 * I thought I was working locally but my graphql was pointing to heroku. All my local changes to graphql were not being recognized and I wasted 1 hour until I figured that out.
+
+## tip - brew --- keep node updated
+```
+$ brew doctor (5 minutes)
+$ brew update node (10 minutes) (might be $ brew upgrade node)
+```

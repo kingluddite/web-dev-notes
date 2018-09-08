@@ -30,15 +30,10 @@
 
 `$ npm install apollo-client apollo-cache-inmemory apollo-link-http apollo-link-error apollo-link`
 
-## tip - brew --- keep node updated
-```
-$ brew doctor (5 minutes)
-$ brew update node (10 minutes) (might be $ brew upgrade node)
-```
-
 ## Why Apollo Boost?
 * It used to take a long time to set up Apollo inside react app
     - Now it is just a simple import and involves setting up an Apollo Client
+    - Here is an code sample of what that would look like:
 
 ```
 import ApolloClient from "apollo-boost";
@@ -48,8 +43,9 @@ const client = new ApolloClient({
 });
 ```
 
-## In addition we also need to set up a specific package for React called React Apollo
-* This will give us access to the `Query` component
+## React Apollo
+* In addition we also need to set up a specific package for React called `React Apollo`
+* This will give us access to the `Query` and `Mutation` components
     - [Query docs](https://www.apollographql.com/docs/react/essentials/queries.html)
     - This is new that allows us to perform queries that is very similar to our surrounding react code
         + In the past it took a lot more code to perform a basic query within a given component

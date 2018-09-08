@@ -98,7 +98,7 @@ signupUser: async (root, { username, email, password }, { User }) => {
 `http://localhost:4444/graphiql`
 
 * Open Docs
-    - You now will see signupUser (Under mutations)
+    - You now will see `signupUser` (Under mutations)
 
 ```
 mutation {
@@ -108,9 +108,9 @@ mutation {
 }
 ```
 
-* We return the token
+* We return the `token`
 * Click play button
-* You should see something like this (your token)
+* You should see something like this (your `token`)
 
 ```
 {
@@ -123,6 +123,7 @@ mutation {
 * You will see the user was added
 
 ### local mongodb instructions
+* This is only if you are working with mongo locally
 
 ```
 $ mongo

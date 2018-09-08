@@ -1,4 +1,8 @@
 # Add Routing with react-router-dom
+
+* **Note** Reach Router - getting a lot of press and might replace react router so here is a look:
+* [reach router intro video](https://www.youtube.com/watch?time_continue=13&v=3tgz1E4MsAk)
+
 ## Add a new package into `client` folder
 
 `$ npm i react-router-dom`

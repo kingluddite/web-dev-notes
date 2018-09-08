@@ -18,8 +18,8 @@ export default App;
 ```
 
 ## Delete the following:
-* App.test.js
-* registerServiceWorker.js
+* `App.test.js`
+* `registerServiceWorker.js`
 
 `client/src/index.js`
 
@@ -44,6 +44,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 ## Run app
 `$ npm start`
 
+## But we need to run client and server at the same time???
 * Our app runs but we also want to run our server simultaneously with our client
 * We could open two tabs in our terminal or we could save a step by using this script in our `package.json`
 
