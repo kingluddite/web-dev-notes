@@ -26,10 +26,6 @@ exports.resolvers = {};
 `server.js`
 
 ```
-const express = require('express');
-const mongoose = require('mongoose');
-require('dotenv').config({ path: 'variables.env' });
-
 const PORT = process.env.PORT || 4444;
 
 // MORE CODE
@@ -49,6 +45,8 @@ const { resolvers } = require('./resolvers');
 
 ```
 // MORE CODE
+
+const PORT = process.env.PORT || 4444;
 
 // bring in GraphQL middleware
 const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
@@ -94,6 +92,10 @@ app.use(
 
 // MORE CODE
 ```
+
+* If not running then run with:
+
+`$ npm run dev`
 
 ## Check out error in terminal
 `Error: Must provide typeDefs`

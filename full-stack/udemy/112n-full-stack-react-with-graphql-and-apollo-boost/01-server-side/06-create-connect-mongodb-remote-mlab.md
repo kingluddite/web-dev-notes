@@ -46,7 +46,7 @@ MONGO_URI=mongodb://admin:a12346@ds219672.mlab.com:19672/peh2-they-came-before-m
 ```
 const express = require('express');
 const app = express();
-require('dotenv').config({ path: 'variables.env'})
+require('dotenv').config({ path: 'variables.env'}); // add this
 
 // MORE CODE
 ```
@@ -111,7 +111,7 @@ const app = express();
 * If all is well you will see DB connected in terminal
 * But sometimes you might get SSH errors to connect to mLab if you are working in a public library or a secure environment so to install mongo locally you can do the following
 
-## Another potential error
+## Another potential error (if local development)
 * Check if mongo is > 4 `$ mongo --version`
 * If you need to upgrade (I'm using brew).... `$ brew update mongo`
 
@@ -119,12 +119,13 @@ const app = express();
 * `DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.`
 
 ### Solution to getting rid of errors
-`server.js`
-
 * [Source of solution](https://github.com/Automattic/mongoose/issues/4135)
+* 
+`server.js`
 
 ```
 // MORE CODE
+
 mongoose
   .connect(
     process.env.MONGO_URI,
@@ -137,6 +138,7 @@ mongoose
     console.log('Error on start: ' + err.stack);
     process.exit(1);
   });
+
 // MORE CODE
 ```
 

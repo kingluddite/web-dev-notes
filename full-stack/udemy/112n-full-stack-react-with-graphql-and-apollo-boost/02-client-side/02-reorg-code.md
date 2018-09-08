@@ -44,25 +44,10 @@ ReactDOM.render(<App />, document.getElementById('root'));
 ## Run app
 `$ npm start`
 
-## But we need to run client and server at the same time???
-* Our app runs but we also want to run our server simultaneously with our client
-* We could open two tabs in our terminal or we could save a step by using this script in our `package.json`
-
-`package.json`
-
-```
-// MORE CODE
-
-"scripts": {
-  "server": "nodemon server.js",
-  "client": "cd client && npm start",
-  "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
-},
-
-// MORE CODE
-```
-
-* We do that with this:
+## But we need to run client and server at the same time
+* And we already dealt with this in the server
+* We added a script CLI command in the server's `package.json` that uses `concurrently` package to run both server and client simultaneously in same terminal tab
+* If you did not use this, you would have to open two tabs and run the client in one and the server in the other
 
 `$ npm run dev`
 

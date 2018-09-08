@@ -85,22 +85,7 @@
 
 `$ cd ../`
 
-### Make sure you are using a git repo
-* Make sure you have made your app a git repo
-* **Note**: Your Git repository must already be initialised, otherwise the precommit hooks will not be installed by husky
-
-`$ git init`
-
-#### Hub
-* Use hub
-    - If you don't have it installed, install it with `$ brew install hub`
-
-`$ hub create`
-
-#### Install pretty-quick and husky
-
-`$ npm i pretty-quick husky -D`
-
+#### Add script for pretty-quick and husky
 * Then add the precommit script to your `package.json` file:
 
 ```

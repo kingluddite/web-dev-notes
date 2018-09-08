@@ -16,6 +16,10 @@
 * jsonwebtoken
 * mongoose
 
+## Alternative to express
+* Koa is very popular
+* [koa website](https://koajs.com/)
+
 ### Start from scratch
 * `$ npm i apollo-server-express bcrypt body-parser concurrently cors dotenv express graphql graphql-tools jsonwebtoken mongoose`
 

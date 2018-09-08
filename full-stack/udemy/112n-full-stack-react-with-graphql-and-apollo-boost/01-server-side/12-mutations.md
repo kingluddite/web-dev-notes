@@ -10,8 +10,13 @@
 ```
 // MORE CODE
 
+  type Query {
+    getAllGenealogies: [Genealogy]
+  }
+  
+  // add below
   type Mutation {
-    addGenealogy(firstName: String!, lastName: String!, dateOfBirth: String, living: String, description: String, username: String  ): Genealogy
+    addGenealogy(firstName: String!, lastName: String!, dateOfBirth: String, description: String, username: String  ): Genealogy
   }
 `;
 ```
@@ -76,3 +81,7 @@ mutation {
 
 * Check your mongo databse for the collection info
 * When you insert a new document in mongodb it will automatically add a field named `_id`
+
+## What is async await?
+* [What are promises](https://www.youtube.com/watch?v=2d7s3spWAzo)
+* [wes boss talks async await](https://www.youtube.com/watch?v=9YkUCxvaLEk)

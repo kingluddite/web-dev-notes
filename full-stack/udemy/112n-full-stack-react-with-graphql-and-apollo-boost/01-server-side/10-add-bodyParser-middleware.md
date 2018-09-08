@@ -22,12 +22,12 @@
 ```
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); // add this
 
 // MORE CODE
 ```
 
-### Use body-parser in our graphiql app
+### Use `body-parser` in our graphiql app
 `server.js`
 
 ```
@@ -36,7 +36,7 @@ const bodyParser = require('body-parser');
 // Connect schemas with GraphQL
 app.use(
   '/graphql',
-  bodyParser.json(),
+  bodyParser.json(), // add this
   graphqlExpress({
     schema,
     context: {

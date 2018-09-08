@@ -1,8 +1,11 @@
 # Create Mongoose Schemas
 * Create `models/` folder in the root of your app
 * Create `User.js` and `Genealogy.js`
-    - Make sure both are capitalized
+    - Make sure both are Capitalized
 * Schemas are the _blueprint_ of every instance of that Schema that is created in our database
+
+* **note** With mongoose always spell your model names Capitalized and singular
+  - The folder `models` is spelled lowercase
 
 `Genealogy.js`
 
@@ -93,3 +96,13 @@ const User = require('./models/User');
 
 ## Test if still working
 * Open your terminal. Any Errors? No? Good!
+* You may see this warning:
+
+```
+DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
+```
+
+* Ignore that for now
+
+## Resources
+* [Learn more about mongoose](https://code.tutsplus.com/articles/an-introduction-to-mongoose-for-mongodb-and-nodejs--cms-29527)

@@ -18,9 +18,9 @@ exports.typeDefs = `
 
   type User {
     _id: ID,
-    username: String! @unique
+    username: String!
     password: String!
-    email: String! @unique
+    email: String!
     joinDate: String
     favorites: [Genealogy]
   }

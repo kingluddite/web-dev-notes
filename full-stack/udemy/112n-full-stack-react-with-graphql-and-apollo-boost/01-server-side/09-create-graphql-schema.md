@@ -2,7 +2,7 @@
 `schema.js`
 
 ### Tip
-* open both graphql `schema.js` and `User.js` side by side
+* open both graphql `schema.js` and `User.js` side-by-side
 * Use the VS code `2 tabs icon`
 
 ![2 tabs icon](https://i.imgur.com/HEvaNtZ.png)
@@ -18,37 +18,21 @@
 ```
 exports.typeDefs = `
   type Genealogy {
-
     firstName: String!
-
     lastName: String!
-
     dateOfBirth: String
-
-    living: String
-
-    description: String
-
     createdDate: String
-
+    description: String
     likes: Int
-
     username: String
-
   }
 
   type User {
-
-    username: String
-
+    username: String!
     password: String!
-
     email: String!
-
     joinDate: String
-
     favorites: [Genealogy]
-
   }
 `;
 ```
@@ -68,7 +52,7 @@ exports.typeDefs = `
 module.exports = mongoose.model('User', UserSchema);
 ```
 
-* We are referencing our Genealogy model
+* We are referencing our `Genealogy` model
 * Later we will use a mongoose method called `populate()` and this will change all the IDs we have in that array to Genealogy objects themselves
 
 ## Question

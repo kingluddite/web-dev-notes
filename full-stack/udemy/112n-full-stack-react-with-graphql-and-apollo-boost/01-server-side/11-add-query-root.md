@@ -1,5 +1,5 @@
 # Add Query Root
-* We will add a new type of Query
+* We will add a new type of `Query`
 * This is in addition to our other types (User, Genealogy)
 * This will be added in our `schema.js`
 
@@ -9,21 +9,14 @@
 // MORE CODE
 
 type User {
-
     username: String!
-
     password: String!
-
     email: String!
-
     joinDate: String
-
     favorites: [Genealogy]
-
   }
 
   type Query {
-
     
   }
 `;
