@@ -1,4 +1,5 @@
 # Create Signup Mutation
+* **Note** When working with session, you may have to refresh the browser to get rid of the error
 
 ## Add new type of `Token`
 

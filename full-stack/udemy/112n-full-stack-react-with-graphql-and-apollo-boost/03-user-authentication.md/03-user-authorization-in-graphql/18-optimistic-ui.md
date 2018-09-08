@@ -1,16 +1,18 @@
 # Optimistic UI
-* When we add a new genealogy we see that it was added to our database but not to our getAllGenealogies (for some reason we are not getting fresh data)
+* When we add a new `genealogy` we see that it was added to our database but not to our `getAllGenealogies` (for some reason we are not getting fresh data)
 
 ![no fresh data](https://i.imgur.com/mxaYzvp.png)
 
 * But if you refresh the page you then get fresh data when the component reloads
 
 ## Why is this happing?
-* It takes a certain amount of time to execute the mutation
-* Then after the mutation we are going back to the home page
-* Then when we get to the home page we are executing the getAllGenealogies query
+* It takes a certain amount of time to execute the `mutation`
+* Then after the `mutation` we are going back to the home page
+* Then when we get to the home page we are executing the `getAllGenealogies` query
 * It is not able to everything we want in the time we are giving it
 * The problem is the data is not updated automatically so we need to manually update our query using `this.updateCache`
+
+`AddGenealogy.js`
 
 ```
 // MORE CODE
@@ -24,7 +26,7 @@ render() {
 
     return (
       <Mutation
-        mutation={ADD_RECIPE}
+        mutation={ADD_GENEALOGY}
         variables={{ firstName, lastName, description, username }}
         update={this.updateCache}
       >
@@ -32,15 +34,16 @@ render() {
     // MORE CODE
 ```
 
-## Test
+## Test by adding one more Genealogy using the AddGenealogy page form
 * You will see `InMemoryCache`
 * Has an object called `data` with all the newly created fields within the genealogy
-* What is the purpose of this?
-    - When we want to update a query manually we 
-    - we have access to all the data from the queries we performed so we will use this to manually add the current genealogy to it
+
+### What is the purpose of this?
+* When we want to update a query manually we 
+* We have access to all the data from the queries we performed so we will use this to manually add the current genealogy to it
 
 ### cache.readQuery()
-* reads a graphql query from the ROOT_QUERY id
+* Reads a graphql query from the ROOT_QUERY id
 
 ```
 // MORE CODE
@@ -60,11 +63,12 @@ updateCache = (cache, { data: { addGenealogy } }) => {
 // MORE CODE
 ```
 
-* from cache - not fresh data missing last document entered
-* from data - has current document entered into db
+## Add one more genealogy
+* `from cache` - not fresh data missing last document entered
+* `from data` - has current document entered into db
 
 ## read then write query
-* We performed cache.readQuery and now we'll do cache.writeQuery
+* We performed c`ache.readQuery `and now we'll do `cache.writeQuery`
 
 **note** This is usually the flow of things in **Optimistic UI**
 
@@ -93,6 +97,6 @@ updateCache = (cache, { data: { addGenealogy } }) => {
 ## Test
 * Add a document
 * It will redirect and now you will see it on the home page
-* Open getAllGenealogies and it is loading all fresh data
+* Open `getAllGenealogies` and it is loading all fresh data
 * Optimistic UI is working!
 
