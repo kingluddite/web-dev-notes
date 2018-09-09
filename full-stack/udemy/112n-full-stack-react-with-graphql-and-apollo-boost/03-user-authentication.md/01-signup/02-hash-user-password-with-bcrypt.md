@@ -44,7 +44,7 @@ module.exports = mongoose.model('User', UserSchema);
 ```
 
 ## Test if it works
-* Delete User from mongodb (remotely)
+* Delete `User` from mongodb (remotely)
 
 ### or locally (instructions below)
 * `$ mongo` in another terminal tab

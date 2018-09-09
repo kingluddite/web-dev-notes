@@ -1,5 +1,8 @@
 # Add Routing with react-router-dom
 
+• Gatsby JS wrote a blog about my recent Emerging Technologies class (https://www.gatsbyjs.org/blog/2018-07-07-graphic-design-class)
+• CEO discusses my participation in a recent project (https://ironcovesolutions.com/blog/why-i-moved-my-website-to-react-gatsby-contentful-and-netlify)
+
 * **Note** Reach Router - getting a lot of press and might replace react router so here is a look:
 * [reach router intro video](https://www.youtube.com/watch?time_continue=13&v=3tgz1E4MsAk)
 
