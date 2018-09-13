@@ -12,7 +12,7 @@
 ```
 // MORE CODE
 
-import gql from 'graphql-tag';
+  
 import logo from './logo.svg';
 import './App.css';
 

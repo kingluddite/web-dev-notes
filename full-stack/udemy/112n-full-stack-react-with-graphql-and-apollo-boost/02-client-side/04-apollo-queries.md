@@ -1,4 +1,4 @@
-# Apollo Queries
+<!--  --># Apollo Queries
 * Create query file
 
 `client/src/queries/index.js`
