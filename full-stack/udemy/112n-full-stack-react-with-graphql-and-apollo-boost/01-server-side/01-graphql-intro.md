@@ -3,7 +3,7 @@
 1. What is GraphQL
 * GraphQL stand for Graph Query Language
 * GraphQL was created by Facebook in 2012
-* GraphQL was created to fix a problem caused by working with a REST API
+* GraphQL was created to fix a problem caused by working with a `REST API`
     - They had difficulties getting very specific information from their DB using a REST API
 
 ### Demo the problem
@@ -14,7 +14,7 @@
 * Now you create a route and now you need to associate that route with a [HTTP verb](https://www.restapitutorial.com/lessons/httpmethods.html)
 * This verb specifies how you want to react with a specific resource
 * In this case we want to get a user's information
-    - So in this case we would use the HTTP verb GET
+    - So in this case we would use the `HTTP` verb `GET`
     - No problem but what if we want to get all the friends from a given user
     - In order to get the friends we would have to change the route
 
@@ -41,21 +41,28 @@
 
 1. We can request the exact data we want
 2. And we only have to make one request
+3. Built-in System Types
+4. Built-in Developer Tools
+5. No Versioning needed
+6. Flexible
 
-* GraphQL has built-in type system
-    - You will understand this if you are familiar with a language like Java (which is a typed language)
+#### `GraphQL` has built-in **type** system
+* You will understand this if you are familiar with a language like Java (which is a typed language)
 * This means you have to declare the type of data you are working with
-    - This offer a huge benefit because with typed languages everything is much more predictable
-    - If you make a mistake writing that type, you'll get an error
-* GraphQL comes with built-in developer tools
-    - REST APIs tools you have to use 3rd party tools
-        + Like Postman
-        + Or use CURL in your terminal to make sure requests and responses were working properly
-    - GraphQL has a built in tool that makes 3rd party tools unnecessary
-* We don't have to version our version APIs
-    - With REST APIs this was common
-        + `facebook.com/v1/user/friends/friends`
-        + `facebook.com/v2/user/friends/friends`
-    - This means if you wanted to update your api and didn't version it people using it for their apps, their apps could break
-    - GraphQL can be versionless
-* GraphQL is flexible since it works with many different languages
+* This offer a huge benefit because with typed languages everything is much more predictable
+* If you make a mistake writing that type, you'll get an error
+
+#### GraphQL comes with built-in developer tools
+* REST APIs tools you have to use 3rd party tools
+    - Like **Postman**
+    - Or use **CURL** in your terminal to make sure requests and responses were working properly
+* GraphQL has a built in tool that makes 3rd party tools unnecessary
+
+#### We don't have to version our version APIs
+* With REST APIs this was common
+    - `facebook.com/v1/user/friends/friends`
+    - `facebook.com/v2/user/friends/friends`
+* This means if you wanted to update your API and didn't version it people using it for their apps, their apps could break
+* GraphQL can be versionless
+
+#### GraphQL is flexible since it works with many different languages

@@ -52,11 +52,11 @@ require('dotenv').config({ path: 'variables.env'}); // add this
 ```
 
 ### Mongoose
-* Connect our app's backend to mLab
+* Connect our app's backend to `mLab`
 * We'll do this using a package called `mongoose` (which we've already installed)
-* We can now user our `MONGO_URI` varables we set in `variables.env` so we can use Mongoose to connect to our remote Mongo DB on mLab
+* We can now user our `MONGO_URI` varables we set in `variables.env` so we can use `Mongoose` to connect to our **remote Mongo DB on mLab**
 * We access environment variables using `process.env`
-* We'll connect or throw an error
+* We'll `connect` or **throw an error**
 
 `server.js`
 
@@ -88,9 +88,9 @@ const app = express();
 
 ### Solution - Add nodemon and a npm script
 * We already installed `nodemon`
-    - `nodemon` will save you time as you won't have to keep restarting your server after you make changes, once nodemon is installed and running it will automatically restart your server each time you make a change to your code
+    - `nodemon` will save you time as you won't have to keep restarting your server after you make changes, once `nodemon` is installed and running it will automatically restart your server each time you make a change to your code
 
-* Add your dev script
+* Add your `dev` script
 
 `package.json`
 
@@ -109,7 +109,8 @@ const app = express();
 `$ npm run dev`
 
 * If all is well you will see DB connected in terminal
-* But sometimes you might get SSH errors to connect to mLab if you are working in a public library or a secure environment so to install mongo locally you can do the following
+* But sometimes you might get **SSH errors** to connect to `mLab` 
+* (if you are working in a public library or a secure environment so to install mongo locally you can do the following):
 
 ## Another potential error (if local development)
 * Check if mongo is > 4 `$ mongo --version`
@@ -120,7 +121,7 @@ const app = express();
 
 ### Solution to getting rid of errors
 * [Source of solution](https://github.com/Automattic/mongoose/issues/4135)
-* 
+
 `server.js`
 
 ```

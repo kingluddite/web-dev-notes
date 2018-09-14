@@ -26,18 +26,6 @@
 ## Make your file a git repo
 `$ git init`
 
-## Add to staging with git
-`$ git add -A`
-
-## Commit with git
-`$ git commit -m 'initialize repo`
-
-## Use hub to create remote github repo
-`$ hub create`
-
-## Push to github
-`$ git push origin master`
-
 ### Add `.gitignore`
 
 ```
@@ -109,6 +97,18 @@ typings/
 # Serverless directories
 .serverless
 ```
+
+## Add to staging with git
+`$ git add -A`
+
+## Commit with git
+`$ git commit -m 'initialize repo`
+
+## Use hub to create remote github repo
+`$ hub create`
+
+## Push to github
+`$ git push origin master`
 
 ## Add another commit to github
 * Do the same steps as before
