@@ -82,7 +82,7 @@ const Root = ({ refetch }) => (
 
 handleSubmit = (event, signinUser) => {
   event.preventDefault();
-  // call our signupUser function
+  // call our signinUser function
   // it is a promise so we can use `then()`
   // within `then()` we get our return `data`
   signinUser().then(async ({ data: { signinUser } }) => {
@@ -97,11 +97,63 @@ handleSubmit = (event, signinUser) => {
 // MORE CODE
 ```
 
+## Do this in Siginup as well
+`Signup.js`
+
+```
+// MORE CODE
+
+handleSubmit = (event, signupUser) => {
+  event.preventDefault();
+  // call our signupUser function
+  signupUser().then(async ({ data }) => {
+    console.log(data);
+    localStorage.setItem('token', data.signupUser.token);
+    await this.props.refetch();
+    this.clearState();
+    this.props.history.push('/');
+  });
+};
+
+// MORE CODE
+```
 ## Test
 * Remove token in client
 * Login again
 * You will see the current user token is available because the refetch is now working
-    - We are getting the fresh value of 
+    - We are getting the fresh value of
+
+## Troubleshooting if you did not get this to work
+* Make sure your `withSession.js` looks like this:
+
+`withSession.js`
+
+```
+// MORE CODE
+
+const withSession = Component => props => (
+  <Query query={GET_CURRENT_USER}>
+    {({ data, loading, refetch }) => {
+      if (loading) return null;
+      console.log(data);
+      return <Component {...props} refetch={refetch} />;
+    }}
+  </Query>
+);
+
+export default withSession;
+
+// MORE CODE
+```
+
+* The log of `data` is important because that will show you `getCurrentUser`
+* When you remove the token and refresh the page `getCurrentUser` will be `null`
+* Loggin in before we make the above changes means that you get redirected but getCurrentUser is still null until you refresh the browser
+* We need to do a refetch to grab the fresh data
+* So after you make the changes above to Signin and Signup you will see that now only are we redirected to the home page but a refetch is performed and we get the latest, fresh data for currentUser
+* After logging in, you will be redirected to the home page and your console should log something similar to the following:
+
+![logging refetch fresh data](https://i.imgur.com/KBzOrBr.png)
 
 ## Next - Add a navbar
 * Let's make navigating our app a lot easier

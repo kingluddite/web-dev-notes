@@ -25,13 +25,13 @@ class Signup extends Component {
 <input type="text" name="username" placeholder="Username" onChange={} />
 ```
 
-* We will pass in a function that will update our state
+* We will pass in a function that will update our `state`
 
 ```
 <input type="text" name="username" placeholder="Username" onChange={this.handleChange} />
 ```
 
-* We will create an event handler called 
+* We will create an event handler called `handleChange`
 * We need this to be an arrow function and not method syntax (_or our `onChange` event won't be bound correctly_)
 
 ```
@@ -90,10 +90,10 @@ render() {
 ![output in browser console](https://i.imgur.com/Pt6LKZM.png)
 
 ## Replace log with setting state
-* Now we will remove the log and set the state to be the value
+* Now we will remove the `log` and set the `state` to be the **value**
 
 ### **Rule** Never set state directly 
-* You never set state directly but instead use `setState({})`
+* You never set `state` directly but instead use `setState({})`
 
 `Signup.js`
 

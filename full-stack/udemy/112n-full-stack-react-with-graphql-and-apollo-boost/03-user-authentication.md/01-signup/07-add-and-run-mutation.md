@@ -1,5 +1,5 @@
 # Add onSubmit to Signup form and run signup mutation on Client
-* In order to execute the SIGNUP_USER function we need to pass it the necessary variables
+* In order to execute the `SIGNUP_USER` function we need to pass it the necessary variables
 
 `Signup.js`
 
@@ -17,7 +17,7 @@
 
 * We can use `username`, `email`, `password` because of destructuring above
 * We get access to `data`, `loading` and `error` whenever using a **Query** or **Mutation**
-* **note** With `Mutation` components we get access to **one additional thing** --- access to the Signup user itself (_The function itself whenever we are executing a Mutation... as the first argument_)
+* **note** With `Mutation` components we get access to **one additional thing** --- access to the `Signup` user itself (_The function itself whenever we are executing a Mutation... as the first argument_)
 
 ```
 // MORE CODE

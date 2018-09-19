@@ -1,5 +1,5 @@
 # Create a mutation
-* Queries will be useful for us from **returning data from our database**
+* Queries will be useful for us for **returning data from our database**
 
 ## Add new `type` to our `schema.js`
 * It will be a function that will need parameters passed to it which will be all the fields that the Genealogy needs to be created
@@ -16,7 +16,7 @@
   
   // add below
   type Mutation {
-    addGenealogy(firstName: String!, lastName: String!, dateOfBirth: String, description: String, username: String  ): Genealogy
+    addGenealogy(firstName: String!, lastName: String!, description: String, username: String  ): Genealogy
   }
 `;
 ```
@@ -79,8 +79,8 @@ mutation {
 }
 ```
 
-* Check your mongo databse for the collection info
-* When you insert a new document in mongodb it will automatically add a field named `_id`
+* Check your mongoDB database for the collection info
+* When you insert a new document in mongoDB it will automatically add a field named `_id`
 
 ## What is async await?
 * [What are promises](https://www.youtube.com/watch?v=2d7s3spWAzo)

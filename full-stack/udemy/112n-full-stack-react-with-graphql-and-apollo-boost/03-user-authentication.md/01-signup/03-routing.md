@@ -1,8 +1,5 @@
 # Add Routing with react-router-dom
 
-• Gatsby JS wrote a blog about my recent Emerging Technologies class (https://www.gatsbyjs.org/blog/2018-07-07-graphic-design-class)
-• CEO discusses my participation in a recent project (https://ironcovesolutions.com/blog/why-i-moved-my-website-to-react-gatsby-contentful-and-netlify)
-
 * **Note** Reach Router - getting a lot of press and might replace react router so here is a look:
 * [reach router intro video](https://www.youtube.com/watch?time_continue=13&v=3tgz1E4MsAk)
 
@@ -21,7 +18,8 @@
 `client/index.js`
 
 ```
-import React from 'react';
+// MORE CODE
+
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -29,10 +27,9 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
 
-import './index.css';
+// MORE CODE
+
 import App from './components/App';
 import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';

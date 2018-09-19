@@ -1,6 +1,6 @@
 # Add UserGenealogies component to Profile Page
-* We will implement getUserGenealogies query
-* We want one location where we keep all our user Genealogies in the logged in user profile page
+* We will implement `getUserGenealogies` query
+* We want one location where we keep all our **user Genealogies** in the logged in user profile page
 
 `Profile/UserGenalogies.js`
 
@@ -41,7 +41,7 @@ export default Profile;
 * You should see `UserGenealogies` at bottom of profile page
 
 ## Get information about the currently logged in user has created
-* Need to perform a query so we need Query component from react-apollo
+* Need to perform a query so we need `Query` component from `react-apollo`
 
 ## Pass down username
 `Profile`
@@ -78,7 +78,7 @@ const UserGenealogies = ({ username }) => (
 ```
 
 ## Add a new schema
-* This will return an array of genealogies and we'll pass a username to grab all those user's genealogy
+* This will return an array of genealogies and we'll pass a `username` to grab all those user's genealogy
 
 `schema.js`
 
@@ -110,7 +110,7 @@ getUserGenealogies: async (root, { username }, { Genealogy }) => {
 // MORE CODE
 ```
 
-## Now create the query variable GET_USER_GENEALOGIES
+## Now create the query variable `GET_USER_GENEALOGIES`
 
 `queries/index.js`
 
@@ -177,7 +177,56 @@ const UserGenealogies = ({ username }) => (
 export default UserGenealogies;
 ```
 
-* Now you can see all the user genealogies
+## Take it for a test drive in the browser
+* Now you can see all the user genealogies when you view the Profile page
+
+## If you wanted to make it a class it would look like this:
+
+`UserGenealogies.js`
+
+```
+import React, { Component } from 'react';
+import { Query } from 'react-apollo';
+import { GET_USER_Genealogies } from '../../queries';
+import { Link } from 'react-router-dom';
+
+export class UserGenealogies extends Component {
+  render() {
+    const { username } = this.props;
+    return (
+      <Query query={GET_USER_GENEALOGIES} variables={{ username }}>
+        {({ data, loading, error }) => {
+          if (loading) return <div>Loading...</div>;
+          if (error) return <div>Error</div>;
+          console.log(data);
+
+          return (
+            <ul>
+              <h3>Your Genealogies</h3>
+              {!data.getUserGenealogies.length && (
+                <p>
+                  <strong>You have not added any Genealogies yet</strong>
+                </p>
+              )}
+              {data.getUserGenealogies.map(genealogy => (
+                <li key={genealogy._id}>
+                  <Link to={`/genealogy/${genealogy._id}`}>
+                    <p>{genealogy.title}</p>
+                  </Link>
+                  <p>genealogy.likes</p>
+                </li>
+              ))}
+            </ul>
+          );
+        }}
+      </Query>
+    );
+  }
+}
+
+export default UserGenealogies;
+
+```
 
 
 

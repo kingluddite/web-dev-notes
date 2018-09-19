@@ -162,7 +162,6 @@ app.use(async (req, res, next) => {
 * Make sure you call `next()` to go to next middleware
     - **Very important** - if you forget this your app will "hang"
         + aka - stop working
-        + aka - break
 * For now let's just log token
 
 ## Test

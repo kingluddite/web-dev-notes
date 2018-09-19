@@ -1,4 +1,4 @@
-# Implement Signin Mutation on Client
+# Implement Signin Mutation on client
 `queries/index.js`
 
 * Copy graphiql code you were using and paste into `index.js`

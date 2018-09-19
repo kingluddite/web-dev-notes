@@ -85,8 +85,9 @@
 
 `$ cd ../`
 
-#### Add script for pretty-quick and husky
+#### Add script for `pretty-quick` and `husky`
 * Then add the precommit script to your `package.json` file:
+* Both packages were already installed
 
 ```
 // MORE CODE

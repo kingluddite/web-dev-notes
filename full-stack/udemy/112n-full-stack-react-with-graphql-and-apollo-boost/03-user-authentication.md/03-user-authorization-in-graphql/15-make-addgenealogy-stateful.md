@@ -103,8 +103,8 @@ state = {
 * When fields are filled in we'll set the `state` we'll use [brackets] to dynamically update the property based on the `name` of the input that we are typing in as well as the corresponding `value`
 
 ## Test
-* Use react dev tools to view `AddGenealogy` component
-* Type in fields and watch the state populate with the value typed in the fields
+* Use **React Dev Tools** to view `AddGenealogy` component
+* Type in fields and watch the `state` populate with the `value` typed in the fields
 
 `AddGenealogy`
 

@@ -6,9 +6,15 @@
 
 `$ npm i react-apollo apollo-boost jwt-decode`
 
-`http://localhost:4444/graphql` - URI essential for connecting front end with backend
+## `http://localhost:4444/graphiql` vs `http://localhost:4444/graphql`
 
-* Will will give all our components that information so they can perform mutations and queries using `ApolloProvider`
+* `http://localhost:4444/graphql` - URI essential for connecting front end with backend
+    - **note** This is put inside our client side code
+    - Our test URL to view our UI for graphiql is: 
+
+* `http://localhost:4444/graphiql`
+
+* Will will give all our components that information so they can perform `mutations` and `queries` using `ApolloProvider`
 
 `client/src/index.js`
 

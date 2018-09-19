@@ -1,5 +1,5 @@
 # Add getCurrentUser Query
-* Pass `currentUser` variable down to this piece of graphql express middleware
+* Pass `currentUser` variable down to this piece of `graphql` express middleware
 
 `server.js`
 
@@ -87,7 +87,7 @@ type Query {
 
 ```
 // MORE CODE
-
+// note - this block of code goes inside Query
 getCurrentUser: async (root, args, { currentUser, User }) => {
       if (!currentUser) {
         return null;
@@ -96,7 +96,7 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
         username: currentUser.username,
       }).populate({
         path: 'favorites',
-        model: 'Genealogies',
+        model: 'Genealogy', // make sure this is singular
       });
     },
   },
@@ -121,8 +121,8 @@ const UserSchema = new Schema({
 // MORE CODE
 ```
 
-* In our User model we have a favorites field
-* It has a ref of Genealogy
+* In our `User` model we have a `favorites` field
+* It has a **ref** of `Genealogy`
 
 `schema.js`
 
@@ -151,9 +151,9 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
         username: currentUser.username,
       }).populate({
         path: 'favorites',
-        model: 'Genealogies',
+        model: 'Genealogy', // make sure this is singular
       });
-      return user;
+      return user; // add this line
     },
   },
 ```
@@ -184,8 +184,8 @@ const withSession = Component => props => (
 
 * One arrow function where we'll pass in `props`
 * A nested arrow function where we'll have the body of the component
-* Inside that will be our Query component which will have its `render props`
-* We will only use `data` and `loading` inside Query
+* Inside that will be our `Query` component which will have its `render props`
+* We will only use `data` and `loading` inside `Query`
 * We will return a Component (so this `withSession` HOC will wrap various components and we'll be able to return it and we'll pass down all those props for each of those components (we pass it down with `{...props}` in the component itself))
 
 ## Inside our queries folder we'll create `GET_CURRENT_USER`
@@ -231,7 +231,7 @@ const withSession = Component => props => (
 );
 ```
 
-## Add `withSession` to `client/index.js`
+## Add `withSession` to `client/src/index.js`
 
 `index.js`
 
@@ -250,7 +250,7 @@ import withSession from './components/withSession'; // add
 ## Use `withSession` to wrap our Components
 * Best way to do this is to wrap our `Root` Component with **withSession**
 
-`client/index.js`
+`client/src/index.js`
 
 ```
 // MORE CODE
@@ -267,7 +267,7 @@ ReactDOM.render(
 * Now we have access to whatever we are returning from our `withSession` Component (aka the **data** that we are getting)
 
 ## Log for now
-* For now we won't pass it down to each component but lets see what it looks like
+* For now we won't pass it down to each component but lets see what it looks like by logging `data` out
 
 `withSession.js`
 
@@ -291,6 +291,9 @@ const withSession = Component => props => (
 
 export default withSession; // don't forget to export it
 ```
+
+* If you log in you should see the currently logged in user in the client console
+* If you delete the token and login, `getCurrentUser` won't appear but it will show if you refresh the browser
 
 ## Review our work to see what we did
 * `server.js`
@@ -358,9 +361,21 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 * You will get `null` for `getCurrentUser` (chrome console) if no user is logged in
 * Log in and see what you get when you refresh page
 
-## Houston we have a problem
+## Houston we MAY have a problem
 * Error ` MissingSchemaError: Schema hasn't been registered for model "Genealogies".`
-* We misspelled the Model name `Genealogy`
+* Did you get this error? I did when I first did this and it a was because I misspelled the Model name `Genealogy`
+  - Remember we always spell model names with a `singular` name
+  - It is not required but [recommended when working with Mongoose](https://stackoverflow.com/questions/10547118/why-does-mongoose-always-add-an-s-to-the-end-of-my-collection-name)
+    + You can override this default behavior of Mongoose but I believe it is mimicking the naming convention in Rails
+      * The model is singular and Capitalized
+      * The Collection is automatically named the plural of the model name
+        - [Other article on this](https://samwize.com/2014/03/07/what-mongoose-never-explain-to-you-on-case-sentivity/)
+          + Let’s assume the model I have is ‘Campaign’
+            * mongodb collection name is case sensitive (‘Campaigns’ is different from ‘campaigns’)
+            * mongodb best practises is to have all lower case for collection name (‘campaigns’ is preferred)
+            * mongoose model name should be singular and upper case (‘Campaign’)
+            * mongoose will lowercase and pluralize with an ‘s’ so that it can access the collection (‘Campaign’ » ‘campaigns’)
+            * Knowing this is especially useful if you are dealing with existing collections
 
 `resolvers.js`
 
@@ -383,15 +398,20 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
     // MORE CODE
 ```
 
-## Testing locally using mongoDB
+## Local MongoDB tips!
 * You may have to shut down both servers mongo and app
-* Kill node and mongod
+* Kill `node` and `mongod`
 * Restart them both
 * After logging in you should see current user with info we specified in query
 
 ![getCurrentUser user object returned](https://i.imgur.com/mO1vkty.png)
 
-* Above is from the `token` that we are getting from our `client` that is being sent through our backend, it is [verifying our token](https://i.imgur.com/ic2mYxt.png), we perform a query to get all that user data, and now our client knows all about it
+* Above is from the `token` that we are getting from our `client` that is being sent through our backend
+* It is verifying our token
+
+![verifying our token](https://i.imgur.com/ic2mYxt.png)
+
+* We perform a query to get all that user data, and now our client knows all about it
 
 ## Try this test
 1. Sign in again with a different user

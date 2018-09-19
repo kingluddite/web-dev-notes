@@ -1,5 +1,13 @@
 # Add UserInfo Component to Profile Page
 ## Create new stateless functional component (SFC)
+### Troubleshooting techniques for this section
+* Follow the below tips and you will save lots of time when you get errors
+* When working with session you will need to refresh your browser at times to get the data you need
+* You may at first see a browser error but before you do any troubleshooting, just refresh the browser and it should work
+* Sometimes you may need to delete your browser token in the Application pane, and log in again
+* Sometimes you may need to log out and log in
+* You may need to browser to the home page, log in and then browse to the profile page to get the error to go away
+* If you have old data in your mLab remote database it might be a good idea to delete all documents in the users collection and genealogies collection and create one user and add several genealogies so you know you have fresh data in the most current data structure
 
 `Profile/UserInfo.js`
 
@@ -51,7 +59,7 @@ export default Profile;
 // MORE CODE
 ```
 
-## Pass down `session` to Profile component
+## Pass down `session` to UserInfo component
 
 `Profile.js`
 
@@ -70,7 +78,7 @@ const Profile = ({ session }) => {
 export default Profile;
 ```
 
-## Pass down `session` to UserInfo component
+## Use `session` inside UserInfo component
 
 `UserInfo.js`
 
@@ -89,7 +97,7 @@ const UserInfo = ({ session }) => (
 export default UserInfo;
 ```
 
-* You will only be able to get this page if you are logged in but we will get an error if we don't first check that there is a logged in user
+* **note** You will only be able to get this page if you are logged in but we will get an error if we don't first check that there is a logged in user
 
 ```
 import React from 'react';
@@ -131,6 +139,7 @@ const UserInfo = ({ session }) => (
 export default UserInfo;
 ```
 
+## Test it out in the browser
 * We don't see any user `favorites`
 * We need to add it
 
@@ -155,6 +164,9 @@ export const GET_CURRENT_USER = gql`
 // MORE CODE
 ```
 
+## Test it out in the browser again
+* We get an error (if you check the Network tab and examine the graphql POST error)
+
 ## Error
 ```
 Network Error Error: Response not successful: Received status code 400
@@ -165,6 +177,7 @@ Network Error Error: Response not successful: Received status code 400
 * This lets us know there is a problem with our backend trying to load those favorites
 
 ## Examine `resolvers.js`
+
 ```
 // MORE CODE
 
@@ -200,8 +213,8 @@ favorites: {
 // MORE CODE
 ```
 
-* Each user will have an array of favorites as `_ids`
-* But populate makes them not `_id`s anymore but instead will build out the array as an array of objects giving all the information about the genealogy
+* Each `user` will have an array of favorites as `_ids`
+* But `populate()` makes them not `_id`s anymore but instead will build out the array as an array of objects giving all the information about the genealogy
 
 `queries/index.js`
 
@@ -228,10 +241,52 @@ export const GET_CURRENT_USER = gql`
 // MORE CODE
 ```
 
+## Update our UserInfo
+`UserInfo.js`
+
+```
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+export class UserInfo extends Component {
+  render() {
+    const {
+      username,
+      email,
+      joinDate,
+      favorites,
+    } = this.props.session.getCurrentUser;
+    return (
+      <div>
+        <h3>UserInfo</h3>
+        <p>Username: {username}</p>
+        <p>Email: {email}</p>
+        <p>Join Date: {joinDate}</p>
+        <ul>
+          <h3>
+            {username.toUpperCase()}
+            's Favorites
+          </h3>
+          {favorites.map(favorite => (
+            <li key={favorite._id}>
+              <Link to={`/genealogy/${favorite._id}`}>
+                <p>{favorite.title}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default UserInfo;
+```
+
 ## No matter what happens we get a server error
 * We have yet to add a favorite
 * To do this we will manually modify our mLab mongo database
-* Login in and open the genealogy collection, edit it and copy one genealogy id and increase the likes from `0` to `1`
+* Login in and open the `genealogy` collection, edit it and copy one genealogy id and increase the likes from `0` to `1`
 
 ### example mlab `genealogies` collection document
 
@@ -282,7 +337,7 @@ export const GET_CURRENT_USER = gql`
 ![one favorite](https://i.imgur.com/WLgyiG1.png)
 
 * It is a link that will take you to that user
-* We will program a way later to `like` genealogies
+* Later, we will "code" a way to `like` genealogies
 
 ## Show message if user has no favorite genealogies
 * Just some simple logic
@@ -308,21 +363,21 @@ export const GET_CURRENT_USER = gql`
       {/* no favorites? let user know */}
       {!session.getCurrentUser.favorites.length && (
         <p>
-          <strong>You have no favorites currently. Go add some!</strong>
+          <strong>You currently have no favorites. Go add some!</strong>
         </p>
       )}
     </ul>
 // MORE CODE
 ```
 
-* Now manually remove the like and favorite from mlab and you'll see something like this:
+* Now manually remove the like and favorite from mlab, then refresh the browser page of `/profile` and you'll see something like this:
 
 ![You have no favorites currently. Go add some!s](https://i.imgur.com/xqO8K8q.png)
 
 * `You have no favorites currently. Go add some!`
 
 # Make our date pretty
-* Moment JS or date fns are other ways
+* Moment JS or `date fns` are other ways
 * [Article on both](https://hackernoon.com/why-you-should-choose-date-fns-over-moment-js-in-your-nodejs-applications-116d1a709c43)
 * But let's format our dates and time with vanilla JavaScript
 
@@ -331,7 +386,9 @@ export const GET_CURRENT_USER = gql`
 ```
 // MORE CODE
 
-https://hackernoon.com/why-you-should-choose-date-fns-over-moment-js-in-your-noconst formatDate = date => {
+https://hackernoon.com/why-you-should-choose-date-fns-over-moment-js-in-your-noconst 
+
+formatDate = date => {
   const newDate = new Date(date).toLocaleDateString('en-US');
   const newTime = new Date(date).toLocaleTimeString('en-US');
   return `${newDate} at ${newTime}`;
@@ -349,4 +406,51 @@ const UserInfo = ({ session }) => (
 
 * That will make the date look like: `Join Date: 9/4/2018 at 12:25:23 PM`
 
-## Next - Add User recipes
+## Using Moment
+* Pulling the date you will get a string in milliseconds
+* You need to convert that to a date and format it using Moment.js
+
+`UserInfo.js`
+
+```
+ // MORE CODE
+
+import moment from 'moment';
+
+ // MORE CODE
+
+  render() {
+    const {
+      username,
+      email,
+      joinDate,
+      favorites,
+    } = this.props.session.getCurrentUser;
+
+    return (
+      <div>
+
+      // MORE CODE
+
+        <p>Join Date: {moment(joinDate, 'x').format('MMMM MM, YYYY')}</p>
+        {/* <p>Join Date: {this.formatDate(joinDate)}</p> */}
+
+        // MORE CODE
+
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default UserInfo;
+```
+
+* [Reference](https://stackoverflow.com/questions/35184003/moment-js-convert-milliseconds-into-date-and-time)
+* Moment JS output the date like this:
+
+```
+Join Date: September 09, 2018
+```
+
+## Next - Add User genealogies

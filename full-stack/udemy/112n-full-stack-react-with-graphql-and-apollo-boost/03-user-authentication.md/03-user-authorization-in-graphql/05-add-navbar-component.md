@@ -40,7 +40,7 @@ const Root = ({ refetch }) => (
 ```
 
 * We put `Navbar` above Switch so it will be on all pages
-* We put both `Switch` and `Navbar` inside `Fragment` to avoid error
+* We put both `Switch` and `Navbar` inside `Fragment` to avoid an error
 
 ## Unauthorized nav items
 * This will show on logic if user not logged in

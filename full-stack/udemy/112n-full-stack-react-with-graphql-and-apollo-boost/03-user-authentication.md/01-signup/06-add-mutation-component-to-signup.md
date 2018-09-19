@@ -124,7 +124,7 @@ export const GET_ALL_GENEALOGIES = gql`
 * We need `username`, `email` and `password` and we need to return a `Token`
 
 ## Test in graphiql
-* sample graphiql with static values
+* Sample graphiql with static values
 * Will output a `token` after running
 
 ```
@@ -139,10 +139,11 @@ mutation {
 
 `http://localhost:4444/graphiql`
 
-* This will enable us to set up how we want our mutation to run on the client
+* This will enable us to set up how we want our `mutation` to run on the `client`
 * Before when we ran this we were using static values for `username`, `email` and `password`
 
-## Houston we may have a problem (Occassional error when using local mongodb)
+## This not is if you are using Local MongoDB install 
+### Houston we may have a problem (Occassional error when using local mongodb)
 * If you get the graphiql error "Topology was destroyed"
 * Find `node` process, kill it and rerun
 * Rerun mongo and dev server

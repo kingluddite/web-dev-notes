@@ -43,6 +43,8 @@ export default App;
 * Add another Genealogy (use graphiql to add this as we didn't create a form yet)
 
 ## Add an _id (will help us get rid of "key" prop error)
+* We don't have an `_id` yet
+* Expand getAllSongs inside the console and you will see there is not `_id`
 
 `src/queries/index.js`
 
@@ -125,9 +127,9 @@ return (
 
 # Refresh browser
 * We now only see `_id`, `firstName`, and `lastName`
-* Our key warning is gone
+* Our `unique key` warning is gone
 
-## Make li it's own component
+## Make `li` it's own component
 `App.js`
 
 ```

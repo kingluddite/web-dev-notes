@@ -4,7 +4,7 @@
 
 ## Create new function `clearState()`
 * We want our `state` object to look like it does initially
-* all fields are empty
+* All fields are empty
 
 `Signup.js`
 
@@ -142,7 +142,7 @@ GraphQL error: User validation failed: username: Path `username` is required., e
 // MORE CODE
 ```
 
-## validateForm
+## validateForm function
 * Make sure all form fields have some value
 * Make sure `password` and `confirmPassword` are equal to each other
 
