@@ -130,18 +130,21 @@ $ cd test/test2
 $ touch test
 ```
 
-* To use it open ctrlp search
+* To use it open `ctrlp` search
 * You must type exact path match
 * Create files and folder and save!
 
 ## Open lots of files at once
-* ctrl p then
+* `ctrl p` then
 * search using ctrl j (down) and ctrl k (up)
 * then ctrl z (to mark that file) (again to unmark)
 * mark all files you want to open
 
 ### clear cache
 * f5
+    - This assumes you're in `ctrl-p` mode already
+    - Note that you can hit `F5` in the middle of a query, i.e., you can type a few characters, find it's not matching a recently updated file, and hit F5 to refresh right then
+    - It will automatically show you the match if the file was just added to the ctrl-p cache
 * New files won't be seen until you do this
 * **note** ctrl y files are seen and are not cached
 

@@ -5,11 +5,11 @@
 
 * But if you refresh the page you then get fresh data when the component reloads
 
-## Why is this happing?
+## Why is this happening?
 * It takes a certain amount of time to execute the `mutation`
 * Then after the `mutation` we are going back to the home page
 * Then when we get to the home page we are executing the `getAllGenealogies` query
-* It is not able to everything we want in the time we are giving it
+* It is not able to do everything we want in the time we are giving it
 * The problem is the data is not updated automatically so we need to manually update our query using `this.updateCache`
 
 `AddGenealogy.js`
@@ -36,14 +36,14 @@ render() {
 
 ## Test by adding one more Genealogy using the AddGenealogy page form
 * You will see `InMemoryCache`
-* Has an object called `data` with all the newly created fields within the genealogy
+* Has an object called `data` with all the **NEWLY** created fields within the genealogy
 
 ### What is the purpose of this?
 * When we want to update a query manually we 
 * We have access to all the data from the queries we performed so we will use this to manually add the current genealogy to it
 
 ### cache.readQuery()
-* Reads a graphql query from the ROOT_QUERY id
+* Reads a graphql query from the `ROOT_QUERY` **id**
 
 ```
 // MORE CODE
@@ -68,7 +68,7 @@ updateCache = (cache, { data: { addGenealogy } }) => {
 * `from data` - has current document entered into db
 
 ## read then write query
-* We performed c`ache.readQuery `and now we'll do `cache.writeQuery`
+* We performed `cache.readQuery` and now we'll do `cache.writeQuery`
 
 **note** This is usually the flow of things in **Optimistic UI**
 
@@ -94,7 +94,7 @@ updateCache = (cache, { data: { addGenealogy } }) => {
 // MORE CODE
 ```
 
-## Test
+## Test - Our data is now refreshed when we get to the home page
 * Add a document
 * It will redirect and now you will see it on the home page
 * Open `getAllGenealogies` and it is loading all fresh data

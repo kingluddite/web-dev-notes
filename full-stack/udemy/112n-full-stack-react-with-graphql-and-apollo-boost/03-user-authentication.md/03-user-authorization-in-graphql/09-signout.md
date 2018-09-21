@@ -42,6 +42,8 @@ const NavbarAuth = ({ session }) => (
 * Just more organized now
 
 ## Make react forget about our current user using `ApolloConsumer` from react-apollo
+* When we say forget about... we mean log out so the user as far as the browser is concerned... is gone
+* How do we kill the session?
 * We will use ApolloConsumer's `client`
 
 `Signout.js`
@@ -82,12 +84,11 @@ if (loading) return null;
     - We want to use `resetStore`
     - This will help `apollo` **forget about the current user**
     - Anytime we click on this button we want `resetStore` to be called
-
-`Signout.js`
-
 * Notice that this is a SFC and take note how we are not using `this` like we would in Class based components
   - Also note how we define methods outside of the function
   - And how we pass in props and use them
+
+`Signout.js`
 
 ```
 import React from 'react';
@@ -117,9 +118,10 @@ export default withRouter(Signout);
 ```
 
 * We clear our `token`
-* We import `withRouter` so we can use `resetStore`
+* We import `ApolloConsumer` so we can use `resetStore`
 * We use `client.resetStore()` to remove user
 * We destructure `history` and pass it into event handler so we can redirect to home page when we click to signout
+* We import `withRouter` so we can redirect to home page after logging out
 
 ## Test in browser
 * View token in Application tab of browser console

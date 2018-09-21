@@ -103,7 +103,7 @@ exports.resolvers = {
 }
 ```
 
-* Click play button
+* Click `play` button
 * You will see output from that query
 * You could add a field like:
 

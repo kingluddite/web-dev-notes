@@ -64,7 +64,15 @@ SECRET=sdfkj0easdfadfj;lkjelkj93j3
 
 `resolvers.js`
 
+* Make sure you are adding this inside Mutation
+* You should start the follow code right after `addGenealogy` Mutation
+* Make sure there is a comma at the end of `AddGenealogy` Mutation
+
 ```
+// MORE CODE
+
+Mutation: {
+
 // MORE CODE
 signupUser: async (root, { username, email, password }, { User }) => {
       // check if user already exists
@@ -89,6 +97,8 @@ signupUser: async (root, { username, email, password }, { User }) => {
 * We pull our secret from our `variables.env`
 
 ## Test in browser
+* Make sure you are running your app from the `server` folder if you are in the `client` folder you need to change to the parent directory:
+
 `$ cd ../`
 `$ npm run dev`
 
@@ -99,6 +109,8 @@ signupUser: async (root, { username, email, password }, { User }) => {
 
 * Open Docs
     - You now will see `signupUser` (Under mutations)
+
+## Write some GraphQL inside graphiql
 
 ```
 mutation {

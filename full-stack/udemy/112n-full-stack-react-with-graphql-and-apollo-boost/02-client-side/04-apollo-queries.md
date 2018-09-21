@@ -75,4 +75,37 @@ export default App;
 * **405 (Method Not Allowed)**
 * `No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3000' is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.`
 
+## If you didn't convert your class into a SFC this is what it would look like
+* Might be easier just to always use class based components
+
+`App.js`
+
+```
+import React, { Component } from 'react';
+import './App.css';
+
+import { Query } from 'react-apollo';
+import { GET_ALL_SONGS } from '../queries';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <h1>Five Star Songs</h1>
+        <Query query={GET_ALL_SONGS}>
+          {({ data, loading, error }) => {
+            if (loading) return <div>Loading...</div>;
+            if (error) return <div>Error</div>;
+            console.log(data);
+
+            return <p>Songs</p>;
+          }}
+        </Query>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
 

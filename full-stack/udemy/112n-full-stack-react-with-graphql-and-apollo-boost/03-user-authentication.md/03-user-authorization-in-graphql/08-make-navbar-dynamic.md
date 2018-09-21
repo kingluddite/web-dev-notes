@@ -45,7 +45,7 @@ const Root = ({ refetch, session }) => (
 
 ## pull out `session` from props of `Navbar`
 * Set up conditional to show `auth nav` or `unauth nav`
-* If we have a current user and it is not `null` we'll learn `navbarAuth` otherwise load `navbarUnAuth`
+* If we have a current logged in user (getCurrentUser) and it is not `null` we'll learn `navbarAuth` otherwise load `navbarUnAuth`
 
 `Navbar.js`
 

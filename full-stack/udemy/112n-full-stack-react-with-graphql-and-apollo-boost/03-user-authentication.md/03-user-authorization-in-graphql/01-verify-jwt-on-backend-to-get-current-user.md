@@ -69,7 +69,7 @@ app.use(async (req, res, next) => {
 // MORE CODE
 ```
 
-* log in and you'll see the user object on backend
+* Log in and you'll see the user object on backend
 
 ```
 [server]  { username: 'bob',

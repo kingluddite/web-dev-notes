@@ -1,14 +1,4 @@
 # Add Navbar Links for Auth User
-## How does is the active link styled with CSS?
-
-
-`App.css`
-
-```
-.active {
-  font-weight: bold;
-}
-```
 
 ## Create NavbarAuth
 * This will be nav links for when user is logged in
@@ -119,7 +109,7 @@ const Root = ({ refetch }) => (
 ```
 
 ## Test in browser
-* Make sure correct components are loading
+* Make sure your new components are correctly loading
 
 ## Next - Make Navbar dynamic 
 

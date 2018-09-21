@@ -28,10 +28,6 @@ const GenealogyPage = ({ match }) => {
               {data.getGenealogy.createdDate}
             </p>
             <p>Description: {data.getGenealogy.description}</p>
-            <p>
-              Date Of Birth:
-              {data.getGenealogy.dateOfBirth}
-            </p>
             <p>Likes: {data.getGenealogy.likes}</p>
             <p>Created By: {data.getGenealogy.username}</p>
             <button>Like</button>
@@ -45,7 +41,7 @@ const GenealogyPage = ({ match }) => {
 export default withRouter(GenealogyPage);
 ```
 
-* View the UI and you'll see all fields populated
-* Except Created By field is not populated
+* View page in the browser and you'll see all fields populated
+* **Except** Created By field is not populated
 
-## Associate the name of the user that created the genealogy by adding it to the form that creates genealogies
+## Next - Associate the name of the user that created the genealogy by adding it to the form that creates genealogies

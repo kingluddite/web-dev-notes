@@ -4,14 +4,14 @@
 * We will make sure that when a user is not logged in they will not be able to access those components
 
 ## Stuff we'll need
-* It will need to Redirect (react-router-dom) and get the current user (GET_CURRENT_USER)
-* We'll also need the Query component
+* It will need to Redirect ('react-router-dom') and get the current user (GET_CURRENT_USER)
+* We'll also need the `Query` component
 * It will be a SFC
 * We use a special syntax for this one
     - we will pass it a function
     - we need to pass the function an argument (conditionFunc) and then we'll use a similar syntax that we used for `withSession`
 
-`components/withAuth`
+`components/withAuth.js`
 
 ```
 import React from 'react';
@@ -75,11 +75,11 @@ const withAuth = conditionFunc => Component => props => (
 * Test in browser
 * You should be logged out an in the home page and the console should say that `getCurrentUser` is **null**
 
-## Explain the conditionFuc value and what we are doing with it
-* Keep console open and make sure the null currentUser is still there
+## Explain the `conditionFunc` value and what we are doing with it
+* Keep console open and make sure the **null** `currentUser` is still there
 * Log in again
-* Right click on the `null` currentUser and select `store as global variable`
-* Then right click logged in currentUser and select `store as global variable`
+* Right click on the `null` `currentUser` and select `store as global variable`
+* Then right click logged in `currentUser` and select `store as global variable`
 * This will store them as two tempary variables
 
 ![temp variables](https://i.imgur.com/GrHbLcj.png)
@@ -92,8 +92,8 @@ conditionFunc(temp1);
 ```
 
 * **note** Hit `shift` + `return` to get to next line in console
-* After hitting return it will execute and return `getCurrentUser: null`
-* But run it again but pass in `temp2`
+* After hitting `return` it will execute and return `getCurrentUser: null`
+* Run it again but this time pass in `temp2`
 
 ```
 var conditionFunc = session => session;
@@ -114,7 +114,7 @@ var conditionFunc = session => session && session.getCurrentUser;
 
 `conditionFunc(temp2)` ----- That will return the current logged in user
 
-## Now look at the withAuth component
+## Now look at the `withAuth` component
 `withAuth.js`
 
 ```
@@ -129,8 +129,11 @@ return conditionFunc(data) ? (
 // MORE CODE
 ```
 
-* If expression evaluates to false it redirects to home page
-* If expression evaluates to true it loads the component with all its corresponding `props`
+## So our ternary operator is going to evaluate to true or false
+1. If expression evaluates to `true`
+    * It loads the component with all its corresponding `props`
+2. If expression evaluates to `false`
+    * It redirects to home page
 
 ## Also protect AddGenealogy with withAuth
 
@@ -152,8 +155,31 @@ export default withAuth(session => session && session.getCurrentUser)(
 * Higher order components are confusing
 * [This video helps explain them](https://youtu.be/BcVAq3YFiuc?t=622)
 * [lecture notes on video](HOC: https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)
-*  The video addresses both the benefits and problems of using higher order components and how new design patterns like render props can be an improvement
+*  The video addresses both the benefits and problems of using higher order components and how new design patterns like **render props** can be an improvement
 
-## jwt mut be provided - JsonWebTokenError
+## jwt must be provided - JsonWebTokenError
 * This pops up in the terminal, I am looking into figuring out how to remove it
+* Found the answer:
+  - I figured out how to get rid of the jwt is required error when logging out
+  - I had to remove the entire token instead of just setting it to an empty string
+  - I made my Signout a class based component (I only use class based components as I hate converting stateless functional components to class based components) and just removed the token completely from the localStorage upon Signing out
+
+```
+export class Signout extends Component {
+ 
+handleSignout = (client, history) => {
+    // clear token
+    localStorage.removeItem('token'); // modified this line
+    client.resetStore();
+    // redirect using withRouter
+    this.props.history.push('/');
+  };
+ 
+// more code
+```
+
+
+
+
+
 

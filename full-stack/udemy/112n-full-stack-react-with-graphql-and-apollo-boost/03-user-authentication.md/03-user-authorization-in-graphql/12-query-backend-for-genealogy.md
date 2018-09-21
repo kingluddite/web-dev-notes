@@ -57,7 +57,6 @@ query($_id: ID!) {
     _id
     firstName
     lastName
-    dateOfBirth
     description
     createdDate
     likes
@@ -108,7 +107,6 @@ export const GET_GENEALOGY = gql`
       _id
       firstName
       lastName
-      dateOfBirth
       description
       createdDate
       likes
@@ -119,19 +117,19 @@ export const GET_GENEALOGY = gql`
 // MORE CODE
 ```
 
-## Update GenealogyPage
+## Update GenealogyPage.js
 * Import `Query` from **react-apollo**
-    - pass `query` prop of GET_RECIPE
-* import GET_RECIPE from queries
+    - pass `query` prop of GET_GENEALOGY
+* import GET_GENEALOGY from queries
 * Inside **return** Replace `div` with `QUERY` component
-    - Add render props inside Query
+    - Add **render props** inside Query
     - Make sure to destructure `data`, `loading` and `error`
     - Return what we returned before
-    - Also need to pass variables prop and its value will be `_id`
+    - Also need to pass `variables` prop and its value will be `_id`
     - Check for `loading` and `error`
     - log out `data` to test if proper data is coming back (the single document we are querying for)
 
-`GenealogyPage`
+`GenealogyPage.js`
 
 ```
 import React from 'react';

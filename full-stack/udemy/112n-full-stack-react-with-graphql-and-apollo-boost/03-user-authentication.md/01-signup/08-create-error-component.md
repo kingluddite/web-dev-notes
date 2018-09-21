@@ -27,7 +27,7 @@
 ![error being printed](https://i.imgur.com/IppFyD9.png)
 
 ## Dedicated Error Component
-* This will help us organize our code and save us typing something we will use a lot, over and over again
+* This will help us organize our code and save us typing something we will use over and over again
 
 ## Create Error stateless functional Component
 `components/Error.js`

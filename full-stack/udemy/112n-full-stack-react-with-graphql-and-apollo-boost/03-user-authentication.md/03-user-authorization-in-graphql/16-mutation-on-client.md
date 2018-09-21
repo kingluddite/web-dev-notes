@@ -44,16 +44,17 @@ const Root = ({ refetch, session }) => (
 />
 ```
 
-* Now when we visit that route we have data about the user
+* Now when we visit that route we have `data` about the user
 
 ## Add LifeCycle method
-* When our component mounts lets log the props
+* When our component mounts let's log the props
 
 `http://localhost:3000/genealogy/add`
 
 * Use react dev tools
 * Search for `AddGenealogy` component
 * Look under `session` in console and you'll see user object
+  - Props > session > getCurrentUser > user object
 * Show user name in console
 * **note** If you are not logged in you will get an error so make sure you are logged in
 
@@ -62,6 +63,8 @@ componentDidMount = () => {
     console.log(this.props.session.getCurrentUser.username);
   };
 ```
+
+* You may have to refresh the browser window to see `username`
 
 ## Add username to our state
 ```
@@ -108,7 +111,6 @@ export const ADD_GENEALOGY = gql`
     ) {
       firstName
       lastName
-      dateOfBirth
       description
       createdDate
       likes
@@ -233,7 +235,7 @@ export default AddGenealogy;
 * And see if two things happen:
 
 1. When you fill form out it will populate the database
-2. Also see if when you visit home page the item you added in on the home page
+2. Also see if when you visit home page the item you added is on the home page
 
 ### Record not inserted
 `ApolloError.js:37 Uncaught (in promise) Error: Network error: Response not successful: Received status code 400`

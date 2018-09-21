@@ -14,7 +14,7 @@ module.exports = mongoose.model('Genealogy', GenealogySchema);
 
 * We do this in our models
 * We specify which field we will be indexing
-* We want to search on every field in the recipe `$**` and set it to text
+* We want to search on every field in the genealogy `$**` and set it to text
 * Then we find all based on `text` provided inside the input
 * Then we'll add a meta field and we'll use that to sort the search results
     - This will help us find the most appropriate term we are searching for
@@ -37,6 +37,7 @@ searchGenealogies: async (root, { searchTerm }, { Genealogy }) => {
       ).sort({
         score: { $meta: 'textScore' },
       });
+      return searchResults;
     } else {
       const genealogies = await Genealogy.find().sort({
         likes: 'desc',
@@ -50,106 +51,29 @@ searchGenealogies: async (root, { searchTerm }, { Genealogy }) => {
 ```
 
 ## Use ApolloConsumer instead of Query
-* We now need to perform our query on demand we will need to swap our `Query` component out with the `ApolloConsumer` component
+* We now need to **perform our query on demand**
+* We will need to swap our `Query` component out with the `ApolloConsumer` component
 * `ApolloConsumer` allows us to also perform a query but we are using it instead of `Query` because `ApolloConsumer` allows us to perform the query in response to a given **action**
-    - We will pass in `client` instead of data
+    - We will pass in `client` instead of `data`
+* Convert to a class based component
+    - We will need to use `state`
 
 `Search.js`
 
 ```
-import React from 'react';
-
-import { ApolloConsumer } from 'react-apollo';
+import React, { Component } from 'react';
+// react router
 import { Link } from 'react-router-dom';
+
+// apollo
+import { ApolloConsumer } from 'react-apollo';
 import { SEARCH_GENEALOGIES } from '../../queries';
 
-const Search = () => {
-  return (
-    <ApolloConsumer>
-      {client => {
-        return (
-          <div className="App">
-            <input type="search" name="search" id="search" />
-            <ul>
-              {data.searchGenealogies.map(genealogy => (
-                <li key={genealogy._id}>
-                  <Link to={`/genealogy/${genealogy._id}`}>
-                    <h4>
-                      {genealogy.firstName} {genealogy.lastName}
-                    </h4>
-                  </Link>
-                  <p>{genealogy.likes}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        );
-      }}
-    </ApolloConsumer>
-  );
-};
-export default Search;
-```
+export class Search extends Component {
+  handleChange = data => {
+    console.log(data);
+  };
 
-## Update our search form
-* We use event.persist because of events in React
-* [This article](https://www.duncanleung.com/blog/2017-08-14-fixing-react-warnings-synthetic-events-in-setstate/) explains it in greater detail
-* If you don't you'll see an error like this:
-
-```
-Uncaught TypeError: Cannot read property 'value' of null
-
-Warning: This synthetic event is reused for performance reasons. If you're seeing this, you're accessing the property 'target' on a released/nullified synthetic event. This is set to null. If you must keep the original synthetic event around, use event.persist().
-```
-
-* **note** It turns out React has it's own event system for event handling, using `SyntheticEvent`
-    - React's `SyntheticEvent` wraps around the browser's native event to provide cross-browser compatibility support
-    - Instead of passing in the native event to React event handlers, an instance of this `SyntheticEvent` is passed in
-    - The console warning above occurs because React re-uses the `SyntheticEvent` object for performance reasons, by pooling the synthetic events all together
-    - Thus, all the properties on `event.target` are **nullified** after an event callback is invoked
-    - Essentially, `SyntheticEvent` **cannot be used asynchronously**, because the event will no longer exist after the event callback has been invoked
-    - This is a problem, knowing that React's `setState()` behavior is **asynchronous**
-
-## Solution to problem
-* Using `event.target` to construct a new `state` is a common pattern, and React has provided a solution with `event.persist()`
-* Calling `event.persist()` on the event removes the synthetic event from the pool and allows references to the event to be retained asynchronously
-
-`Search.js`
-
-```
-// MORE CODE
-
-<ApolloConsumer>
-      {client => {
-        return (
-          <div className="App">
-            <input
-              type="search"
-              name="search"
-              id="search"
-              placeholder="Search for Genealogies"
-              onChange={async event => {
-                event.persist();
-                const { data } = await client.query({
-                  query: SEARCH_GENEALOGIES,
-                  variables: { searchTerm: event.target.value },
-                });
-                this.handleChange(data);
-              }}
-            />
-            <ul>
-
-// MORE CODE
-```
-
-## Convert to a class based component
-* We will need to use `state`
-
-`Search.js`
-
-```
-// MORE CODE
-class Search extends Component {
   render() {
     return (
       <ApolloConsumer>
@@ -158,9 +82,9 @@ class Search extends Component {
             <div className="App">
               <input
                 type="search"
+                placeholder="Search for Genealogies"
                 name="search"
                 id="search"
-                placeholder="Search for Genealogies"
                 onChange={async event => {
                   event.persist();
                   const { data } = await client.query({
@@ -174,9 +98,7 @@ class Search extends Component {
                 {data.searchGenealogies.map(genealogy => (
                   <li key={genealogy._id}>
                     <Link to={`/genealogy/${genealogy._id}`}>
-                      <h4>
-                        {genealogy.firstName} {genealogy.lastName}
-                      </h4>
+                      <h4>{genealogy.title}</h4>
                     </Link>
                     <p>{genealogy.likes}</p>
                   </li>
@@ -191,10 +113,11 @@ class Search extends Component {
 }
 
 export default Search;
+
 ```
 
 ## Test
-* We have an error
+* We have an `error`
 * We need to swap `data.searchGenealogies` with an empty array `[]`
 
 `Search.js`
@@ -242,6 +165,8 @@ class Search extends Component {
 
 `Search.js`
 
+* We are going to store all our search results in an array inside our `state`
+
 ```
 // MORE CODE
 
@@ -261,9 +186,9 @@ class Search extends Component {
 // MORE CODE
 ```
 
-* We'll destructure `data` and pull `searchRecipes off of it`
+* We'll destructure `data` and pull `searchGenealogies off of it`
 * We replace empty array with `searchResults` (searchResults.map)
-* We will dynamically change that value in our state whenever new search results come in
+* We will dynamically change that value in our `state` whenever new search results come in
 
 ## Final Search code
 `Search.js`
@@ -332,3 +257,27 @@ export default Search;
 ## Test it out
 * You can search and it will appear below input if there is a match
 * Clear input and all search results disappear
+
+## Resources
+### Why did we use `event.persist()` in earlier code?
+* We use `event.persist` because of events in React
+* [This article](https://www.duncanleung.com/blog/2017-08-14-fixing-react-warnings-synthetic-events-in-setstate/) explains it in greater detail
+* If you don't you'll see an error like this:
+
+```
+Uncaught TypeError: Cannot read property 'value' of null
+
+Warning: This synthetic event is reused for performance reasons. If you're seeing this, you're accessing the property 'target' on a released/nullified synthetic event. This is set to null. If you must keep the original synthetic event around, use event.persist().
+```
+
+* **note** It turns out React has it's own event system for event handling, using `SyntheticEvent`
+    - React's `SyntheticEvent` wraps around the browser's native event to provide cross-browser compatibility support
+    - Instead of passing in the native event to React event handlers, an instance of this `SyntheticEvent` is passed in
+    - The console warning above occurs because React re-uses the `SyntheticEvent` object for performance reasons, by pooling the synthetic events all together
+    - Thus, all the properties on `event.target` are **nullified** after an event callback is invoked
+    - Essentially, `SyntheticEvent` **cannot be used asynchronously**, because the event will no longer exist after the event callback has been invoked
+    - This is a problem, knowing that React's `setState()` behavior is **asynchronous**
+
+## Solution to problem
+* Using `event.target` to construct a new `state` is a common pattern, and React has provided a solution with `event.persist()`
+* Calling `event.persist()` on the event removes the synthetic event from the pool and allows references to the event to be retained asynchronously

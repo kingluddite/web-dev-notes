@@ -8,7 +8,7 @@
 `$ touch schema.js resolvers.js`
 
 * We had schemas for mongoose
-* We also need schemas for graphql for type checking
+* We also need schemas for GraphQL for type checking
 
 `schema.js`
 
@@ -37,9 +37,10 @@ const { resolvers } = require('./resolvers');
 // MORE CODE
 ```
 
-## apollo-server-express and graphql-tools
-* packages that will allow us to add our graphql middleware
-    - this essentially allows us to connect graphql with express
+## `apollo-server-express` and `graphql-tools`
+* packages that will allow us to add our GraphQL middleware
+* We installed both of these packages earlier
+    - this essentially allows us to connect GraphQL with Express
 
 `server.js`
 
@@ -64,7 +65,6 @@ const schema = makeExecutableSchema({
 
 // MORE CODE
 ```
-
 
 ## Connect schemas with GraphQL
 `server.js`
@@ -93,18 +93,16 @@ app.use(
 // MORE CODE
 ```
 
-* If not running then run with:
+## Houston we have a problem
+* If your server is still running you will see this error in terminal:
 
-`$ npm run dev`
-
-## Check out error in terminal
 `Error: Must provide typeDefs`
 
 * Open `schema.js` and see our `typeDefs` property is empty and this is causing the error
 
 ## Provide Type Definitions
-* This is what GraphQL names its schema
+* This is what `GraphQL` names its schema
 * We provide models to show the shape of our data
-* We have to do the same thing with GraphQL
+* We have to do the same thing with `GraphQL`
 * These need to match up with the mongoose models
 
