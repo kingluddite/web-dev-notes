@@ -109,8 +109,35 @@ const app = express();
 `$ npm run dev`
 
 * If all is well you will see DB connected in terminal
-* But sometimes you might get **SSH errors** to connect to `mLab` 
-* (if you are working in a public library or a secure environment so to install mongo locally you can do the following):
+* **note** But sometimes you might get **SSH errors** to connect to `mLab` (if you are working in a public library or a secure environment so to get around follow the instructions in `local-mongodb`)
+
+### Two Servers are running
+* So the `concurrently` package lets us run both the client server and the server server in the same terminal window
+* This is very handy
+* But you should know that when you type `$ npm run dev` it is running this script `$npm run server` in the root of your app which will start the express server by running `$ nodemon server.js` which has nodemon running always and will restart the server whenever you save changes to server files
+* It will then run `$ cd client` to jump into the `client` folder and run `$ npm start` which will start the react developer server (webpack dev server)
+
+### Problems with concurrently
+* `$ npm run dev` would only run Express server and not React server
+  - I experiences this on 3 different computers
+  - The fix is to revert to an older version of concurrently with `$ npm i concurrently@3.6.0` and then install the latest version with `$ npm i concurently@latest`. That seemed to jump start it to work again
+
+#### As a good exercise 
+* stop concurrently from running 
+
+`ctrl` + `c`
+
+* Make sure you are in the root of your server and run the Express server with:
+
+`$ nodemon server.js`
+
+* Then open a new tab in your terminal
+* In that tab change into the `client` folder of your app
+* Run the React server with:
+
+`$ npm start`
+
+* Now you can see the same result but you have two servers running in separate tabs
 
 ## Another potential error (if local development)
 * Check if mongo is > 4 `$ mongo --version`
@@ -145,6 +172,13 @@ mongoose
 
 ## I want to connect to a local instance of mongodb
 * View `07-create-connect-mongodb-local.md`
+
+## Post
+Post
+Select body
+Select Raw
+Select JSON
+type in your json object that matches your model
 
 ### Additonal Resources: Difference between `require` and `import`
 * JavaScript introduced a great way to compartmentalize JavaScript. In the pass you had to use [IFFE](https://stackoverflow.com/questions/8228281/what-is-the-function-construct-in-javascript) statements but now you can use **import** and **export**

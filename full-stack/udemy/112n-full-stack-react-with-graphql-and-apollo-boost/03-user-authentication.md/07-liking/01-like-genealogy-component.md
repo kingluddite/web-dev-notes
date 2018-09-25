@@ -1,4 +1,4 @@
-# Create LikeGenealogy Component
+# Create `LikeGenealogy` Component
 * In Genealogy page we'll convert our Like button into a component
 * So we cut out the button code and replace it with a `LikeGenealogy` component
 * Also import that component we'll create in the next step
@@ -55,3 +55,6 @@ export class LikeGenealogy extends Component {
 export default LikeGenealogy;
 ```
 
+* It should work just like before but now our code is more modular
+
+## Next - Hide if not Auth

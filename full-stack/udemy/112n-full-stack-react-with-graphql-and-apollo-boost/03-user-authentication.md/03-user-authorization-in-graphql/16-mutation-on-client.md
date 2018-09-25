@@ -109,17 +109,22 @@ export const ADD_GENEALOGY = gql`
       description: $description
       username: $username
     ) {
+      _id
       firstName
       lastName
       description
       createdDate
       likes
+      username
     }
   }
 `;
 ```
 
+* If you ommitted `_id` and `username` you would get a warning in the console
+
 ## Full AddGenealogy page
+
 ```
 import React, { Component } from 'react';
 

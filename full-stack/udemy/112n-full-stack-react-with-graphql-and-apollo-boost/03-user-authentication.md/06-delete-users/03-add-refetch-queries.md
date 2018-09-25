@@ -1,9 +1,9 @@
-# Add refetch Queries to deleteUserGenealogies Mutation
+# Add refetch Queries to `deleteUserGenealogies` Mutation
 * All works great except...
 * After deleting item and we go to home page, the item we deleted is still there... is it alive?... no we just need to refetch the fresh data
 
 ## Pull in the queries we need
-`UserGenealogis.js`
+`UserGenealogies.js`
 
 ```
 import React from 'react';

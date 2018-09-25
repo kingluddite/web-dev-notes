@@ -15,6 +15,8 @@
 
 `AddGenealogy.js`
 
+* Let's also add semantic form labels to make our form nicer looking
+
 ```
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
@@ -88,8 +90,8 @@ export default withAuth(session => session && session.getCurrentUser)(
 1. `AddGenealogy` page and you'll see WYSIWYG
 2. Type into box
 3. Highlight words you typed
-4. Select `bold` or anyformatting you want
-5. Use the React dev toolbar to see that html is being stored in the state
+4. Select `bold` or any formatting you want
+5. Use the React dev toolbar to see that html is being stored in the `state`
 
 ## Problem - We need to output HTML in the React UI
 * Just use the `dangerouslySetInnerHTML` attribute

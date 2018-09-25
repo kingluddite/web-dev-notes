@@ -21,8 +21,8 @@ updateLike = (cache, data) => {
 ```
 
 * We need to figure out what query we need to update
-    - When we Like a genealogy it will be provided to our parent component
-    - So the query for that will be the getGenealogy query
+    - When we **like** a `genealogy` it will be provided to our parent component
+    - So the query for that will be the `getGenealogy` query
 
 ## Confirm is this is correct
 * Open up `GenealogyPage.js` and see where we are using `GET_GENEALOGY`
@@ -70,7 +70,7 @@ updateLike = (cache, { data: { likeGenealogy } }) => {
 ```
 
 ## Test it out
-* We click Like button and it is supposed to only add one Like
+* We click `like` button and it is supposed to only add one `like`
 * But it is not working and it keeps adding 1 instead of just staying at 1
 
 ## Problem - you keep clicking and it keeps going up

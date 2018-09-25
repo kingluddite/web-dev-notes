@@ -1,4 +1,6 @@
 # Terminal
+## Replace spaces in filenames with a dash
+`find . -type f -name "* *.md" -exec bash -c 'mv "$0" "${0// /_}"' {} \;`
 
 ## Search for file names
 `$ find . -name 'wp-config-beta-internal.php'`

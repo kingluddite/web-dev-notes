@@ -21,8 +21,8 @@ export default UserGenealogies;
 ```
 
 ### Add a Mutation
-* **note** Deleting data is a mutation
-* Import `Mutation` from 'react-apollo'
+* **note** Deleting data is a `mutation`
+* Import `Mutation` from `react-apollo`
 * Surround the delete button with `<Mutation>` Component
 * Pass a mutation prop and give it a value of `DELETE_USER_GENEALOGY`
 
@@ -62,7 +62,7 @@ deleteUserGenealogy: async ( root, { _id }, { Genealogy }) => {
 // MORE CODE
 
 export const DELETE_USER_GENEALOGY = gql`
-  mutation($_id: ObjectID!) {
+  mutation($_id: ID!) {
     deleteUserGenealogy(_id: $_id) {
       _id
     }

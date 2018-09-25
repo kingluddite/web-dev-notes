@@ -4,7 +4,7 @@
 ## Jump into our queries
 `queries/index.js`
 
-* Make sure we are returning our imageUrl field and category fields
+* Make sure we are returning our `imageUrl` field and `description` fields
 
 ```
 // MORE CODE
@@ -13,11 +13,7 @@
 export const GET_ALL_GENEALOGIES = gql`
   query {
     getAllGenealogies {
-      _id
-      firstName
-      lastName
-      imageUrl
-      category
+      ...CompleteGenealogy
     }
   }
 `;
@@ -25,8 +21,13 @@ export const GET_ALL_GENEALOGIES = gql`
 // MORE CODE
 ```
 
+* We added a fragment here so look in the fragment and make sure the fields have been added
+
 ## Log it to test
 `App.js`
+
+* We will `comment in` our log to see the values we are getting in the client
+* We are checking to make sure imageUrl and description have been added
 
 ```
 // MORE CODE
@@ -43,12 +44,14 @@ const App = () => (
 // MORE CODE
 ```
 
-* View home page
+### View home page
 * Refresh
 * You will see something like this
 * **note** we now have a `imageUrl` and `category` fields available
 
 ![imageUrl and category available](https://i.imgur.com/4tVOLkg.png)
+
+* You should also see `description`
 
 ## GenealogyItem
 * You'll see in `App.js` that we are passing down all `genealogy` fields to `GenealogyItem` component using `{...genealogy}`
@@ -84,7 +87,7 @@ const GenealogyItem = ({ _id, firstName, lastName, imageUrl, category }) => {
 export default GenealogyItem;
 ```
 
-* **note** We are using a dynamic class name
+* **note** We are using a `dynamic` class name
 
 `App.js`
 
@@ -100,11 +103,11 @@ return (
 ```
 
 ## Test it out
-* delete the last genealogy and create a new one with a valid imageUrl (live link working)
+* Delete the last genealogy and create a new one with a valid `imageUrl` (live link working)
 
 ### Add css
-* We need to add css for the category we selected
-* You would need to add a class for each category
+* We need to add CSS for the `category` we selected
+* You would need to add a class for each `category`
 * But let's add one for historic
 
 `App.css`
@@ -125,10 +128,10 @@ return (
 // MORE CODE
 ```
 
-* Test and the card will look nice and it changes when you hover over it
-* We do that animation using css
+* Test and the `card` will look nice and it changes when you hover over it
+* We do that animation using CSS
 
-## Make title better on home page
+## Make `title` better on home page
 `App.js`
 
 ```
@@ -146,8 +149,10 @@ const App = () => (
 ## Add a few genealogies
 * You'll see we also have a responsive page
 
-## Make our single page GenealogyPage look better using CSS
-* Are we getting the imageUrl field on `GenealogyPage`?
+## Make our single page `GenealogyPage` look better using CSS
+* Are we getting the `imageUrl` field on `GenealogyPage`?
+
+`GenealogyPage.js`
 
 ```
 // MORE CODE
@@ -285,7 +290,7 @@ export default withRouter(GenealogyPage);
 * We add `role="img" aria-label="heart"` so React doesn't throw errors at us
 
 ## Test in browser
-* You now have a styled Genealogy Page
+* You now have a styled `GenealogyPage`
 
 ## Style the Like button and align it to the right of the page
 

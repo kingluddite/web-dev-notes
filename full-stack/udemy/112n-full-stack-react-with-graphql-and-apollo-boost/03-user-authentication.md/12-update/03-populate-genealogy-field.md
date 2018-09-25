@@ -1,5 +1,8 @@
 # Populate EditGenealogy fields in modal
-* We will replace onClick event handler to show modal with one to load Genealogy
+* When we open the modal it is empty
+* We need to pre-populate it with the current data so the user can update it
+
+* We will replace `onClick` event handler to **show modal** with one to load `Genealogy`
 * Notice how we have access to `genealogy`
 
 `UserGenealogies.js`
@@ -17,7 +20,7 @@ loadGenealogy = genealogy => {
   };
 
 // MORE CODE
-
+// we grab genealogy from here and use it below on our update button
 {data.getUserGenealogies.map(genealogy => (
 
 // MORE CODE
@@ -32,9 +35,13 @@ loadGenealogy = genealogy => {
 ```
 
 * We pass in `genealogy` to `loadGenealogy()`
-* When update button clicked we log to see what genealogy holds and it holds only firstName and lastName
-* We also show the modal
-* We need to get more values and we can get that by updating the GET_USER_GENEALOGIES in our UserGenealogies component
+* When `update` button **clicked** we log to see what `genealogy` holds
+    - And it holds only `firstName` and `lastName`
+* We also show the `modal`
+* We can see we have access to the genealogy we need
+
+## We need more values from GraphQL!
+* We need to get more values and we can get that by updating the `GET_USER_GENEALOGIES` in our `UserGenealogies` component
 
 `UserGenealogies`
 
@@ -47,6 +54,8 @@ loadGenealogy = genealogy => {
 ```
 
 ## Add needed fields
+`queries/index.js`
+
 * Before
 
 ```
@@ -88,11 +97,11 @@ export const GET_USER_GENEALOGIES = gql`
 // MORE CODE
 ```
 
-## Test
-* Click update button again and now we have all the fields we need
+## Test for Success
+* Click `update` button again and now we have all the fields we need
 
-## Update our loadGenealogy function
-* We will set the state to everything in our `genealogy` object (all the fields we need) and then we will also set modal to true
+## Update our `loadGenealogy` function
+* We will set the `state` to everything in our `genealogy` object (all the fields we need) and then we will also set `modal` to **true**
 
 `UserGenealogies.js`
 
@@ -108,6 +117,7 @@ loadGenealogy = genealogy => {
 ```
 
 * Add `_id` to state
+* When updating a document we need it's unique `_id`
 
 `UserGenealogies.js`
 
@@ -128,23 +138,23 @@ class UserGenealogies extends Component {
 // MORE CODE
 ```
 
-* We will need an `_id` for the mutation we will be executing in the future 
+* We will need an `_id` for the `mutation` we will be executing in the future 
 
-## Pass all our state values down to our modal
+## Pass all our `state` values down to our modal
 `UserGenealogies`
 
 ```
 // MORE CODE
 
 <ul>
-              {modal && (
-                <EditRecipeModal
-                  closeModal={this.closeModal}
-                  handleChange={this.handleChange}
-                  genealogy={this.state}
-                />
-              )}
-              <h3>Your Genealogies</h3>
+{modal && (
+  <EditRecipeModal
+    closeModal={this.closeModal}
+    handleChange={this.handleChange}
+    genealogy={this.state}
+  />
+)}
+<h3>Your Genealogies</h3>
 
 // MORE CODE
 ```
@@ -192,6 +202,9 @@ class UserGenealogies extends Component {
     }
   };
 
+  // we just the spread operator
+  // to populate our state with our genealogy object
+  // and we set modal to true too (to show modal)
   loadGenealogy = genealogy => {
     // console.log(genealogy);
     this.setState({ ...genealogy, modal: true });
@@ -302,67 +315,28 @@ export default UserGenealogies;
 import React from 'react';
 
 const EditRecipeModal = ({ genealogy, handleChange, closeModal }) => {
-  return (
-    <div className="modal modal-open">
-      <div className="modal-inner">
-        <div className="modal-content">
-          <form className="modal-content-inner">
-            <label htmlFor="firstName">First Name</label>
-            <input
-              type="text"
-              name="firstName"
-              onChange={handleChange}
-              value={genealogy.firstName}
-            />
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              onChange={handleChange}
-              value={genealogy.lastName}
-            />
-            <label htmlFor="imageUrl">Genealogy Image URL</label>
-            <input
-              type="text"
-              name="imageUrl"
-              onChange={handleChange}
-              value={genealogy.firstName}
-            />
-            <label htmlFor="category">Category of Genealogy</label>
-            <select
-              name="category"
-              onChange={handleChange}
-              value={genealogy.category}
-            >
-              <option value="Family">Family</option>
-              <option value="Church">Church</option>
-              <option value="Ethnic">Ethnic</option>
-              <option value="Historic">Historic</option>
-              <option value="Miscellany">Miscellany</option>
-            </select>
-            <label htmlFor="description">Add Description</label>
-            <textarea
-              name="description"
-              onChange={handleChange}
-              value={genealogy.description}
-            />
-            <hr />
-            <div className="modal-buttons">
-              <button type="submit" className="button-primary">
-                Update
-              </button>
-              <button onClick={closeModal}>Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-};
 
-export default EditRecipeModal;
+// MORE CODE
+
+export default EditGenealogyModal;
+```
+
+* Or if you were using a class:
+
+```
+class EditGenealogyModal extends Component {
+ static propTypes = {
+   handleChange: PropTypes.func.isRequired,
+   closeModal: PropTypes.func.isRequired,
+   genealogy: PropTypes.object.isRequired,
+ };
+
+  render() {
+    const { genealogy, handleChange, closeModal } = this.props;
 
 ```
 
 ## Test
 * Click update and the fields populate with the current data
+
+## Next = Update Mutation Client

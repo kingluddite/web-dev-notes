@@ -118,7 +118,7 @@ getUserGenealogies: async (root, { username }, { Genealogy }) => {
 // MORE CODE
 
 export const GET_USER_GENEALOGIES = gql`
-  query($username: String) {
+  query($username: String!) {
     getUserGenealogies(username: $username) {
       _id
       firstName

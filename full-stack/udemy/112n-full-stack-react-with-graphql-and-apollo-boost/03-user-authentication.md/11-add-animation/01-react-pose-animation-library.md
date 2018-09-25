@@ -24,7 +24,7 @@ return (
 );
 ```
 
-* It will read the state and show or hide
+* It will read the `state` and **show** or **hide**
 
 ## Use codesandbox to test
 * [demo](https://codesandbox.io/s/qz0zyqwnqq)

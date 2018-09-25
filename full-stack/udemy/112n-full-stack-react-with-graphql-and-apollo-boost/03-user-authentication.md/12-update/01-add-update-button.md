@@ -1,9 +1,11 @@
 # Add Update button, make UserGenealogies stateful component
 
 ## Switch back to local dev (make the necessary changes)
-* Add an update button to modify existing genealogies
+* Add an update button to modify existing `genealogies`
 
 `UserGenealogies.js`
+
+* We pull in Fragment to avoid adding extraneous HTML
 
 ```
 import React, { Fragment } from 'react';
@@ -12,18 +14,21 @@ import React, { Fragment } from 'react';
 {(deleteUserGenealogy, attrs = {}) => (
                  <Fragment>
                    <button className="button-primary">Update</button>
-                   <p
+                   <button
+                     type="button"
                      className="delete-button"
                      onClick={() => handleDelete(deleteUserGenealogy)}
                    >
                      {attrs.loading ? 'deleting...' : 'X'}
-                   </p>
+                   </button>
                  </Fragment>
                )}
              </Mutation>
 // MORE CODE
 ```
 
+* The button needs a type of "button" to avoid warking
+  - [docs](https://github.com/erikras/redux-form/issues/2679)
 ## We need state
 * Convert `UserGenealogies` from SFC to CBC
 * Before:
@@ -103,17 +108,17 @@ const UserGenealogies = ({ username }) => (
 * The SFC was being passed ({username}) but after the conversion to CBC you pull that destructured varariable off of `props` with `const ({username}) = this.props;`
 * After (now a Class based component with state)
     - Important notes
-        + When moving the variable handleDelete inside the class you remove `const`
+        + When moving the variable `handleDelete` inside the class you remove `const`
         + When calling that event handler you use `this`
 
-Before
+* Before
 
 ```
 className="delete-button"
 onClick={() => handleDelete(deleteUserGenealogy)}
 ```
 
-After
+* After
 
 ```
 className="delete-button"

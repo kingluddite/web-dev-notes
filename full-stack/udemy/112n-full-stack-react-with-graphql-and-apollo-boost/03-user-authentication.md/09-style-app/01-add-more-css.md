@@ -3,11 +3,11 @@
 
 `$ npm run dev`
 
-* We get an error that it is using port: 80
+* We get an error that it is using port: `80`
 
 `Error: listen EACCES 0.0.0.0:80`
 
-* But for development we need PORT 4444
+* But for development we need PORT `4444`
 
 ## Change Port # to dev (from port 80 to port 4444)
 
@@ -21,24 +21,61 @@ PORT=4444
 ```
 
 * You don't need to change `NODE_ENV=production`
-* But you also need to change the graphql URI back to localhost
+* I like to do this:
+  - `#` is a comment in `.env` files
+  - This makes it easy to switch back and forth
+  - I also like the reminder to change the client URI
+
+```
+# PRODUCTION INFO
+NODE_ENV=production
+#DOMAIN=https://familytree.herokuapp.com/
+# PORT=80
+
+# DEVELOPMENT INFO
+PORT=4444
+
+## BOTH
+#DOMAIN=localhost:4444
+MONGO_URI=mongodb://admin:a12345@ds251022.mlab.com:51022/fivestarmusic
+SECRET=adfd*l22asdfsdlklsfkjas;kfjasdfk
+
+## IMPORTANT MESSAGE
+# Don't forget to update your domain in client/src/index.js
+#  for either production or development
+```
+
+* But you also need to change the graphql URI back to `localhost`
+* We have a reminder to do this in our `variables.env`
 
 `index.js`
 
 ```
 // MORE CODE
 
+// Apollo client
 const client = new ApolloClient({
   uri: 'http://localhost:4444/graphql',
+  // uri: 'https://familytree.herokuapp.com/graphql',
   fetchOptions: {
     credentials: 'include',
   },
+
 
 // MORE CODE
 ```
 
 ## Now run dev script
 `$ npm run dev`
+
+* Make sure your app is working locally
+
+## Run your app in two different browser tabs
+### Locally
+`http://localhost:3000/`
+
+### Remotely
+`https://fivestarsongs.herokuapp.com/signin`
 
 `App.css`
 
@@ -313,6 +350,16 @@ nav a:link {
 }
 ```
 
-## Delete genealogy schema
+## Remote vs Local
+* Now you will see our development site has a bit nicer CSS
+* But our production environment looks the same as before
+  - That is because we didn't push our changes into production
+  - To do this you would need to make the changes again to deploy to production
+    + Update `variables.env` file
+    + Update Apollo client URI for production
+    + `$ git push heroku master`
+
+## Next - Let's add some new things to our genealogy schema
+* Delete `genealogy` collection
 * We will be changing it so we need to kill all the documents
-* Delete them on `mlab` or on your `local` install of mongodb
+* Delete them on `mlab` (or on your `local` install of mongodb if that is what you were using)

@@ -1,5 +1,5 @@
 # Like Genealogy Mutation
-* When we click on Like button we want that Genealogy added to our favorites array
+* When we click on Like button we want that `Genealogy` added to our favorites array
 * We'll need to pass the `_id` in the parent page (GenealogyPage) and pass it to the `LikeGenealogy` component
 
 `GenealogyPage.js`
@@ -26,7 +26,8 @@
             <p>Date of Birth: {data.getGenealogy.dateOfBirth}</p>
             <p>Likes: {data.getGenealogy.likes}</p>
             <p>Created By: {data.getGenealogy.username}</p>
-            <LikeGenealogy _id={_id} />
+            <LikeGenealogy _id={_id} /> {/* add this line */}
+
           </div>
         );
       }}
@@ -39,7 +40,7 @@
 `LikeGenealogy.js`
 
 * Now use `_id` in the variables
-* And we need username
+* And we need `username`
 
 ```
 // MORE CODE
@@ -48,7 +49,7 @@ render() {
     const { username } = this.state;
     const { _id } = this.props; // add this
 
-    <Mutation mutation={LIKE_RECIPE} variables={{ _id, username }}>
+    <Mutation mutation={LIKE_GENEALOGY} variables={{ _id, username }}>
       return username && <button>Like</button>;
     </Mutation>;
   }
@@ -78,7 +79,7 @@ import { LIKE_GENEALOGY } from '../../queries';
 ```
 
 ## Add to our type Mutation `likeGenealgoy`
-* It will take 2 variables and return a Genealogy
+* It will take 2 variables and return a `Genealogy`
 
 `schema.js`
 
@@ -93,23 +94,22 @@ type Mutation {
 // MORE CODE
 ```
 
-## declare the likeGenealogy inside the mutation object of our resolvers file
-* We will use both models Genealogy and User
-* But we are only returning our recipe
-* Use mongoose's `findOneAndUpdate()`
-    - First argument will use `_id`
-    - Second argument will be how we will update it
-        + increment likes by 1
-* We also have to update the User model
-    - Find a user in the db by their username
-    - Then we'll update their favorites array by adding the `_id` of the genealogy that they just liked
-    - `$addToSet` is how we can add item to an array
+## Declare the `likeGenealogy` inside the mutation object of our resolvers file
 
 `resolvers.js`
 
 ```
 // MORE CODE
-
+Mutation: {
+  addGenealogy: async (root, { title, category, username }, { Genealogy }) => {
+    const newGenealogy = await new Genealogy({
+      title,
+      category,
+      username,
+    }).save();
+    return newGenealogy;
+  },
+// below is what we are adding!
 likeGenealogy: async (root, { _id, username }, { Genealogy, User }) => {
     const genealogy = await Genealogy.findOneAndUpdate(
       { _id },
@@ -125,6 +125,16 @@ likeGenealogy: async (root, { _id, username }, { Genealogy, User }) => {
 // MORE CODE
 ```
 
+* We will use both models `Genealogy` and `User`
+* But we are only returning our `genealogy` 
+* Use mongoose's `findOneAndUpdate()`
+    - First argument will use `_id`
+    - Second argument will be how we will update it
+        + Increment likes by 1
+* We also have to update the `User` model
+    - Find a `user` in the db by their `username`
+    - Then we'll update their `favorites` array by adding the `_id` of the `genealogy` that they just liked
+    - `$addToSet` is how we can add item to an array
 * We return the genealogy we are liking
 
 ## Add a variable for our mutation
@@ -132,7 +142,7 @@ likeGenealogy: async (root, { _id, username }, { Genealogy, User }) => {
 
 ```
 // MORE CODE
-
+// Song Mutations
 export const LIKE_GENEALOGY = gql`
   mutation($_id: ID!, $username: String!) {
     likeGenealogy(_id: $_id, username: $username) {
@@ -145,10 +155,10 @@ export const LIKE_GENEALOGY = gql`
 // MORE CODE
 ```
 
-## Go to LikeGenealogy and work with that function
-* Add likeGenealogy to our arguments
-* Add click event that likes genealogy when we click on it
-* Provide a function that will be called when we click on the like `handleLike` (We need to make this an arrow function because we are passing in the function (if we did not the function would be called as soon as the component loads) )
+## Go to `LikeGenealogy` and work with that function
+* Add `likeGenealogy` to our arguments
+* Add click event that likes `genealogy` when we click on it
+* Provide an event handler function that will be called when we click on the **like** (We'll name it `handleLike` and we need to make this an arrow function because we are passing in the function (if we did not the function would be called as soon as the component loads) )
 
 ```
 // MORE CODE
@@ -162,14 +172,14 @@ export const LIKE_GENEALOGY = gql`
 // MORE CODE
 ```
 
-* We change the curly braces with parentheses so that everything is automatically returned (so we can omit the word `return`)
+* **important** We change the curly braces with parentheses so that everything is automatically returned (so we can omit the word `return`)
 
 ```
 // MORE CODE
 
 <Mutation mutation={LIKE_GENEALOGY} variables={{ _id, username }}>
     {(likeGenealogy) => (
-      return username && <button onClick={() => this.handleLike(likeGenealogy)}>Like</button>;
+      username && <button onClick={() => this.handleLike(likeGenealogy)}>Like</button>;
     )}
   </Mutation>;
 
@@ -196,7 +206,7 @@ handleLike = (likeGenealogy) => {
 ```
 
 ## Error - need to add a return
-* To return our mutation
+* We need to return our mutation
 
 `LikeGenealogy.js`
 
@@ -229,4 +239,64 @@ render() {
 5. Like count is not updated
 5. Refresh page - Like count is updated to 1
 
+## Final LikeGenealogy.js
+`LikeGenealogy.js`
 
+```
+import React, { Component } from 'react';
+
+// graphql
+import { Mutation } from 'react-apollo';
+
+// graphq queries
+import { LIKE_GENEALOGY } from '../../queries';
+
+// custom components
+import withSession from '../withSession';
+
+export class LikeGENEALOGY extends Component {
+  state = {
+    username: '',
+  };
+
+  componentDidMount = () => {
+    console.log(this.props.session);
+
+    if (this.props.session.getCurrentUser) {
+      const { username } = this.props.session.getCurrentUser;
+      console.log(username);
+      this.setState({
+        username,
+      });
+    }
+  };
+
+  handleLike = likeGenealogy => {
+    // pass control of likeGenealogy to handleLike
+    likeGenealogy().then(({ data }) => {
+      console.log(data);
+    });
+  };
+
+  render() {
+    const { username } = this.state;
+    const { _id } = this.props;
+    // console.log(this.props);
+
+    return (
+      <Mutation mutation={LIKE_GENEALOGY} variables={{ _id, username }}>
+        {likeGenealogy =>
+          username && (
+            <button onClick={() => this.handleLike(likeGenealogy)}>Like</button>
+          )
+        }
+      </Mutation>
+    );
+  }
+}
+
+export default withSession(LikeGenealogy);
+```
+
+## Next
+* Client side logic toggle

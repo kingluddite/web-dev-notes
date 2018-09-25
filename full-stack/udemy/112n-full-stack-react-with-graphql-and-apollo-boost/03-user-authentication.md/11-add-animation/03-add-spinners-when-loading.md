@@ -61,13 +61,18 @@ class App extends Component {
 4. Command click each link that has `if (loading) return <div>Loading...</div>;` and replace with `<Spinner />`
 5. Make sure to import `Spinner` at the top of all components that use it
 
+* Signup.js
+* UserSongs.js
+* AddSong.js
+* SongPage.js
+
 ## Run app
 `$ cd ../../` (make sure you are in app root)
 
 `$ npm run dev`
 
 ## Test
-* You should see brieg Spinner animations
+* You should see Spinner animations when pages with `Spinner` are loading data
 
 ## Add style to Search input
 `Search.js`
@@ -76,18 +81,19 @@ class App extends Component {
 // MORE CODE
 
 <div className="App">
-             <input
-               type="search"
-               name="search"
-               id="search"
-               className="search"
+   <input
+     type="search"
+     name="search"
+     id="search"
+     className="search"
 
 // MORE CODE
 ```
 
 ## Redeploy for production
-* Change port back to 80
-* `variables.env` 
+* Change port back to `80`
+
+`variables.env` 
 
 ``` 
 PORT=80
@@ -130,7 +136,7 @@ const client = new ApolloClient({
 // MORE CODE
 ```
 
-* Our server will crash because it can't run on any port less than 1000
+## RULE - Our development server will crash because it can't run on any port less than 1000
 * So Port 80 will never work on our dev server
 
 ## Add and commit to github and heroku

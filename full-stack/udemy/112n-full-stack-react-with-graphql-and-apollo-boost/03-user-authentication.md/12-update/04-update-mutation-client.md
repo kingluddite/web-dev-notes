@@ -11,6 +11,7 @@ PORT=4444
 
 // MORE CODE
 ```
+
 * Change the heroku's uri back to:
 
 ```
@@ -66,7 +67,7 @@ updateUserGenealogy: async (
 // MORE CODE
 ```
 
-## Create variable in genealogy queries
+## Create variable in `genealogy` queries
 `queries/index.js`
 
 ```
@@ -103,9 +104,9 @@ export const UPDATE_USER_GENEALOGY = gql`
 // MORE CODE
 ```
 
-* Copy from `schema.j`s `updateUserGenealogy` and paste to speed up workflow
+* Copy from `schema.js` and paste into `updateUserGenealogy` to speed up workflow
 
-## Import Mutation component and surround EditGenealogyModal with it
+## Import Mutation component and surround `EditGenealogyModal` with it
 * Here is the final UserGenealogies.js
 
 `UserGenealogies.js`
@@ -340,10 +341,9 @@ export default EditGenealogyModal;
 ```
 
 ## Test
-* Click update button
+* Click `update` button
 * Make a change to one of the form fields
-* Click update button
-* The modal will close and the genealogy document is updated
+* The `modal` will close and the `genealogy` document is updated
 * Check the home page and it is updated to
 * Search for the new name and you will find it
 * Go to the single page of the document and it is updated too

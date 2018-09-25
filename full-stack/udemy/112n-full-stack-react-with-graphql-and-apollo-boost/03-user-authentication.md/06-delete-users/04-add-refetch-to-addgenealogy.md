@@ -1,7 +1,7 @@
-# Add refetch to addGenealogy Mutation
-* When we add a genealogy and click on `profile` page it is not refreshed on it
+# Add refetch to `addGenealogy` Mutation
+* When we add a `genealogy` and click on `profile` page it is not refreshed on it
 * **note** When refetching queries remember to add any variables if there are any
-* You will see taht GET_USER_GENEALOGIES has a username variable
+* You will see that `GET_USER_GENEALOGIES` has a username variable
 
 `UserGenealogies.js`
 

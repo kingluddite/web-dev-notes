@@ -1,4 +1,8 @@
 # Troubleshooting
+## Typing `$ npm start` instead of `$ npm run dev`
+* Will only get the server running and not concurrently!
+* Silly mistake but it happens :)
+
 * When making a sfc using the snippet VS code library it uses curly braces instead of parenthesees
 
 * Don't do this:
@@ -10,6 +14,13 @@ const NavbarAuth = () => {}
 
 ```
 const NavbarAuth = () => ()
+```
+
+## Comments in GraphQL
+* Use the hash
+
+```
+# this is a comment in GraphQL
 ```
 
 ## Quickly create a SFC
@@ -209,3 +220,4 @@ exports.typeDefs = `
 * [prisma](https://www.prisma.io/)
 * [apollo client dev tools for chrome](https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm?hl=en-US)
 * [graphcms](https://graphcms.com/)
+

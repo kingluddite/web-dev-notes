@@ -1,4 +1,6 @@
 # Adds imageUrl field on Genealogy model and imageUrl input in AddGenealogy
+* Make sure you blow up your MongoDB collections so we can start fresh
+    - This is an important step because we are changing the structure of our models that mongo is based on
 * We want to offer the ability to upload images
 * Let's also add a category to our genealogy
     - Family Histories
@@ -151,7 +153,7 @@ export const genealogyFragments = {
 // MORE CODE
 ```
 
-## Add inputs and dropdown to our UI
+## Add `inputs` and `dropdown` to our UI
 
 `AddGenealogy.js`
 

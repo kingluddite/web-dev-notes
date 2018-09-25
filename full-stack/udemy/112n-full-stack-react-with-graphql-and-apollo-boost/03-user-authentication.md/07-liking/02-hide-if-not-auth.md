@@ -1,7 +1,7 @@
 # Hide if not Auth
 * Conditionally hide or show the button based on whether the user is logged in or now
 * We'll use `withSession` component to pull this off
-* Here we'll use it directly instead of using the props that we passed down from root
+* **note** Here we'll use it directly instead of using the props that we passed down from root
 * We log out `props` to make sure we are getting the session data on our props
 
 `LikeGenealogy.js`
@@ -28,12 +28,12 @@ export default withSession(LikeGenealogy);
 ```
 
 ## Test in browser
-* Browse to a single genealogy page
+* Browse to a single `genealogy` page
 * Look at console and you'll see `refetch` and `session`
-* getCurrentUser is set to `null` (since we are not logged in)
+* `getCurrentUser` is set to `null` (since we are not logged in)
 
 ## Now we're ready to conditionally hide or show button depending on login state
-* We need this check as soon as the component is mounted to our app `componentDidMount()`
+* We need this check as soon as the component is mounted to our app so we will use the React Life Cycle `componentDidMount()`
 
 `LikeGenealogy.js`
 
@@ -72,7 +72,9 @@ export default withSession(LikeGenealogy);
 // MORE CODE
 ```
 
-* Remove log
+* Remove console.log()
 * We log `getCurrentUser` when not logged in (it will be `null`)
-* And when logged in, `getCurrentUser` will be the user object
-* We store the `username` in the `state` and our logic checks if it exists and if it does, show the like button and if it doesn't hide it
+* And when logged in, `getCurrentUser` will be the **user** object
+* We store the `username` in the `state` and our logic checks if it exists:
+    - And if it does, show the like button
+    - And if it doesn't hide it

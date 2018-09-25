@@ -1,5 +1,6 @@
 # Create Genealogy model window
-* When you want to edit a genealogy you will click the update button and a modal will appear with all fields filled with content but all fields can be edited
+* When you want to edit a `genealogy` you will click the update button
+* And a modal will appear with all fields filled with content but all fields can be edited
 
 ## Add some modal CSS
 * Add this at the bottom of your `App.css`
@@ -73,87 +74,88 @@
 }
 ```
 
-## Make AddGenealogy more accessible
-* Let's add label html tags
+## Make `AddGenealogy` more accessible
+* Let's add label HTML tags
 
 `AddGenealogy.js`
 
 ```
 <form
-                className="form"
-                onSubmit={event => this.handleSubmit(event, addGenealogy)}
-              >
-                <label htmlFor="firstName">First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  placeholder="First Name"
-                  onChange={this.handleChange}
-                  value={firstName}
-                />
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  placeholder="Last Name"
-                  onChange={this.handleChange}
-                  value={lastName}
-                />
-                <label htmlFor="imageUrl">Genealogy Image URL</label>
-                <input
-                  type="text"
-                  name="imageUrl"
-                  placeholder="Genealogy Image"
-                  onChange={this.handleChange}
-                  value={imageUrl}
-                />
-                <label htmlFor="category">Category of Genealogy</label>
-                <select
-                  name="category"
-                  onChange={this.handleChange}
-                  value={category}
-                >
-                  <option value="Family">Family</option>
-                  <option value="Church">Church</option>
-                  <option value="Ethnic">Ethnic</option>
-                  <option value="Historic">Historic</option>
-                  <option value="Miscellany">Miscellany</option>
-                </select>
-                <label htmlFor="description">Add Description</label>
-                <CKEditor
-                  name="description"
-                  content={description}
-                  events={{ change: this.handleEditorChange }}
-                />
-                {/*  <label htmlFor="description">Add Description</label>
-                    <textarea
-                  name="description"
-                  placeholder="Add Description"
-                  onChange={this.handleChange}
-                  value={description}
-                /> */}
-                <button
-                  type="submit"
-                  className="button-primary"
-                  disabled={loading || this.validateForm()}
-                >
-                  Submit
-                </button>
-                {error && <Error error={error} />}
-              </form>
+className="form"
+  onSubmit={event => this.handleSubmit(event, addGenealogy)}
+>
+  <label htmlFor="firstName">First Name</label>
+  <input
+    type="text"
+    name="firstName"
+    placeholder="First Name"
+    onChange={this.handleChange}
+    value={firstName}
+  />
+  <label htmlFor="lastName">Last Name</label>
+  <input
+    type="text"
+    name="lastName"
+    placeholder="Last Name"
+    onChange={this.handleChange}
+    value={lastName}
+  />
+  <label htmlFor="imageUrl">Genealogy Image URL</label>
+  <input
+    type="text"
+    name="imageUrl"
+    placeholder="Genealogy Image"
+    onChange={this.handleChange}
+    value={imageUrl}
+  />
+  <label htmlFor="category">Category of Genealogy</label>
+  <select
+    name="category"
+    onChange={this.handleChange}
+    value={category}
+  >
+    <option value="Family">Family</option>
+    <option value="Church">Church</option>
+    <option value="Ethnic">Ethnic</option>
+    <option value="Historic">Historic</option>
+    <option value="Miscellany">Miscellany</option>
+  </select>
+  <label htmlFor="description">Add Description</label>
+  <CKEditor
+    name="description"
+    content={description}
+    events={{ change: this.handleEditorChange }}
+  />
+  {/*  <label htmlFor="description">Add Description</label>
+      <textarea
+    name="description"
+    placeholder="Add Description"
+    onChange={this.handleChange}
+    value={description}
+  /> */}
+  <button
+    type="submit"
+    className="button-primary"
+    disabled={loading || this.validateForm()}
+  >
+    Submit
+  </button>
+  {error && <Error error={error} />}
+</form>
 ```
 
+* **note** In **jsx** we use `htmlFor` instead of `for` (for same reason as we do with `className`)
 * Remove `value` `prop` for each
 * Change `this.handleChange` to `handleChange`
 * We will pass down `handleChange` as a prop
-* Add update and cancel buttons in modal
+* Add `update` and `cancel` buttons in **modal**
 
-`EditRecipeModal.js`
+`EditGenealogyModal.js`
 
 ```
 import React from 'react';
 
-const EditRecipeModal = ({ handleChange }) => {
+const EditGenealogyModal = ({ handleChange }) => {
   return (
     <div className="modal modal-open">
       <div className="modal-inner">
@@ -194,8 +196,8 @@ const EditRecipeModal = ({ handleChange }) => {
 };
 ```
 
-* We copy `handleChange` from `AddGenealogy` and paste it into UserGenealogies
-* Then we pass it down as props for EditRecipeModal.js
+* We copy `handleChange` from `AddGenealogy` and paste it into `UserGenealogies`
+* Then we pass it down as props for `EditGenealogyModal.js`
 
 ```
 // MORE CODE
@@ -209,16 +211,16 @@ handleChange = event => {
 render() {
  // MORE CODE
 
-        return (
-          <ul>
-            <EditRecipeModal handleChange={this.handleChange} />
+  return (
+    <ul>
+      <EditGenealogyModal handleChange={this.handleChange} />
 
 // MORE CODE
 ```
 
 ## Test
 * View profile and you'll see the modal and all it's form fields
-* Use react dev tools and there is no state in UserGenealogies
+* Use **React Dev Tools** and there is no `state` in `UserGenealogies`
 
 ## Add state
 `UserGenealogies.js`
@@ -239,15 +241,14 @@ class UserGenealogies extends Component {
 ```
 
 ## Test with React Dev Tools
-* Use `react dev tools` and see how state is updated for the fields in `UserGenealogies` when they are typed into
+* Use `react dev tools` and see how `state` is updated for the fields in `UserGenealogies` when they are typed into
 
-## Add close modal
-* Will show or hide modal
-* We add a boolean state for `modal`
-* Use logic to say if the modal exist, show it, otherwise hide it
-* Define `closeModal` event handler that just sets modal to false
-* We pass down closeModal as props to `EditGenealogyModal`
-* Add onClick handler to our cancel button
+## Add close modal - (Will show or hide modal)
+* We add a `boolean` state for `modal`
+* Use **logic** to say if the modal exists, show it, otherwise hide it
+* Define `closeModal` event handler that just sets modal to `false`
+* We pass down `closeModal` as props to `EditGenealogyModal`
+* Add `onClick` handler to our **cancel** button
 
 `UserGenealogies.js`
 
@@ -331,7 +332,7 @@ export default EditRecipeModal;
 * We now can't see our modal
 
 ## Open modal
-* We'll use an inline function to set modal state to true
+* We'll use an inline function to set **modal** `state` to **true**
 
 `UserGenealogies.js`
 
@@ -339,24 +340,73 @@ export default EditRecipeModal;
 // MORE CODE
 
 {(deleteUserGenealogy, attrs = {}) => (
-                    <Fragment>
-                      <button
-                        className="button-primary"
-                        onClick={() => this.setState({ modal: true })}
-                      >
-                        Update
-                      </button>
+<Fragment>
+  <button
+    className="button-primary"
+    onClick={() => this.setState({ modal: true })}
+  >
+    Update
+  </button>
 
 // MORE CODE
 ```
 
 ## Test
-* Click any update button in `/profile` and modal shows
+* Click any `update` button in `/profile` and modal shows
 * Click `Cancel` button and modal hides
+  - But you get a warning 'Form submission canceled because the form is not connected'
 
+## Here is EditGenealogyModal as a Class Based Component
+`EditGenealogyModal.js`
 
+```
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+export class EditGenealogyModal extends Component {
+  static propTypes = {
+    handleChange: PropTypes.func.isRequired,
+    closeModal: PropTypes.func.isRequired,
+  };
 
+  render() {
+    const { handleChange, closeModal } = this.props;
 
+    return (
+      <div className="modal modal-open">
+        <div className="modal-inner">
+          <div className="modal-content">
+            <form className="modal-content-inner">
+              <label htmlFor="firstName">First Name</label>
+              <input type="text" name="firstName" onChange={handleChange} />
+              <label htmlFor="lastName">Last Name</label>
+              <input type="text" name="lastName" onChange={handleChange} />
+              <label htmlFor="imageUrl">Song Image URL</label>
+              <input type="text" name="imageUrl" onChange={handleChange} />
+              <label htmlFor="category">Category of Genealogy</label>
+              <select name="category" onChange={handleChange}>
+                <option value="Family">Family</option>
+                <option value="Church">Church</option>
+                <option value="Ethnic">Ethnic</option>
+                <option value="Historic">Historic</option>
+                <option value="Miscellany">Miscellany</option>
+              </select>
+              <label htmlFor="description">Description</label>
+              <textarea name="description" onChange={handleChange} />
+              <hr />
+              <div className="modal-buttons">
+                <button type="submit" className="button-primary">
+                  Update
+                </button>
+                <button onClick={closeModal}>Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
-
+export default EditSongModal;
+```
