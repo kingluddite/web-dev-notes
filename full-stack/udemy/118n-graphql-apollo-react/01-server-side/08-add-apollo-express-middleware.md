@@ -20,13 +20,13 @@
 * Resolve functions cannot be included in the GraphQL schema language, so they must be added separately
 * This collection of functions is called the `resolver map`
 
-`schema.js`
+`/server/schema.js`
 
 ```
 exports.typeDefs = ``;
 ```
 
-`resolvers.js`
+`/server/resolvers.js`
 
 ```
 exports.resolvers = {};
@@ -96,7 +96,7 @@ app.use(
     schema,
     context: {
       // pass in mongoose models
-      Genealogy,
+      Cologne,
       User,
     },
   })

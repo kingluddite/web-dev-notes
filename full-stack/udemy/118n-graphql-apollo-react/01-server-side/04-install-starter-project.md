@@ -5,6 +5,7 @@
 ### Dev Dependencies
 * We can also use the terminal to install dependencies:
 * Babel is used to help us write modern javascript without breaking our app
+* Inside our root `package.json`
 
 `$ npm i nodemon eslint babel-eslint eslint-plugin-jsx-a11y eslint-plugin-flowtype eslint-plugin-import eslint-config-react-app -D`
 

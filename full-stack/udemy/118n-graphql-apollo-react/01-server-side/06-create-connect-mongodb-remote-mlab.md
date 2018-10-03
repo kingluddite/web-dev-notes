@@ -51,14 +51,14 @@ MONGO_URI=mongodb://admin:a12346@ds219672.mlab.com:19672/peh2-they-came-before-m
 
 ```
 const express = require('express');
-require('dotenv').config({ path: 'variables.env'}); // add this
+require('dotenv').config({ path: '../variables.env'}); // add this
 
 const app = express();
 
 // MORE CODE
 ```
 
-* We are not using dotenv anywhere else in `server.js` so we don't need to store it in a variable
+* We are not using `dotenv` anywhere else in `server.js` so we don't need to store it in a variable
 * Just pointing to where that file is lets us access the secure information inside it by using `process.env` + `SOME_CONSTANT_VARIABLE_NAME_INSIDE_VARIABLES_ENV`
 
 ### Mongoose

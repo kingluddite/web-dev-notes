@@ -11,6 +11,10 @@
 * Our frontend framework will be React
 * Our router will be React Router
 
+### Put your entire project inside a folder called:
+
+`five-star-colognes`
+
 ## server
 * Create a new folder in your project root
 

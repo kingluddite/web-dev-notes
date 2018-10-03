@@ -82,7 +82,13 @@ module.exports = mongoose.model('User', UserSchema);
 // MORE CODE
 ```
 
-* The fastest way to do this is with:
+* Install specific version of package with:
+
+`$ npm i graphql-tools@3.0.2 apollo-server-express@1.3.6`
+
+* But it still was the same error so that fix didn't work
+* Now I need to update to the latest version and work with Apollo2
+* If you want to update to the latest version of a package use this:
 
 `$ npm i apollo-server-express@latest graphql-tools@latest`
 
@@ -268,6 +274,11 @@ mongoose.set('useCreateIndex', true); // add this line
 ```
 
 ## Test in terminal
+* I still was getting errors
+* So now I update to the latest version of mongoose
+
+`$ npm i mongoose@latest`
+
 * DB connected and no warnings or errors!
 
 ## Additional Resources
