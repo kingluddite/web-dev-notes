@@ -1,9 +1,21 @@
 # Terminal
 ## Replace spaces in filenames with a dash
-`find . -type f -name "* *.md" -exec bash -c 'mv "$0" "${0// /_}"' {} \;`
+`$ find . -type f -name "* *.md" -exec bash -c 'mv "$0" "${0// /_}"' {} \;`
+
+## Replace character in filename with another character
+* `brew install rename`
+* example: replace `---` with `-`
+
+`$ rename 's/\---/-/g' *.md -vn`
 
 ## Search for file names
 `$ find . -name 'wp-config-beta-internal.php'`
+
+## Make all foldernames lowercase
+```
+$ for f in *; do mv "$f" "$f.tmp"; mv "$f.tmp" "`echo $f | tr "[:upper:]" "[:lower:]"`"; done
+```
+
 
 ## Search history of grep
 `$ history | grep grep`

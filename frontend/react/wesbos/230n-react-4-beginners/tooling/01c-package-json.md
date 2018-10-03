@@ -1,13 +1,13 @@
 # package.json
-* I could not get eslint, prettier Visual Studio and create-react-app to work
+* I could not get `eslint`, prettier Visual Studio and `create-react-app` to work
 * I found a way to get them all to play nice together
   - The solution is to delete `node_modules`
   - Replace `package.json` with the code below
   - `$ yarn install`
 * Then follow the instructions inside `01g-visual-studio-prettier-eslint.md`
-  - Prettier will alto format your code on save
-  - Eslint will tell you if you have errors
-  - Prettier will replace "" with '' (and a bunch of other rules you can set and modify to your hearts content)
+  - Prettier will also format your code on save
+  - `eslint` will tell you if you have errors
+  - Prettier will replace `""` with `''` (and a bunch of other rules you can set and modify to your hearts content)
 
 `package.json` (create and place in root of soccer project)
 
@@ -101,7 +101,7 @@
     "webpack-dev-server": "^3.1.3"
   }
 }
-```
+```<article style="background-image: url(&quot;http://storeytimeonline.com/wp-content/uploads/2018/09/Night-at-Opera-Web-2-pdf-240x400.jpg&quot;); 
 
 `public/index.html`
 

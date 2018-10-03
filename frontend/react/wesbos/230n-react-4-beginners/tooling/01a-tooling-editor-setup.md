@@ -33,13 +33,15 @@
 
 ## Tooling Needed
 ### You need Node
+* We won't be using node on the backend just for tooling
+
 `$ node -v` (_must be > 6_)
 
 ### React Dev Tools
 * You need [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) for Chrome
 
 * Click `Add To Chrome` to add it to your Chrome browser
-* Enables you to look at the components, state, props
+* Enables you to look at the `components`, `state`, `props`
 * It will add another tab to the inspector called `React`
 * Go to a site that has React to see the tools working
     - Instagram
