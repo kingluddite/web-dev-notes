@@ -1,4 +1,14 @@
 # Add Mutation Component to Signup Component
+
+## Important
+* Did you add a SECRET to your variables.env?
+  - If not, do so now, just enter any long string of a value inside variables.env
+
+variables.env
+```
+SECRET=asdfjassslfjsdfsjsdfdsdkjfsdasfkjsd
+```
+
 * Wrap form inside `Mutation` component
     - Need to import it (this is from react-apollo package)
 
