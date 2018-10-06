@@ -35,6 +35,8 @@
 
 `$ code /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf`
 
+`$ code /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf`
+
 ```
 # Virtual hosts
 Include /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf
@@ -80,7 +82,6 @@ NameVirtualHost *:80
 * Open your host file by pasting the following in your terminal:
 
 `$ code /etc/hosts`
->>>>>>> Stashed changes
 
 ## Adding a virtual host in MAMP for Mac
 *[docs](http://eppz.eu/blog/virtual-host-for-mamp-on-osx/)
