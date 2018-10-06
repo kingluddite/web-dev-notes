@@ -320,3 +320,5 @@ module.exports = {
 ## Eslint turn off for entire page
 `/* eslint react/no-did-mount-set-state: 0 */`
 
+## Additional Resources
+* [wes bos tutorial setting up vs code with eslint and prettier](https://www.youtube.com/watch?v=YIvjKId9m2c)

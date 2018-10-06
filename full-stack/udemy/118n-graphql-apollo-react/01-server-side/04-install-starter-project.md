@@ -7,6 +7,8 @@
 * Babel is used to help us write modern javascript without breaking our app
 * Inside our root `package.json`
 
+`/package.json`
+
 `$ npm i nodemon eslint babel-eslint eslint-plugin-jsx-a11y eslint-plugin-flowtype eslint-plugin-import eslint-config-react-app -D`
 
 ### Dependencies
@@ -31,6 +33,8 @@
         + API for working with MongoDB
 
 ### Start from scratch
+* Install in the `server` folder
+
 `$ npm i apollo-server-express bcrypt concurrently cors dotenv express graphql graphql-tools jsonwebtoken mongoose`
 
 #### Back out of the server folder
