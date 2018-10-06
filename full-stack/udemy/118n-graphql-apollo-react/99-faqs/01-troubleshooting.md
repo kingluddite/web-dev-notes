@@ -1,4 +1,14 @@
 # Troubleshooting
+
+## When cloning
+* You need to install packages on server and client
+* You need to recreate variables.env because that's not on github
+  - MONGO_URI
+  - SECRET
+
+## If you change variables.env you need to restart the server
+* You won't see changes unless you do
+
 ## Typing `$ npm start` instead of `$ npm run dev`
 * Will only get the server running and not concurrently!
 * Silly mistake but it happens :)
