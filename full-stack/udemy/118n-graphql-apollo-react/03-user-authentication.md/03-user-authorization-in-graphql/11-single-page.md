@@ -1,29 +1,32 @@
-# Create Genealogy Page
-* Get Genealogy page from path
+# Create Cologne Page
+* Get Cologne page from path
 
-## List of Genealogies
-* Make them links that take to single page about that Genealogy
-* To do this we'll use the `_id` property of the genealogy
+## List of Colognes
+* Make them links that take to single page about that Cologne
+* To do this we'll use the `_id` property of the Cologne
 
-`componets/Genealogy/GenealogyPage`
+`componets/Cologne/ColognePage.js`
 
 ```
-import React from 'react';
+import React, { Component } from 'react';
 
-const GenealogyPage = () => {
-  return (
-    <div>Genealogy Page</div>
-  );
-};
+class ColognePage extends Component {
+  render() {
+    return <div>ColognePage</div>;
+  }
+}
 
-export default GenealogyPage;
+export default ColognePage;
+
 ```
 
 ## Index page
+* We need to add a route that looks for a dynamic variable `:_id`
+
 `index.js`
 
 ```
-import GenealogyPage from './components/Genealogy/GenealogyPage';
+import ColognePage from './components/Cologne/ColognePage';
 
  // MORE CODE
 
@@ -34,8 +37,8 @@ const Root = ({ refetch, session }) => (
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/search" component={Search} />
-        <Route path="/genealogy/add" component={AddGenealogy} />
-        <Route path="/genealogy/:_id" component={GenealogyPage} />
+        <Route path="/Cologne/add" component={AddCologne} />
+        <Route path="/Cologne/:_id" component={ColognePage} />
         // MORE CODE
       </Switch>
     </Fragment>
@@ -47,69 +50,78 @@ const Root = ({ refetch, session }) => (
 ```
 
 ## Visit Route
-`http://localhost:3000/genealogy/1234`
+`http://localhost:3000/Cologne/1234`
 
-* You will see Genealogy Page
+* You will see Cologne Page
 
 ## How do we get string at end of path?
 ### withRouter
 * We will need to use `withRouter` again from `react-router-dom`
 * We will destructure `match` from our `props`
 
-`GenealogyPage`
+`ColognePage`
 
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-const GenealogyPage = () => {
-  return <div>Genealogy Page</div>;
-};
+class ColognePage extends Component {
+  render() {
+    return <div>ColognePage</div>;
+  }
+}
 
-export default withRouter(GenealogyPage);
+export default withRouter(ColognePage);
 ```
 
-* View in browser
-* `http://localhost:3000/genealogy/1234`
+## View in browser
+* `http://localhost:3000/Cologne/1234`
 * Use React Dev Tools and search for `withRouter`
 * Open it and you'll see `match.params._id = "1234"`
 
-`GenealogyPage.js`
+`ColognePage.js`
 
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
-const GenealogyPage = ({ match }) => {
-  // console.log(match.params._id);
-  const { _id } = match.params;
-  return <div>Genealogy Page</div>;
-};
+class ColognePage extends Component {
+  render() {
+    const { match } = this.props;
+    // console.log(match.params._id);
+    const { _id } = match.params;
+    return <div>ColognePage</div>;
+  }
+}
 
-export default withRouter(GenealogyPage);
+export default withRouter(ColognePage);
 ```
 
-`GenealogyItem.js`
+`CologneItem.js`
 
 ```
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-const GenealogyItem = ({ _id, firstName, lastName }) => {
-  return (
-    <li>
-      <h4>
-        <Link to={`/genealogy/${_id}`}>
-          {firstName} {lastName}
-        </Link>
-      </h4>
-    </li>
-  );
-};
+class CologneItem extends Component {
+  render() {
+    const { _id, scentName } = this.props;
 
-export default GenealogyItem;
+    return (
+      <li>
+        <h4>
+          <Link to={`/cologne/${_id}`}>{scentName}</Link>
+        </h4>
+      </li>
+    );
+  }
+}
+
+export default CologneItem;
 ```
 
-* Now when on home page you can click on link headings of each `Genealogy` and it will take you to single page
+* Now when on home page you can click on link headings of each `Cologne` and it will take you to single page
+
+## Next - Query backend for Cologne
 
 

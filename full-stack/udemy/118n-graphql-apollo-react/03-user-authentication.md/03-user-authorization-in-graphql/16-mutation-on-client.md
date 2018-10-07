@@ -1,4 +1,4 @@
-# Implement AddGenealogy Mutation on Client
+# Implement `AddCologne` Mutation on Client
 ## Where are we getting our user info from?
 
 * `withSession` component and we pass down the query
@@ -35,27 +35,58 @@ const Root = ({ refetch, session }) => (
 ```
 
 ## We pass props to a route
-* We can do this by changing a component to render
+* We can do this by changing a `component` route attribute to a `render` attribute
 
 ```
-<Route
-  path="/genealogy/add"
-  render={() => <AddGenealogy session={session} />}
-/>
+// MORE CODE
+
+<Switch>
+  <Route exact path="/" component={App} />
+  <Route path="/search" component={Search} />
+  <Route path="/profile" component={Profile} />
+  <Route
+    path="/cologne/add"
+    render={() => <AddCologne session={session} />}
+  />
+
+
+// MORE CODE
 ```
 
-* Now when we visit that route we have `data` about the user
+* Now when we visit that route we have `data` about the **user**
 
 ## Add LifeCycle method
-* When our component mounts let's log the props
+* When our component mounts let's log the `props`
 
-`http://localhost:3000/genealogy/add`
+`AddCologne.js`
 
-* Use react dev tools
-* Search for `AddGenealogy` component
+```
+// MORE CODE
+
+class AddCologne extends Component {
+  state = {
+    scentName: '',
+    scentPrice: 0,
+    description: '',
+    username: '',
+  };
+
+  componentDidMount = () => {
+    console.log('AddCologne mounted!');
+    console.log(this.props.session.getCurrentUser.username);
+  };
+
+// MORE CODE
+```
+
+## Test in browser
+`http://localhost:3000/cologne/add`
+
+## Use React Dev Tools
+* Search for `AddCologne` component
 * Look under `session` in console and you'll see user object
-  - Props > session > getCurrentUser > user object
-* Show user name in console
+  - **Props** > `session` > `getCurrentUser` > user object
+* We console log out the **username** found inside the `session`
 * **note** If you are not logged in you will get an error so make sure you are logged in
 
 ```
@@ -66,22 +97,138 @@ componentDidMount = () => {
 
 * You may have to refresh the browser window to see `username`
 
-## Add username to our state
+## Add `username` to our `state`
 ```
+// MORE CODE
+
 componentDidMount = () => {
   // console.log(this.props.session.getCurrentUser.username);
   this.setState({
     username: this.props.session.getCurrentUser.username,
   });
 };
+
+// MORE CODE
 ```
 
 ## Test in React Dev Tools
 * Now view component in react dev tools
 * You will see current `username` is populating the `state`
 
+![sample username in State](https://i.imgur.com/tHXZJm4.png)
+
 ## Build Mutation
-* We will send our form data to the backend
+* The best place to build this is in the GraphQL GUI
+
+`http://localhost:4444/graphql`
+
+```
+mutation(
+    $scentName: String!
+    $scentPrice: Int
+    $description: String
+    $username: String
+  ) {
+    addCologne(
+      scentName: $scentName
+      scentPrice: $scentPrice
+      description: $description
+      username: $username
+    ) {
+      scentName
+      scentPrice
+      description
+      createdDate
+      likes
+    }
+  }
+```
+
+### Add our query variables
+```
+{
+  "scentName": "junk",
+  "scentPrice": 100,
+  "description": "very smelly"
+}
+```
+
+* Click the Play button and you should get back the data object:
+
+```
+{
+  "data": {
+    "addCologne": {
+      "scentName": "junk",
+      "scentPrice": 100,
+      "description": "very smelly",
+      "createdDate": "1538884428637",
+      "likes": 0
+    }
+  }
+}
+```
+
+* You can assume this gets added into your mLab but if you check there too you will see something like this in the `colognes` collections:
+
+```
+{
+    "_id": {
+        "$oid": "5bb9834c1db0b2190a60a54c"
+    },
+    "likes": 0,
+    "scentName": "junk",
+    "scentPrice": 100,
+    "description": "very smelly",
+    "createdDate": {
+        "$date": "2018-10-07T03:53:48.637Z"
+    },
+    "__v": 0
+}
+```
+
+### We will send our form data to the backend
+## Create the new Mutation inside our `queries` folder
+
+`queries/index.js`
+
+* Remember to first create your export
+
+```
+// Colognes Mutations
+
+export const ADD_COLOGNE = gql`
+  
+`;
+```
+
+* Paste in your GUI add cologne mutation
+
+```
+// Colognes Mutations
+
+export const ADD_COLOGNE = gql`
+  mutation(
+    $scentName: String!
+    $scentPrice: Int
+    $description: String
+    $username: String
+  ) {
+    addCologne(
+      scentName: $scentName
+      scentPrice: $scentPrice
+      description: $description
+      username: $username
+    ) {
+      scentName
+      scentPrice
+      description
+      createdDate
+      likes
+    }
+  }
+`;
+```
 
 1. Import `Mutation` from `react-apollo`
 2. Wrap `return` inside `Mutation` tags
@@ -89,41 +236,9 @@ componentDidMount = () => {
 4. Put the `return` inside that function
 5. And add another `return` and put the entire Mutation block inside that new `return`s parentheses
 
-## Create the new Mutation inside our `queries` folder
-
-`queries/index.js`
-
-```
-// Genealogies Mutations
-
-export const ADD_GENEALOGY = gql`
-  mutation(
-    $firstName: String!
-    $lastName: String!
-    $description: String
-    $username: String
-  ) {
-    addGenealogy(
-      firstName: $firstName
-      lastName: $lastName
-      description: $description
-      username: $username
-    ) {
-      _id
-      firstName
-      lastName
-      description
-      createdDate
-      likes
-      username
-    }
-  }
-`;
-```
-
 * If you ommitted `_id` and `username` you would get a warning in the console
 
-## Full AddGenealogy page
+## Full AddCologne page
 
 ```
 import React, { Component } from 'react';
@@ -135,9 +250,9 @@ import Error from '../Error';
 import { Mutation } from 'react-apollo';
 
 // mutations
-import { ADD_GENEALOGY } from '../../queries';
+import { ADD_Cologne } from '../../queries';
 
-class AddGenealogy extends Component {
+class AddCologne extends Component {
   state = {
     firstName: '',
     lastName: '',
@@ -162,9 +277,9 @@ class AddGenealogy extends Component {
     });
   };
 
-  handleSubmit = (event, addGenealogy) => {
+  handleSubmit = (event, addCologne) => {
     event.preventDefault();
-    addGenealogy().then(({ data }) => {
+    addCologne().then(({ data }) => {
       console.log(data);
     });
   };
@@ -180,20 +295,20 @@ class AddGenealogy extends Component {
 
     return (
       <Mutation
-        mutation={ADD_GENEALOGY}
+        mutation={ADD_Cologne}
         variables={{ firstName, lastName, description, username }}
       >
-        {(addGenealogy, { data, loading, error }) => {
+        {(addCologne, { data, loading, error }) => {
           if (loading) return <div>Loading...</div>;
           if (error) return <div>Error</div>;
           console.log(data);
 
           return (
             <div className="App">
-              <h2 className="App">Add Genealogy</h2>
+              <h2 className="App">Add Cologne</h2>
               <form
                 className="form"
-                onSubmit={event => this.handleSubmit(event, addGenealogy)}
+                onSubmit={event => this.handleSubmit(event, addCologne)}
               >
                 <input
                   type="text"
@@ -232,7 +347,7 @@ class AddGenealogy extends Component {
   }
 }
 
-export default AddGenealogy;
+export default AddCologne;
 ```
 
 ## Test - Check for two things to happen
@@ -251,13 +366,13 @@ export default AddGenealogy;
 
 #### Make the following updates
 ##### Server
-`schema.js` (**addGenealogy** Mutation)
+`schema.js` (**addCologne** Mutation)
 
 ```
 // MORE CODE
 
 type Mutation {
-    addGenealogy(firstName: String!, lastName: String!, description: String, username: String): Genealogy
+    addCologne(firstName: String!, lastName: String!, description: String, username: String): Cologne
 
     signupUser(username: String!, email: String!, password: String!): Token
     signinUser(username: String!, password: String!): Token
@@ -266,24 +381,24 @@ type Mutation {
 // MORE CODE
 ```
 
-`resolvers.js` (**addGenealogy** Mutation)
+`resolvers.js` (**addCologne** Mutation)
 
 ```
 // MORE CODE
 
 Mutation: {
-    addGenealogy: async (
+    addCologne: async (
       root,
       { firstName, lastName, description, username },
-      { Genealogy }
+      { Cologne }
     ) => {
-      const newGenealogy = await new Genealogy({
+      const newCologne = await new Cologne({
         firstName,
         lastName,
         description,
         username,
       }).save();
-      return newGenealogy;
+      return newCologne;
     },
 
 // MORE CODE
@@ -294,16 +409,16 @@ Mutation: {
 ```
 // MORE CODE
 
-/* Genealogy Mutations */
+/* Cologne Mutations */
 
-export const ADD_GENEALOGY = gql`
+export const ADD_Cologne = gql`
   mutation(
     $firstName: String!
     $lastName: String!
     $description: String
     $username: String
   ) {
-    addGenealogy(
+    addCologne(
       firstName: $firstName
       lastName: $lastName
       description: $description

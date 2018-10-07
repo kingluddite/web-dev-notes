@@ -34,3 +34,9 @@ $ db.users.find()
 * If you get the graphql error "Topology was destroyed"
 * Find `node` process, kill it and rerun
 * Rerun mongo and dev server
+
+## MongoDB tips!
+* You may have to shut down both servers mongo and app
+* Kill `node` and `mongod`
+* Restart them both
+* After logging in you should see current user with info we specified in query

@@ -1,5 +1,5 @@
 # Optimistic UI
-* When we add a new `genealogy` we see that it was added to our database but not to our `getAllGenealogies` (for some reason we are not getting fresh data)
+* When we add a new `cologne` we see that it was added to our database but not to our `getAllColognes` (for some reason we are not getting fresh data)
 
 ![no fresh data](https://i.imgur.com/mxaYzvp.png)
 
@@ -8,11 +8,11 @@
 ## Why is this happening?
 * It takes a certain amount of time to execute the `mutation`
 * Then after the `mutation` we are going back to the home page
-* Then when we get to the home page we are executing the `getAllGenealogies` query
+* Then when we get to the home page we are executing the `getAllColognes` query
 * It is not able to do everything we want in the time we are giving it
 * The problem is the data is not updated automatically so we need to manually update our query using `this.updateCache`
 
-`AddGenealogy.js`
+`Addcologne.js`
 
 ```
 // MORE CODE
@@ -26,7 +26,7 @@ render() {
 
     return (
       <Mutation
-        mutation={ADD_GENEALOGY}
+        mutation={ADD_cologne}
         variables={{ firstName, lastName, description, username }}
         update={this.updateCache}
       >
@@ -34,13 +34,13 @@ render() {
     // MORE CODE
 ```
 
-## Test by adding one more Genealogy using the AddGenealogy page form
+## Test by adding one more cologne using the Addcologne page form
 * You will see `InMemoryCache`
-* Has an object called `data` with all the **NEWLY** created fields within the genealogy
+* Has an object called `data` with all the **NEWLY** created fields within the cologne
 
 ### What is the purpose of this?
 * When we want to update a query manually we 
-* We have access to all the data from the queries we performed so we will use this to manually add the current genealogy to it
+* We have access to all the data from the queries we performed so we will use this to manually add the current cologne to it
 
 ### cache.readQuery()
 * Reads a graphql query from the `ROOT_QUERY` **id**
@@ -48,22 +48,22 @@ render() {
 ```
 // MORE CODE
 
-import { ADD_RECIPE, GET_ALL_GENEALOGIES } from '../../queries';
+import { ADD_RECIPE, GET_ALL_Colognes } from '../../queries';
 
 // MORE CODE
 
-updateCache = (cache, { data: { addGenealogy } }) => {
+updateCache = (cache, { data: { addcologne } }) => {
   // console.log(cache, data);
-  const { getAllGenealogies } = cache.readQuery({
-    query: GET_ALL_GENEALOGIES,
+  const { getAllColognes } = cache.readQuery({
+    query: GET_ALL_Colognes,
   });
-  console.log('from cache', getAllGenealogies);
-  console.log('from data', addGenealogy);
+  console.log('from cache', getAllColognes);
+  console.log('from data', addcologne);
 };
 // MORE CODE
 ```
 
-## Add one more genealogy
+## Add one more cologne
 * `from cache` - not fresh data missing last document entered
 * `from data` - has current document entered into db
 
@@ -75,18 +75,18 @@ updateCache = (cache, { data: { addGenealogy } }) => {
 ```
 // MORE CODE
 
-updateCache = (cache, { data: { addGenealogy } }) => {
+updateCache = (cache, { data: { addcologne } }) => {
   // console.log(cache, data);
-  const { getAllGenealogies } = cache.readQuery({
-    query: GET_ALL_GENEALOGIES,
+  const { getAllColognes } = cache.readQuery({
+    query: GET_ALL_Colognes,
   });
-  // console.log('from cache', getAllGenealogies);
-  // console.log('from data', addGenealogy);
+  // console.log('from cache', getAllColognes);
+  // console.log('from data', addcologne);
 
   cache.writeQuery({
-    query: GET_ALL_GENEALOGIES,
+    query: GET_ALL_Colognes,
     data: {
-      getAllGenealogies: [addGenealogy, ...getAllGenealogies],
+      getAllColognes: [addcologne, ...getAllColognes],
     },
   });
 };
@@ -97,6 +97,6 @@ updateCache = (cache, { data: { addGenealogy } }) => {
 ## Test - Our data is now refreshed when we get to the home page
 * Add a document
 * It will redirect and now you will see it on the home page
-* Open `getAllGenealogies` and it is loading all fresh data
+* Open `getAllColognes` and it is loading all fresh data
 * Optimistic UI is working!
 

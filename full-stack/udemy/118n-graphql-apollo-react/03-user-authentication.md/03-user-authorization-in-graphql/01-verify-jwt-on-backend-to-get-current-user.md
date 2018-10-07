@@ -13,6 +13,8 @@
 ## Why is token null?
 * Add this check to `server.js`
 
+`server.js`
+
 ```
 // MORE CODE
 
@@ -53,7 +55,7 @@ app.use(cors(corsOptions));
 
 // set up JWT authentication middleware
 app.use(async (req, res, next) => {
-  const token = req.headers['authorization'];
+  const token = req.headers.authorization;
   if (token !== 'null') {
     try {
       const currentUser = await jwt.verify(token, process.env.SECRET);
@@ -76,5 +78,8 @@ app.use(async (req, res, next) => {
 [server]   iat: 1535035353,
 [server]   exp: 1535038953 }
 ```
+
+* You may get this error `JsonWebTokenError: jwt must be provided`
+* We'll address and repair that later
 
 ## Next - add getCurrentUser query

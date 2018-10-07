@@ -1,16 +1,16 @@
 # Redirect Upon Signup/Signin
 * We are now getting information about our **current user** on the `client`
 
-### I want to go home!
-### But there are still a couple of problems we need to fix
-* Whenever we signin
-* Whenever we get our token
-* When it is successful
-* We want to redirect back to the home page
+## Where do we want to redirect to and when?
+* Whenever we `signin` && when we get our `token` && when it is `successful`
+    - We want to redirect back to the **home** page
 
 ## Let's start in `Signin.js` first
 * After we clear our `state` in `handleSubmit` that is where we will `redirect` back to the home page
 * To do this we will use `withRouter` from **react-router-dom**
+
+## withRouter
+* react-router-dom gives us this HOC to help us redirect
 
 `Signin.js`
 
@@ -55,6 +55,7 @@ handleSubmit = (event, signinUser) => {
 // MORE CODE
 ```
 
+* Wrapper our HOC `withRouter` around Signin passes the `history` object and we can use that object's `push` method to redirect to the home page
 * If you did not use `withRouter` this would not redirect to home page `/`
 
 ## We do the same thing for Signup.js
@@ -93,10 +94,15 @@ export default withRouter(Signup);
 ## Test in browser
 * `Signin` and `Signup` correctly redirect
 
-## Houston we have a problem - I lost my token!
+## Houston we have a problem - lost currentUser
 * We login and we are correctly redirected
-* But when we are redirected we lose our token
-* We refresh the page and we get our `currentUser` but only when we refresh
+* But when we are redirected we lose our `currentUser`
+* We refresh the page and we get our `currentUser` **but only when we refresh**
 
-### Solution - refetch that query
-* That's what we'll do next
+![seeing token](https://i.imgur.com/CT1nAAJ.png)
+
+### **note** google chrome console
+* You can find the token inside the `Application` tab > `Storage` > `Local Storage` > `http://localhost:3000`
+* After selecting that you may need to move window a bit to see the Key and Value of the token
+
+### Next - `refetch` that query

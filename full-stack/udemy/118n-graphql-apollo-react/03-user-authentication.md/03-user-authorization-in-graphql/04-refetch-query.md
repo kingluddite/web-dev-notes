@@ -47,10 +47,14 @@ const withSession = Component => props => (
 * How do we pass props down through our routes?
 
 1. Go to component that's been wrapped
-2. Restructure our `props` (will get our refetch property)
+2. Restructure our `props` (will get our `refetch` property)
 3. Now we can pass them down to whatever components we want to
     * In this case we'll pass it down to `Signup` and `Signin`
     * But to pass individual props into a specific route is that we'll change the component prop with render and this will enable us to call our component with an arrow function (this will give us space to provide properties)
+
+#### Using `render` inside our routes
+* This is how we pass individual props into a specific route
+* We remove the `component` property and instead use the `render` property and pass it an arrow funtioning returning the component for that route and inside that component we can pass down the refetch prop and pass it our destructured `refetch`
 
 `index.js`
 
@@ -106,9 +110,9 @@ handleSubmit = (event, signinUser) => {
 handleSubmit = (event, signupUser) => {
   event.preventDefault();
   // call our signupUser function
-  signupUser().then(async ({ data }) => {
+  signupUser().then(async ({ data: { signupUser} }) => {
     console.log(data);
-    localStorage.setItem('token', data.signupUser.token);
+    localStorage.setItem('token', signupUser.token);
     await this.props.refetch();
     this.clearState();
     this.props.history.push('/');
@@ -117,10 +121,11 @@ handleSubmit = (event, signupUser) => {
 
 // MORE CODE
 ```
+
 ## Test
-* Remove token in client
-* Login again
-* You will see the current user token is available because the refetch is now working
+1. Remove token in `client`
+2. Login again
+3. You will see the `currentUser` `token` is available because the `refetch` is now working
     - We are getting the fresh value of
 
 ## Troubleshooting if you did not get this to work

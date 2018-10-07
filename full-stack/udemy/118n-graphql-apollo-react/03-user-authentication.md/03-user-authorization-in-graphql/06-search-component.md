@@ -1,5 +1,5 @@
 # Search
-`components/Genealogy/Search.js`
+`components/Cologne/Search.js`
 
 ```
 import React from 'react';

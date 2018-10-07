@@ -1,19 +1,25 @@
 # Add Navbar Component
-## Fragment
-* New with React allows a parent empty element (otherwise you would have to use a container like `div` and if you didn't you would get an error but adding empty container just clutters up your code)
 
 `components/Navbar.js`
 
 ```
-import React from 'react';
+import React, { Component } from 'react';
 
-const Navbar = () => {
-  return <nav>Navbar</nav>;
-};
+class Navbar extends Component {
+  render() {
+
+    return (
+      <div>Navbar</div>
+    )
+  }
+}
 
 export default Navbar;
 ```
 
+## Fragment
+* New with React allows a parent empty element (otherwise you would have to use a container like `div` and if you didn't you would get an error but adding empty container just clutters up your code)
+* 
 `index.js`
 
 ```
@@ -39,7 +45,7 @@ const Root = ({ refetch }) => (
 // MORE CODE
 ```
 
-* We put `Navbar` above Switch so it will be on all pages
+* We put `Navbar` above `Switch` so it will be on all pages
 * We put both `Switch` and `Navbar` inside `Fragment` to avoid an error
 
 ## Unauthorized nav items
@@ -47,6 +53,8 @@ const Root = ({ refetch }) => (
 
 ### NavLink vs Link
 * `NavLink` gives us access to extra features using `react-router-dom`
+* One feature is it makes it easy to see what is the active page
+  - It adds a className of `active` on the active page that we can target with CSS
 
 ```
 // MORE CODE

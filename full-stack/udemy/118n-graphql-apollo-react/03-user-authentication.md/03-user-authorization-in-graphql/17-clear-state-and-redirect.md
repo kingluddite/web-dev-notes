@@ -1,14 +1,14 @@
-# Clear State and Redirect upon addGenealogy Mutation
-## Add createdDate field in our Genealogy so we can sort by it
-* To clean up our data wipe out your Genealogy db and start with fresh data with this new field
+# Clear State and Redirect upon addCologne Mutation
+## Add createdDate field in our Cologne so we can sort by it
+* To clean up our data wipe out your Cologne db and start with fresh data with this new field
 * Add a couple new Genealogies
 
-### Examine our Genealogy model
+### Examine our Cologne model
 
-`models/Genealogy.js`
+`models/Cologne.js`
 
 ```
-const GenealogySchema = new Schema({
+const CologneSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -45,8 +45,8 @@ const GenealogySchema = new Schema({
 
 exports.resolvers = {
   Query: {
-    getAllGenealogies: async (root, args, { Genealogy }) => {
-      const allGenealogies = await Genealogy.find().sort({
+    getAllGenealogies: async (root, args, { Cologne }) => {
+      const allGenealogies = await Cologne.find().sort({
         createdDate: 'desc',
       });
       return allGenealogies;
@@ -58,17 +58,17 @@ exports.resolvers = {
 ## Test
 * Log in
 * You will see list of `genealogies`
-* Click on link of `genealogy` and you will see in console `getGenealogy` and there is no `username`
+* Click on link of `Cologne` and you will see in console `getCologne` and there is no `username`
 
-## Let's add username now to the `GET_GENEALOGY` query
+## Let's add username now to the `GET_Cologne` query
 
 `queries/index.js`
 
 ```
 // MORE CODE
-export const GET_GENEALOGY = gql`
+export const GET_Cologne = gql`
   query($_id: ID!) {
-    getGenealogy(_id: $_id) {
+    getCologne(_id: $_id) {
       _id
       firstName
       lastName
@@ -82,18 +82,18 @@ export const GET_GENEALOGY = gql`
 // MORE CODE
 ```
 
-* **caution** Now you will see `username` in console (but my value of username is `null` (and it should not be `null` be rather the name of the user that created the genealogy))
+* **caution** Now you will see `username` in console (but my value of username is `null` (and it should not be `null` be rather the name of the user that created the Cologne))
     - This happens when you are not logged in
     - The navbar lets you know if you are logged in or not (if you see Signout in navbar you are logged in)
     - Check the console for username when logged in
     - When you click on a console you should see a long `id` at the end of the URL
 
-`http://localhost:3000/genealogy/5b833a3946583584c79bde28`
+`http://localhost:3000/Cologne/5b833a3946583584c79bde28`
 
-* When logged in and on a single `genealogy` page, you will see the username now populated
+* When logged in and on a single `Cologne` page, you will see the username now populated
 
 ## clear state
-`AddGenealogy`
+`AddCologne`
 
 ```
 // MORE CODE
@@ -105,7 +105,7 @@ const initialState = {
   username: '',
 };
 
-class AddGenealogy extends React.Component {
+class AddCologne extends React.Component {
   state = {
     ...initialState,
   };
@@ -117,7 +117,7 @@ class AddGenealogy extends React.Component {
   // MORE CODE
 ```
 
-## Redirect after adding genealogy
+## Redirect after adding Cologne
 * Import `withRouter`
 
 ```
@@ -126,9 +126,9 @@ import { withRouter } from 'react-router-dom';
 
 // MORE CODE
 
-  handleSubmit = (event, addGenealogy) => {
+  handleSubmit = (event, addCologne) => {
     event.preventDefault();
-    addGenealogy().then(({ data }) => {
+    addCologne().then(({ data }) => {
       console.log(data);
       this.clearState();
       this.props.history.push('/'); // add this
@@ -137,9 +137,9 @@ import { withRouter } from 'react-router-dom';
 
  // MORE CODE
 
-export default withRouter(AddGenealogy); // add this
+export default withRouter(AddCologne); // add this
 ```
 
 ## Test
-* Add Genealogy
-* You will be redirected to home page with new genealogy
+* Add Cologne
+* You will be redirected to home page with new Cologne

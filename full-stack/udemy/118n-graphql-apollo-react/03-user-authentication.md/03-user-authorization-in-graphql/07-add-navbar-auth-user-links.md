@@ -29,7 +29,7 @@ const NavbarAuth = () => (
       <NavLink to="/search">Search</NavLink>
     </li>
     <li>
-      <NavLink to="/genealogy/add">Add Genealogy</NavLink>
+      <NavLink to="/cologne/add">Add Cologne</NavLink>
     </li>
     <li>
       <NavLink to="/profile">Profile</NavLink>
@@ -46,20 +46,36 @@ const NavbarAuth = () => (
 ## Test it in browser
 * Now we see our `NavbarAuth`
 
-## AddGenealogy
-* Create it inside our `Genealogy` folder
-* It will be a SFC
+## AddCologne
+* Create it inside our `Cologne` folder
+* It will be a SFC (stateless functional component)
 
-`components/Genealogy/AddGenealogy.js`
+`components/Cologne/AddCologne.js`
 
 ```
 import React from 'react';
 
-const AddGenealogy = () => {
-  return <div>Add Genealogy</div>;
+const AddCologne = () => {
+  return <div>Add Cologne</div>;
 };
 
-export default AddGenealogy;
+export default AddCologne;
+```
+
+* But I like to always make class based components (CBC) so I transform it from a SFC to a CBC
+
+`AddCologne.js`
+
+```
+import React, { Component } from 'react';
+
+class AddCologne extends Component {
+  render() {
+    return <div>Add Cologne</div>;
+  }
+}
+
+export default AddCologne;
 ```
 
 ## Create Profile component
@@ -68,11 +84,13 @@ export default AddGenealogy;
 `components/Profile/Profile.js`
 
 ```
-import React from 'react';
+import React, { Component } from 'react';
 
-const Profile = () => {
-  return <div>Profile</div>;
-};
+class Profile extends Component {
+  render() {
+    return <div>Profile</div>;
+  }
+}
 
 export default Profile;
 ```
@@ -83,9 +101,9 @@ export default Profile;
 ```
 // MORE CODE
 
-import Search from './components/Genealogy/Search';
+import Search from './components/Cologne/Search';
 import Profile from './components/Profile/Profile';
-import AddGenealogy from './components/Genealogy/AddGenealogy';
+import AddCologne from './components/Cologne/AddCologne';
 
 // MORE CODE
 
@@ -96,7 +114,7 @@ const Root = ({ refetch }) => (
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/search" component={Search} />
-        <Route path="/genealogy/add" component={AddGenealogy} />
+        <Route path="/cologne/add" component={AddCologne} />
         <Route path="/profile" component={Profile} />
         // MORE CODE
         <Redirect to="/" />

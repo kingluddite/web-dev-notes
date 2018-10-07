@@ -1,27 +1,4 @@
 # Add getCurrentUser Query
-* Pass `currentUser` variable down to this piece of `graphql` express middleware
-
-`server.js`
-
-```
-// MORE CODE
-
-// Connect schemas with GraphQL
-app.use(
-  '/graphql',
-  bodyParser.json(),
-  graphqlExpress({
-    schema,
-    context: {
-      // pass in mongoose models
-      Genealogy,
-      User,
-    },
-  })
-);
-
-// MORE CODE
-```
 
 ## Add currentUser to our request object (`req`)
 `server.js`
@@ -29,52 +6,55 @@ app.use(
 ```
 // MORE CODE
 
-if (token !== 'null') {
+// set up JWT authentication middleware
+app.use(async (req, res, next) => {
+  const token = req.headers.authorization;
+  // console.log(token, typeof token);
+  if (token !== 'null') {
     try {
-      const currentUser = await jwt.verify(token, process.env.SECRET);
-      req.currentUser = currentUser;
+      // add currentUser to the request object
+      req.currentUser = await jwt.verify(token, process.env.SECRET); // add
     } catch (err) {
       console.error(err);
     }
   }
+  next();
+});
 
 // MORE CODE
 ```
 
-1. Wrap graphqlExpress with parentheses
-2. Destructure `currentUser`
+### Add currentUser to the context of apollo server
+* Destructure `currentUser` from the Apollo context which has the request object passed to it
 
 `server.js`
 
 ```
 // MORE CODE
 
-// Connect schemas with GraphQL
-app.use(
-  '/graphql',
-  bodyParser.json(),
-  graphqlExpress(({ currentUser }) => ({
-    schema,
-    context: {
-      // pass in mongoose models
-      Genealogy,
-      User,
-      currentUser,
-    },
-  }))
-);
+// create apollo server
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({ Cologne, User, currentUser: req.currentUser }),
+});
 
 // MORE CODE
 ```
 
 ## Create new query - getCurrentUser
+* Now we need a way to get the currentUser anytime we need it using GraphQL
+
 `schema.js`
+
+* Notice that `getAllColognes` will return an array
+* But `getCurrentUser` will return one user
 
 ```
 // MORE CODE
 
 type Query {
-  getAllGenealogies: [Genealogy]
+  getAllColognes: [Cologne]
 
   getCurrentUser: User
 }
@@ -82,7 +62,7 @@ type Query {
 // MORE CODE
 ```
 
-## Define getCurrentUser in resolvers.js
+## Define `getCurrentUser` in resolvers.js
 `resolvers.js`
 
 ```
@@ -96,12 +76,17 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
         username: currentUser.username,
       }).populate({
         path: 'favorites',
-        model: 'Genealogy', // make sure this is singular
+        model: 'Cologne', // make sure this is singular
       });
     },
   },
   // MORE CODE
 ```
+
+* Things to point out:
+  - When we call this method we need to pass it the currentUser
+  - We find one user (there should only be one because all usernames are unique)
+  - We use mongoose's `populate()` to attach all the favorite colognes to the found currentUser
 
 `User.js`
 
@@ -114,7 +99,7 @@ const UserSchema = new Schema({
 
   favorites: {
     type: [Schema.Types.ObjectId],
-    ref: 'Genealogy',
+    ref: 'Cologne',
   },
 });
 
@@ -122,25 +107,30 @@ const UserSchema = new Schema({
 ```
 
 * In our `User` model we have a `favorites` field
-* It has a **ref** of `Genealogy`
+* It has a **ref** of `Cologne`
 
 `schema.js`
 
 * Our `favorites` has an array of IDs
+  - Think favorites holds a value something like this (if it had 3 favorite cologne IDs)
+
+```
+['5bb64ebc20a9618d192bbd12', '5bb64ebc20a9618d192bbc33', '5bb64ebc20a9618d192bbp28']
+```
 
 ```
 type User {
   _id: ID,
-  username: String! @unique
+  username: String!
   password: String!
-  email: String! @unique
+  email: String!
   joinDate: String
-  favorites: [Genealogy]
+  favorites: [Cologne]
 }
 ```
 
 ## Calling `populate()` method
-* When `populate()` is called it will inject an entire Genealogy model within it
+* When `populate()` is called it will _inject an entire Cologne model within it_
 
 ```
 getCurrentUser: async (root, args, { currentUser, User }) => {
@@ -151,7 +141,7 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
         username: currentUser.username,
       }).populate({
         path: 'favorites',
-        model: 'Genealogy', // make sure this is singular
+        model: 'Cologne', // make sure this is singular
       });
       return user; // add this line
     },
@@ -159,14 +149,30 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 ```
 
 * We return the `user` variable we just created
-* So we will just get back an array of Genealogies instead of just IDs
+* So we will just get back an array of Colognes instead of just IDs
 
 ## withSession
 * This is where we will be performing that query we just created
 
 ### Create  /components/withSession.js
 * `withSession` will be a HOC (Higher Order Component)
-* We won't need `error` in this case 
+
+#### Why do I need to use a HOC?
+* Use them when you need to share the same functionality across multiple components
+  - Example:
+    + How do we manage the state of currently logged in users inside our app
+    + We could manage that state across all of the components that need state but that would be a headache
+    + Instead we could create a HOC to separate the logged in user `state` into a container component
+      * Then we could pass that `state` to the components that will make use of it
+
+##### Presentation components
+* These are components that receive `state` from the HOC
+* `state` gets passed to them and they conditionally render UI based on it
+* They don't care about management of `state` which means they will be `stateless functional components`
+
+#### How to HOCs work?
+* HOCs take a component and return a component
+  - They come in handy when you are architecturally ready for separating container components from presentation components
 
 ```
 import React from 'react';
@@ -180,8 +186,11 @@ const withSession = Component => props => (
     }}
   </Query>
 );
+
+export default withSession;
 ```
 
+* We won't need `error` in this case 
 * One arrow function where we'll pass in `props`
 * A nested arrow function where we'll have the body of the component
 * Inside that will be our `Query` component which will have its `render props`
@@ -201,8 +210,8 @@ export const GET_CURRENT_USER = gql`
   query {
     getCurrentUser {
       username
-      joinDate
       email
+      joinDate
     }
   }
 `;
@@ -211,14 +220,15 @@ export const GET_CURRENT_USER = gql`
 
 ## Add that query to our client component
 * `withSession` will be used on many pages so that is why this component is different then the others
+  - We are reusing it to manage our currentUser state in a more efficient way and that is the reason for using a HOC
 
 `withSession.js`
 
 ```
 import React from 'react';
 
+// GraphQL
 import { Query } from 'react-apollo';
-
 import { GET_CURRENT_USER } from '../queries';
 
 const withSession = Component => props => (
@@ -289,37 +299,13 @@ const withSession = Component => props => (
   </Query>
 );
 
-export default withSession; // don't forget to export it
+export default withSession;
 ```
 
 * If you log in you should see the currently logged in user in the client console
 * If you delete the token and login, `getCurrentUser` won't appear but it will show if you refresh the browser
 
 ## Review our work to see what we did
-* `server.js`
-    - We are passing our `currentUser` down to our graphqlExpress middleware
-
-```
-// MORE CODE
-
-// Connect schemas with GraphQL
-app.use(
-  '/graphql',
-  bodyParser.json(),
-  graphqlExpress(({ currentUser }) => ({
-    schema,
-    context: {
-      // pass in mongoose models
-      Genealogy,
-      User,
-      currentUser,
-    },
-  }))
-);
-
-// MORE CODE
-```
-
 * We pass `currentUser` to the **context** and that's what makes it available in our `resolvers.js`
 
 `resolvers.js`
@@ -335,7 +321,7 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
         username: currentUser.username,
       }).populate({
         path: 'favorites',
-        model: 'Genealogies',
+        model: 'Colognes',
       });
       return user;
     },
@@ -344,7 +330,9 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 ```
 
 * We get the **current logged in user** from the `currentUser` variable
-* Once we find it in our database 
+* Once we find it in our database
+* Remember to return the `user`!
+  - If you don't you will never have access to the user
 
 `User.findOne({ username: currentUser.username })`
 
@@ -361,52 +349,9 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 * You will get `null` for `getCurrentUser` (chrome console) if no user is logged in
 * Log in and see what you get when you refresh page
 
-## Houston we MAY have a problem
-* Error ` MissingSchemaError: Schema hasn't been registered for model "Genealogies".`
-* Did you get this error? I did when I first did this and it a was because I misspelled the Model name `Genealogy`
-  - Remember we always spell model names with a `singular` name
-  - It is not required but [recommended when working with Mongoose](https://stackoverflow.com/questions/10547118/why-does-mongoose-always-add-an-s-to-the-end-of-my-collection-name)
-    + You can override this default behavior of Mongoose but I believe it is mimicking the naming convention in Rails
-      * The model is singular and Capitalized
-      * The Collection is automatically named the plural of the model name
-        - [Other article on this](https://samwize.com/2014/03/07/what-mongoose-never-explain-to-you-on-case-sentivity/)
-          + Let’s assume the model I have is ‘Campaign’
-            * mongodb collection name is case sensitive (‘Campaigns’ is different from ‘campaigns’)
-            * mongodb best practises is to have all lower case for collection name (‘campaigns’ is preferred)
-            * mongoose model name should be singular and upper case (‘Campaign’)
-            * mongoose will lowercase and pluralize with an ‘s’ so that it can access the collection (‘Campaign’ » ‘campaigns’)
-            * Knowing this is especially useful if you are dealing with existing collections
-
-`resolvers.js`
-
-```
-// MORE CODE
-
-getCurrentUser: async (root, args, { currentUser, User }) => {
-      if (!currentUser) {
-        return null;
-      }
-      const user = await User.findOne({
-        username: currentUser.username,
-      }).populate({
-        path: 'favorites',
-        model: 'Genealogy', // fix this line
-      });
-      return user;
-    },
-
-    // MORE CODE
-```
-
-## Local MongoDB tips!
-* You may have to shut down both servers mongo and app
-* Kill `node` and `mongod`
-* Restart them both
-* After logging in you should see current user with info we specified in query
-
 ![getCurrentUser user object returned](https://i.imgur.com/mO1vkty.png)
 
-* Above is from the `token` that we are getting from our `client` that is being sent through our backend
+* Below is from the `token` that we are getting from our `client` that is being sent through our backend
 * It is verifying our token
 
 ![verifying our token](https://i.imgur.com/ic2mYxt.png)
@@ -418,3 +363,7 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 2. You will see new token
 3. Refresh
 4. You will see new user data
+
+## Additional Resources
+* [What are higher order components](https://css-tricks.com/what-are-higher-order-components-in-react/)
+* [HOC tutorial for React](https://www.youtube.com/watch?v=A9_9gQIkfx4)
