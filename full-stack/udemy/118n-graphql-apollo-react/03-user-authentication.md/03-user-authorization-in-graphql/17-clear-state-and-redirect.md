@@ -1,25 +1,29 @@
-# Clear State and Redirect upon addCologne Mutation
-## Add createdDate field in our Cologne so we can sort by it
-* To clean up our data wipe out your Cologne db and start with fresh data with this new field
-* Add a couple new Genealogies
+# Clear State and Redirect upon `addCologne` Mutation
+## Add `createdDate` field in our Cologne so we can sort by it
+* **Reminder** You should just have 3 fresh copies of colognes in your colognes collection
 
 ### Examine our Cologne model
 
 `models/Cologne.js`
 
 ```
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 const CologneSchema = new Schema({
-  firstName: {
+  scentName: {
     type: String,
     required: true,
   },
-  lastName: {
-    type: String,
-    required: true,
+  scentPrice: {
+    type: Number,
   },
   createdDate: {
     type: Date,
     default: Date.now,
+  },
+  description: {
+    type: String,
   },
   likes: {
     type: Number,
@@ -29,14 +33,16 @@ const CologneSchema = new Schema({
     type: String,
   },
 });
+
+module.exports = mongoose.model('Cologne', CologneSchema);
 ```
 
 * There is `createdDate`, let's sort by it
 
-## Sorting
+## Sorting (Let's sort by `createDate`)
 * Change query to sort by date
-* Since we will sort all our genealogies let's use our `getAllGenealogies` resolver query
-* We will sort by `createdDate` indescending order
+* Since we will sort all our colognes let's use our `getAllColognes` resolver query
+* We will sort by `createdDate` in **descending** order
 
 `resolvers.js`
 
@@ -45,11 +51,11 @@ const CologneSchema = new Schema({
 
 exports.resolvers = {
   Query: {
-    getAllGenealogies: async (root, args, { Cologne }) => {
-      const allGenealogies = await Cologne.find().sort({
+    getAllColognes: async (root, args, { Cologne }) => {
+      const allColognes = await Cologne.find().sort({
         createdDate: 'desc',
       });
-      return allGenealogies;
+      return allColognes;
     },
 
     // MORE CODE
@@ -57,16 +63,17 @@ exports.resolvers = {
 
 ## Test
 * Log in
-* You will see list of `genealogies`
-* Click on link of `Cologne` and you will see in console `getCologne` and there is no `username`
+* You will see list of `colognes`
+* Click on link of `cologne` and you will see in console `getCologne` and there is no `username`
+  - We can easily fix this but updated our `GET_COLOGNE` query
 
-## Let's add username now to the `GET_Cologne` query
+## Let's add username now to the `GET_COLOGNE` query
 
 `queries/index.js`
 
 ```
 // MORE CODE
-export const GET_Cologne = gql`
+export const GET_COLOGNE = gql`
   query($_id: ID!) {
     getCologne(_id: $_id) {
       _id
@@ -82,17 +89,17 @@ export const GET_Cologne = gql`
 // MORE CODE
 ```
 
-* **caution** Now you will see `username` in console (but my value of username is `null` (and it should not be `null` be rather the name of the user that created the Cologne))
+* **caution** Now you will see `username` in console (but my value of username is `null` (_and it should not be `null` be rather the name of the user that created the cologne_))
     - This happens when you are not logged in
     - The navbar lets you know if you are logged in or not (if you see Signout in navbar you are logged in)
-    - Check the console for username when logged in
-    - When you click on a console you should see a long `id` at the end of the URL
-
-`http://localhost:3000/Cologne/5b833a3946583584c79bde28`
-
-* When logged in and on a single `Cologne` page, you will see the username now populated
+* When logged in and on a single `Cologne` page, you will see the `username` now populated
 
 ## clear state
+* We did this with `Signin` and `Signup` and we'll use the same technique for AddCologne
+
+### Try it out on your own
+* See if you can add the clear form technique we used for Signin and Signup and apply it to AddCologne
+
 `AddCologne`
 
 ```
@@ -118,11 +125,15 @@ class AddCologne extends React.Component {
 ```
 
 ## Redirect after adding Cologne
+* After we add a cologne we want to be taken to the home page automatically
+* This is a perfect job for the react-router-dom package `withRouter`
+* After we import it and wrap it around our `AddCologne` default export we will have access to `history` through `this.props.history` and that gives us access to the `push()` method that will enable us to programmatically go to a different URL (we'll go to the home route `/`)
+
 * Import `withRouter`
 
 ```
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'; // add this line
 
 // MORE CODE
 
@@ -143,3 +154,7 @@ export default withRouter(AddCologne); // add this
 ## Test
 * Add Cologne
 * You will be redirected to home page with new Cologne
+* But the bad news is when we do, we do not see the cologne we added on the home page (We'll fix that next)
+
+## Next - Optimistic UI
+

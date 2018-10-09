@@ -1,4 +1,13 @@
 # Add more CSS
+
+## Add inline styles in jsx
+
+`UserColognes.js`
+
+```
+<p style={{ marginBottom: '0' }}>Likes: {cologne.likes}</p>
+```
+
 * Now we have to jump back to development mode
 
 `$ npm run dev`

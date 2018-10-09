@@ -1,42 +1,89 @@
-# Provide default text for user without colognes
-* This was already added to our code but I never talked about it
-* If there are no colognes here's how you can update the UI automatically to let the user know they are empty and need to add colognes
+# Create SearchItem
+* This will be a dedicated component for each item we iterate over
+* We do this to make our code more modular
 
-`UserColognes.js`
-
-```
-// MORE CODE
-
-return (
-  <ul>
-    <h3>Your Colognes</h3>
-    {!data.getUserColognes.length && (
-      <p>
-        <strong>You have not added any colognes yet</strong>
-      </p>
-    )}
-
-// MORE CODE
-```
-
-## Test
-* Remove all colognes and you'll get warning message that you have no colognes
-
-## We also have default text here:
-`UserInfo.js`
+`SearchItem.js`
 
 ```
-// MORE CODE
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-    {!favorites.length && (
-      <p>
-        <strong>You currently have no favorites. Go add some!</strong>
-      </p>
-    )}
-  </ul>
-</div>
+class SearchItem extends Component {
+  render() {
+    const { _id, scentName, likes } = this.props;
+    return (
+      <li>
+        <Link to={`/cologne/${_id}`}>
+          <h4>Scent Name: {scentName}</h4>
+          <p>Likes: {likes}</p>
+        </Link>
+      </li>
+    );
+  }
+}
 
-// MORE CODE
+export default SearchItem;
+```
+
+`Search`
+
+```
+import React, { Component } from 'react';
+
+// GraphQL
+import { ApolloConsumer } from 'react-apollo';
+import { SEARCH_COLOGNES } from '../../queries';
+
+// custom components
+import SearchItem from './SearchItem';
+
+class Search extends Component {
+  state = {
+    searchResults: [],
+  };
+
+  handleChange = ({ searchColognes }) => {
+    this.setState({
+      searchResults: searchColognes,
+    });
+  };
+
+  render() {
+    const { searchResults } = this.state;
+
+    return (
+      <ApolloConsumer>
+        {client => {
+          return (
+            <div className="App">
+              <input
+                type="search"
+                placeholder="Search for Colognes"
+                name="search"
+                id="search"
+                onChange={async event => {
+                  event.persist();
+                  const { data } = await client.query({
+                    query: SEARCH_COLOGNES,
+                    variables: { searchTerm: event.target.value },
+                  });
+                  this.handleChange(data);
+                }}
+              />
+              <ul>
+                {searchResults.map(cologne => {
+                  return <SearchItem key={cologne._id} {...cologne} />;
+                })}
+              </ul>
+            </div>
+          );
+        }}
+      </ApolloConsumer>
+    );
+  }
+}
+
+export default Search;
 ```
 
 ## Git time
@@ -44,10 +91,10 @@ return (
 
 `$ git add -A`
 
-`$ git commit -m 'add delete-user-colognes feature`
+`$ git commit -m 'add search feature`
 
 ### Push the branch to origin
-`$ git push origin delete-user-colognes`
+`$ git push origin search`
 
 ### Log into your github account
 * You will see there is a PR ready for merge
@@ -55,7 +102,7 @@ return (
 ![PR](https://i.imgur.com/TW2HdKe.jpg)
 
 * Click `Compare & pull request` button
-* Scroll down until you see the commits and you can click on the `add delete-user-colognes feature`
+* Scroll down until you see the commits and you can click on the `add search feature`
 
 ![commit](https://i.imgur.com/a8cXTgy.png)
 
@@ -78,16 +125,16 @@ return (
 
 ## Time to sync up
 * Right now your master branch on your remote GitHub is different than your master branch locally
-* Locally your master branch doesn't have the new feature `delete-user-colognes` added
-* To prove this checkout of your `delete-user-colognes` branch and check into your `master` branch
+* Locally your master branch doesn't have the new feature `search` added
+* To prove this checkout of your `search` branch and check into your `master` branch
 
 `$ git checkout master`
 
 * You will see your branch name now says `master`
 
 ## Open your text editor
-* You will see that all your changes by adding `delete-user-colognes` are gone!
-* View your app in the browser and it also shows now sign of your `delete-user-colognes` feature!
+* You will see that all your changes by adding `search` are gone!
+* View your app in the browser and it also shows now sign of your search feature!
 * If you stop your server `ctrl` + `c`
 
 ## Check the status
@@ -130,27 +177,23 @@ nothing to commit, working tree clean
 ## Test your site now
 `$ npm run dev`
 
-* You now see that our `delete-user-colognes` feature is back and working!
+* You now see that our `search` feature is back and working!
 
 ## Clean up unused branch and sync remote with local
 * You deleted the branch on your github (origin/master)
 * You should also delete the branch on your local
 
-`$ git branch -d delete-user-colognes`
+`$ git branch -d search`
 
 * That will let you know the branch was deleted with something like:
 
-`Deleted branch delete-user-colognes (was 14504fc).`
+`Deleted branch search (was 14504fc).`
 
 * View your branches again:
 
 `$ git branch`
 
 * Now only the `master` branch exists
-* Press `q` to exist list of branches page in terminal
 
 ## Congrats
 * Our local repo is perfectly in sync with our remote Github repo
-
-## Next
-* Adding the ability to `Like` a cologne

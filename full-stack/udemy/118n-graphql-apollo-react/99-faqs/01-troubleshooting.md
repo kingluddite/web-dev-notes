@@ -1,6 +1,32 @@
 # Troubleshooting
 
-<<<<<<< Updated upstream
+## How to get rid of jwt error
+
+`server.js`
+
+```
+// set up JWT authentication middleware
+app.use(async (req, res, next) => {
+  const token = req.headers['authorization'];
+  // console.log(token, typeof token);
+  if (token !== 'null' && token !== '' && token !== undefined) {
+    try {
+      // add currentuser to the request object
+      req.currentUser = await jwt.verify(token, process.env.SECRET);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  next();
+});
+```
+
+* Inserting a price is a number but text fields are a string, how can we ensure a number is inserted into our mongodb cologne collection's scentPrice field?
+
+## Use the right comments inside `schema.js`
+* If you use JavaScript comments `//` or `/* */` you will get an error
+* You must use `#`
+
 ## When cloning
 * You need to install packages on server and client
 * You need to recreate variables.env because that's not on github
@@ -52,7 +78,6 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 
 // MORE CODE
 ```
->>>>>>> Stashed changes
 
 ## Typing `$ npm start` instead of `$ npm run dev`
 * Will only get the server running and not concurrently!
@@ -301,3 +326,203 @@ exports.typeDefs = `
 
 * Now you can see the same result but you have two servers running in separate tabs
 
+### Record not inserted
+`ApolloError.js:37 Uncaught (in promise) Error: Network error: Response not successful: Received status code 400`
+
+### Solution
+* Make fields consistent
+* For now let's just ask for `firstName`, `lastName` and `description`
+
+#### Make the following updates
+##### Server
+`schema.js` (**addCologne** Mutation)
+
+```
+// MORE CODE
+
+type Mutation {
+    addCologne(firstName: String!, lastName: String!, description: String, username: String): Cologne
+
+    signupUser(username: String!, email: String!, password: String!): Token
+    signinUser(username: String!, password: String!): Token
+  }
+
+// MORE CODE
+```
+
+`resolvers.js` (**addCologne** Mutation)
+
+```
+// MORE CODE
+
+Mutation: {
+    addCologne: async (
+      root,
+      { firstName, lastName, description, username },
+      { Cologne }
+    ) => {
+      const newCologne = await new Cologne({
+        firstName,
+        lastName,
+        description,
+        username,
+      }).save();
+      return newCologne;
+    },
+
+// MORE CODE
+```
+
+`queries/index.js`
+
+```
+// MORE CODE
+
+/* Cologne Mutations */
+
+export const ADD_Cologne = gql`
+  mutation(
+    $firstName: String!
+    $lastName: String!
+    $description: String
+    $username: String
+  ) {
+    addCologne(
+      firstName: $firstName
+      lastName: $lastName
+      description: $description
+      username: $username
+    ) {
+      firstName
+      lastName
+      description
+    }
+  }
+`;
+
+// MORE CODE
+```
+
+#### Add render props review
+
+1. Import `Mutation` from `react-apollo` and your actual mutation from your GraphQL queries folder
+
+```
+import { Mutation } from 'react-apollo';
+import { ADD_COLOGNE } from '../../queries';
+```
+
+2. Where is your mutation coming from? In this case we have a form that will be adding a cologne
+
+* So wrap your form inside `MUTATION` tags with a `mutation` attribute set to the value of your mutatation `ADD_COLOGNE`
+
+```
+render() {
+  const { scentName, scentPrice, description, username } = this.state;
+
+  return (
+    <div className="App">
+      <h2 className="App">Add Cologne</h2>
+      <Mutation
+        mutation={ADD_COLOGNE}
+        variables={{ scentName, scentPrice, description, username }}
+      >
+        <form>
+
+         // MORE CODE
+        </form>
+      </Mutation>
+    </div>
+  );
+}
+
+```
+
+3. Add **render props** function
+
+```
+// MORE CODE
+
+<Mutation
+  mutation={ADD_COLOGNE}
+  variables={{ scentName, scentPrice, description, username }}
+>
+ {() => {
+
+  }}
+  <form>
+
+   // MORE CODE
+  </form>
+</Mutation>
+
+// MORE CODE
+```
+
+4. Pass in the arguments for the render prop and use them accordingly
+
+```
+<Mutation
+  mutation={ADD_COLOGNE}
+  variables={{ scentName, scentPrice, description }}
+>
+  {(addCologne, { data, loading, error }) => {
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error</div>;
+    // console.log(data);
+
+```
+
+5. Add a return inside render props
+
+```
+// MORE CODE
+
+<Mutation
+  mutation={ADD_COLOGNE}
+  variables={{ scentName, scentPrice, description }}
+>
+  {(addCologne, { data, loading, error }) => {
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error</div>;
+    // console.log(data);
+
+    return (
+      <form
+        className="form"
+        onSubmit={event => this.handleSubmit(event, addCologne)}
+      >
+
+// MORE CODE
+```
+
+## Dealing with Session problems
+### Troubleshooting techniques for this section
+* Follow the below tips and you will save lots of time when you get errors
+* When working with session you will need to refresh your browser at times to get the data you need
+* You may at first see a browser error but before you do any troubleshooting, just refresh the browser and it should work
+* Sometimes you may need to delete your browser token in the Application pane, and log in again
+* Sometimes you may need to log out and log in
+* You may need to browser to the home page, log in and then browse to the profile page to get the error to go away
+* If you have old data in your mLab remote database it might be a good idea to delete all documents in the users collection and genealogies collection and create one user and add several genealogies so you know you have fresh data in the most current data structure
+
+## jwt must be provided - JsonWebTokenError
+* This pops up in the terminal, I am looking into figuring out how to remove it
+* Found the answer:
+  - I figured out how to get rid of the jwt is required error when logging out
+  - I had to remove the entire token instead of just setting it to an empty string
+  - I made my Signout a class based component (I only use class based components as I hate converting stateless functional components to class based components) and just removed the token completely from the localStorage upon Signing out
+
+```
+export class Signout extends Component {
+ 
+handleSignout = (client, history) => {
+    // clear token
+    localStorage.removeItem('token'); // modified this line
+    client.resetStore();
+    // redirect using withRouter
+    this.props.history.push('/');
+  };
+ 
+// more code
+```

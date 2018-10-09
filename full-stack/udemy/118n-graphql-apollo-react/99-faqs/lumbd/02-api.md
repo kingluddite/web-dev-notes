@@ -10,8 +10,6 @@
 * Click Send request and you'll see various forms of the response
 * If you don't see the response filled with data, then you won't get data in your app
 
-
-
 ## create-react-app and dotenv
 * API is a safety concern you must protect it
 * [step by step instructions](https://medium.com/@danieljameskay/create-react-app-dotenv-281693a19ecd)

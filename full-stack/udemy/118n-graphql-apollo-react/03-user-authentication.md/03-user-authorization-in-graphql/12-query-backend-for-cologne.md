@@ -65,7 +65,7 @@ getCurrentUser: async (root, args,
 
 `http://localhost:4444/graphql`
 
-### Write our graphiql
+### Write our graphql
 ```
 query($_id: ObjectID!) {
   getCologne(_id: $_id) {
@@ -75,7 +75,6 @@ query($_id: ObjectID!) {
     createdDate
     description
     likes
-    username
   }
 }
 ```
@@ -102,8 +101,7 @@ query($_id: ObjectID!) {
       "scentPrice": 16,
       "createdDate": "1538799248627",
       "description": null,
-      "likes": 0,
-      "username": null
+      "likes": 0
     }
   }
 }
@@ -136,12 +134,12 @@ export const GET_Cologne = gql`
 export const GET_Cologne = gql`
   query($_id: ObjectID!) {
     getCologne(_id: $_id) {
+      _id
       scentName
       scentPrice
       createdDate
       description
       likes
-      username
     }
   }
 `;
@@ -149,7 +147,7 @@ export const GET_Cologne = gql`
 // MORE CODE
 ```
 
-## But our varialble `_id` is missing?
+## But our variable `_id` is missing?
 * Yes and if you noticed this, that is great!
 * We need a way of injecting this variable but we need to answer 2 questions:
 

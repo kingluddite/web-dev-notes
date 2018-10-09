@@ -1,15 +1,15 @@
 # Delete with optimistic UI
 * We need to add optimistic UI to get our documents to be instantly deleted without a page refresh
-* As a variation to how we did this before we will do the optimistic UI inline (instead of creating a separate function)
+* As a variation to how we did this before we will do the optimistic UI inline (_instead of creating a separate function_)
 
-`UserGenealogy.js`
+`UserCologne.js`
 
 ```
 // MORE CODE
 
 <Mutation
-  mutation={DELETE_USER_GENEALOGY}
-  variables={{ _id: genealogy._id }}
+  mutation={DELETE_USER_COLOGNE}
+  variables={{ _id: cologne._id }}
   update={(cache, data) => {
     console.log(cache, data);
   }}
@@ -19,80 +19,76 @@
 ```
 
 ## Test it out
-* Delete a genealogy
+* Delete a cologne
 * You will see in console `InMemoryCache`
-    - Expand and examine ROOT_QUERY (inside `data`)
+    - Expand and examine `ROOT_QUERY` (inside `data`)
     - It will show you all queries we performed in the cached values that apollo saved for it
-    - We will work with `getUserGenealogies` as well as the `deleteUserGenealogy` off of the `data` object
-    - We will remove the genealogy from the `getUserGenealogies` array 
+    - We will work with `getUserColognes` as well as the `deleteUserCologne` off of the `data` object
+    - We will remove the cologne from the `getUserColognes` array 
 
-## Final code
-`UserGenealogy` 
+## Add the optimistic UI
+`Usercologne` 
 
 ```
 // MORE CODE
 
 <Mutation
-  mutation={DELETE_USER_GENEALOGY}
-  variables={{ _id: genealogy._id }}
-  update={(cache, { data: { deleteUserGenealogy } }) => {
+  mutation={DELETE_USER_COLOGNE}
+  variables={{ _id: cologne._id }}
+  update={(cache, { data: { deleteUserCologne } }) => {
     // console.log(cache, data);
-    const { getUserGenealogies } = cache.readQuery({
-      query: GET_USER_GENEALOGIES,
+    const { getUserColognes } = cache.readQuery({
+      query: GET_USER_COLOGNES,
       variables: { username },
     });
 
     cache.writeQuery({
-      query: GET_USER_GENEALOGIES,
+      query: GET_USER_COLOGNES,
       variables: { username },
       data: {
-        getUserGenealogies: getUserGenealogies.filter(
-          genealogy => genealogy._id !== deleteUserGenealogy._id
+        getUserColognes: getUserColognes.filter(
+          cologne => cologne._id !== deleteUserCologne._id
         ),
       },
     });
   }}
 >
-              {deleteUserGenealogy => {
-                return (
-                  <p
-                    className="delete-button"
-                    onClick={() => handleDelete(deleteUserGenealogy)}
-                  >
-                    X
-                  </p>
-                );
-              }}
-            </Mutation>
-          </li>
-        ))}
-      </ul>
+  {deleteUserCologne => {
+    return (
+      <button
+        className="delete-button"
+        onClick={() => this.handleDelete(deleteUserCologne)}
+      >
+        X
+      </button>
     );
   }}
-</Query>
-);
+</Mutation>
 
-export default UserGenealogies;
+// MORE CODE
 ```
 
 ## We have access to `attrs` parameter
 * We sometimes need to set it equal to an empty object to avoid errors
-* It will give us information as to whether it is in the process of deleting (whether that mutation is still running and it has a loading property)
+* It will give us information as to whether it is in the process of deleting (_whether that mutation is still running and it has a loading property_)
 
-`UserGenealogies.js`
+`UserColognes.js`
 
 ```
 // MORE CODE
 
-{(deleteUserGenealogy, attrs = {}) => (
-                  <p
-                    className="delete-button"
-                    onClick={() => handleDelete(deleteUserGenealogy)}
-                  >
-                    {attrs.loading ? 'deleting...' : 'X'}
-                  </p>
-                )}
-              </Mutation>
+  {(deleteUserCologne, attrs = {}) => {
+    return (
+      <button
+        className="delete-button"
+        onClick={() => this.handleDelete(deleteUserCologne)}
+      >
+        {attrs.loading ? 'deleting...' : 'X'}
+      </button>
+    );
+  }}
+</Mutation>
+
 
 // MORE CODE
 ```
