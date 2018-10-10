@@ -101,6 +101,53 @@ typings/
 .serverless
 ```
 
+## Add README.md
+* All apps should have a README.md file in the root of your app
+* This is great for documentation and explains what your app is, how to use it and how to install it
+* It is written in markdown
+
+### Let's create our README
+
+`README.md`
+
+```
+# 5 Star Cologne MERN App
+* Clone this repo
+
+## Install app dependencies
+* In the root of the app
+
+`$ npm i`
+
+* In the `/server` of the app
+
+`$ cd server && npm i`
+
+* In the client of the app
+
+`$ cd ../` (go back to root of your app)
+
+`$ cd client && npm i`
+
+## variables.env
+* You need to create a variables.env
+* This file is not on github and in order for you to connect to MongoDB and
+authenticate you need to create this file
+
+`variables.env`
+
+```
+MONGO_URI=put your mongo info here
+SECRET=put your secret here
+PORT=put your port here
+```
+
+## How to run app
+* In the root of your app
+
+`$ npm run dev`
+```
+
 ## Add to staging with git
 `$ git add -A`
 
@@ -120,3 +167,6 @@ typings/
 `$ git push origin master`
 
 * **tip** Add and commit as you make progress through your project
+
+## Additional Resources
+* [How to write markdown](https://masteringmarkdown.com/)

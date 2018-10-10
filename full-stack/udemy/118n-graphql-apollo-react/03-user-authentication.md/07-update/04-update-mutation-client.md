@@ -1,41 +1,30 @@
-# Update UserGenealogy Mutation on client
-
-## Important check!!!!!
-* You are now developing so make sure you changed all production info to development
-* Change the port number to ***4444*** in `variables.env`
-
-```
-// MORE CODE
-
-PORT=4444
-
-// MORE CODE
-```
-
-* Change the heroku's uri back to:
-
-```
-// MORE CODE
-
-const client = new ApolloClient({
-  uri: 'http://localhost:4444/graphql',
-
-// MORE CODE
-```
+# Update UserCologne Mutation on client
 
 ## Update schema
 
 `schema.js`
 
-* **note** Remember to say what type is returned `Genealogy` in the case of `updateUserGenealogy`
+* **note** Remember to say what type is returned `Cologne` in the case of `updateUserCologne`
 
 ```
 // MORE CODE
 
 type Mutation {
-    addGenealogy(firstName: String!, lastName: String!, imageUrl: String!, category: String!, description: String, username: String): Genealogy
-    deleteUserGenealogy(_id: ID): Genealogy
-    updateUserGenealogy(_id: ID!, firstName: String!, lastName: String!, imageUrl: String!, category: String!, description: String): Genealogy
+  addCologne(
+    scentName: String!
+    scentBrand: String!
+    scentPrice: Int
+    description: String
+    username: String
+  ): Cologne
+
+  updateUserCologne(
+    _id: ObjectID!
+    scentName: String!
+    scentBrand: String!
+    scentPrice: Int
+    description: String
+  ): Cologne
 
 // MORE CODE
 ```
@@ -49,53 +38,111 @@ type Mutation {
 ```
 // MORE CODE
 
-updateUserGenealogy: async (
-      root,
-      { _id, firstName, lastName, imageUrl, category, description },
-      { Genealogy }
-    ) => {
-      const updatedGenealogy = await Genealogy.findOneAndUpdate(
-        { _id },
-        { $set: { firstName, lastName, imageUrl, category, description } },
-        { new: true }
-      );
-      return updatedGenealogy;
-    },
+updateUserCologne: async (
+ root, { _id, scentName, scentBrand, scentPrice, description }, { Cologne }
+) => {
+  const updatedCologne = await Cologne.findOneAndUpdate(
+    { _id },
+    { $set: { scentName, scentBrand, scentPrice, description } },
+    { new: true }
+  );
+  return updatedCologne
+},
 
-    likeGenealogy: async (root, { _id, username }, { Genealogy, User }) => {
+deleteUserCologne: async (root, { _id }, { Cologne }) => {
+
 
 // MORE CODE
 ```
 
-## Create variable in `genealogy` queries
+## Test in GraphQL GUI
+```
+mutation(
+  $_id: ObjectID!
+  $scentName: String!
+  $scentBrand: String!
+  $scentPrice: Int
+  $description: String
+) {
+  updateUserCologne(
+    _id: $_id
+    scentName: $scentName
+    scentBrand: $scentBrand
+    scentPrice: $scentPrice
+    description: $description
+  ) {
+    _id
+    scentName
+    scentBrand
+    scentPrice
+    description
+  }
+}
+```
+
+## Pass required variables
+```
+{
+  "_id": "5bbd9d9a44244e309d5ed76e",
+  "scentName": "two",
+  "scentBrand": "two"
+}
+```
+
+## View the test output
+```
+{
+  "data": {
+    "updateUserCologne": {
+      "_id": "5bbd9d9a44244e309d5ed76e",
+      "scentName": "two",
+      "scentBrand": "two",
+      "scentPrice": null,
+      "description": null
+    }
+  }
+}
+```
+
+## Create variable in `Cologne` queries
 `queries/index.js`
 
 ```
 // MORE CODE
 
-export const UPDATE_USER_GENEALOGY = gql`
+export const UPDATE_USER_COLOGNE = gql`
+  
+`;
+
+// MORE CODE
+```
+
+* Copy your GUI GraphQL code and paste into your client side GraphQL query
+
+`queries/index.js`
+
+```
+// MORE CODE
+
+export const UPDATE_USER_COLOGNE = gql`
   mutation(
-    $_id: ID!
-    $firstName: String!
-    $lastName: String!
-    $imageUrl: String!
-    $category: String!
+    $_id: ObjectID!
+    $scentName: String!
+    $scentBrand: String!
+    $scentPrice: Int
     $description: String
   ) {
-    updateUserGenealogy(
+    updateUserCologne(
       _id: $_id
-      firstName: $firstName
-      lastName: $lastName
-      imageUrl: $imageUrl
-      category: $category
+      scentName: $scentName
+      scentBrand: $scentBrand
+      scentPrice: $scentPrice
       description: $description
     ) {
       _id
-      firstName
-      lastName
-      likes
-      category
-      imageUrl
+      scentName
+      scentBrand
+      scentPrice
       description
     }
   }
@@ -104,246 +151,250 @@ export const UPDATE_USER_GENEALOGY = gql`
 // MORE CODE
 ```
 
-* Copy from `schema.js` and paste into `updateUserGenealogy` to speed up workflow
-
-## Import Mutation component and surround `EditGenealogyModal` with it
-* Here is the final UserGenealogies.js
-
-`UserGenealogies.js`
+## Create handleSubmit and pass it down to EditCologneModal
+`UserColognes.js`
 
 ```
-import React, { Fragment, Component } from 'react';
-import { Link } from 'react-router-dom';
-// queries
-import { Query, Mutation } from 'react-apollo';
+// MORE CODE
 
-// custom queries
-import {
-  GET_USER_GENEALOGIES,
-  DELETE_USER_GENEALOGY,
-  GET_ALL_GENEALOGIES,
-  GET_CURRENT_USER,
-} from '../../queries';
+class UserColognes extends Component {
+ // MORE CODE
 
-// components
-import EditGenealogyModal from '../Genealogy/EditGenealogyModal';
-
-class UserGenealogies extends Component {
-  state = {
-    _id: '',
-    firstName: '',
-    lastName: '',
-    imageUrl: '',
-    category: '',
-    description: '',
-    modal: false,
-  };
-
-  handleDelete = deleteUserGenealogy => {
-    const confirmDelete = window.confirm(
-      'Are you sure you want to delete this genealogy?'
-    );
-
-    if (confirmDelete) {
-      deleteUserGenealogy().then(({ data }) => {
-        // console.log(data);
-      });
-    }
-  };
-
-  handleSubmit = (event, updateUserGenealogy) => {
+  handleSubmit = (event, updateUserCologne) => {
     event.preventDefault();
-    updateUserGenealogy().then(({ data }) => {
-      console.log(data);
+    updateUserCologne().then(({ data }) => {
       this.closeModal();
     });
-  };
-
-  loadGenealogy = genealogy => {
-    // console.log(genealogy);
-    this.setState({ ...genealogy, modal: true });
-  };
-
-  closeModal = () => {
-    this.setState({ modal: false });
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    // console.log(name, ':', value);
-    this.setState({ [name]: value });
   };
 
   render() {
     const { username } = this.props;
     const { modal } = this.state;
     return (
-      <Query query={GET_USER_GENEALOGIES} variables={{ username }}>
-        {({ data, loading, error }) => {
-          if (loading) return <div>Loading...</div>;
-          if (error) return <div>Error</div>;
-          // console.log(data);
+      <Query query={GET_USER_COLOGNES} variables={{ username }}>
+
+       // MORE CODE
 
           return (
             <ul>
               {modal && (
-                <EditGenealogyModal
-                  closeModal={this.closeModal}
+                <EditCologneModal
                   handleChange={this.handleChange}
-                  genealogy={this.state}
+                  closeModal={this.closeModal}
+                  cologne={this.state}
                   handleSubmit={this.handleSubmit}
                 />
               )}
-              <h3>Your Genealogies</h3>
-              {!data.getUserGenealogies.length && (
-                <p>
-                  <strong>You have not added any genealogies yet</strong>
-                </p>
-              )}
-              {data.getUserGenealogies.map(genealogy => (
-                <li key={genealogy._id}>
-                  <Link to={`/genealogy/${genealogy._id}`}>
-                    <p>
-                      {genealogy.firstName} {genealogy.lastName}
-                    </p>
-                  </Link>
-                  <p style={{ marginBottom: '0' }}>{genealogy.likes}</p>
-                  <Mutation
-                    mutation={DELETE_USER_GENEALOGY}
-                    variables={{ _id: genealogy._id }}
-                    refetchQueries={() => [
-                      { query: GET_ALL_GENEALOGIES },
-                      { query: GET_CURRENT_USER },
-                    ]}
-                    update={(cache, { data: { deleteUserGenealogy } }) => {
-                      // console.log(cache, data);
-                      const { getUserGenealogies } = cache.readQuery({
-                        query: GET_USER_GENEALOGIES,
-                        variables: { username },
-                      });
 
-                      cache.writeQuery({
-                        query: GET_USER_GENEALOGIES,
-                        variables: { username },
-                        data: {
-                          getUserGenealogies: getUserGenealogies.filter(
-                            genealogy =>
-                              genealogy._id !== deleteUserGenealogy._id
-                          ),
-                        },
-                      });
-                    }}
-                  >
-                    {(deleteUserGenealogy, attrs = {}) => (
-                      <Fragment>
-                        <button
-                          className="button-primary"
-                          onClick={() => this.loadGenealogy(genealogy)}
-                        >
-                          Update
-                        </button>
-                        <p
-                          className="delete-button"
-                          onClick={() => this.handleDelete(deleteUserGenealogy)}
-                        >
-                          {attrs.loading ? 'deleting...' : 'X'}
-                        </p>
-                      </Fragment>
-                    )}
-                  </Mutation>
-                </li>
-              ))}
-            </ul>
-          );
+// MORE CODE
+```
+
+* We add the `handleSubmit` function in our `class`
+* We add an event that when the form is submitted with pass it the `handleSubmit` function which will give us access to it via **props** in the `EditCologneModal` component (that we pass down our `handleSubmit` function to)
+
+## Import Mutation component and surround `EditCologneModal` with it
+* We import Mutation from react-apollo
+* We import our client side GraphQL `UPDATE_USER_COLOGNE` query
+* We destructure `handleSubmit` from our `this.props` because we passed this function down through the `EditCologneModel` using the `handleSubmit` attribute
+
+`EditCologneModal.js`
+
+```
+import React, { Component } from 'react';
+
+// GraphQL
+import { Mutation } from 'react-apollo';
+import { UPDATE_USER_COLOGNE } from '../../queries';
+
+export class EditCologneModal extends Component {
+  render() {
+    const { handleChange, closeModal, cologne, handleSubmit } = this.props;
+
+    return (
+      <Mutation
+        mutation={UPDATE_USER_COLOGNE}
+        variables={{
+          _id: cologne._id,
+          scentName: cologne.scentName,
+          scentBrand: cologne.scentBrand,
+          scentPrice: cologne.scentPrice,
+          description: cologne.description,
         }}
-      </Query>
+      >
+        {updateUserCologne => (
+          <div className="modal modal-open">
+            <div className="modal-inner">
+              <div className="modal-content">
+                <form
+                  className="modal-content-inner"
+                  onSubmit={event => handleSubmit(event, updateUserCologne)}
+                >
+                  <label htmlFor="scentName">Scent Name</label>
+                  <input
+                    type="text"
+                    name="scentName"
+                    onChange={handleChange}
+                    value={cologne.scentName}
+                  />
+                  <label htmlFor="scentBrand">Scent Brand</label>
+                  <input
+                    type="text"
+                    name="scentBrand"
+                    onChange={handleChange}
+                    value={cologne.scentBrand}
+                  />
+                  <label htmlFor="scentPrice">Scent Price</label>
+                  <input
+                    type="text"
+                    name="scentPrice"
+                    onChange={handleChange}
+                    value={cologne.scentPrice}
+                  />
+                  {/* <label htmlFor="description">Add Description</label> */}
+                  {/* <textarea */}
+                  {/*   name="description" */}
+                  {/*   onChange={handleChange} */}
+                  {/*   value={cologne.description} */}
+                  {/* /> */}
+                  <hr />
+                  <div className="modal-buttons">
+                    <button className="button-primary">Update</button>
+                    <button onClick={closeModal}>Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        )}
+      </Mutation>
     );
   }
 }
 
-export default UserGenealogies;
-
+export default EditCologneModal;
 ```
 
-* Here is the final `EditGenealogyModal`
-
-`EditGenealogyModal.js`
-
-```
-import React from 'react';
-import { Mutation } from 'react-apollo';
-
-import { UPDATE_USER_GENEALOGY } from '../../queries';
-
-const EditGenealogyModal = ({ handleSubmit, genealogy, handleChange, closeModal }) => (
-  <Mutation mutation={UPDATE_USER_GENEALOGY} variables={{ _id: genealogy._id, firstName: genealogy.firstName, lastName: genealogy.lastName, imageUrl: genealogy.imageUrl, category: genealogy.category, description: genealogy.description }}>
-    {updateUserGenealogy => (
-      <div className="modal modal-open">
-        <div className="modal-inner">
-          <div className="modal-content">
-            <form className="modal-content-inner" onSubmit={(event) => handleSubmit(event, updateUserGenealogy)}>
-              <label htmlFor="firstName">First Name</label>
-              <input
-                type="text"
-                name="firstName"
-                onChange={handleChange}
-                value={genealogy.firstName}
-              />
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                type="text"
-                name="lastName"
-                onChange={handleChange}
-                value={genealogy.lastName}
-              />
-              <label htmlFor="imageUrl">Genealogy Image URL</label>
-              <input
-                type="text"
-                name="imageUrl"
-                onChange={handleChange}
-                value={genealogy.imageUrl}
-              />
-              <label htmlFor="category">Category of Genealogy</label>
-              <select
-                name="category"
-                onChange={handleChange}
-                value={genealogy.category}
-              >
-                <option value="Family">Family</option>
-                <option value="Church">Church</option>
-                <option value="Ethnic">Ethnic</option>
-                <option value="Historic">Historic</option>
-                <option value="Miscellany">Miscellany</option>
-              </select>
-              <label htmlFor="description">Add Description</label>
-              <textarea
-                name="description"
-                onChange={handleChange}
-                value={genealogy.description}
-              />
-              <hr />
-              <div className="modal-buttons">
-                <button type="submit" className="button-primary">
-                  Update
-                </button>
-                <button onClick={closeModal}>Cancel</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    )}
-  </Mutation>
-);
-
-export default EditGenealogyModal;
-
-```
+* We have null values in our description textarea so we temporarily comment it out and add a todo to deal with this issue later
 
 ## Test
 * Click `update` button
 * Make a change to one of the form fields
-* The `modal` will close and the `genealogy` document is updated
+* The `modal` will close and the `cologne` document is updated
 * Check the home page and it is updated to
 * Search for the new name and you will find it
 * Go to the single page of the document and it is updated too
+
+## Git time
+* Add and commit the changes
+
+`$ git add -A`
+
+`$ git commit -m 'add update feature`
+
+### Push the branch to origin
+`$ git push origin update`
+
+### Log into your github account
+* You will see there is a PR ready for merge
+
+![PR](https://i.imgur.com/TW2HdKe.jpg)
+
+* Click `Compare & pull request` button
+* Scroll down until you see the commits and you can click on the `add update feature`
+
+![commit](https://i.imgur.com/a8cXTgy.png)
+
+* That will take you to a page of all changes in that commit
+    - Green is code added
+    - Red is code removed
+    - All other code has not been modified
+* Review all your changes
+* If all looks good hit the `back` button in the browser
+* Create a PR
+* And click `Merge pull request` button
+* Click `Confirm merge` button
+* Then click Delete branch (You will see the color purple and that `Pull request successfully merged and closed`)
+
+![PR successful](https://i.imgur.com/ota3hx1.png)
+
+* Click `Delete branch` button to delete the remote branch
+    - You don't need it anymore
+    - Get in the habit of `pruning` your branches so they don't grow uncontrollably
+
+## Time to sync up
+* Right now your master branch on your remote GitHub is different than your master branch locally
+* Locally your master branch doesn't have the new feature `update` added
+* To prove this checkout of your `update` branch and check into your `master` branch
+
+`$ git checkout master`
+
+* You will see your branch name now says `master`
+
+## Open your text editor
+* You will see that all your changes by adding `update` are gone!
+* View your app in the browser and it also shows now sign of your `update` feature!
+* If you stop your server `ctrl` + `c`
+
+## Check the status
+`$ git status`
+
+* You will see this:
+
+```
+On branch master
+nothing to commit, working tree clean
+```
+
+## But this doesn't make sense?
+* Your remote master branch and your local master branch are different
+
+## Time to fetch
+* You need to do a fetch
+
+`$ git fetch`
+
+## Compare local with remote
+`$ git diff master origin/master`
+
+* That will compare the local branch `master` with the github remote branch `origin/master`
+* Now just press `spacebar` to navigate through all the changes
+    - Red is removed
+    - Green is added
+    - No color is unchanged
+* Press `q` to quit out of git `diff`
+
+## Show local branches
+`$ git branch`
+
+* The asterisk is the currently selected branch
+* Type `q` to exit out of list of branch pages
+
+## Pull down remote origin master branch
+`$ git pull origin master`
+
+## Test your site now
+`$ npm run dev`
+
+* You now see that our `update` feature is back and working!
+
+## Clean up unused branch and sync remote with local
+* You deleted the branch on your github (origin/master)
+* You should also delete the branch on your local
+
+`$ git branch -d update`
+
+* That will let you know the branch was deleted with something like:
+
+`Deleted branch update (was 14504fc).`
+
+* View your branches again:
+
+`$ git branch`
+
+* Now only the `master` branch exists
+* Press `q` to exist list of branches page in terminal
+
+## Congrats
+* Our local repo is perfectly in sync with our remote Github repo
+
+## Next - Time To Deploy to Production!
