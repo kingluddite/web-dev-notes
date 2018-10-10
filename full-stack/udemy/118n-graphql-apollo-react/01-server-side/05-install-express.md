@@ -21,7 +21,7 @@ app.listen(PORT, () => {
 
 ## Eslint error
 * We get this parsing error: `The keyword 'const' is reserved`
-* We need to update our eslintrc file to include es6
+* We need to update our `.eslintrc` file to include es6
 * Update our `.eslintrc` inside our root app folder
 
 `/.eslintrc`
@@ -43,3 +43,13 @@ app.listen(PORT, () => {
 
 * Close and reopen `server.js` and the eslint error should be gone
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Install Express`
+
+## Push to github
+`$ git push origin add-apollo`

@@ -1,12 +1,12 @@
 # No body-parser middleware
 
-## Let's see graphiql working
+## Let's see graphql working
 * This is a cool app that will make working with graphql in our app very easy
 * Visit the endpoint
 
 `localhost:4444/graphiql`
 
-* This will say: `Cannot GET /graphiql`
+* This will say: `Cannot GET /graphql`
 * This was the Apollo 1 URL for the GraphQL UI
 * We now have a new URL and a much better GraphQL UI
 
@@ -77,4 +77,15 @@ app.use(
 ## Houston we have another problem
 * This error tells us `Query root type must be provided`
 
-### Next Add Query root
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add body-parser middleware`
+
+## Push to github
+`$ git push origin add-apollo`
+
+## Next - Add Query root

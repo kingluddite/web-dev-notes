@@ -93,4 +93,13 @@ export default Navbar;
 // MORE CODE
 ```
 
+## Git stuff
 
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add navbar component`
+
+## Push to github
+`$ git push origin auth`

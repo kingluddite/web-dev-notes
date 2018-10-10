@@ -170,4 +170,15 @@ export default withRouter(Signout);
 * You may be getting a `{ JsonWebTokenError: jwt must be provided` error
 * We'll address soon
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add signout`
+
+## Push to github
+`$ git push origin auth`
+
 ## Next - Add Colognes to Home Page

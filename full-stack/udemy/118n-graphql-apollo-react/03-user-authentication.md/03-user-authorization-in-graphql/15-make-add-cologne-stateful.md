@@ -249,5 +249,16 @@ render() {
   - We'll need to address this at some point
   - We will soon
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Make AddCologne stateful`
+
+## Push to github
+`$ git push origin auth`
+
 ## Next - How do we populate the `username` field?
 * We will get this from our `withSession` HOC

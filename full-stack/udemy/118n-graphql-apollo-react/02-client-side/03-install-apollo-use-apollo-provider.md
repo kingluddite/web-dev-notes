@@ -35,11 +35,15 @@ ReactDOM.render(
 );
 ```
 
-## Git it done!
-* Always add git stuff from root of your app
+## Git stuff
 
+### Add to staging with git
 `$ git add -A`
 
+### Commit with git
 `$ git commit -m 'Add ApolloProvider and Apollo Boost`
+
+## Push to github
+`$ git push origin add-react`
 
 ## Next - Apollo Queries

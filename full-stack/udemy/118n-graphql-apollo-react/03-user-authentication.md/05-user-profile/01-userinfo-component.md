@@ -1,4 +1,8 @@
 # Add UserInfo Component to Profile Page
+## Create new branch
+
+`$ git checkout -b profile`
+
 * Now we will focus on the profile page
 * When a user is logged in they can click on the page
 * It will show all the user's added colognes
@@ -383,3 +387,14 @@ export default UserInfo;
 ![You have no favorites currently. Go add some!s](https://i.imgur.com/xqO8K8q.png)
 
 * `You have no favorites currently. Go add some!`
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add UserInfo component`
+
+## Push to github
+`$ git push origin profile`

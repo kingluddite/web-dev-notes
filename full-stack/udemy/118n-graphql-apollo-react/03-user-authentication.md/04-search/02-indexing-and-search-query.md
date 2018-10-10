@@ -62,3 +62,14 @@ searchColognes: async (root, { searchTerm }, { Cologne }) => {
 
 // MORE CODE
 ```
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add indexing and search query`
+
+## Push to github
+`$ git push origin search`

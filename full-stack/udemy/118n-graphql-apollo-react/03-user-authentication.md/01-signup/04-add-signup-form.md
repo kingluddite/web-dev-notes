@@ -36,3 +36,14 @@ export default Signup;
 * This is what you will see:
 
 ![signup form](https://i.imgur.com/nyiMyNC.png)
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add Signup Form`
+
+## Push to github
+`$ git push origin master`

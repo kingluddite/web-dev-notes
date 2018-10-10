@@ -10,10 +10,10 @@
 // MORE CODE
 
 <Mutation
-          mutation={SIGNUP_USER}
-          variables={{ username, email, password }}
-        >
-          {({ data, loading, error }) => {
+  mutation={SIGNUP_USER}
+  variables={{ username, email, password }}
+>
+  {({ data, loading, error }) => {
 
 // MORE CODE
 ```
@@ -43,8 +43,8 @@
 // MORE CODE
 
 {({ data, loading, error }) => {
-            return (
-              <form className="form" onSubmit={this.handleSubmit}>
+  return (
+    <form className="form" onSubmit={this.handleSubmit}>
 
 // MORE CODE
 ```
@@ -54,11 +54,11 @@
 ```
 // MORE CODE
 {(signupUser, { data, loading, error }) => {
-            return (
-              <form
-                className="form"
-                onSubmit={event => this.handleSubmit(event, signupUser)}
-              >
+  return (
+    <form
+      className="form"
+      onSubmit={event => this.handleSubmit(event, signupUser)}
+    >
 
 // MORE CODE
 ```
@@ -141,5 +141,16 @@ import { SIGNUP_USER } from '../../queries'; // add this
 ![sample data object](https://i.imgur.com/RXy5jY0.png)
 
 * This has the token returned
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add and run mutation`
+
+## Push to github
+`$ git push origin signup`
 
 ## Next - Create Error Component

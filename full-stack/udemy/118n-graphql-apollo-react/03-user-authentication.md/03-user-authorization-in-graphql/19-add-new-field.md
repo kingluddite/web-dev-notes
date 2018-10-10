@@ -446,10 +446,10 @@ export default withRouter(ColognePage);
 
 `$ git add -A`
 
-`$ git commit -m 'add scentBrand feature`
+`$ git commit -m 'add auth feature`
 
 ### Push the branch to origin
-`$ git push origin scentBrand`
+`$ git push origin auth`
 
 ### Compare and Pull Request
 * This is a really cool feature
@@ -459,7 +459,7 @@ export default withRouter(ColognePage);
 ![PR](https://i.imgur.com/TW2HdKe.jpg)
 
 * Click `Compare & pull request` button
-* Scroll down until you see the commits and you can click on the `add scentBrand feature`
+* Scroll down until you see the commits and you can click on the `add auth feature`
 
 ![commit](https://i.imgur.com/a8cXTgy.png)
 
@@ -482,16 +482,16 @@ export default withRouter(ColognePage);
 
 ## Time to sync up
 * Right now your master branch on your remote GitHub is different than your master branch locally
-* Locally your master branch doesn't have the new feature `scentBrand` added
-* To prove this checkout of your `scentBranch` branch and check into your `master` branch
+* Locally your master branch doesn't have the new feature `auth` added
+* To prove this checkout of your `auth` branch and check into your `master` branch
 
 `$ git checkout master`
 
 * You will see your branch name now says `master`
 
 ## Open your text editor
-* You will see that all your changes by adding `scentBrand` are gone!
-* View your app in the browser and it also shows now sign of your scentBrand feature!
+* You will see that all your changes by adding `auth` are gone!
+* View your app in the browser and it also shows now sign of your auth feature!
 * If you stop your server `ctrl` + `c`
 
 ## Check the status
@@ -533,17 +533,17 @@ nothing to commit, working tree clean
 ## Test your site now
 `$ npm run dev`
 
-* You now see that our `scentBrand` feature is back and working!
+* You now see that our `auth` feature is back and working!
 
 ## Clean up unused branch and sync remote with local
 * You deleted the branch on your github (origin/master)
 * You should also delete the branch on your local
 
-`$ git branch -d scentBrand`
+`$ git branch -d auth`
 
 * That will let you know the branch was deleted with something like:
 
-`Deleted branch scentBrand (was 14504fc).`
+`Deleted branch auth (was 14504fc).`
 
 * View your branches again:
 
@@ -553,6 +553,3 @@ nothing to commit, working tree clean
 
 ## Congrats
 * Our local repo is perfectly in sync with our remote Github repo
-
-
-

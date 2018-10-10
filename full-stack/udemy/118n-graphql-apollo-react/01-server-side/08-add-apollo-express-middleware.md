@@ -118,9 +118,21 @@ app.use(
 * We have to do the same thing with `GraphQL`
 * These need to match up with the mongoose models
 
-## Next - We need to fix our `Must provide typeDefs` error
+## Git stuff
 
-## Resources
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add apollo express middleware`
+
+## Push to github
+`$ git push origin add-apollo`
+
+## Next
+* We need to fix our `Must provide typeDefs` error
+
+## Additional Resources
 * [Understanding Promises](https://scotch.io/tutorials/javascript-promises-for-dummies)
 
 ### Async code

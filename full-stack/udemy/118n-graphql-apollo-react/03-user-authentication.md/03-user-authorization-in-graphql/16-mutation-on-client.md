@@ -592,6 +592,17 @@ render() {
 * After we add a cologne and view our remote mongodb on mlab we see that our cologne has a `username` associated with it - this is good!
 * After we add a cologne we see that the addCologne console log does not have a username? Why?
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add mutation on client`
+
+## Push to github
+`$ git push origin auth`
+
 ## Next - Clear form and redirect to home page after adding a record
 
 ## Additional Resources

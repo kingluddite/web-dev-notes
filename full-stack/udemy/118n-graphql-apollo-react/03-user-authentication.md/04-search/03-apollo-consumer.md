@@ -163,6 +163,19 @@ render() {
 * You can search and it will appear below input if there is a match
 * Clear input and all colognes will appear
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add Apollo Consumer`
+
+## Push to github
+`$ git push origin search`
+
+## Next - Create SearchItem
+
 ## Additional Resources
 ### Why did we use `event.persist()` in earlier code?
 * We use `event.persist()` because of events in React

@@ -1,4 +1,8 @@
 # Create Signup Mutation
+
+## Create new branch
+`$ git checkout -b signup`
+
 * **Note** When working with session, you may have to refresh the browser to get rid of the error
 
 ## Add new type of `Token`
@@ -137,4 +141,13 @@ mutation {
 ## Run again (hit play)
 * Will get this error `"User already exists",`
 
+## Git stuff
 
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add Signup`
+
+## Push to github
+`$ git push origin signup`

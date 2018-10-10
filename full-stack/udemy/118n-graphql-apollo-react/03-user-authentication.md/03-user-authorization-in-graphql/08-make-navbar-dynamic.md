@@ -332,4 +332,13 @@ class NavbarUnAuth extends Component {
 export default NavbarUnAuth;
 ```
 
+## Git stuff
 
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Make navbar dynamic`
+
+## Push to github
+`$ git push origin auth`

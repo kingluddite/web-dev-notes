@@ -122,6 +122,17 @@ export default CologneItem;
 
 * Now when on home page you can click on link headings of each `Cologne` and it will take you to single page
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add single page`
+
+## Push to github
+`$ git push origin auth` 
+
 ## Next - Query backend for Cologne
 
 

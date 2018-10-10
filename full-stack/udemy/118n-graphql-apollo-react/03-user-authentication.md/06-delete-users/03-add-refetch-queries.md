@@ -47,3 +47,14 @@ import {
 ## Test it out
 * Delete an item
 * Navigate to home page and the item has been deleted
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add refetch queries`
+
+## Push to github
+`$ git push origin delete-user-colognes`

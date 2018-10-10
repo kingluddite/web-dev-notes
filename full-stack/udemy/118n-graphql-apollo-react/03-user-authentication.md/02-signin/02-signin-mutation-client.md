@@ -129,6 +129,17 @@ export default Signin;
 
 * Log in and you will see the data object returned from our **console.log()** and you'll see token if successfully logged in
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add signin mutation client`
+
+## Push to github
+`$ git push origin signin`
+
 ## Next - Add token to localStorage
 
 

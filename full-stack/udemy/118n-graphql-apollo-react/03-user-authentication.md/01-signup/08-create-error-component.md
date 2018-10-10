@@ -65,3 +65,14 @@ import Error from '../Error';
 ## Test
 * Enter another duplicate user and we get the same UI error output
 * It works just like it did before but now our code is better structured and resuable - aka.... DRY!
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add Error Component`
+
+## Push to github
+`$ git push origin signup`

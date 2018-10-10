@@ -137,3 +137,13 @@ export default App;
 * You should see `getAllColognes` returned with the one cologne we created
 * The properties were what we specified inside our graphql we used in the GUI GraphQL as well as `queries/index.js`
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add client side GraphQL queries`
+
+## Push to github
+`$ git push origin add-react`

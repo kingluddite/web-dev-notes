@@ -191,6 +191,16 @@ render() {
 
 ## Test
 * Fill out form and watch the values typed in fields appear in fields
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add Input state`
+
+## Push to github
+`$ git push origin signup`
 
 ## Next - Add Mutation
 * When form is submitted we want to write a `Mutation` that will alter our db

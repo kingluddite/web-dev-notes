@@ -51,10 +51,16 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 * A new browser window will open that is running your react app and all you'll see is `Home`
 
-## Git it done!
-`$ ga -A`
+## Git stuff
 
-`$ git commit -m 'reorg react'`
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Reorg React folder structure`
+
+## Push to github
+`$ git push origin add-react`
 
 
 

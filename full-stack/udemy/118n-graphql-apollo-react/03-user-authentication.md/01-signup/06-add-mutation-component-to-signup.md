@@ -216,4 +216,23 @@ export const SIGNUP_USER = gql`
 `;
 ```
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add Signup mutation`
+
+## Push to github
+`$ git push origin signup`
+
 ## Next - Add and run mutation
+
+
+
+
+
+
+
+

@@ -156,5 +156,16 @@ export default withRouter(AddCologne); // add this
 * You will be redirected to home page with new Cologne
 * But the bad news is when we do, we do not see the cologne we added on the home page (We'll fix that next)
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Clear state and redirect`
+
+## Push to github
+`$ git push origin auth`
+
 ## Next - Optimistic UI
 

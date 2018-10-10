@@ -1,4 +1,5 @@
 # deleteUsercologne and Mutation
+
 * Users add colognes
 * We need a way for users to delete any colognes they added
 
@@ -334,11 +335,18 @@ deleteUserCologne: async (root, { _id }, { Cologne }) => {
 // MORE CODE
 ```
 
+## Git stuff
 
+### Add to staging with git
+`$ git add -A`
 
+### Commit with git
+`$ git commit -m 'Add delete user mutation`
 
+## Push to github
+`$ git push origin delete-user-colognes`
 
-## Delete with Optimistic UI
+## Next - Delete with Optimistic UI
 
 ## Additional Resources
 * [What is CRUD](https://www.codecademy.com/articles/what-is-crud)

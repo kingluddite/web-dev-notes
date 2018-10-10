@@ -172,6 +172,17 @@ mongoose
 // MORE CODE
 ```
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add MongoDB`
+
+## Push to github
+`$ git push origin add-apollo`
+
 ### Additonal Resources: Difference between `require` and `import`
 * JavaScript introduced a great way to compartmentalize JavaScript. In the pass you had to use [IFFE](https://stackoverflow.com/questions/8228281/what-is-the-function-construct-in-javascript) statements but now you can use **import** and **export**
 * But you will also see we are using **require** and this is often a point of confusion with people learning JavaScript

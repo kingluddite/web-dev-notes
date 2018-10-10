@@ -113,6 +113,17 @@ DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes inst
 * Ignore that for now
 * We'll fix that soon
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add Mongoose Schemas`
+
+## Push to github
+`$ git push origin add-apollo`
+
 ## Additional Resources
 * [Learn more about mongoose](https://code.tutsplus.com/articles/an-introduction-to-mongoose-for-mongodb-and-nodejs--cms-29527)
 * [What are JavaScript Promises](https://code.tutsplus.com/tutorials/keeping-promises-with-javascript--cms-25056)

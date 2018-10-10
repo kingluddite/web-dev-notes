@@ -195,6 +195,17 @@ class ColognePage extends Component {
 * Using the same code in two different place
 * Our code is more DRY and reusable
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Make dates pretty`
+
+## Push to github
+`$ git push origin profile`
+
 ## Next - Add User Colognes
 
 ## Additional Resources

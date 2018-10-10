@@ -78,3 +78,14 @@ exports.resolvers = {
 ![fields](https://i.imgur.com/6iEc9NR.png)
 
 * Queries will be useful for us from returning data from our database
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add query root`
+
+## Push to github
+`$ git push origin add-apollo`

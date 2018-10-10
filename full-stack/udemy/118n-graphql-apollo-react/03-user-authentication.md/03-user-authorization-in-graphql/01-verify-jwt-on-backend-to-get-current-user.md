@@ -1,4 +1,7 @@
 # Verify JWT on Backend to Get Current User
+## Create new branch
+`$ git checkout -b auth`
+
 * We are sending our local token to our backend 
 
 ## But...
@@ -81,5 +84,16 @@ app.use(async (req, res, next) => {
 
 * You may get this error `JsonWebTokenError: jwt must be provided`
 * We'll address and repair that later
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add verify jwt on backend to getCurrentUser`
+
+## Push to github
+`$ git push origin auth`
 
 ## Next - add getCurrentUser query

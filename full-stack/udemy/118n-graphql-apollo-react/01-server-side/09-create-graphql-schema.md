@@ -281,5 +281,18 @@ mongoose.set('useCreateIndex', true); // add this line
 
 * DB connected and no warnings or errors!
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Create GraphQL schema`
+
+### Push to github
+`$ git push origin add-apollo`
+
+### Next - 
+
 ## Additional Resources
 * [npm package versioning](https://docs.npmjs.com/getting-started/semantic-versioning)

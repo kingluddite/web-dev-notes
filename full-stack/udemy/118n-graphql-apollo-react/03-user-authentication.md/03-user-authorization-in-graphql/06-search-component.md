@@ -59,4 +59,14 @@ const Root = ({ refetch }) => (
 }
 ```
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add search component`
+
+## Push to github
+`$ git push origin auth` 
 ## Next - add the auth navbar

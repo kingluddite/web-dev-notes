@@ -364,6 +364,17 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 3. Refresh
 4. You will see new user data
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add getCurrentUser query`
+
+## Push to github
+`$ git push origin auth`
+
 ## Additional Resources
 * [What are higher order components](https://css-tricks.com/what-are-higher-order-components-in-react/)
 * [HOC tutorial for React](https://www.youtube.com/watch?v=A9_9gQIkfx4)

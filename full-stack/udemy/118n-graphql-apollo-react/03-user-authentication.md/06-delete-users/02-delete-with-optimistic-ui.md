@@ -95,3 +95,14 @@
 
 ## Test
 * Now when you delete an item you will briefly see red `deleting...` text
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add delete with optimisitc UI`
+
+## Push to github
+`$ git push origin delete-user-colognes`

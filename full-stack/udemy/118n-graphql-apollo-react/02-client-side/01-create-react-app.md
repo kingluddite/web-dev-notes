@@ -1,4 +1,7 @@
 # Create React App
+## Create new branch
+`$ git checkout -b add-react`
+
 * Nice error detection built-in
 
 ## Stop server
@@ -162,6 +165,17 @@
 * Go up one directory (app root)
 
 `$ cd ../`
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add react`
+
+## Push to github
+`$ git push origin add-react`
 
 ## Additional Resources
 * [more on husky](https://blog.vanila.io/pre-commit-git-hooks-with-husky-b2fce57d0ecd)

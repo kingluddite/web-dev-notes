@@ -45,5 +45,16 @@ export default AddCologne;
 
 `http://localhost:3000/Cologne/add`
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add cologne form`
+
+## Push to github
+`$ git push origin auth`
+
 ## Next - Make AddCologne stateful
 

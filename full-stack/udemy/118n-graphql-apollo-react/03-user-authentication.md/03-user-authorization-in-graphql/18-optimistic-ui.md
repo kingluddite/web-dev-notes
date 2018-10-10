@@ -272,6 +272,17 @@ class App extends Component {
 4. Open `getAllColognes` and it is loading all fresh data
 5. Congratulate yourself - Optimistic UI is working!
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add optimistic UI`
+
+## Push to github
+`$ git push origin auth`
+
 ## Additional Resources
 * [More about Optimistic UI](https://blog.bitsrc.io/building-an-optimistic-user-interface-in-react-b943656e75e3)
 * [Apollo explains Optimistic UI](https://www.apollographql.com/docs/react/features/optimistic-ui.html)

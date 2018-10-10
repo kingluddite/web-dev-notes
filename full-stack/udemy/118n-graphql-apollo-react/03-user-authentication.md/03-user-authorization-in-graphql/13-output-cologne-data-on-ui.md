@@ -61,5 +61,16 @@ export default withRouter(ColognePage);
   - There are packages like `momentjs` that make this a lot easier
   - We'll address this soon
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Output cologne data on UI`
+
+## Push to github
+`$ git push origin auth`
+
 ## Next - Add a cologne (with a user)
 * Associate the name of the user that created the `cologne` by adding it to the form that creates new colognes

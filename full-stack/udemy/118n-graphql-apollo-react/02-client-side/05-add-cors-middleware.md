@@ -41,3 +41,17 @@ app.use(cors(corsOptions));
 ![getAllColognes](https://i.imgur.com/Jx0QxbO.png)
 
 * Refresh again and you will see `Loading...` for a split second
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add cors middleware`
+
+## Push to github
+`$ git push origin add-react`
+
+## Additional Resources
+* [What is cors](https://www.codecademy.com/articles/what-is-cors)

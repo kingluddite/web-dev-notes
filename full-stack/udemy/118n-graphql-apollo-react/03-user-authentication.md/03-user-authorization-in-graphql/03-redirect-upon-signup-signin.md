@@ -105,4 +105,15 @@ export default withRouter(Signup);
 * You can find the token inside the `Application` tab > `Storage` > `Local Storage` > `http://localhost:3000`
 * After selecting that you may need to move window a bit to see the Key and Value of the token
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add redirect to signin and signup`
+
+## Push to github
+`$ git push origin auth`
+
 ### Next - `refetch` that query

@@ -353,5 +353,16 @@ class CologneItem extends Component {
 export default CologneItem;
 ```
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add cologne to home page`
+
+## Push to github
+`$ git push origin auth`
+
 ## Additional Resources
 * [What is Virtual DOM in react](https://www.youtube.com/watch?v=RquK3TImY9U)

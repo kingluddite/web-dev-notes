@@ -210,5 +210,15 @@ export default withRouter(ColognePage);
 * Refresh the browser
 * You will now see `getCologne` in the console
 * Expand it and you will see all the info returned from our single cologne query (That is what is inside the `data` object inside our response object from our server)
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add query backend for cologne`
+
+## Push to github
+`$ git push origin auth`
 
 ## Next - Output single cologne data on our UI

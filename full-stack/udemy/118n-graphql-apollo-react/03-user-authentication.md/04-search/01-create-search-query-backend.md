@@ -1,4 +1,8 @@
 # Create `seachCologne` query on Backend
+
+## Create new branch
+`$ git checkout -b search`
+
 * Add [3 distinct colognes](http://colognebuys.com/cologne/guide-to-colognes/)
 * We are going to create a search so we need something to search
 
@@ -237,5 +241,16 @@ const Search = () => {
 ## Test
 * The names are now links
 * Click on a name and you'll be taken to the single `ColognePage`
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Create search query background`
+
+## Push to github
+`$ git push origin search`
 
 ## Next - Indexing and Searching on input change

@@ -152,5 +152,4 @@ nothing to commit, working tree clean
 ## Congrats
 * Our local repo is perfectly in sync with our remote Github repo
 
-## Next
-* Adding the ability to `Like` a cologne
+## Next - Add the ability to Edit/Update colognes

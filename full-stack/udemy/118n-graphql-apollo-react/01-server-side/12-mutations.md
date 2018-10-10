@@ -85,3 +85,17 @@ mutation {
 ## What is async await?
 * [What are promises](https://www.youtube.com/watch?v=2d7s3spWAzo)
 * [wes boss talks async await](https://www.youtube.com/watch?v=9YkUCxvaLEk)
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add a mutation`
+
+## Push to github
+`$ git push origin add-apollo`
+
+## Additional Resources
+* [What is Root query again?](https://graphql.org/learn/execution/)

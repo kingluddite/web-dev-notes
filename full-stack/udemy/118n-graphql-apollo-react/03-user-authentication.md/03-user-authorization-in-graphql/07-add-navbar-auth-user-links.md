@@ -129,6 +129,17 @@ const Root = ({ refetch }) => (
 ## Test in browser
 * Make sure your new components are correctly loading
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add navbar auth user links`
+
+## Push to github
+`$ git push origin auth` 
+
 ## Next - Make Navbar dynamic 
 
 

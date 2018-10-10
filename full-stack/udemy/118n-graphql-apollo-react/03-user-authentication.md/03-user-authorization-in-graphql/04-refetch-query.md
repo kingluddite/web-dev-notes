@@ -160,5 +160,16 @@ export default withSession;
 
 ![logging refetch fresh data](https://i.imgur.com/KBzOrBr.png)
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add refetch query`
+
+## Push to github
+`$ git push origin auth`
+
 ## Next - Add a navbar
 * Let's make navigating our app a lot easier

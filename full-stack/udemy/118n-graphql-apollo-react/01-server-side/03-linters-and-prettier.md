@@ -86,11 +86,25 @@
 * Sometimes you won't see your file update
 * I suggest tabbing a line and then saving as that kick starts the linter into doing it's job
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add basic linters`
+
+## Push to github
+`$ git push origin add-apollo`
+
 ############################
 ###########################
 ### Stop here and move to next note `04-install-starter-project.md` !!!!!
 #############################
 ###########################
+
+## Additional Resources
+* [wes bos tutorial setting up vs code with eslint and prettier](https://www.youtube.com/watch?v=YIvjKId9m2c)
 
 #### Later on... we'll come back here and make use of a more powerful linter
 * We don't do this at the beginning because we want to limit the amount of stuff we are watching as it can easily become overwelming and distracting
@@ -319,6 +333,3 @@ module.exports = {
 
 ## Eslint turn off for entire page
 `/* eslint react/no-did-mount-set-state: 0 */`
-
-## Additional Resources
-* [wes bos tutorial setting up vs code with eslint and prettier](https://www.youtube.com/watch?v=YIvjKId9m2c)

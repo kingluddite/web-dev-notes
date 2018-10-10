@@ -95,6 +95,17 @@ export default Signup;
 * `http://localhost:3000/signup` -- shows signup route
 * `http://localhost:3000/badroute` -- doesn't match a route, Redirect kicks in and reroutes to home page
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add React Router`
+
+## Push to github
+`$ git push origin signup`
+
 ## Additional Resources
 * **Note** Reach Router - getting a lot of press and might replace react router so here is a look:
 * [reach router intro video](https://www.youtube.com/watch?time_continue=13&v=3tgz1E4MsAk)

@@ -68,5 +68,15 @@ class AddCologne extends Component {
 * Add a new cologne
 * Go to profile page and it will show fresh data
 
-## Next
-* Default Text
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add refetch to AddCologne`
+
+## Push to github
+`$ git push origin delete-user-colognes`
+
+## Next - Add Default Text

@@ -68,8 +68,14 @@ mutation {
 ![encrypted password](https://i.imgur.com/xvlurSS.png)
 
 ## Git stuff
+
+### Add to staging with git
 `$ git add -A`
 
+### Commit with git
 `$ git commit -m 'Add hash and salt`
 
-## Next routing with React Router
+## Push to github
+`$ git push origin signup`
+
+## Next - routing with React Router

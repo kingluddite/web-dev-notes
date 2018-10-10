@@ -1,6 +1,9 @@
 # Signin Mutation on the Backend
 `schema.js`
 
+## Create new branch
+`$ git checkout -b signin`
+
 * Add our `signinUser` schema
 
 ```
@@ -94,3 +97,14 @@ const isValidPassword = await bcrypt.compare(password, user.password);
 ```
 
 ## Next - Signin mutation client
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add signin mutation backend`
+
+## Push to github
+`$ git push origin signin`

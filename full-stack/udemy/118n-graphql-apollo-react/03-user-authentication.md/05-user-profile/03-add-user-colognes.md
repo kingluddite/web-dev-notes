@@ -468,6 +468,19 @@ export default UserColognes;
 ## Take it for a test drive in the browser
 * Now you can see all the user `colognes` when you view the `profile` page
 
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add UserColognes`
+
+## Push to github
+`$ git push origin profile`
+
+## Next - Route Protection
+
 ## Additional Resources
 * [jsx comments](https://wesbos.com/react-jsx-comments/)
 
