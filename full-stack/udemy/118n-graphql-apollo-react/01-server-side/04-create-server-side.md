@@ -18,8 +18,6 @@
         + Improves security
     - concurrently
         + Enables us to run two servers in one terminal
-    - cors
-        + For two servers communicating with one another
     - dotenv
         + Enables us to use environment variables
         + We need to keep API keys and other "security issues" private and away from github
@@ -33,7 +31,7 @@
 ### Start from scratch
 * Install in the `server` folder
 
-`$ npm i apollo-server-express bcrypt concurrently cors dotenv express graphql graphql-tools jsonwebtoken mongoose`
+`$ npm i apollo-server-express bcrypt concurrently dotenv express graphql graphql-tools jsonwebtoken mongoose`
 
 * Back out of the server folder
 

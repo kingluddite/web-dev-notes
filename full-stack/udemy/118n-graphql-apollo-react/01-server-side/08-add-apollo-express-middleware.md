@@ -1,4 +1,5 @@
 # Add Apollo Express Middleware
+## NOTE- Apollo 2 doesn't need body-parser
 ## add `body-parser`
 * We will need this for all our JSON requests and responses
 
@@ -51,6 +52,8 @@ const { resolvers } = require('./resolvers');
 * Packages that will allow us to add our GraphQL middleware
 * We installed both of these packages earlier
     - This essentially allows us to connect GraphQL with Express
+
+## FIX THESE - remove this 
 
 `server.js`
 

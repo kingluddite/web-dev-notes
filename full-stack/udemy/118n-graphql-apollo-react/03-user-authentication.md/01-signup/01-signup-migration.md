@@ -77,22 +77,22 @@ SECRET=sdfkj0easdfadfj;lkjelkj93j3
 
 Mutation: {
 
-// MORE CODE
-signupUser: async (root, { username, email, password }, { User }) => {
-      // check if user already exists
-      const user = await User.findOne({ username });
-      if (user) {
-        throw new Error('User already exists');
-      }
-      // user doesn't exist, create one
-      const newUser = await new User({
-        username,
-        email,
-        password,
-      }).save();
-      return { token: createToken(newUser, process.env.SECRET, '1hr') };
+  // MORE CODE
+  signupUser: async (root, { username, email, password }, { User }) => {
+        // check if user already exists
+        const user = await User.findOne({ username });
+        if (user) {
+          throw new Error('User already exists');
+        }
+        // user doesn't exist, create one
+        const newUser = await new User({
+          username,
+          email,
+          password,
+        }).save();
+        return { token: createToken(newUser, process.env.SECRET, '1hr') };
+      },
     },
-  },
 };
 
 ```

@@ -17,6 +17,16 @@
 
 `$ npx create-react-app client`
 
+##### NEW (as of 8/8/2018) Create React App 2
+* Migrate from create react app 1 to 2
+1. Go to the root folder of the project
+2. Open `package.json` file
+3. Go under dependencies and locate “react-scripts”
+4. Change the version to 2.0.3
+5. Install with `$ npm i`
+
+`$ npm i`
+
 ### Good app organization
 * We have a folder called `server` that holds all our server side stuff (`Node.js`, `Express`, `Mongoose`)
 * We also have a folder called `client` that holds all our client side stuff (`React`)
@@ -29,7 +39,7 @@
 * Create react app has certain dependencies and you can run into conflicts if you have other `node_modules` in your project
   - In our app we have `node_modules` in 3 places
     + root, server and client
-* To avoid conflicts make sure your root package.json looks like this:
+* To avoid conflicts make sure your root `package.json `looks like this:
 
 `/package.json`
 
@@ -72,10 +82,9 @@
 
 * You will see your react app working with boilerplate css
 
-#### Add script for `pretty-quick` and `husky`
-* Then add the precommit script to your `package.json` file:
-* Both packages were already installed
-* Put this in your root `package.json`
+#### `pretty-quick` and `husky`
+* We already added and installed the precommit script to our `package.json` file in the root of our app
+* This scripts is in your root `package.json` and it will run automatically whenever you push your commit to tell you if you code is good and clean and formatted properly, if not, you or your teammates won't be able to push to github which is a great way to ensure you code is written and structured well
 
 ```
 // MORE CODE
@@ -113,69 +122,5 @@
 ## Additional Resources
 * [Create a New React App](https://reactjs.org/docs/create-a-new-react-app.html)
 * [The constructor is dead!](https://hackernoon.com/the-constructor-is-dead-long-live-the-constructor-c10871bea599)
-
-## Maybe don't need the next eslint and prettier stuff
-## Eslint and Prettier
-* If you try to make changes to a component inside `client` you will see that we are not formatting our code properly
-* We need to use prettier and eslint inside our `client`
-* [great documentation on installing eslint and prettier inside vs-code](https://medium.com/technical-credit/using-prettier-with-vs-code-and-create-react-app-67c2449b9d08)
-* Assumes your are using `Create React App`, `Yarn` and `Visual Studio Code`
-* Please note that Create React App will not show any Prettier errors in the browser console or terminal output. The errors will only be shown in Visual Studio Code
-
-### Install Prettier and the ESLint Plugin
-`$ yarn add --dev --exact prettier`
-
-`$ yarn add --dev eslint-plugin-prettier`
-
-### Install the Prettier and ESLint VS Code Extensions
-* [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-* [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-### Create ESLint Configuration file
-
-`.eslintrc`
-
-```
-{
-  "extends": "react-app",
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error"
-  }
-}
-```
-
-### Create Prettier Configuration file
-
-`.prettierrc`
-
-```
-{
-  "singleQuote": true,
-  "trailingComma": "es5"
-}
-```
-
-### Apply Prettier Formatting on Save (Optional)
-* You most likely want to apply the Prettier formatting whenever you save your files
-
-`"editor.formatOnSave": true`
-
-### Prevent Prettier Violations from being Committed (Optional)
-* Go up one directory (app root)
-
-`$ cd ../`
-
-## Git stuff
-
-### Add to staging with git
-`$ git add -A`
-
-### Commit with git
-`$ git commit -m 'Add react`
-
-## Push to github
-`$ git push origin add-react`
-
-## Additional Resources
 * [more on husky](https://blog.vanila.io/pre-commit-git-hooks-with-husky-b2fce57d0ecd)
+* [create react app 2](https://blog.bitsrc.io/introducing-create-react-app-version-2-0-6667aee5db17)

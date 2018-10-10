@@ -20,7 +20,7 @@
 * New styles are added (skeleton)
 
 ## Add CSS 
-`App.css`
+`App.scss`
 
 ```css
 .App {

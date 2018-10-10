@@ -92,7 +92,7 @@ exports.resolvers = {
   },
 ```
 
-`http://localhost:4444/graphiql`
+`http://localhost:4444/graphql`
 
 ```
 {

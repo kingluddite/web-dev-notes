@@ -11,7 +11,7 @@
 // MORE CODE
 
   type Query {
-    getAllGenealogies: [Cologne]
+    getAllColognes: [Cologne]
   }
   
   // add below code
@@ -82,10 +82,6 @@ mutation {
 * Check your mongoDB database for the collection info
 * When you insert a new document in mongoDB it will automatically add a field named `_id`
 
-## What is async await?
-* [What are promises](https://www.youtube.com/watch?v=2d7s3spWAzo)
-* [wes boss talks async await](https://www.youtube.com/watch?v=9YkUCxvaLEk)
-
 ## Git stuff
 
 ### Add to staging with git
@@ -99,3 +95,5 @@ mutation {
 
 ## Additional Resources
 * [What is Root query again?](https://graphql.org/learn/execution/)
+* [What are promises](https://www.youtube.com/watch?v=2d7s3spWAzo)
+* [wes boss talks async await](https://www.youtube.com/watch?v=9YkUCxvaLEk)

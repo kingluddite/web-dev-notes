@@ -4,7 +4,7 @@
 ## Create query file
 `client/src/queries/index.js`
 
-* The Query component is one of the most important building blocks of your Apollo application
+* The `Query` component is one of the most important building blocks of your Apollo application
 * To create a Query component, just pass a GraphQL query string wrapped with the `gql` function to `this.props.query` and provide a function to `this.props.children` that tells React what to render
 * The **Query** component is an example of a React component that uses the render prop pattern
 * React will call the `render prop function` you provide with an object from Apollo Client containing `loading`, `error`, and `data` properties that you can use to render your UI
@@ -53,69 +53,34 @@ export const GET_ALL_COLOGNES = gql`
 ## Where will we run this query?
 * In `App.js`
 * We will use `Query` from `react-apollo` and this enables us to perform queries
-* We will also **import** the query we just wrote `GET_ALL_QUERIES`
-* We'll delete our App class and replace it with a Stateless Functional Component (SFC)
+* We will also **import** the query we just wrote `GET_ALL_COLOGNES`
 * Inside `<Query></Query>` we will have **render props** (just a function wrapped in curly braces that allows us to do many cool things)
     - We can return something with render props
-
-### What are render props?
-* [article of render props](https://levelup.gitconnected.com/understanding-react-render-props-by-example-71f2162fd0f2)
-
-`App.js`
-
-```
-import React from 'react';
-import './App.css';
-
-import { Query } from 'react-apollo';
-import { GET_ALL_COLOGNES } from '../queries';
-
-const App = () => (
-  <div className="App">
-    <h1>Home</h1>
-    <Query query={GET_ALL_COLOGNES}>
-      {({ data, loading, error }) => {
-        if (loading) return <div>Loading...</div>;
-        if (error) return <div>Error</div>;
-        console.log(data);
-
-        return <p>Colognes</p>;
-      }}
-    </Query>
-  </div>
-);
-export default App;
-```
-
-## no-cors error
-* Test in browser and we have two errors
-* **405 (Method Not Allowed)**
-* `No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3000' is therefore not allowed access. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.`
-
-## If you didn't convert your class into a SFC this is what it would look like
-* Might be easier just to always use class based components
 
 `App.js`
 
 ```
 import React, { Component } from 'react';
-import './App.css';
 
+// graphql
 import { Query } from 'react-apollo';
-import { GET_ALL_SONGS } from '../queries';
+import { GET_ALL_COLOGNES } from '../queries';
+
+// styles
+import './App.scss';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Five Star Songs</h1>
-        <Query query={GET_ALL_SONGS}>
+        <h1>Home</h1>
+        <Query query={GET_ALL_COLOGNES}>
           {({ data, loading, error }) => {
             if (loading) return <div>Loading...</div>;
             if (error) return <div>Error</div>;
             console.log(data);
 
-            return <p>Songs</p>;
+            return <p>Colognes</p>;
           }}
         </Query>
       </div>
@@ -126,15 +91,8 @@ class App extends Component {
 export default App;
 ```
 
-* If you are getting error about not finding `graphql`
-  - It is required so you must have it installed on the client
-
-`$ cd client && npm i graphql`
-
-* `localhost:3000` should work
-
 ## View console
-* You should see `getAllColognes` returned with the one cologne we created
+* You should see `getAllColognes` returned with all the colognes that we created using the GraphQL GUI
 * The properties were what we specified inside our graphql we used in the GUI GraphQL as well as `queries/index.js`
 
 ## Git stuff
@@ -143,7 +101,13 @@ export default App;
 `$ git add -A`
 
 ### Commit with git
-`$ git commit -m 'Add client side GraphQL queries`
+`$ git commit -m 'Add client side GraphQL queries'`
 
 ## Push to github
 `$ git push origin add-react`
+
+## Additional Resources
+### What are render props?
+* [article of render props](https://levelup.gitconnected.com/understanding-react-render-props-by-example-71f2162fd0f2)
+* [what is cors](https://www.codecademy.com/articles/what-is-cors)
+* **note** Before Apollo 2 you needed to use cors but with Apollo you do not need it but it is important to know what is and why it is needed
