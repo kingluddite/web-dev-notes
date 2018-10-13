@@ -201,7 +201,7 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
       username: currentUser.username,
     }).populate({
       path: 'favorites',
-      model: 'Genealogy',
+      model: 'Cologne',
     });
     return user;
   },
@@ -282,7 +282,7 @@ export class UserInfo extends Component {
           </h3>
           {favorites.map(favorite => (
             <li key={favorite._id}>
-              <Link to={`/genealogy/${favorite._id}`}>
+              <Link to={`/cologne/${favorite._id}`}>
                 <p>{favorite.title}</p>
               </Link>
             </li>
@@ -365,7 +365,7 @@ export default UserInfo;
       </h3>
       {session.getCurrentUser.favorites.map(favorite => (
         <li key={favorite._id}>
-          <Link to={`/genealogy/${favorite._id}`}>
+          <Link to={`/cologne/${favorite._id}`}>
             <p>
               {favorite.firstName} {favorite.lastName}
             </p>

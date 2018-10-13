@@ -13,7 +13,7 @@
 // MORE CODE
 
 type Query {
-    getAllGenealogies: [Cologne]
+    getAllColognes: [Cologne]
   }
 
   type Token {

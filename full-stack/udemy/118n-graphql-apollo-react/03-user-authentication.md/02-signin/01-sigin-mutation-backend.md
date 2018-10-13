@@ -10,7 +10,7 @@
 // MORE CODE
 
 type Mutation {
-  addGenealogy(firstName: String!, lastName: String!, dateOfBirth: String, description: String, username: String  ): Genealogy
+  addCologne(firstName: String!, lastName: String!, dateOfBirth: String, description: String, username: String  ): Cologne
 
   signinUser(username: String!, password: String!): Token
   signupUser(username: String!, email: String!, password: String!): Token

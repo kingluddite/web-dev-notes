@@ -50,7 +50,7 @@ class App extends Component {
   render() {
     return (
       // MORE CODE
-        <Query query={GET_ALL_GENEALOGIES}>
+        <Query query={GET_ALL_COLOGNES}>
           {({ data, loading, error }) => {
             if (loading) return <Spinner />;
             if (error) return <div>Error</div>;

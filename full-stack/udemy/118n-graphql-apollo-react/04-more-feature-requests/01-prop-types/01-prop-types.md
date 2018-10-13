@@ -16,17 +16,14 @@
 3. You should always **use them in every react project**
 
 ## More on eslint
-* We have an `.eslintrc` in server but not in client
-* Our server `.eslintrc` finds linting errors on server
+* We have an `.eslintrc` in our app's root
 
-## eslint on server
-* Example
-  - You can use VS Code or the terminal
-  - Let's use the terminal
+## Run eslint from the terminal
+`$ eslint .`
 
-`$ eslintrc .`
+* You should see the terminal tells you errors you need to fix
 
-* After a few moments you'll see you need to descructure `/models/Cologne.js`
+* After a few moments you'll see you need to destructure `/models/Cologne.js`
 
 `Cologne.js`
 
@@ -82,7 +79,7 @@ signinUser: async (root, { username, password }, { User }) => {
 * We will add a new file `.eslintrc` in the `client` folder
 * We will use Wes Bos' `.eslintrc`
 
-#### Wes Bos (Thanks Wes!)
+### Wes Bos (Thanks Wes!)
 `.eslintrc`
 
 ```
@@ -212,7 +209,7 @@ signinUser: async (root, { username, password }, { User }) => {
 ```
 
 ## No new `.prettierrc`
-* Now our prettier is baked inside our `.eslintrc` so we dont' need a separate file
+* Now our prettier is baked inside our `.eslintrc` so we don't' need a separate file
 
 ## Take it for a test drive
 * I like to shut down my text editor `Vim`, `Sublime Text` or `VS Code` and open them again
@@ -474,6 +471,11 @@ signinUser().then(async ({ data: { signinUser } }) => {
 #### Eslint turn off for entire page
 `/* eslint react/no-did-mount-set-state: 0 */`
 
+
+### Other ways to use PropTypes
+* Here are just a few other examples to explain the finer points of using prop types
+* I'll use a fictitious code base to give examples
+
 ### PropTypes.shape
 * This allows us to pass in another object and we can define the props that are actually coming in
 
@@ -564,7 +566,7 @@ export class President extends Component {
     - This will alert you anytime something is passed that shouldn't be
     - Saves you a ton of time debugging
     - This will make your components bulletproof
-        + you will know what is going in and what is going out
+        + You will know what is going in and what is going out
         + Code reviewers, job interviews will be looking at your code to make sure you are using these
         + ESlint will complain to you to use them
     - You will be loved by your teammates
@@ -634,7 +636,7 @@ export class President extends Component {
 * You will see your branch name now says `master`
 
 ## Open your text editor
-* You will see that all your changes by adding `proptypese` are gone!
+* You will see that all your changes by adding `proptypes` are gone!
 * View your app in the browser and it also shows now sign of your `proptypes` feature!
 * If you stop your server `ctrl` + `c`
 
