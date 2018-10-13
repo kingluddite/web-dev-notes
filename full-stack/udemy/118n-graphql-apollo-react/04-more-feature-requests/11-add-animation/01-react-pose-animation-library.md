@@ -1,4 +1,8 @@
 # React Pose Animation Library
+
+## Feature branch
+`$ git checkout -b animation`
+
 * [Pose website]( )
 * [Great free tutorial](https://popmotion.io/pose/learn/get-started/)
 

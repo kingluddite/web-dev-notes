@@ -42,36 +42,6 @@ export const GET_COLOGNE = gql`
 `;
 
 // MORE CODE
-
-// Cologne Mutations
-
-export const ADD_COLOGNE = gql`
-  mutation(
-    $scentName: String!
-    $scentBrand: String!
-    $scentPrice: Int
-    $description: String
-    $username: String
-  ) {
-    addCologne(
-      scentName: $scentName
-      scentBrand: $scentBrand
-      scentPrice: $scentPrice
-      description: $description
-      username: $username
-    ) {
-      _id
-      scentName
-      scentBrand
-      scentPrice
-      description
-      createdDate
-      likes
-    }
-  }
-`;
-
-// MORE CODE
 ```
 
 * Now this is an example to show you how to use fragments to clean up your code
@@ -108,18 +78,47 @@ export const cologneFragments = {
 * Add it right BEFORE the final back tic of the query you want to insert the fragment
 
 ```
-export const ADD_COLOGNE = gql`
-  mutation($title: String!, $category: String!, $username: String) {
-    addGenealogy(title: $title, category: $category, username: $username) {
-      ...CompleteGenealogy
+import { gql } from 'apollo-boost';
+
+// fragments
+import { cologneFragments } from './fragments';
+
+// cologne queries
+
+export const GET_ALL_COLOGNES = gql`
+  query {
+    getAllColognes {
+      ...CompleteCologne
     }
   }
-  ${genealogyFragments.genealogy}
+  ${cologneFragments.cologne}
 `;
+
+export const GET_COLOGNE = gql`
+  query($_id: ObjectID!) {
+    getCologne(_id: $_id) {
+      ...CompleteCologne
+    }
+  }
+  ${cologneFragments.cologne}
+`;
+
+// MORE CODE
 ```
 
 ## Test in browser
 * Add a `cologne` in your app
 * It should work just as it did before
+
+## Git stuff
+
+### Add to staging with git
+`$ git add -A`
+
+### Commit with git
+`$ git commit -m 'Add fragments`
+
+## Push to github
+`$ git push origin deployment`
 
 ## Next - Deploy to heroku

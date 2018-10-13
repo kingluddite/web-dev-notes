@@ -20,7 +20,7 @@ class Signup extends Component {
             name="passwordConfirmation"
             placeholder="Confirm Password"
           />
-          <button className="button-primary">Submit</button>
+          <button type="submit" className="button-primary">Submit</button>
         </form>
       </div>
     );

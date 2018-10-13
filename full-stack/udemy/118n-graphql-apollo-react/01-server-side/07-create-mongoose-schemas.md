@@ -1,4 +1,8 @@
 # Create Mongoose Schemas
+```
+$ mkdir server && mkdir server/models && touch server/models/User.js && touch server/models/Cologne.js
+```
+
 * Create `server/models/` folder in the root of your app
 * Create `User.js` and `Cologne.js`
     - Make sure both are Capitalized

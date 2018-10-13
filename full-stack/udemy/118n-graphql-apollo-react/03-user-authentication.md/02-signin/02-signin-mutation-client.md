@@ -103,6 +103,7 @@ class Signin extends Component {
                   value={password}
                 />
                 <button
+                  button="submit"
                   className="button-primary"
                   disabled={loading || this.validateForm()}
                 >

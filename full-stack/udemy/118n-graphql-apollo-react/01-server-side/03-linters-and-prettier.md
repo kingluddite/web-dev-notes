@@ -86,6 +86,19 @@
 * Sometimes you won't see your file update
 * I suggest tabbing a line and then saving as that kick starts the linter into doing it's job
 
+### Questions about `package.json`
+* Where do we put them?
+* You have a `backend` folder with all your backend stuff but outside of that is where all your backend packages will be stored in the `package.json`
+* All the **React** packages will be stored in a `package.json` file residing inside the `client` folder
+
+```
+backend
+    - backend stuff
+client
+    package.json (all react packages)
+package.json
+```
+
 ## Git stuff
 
 ### Add to staging with git

@@ -21,8 +21,8 @@
 * Migrate from create react app 1 to 2
 1. Go to the root folder of the project
 2. Open `package.json` file
-3. Go under dependencies and locate “react-scripts”
-4. Change the version to 2.0.3
+3. Go under dependencies and locate `“react-scripts”`
+4. Change the version to `2.0.3`
 5. Install with `$ npm i`
 
 `$ npm i`

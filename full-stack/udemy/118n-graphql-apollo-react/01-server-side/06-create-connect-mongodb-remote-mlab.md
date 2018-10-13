@@ -25,7 +25,71 @@
 2. After creating user **scroll up on the page** (_ imo mLab needs to improve this UX_) and copy the 2nd URI
     * The first URI is what you would use if you wanted to connect to the mongo shell
 
-### Tell your app about your database (and do so securely!) 
+## Import/Export Database collections
+* We are going to need to quickly import and export data to and from our database
+* The following instructions show you how to import/export and entire database or just a collection
+
+### Create test file to import data into a collection
+* Create `cologne.js` in the root of your project
+* This is a temp file where we will import a colognes collection with premade data
+
+`cologne.js`
+
+```
+{"_id":{"$oid":"5bc13cb95dd00fb91646792b"},"likes":0,"scentName":"Fierce","scentBrand":"Abercrombie \u0026 Fitch","scentPrice":0,"description":"A sweet, woody fragrance, with top notes of petitgrain, cardamom, lemon, orange, and fir. It also has at its aromatic heart notes of rich jasmine, rosemary, rose, and lily of the valley. And at its very base, it has notes of warm vetiver, musk, oakmoss, and Brazilian rosewood to help tie down the citrus and floral sensations. A fresh and spicy scent designed as a call to the younger, wilder side of a man, this cologne is for men that aren’t afraid to live on the edge.","username":"bob","createdDate":{"$date":"2018-10-13T00:30:49.805Z"},"__v":0}
+{"_id":{"$oid":"5bc13cde5dd00fb91646792c"},"likes":0,"scentName":"Le Male","scentBrand":" Jean Paul Gaultier","scentPrice":0,"description":"Heralded for its sweet mint, lavender, and vanilla notes, Le Male is a great compliment to any man that is truly unforgettable. Powerful artemisia, cardamom, mint, and bergamot make up the top notes, followed by middle notes of lavender, orange blossom, cinnamon, and cumin. Base notes of sandalwood, vanilla, Tonka Bean, and Amber help round out a charismatic fragrance for the modern man. Both gentle and masculine at once, Le Male’s traditional aroma makes it both easy and pleasing.","username":"bob","createdDate":{"$date":"2018-10-13T00:31:26.224Z"},"__v":0}
+```
+
+## Import
+`$ mongoimport -h ds121373.mlab.com:21373 -d fivestarcologne -c colognes -u admin -p a123456 --file colognes.js`
+
+* You need to replace `admin` with your mlab database `username`
+* You need to replace `a123456` with your mlab database `password`
+
+* Refresh mLab and you will see your colognes collection populated
+
+## Delete `colognes.js`
+- We want to show you how to export the database collection
+
+`$ rm -rf colognes.js`
+
+`$ mongoexport -h ds121373.mlab.com:21373 -d fivestarcologne -c colognes -u admin -p a123456 -o colognes.js`
+
+* Now import it again and you'll see it on mLab again
+
+# Add users collection
+* Create `users.js` in the root of your app
+* This is just a temp file
+
+`users.js`
+
+```
+{"_id":{"$oid":"5bc13bc38842b2b8e41e26cb"},"favorites":[],"username":"bob","email":"bob@bob.com","password":"$2b$10$fW2bdvQMvDMvLCfnnMBGGee0mjM6JR2qXJKgEYz6dLAW4rug5HGSq","joinDate":{"$date":"2018-10-13T00:26:43.914Z"},"__v":0}
+{"_id":{"$oid":"5bc14031b82781babd2b404c"},"favorites":[],"username":"mike","email":"mike@mike.com","password":"$2b$10$JeO5O1RKV4JTuNtIyobr2Oa4ULK0zWOS4XC/qRV3e3xbV.L5elf0m","joinDate":{"$date":"2018-10-13T00:45:37.390Z"},"__v":0}
+```
+
+* Import it into mLab
+
+`$ mongoimport -h ds121373.mlab.com:21373 -d fivestarcologne -c users -u admin -p a123456 --file users.js`
+
+* You need to replace `admin` with your mlab database `username`
+* You need to replace `a123456` with your mlab database `password`
+
+## That's it
+* You now can import and export your database whenever you want
+
+`$ mongodump -h ds121373.mlab.com:21373 -d fivestarcologne -u admin -p a123456 -o temp`
+
+## Binary
+* You can import and export an entire db
+
+### Import database
+`$ mongorestore -h ds121373.mlab.com:21373 -d fivestarcologne -u <user> -p <password> <input db directory>`
+
+### Export database
+`$ mongodump -h ds121373.mlab.com:21373 -d fivestarcologne -u <user> -p <password> -o <output directory>`
+
+### Securely tell your app about your database
 * Security is important
 * We have the URI information and we will save it into a file called `variables.env` and this is a file that we will hide using our `.gitignore` file
     - Open `.gitignore` and search for `*.env` this is what ignores all `.env` files from git (and github)

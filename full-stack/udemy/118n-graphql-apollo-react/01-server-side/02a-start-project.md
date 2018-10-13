@@ -102,7 +102,7 @@ typings/
 ```
 
 ## Add README.md
-* All apps should have a README.md file in the root of your app
+* All apps should have a `README.md` file in the root of your app
 * This is great for documentation and explains what your app is, how to use it and how to install it
 * It is written in markdown
 
@@ -134,15 +134,10 @@ typings/
 * This file is not on github and in order for you to connect to MongoDB and
 authenticate you need to create this file
 
-`variables.env`
-
-```
-
-```
+# variables.env
 MONGO_URI=put your mongo info here
 SECRET=put your secret here
 PORT=put your port here
-```
 
 ## How to run app
 * In the root of your app
@@ -172,3 +167,4 @@ PORT=put your port here
 
 ## Additional Resources
 * [How to write markdown](https://masteringmarkdown.com/)
+* [How to write a great README](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3)

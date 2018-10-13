@@ -15,11 +15,18 @@
 * The `-b` flag creates a new branch and moves you into it
 * All the changes we made since our last code push to master have left our master branch dirty but when we checkout and move into a new `add-apollo` branch our master branch is "clean" again and now our `add-apollo` branch is "dirty"
 
-## Create a `package.json` inside `server`
+## We will install all our server dependencies in the root of our app
+* We are developing a full stack app
+* We will have two `package.json` files
+    - One `package.json` in the root of our app
+        + This will hold all server packages
+        + This will hold all our linters and prettier packages
+    - One `package.json` in the `client` of our app
+        + This will hold all our react stuff
+* npm packages have a cascade affect so if they are in the parent they will trickle down to child folders and if a child folder has a different package that package will be the one that is used
+* Later on we will see an example of a parent npm package that collides with a child npm package and causes a problem (we'll see that when we start building our client side react part of this app)
 
-`$ cd server && npm init -y`
-
-## Install these packages
+## Install server packages
 
 `$ npm i apollo-client apollo-cache-inmemory apollo-link-http apollo-link-error apollo-link`
 
@@ -28,14 +35,6 @@
     - It used to take a long time to set up `Apollo` inside react app
     - Now it is just a simple import and involves setting up an Apollo Client
     - Here is an code sample of what that would look like (don't type this):
-
-```js
-import ApolloClient from "apollo-boost";
-
-const client = new ApolloClient({
-  uri: "https://w5xlvm3vzz.lp.gql.zone/graphql"
-});
-```
 
 ## React Apollo
 * In addition we also need to set up a specific package for React called `React Apollo`

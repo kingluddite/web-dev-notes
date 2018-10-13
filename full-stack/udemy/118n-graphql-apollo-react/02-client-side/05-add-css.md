@@ -190,3 +190,11 @@ nothing to commit, working tree clean
 
 ## Congrats
 * Our local repo is perfectly in sync with our remote Github repo
+
+## Additional Resources
+* CSS Grid and Flexbox are both topics you need to know and know well
+  - They will help you write less media queries, floats and positions for grids and layouts
+* [CSS Grid summary](https://css-tricks.com/snippets/css/complete-guide-grid)
+* [CSS Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* [Wes Box free course on Flexbox](https://flexbox.io/)
+* [Wes Box free course on CSS-Grid](https://cssgrid.io/)

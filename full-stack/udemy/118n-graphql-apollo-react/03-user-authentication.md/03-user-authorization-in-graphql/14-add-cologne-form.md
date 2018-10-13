@@ -31,7 +31,7 @@ class AddCologne extends Component {
             name="description"
             placeholder="Scent Description"
           />
-          <button className="button-primary">Add Cologne</button>
+          <button type="submit" className="button-primary">Add Cologne</button>
         </form>
       </div>
     );

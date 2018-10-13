@@ -18,6 +18,12 @@
     - Chrome browser
         + Window > Extensions > hamburger icon > open chrome webstore > search for [react dev tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en-US)
 
+### What is the MERN stack
+* MongoDB
+* Express
+* React
+* Node.js
+
 ## Dotfiles
 * If you are using a Mac laptop I recommend using my dotfiles to get your computer using the software and configurations I am using
 * [My dotfiles](https://github.com/kingluddite/dotfiles)
