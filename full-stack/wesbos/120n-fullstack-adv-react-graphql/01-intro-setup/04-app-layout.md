@@ -5,19 +5,19 @@
 * What is the parent of both of these pages?
 * Where do we put our `state`?
 
-## Nextjs wraps entire app inside `<App>`
+## NextJS wraps entire app inside `<App>`
 * Custom App
     - Persisting layout between page changes
-    - Keeping state when navigating pages
+    - Keeping `state` when navigating pages
     - Custom error handling using `componentDidCatch`
     - Inject additional data into pages (example: processing GraphQL queries)
 
 ### Persisting state between pages
-* I can add something to my cart
-* Then I can open my cart
-* Then I can go to another page
-* The fact that my cart is still open and it knows what's in my cart that is `persisting state between pages`
-* We will do this with our apollo store
+1. I can add something to my cart
+2. Then I can open my cart
+3. Then I can go to another page
+4. The fact that my cart is still open and it knows what's in my cart that is `persisting state between pages`
+5. We will do this with our **apollo store**
 
 ## Create `_app.js`
 
@@ -47,7 +47,10 @@ export default MyApp;
 
 ## Test in browser
 * Now we know how to share content between pages
-* Also open `React Dev Tools` to see the react app and components and their respective Properties
+* Also open `React Dev Tools` to see:
+   - The react app
+   - And the components
+   - And their respective Properties
 
 ### Factor out Page component
 * We currently are using:
@@ -59,15 +62,16 @@ export default MyApp;
 `components/Page.js`
 
 ```
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react';
 
 export class Page extends Component {
   render() {
+
     return (
-      <div>
+      <Fragment>
         <p>I am the Page component</p>
         {this.props.children}
-      </div>
+      </Fragment>
     )
   }
 }
@@ -81,6 +85,8 @@ export default Page;
 
 ```
 import App, { Container } from 'next/app';
+
+// custom components
 import Page from '../components/Page';
 
 class MyApp extends App {
@@ -90,10 +96,10 @@ class MyApp extends App {
     return (
       <Container>
         <Page>
-          <Component />
+         <Component />
         </Page>
       </Container>
-    );
+    )
   }
 }
 
@@ -101,8 +107,9 @@ export default MyApp;
 ```
 
 * **note** We wrap `Page` around `Component`
-* View React Dev Tools
-* You will see as we navigate between the home and sell pages we see there is always a `Page` component
+
+### View in React Dev Tools
+* You will see as we navigate between the `home` and `sell` pages we see there is always a `Page` component
     - This is great because if you want different page layouts you can use different Page components
 
 ## Page
@@ -112,20 +119,26 @@ export default MyApp;
 `components/Header.js`
 
 ```
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react';
+import Link from 'next/link';
 
 export class Header extends Component {
+
   render() {
+
     return (
-      <div>
-       <div className="bar"><a href="">Sick Fits</a></div>
-       <div className="sub-bar">
-         <p>Search</p>
-       </div>
-       <div>Cart</div>
-      </div>
+      <Fragment>
+        <div class="bar">
+          <Link href="/"><a>Buy Stuff</a></Link>                 
+        </div>
+        <div className="sub-bar">
+          <p>Search</p>
+        </div>
+          <div>Cart</div>
+      </Fragment>
     )
   }
+
 }
 
 export default Header;
@@ -133,20 +146,23 @@ export default Header;
 
 `Page.js`
 
+* We need to add the `Header` component to our `Page` component
+
 ```
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 
 // custom components
-import Header from './Header';
+import Header form './Header';
 
 export class Page extends Component {
   render() {
+
     return (
-      <div>
+      <Fragment>
         <Header />
         {this.props.children}
-      </div>
-    );
+      </Fragment>
+    )
   }
 }
 
@@ -311,5 +327,6 @@ export default Header;
 <!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1" class="next-head"/><meta charSet="utf-8" class="next-head"/><link rel="shortcut icon" href="/static/favicon.png" class="next-head"/><link rel="stylesheet" type="text/css" href="/static/nprogress.css" class="next-head"/><title class="next-head">Sick Fits!</title>
 <!-- MORE CODE -->
 ```
-
+## Additional Resources
+* [What is this.props.children](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)
 

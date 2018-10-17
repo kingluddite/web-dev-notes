@@ -1,4 +1,9 @@
 # Intro
+## Create `buy-something` to hold your app
+* Inside create 2 folders:
+  - `frontend`
+  - `backend`
+
 ## frontend and backend
 * Create a folder for each
 * Use `.vscode` folder with `settings.json`
@@ -33,10 +38,12 @@
 * `cmd` + `,` search for `title` and change to `custom`
 
 ## Open terminal in 2 tabs
-* One for frontend
-* One for backend
+* One for `frontend`
+* One for `backend`
 
 ### Install dependencies in each folder
+* TODO: What will we be installing?
+
 `$ cd frontend && npm i`
 
 `$ cd ../ && cd backend && npm i`

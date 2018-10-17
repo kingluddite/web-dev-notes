@@ -8,10 +8,10 @@
             * NextJS does that for you under the hood
             * You just type `next` and it does it behind the scenes for you
             * We can open up and adjust the webpack config
-            * We create our own babel config
+            * We create our own `babel` config
                 - Takes their `next/babel`
                 - Adds `styled-components` on top of that
-        2. Also needs to do server side rendering
+        2. Also needs to do **server side rendering** (SSR)
             * This is important if you care about instant loading and SEO or preloading certain pages
             * So if you view source on page you will see that page content is in the source code
             * You have access to `getInitialProps` which will enable you to fetch data on the server
@@ -24,16 +24,21 @@
 ## frontend
 `$ cd frontend`
 
+### Create package.json
+`$ npm init -y`
+
 * Open `package.json`
 * View the scripts
 
 `package.json`
 
+* Add the following `scripts`
+
 ```
 // MORE CODE
 
 "scripts": {
-  "dev": "next -p 7777",
+  "dev": "next -p 1234",
   "build": "next build",
   "start": "next start",
   "test": "NODE_ENV=test jest --watch",
@@ -41,15 +46,41 @@
 },
 ```
 
-`"dev": "next -p 7777",`
+`"dev": "next -p 1234",`
 
-* `$ npm run dev` will run nextjs on port 7777
+* `$ npm run dev` will run nextjs on port `1234`
     - Will run our next app
+    - We get this error:
+
+`sh: next: command not found`
+
+## We need to get `next` installed
+* And all it's dependencies
+
+`$ npm i next`
+
+* More errors
+  - We need to install `react` and `react-dom`
+
+`$ npm i react react-dom`
+
+* Another error
+  * We need to create a `pages` directory under the project root
+
+`$ mkdir pages`
+
+* Run app with:
+
+`$ npm run dev`
+
+* Finally! It works
 
 ## View in browser
-`http://localhost:7777/`
+`http://localhost:1234/`
 
 * We get a 404
+* Be did not set this up
+  - Next created a 404 page for u
 
 ## We need to create pages
 * All top level pages go inside `pages`
@@ -70,12 +101,12 @@ export default Home;
 ```
 
 ## View in browser again
-`http://localhost:7777/`
+`http://localhost:1234/`
 
 * Now you should see your Home component
 
 ## SFC (Stateless Functional Component)
-* If you don't need state you can use a SFC
+* If you don't need `state` you can use a SFC
 
 ```
 const Home = props => (
@@ -87,7 +118,7 @@ const Home = props => (
 export default Home;
 ```
 
-* You don't need to import `React` as nextjs will import it automatically
+* You don't need to import `React` as NextJS will import it automatically
 
 ## Create sell.js
 `pages/sell.js`
@@ -105,20 +136,21 @@ export default Sell;
 ```
 
 ## View in browser
-`http://localhost:7777/sell`
+`http://localhost:1234/sell`
 
 * Now you see the Sell component
 * No routing necessary
 
 ## Linking between pages
-* We could use a simple `<a>` but we want to use HTML5 pushstate so we can route from one page to another without having to refresh the page
+* HTML5 pushstate
+    - We could use a simple `<a>` but we want to use HTML5 pushstate so we can route from one page to another without having to refresh the page
 * This will be very important when we have data in our cache
     - Stuff like:
         + Are we logged in
         + Are if our cart is open or closed
-    - All of this data needs to stay in the cache but if we were to refresh the page we would lose all that and have to go back to the server to get it
+    - All of this data needs to stay in the **cache** but if we were to refresh the page we would lose all that and have to go back to the server to get it
 * So instead of `<a>` we use `<Link>`
-* Next imports Link in its own library like this:
+* `NextJS` imports `Link` in its own library like this:
 
 ### Add a simple Link
 
@@ -166,5 +198,9 @@ class Sell extends Component {
 export default Sell;
 ```
 
-* View in browser
-* Both pages link to each other using HTML5 push state which prevents page refresh
+## View in browser
+* Both pages link to each other using HTML5 pushstate which prevents page refresh
+
+## Additional Resources
+* [Avoid starters](https://hackernoon.com/next-js-razzle-cra-why-you-should-use-them-for-a-next-project-a78d320de97f)
+* [HTML5 pushstate](https://zinoui.com/blog/single-page-apps-html5-pushstate)
