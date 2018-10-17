@@ -1,4 +1,49 @@
 # Create React App
+## The next is VS Code specific
+* Ignore if this is not your text editor
+
+## client and server
+* We created a folder for each
+* Now we need a way to visually know whether we are in the client or server folder
+
+### Inside `client` folder
+* Create `.vscode` folder
+* Create `settings.json` inside the `.vscode` folder
+
+`client/.vscode/settings.json`
+
+* yellow background
+
+```json
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#000",
+    "titleBar.inactiveForeground": "#000000CC",
+    "titleBar.activeBackground": "#FFC600",
+    "titleBar.inactiveBackground": "#FFC600CC"
+  }
+}
+```
+
+### server/.vscode/settings.json
+```json
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#FF2C70",
+    "titleBar.inactiveBackground": "#FF2C70CC"
+  }
+}
+```
+
+## custom
+* Make sure you set your VS Code title to `custom`
+* By default it is `native`
+* `cmd` + `,` search for `title` and change to `custom`
+
+## Open terminal in 2 tabs
+* One for `client`
+* One for `server`
+
 ## Create new branch
 `$ git checkout -b add-react`
 

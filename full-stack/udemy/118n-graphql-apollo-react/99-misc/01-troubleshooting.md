@@ -1,5 +1,16 @@
 # Troubleshooting
 
+## Node
+* When working with async await you need a recent version of node
+* Update node to latest version
+  - You can install directly
+  - I recommend on mac using Homebrew so update with:
+
+`$ brew update node`
+
+## Wrong module installed
+* Delete `package.json` and `node_modules` and do a reinstall with `$ npm i`
+
 ## How to get rid of jwt error
 
 `server.js`

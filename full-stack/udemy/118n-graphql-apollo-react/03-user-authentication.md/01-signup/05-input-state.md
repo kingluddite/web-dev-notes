@@ -204,3 +204,6 @@ render() {
 
 ## Next - Add Mutation
 * When form is submitted we want to write a `Mutation` that will alter our db
+
+## Additional Resources
+* Filter data example
