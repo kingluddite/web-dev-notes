@@ -123,7 +123,7 @@ DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes inst
 `$ git add -A`
 
 ### Commit with git
-`$ git commit -m 'Add Mongoose Schemas`
+`$ git commit -m 'Add Mongoose Schemas'`
 
 ## Push to github
 `$ git push origin add-apollo`

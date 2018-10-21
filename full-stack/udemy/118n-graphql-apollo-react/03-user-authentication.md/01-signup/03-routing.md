@@ -30,6 +30,7 @@ import {
 
 // MORE CODE
 
+// custom components
 import App from './components/App';
 import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';

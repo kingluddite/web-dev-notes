@@ -174,12 +174,14 @@ const app = express();
 
 ```
 // MORE CODE
+
 "scripts": {
   "precommit": "pretty-quick --staged",
   "server": "nodemon server/server.js",
   "client": "cd client && npm start",
   "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
 },
+
 // MORE CODE
 ```
 

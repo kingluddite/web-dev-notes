@@ -110,6 +110,7 @@ package.json
 ## Push to github
 `$ git push origin add-apollo`
 
+<<<<<<< HEAD
 ## Additional Resources
 * [wes bos tutorial setting up vs code with eslint and prettier](https://www.youtube.com/watch?v=YIvjKId9m2c)
 
@@ -332,3 +333,5 @@ module.exports = {
 
 ## Eslint turn off for entire page
 `/* eslint react/no-did-mount-set-state: 0 */`
+=======
+>>>>>>> 9331b8c75c39f981fdea6e6c03f6af635a52ec83

@@ -15,6 +15,17 @@
 2. They save you time
 3. You should always **use them in every react project**
 
+### Install all the stuff you need from eslint
+* Add `-D` to add the following as `devDependences`
+* Add these inside your `package.json`
+
+`$ npm i -D eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react react-testing-library prettier eslint-plugin-prettier husky pretty-quick`
+
+## You can have multiple `.eslintrc` files but they will cascade
+* To start off put `.eslintrc` in the root of your app
+* Once you add these you will have much more strict React rules
+  - (One example of what you'll have to add) You'll need to add PropTypes
+
 ## More on eslint
 * We have an `.eslintrc` in our app's root
 

@@ -1,4 +1,5 @@
 # Intro
+<<<<<<< HEAD
 ## Create your main app folder
 `$ take root-app-folder`
 
@@ -8,6 +9,12 @@
 ## Create Feature Branch
 
 `$ git checkout -b intro`
+=======
+## Create `buy-something` to hold your app
+* Inside create 2 folders:
+  - `frontend`
+  - `backend`
+>>>>>>> 9331b8c75c39f981fdea6e6c03f6af635a52ec83
 
 ## frontend and backend
 * Create a folder for each
@@ -43,10 +50,12 @@
 * `cmd` + `,` search for `title` and change to `custom`
 
 ## Open terminal in 2 tabs
-* One for frontend
-* One for backend
+* One for `frontend`
+* One for `backend`
 
 ### Install dependencies in each folder
+* TODO: What will we be installing?
+
 `$ cd frontend && npm i`
 
 `$ cd ../ && cd backend && npm i`
