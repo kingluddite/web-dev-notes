@@ -110,26 +110,12 @@ package.json
 ## Push to github
 `$ git push origin add-apollo`
 
-############################
-###########################
-### Stop here and move to next note `04-install-starter-project.md` !!!!!
-#############################
-###########################
-
 ## Additional Resources
 * [wes bos tutorial setting up vs code with eslint and prettier](https://www.youtube.com/watch?v=YIvjKId9m2c)
 
-#### Later on... we'll come back here and make use of a more powerful linter
-* We don't do this at the beginning because we want to limit the amount of stuff we are watching as it can easily become overwelming and distracting
-
 ### Resources
 * Configs for `eslint` and `prettier`
-* You can use the above code for barebones eslint and prettier or you can use the more complete linter below
-
-## My recommendation
-* Using a more powerful `.eslintrc` is essential for a modern developer toolbelt but there is so much material to cover I will push the intro of a more intense .elintrc for later
-* Let's try to stay focused
-* Below are resources for you to take a peek at but let's wait to use them and use the `.eslint` and `.prettierrc` configs above
+* You can use the above code for barebones eslint and prettier or you can use the more complete linter like ones by Wes Bos
 
 * Add to `package.json`
 
