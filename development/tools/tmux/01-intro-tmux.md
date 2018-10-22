@@ -1,4 +1,11 @@
 # Tmux Intro
+## change bg of tmux window
+`$ ctrl + b + :select-pane -P 'bg=red'`
+
+* Change focus of window
+
+`$ ctrl + b + :select-pane -P 'bg=blue'`
+
 * [tmux cheat sheet](https://gist.github.com/afair/3489752)
 * [greatest tmux sheet](https://gist.github.com/spicycode/1229612)
 * https://danielmiessler.com/study/tmux/
