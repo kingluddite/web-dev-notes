@@ -111,6 +111,7 @@ export const GET_ALL_COLOGNES = gql`
 ```
 
 `schema.js`
+
 * We use this file to see what we will use in our query
 * We already wrote this but now we know what we need to mutate
 
