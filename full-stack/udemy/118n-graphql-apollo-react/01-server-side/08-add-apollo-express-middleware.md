@@ -37,9 +37,9 @@ exports.resolvers = {};
 `server.js`
 
 ```
-const PORT = process.env.PORT || 4444;
-
 // MORE CODE
+
+require('dotenv').config({ path: './variables.env' });
 
 // graphql
 const { typeDefs } = require('./schema');
@@ -52,61 +52,6 @@ const { resolvers } = require('./resolvers');
 * Packages that will allow us to add our GraphQL middleware
 * We installed both of these packages earlier
     - This essentially allows us to connect GraphQL with Express
-
-## FIX THESE - remove this 
-
-`server.js`
-
-```
-// MORE CODE
-
-// models
-const Cologne = require('./models/Cologne');
-const User = require('./models/User');
-
-// bring in GraphQL middleware
-const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
-
-// graphql
-const { typeDefs } = require('./schema');
-const { resolvers } = require('./resolvers');
-
-// Create schemas
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
-
-// MORE CODE
-```
-
-## Connect schemas with GraphQL
-`server.js`
-
-```
-// MORE CODE
-
-// initialize your application
-const app = express();
-
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
-
-// Connect schemas with GraphQL
-app.use(
-  '/graphql',
-  graphqlExpress({
-    schema,
-    context: {
-      // pass in mongoose models
-      Cologne,
-      User,
-    },
-  })
-);
-
-// MORE CODE
-```
 
 ## Houston we have a problem
 * If your server is still running you will see this error in terminal:

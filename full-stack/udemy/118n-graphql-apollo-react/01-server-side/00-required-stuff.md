@@ -1,5 +1,7 @@
 # Install Needed Packages
 * Node
+    - Upgrade node to latest version
+      + **important** `$ brew upgrade node`
     - This will also install NPM (Node Package Managers)
     - Install it with [Homebrew](https://brew.sh/)
       + **note** Homebrew is Mac specific software
