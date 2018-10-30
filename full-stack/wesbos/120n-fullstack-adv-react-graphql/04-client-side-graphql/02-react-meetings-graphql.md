@@ -16,9 +16,9 @@
 `pages/items.js`
 
 ```
-import Home from './index.js';
+import Items from './index.js';
 
-export default Home;
+export default Items;
 ```
 
 ## Create a new component
@@ -586,7 +586,7 @@ export default class Item extends Component {
   <Title>
     <Link
       href={{
-        path: '/item',
+        pathname: '/item',
         query: { id: item.id },
       }}
     >
@@ -618,7 +618,7 @@ export default class Item extends Component {
   <Title>
     <Link
       href={{
-        path: '/item',
+        pathname: '/item',
         query: { id: item.id },
       }}
     >
@@ -698,7 +698,7 @@ export default class Item extends Component {
   <Title>
     <Link
       href={{
-        path: '/item',
+        pathname: '/item',
         query: { id: item.id },
       }}
     >
