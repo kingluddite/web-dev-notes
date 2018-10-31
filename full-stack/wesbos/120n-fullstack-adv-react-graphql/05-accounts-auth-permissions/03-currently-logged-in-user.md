@@ -152,7 +152,7 @@ server.express.use((req, res, next) => {
   const { token } = req.cookies;
   // check if there is a token
   if (token) {
-    const { userId } = jwt.veryify(token, process.env.APP_SECRET);
+    const { userId } = jwt.verify(token, process.env.APP_SECRET);
     // put the userId onto the req for future requests to access
     req.userId = userId
   }
@@ -181,4 +181,413 @@ require('dotenv').config({ path: '.env' });
 ```
 
 ## Now we need to add in the Query for our currentUser
-stop at 7:47
+* We'll call this query `me`
+    - When someone calls `me` it will return a User (optional)
+        + optional because someone could query `me` and there it is null (no one is logged in)
+
+`backend/src/schema.graphql`
+
+```
+
+type Query {
+  items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, first: Int): [Item]!
+  item(where: ItemWhereUniqueInput!): Item
+  itemsConnection(where: ItemWhereInput): ItemConnection!
+  currentUsr: User
+}
+
+// MORE CODE
+```
+
+* No arguments
+* It just takes the `jwt` cookie and parse it for us
+    - The id is already passed with every `req` so we already know it
+
+## Update resolvers
+`backend/src/resolvers/Query.js`
+
+* We will not just be forwarding this to the db
+* How do you access the `req`?
+    - In `middleware` it is pretty easy
+        + You get the `req`, the `res` and then `next`
+
+`backend/src/index.js`
+
+```
+// MORE CODE
+
+// Use express middleware to populate current user
+// decode the JWT so we can get the user Id on each request
+server.express.use((req, res, next) => {
+
+// MORE CODE
+```
+
+* But in `Query.js` there is a `req` and a `res` but how do we access it inside `Query.js`
+    - We access it on the `ctx`
+    - But know that on `ctx` getting the `req` is NOT THIS: `ctx.req`
+        + Rather... it is this fully spelled out `ctx.request` 
+
+`Query.js`
+
+```
+// MORE CODE
+
+const Query = {
+  items: forwardTo('db'),
+  item: forwardTo('db'),
+  itemsConnection: forwardTo('db'),
+  currentUser(parent, args, ctx, info) {
+    // check if there is a current user ID
+    if (!ctx.request.userId) {
+      return null;
+    }
+  }
+
+// MORE CODE
+```
+
+* We could have written this:
+
+`Query.js`
+
+```
+// MORE CODE
+
+currentUser(parent, args, ctx, info) {
+  // check if there is a current user ID
+  if (!ctx.request.userId) {
+    throw Error('No User Found');
+    return null;
+  }
+}
+
+// MORE CODE
+```
+
+* But it is important that we return `null` in this case because we do want to have this query and for it to return nothing because someone might not be logged in
+
+## And if there is a `userId`
+`backend/src/generated/prisma.graphql`
+
+```
+// MORE CODE
+
+type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item]!
+  user(where: UserWhereUniqueInput!): User
+
+// MORE CODE
+```
+
+* The last line above shows we have a user that need unique input
+    - And we can pass it a `where`
+
+```
+currentUser(parent, args, ctx, info) {
+  // check if there is a current user ID
+  if (!ctx.request.userId) {
+    throw Error('No User Found');
+    return null;
+  }
+  return ctx.db.query.user({
+    where: { id: ctx.request.userId },
+  });
+},
+```
+
+## `info` is very important
+* It saves us time and bandwidth which makes our app more efficent and fast
+* We also have to pass the `info`
+    - `info` is the actual **query** that is coming from the client side
+
+```
+currentUser(parent, args, ctx, info) {
+  // check if there is a current user ID
+  if (!ctx.request.userId) {
+    throw Error('No User Found');
+    return null;
+  }
+  return ctx.db.query.user({
+    where: { id: ctx.request.userId },
+  }, info);
+},
+```
+
+* That user is going to end of having:
+    - A cart
+    - And has permissions
+    - And has a name
+    - And an email address
+    - Orders
+    - All of this data associated with it
+    - And our user query is going to get large
+    - So we need to pass the actual query from the frontend so that when we just want to get the user's email address, we're not getting the whole cart at the exact same time
+
+## Do we need for our `me` Query to resolve?
+* No
+    - Because we are returning a Promise we do not need to wait for it to resolve
+    - It will return a Promise and resolve itself once it has finished and come back
+
+## shorthand vs longer hand
+* We used es6 function shorthand but we could have written it in "longer form" using this
+
+```
+currentUser: function(parent, args, ctx, info) {
+  // check if there is a current user ID
+  if (!ctx.request.userId) {
+    return null;
+  }
+  return ctx.db.query.user({
+    where: { id: ctx.request.userId },
+  }, info);
+},
+```
+
+* Here is the final `Query.js`
+
+```
+const { forwardTo } = require('prisma-binding');
+
+const Query = {
+  items: forwardTo('db'),
+  item: forwardTo('db'),
+  itemsConnection: forwardTo('db'),
+  currentUser(parent, args, ctx, info) {
+    // check if there is a current user ID
+    if (!ctx.request.userId) {
+      return null;
+    }
+    return ctx.db.query.user(
+      {
+        where: { id: ctx.request.userId },
+      },
+      info
+    );
+  },
+};
+
+module.exports = Query;
+```
+
+### We are finished with the backend side
+
+### Let's jump to the client side so we can query this:
+* We need to build a react component that will query the backend for the data and display in some use case
+    - This will be a lot of code
+        + Why?
+        + Because every single time we need to get the current user we have to write a query and we'll have to import the query component from react-apollo
+        + And then we'll have to have a render prop for that
+
+### Create our own render prop component
+* This will allow us to "tuck" all of that complexity into its own component and this will make it a nice clean little user component that will provide to us a user if the user is logged in
+* We could do this:
+
+`frontend/components/User.js`
+
+```
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
+
+// GraphQL
+const CURRENT_USER_QUERY = gql`
+  query CURRENT_USER_QUERY {
+    currentUser {
+      id
+      email
+      name
+      permissions
+    }
+  }
+`;
+
+const User = props => (
+ <Query query={CURRENT_USER_QUERY}>
+   {({data} => <p>data.user.name</p>)} 
+  </Query>
+)
+
+export default User;
+```
+
+* But let's focus on this chunk of code
+
+```
+const User = props => (
+ <Query query={CURRENT_USER_QUERY}>
+   {({data} => <p>data.user.name</p>)} 
+  </Query>
+)
+```
+
+* The child of our Query will just take the `payload` and pass it to the child functions
+    - So this would be less typing and more concise
+
+```
+const User = props => (
+ <Query query={CURRENT_USER_QUERY}>
+   { payload => props.children(payload) }
+  </Query>
+)
+```
+
+* This enables us to do something like:
+
+`<User>{payload => }</User>`
+
+* Now we can take the `payload` and just pop it in
+    - Without having to rewrite our CURRENT_USER_QUERY
+    - Or pass it every single time
+    - Which is very useful and a good time saving technique
+
+## Pass our props down into our Query
+```
+const User = props => (
+ <Query {...props} query={CURRENT_USER_QUERY}>
+   { payload => props.children(payload) }
+  </Query>
+)
+```
+
+* So anytime we want to write a user component and we want to pass additional `props` to the Query component we can just pass it to our `User` component and they will automatically get passed down
+* Make sure you export both the default component as well as the CURRENT_USER_QUERY so we can access this query from other places
+    - We will access this query often
+
+```
+// MORE CODE
+
+export default User;
+export { CURRENT_USER_QUERY };
+```
+
+## Add prop-types for children
+* This also shows you how to write prop-types for a SFC
+
+```
+User.propTypes = {
+  children: PropTypes.func.isRequired,
+};
+
+export default User;
+export { CURRENT_USER_QUERY };
+```
+
+* When you use User you know you'll always have to have the `children` function
+
+## Here is the full code
+`User.js`
+
+```
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
+
+// GraphQL
+const CURRENT_USER_QUERY = gql`
+  query CURRENT_USER_QUERY {
+    currentUser {
+      id
+      email
+      name
+      permissions
+    }
+  }
+`;
+
+const User = props => (
+  <Query {...props} query={CURRENT_USER_QUERY}>
+    {payload => props.children(payload)}
+  </Query>
+);
+
+User.propTypes = {
+  children: PropTypes.func.isRequired,
+};
+
+export default User;
+export { CURRENT_USER_QUERY };
+```
+
+## How do we use `User`?
+* We'll put in in our `nav` so that we can use it in our navigation
+
+`Nav.js`
+
+```
+// MORE CODE
+
+// custom components
+import User from './User';
+
+class Nav extends Component {
+  render() {
+    return (
+      <NavStyles>
+        <User>
+          {data => {
+            console.log(data);
+            return <p>User</p>;
+          }}
+        </User>
+
+// MORE CODE
+```
+
+### Test in browser
+* View the `/items` route
+* Check the console and you'll see when you expand the `data` that we have access to `currentUser` that has all the logged in user info
+
+![logged in user console data](https://i.imgur.com/byFSaWO.png)
+
+## Destructure the data and show user info in UI
+`Nav.js`
+
+```
+<User>
+  {(data: { currentUser }) => {
+    console.log(data);
+    return <p>{currentUser.name}</p>;
+  }}
+</User>
+```
+
+* That will give an error
+* The reason is the `payload` has data inside it
+    - So it is like a two level destructure
+    - So code it like this:
+
+```
+<User>
+  {({ data: { currentUser } }) => {
+    console.log(currentUser);
+    return <p>{currentUser.name}</p>;
+  }}
+</User>
+```
+
+* The above is confusing and took a while for me to get my head around
+* View the console and you see we have an object now that has all the currently logged in user's info
+
+```
+<User>
+  {({ data: { currentUser } }) => {
+    console.log(currentUser);
+    if (currentUser) return <p>{currentUser.name}</p>;
+    return null;
+  }}
+</User>
+```
+
+* View in browser
+    - You will see your logged in user's `name`
+* View in `incognito` tab and you won't see logged in user's `name`
+    - copy URL and paste into igcognito window
+    - Because no one is logged in incognito
+
+## View cookie
+* Open Chrome > Console > Application > Cookies
+    - You should see token with `jwt`
+
+### Next - Sign in and out
