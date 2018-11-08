@@ -1,5 +1,10 @@
 # Intro
-<<<<<<< HEAD
+
+## Git ignore .next
+* If you added `.next ` accidentilly to git you can remove from the cache
+
+`$ git rm -r --cached .next`
+
 ## Create your main app folder
 `$ take root-app-folder`
 
@@ -9,12 +14,11 @@
 ## Create Feature Branch
 
 `$ git checkout -b intro`
-=======
+
 ## Create `buy-something` to hold your app
 * Inside create 2 folders:
   - `frontend`
   - `backend`
->>>>>>> 9331b8c75c39f981fdea6e6c03f6af635a52ec83
 
 ## frontend and backend
 * Create a folder for each
@@ -131,6 +135,8 @@ typings/
 
 # Serverless directories
 .serverless
+
+.DS_Store
 ```
 
 ## Add eslint
@@ -272,6 +278,9 @@ typings/
 # TODO: Add Instructions for this app
 
 ## Add eslint and prettier plugins
+* In root create a `package.json`
+
+`/.package.json`
 
 ```
 $ npm i -D eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react react-testing-library prettier eslint-plugin-prettier husky pretty-quick prettier`

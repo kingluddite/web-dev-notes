@@ -12,8 +12,8 @@
 // MORE CODE
 
 <button className="button-primary">Submit</button>
-                {error && <p>{error.message}</p>}
-              </form>
+  {error && <p>{error.message}</p>}
+</form>
 
 // MORE CODE
 ```

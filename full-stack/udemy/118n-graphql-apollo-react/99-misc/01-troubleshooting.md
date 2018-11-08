@@ -537,3 +537,12 @@ handleSignout = (client, history) => {
  
 // more code
 ```
+
+## If you update mac OS to mojave
+* Upgrade node using Homebrew
+* Uninstall bcrypt and install brcrypt-nodejs
+* remove package-lock.json
+* `$ npm rebuild`
+
+* `$ npm i`
+
