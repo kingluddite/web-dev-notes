@@ -1,4 +1,5 @@
 # iTerm2
+* to speed up GENERAL uncheck GPU rendering and it will speed up iTerm a ton
 
 `cmd` + `d` - split window
 
