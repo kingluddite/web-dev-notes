@@ -710,6 +710,43 @@ const Center = styled.div`
 // MORE CODE
 ```
 
+* You can do above to export it or you could also not use the export word there and do this instead
+
+```
+// MORE CODE
+
+const ALL_ITEMS_QUERY = gql`
+  query ALL_ITEMS_QUERY {
+    items {
+      id
+      title
+      description
+      price
+      image
+      largeImage
+      price
+    }
+  }
+`;
+
+// MORE CODE
+
+class Items extends Component {
+
+ // MORE CODE
+
+}
+
+// MORE CODE
+
+export default Items;
+export { ALL_ITEMS_QUERY };
+
+```
+
+* I will use the latter example as it keeps all the exports in one place
+  - Default exports and named exports
+
 #### Alternate way to export a named export
 `Items.js`
 

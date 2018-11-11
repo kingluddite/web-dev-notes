@@ -25,7 +25,8 @@ type User {
         + admin
         + user
         + many others
-* This is great because we will not maintain a list of permissions elsewhere; we will do it directly in GraphQL
+* This is great because we will not maintain a list of permissions elsewhere
+    - We will do it directly in GraphQL
 
 `datamodel.prisma`
 
@@ -44,9 +45,9 @@ type User {
 // MORE CODE
 ```
 
-* PERMISSIONUPDATE
+* `PERMISSIONUPDATE`
     - Will be kind of circular
-    - Only if you are an ADMIN or if you have the PERMISSIONUPDATE permission will you be able to update that
+    - Only if you are an `ADMIN` or if you have the `PERMISSIONUPDATE` permission will you be able to update that
 
 ```
 permissions: [Permission]
@@ -91,9 +92,9 @@ type Query {
 // MORE CODE
 ```
 
-* We return a type of User
+* We return a type of `User`
     - Even though `User` is not in this file it is in the generated file
-        + And we import that generated file into this file so we have access to the User type
+        + And we import that generated file into this file so we have access to the `User` type
 
 ## Let's open our generated file to see our newly modified User
 `prisma.graphql`
@@ -115,7 +116,7 @@ type User implements Node {
 ```
 
 ## Time to code our resolver
-* Anytime you add something to your schema that is a Mutation or a Query you need to go and code the corresponding resolver
+* Anytime you add something to your schema that is a `Mutation` or a `Query` you need to go and code the corresponding **resolver**
 
 ### Why we will use cookies instead of localStorage
 * We need to modify our Yoga server to allow us to work with cookies
@@ -131,11 +132,11 @@ type User implements Node {
                     + So If we were on the second pagination page of our items and hit the refresh button that it wouldn't server render any of the logged in parts (maybe I have a cart that needs to be rendered on the server) and that will cause a 1 to 2 second glitch of rendering the logged out view because it has no concept of someone being logged in and then it will re-render on the server because it realized that you have a localStorage jwt
                     + But by putting the jwt in our cookie, it will send along the data for every single request and it will be able to server render the authenticated user which is what we need
 
-## Middleware and index.js
+## Middleware and `index.js`
 * We are using Express as our server
 * The E in MERN
 
-### cookier-parser npm package
+### cookier-parser `npm` package
 * Helper function for working with cookies
 * Import it:
 
@@ -159,7 +160,7 @@ require('dotenv').config({ path: '.env' });
 2. The server sends out a `res`
     * A `res` example could be it will return an array of teams ['ManU', 'Chelsea', 'Liverpoo']
 
-##### Inbetween req and res
+##### Inbetween `req` and `res`
 * In between the `req` for `team.html` and the array of teams `res` you may need to do stuff (some kind of work)
     - Stuff like:
         + Authenticate the user
@@ -167,7 +168,7 @@ require('dotenv').config({ path: '.env' });
         + Local translate the team names
         + Anything you want to do between the initial server `req` and the final server `res` to the user in the browser that is what **middleware** does
 
-## How we will use middleware in this part of the app
+## How we will use middleware in this part of the app?
 1. We will accept the server `req`
 2. Then we will parsing any cookies that came along with the server `req`
     * So that we can parse that `jwt`
@@ -198,7 +199,7 @@ server.express.use(cookieParser());
     - turn a password of `123` to `hash(123)` and that turns into something like `asdfsdfweeiop33;jsdfjsdfjsdfpsd;fkj;fjioiopel;`
     - Then when you sign in you will put in `123`
     - We hash that again `hash(123)` and we will check if that is equal to what we intially stored
-        + if had in db === hash what they typed in... they we let the user log in
+        + if had in `db === hash` what they typed in... they we let the user log in
         + A wrong password will give a total different hash and we won't log that user in
         + Why is it one way hash?
             * If any has hash they can not turn the hash back into the original password

@@ -50,7 +50,7 @@ async signin(parent, {email, password }, ctx, info) {
 
 async signin(parent, {email, password}, ctx, info) {
   // 1. Check if there is an email with that user
-  // 2. Check if there password is correct
+  // 2. Check if their password is correct
   // 3. Generate the JWT token
   // 4. Set the cookie with the token
   // 5. Return the user
@@ -80,7 +80,7 @@ async signin(parent, {email, password}, ctx, info) {
 
 ### Check if password is valid
 ```
-// 2. Check if there password is correct
+// 2. Check if their password is correct
 const valid = await bcrypt.compare(password, user.password)
 ```
 
@@ -137,7 +137,7 @@ module.exports = Mutations;
 ```
 
 * I created `setCookieWithToken()` and passed it `ctx` and `token`
-* I did this because we have duplicate code so I just put the code in a function at the top of the file
+* I did this because we have duplicate code so I just put the code in a function at the top of the file (Best Practice: Keep code DRY)
 
 `Mutation.js`
 
@@ -147,7 +147,7 @@ module.exports = Mutations;
 // MORE CODE
 
 const setCookieWithToken = (ctx, token) => {
-  [ctx].response.cookie('token', token, {
+  ctx.response.cookie('token', token, {
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
   });
@@ -169,13 +169,13 @@ async signup(parent, args, ctx, info) {
 
  // MORE CODE
 
-  // setCookieWithToken(ctx, token);
-  ctx.response.cookie('token', token, {
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
-  });
+  setCookieWithToken(ctx, token);
+  // ctx.response.cookie('token', token, {
+    // httpOnly: true,
+    // maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
+  // });
 
-  // We did it! Now return the user to the browser!
+  // Now return the user to the browser!
   return user;
 },
 
@@ -290,7 +290,7 @@ class Signin extends Component {
 export default Signin;
 ```
 
-* Import and use the Signin component
+* Import and use the `Signin` component
 
 `signup.js`
 
@@ -355,7 +355,7 @@ const CURRENT_USER_QUERY = gql`
 * Once we refetch it will rerender the parts to show if we are signed in or signed out
 
 ### Named exports are useful
-* This is why we exported CURRENT_USER_QUERY here:
+* This is why we exported `CURRENT_USER_QUERY` here:
 
 `User.js`
 
@@ -440,7 +440,7 @@ class Signup extends Component {
 ## We need to organize our navbar
 * Show stuff if we are not logged in
 * Show different stuff if we are logged in
-* We will nest our links inside our User's render props so we can check for currentUser and show items if logged in and don't show if not logged in
+* We will nest our links inside our User's render props so we can check for `currentUser` and show items if logged in and don't show if not logged in
 
 `Nav.js`
 
@@ -491,7 +491,7 @@ class Nav extends Component {
 export default Nav;
 ```
 
-* But there is a new way to do it in React and that is React Fragments
+* But there is a new way to do it in React and that is React `Fragments`
 * But now with NextJS because it is using babel7 you can use this:
 * And you don't need the Fragment import anymore
 

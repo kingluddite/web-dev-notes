@@ -223,7 +223,7 @@ updateItem(id: ID!, title: String, description: String, price: Int): Item!
 * Rename `CreateItem` to `UpdateItem`
 * Remove uploadFile handler and the upload from the jsx form
 
-`UpdateItems.js`
+`UpdateItem.js`
 
 ```
 import React, { Component } from 'react';

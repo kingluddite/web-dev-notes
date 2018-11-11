@@ -71,7 +71,7 @@ module.exports = Mutations;
 
 ### Client side UI
 * We need a signout button
-* We need to fetch the current user (`CURRENT_USER_QUERY`) because as soon as they sign out we need to refetch the currentUser so we can update the UI
+* We need to fetch the current user (`CURRENT_USER_QUERY`) because as soon as they sign out we need to refetch the `currentUser` so we can update the UI
 
 `components/Signout.js`
 

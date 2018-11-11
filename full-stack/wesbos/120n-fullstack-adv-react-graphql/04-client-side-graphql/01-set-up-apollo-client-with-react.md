@@ -99,6 +99,8 @@ export const perPage = 4;
 * This is our Yoga API here
 
 ### header
+`withData.js`
+
 ```
 import withApollo from 'next-with-apollo';
 import ApolloClient from 'apollo-boost';

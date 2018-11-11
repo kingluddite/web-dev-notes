@@ -44,11 +44,11 @@ type User implements Node {
     - password: String!
     - resetToken: String
     - resetTokenExpiry: String
-        + Especially the resetTokenExpiry because if this field is available to the client side
+        + Especially the `resetTokenExpiry` because if this field is available to the client side
             * A bad person (aka hacker) could modify the query to also ask for the token to come back and then you could reset the password from the form and get the token and reset this person's password
             * This is a topic of **backend fields that should never be available on the frontend**
             * How do we do that?
-                - We will redefine our User type in our Yoga so that we NEVER leave those sensative fields over to the client side
+                - We will redefine our `User` type in our Yoga so that we NEVER leave those sensitive fields over to the client side
 
 ## Redefine User type for Yoga
 * First just copy our user type from `prisma.graphql` and paste it at the bottom of `schema.graphql`
@@ -151,9 +151,9 @@ requestReset(parent, args, ctx, info) {
 
 * #3 we will save for later
 
-## Check if there is a user
+## Check if there is a `user`
 * If not a user throw an error
-* We return a Promise so we use async await
+* We return a `Promise` so we use **async/await**
 
 ```
 async requestReset(parent, args, ctx, info) {
@@ -171,7 +171,7 @@ async requestReset(parent, args, ctx, info) {
 * The token needs to be random and unique
 * But it also needs to be cryptographically strong
     - You don't want a hacker to be able to figure how you are generating these tokens and just trying them
-    - There is a built-in module to node called `crypto` that will help us with that
+    - There is a built-in module to **node** called `crypto` that will help us with that
         + The function on `crypto` is called `randomBytes`
 
 `Mutation.js`
@@ -186,8 +186,8 @@ const { randomBytes } = require('crypto'); // add this
 
 ### Convert callback-based functions into Promise-based functions
 #### promisify
-* We will also need to grab promisify because we can run `randomBytes` asynchronously but it is best to run all your asynchronously
-* The way `randomBytes` works is via a callback function at the time of recording and we need to turn that into a Promise-based function
+* We will also need to grab `promisify` because we can run `randomBytes` asynchronously but it is best to run all your code asynchronously
+* The way `randomBytes` works is via a callback function at the time of recording and we need to turn that into a `Promise-based` function
 
 `Mutation.js`
 
@@ -268,6 +268,14 @@ async requestReset(parent, args, ctx, info) {
 * We have no UI so let's user Playground
 
 `http://localhost:4444`
+
+```
+mutation REQUEST_RESET_MUTATION {
+  requestReset(email: "bob@bob.com") {
+    message
+  }
+}
+```
 
 ### Houston we have a problem
 * Our promisify syntax is incorrect
@@ -366,12 +374,15 @@ const res = await ctx.db.mutation.updateUser({
 
 ![server output showing our new User with encrypted password, resetToken, and the reset token expiry](https://i.imgur.com/1lBvxvl.png)
 
-* Server output showing our new User with encrypted password, resetToken, and the reset token expiry
+* Server output showing our new `User` with:
+    - encrypted password
+    - resetToken
+    - and the resetTokenExpiry
 * **note** `resetToken` is the `token` we want to work with
 
 ## We aren't working with sending the email yet
 * So until we work with the email let's wire this slightly different
-    - We will pause the `requestReset`, code up the actual reset portion of the requestReset and then we'll come back and work on sending email
+    - We will pause the `requestReset`, code up the actual reset portion of the `requestReset` and then we'll come back and work on sending email
 
 ## Open up prisma.io
 * Find your user with a reset token
@@ -389,7 +400,7 @@ type Mutation {
   
   // MORE CODE
 
-  requestReset(resetToken: String!, password: String!, confirmPassword: String!): User!
+  resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
 }
 
 // MORE CODE
@@ -397,11 +408,12 @@ type Mutation {
 
 * We create `requestReset()`
     - It takes in:
-        + The resetToken
-        + A password and a confirmPassword
-            * We want to doublecheck
-            * We could also check if password is same on client side (either end is fine)
-        + And we want to return a User which is required
+        + The `resetToken`
+        + A `password`
+        + And a `confirmPassword`
+            * We want to double check
+            * We could also check if `password` is same on **client side** (either end is fine)
+        + And we want to return a `User` (_which is required_)
 
 ## Jump into our Mutation resolver
 `backend/src/resolvers/Mutation.js`
@@ -411,7 +423,7 @@ type Mutation {
 ```
 // MORE CODE
 
-  async requestReset(parent, args, ctx, info) {
+  async resetPassword(parent, args, ctx, info) {
     // 1. Check if the passwords match
     // 2. Check if its a legit reset token
     // 3. Check if token is expired
@@ -441,7 +453,7 @@ if (args.password !== args.confirmPassword) {
 * We'll get the two for one special on this because we don't want to hit the server twice (make 2 server requests)
 
 #### Houston we have a problem
-* We want to query the user db like this:
+* We want to query the user `db` like this:
 
 ```
 const user = await ctx.db.query.user({ where: { args.resetToken } });
@@ -472,11 +484,11 @@ input UserWhereUniqueInput {
 // MORE CODE
 ```
 
-* This means we can only use `user` if we have the `id` or the `email` and with requestReset we have neither
+* This means we can only use `user` if we have the `id` or the `email` and with `requestReset` we have neither
 * So what do we do?
 
 ### Solution
-* The reason `id` and `email` are unique is we marked those two unique in `datamodel.prisma`
+* The reason `id` and `email` are **unique** is we marked those two unique in `datamodel.prisma`
 
 `datamodel.prisma`
 
@@ -527,6 +539,8 @@ input UserWhereInput {
 * Far more flexible than only the two unique fields we were using before
 
 ### Building our query
+`Mutation.js`
+
 ```
 // MORE CODE
 
@@ -542,9 +556,9 @@ const [user] = await ctx.db.query.users({
 
 * Now this is pretty nifty
     - We use the `users()` method which returns an array
-    - But we destructure the first user returned (our query will only have one result... what are the chances of two same resetTokens?)
-    - And our `where` will first search for the `resetToken` the one we sent should match the one if the db
-    - And we also check if it expired but using the `resetTokenExpiry_gte` which will find values greater than `now` plus an `hour` and if it is, the resetToken has expired
+    - But we destructure the first user returned (_our query will only have one result... what are the chances of two same resetTokens?_)
+    - And our `where` will first search for the `resetToken` the one we sent should match the one in the db
+    - And we also check if it expired but using the `resetTokenExpiry_gte` which will find values greater than `now` plus an `hour` and if it is, the `resetToken` has expired
 
 ### Tell user if the token is bad
 
@@ -606,7 +620,7 @@ setCookieWithToken(ctx, token);
 
 ### return the user
 * We did this many times before
-* Notice that we again are using `updatedUser` as that is the user with the updated **hashed** `password`
+* Notice that we again are using `updatedUser` as that is the `user` with the updated **hashed** `password`
 
 ```
 // MORE CODE
@@ -623,7 +637,7 @@ return updatedUser;
 ```
 // MORE CODE
 
-async requestReset(parent, args, ctx, info) {
+async resetPassword(parent, args, ctx, info) {
   // 1. Check if the passwords match
   if (args.password !== args.confirmPassword) {
     throw new Error(`You're passwords don't match`);
@@ -657,7 +671,7 @@ async requestReset(parent, args, ctx, info) {
 // MORE CODE
 ```
 
-* In order to test this you need to generated another resetToken
+* In order to test this you need to generate another `resetToken`
     - Remember that tokens expire after an hour
     - Login to prisma and copy the `resetToken`
 
@@ -665,8 +679,8 @@ async requestReset(parent, args, ctx, info) {
 `http://localhost:4444/`
 
 ```
-mutation REQUEST_RESET_MUTATION {
-  requestReset(resetToken: "22634ff370b5934c5248a22664eb13a98994e8a9", password: "1234", confirmPassword: "12345") {
+mutation RESET_PASSWORD_MUTATION {
+  resetPassword(resetToken: "22634ff370b5934c5248a22664eb13a98994e8a9", password: "1234", confirmPassword: "12345") {
     id
     name
   }
@@ -714,11 +728,11 @@ mutation REQUEST_RESET_MUTATION {
 * Refresh Prisma to make sure you have the latest data
 * Copy the `requestReset` and paste it into Playground and run again
 * Try your new password (after logging out) to log that user in and it should work
-* Try to run the reset password mutation again and it should not work and give you an error `This token is either invalid or expired`
+* Try to run the `resetPassword` mutation again and it should not work and give you an error `This token is either invalid or expired`
 
-### Backend for requestReset is complete
+### Backend for `requestReset` is complete
 
-## Next - Build the UI for our requestReset in React
+## Next - Build the UI for our `requestReset` in React
 
 ## Additional Resources
 * [Understanding Node's promisify and callbackify](https://medium.com/trabe/understanding-nodes-promisify-and-callbackify-d2b04efde0e0)

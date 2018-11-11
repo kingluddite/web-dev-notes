@@ -1,5 +1,12 @@
 # GIT
 
+## Remove .next from repo
+* I accidentally added .next folder to git and since these are generated files, I want to remove them
+* In the React folder (client) add `.gitignore` and add `.next` as a line inside the file (it should also have `node_modules`)
+* Then you need to remove the tracking of `.next` and you do that with this nifty command
+
+`$ git rm -r --cached .next`
+
 ## Bulk delete github repos
 * Nice to keep it clean and get rid of junk
 * [link to repo](https://github.com/kingluddite/bulk-clean-repos)

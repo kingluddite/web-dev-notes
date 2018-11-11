@@ -42,7 +42,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjam52ODdiMzMyaXNwMDk5
 2. We'll take that `token`, **decode** it with `jwt` on the **backend**
 3. And then stick the `userId` onto every single request `req`
 
-* This means that if we every need to know who the user is, we can quickly query the `db` since we know the `userId`
+* This means that if we ever need to know who the user is, we can quickly query the `db` since we know the `userId`
 
 ## Backend
 ### We need to decode the JWT so we can get the user `id` on every request
@@ -55,7 +55,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjam52ODdiMzMyaXNwMDk5
 server.express.use(cookieParser());
 
 // Use express middleware to populate current user
-// decode the JWT so we can get the user Id on each request
+// decode the JWT so we can get the user ID on each request
 server.express.use((req, res, next) => {
   console.log('Middleware is in da house!');
   next();
@@ -69,7 +69,7 @@ server.start(
 * We create custom middleware
 * Very simple as it will just log out every time we make a `req`
 * Test it out in browser and Click on Home page and then Signup page and then Sell page
-    - Each click and you'll see our `Middleware is in da house` console.log() with each request
+    - Each click and you'll see our `Middleware is in da house` **console.log()** with each request
     - **note** On the home page we have 4 requests so we get for logs in the backend terminal
 
 ## send() ==== this code doesn't work and is under repair
@@ -89,13 +89,13 @@ server.express.use((req, res, next) => {
 
 * ASK Wes Bos - TODO: Look at above - did not work
     - after commenting out `next()` we are supposed to be able to see
-    - send() breaks it and that is the point of middleware is that it enables you to step in between requests or before a request and do a little of extra work
-    - I was gets a CORS error
+    - `send()` breaks it and that is the point of middleware is that it enables you to step in between requests or before a request and do a little of extra work
+    - I was getting a CORS error
 
 ## next()
 * We use `next()` to keep our server moving onto the "next" middleware
     - This is enables us to modify the request
-    - And send the request going so our db and our yoga server will be able to pick it up with no problem
+    - And send the request going so our `db` and our yoga server will be able to pick it up with no problem
 
 ## How can we pull the `token` out of the `req`?
 `index.js`
@@ -129,18 +129,18 @@ server.express.use((req, res, next) => {
 });
 ```
 
-* WE log out cookies and if we go into the client Applications tab of Chrome console we can manually add a cookie and then we will now see it in the terminal
+* We log out cookies and if we go into the client **Applications** tab of `Chrome` console we can manually add a cookie and then we will now see it in the terminal
 * **note** I had a hard time updating the cookie as the page kept refreshing before I could enter it in
 * This is the benefit of using cookies is I did not have to manually send that along for the ride it just came with it
-    - But with localStorage you have to explicitly send it over every single time
+    - But with `localStorage` you have to explicitly send it over every single time
     - This isn't an issue if you just have a client side app
-        + expecially with Apollo as you can just tell it to pull it from localhost and you don't have to manually do it every single time
-    - But because this is a server side render (SSR), when we refresh this page or visit for the very first time, there is no way for me to send the localStorage along for the ride (and that is why we are using cookies for authentication)
+        + Especially with Apollo as you can just tell it to pull it from localhost and you don't have to manually do it every single time
+    - But because this is a server side render (SSR), when we refresh this page or visit for the very first time, there is no way for me to send the `localStorage` along for the ride (and that is why we are using cookies for authentication)
 
 ## Now let's get back to decoding our token
 * Make sure there is a token
     - There may not always be a token
-    - We also add in the secret (it is optional) but it is good to also add in our SECRET to make sure know one has monkeyed with it and added in their own values to the `jwt` (because anyone can edit the cookies and say they are an administrator)
+    - We also add in the secret (it is optional) but it is a good idea to also add in our SECRET to make sure no one has monkeyed with it and added in their own values to the `jwt` (_because anyone can edit the cookies and say they are an administrator_)
 
 `index.js`
 
@@ -162,9 +162,8 @@ server.express.use((req, res, next) => {
 // MORE CODE    
 ```
 
-* Regardless of if there is a token or not a token
-* We will call `next()` and that will pass along the `req`
-* It will not send a `res` directly from this middleware, it will pass it along the line and later when we get into one of our resolvers (be that a query or a mutation resolver) we'll be able to easily access this `userId` without having to decode the `jwt` every single time
+* Regardless of if there is a token or not we will call `next()` and that will pass along the `req`
+* It will not send a `res` directly from this middleware, it will pass it along the line and later when we get into one of our resolvers (_be that a query or a mutation resolver_) we'll be able to easily access this `userId` without having to decode the `jwt` every single time
 
 ## Problem
 * We are using `jwt` so we need to require it
@@ -180,10 +179,10 @@ require('dotenv').config({ path: '.env' });
 // MORE CODE
 ```
 
-## Now we need to add in the Query for our currentUser
-* We'll call this query `me`
-    - When someone calls `me` it will return a User (optional)
-        + optional because someone could query `me` and there it is null (no one is logged in)
+## Now we need to add in the Query for our `currentUser`
+* We'll call this query `currentUser`
+    - When someone calls `currentUser` it will return a `User` (_optional_)
+        + Optional because someone could query `currentUser` and there it is `null` (no one is logged in)
 
 `backend/src/schema.graphql`
 
@@ -193,15 +192,15 @@ type Query {
   items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, first: Int): [Item]!
   item(where: ItemWhereUniqueInput!): Item
   itemsConnection(where: ItemWhereInput): ItemConnection!
-  currentUsr: User
+  currentUser: User
 }
 
 // MORE CODE
 ```
 
 * No arguments
-* It just takes the `jwt` cookie and parse it for us
-    - The id is already passed with every `req` so we already know it
+* It just takes the `jwt` cookie and parses it for us
+    - The `id` is already passed with every `req` so we already know it
 
 ## Update resolvers
 `backend/src/resolvers/Query.js`
@@ -265,7 +264,7 @@ currentUser(parent, args, ctx, info) {
 // MORE CODE
 ```
 
-* But it is important that we return `null` in this case because we do want to have this query and for it to return nothing because someone might not be logged in
+* But it is important that we return `null` because someone might not be logged in
 
 ## And if there is a `userId`
 `backend/src/generated/prisma.graphql`
@@ -281,7 +280,7 @@ type Query {
 // MORE CODE
 ```
 
-* The last line above shows we have a user that need unique input
+* The last line above shows we have a `user` that need **unique** input
     - And we can pass it a `where`
 
 ```
@@ -315,20 +314,20 @@ currentUser(parent, args, ctx, info) {
 },
 ```
 
-* That user is going to end of having:
+* That `user` is going to end of having:
     - A cart
-    - And has permissions
-    - And has a name
-    - And an email address
+    - permissions
+    - a name
+    - an email address
     - Orders
     - All of this data associated with it
-    - And our user query is going to get large
+    - And our `user` query is going to get large
     - So we need to pass the actual query from the frontend so that when we just want to get the user's email address, we're not getting the whole cart at the exact same time
 
-## Do we need for our `me` Query to resolve?
+## Do we need for our `currentUser` Query to resolve?
 * No
     - Because we are returning a Promise we do not need to wait for it to resolve
-    - It will return a Promise and resolve itself once it has finished and come back
+    - It will return a Promise and resolve itself once it has finished and comes back
 
 ## shorthand vs longer hand
 * We used es6 function shorthand but we could have written it in "longer form" using this
@@ -377,11 +376,11 @@ module.exports = Query;
 * We need to build a react component that will query the backend for the data and display in some use case
     - This will be a lot of code
         + Why?
-        + Because every single time we need to get the current user we have to write a query and we'll have to import the query component from react-apollo
+        + Because every single time we need to get the current user we have to write a query and we'll have to import the query component from `react-apollo`
         + And then we'll have to have a render prop for that
 
 ### Create our own render prop component
-* This will allow us to "tuck" all of that complexity into its own component and this will make it a nice clean little user component that will provide to us a user if the user is logged in
+* This will allow us to "tuck" all of that complexity into its own component and this will make it a nice clean little `user` component that will provide to us a user if the user is logged in
 * We could do this:
 
 `frontend/components/User.js`
@@ -405,7 +404,7 @@ const CURRENT_USER_QUERY = gql`
 
 const User = props => (
  <Query query={CURRENT_USER_QUERY}>
-   {({data} => <p>data.user.name</p>)} 
+   {({data}) => <p>data.user.name</p>} 
   </Query>
 )
 
@@ -451,8 +450,8 @@ const User = props => (
 )
 ```
 
-* So anytime we want to write a user component and we want to pass additional `props` to the Query component we can just pass it to our `User` component and they will automatically get passed down
-* Make sure you export both the default component as well as the CURRENT_USER_QUERY so we can access this query from other places
+* So anytime we want to write a user component and we want to pass additional `props` to the `Query` component we can just pass it to our `User` component and they will automatically get passed down
+* Make sure you export both the default component as well as the `CURRENT_USER_QUERY` so we can access this query from other places
     - We will access this query often
 
 ```
@@ -474,7 +473,7 @@ export default User;
 export { CURRENT_USER_QUERY };
 ```
 
-* When you use User you know you'll always have to have the `children` function
+* When you use `User` you know you'll always have to have the `children` function
 
 ## Here is the full code
 `User.js`
@@ -553,6 +552,7 @@ class Nav extends Component {
 </User>
 ```
 
+### Houston we have a problem! 
 * That will give an error
 * The reason is the `payload` has data inside it
     - So it is like a two level destructure
@@ -582,8 +582,10 @@ class Nav extends Component {
 
 * View in browser
     - You will see your logged in user's `name`
+
+## Incognito
 * View in `incognito` tab and you won't see logged in user's `name`
-    - copy URL and paste into igcognito window
+    - copy URL and paste into `igcognito` window
     - Because no one is logged in incognito
 
 ## View cookie

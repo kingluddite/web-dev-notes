@@ -3,6 +3,7 @@
 
 ```
 import React, { Component } from 'react';
+
 // GraphQL
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -54,7 +55,10 @@ const SignupPage = props => (
 export default SignupPage;
 ```
 
-* View in browser
+* Make sure your client server is running (webpack from nextJS)
+  - `$ cd frontend && npm run dev`
+
+* View in browser `http://localhost:7777/`
     - We have 3 columns
 
 ## Add our forms, state and submit button
@@ -236,7 +240,7 @@ return (
 // MORE CODE
 ```
 
-## Add on onSubmit and handleSubmit
+## Add on `onSubmit` and `handleSubmit`
 
 `Signup.js`
 
@@ -271,7 +275,7 @@ render() {
 
 ### Clear the form
 * Right now the form still has what we put inside it when we hit submit
-* We can clear it
+* We can clear the form which would be a better UX
 * But we first need to capture the result and then clear it
 
 #### Let's log the result first
@@ -382,7 +386,7 @@ class Signup extends Component {
 // MORE CODE
 ```
 
-* The reason is our Apollo error was just returning a div and our form never rendered after the error showed
+* The reason is our Apollo error was just returning a `div` and our form never rendered after the error showed
 * But with our custom error we can show the error and our form stays on the page
 
 `Signup.js`
@@ -400,8 +404,8 @@ handleSubmit = async (event, signup) => {
 ```
 
 * Because `signup()` did not resolve Properly
-  - It is a Promise so it sent a reject instead of resolve
-  - So we never get to the `console.log() or the clear the form function
+  - It is a **Promise** so it sent a reject instead of resolve
+  - So we never get to the `console.log()` or the clear the form function
   - You could remove the `res` unless you want to add a custom success message to the user
     + TODO - Add custom success message to the user
 

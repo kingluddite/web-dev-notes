@@ -40,7 +40,7 @@ class DeleteItem extends Component {
 export default DeleteItem;
 ```
 
-* Update the Item.js
+* Update the `Item.js`
 
 `Item.js`
 

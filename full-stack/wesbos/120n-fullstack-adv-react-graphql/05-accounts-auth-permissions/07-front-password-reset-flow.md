@@ -1,11 +1,13 @@
 # Frontend Password Reset Flow
 * We will build the form for the actual reset
-* Save Signin as `RequestReset.js`
+* Save `Signin` as `RequestReset.js`
 
 ## Remove
 * `import { CURRENT_USER_QUERY } from './User';`
 * Change Mutation name from `SIGNIN_USER_MUTATION` to `REQUEST_RESET_MUTATION`
     - Many times I don't know what to put in what is returned from when I define the client side Mutation or Query and the answer to this is just to look at the schema definition and we can see it needs to return a `SuccessMessage` so we can just return a `message`
+
+`schema.graphql`
 
 ```
 // MORE CODE
@@ -34,9 +36,9 @@ const REQUEST_RESET_MUTATION = gql`
 * Update the Mutation attribute to `mutation={REQUEST_RESET_MUTATION}`
 * Remove `refetchQueries={.....}`
 * Our `state` only needs and `email` address
-* We only pass `email` to our REQUEST_RESET_MUTATION
+* We only pass `email` to our `REQUEST_RESET_MUTATION`
     - Make sure all code only references `email` and delete others
-    - Make sure we only have the email text field and button that says 'Reset Password'
+    - Make sure we only have the `email` text field and button that says 'Reset Password'
 * Rename the function from `Signin` to `requestReset`
 * Rename the class and default export to `RequestReset`
 * Make `h2` say `Request Password Reset`
@@ -120,7 +122,7 @@ class RequestReset extends Component {
 export default RequestReset;
 ```
 
-* Import that into `Signup.js`
+* Import that into `signup.js`
 
 `signup.js`
 
@@ -161,7 +163,7 @@ handleSubmit = async (event, requestReset) => {
 ```
 
 * Here's one way we could do this
-* But we have to rework our clearForm to make this work
+* But we have to rework our `clearForm` to make this work
 * Notice how we grab the success message `successMessage.data.requestReset.message`
 
 `RequestReset.js`
@@ -227,13 +229,13 @@ class RequestReset extends Component {
 export default RequestReset;
 ```
 
-* After submitting RequestPassword we get this UI notification
+* After submitting `RequestPassword` we get this UI notification
 
 ![success UI notification](https://i.imgur.com/Zvurfsf.png)
 
 ## An alternative way using `called` property of Apollo's Mutation
 * Called will be `boolean` whether this mutation has been called yet
-* We need to make sure our data is not `loading`, doesn't have an `error` and `called` is **true** and if it is, output a success message
+* We need to make sure our `data` is not `loading`, doesn't have an `error` and `called` is **true** and if it is, output a `success` message
 
 `RequestReset.js`
 
@@ -269,8 +271,8 @@ async requestReset(parent, args, ctx, info) {
 // MORE CODE
 ```
 
-* **Important Security Tip** - In Production you never want to console.log any of this token information, because the resetToken is super secret information (treat it as important as a password) and if in the wrong hands can help a malicious user have access to your account
-    - It should never be in server logs so remove all console.logs in production
+* **Important Security Tip** - In Production you never want to `console.log` any of this token information, because the `resetToken` is super secret information (treat it as important as a password) and if in the wrong hands can help a malicious user have access to your account
+    - It should never be in server logs so remove all `console.logs` in production
 * I think you will agree that this is a much easier and cleaner solution
 
 ## Now we need to hit the reset page
@@ -395,7 +397,7 @@ class ResetPassword extends Component {
                 <h2>Reset Your Password</h2>
                 <Error error={error} />
                 <label htmlFor="password">
-                  Password
+                  New Password
                   <input
                     type="password"
                     name="password"
@@ -405,7 +407,7 @@ class ResetPassword extends Component {
                   />
                 </label>
                 <label htmlFor="confirmPassword">
-                  Confirm Password
+                  Confirm New Password
                   <input
                     type="password"
                     name="confirmPassword"
@@ -428,9 +430,9 @@ export default ResetPassword;
 ```
 
 * Why do we confirm password on server?
-    - Usually it is just done on client
+    - Usually it is just done on `client`
     - We are building an API and regardless of where this API is being used we want to always make sure the user confirms the password and we check it on the server
-        + You could do it on the client side but if you ever were to have a reset mutation anywhere else in the application you would also have to do that client side check there
+        + You could do it on the `client` side but if you ever were to have a reset mutation anywhere else in the application you would also have to do that `client side check` there
  
 **tip** It is worth renaming this component to `ResetPage`
 * It doesn't matter since it's the default export
@@ -464,17 +466,24 @@ export default ResetPage;
 ```
 
 ## Take it for a test drive in your browser
-* After enter and confirming password if you received 'invalid password or expired' error message grab a new token by signing in again
-* Then log into Prisma and grab new token
-    - Or you could grab it from the log we left in the server
-    - Go to `http://localhost:7777/reset?resetToken=c5286ffca1d9a8d4ecbb4296d8b02a43d4022d5b` and reset your password again
+
+* Visit `http://localhost:7777/signup`
+* Enter an email in the Request Password Reset and submit
+* Go into terminal and grab `resetToken`
+* Go to `http://localhost:7777/reset?resetToken=c5286ffca1d9a8d4ecbb4296d8b02a43d4022d5b` and reset your password again (replace above resetToken with yours)
 * It should work
-    - But we have no we in our UI of knowing it worked
+    - But we have no way currently in our UI of knowing it worked
     - We didn't provide any success message but what should happen if it worked correctly it should log us in
-    - If you signout and signin you will see we are signin (that is what we want to happen)
+    - If you signout and signin you will see we are signin (_that is what we want to happen_)
+
+**note** After enter and confirming password if you received 'invalid password or expired' error message grab a new token by signing in again
+* Then log into Prisma and grab new token
+* Or you could grab it from the log we left in the server
+
+If you signout and signin you will see we are signin
 
 ### How do we do that?
-* We use a refetchQuery in our Mutation
+* We use a `refetchQuery` in our Mutation
 * Just like we did before we want to refetch the current user
 
 `ResetPassword.js`
@@ -502,7 +511,7 @@ class ResetPassword extends Component {
       // MORE CODE
 ```
 
-* In our User.js component we have this:
+* In our `User.js` component we have this:
 
 `User.js`
 

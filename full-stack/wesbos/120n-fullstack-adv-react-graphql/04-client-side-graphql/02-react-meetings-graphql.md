@@ -22,7 +22,7 @@ export default Items;
 ```
 
 ## Create a new component
-`components/items.js`
+`components/Items.js`
 
 * **tip** Use VS code react snippets with `rcc` + tab to generate a default class
 
@@ -176,7 +176,7 @@ class Items extends Component {
 export default withItems(Items);
 ```
 
-* withItems would be a HOC
+* `withItems` would be a HOC
 * You would wrap your component with that HOC
 
 `withItems(Items)`
@@ -321,6 +321,8 @@ class Items extends Component {
 ## Center our data
 * We'll use styled-components
 
+`Items.js`
+
 ```
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
@@ -375,6 +377,8 @@ export default Items;
 
 ## Add css grid
 
+`Items.js`
+
 ```
 // MORE CODE
 
@@ -426,7 +430,7 @@ export default Items;
 * **tip** Use `rccp` will create a class and use VS Code's react snippet package to quickly generate a Class Based Component (CBC) and build it with Prop Types
 * We will use prop types basic setup but you should use them with shapes like this:
 
-`Items.js`
+`Item.js`
 
 ```
 import React, { Component } from 'react';
