@@ -87,7 +87,7 @@
 * To avoid conflicts make sure your root `package.json `looks like this:
 
 ```
-$ npm i -D eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react react-testing-library prettier eslint-plugin-prettier husky pretty-quick prettier
+$ npm i -D eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react react-testing-library eslint-plugin-prettier husky pretty-quick prettier
 ```
 
 `/package.json`
@@ -165,7 +165,7 @@ $ npm i -D eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a1
 ## Run both the client and server in the same terminal
 `$ npm run dev`
 
-* Client (react) is running `localhost:3000`
+* Client (React) is running `localhost:3000`
 * Server (Express) is running `localhost:4444`
 
 ## Additional Resources
