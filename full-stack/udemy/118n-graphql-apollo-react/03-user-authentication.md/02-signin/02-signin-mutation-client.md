@@ -1,14 +1,30 @@
 # Implement Signin Mutation on client
-`queries/index.js`
-
 * Copy graphql code you were using and paste into `index.js`
+
+### First create your shell
+`queries/index.js`
 
 ```
 // MORE CODE
 
 // User Mutations
-export const SIGNIN_USER = gql`
-  mutation($username: String!, $password: String!) {
+export const SIGNIN_USER_MUTATION = gql`
+ // playground code paste here
+`;
+
+export const SIGNUP_USER = gql`
+
+// MORE CODE
+```
+
+### Next Paste in plaground code
+
+```
+// MORE CODE
+
+// User Mutations
+export const SIGNIN_USER_MUTATION = gql`
+ mutation SIGNIN_USER_MUTATION ($username: String!, $password: String!) {
     signinUser(username: $username, password: $password) {
       token
     }
