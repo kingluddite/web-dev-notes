@@ -1,4 +1,36 @@
 # Vim Plugins
+## Plugin Maintenance
+* Vim has a built-in profile set of commands
+    - See `:h profile`
+
+* Open vim
+* Then run the following
+
+`:profile start profile.log`
+
+* This sets up the file `profile.log` to be the log file
+* If it already exists, it will be overwritten
+* We now need to tell **vim** what to profile
+
+`:profile func *`
+
+`:profile file *`
+
+* This says to profile all functions and all script files (Overkill, perhaps) * Now, you should do things that make vim act slowly
+* They are being profiled in the background
+* Once you have concluded, end the profiling
+
+`:profile pause`
+
+* And quit **vim**
+* Now, read the `profile.log` file and see what's slow
+* Note that this is for slow running inside of vim
+* If vim is slow to start up (a different problem), you should start vim with
+
+`vim --startuptime log.txt`
+
+* and read the times, see what's taking so long
+
 ## Nerdtree
 
 * [Github](https://github.com/scrooloose/nerdtree)

@@ -1,14 +1,14 @@
-
-
 # Data Relationships
 * Permissions part of course
 * Owner can do things depending on if they are an administrator/custom permissions/etc
 
-## We need a relationship between our user and our item
+## We need a relationship between our `user` and our `item`
 * Right now when someone creates something... we don't know who created that item
-* We need a way of tying the item to the user that created it
+* We need a way of tying the `item` to the `user` that created it
 
 `backend/datamodel.prisma`
+
+* Take this file:
 
 ```
 // MORE CODE
@@ -26,7 +26,7 @@ type Item {
 }
 ```
 
-* To this:
+* And modify it to look like this:
 
 ```
 type Item {
@@ -40,14 +40,14 @@ type Item {
 }
 ```
 
-* We just added `user: User!` and that is a relationship between the User and the Item
-    - Whenever we create an Item we'll add the user `id` into that item
-    - And that will allow us to populate the user and any other information that is assocated with that item
+* We just added `user: User!` and that is a relationship between the `User` and the `Item`
+    - Whenever we create an `Item` we'll add the user `id` into that item
+    - And that will allow us to populate the `user` and any other information that is assocated with that `item`
 
 ## We just changed our datamodel
 * REMEMBER! - Anytime we change our datamodel we have to re-deploy that to prisma
 
-### Stop the server
+### Stop the server (cd to the `backend` folder)
 `$ npm run deploy`
 
 #### Houston we have a problem
@@ -58,16 +58,16 @@ Item
     ✖ You are creating a required relation, but there are already nodes that would violate that constraint.
 ```
 
-* Why the error?
-    - We told Prisma that all Items require a User
-    - Two choices
-        + Force (not good as it leads to other errors)
-        + Run your server
-            * Delete 4 entries
-            * Refresh and we see the pagination problem
-              - Very soon in Apollo every time we delete one, it should refetch page 1 and pop in the newest one (Fix coming soon!)
-            * Delete all records `0 items total`
-            * Stop server
+##### Why the error?
+* We told Prisma that all Items require a User
+* Two choices
+    - Force (not good as it leads to other errors)
+    - Run your server
+          + Delete 4 entries
+          + Refresh and we see the pagination problem
+            * Very soon in Apollo every time we delete one, it should refetch page 1 and pop in the newest one (Fix coming soon!)
+          + Delete all records `0 items total`
+          + Stop server
 * Now run deploy again
 
 `$ npm run deploy`
@@ -126,6 +126,7 @@ async createItem(parent, args, ctx, info) {
 
 `http://localhost:7777/sell`
 
+## Houston we have a problem!
 * You can still see the `sell` even though we are logged out
 * We need to fix this with a wrapper component that checks if you are logged in (in a bit)
 * Try to upload an image
@@ -140,7 +141,7 @@ async createItem(parent, args, ctx, info) {
     + server
       * secure part
 
-## Add the user to when the item is created
+## Add the user when the item is created
 * We are spreading all of the fields into `data`
 
 `Mutation.js`
@@ -160,8 +161,8 @@ const item = await ctx.db.mutation.createItem(
 // MORE CODE
 ```
 
-* How will we add a user?
-* How will we make a relationship in Prisma?
+### How will we add a `user`?
+### How will we make a relationship in Prisma?
 * Do the following to achieve both:
 
 `Mutation.js`
@@ -188,14 +189,17 @@ const item = await ctx.db.mutation.createItem(
 ```
 
 ## Test to see if this works
-* We need to see if the user `id` is added to the item when we create it
-* Sign in
-* Create an item to sell
-* Open Prism.io db and view item you added
-* You will see a `user` field with a link icon (that means the field is linked to another Model)
-* copy the id into the clipboard
-* Switch to the User table and search for the `id` you just copied and you will find a match
-  - So we see that the user that created the item has an `id` and that `id` is in the `item` record he just created
+* We need to see if the user `id` is added to the `item` when we create it
+
+### Follow these steps
+1. Sign in
+2. Create an item to sell
+3. Open `Prism.io` **db** and view item you added
+  * You will see a `user` field with a link icon (_that means the field is linked to another Model_)
+4. Copy the `id` into the clipboard
+5. Switch to the `User` table and search for the `id` you just copied and you will find a match
+  - So we see that the `user` that created the `item` has an `id`
+  - And that `id` is in the `item` record we just created
 
 ## That is a relationship
 * It is very simple to create relationships

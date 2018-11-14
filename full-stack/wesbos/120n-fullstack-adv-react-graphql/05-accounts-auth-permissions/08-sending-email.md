@@ -43,7 +43,7 @@ MAIL_USER="usernamegoeshere"
 MAIL_PASS="passwordgoeshere"
 ```
 
-## Use Nodemailer npm package
+## Use Nodemailer `npm` package
 * The best way to send email with NodeJS
 * Click dropdown and select `Nodemailer` from inside the `mailtrap` dashboard
 * They give you the code to configure a `transport`
@@ -54,7 +54,7 @@ MAIL_PASS="passwordgoeshere"
             * But we will be hooking our transport up to a SMTP
 * We could hardcode our `transport` but we will keep security in mind and use our `.env` to hide our important values  
 
-## /mail.js
+## mail.js
 * Create `mail.js` in `backend/src/mail.js`
 
 ```
@@ -77,9 +77,9 @@ exports.transport = transport;
 * You can even do templating in React using `MJML`
 * [MJML](https://mjml.io/)
 * We could use Pug to template with `juice` to inline the CSS
-* We will just use barebone email
+* We will just use a barebones email
 
-## Barebone template email
+## Barebones template email
 `mail.js`
 
 ```
@@ -161,10 +161,6 @@ font-size="32px" line-height="40px" color="#5FA91D">Your Password Reset Has Arri
     </mj-section>
   </mj-body>
 </mjml>
-`
-);
-
-exports.basicEmailHtmlOutput = basicEmailHtmlOutput;
 ```
 
 ### Convert MJML into an HTML email friendly template
@@ -467,7 +463,7 @@ exports.makeANiceEmail = makeANiceEmail;
 * We made it a function and exported it and it can take some `text`
 
 ## Open up Mutation resolver for the `requestReset` of the password
-* **note** The actual resetPassword doesn't need to seed an email
+* **note** The actual `resetPassword` doesn't need to seed an email
     - But the `requestReset` does need to send the email
 
 ### Import the email template into the Mutation
@@ -492,97 +488,8 @@ const setCookieWithToken = (ctx, token) => {
 };
 
 const Mutations = {
-  async createItem(parent, args, ctx, info) {
-    // TODO: Check if they are logged in
 
-    const item = await ctx.db.mutation.createItem(
-      {
-        data: {
-          ...args,
-        },
-      },
-      info
-    );
-    console.log(item);
-
-    return item;
-  },
-
-  updateItem(parent, args, ctx, info) {
-    // first take a copy of the updates
-    const updates = { ...args };
-    // remove the ID from the updates
-    delete updates.id;
-    // run the update method
-    return ctx.db.mutation.updateItem(
-      {
-        data: updates,
-        where: {
-          id: args.id,
-        },
-      },
-      info
-    );
-  },
-
-  async deleteItem(parent, args, ctx, info) {
-    const where = { id: args.id };
-    // console.log(where);
-    // 1. find the item
-    const item = await ctx.db.query.item({ where }, `{ id title }`);
-    // 2. Check if they own that item or have the permissions
-    // TODO
-    // 3. Delete it!
-    return ctx.db.mutation.deleteItem({ where }, info);
-  },
-
-  async signup(parent, args, ctx, info) {
-    // make sure all emails are lowercase
-    args.email = args.email.toLowerCase();
-    // hash their password
-    const password = await bcrypt.hash(args.password, 10);
-    // create the user in the db
-    const user = await ctx.db.mutation.createUser(
-      {
-        data: {
-          ...args,
-          password,
-          permissions: { set: ['USER'] },
-        },
-      },
-      info
-    );
-    // create the JWT token for them
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-    // set the jwt as a cookie on the response
-    setCookieWithToken(ctx, token);
-    // We did it! Now return the user to the browser!
-    return user;
-  },
-
-  async signin(parent, { email, password }, ctx, info) {
-    // 1. Check if there is an email with that user
-    const user = await ctx.db.query.user({ where: { email } });
-    if (!user) {
-      throw new Error(`No such user found for email ${email}`);
-    }
-    // 2. Check if there password is correct
-    const valid = await bcrypt.compare(password, user.password);
-    if (!valid) {
-      throw new Error('Invalid Password!');
-    }
-    // 3. Generate the JWT token
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-    // 4. Set the cookie with the token
-    setCookieWithToken(ctx, token);
-    // 5. Return the user
-    return user;
-  },
-
-  signout(parent, args, ctx, info) {
-    ctx.response.clearCookie('token');
-    return { message: 'Live long and prosper!' };
-  },
+  // MORE CODE
 
   async requestReset(parent, args, ctx, info) {
     // 1. Check if this is a real user
@@ -618,13 +525,13 @@ module.exports = Mutations;
 ```
 
 * We use the `transorts` **sendMail()** method and pass it:
-    - from (who is sending the email)
-    - to (who are we sending it to)
+    - **from**: (_who is sending the email_)
+    - **to**: (_who are we sending it to_)
         + We have the `user` so we have their email and can send it to that specific email
-    - subject (subject of the email)
-    - html: We call our js file that was made into a function so we can inject into text and important information
-    - `/n/n` (2 new lines for an email)
-    - We don't want to hardcode the href pointing to our `http://localhost:7777` as that will change in production
+    - **subject**: (_subject of the email_)
+    - html: We call our `js` file that was made into a function so we can inject into **text** and important information
+    - `/n/n` (_2 new lines for an email_)
+    - We don't want to hardcode the `href` pointing to our `http://localhost:7777` as that will change in production
         + This is the beauty of environment variables and whey we stored `FRONTEND_URL="http://localhost:7777"` in our `.env` file so when our environment changes to production this USR will automatically update to the production URL
         + We point the link to the reset page and make sure the `resetToken` (that we have access to from above) and send it along for the ride in a **query string**
         + We use ES6 template strings to make this formatting super simple
@@ -644,7 +551,7 @@ module.exports = Mutations;
 * Open it and you will see the lovely email
 * Examine link inside email, hover over it and see the URL is pointing to `http://localhost:7777`
 * Click link
-* Change and confirm password
+* Change and confirm changed password
 * And you should be automatically logged in
 
 ## Additional Resources
