@@ -69,7 +69,8 @@ app.use(async (req, res, next) => {
 // MORE CODE
 ```
 
-* You will get an error so change your function to look like this:
+* You may get this error `JsonWebTokenError: jwt must be provided`
+* To fix change your function to look like this:
 
 ```
 // set up JWT authentication middleware
@@ -98,9 +99,6 @@ app.use(async (req, res, next) => {
 [server]   exp: 1535038953 }
 ```
 
-* You may get this error `JsonWebTokenError: jwt must be provided`
-* We'll address and repair that later
-
 ## Git stuff
 
 ### Add to staging with git
@@ -113,3 +111,6 @@ app.use(async (req, res, next) => {
 `$ git push origin auth`
 
 ## Next - add getCurrentUser query
+
+## Additional Resources
+* [view the data inside your jwt](https://jwt.io/)

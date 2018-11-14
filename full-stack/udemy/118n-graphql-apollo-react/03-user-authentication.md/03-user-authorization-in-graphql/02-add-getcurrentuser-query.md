@@ -1,30 +1,6 @@
 # Add getCurrentUser Query
 
-## Add currentUser to our request object (`req`)
-`server.js`
-
-```
-// MORE CODE
-
-// set up JWT authentication middleware
-app.use(async (req, res, next) => {
-  const token = req.headers.authorization;
-  // console.log(token, typeof token);
-  if (token !== 'null') {
-    try {
-      // add currentUser to the request object
-      req.currentUser = await jwt.verify(token, process.env.SECRET); // add
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  next();
-});
-
-// MORE CODE
-```
-
-### Add currentUser to the context of apollo server
+### Add `currentUser` to the context of apollo server
 * Destructure `currentUser` from the Apollo context which has the request object passed to it
 
 `server.js`
@@ -42,8 +18,8 @@ const server = new ApolloServer({
 // MORE CODE
 ```
 
-## Create new query - getCurrentUser
-* Now we need a way to get the currentUser anytime we need it using GraphQL
+## Create new query - `getCurrentUser`
+* Now we need a way to get the `currentUser` anytime we need it using GraphQL
 
 `schema.js`
 
@@ -78,17 +54,17 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
         path: 'favorites',
         model: 'Cologne', // make sure this is singular
       });
-    },
+    return user; // if you leave this out you won't get the user
   },
   // MORE CODE
 ```
 
 * Things to point out:
-  - When we call this method we need to pass it the currentUser
+  - When we call this method we need to pass it the `currentUser`
   - We find one user (there should only be one because all usernames are unique)
-  - We use mongoose's `populate()` to attach all the favorite colognes to the found currentUser
+  - We use mongoose's `populate()` to attach all the favorite colognes to the found `currentUser`
 
-`User.js`
+`models/User.js`
 
 ```
 // MORE CODE
@@ -144,7 +120,6 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
         model: 'Cologne', // make sure this is singular
       });
       return user; // add this line
-    },
   },
 ```
 
@@ -174,6 +149,8 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 * HOCs take a component and return a component
   - They come in handy when you are architecturally ready for separating container components from presentation components
 
+`withSession.js`
+
 ```
 import React from 'react';
 
@@ -197,17 +174,37 @@ export default withSession;
 * We will only use `data` and `loading` inside `Query`
 * We will return a Component (so this `withSession` HOC will wrap various components and we'll be able to return it and we'll pass down all those props for each of those components (we pass it down with `{...props}` in the component itself))
 
+## Try it out in the Playground first
+
+```
+query GET_CURRENT_USER_QUERY {
+  getCurrentUser {
+    username
+    email
+    joinDate
+  }
+}
+```
+
 ## Inside our queries folder we'll create `GET_CURRENT_USER`
 
+## Add the shell
 `client/src/queries/index.js`
 
 ```
 // MORE CODE
 
 // User Queries
+export const GET_CURRENT_USER_QUERY = gql`
+  // write code here
+`;
+// MORE CODE
+```
 
-export const GET_CURRENT_USER = gql`
-  query {
+## Paste in our working Playground code
+```
+export const GET_CURRENT_USER_QUERY = gql`
+  query GET_CURRENT_USER_QUERY {
     getCurrentUser {
       username
       email
@@ -215,12 +212,11 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `;
-// MORE CODE
 ```
 
 ## Add that query to our client component
 * `withSession` will be used on many pages so that is why this component is different then the others
-  - We are reusing it to manage our currentUser state in a more efficient way and that is the reason for using a HOC
+  - We are reusing it to manage our `currentUser` state in a more efficient way and that is the reason for using a HOC
 
 `withSession.js`
 
@@ -229,10 +225,10 @@ import React from 'react';
 
 // GraphQL
 import { Query } from 'react-apollo';
-import { GET_CURRENT_USER } from '../queries';
+import { GET_CURRENT_USER_QUERY } from '../queries';
 
 const withSession = Component => props => (
-  <Query query={GET_CURRENT_USER}>
+  <Query query={GET_CURRENT_USER_QUERY}>
     {({ data, loading }) => {
       if (loading) return null;
       return <Component {...props} />;
@@ -286,10 +282,10 @@ import React from 'react';
 
 import { Query } from 'react-apollo';
 
-import { GET_CURRENT_USER } from '../queries';
+import { GET_CURRENT_USER_QUERY } from '../queries';
 
 const withSession = Component => props => (
-  <Query query={GET_CURRENT_USER}>
+  <Query query={GET_CURRENT_USER_QUERY}>
     {({ data, loading }) => {
       if (loading) return null;
       console.log(data); // add this
