@@ -5,13 +5,9 @@
 * We are sending our local token to our backend 
 
 ## But...
-* Whenever we `signin` and there is no value in `localStorage`
-
-### Let's try this now:
-1. Open Application and delete the token
-2. Then sign in again
-
-* You will get `null` sent to the backend
+* Whenever we `signin` and there is no value inside our `token` we sent to the server
+* You see the token in `localStorage` but the server only sees `null` which means it does not have our token
+* This is a problem 
 
 ## Why is token null?
 * Add this check to `server.js`
@@ -24,7 +20,7 @@
 // set up JWT authentication middleware
 app.use(async (req, res, next) => {
   const token = req.headers.authorization;
-  console.log(token, typeof token);
+  console.log(typeof token);
   next();
 });
 
@@ -71,6 +67,26 @@ app.use(async (req, res, next) => {
 });
 
 // MORE CODE
+```
+
+* You will get an error so change your function to look like this:
+
+```
+// set up JWT authentication middleware
+app.use(async (req, res, next) => {
+  const token = req.headers.authorization;
+  // console.log(token, typeof token);
+  if (token !== 'null' && token !== '' && token !== undefined) {
+    try {
+      // add currentUser to the request object
+      req.currentUser = await jwt.verify(token, process.env.SECRET);
+      console.log(req.currentUser);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  next();
+});
 ```
 
 * Log in and you'll see the user object on backend
