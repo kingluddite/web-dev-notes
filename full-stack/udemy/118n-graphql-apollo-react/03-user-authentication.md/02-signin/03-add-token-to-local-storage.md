@@ -15,7 +15,7 @@ handleSubmit = (event, signinUser) => {
     console.log(data);
     console.log(data.data.signinUser.token);
     // localStorage.setItem('token', data.signinUser.token);
-    this.clearState();
+    this.clearForm();
   });
 };
 
@@ -42,7 +42,7 @@ handleSubmit = (event, signinUser) => {
     console.log(data);
     console.log(data.signinUser.token);
     // localStorage.setItem('token', data.signinUser.token);
-    this.clearState();
+    this.clearForm();
   });
 };
 
@@ -64,7 +64,7 @@ Now look at `data` object returned
 signinUser().then(({ data }) => {
   console.log(data);
   localStorage.setItem('token', data.signinUser.token);
-  this.clearState();
+  this.clearForm();
 });
 
 // MORE CODE
@@ -81,7 +81,7 @@ handleSubmit = (event, signinUser) => {
   signinUser().then(({ data: { signinUser } }) => {
     console.log(signinUser);
     localStorage.setItem('token', signinUser.token);
-    this.clearState();
+    this.clearForm();
   });
 };
 
@@ -112,7 +112,7 @@ handleSubmit = (event, signupUser) => {
   signupUser().then(({ data: { signupUser } }) => {
     console.log(signupUser);
     localStorage.setItem('token', signupUser.token);
-    this.clearState();
+    this.clearForm();
   });
 };
 
@@ -338,3 +338,6 @@ nothing to commit, working tree clean
 
 ## Congrats
 * Our local repo is perfectly in sync with our remote Github repo
+
+## Additional Resources
+* [cookies vs sessions vs localStorage](https://scotch.io/@PratyushB/local-storage-vs-session-storage-vs-cookie)
