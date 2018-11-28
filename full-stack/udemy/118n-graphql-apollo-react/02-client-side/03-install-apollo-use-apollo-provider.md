@@ -35,6 +35,12 @@ ReactDOM.render(
 );
 ```
 
+## Error `Module not found`
+
+`$ npm i apollo-boost react-apollo`
+
+* We need to install those two npm packages because we are importing and using them
+
 ## Error
 * We get `Module not found: Can't resolve 'graphql'`
 * Anytime you get module not found it means that module is not installed so just install it with:
