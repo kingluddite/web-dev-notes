@@ -12,3 +12,7 @@
 
 ## Copy the assets folder to your project
 * I'll assume your project relative path is `/Documents/dev/fullstack/react-stuff/five-star-colognes`
+* And this is the code you'll use to copy the assets to your project
+    - Make sure you are in `~/Desktop/gatsby-starter-forty-codebushi/`
+
+`$ cp -R src/assets /Documents/dev/fullstack/react-stuff/five-star-colognes/frontend/src/`
