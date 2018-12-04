@@ -280,4 +280,12 @@ export default Archive
 * You will see 2 posts
 * Add another post
 * You will now see 3 posts (You don't need to restart server it will automatically add 3rd post to your archive)
+* We have a component that has its own query and it is querying markdown files in our site and displaying their data on our component
+
+## Next
+* Use same technique to generate pages that don't exist
+* Make the Archive better
+  - Add links
+  - Talk about Gatsby's Routing System
+  - Organzie our GraphQL query better
 
