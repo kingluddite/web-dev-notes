@@ -1,4 +1,9 @@
 # Add some styles
+
+## Create a new feature request branch called 'add-sass'
+
+`$ git checkout -b add-sass`
+
 * Here is a fast way to get up and running
 * Create a style guide to quickly create elements
 * CSS Grid built in
@@ -21,6 +26,28 @@
     - Make sure you are in this directory:
 
 `~/Desktop/gatsby-starter-forty-codebushi/`
+
+## Let's rename our folders
+* This is a nice step and strictly optional
+* I like to rename my `client` folder `frontend` and my `server` folder `backend`
+
+### If you renamed your folders to `frontend` and `backend`
+* You also need to update the `scripts` inside your `package.json`
+
+`/package.json`
+
+```
+// MORE CODE
+
+  "scripts": {
+    "precommit": "pretty-quick --staged",
+    "backend": "nodemon backend/server.js",
+    "frontend": "cd frontend && npm start",
+    "dev": "concurrently --names \"backend,frontend\" \"npm run backend --silent\" \"npm run frontend --silent\""
+  },
+
+// MORE CODE
+```
 
 ### Copy assets into your 
 
@@ -67,7 +94,7 @@
 ```
 // MORE CODE
 
-"react-scripts": "2.0.3"
+"react-scripts": "2.0.4"
 
 // MORE CODE
 ```
@@ -105,7 +132,7 @@ export default StyleGuide;
 
 ```
 
-## Remove any calls to skeleton.css
+## Remove any calls to `skeleton.css`
 * Check if there is any CSS being using in:
 
 `frontend/public/index.html`
@@ -130,11 +157,11 @@ export default StyleGuide;
     - `frontend/src/index.css`
 * Inside `frontend/src/index.js` 
 
-replace:
+Replace:
 
 `import './index.css` 
 
-with:
+With:
 
 ```
 // MORE CODE
@@ -1061,7 +1088,7 @@ import pic10 from '../assets/images/pic10.jpg';
 * We can use this guide to make anyweb site design we need
 
 ## Apply our knowledge
-* Let's make our Signup.js look nicer
+* Let's make our `Signup.js` look nicer
 * Here is a simple mockup of what it will look like
 
 ![mockup](https://i.imgur.com/8r7ooA3.png)
@@ -1071,22 +1098,35 @@ import pic10 from '../assets/images/pic10.jpg';
 
 `Signup.js`
 
+* Take your form code and place it inside the `div` with a className of `inner`
+* **note** This is the nested `return`
+
 ```
 // MORE CODE
+
 return (
-    <div id="main" className="alt">
-      <section id="one">
-         <div className="inner">
-            PUT YOUR FORM HERE
-        </div>
-      </section>
-    </div>
-)
+  <div className="App">
+    <h2 className="App">Signup</h2>
+    <Mutation mutation={SIGNUP_USER_MUTATION} variables={{ username, email, password }}>
+      {(signupUser, { data, loading, error }) => {
+        if (loading) return <div>Loading...</div>;
+        // if (error) return <div>Error {error.message}</div>;
+        console.log(data);
+
+        return (
+            <div id="main" className="alt">
+              <section id="one">
+                 <div className="inner">
+                    PUT YOUR FORM HERE
+                </div>
+              </section>
+            </div>
+        )
 
 // MORE CODE
 ```
 
-* Add comments to help with complex html
+* Add comments to help with complex HTML
     - I like this because it lets me know what is closing
 
 ```
@@ -1166,6 +1206,7 @@ return (
 ```
 
 * Now we'll put our form in the first column and some text in the second column
+* **warning** VS Code automatically closes two empty HTML tags so `<div></div>` becomes `<div />`
 * Use this Emmet to make 2nd column of text
 
 ```
@@ -1199,7 +1240,7 @@ const initialState = {
   passwordConfirmation: '',
 };
 
-class SignTest extends Component {
+class Signup extends Component {
   state = {
     ...initialState,
   };
@@ -1339,7 +1380,7 @@ class SignTest extends Component {
   }
 }
 
-export default SignTest;
+export default Signup;
 ```
 
 * We need to add a heading centered above form
@@ -1437,7 +1478,7 @@ return (
   }
 }
 
-export default SignTest;
+export default Signup;
 ```
 
 * Now we get our 4 columns
@@ -1777,5 +1818,8 @@ export default Signup;
 * You now have all the tools in your style guide to layout any layout you want
 * Dive into Sass to make the powers of your CSS exponentially stronger
 
+## Additional Resources
+* [Sass Guidelines](https://sass-guidelin.es/)
+* [What is the difference between Flexbox and CSS Grid](https://medium.com/youstart-labs/beginners-guide-to-choose-between-css-grid-and-flexbox-783005dd2412)
 
 

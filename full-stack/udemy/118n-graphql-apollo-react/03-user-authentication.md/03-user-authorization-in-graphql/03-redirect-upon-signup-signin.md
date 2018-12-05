@@ -2,15 +2,15 @@
 * We are now getting information about our **current user** on the `client`
 
 ## Where do we want to redirect to and when?
-* Whenever we `signin` && when we get our `token` && when it is `successful`
-    - We want to redirect back to the **home** page
+* Whenever we `signin` and when we get our `token` and when it is `successful`
+    - We want to redirect back to the **home** page (aka `/`)
 
 ## Let's start in `Signin.js` first
 * After we clear our `state` in `handleSubmit` that is where we will `redirect` back to the home page
 * To do this we will use `withRouter` from **react-router-dom**
 
 ## withRouter
-* react-router-dom gives us this HOC to help us redirect
+* `react-router-dom` gives us this HOC to help us redirect
 
 `Signin.js`
 
@@ -104,6 +104,40 @@ export default withRouter(Signup);
 ### **note** google chrome console
 * You can find the token inside the `Application` tab > `Storage` > `Local Storage` > `http://localhost:3000`
 * After selecting that you may need to move window a bit to see the Key and Value of the token
+
+## Prop Types
+* Makes your code more bug resistant
+
+`Signin.js`
+
+```
+// MORE CODE
+
+import PropTypes from 'prop-types';
+
+// MORE CODE
+
+class Signin extends Component {
+  // add this propTypes
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  };
+
+  // MORE CODE
+
+  handleSubmit = (event, signinUser) => {
+    const { history } = this.props; // add this
+    signinUser().then(({ data }) => {
+      localStorage.setItem('token', data.signinUser.token);
+      this.clearForm();
+      history.push('/'); // add this
+    });
+  };
+
+// MORE CODE
+```
+
+* We also destructure `history`
 
 ## Git stuff
 
