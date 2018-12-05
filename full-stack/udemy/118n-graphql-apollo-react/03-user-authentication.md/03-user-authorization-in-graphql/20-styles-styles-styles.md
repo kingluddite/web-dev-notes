@@ -1821,5 +1821,5 @@ export default Signup;
 ## Additional Resources
 * [Sass Guidelines](https://sass-guidelin.es/)
 * [What is the difference between Flexbox and CSS Grid](https://medium.com/youstart-labs/beginners-guide-to-choose-between-css-grid-and-flexbox-783005dd2412)
-
-
+* 
+[Flexbox nav](https://medium.freecodecamp.org/how-to-create-a-fully-responsive-navbar-with-flexbox-a4435d175dd3)
