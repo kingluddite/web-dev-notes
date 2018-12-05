@@ -153,9 +153,9 @@ export default withSession;
 
 * The log of `data` is important because that will show you `getCurrentUser`
 * When you remove the token and refresh the page `getCurrentUser` will be `null`
-* Loggin in before we make the above changes means that you get redirected but getCurrentUser is still null until you refresh the browser
+* Logging in before we make the above changes means that you get redirected but `getCurrentUser` is still `null` until you refresh the browser
 * We need to do a refetch to grab the fresh data
-* So after you make the changes above to Signin and Signup you will see that now only are we redirected to the home page but a refetch is performed and we get the latest, fresh data for currentUser
+* So after you make the changes above to `Signin` and `Signup` you will see that now only are we redirected to the home page but a refetch is performed and we get the latest, fresh data for `currentUser`
 * After logging in, you will be redirected to the home page and your console should log something similar to the following:
 
 ![logging refetch fresh data](https://i.imgur.com/KBzOrBr.png)
