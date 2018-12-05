@@ -50,7 +50,7 @@ const withSession = Component => props => (
 2. Restructure our `props` (will get our `refetch` property)
 3. Now we can pass them down to whatever components we want to
     * In this case we'll pass it down to `Signup` and `Signin`
-    * But to pass individual props into a specific route is that we'll change the component prop with render and this will enable us to call our component with an arrow function (this will give us space to provide properties)
+    * But to pass individual props into a specific route is that we'll change the component `prop` with render and this will enable us to call our component with an arrow function (_this will give us space to provide properties_)
 
 #### Using `render` inside our routes
 * This is how we pass individual props into a specific route
@@ -101,7 +101,7 @@ handleSubmit = (event, signinUser) => {
 // MORE CODE
 ```
 
-## Do this in Siginup as well
+## Do this in Signup as well
 `Signup.js`
 
 ```
