@@ -18,6 +18,25 @@ const Navbar = () => {
   );
 };
 
+const NavbarUnAuth = () => (
+  <ul>
+    <li>
+      <NavLink to="/" exact>
+        Home
+      </NavLink>
+    </li>
+    <li>
+      <NavLink to="/search">Search</NavLink>
+    </li>
+    <li>
+      <NavLink to="/signin">Signin</NavLink>
+    </li>
+    <li>
+      <NavLink to="/signup">Signup</NavLink>
+    </li>
+  </ul>
+);
+
 const NavbarAuth = () => (
   <ul>
     <li>
@@ -47,10 +66,10 @@ const NavbarAuth = () => (
 * Now we see our `NavbarAuth`
 
 ## AddCologne
-* Create it inside our `Cologne` folder
+* Create it inside our `cologne` folder
 * It will be a SFC (stateless functional component)
 
-`components/Cologne/AddCologne.js`
+`components/cologne/AddCologne.js`
 
 ```
 import React from 'react';
@@ -81,7 +100,7 @@ export default AddCologne;
 ## Create Profile component
 * Create a new `profile` folder
 
-`components/Profile/Profile.js`
+`components/profile/Profile.js`
 
 ```
 import React, { Component } from 'react';
@@ -101,9 +120,9 @@ export default Profile;
 ```
 // MORE CODE
 
-import Search from './components/Cologne/Search';
-import Profile from './components/Profile/Profile';
-import AddCologne from './components/Cologne/AddCologne';
+import Search from './components/cologne/Search';
+import AddCologne from './components/cologne/AddCologne';
+import Profile from './components/profile/Profile';
 
 // MORE CODE
 

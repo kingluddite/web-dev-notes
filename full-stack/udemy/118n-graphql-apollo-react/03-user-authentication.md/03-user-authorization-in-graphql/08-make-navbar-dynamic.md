@@ -1,6 +1,6 @@
 # Make navbar dynamic
 ## We need to add logic
-* To show the logged in user or public navbar (auth or unauth)
+* To show the logged in user or public navbar (_auth or unauth_)
 
 ## Pass down `data` in withSession
 
@@ -100,19 +100,20 @@ class Navbar extends Component {
 `index.js`
 
 ```
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
-const Navbar = ({ session }) => {
-  return (
-    <nav>
-      {session && session.getCurrentUser ? (
-        <NavbarAuth session={session} />
-      ) : (
-        <NavbarUnAuth />
-      )}
-    </nav>
-  );
-};
+
+class Navbar extends Component {
+  render() {
+    const { session } = this.props;
+
+    return (
+      <nav>
+        {session && session.getCurrentUser ? <NavbarAuth session={session} /> : <NavbarUnAuth />}
+      </nav>
+    );
+  }
+}
 
 const NavbarAuth = ({ session }) => (
   <Fragment>
@@ -148,10 +149,10 @@ export default Navbar;
 * Log in and you will see username welcome
 
 ## Make our Nav organized
-`Navbar.js`
+`src/index.js`
 
 ```
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -159,23 +160,21 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // apollo stuff
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
-// styles
-import './index.css';
-
 // custom components
 import App from './components/App';
-import Navbar from './components/Navbar/Navbar';
-import Signup from './components/Auth/Signup';
-import Signin from './components/Auth/Signin';
+import Navbar from './components/shared/Navbar';
+import Signup from './components/auth/Signup';
+import Signin from './components/auth/Signin';
 import withSession from './components/withSession';
-import Search from './components/Cologne/Search';
-import AddCologne from './components/Cologne/AddCologne';
-import Profile from './components/Profile/Profile';
+import Search from './components/cologne/Search';
+import AddCologne from './components/cologne/AddCologne';
+import Profile from './components/profile/Profile';
 
 // our apollo client
 const client = new ApolloClient({
@@ -200,7 +199,7 @@ const client = new ApolloClient({
 
 const Root = ({ refetch, session }) => (
   <Router>
-    <Fragment>
+    <>
       <Navbar session={session} />
       <Switch>
         <Route exact path="/" component={App} />
@@ -211,9 +210,19 @@ const Root = ({ refetch, session }) => (
         <Route path="/signup" render={() => <Signup refetch={refetch} />} />
         <Redirect to="/" />
       </Switch>
-    </Fragment>
+    </>
   </Router>
 );
+
+Root.propTypes = {
+  refetch: PropTypes.func,
+  // session: PropTypes.object,
+};
+
+Root.defaultProps = {
+  refetch: undefined,
+  // session: null,
+};
 
 const RootWithSession = withSession(Root);
 
@@ -225,7 +234,7 @@ ReactDOM.render(
 );
 ```
 
-### Create `Navbar` folder and we'll put 3 files inside it:
+### Create `shared` folder and we'll put 3 files inside it:
 * `Navbar.js`
 * `NavbarUnAuth.js`
 * `NavbarAuth.js`
@@ -236,24 +245,29 @@ ReactDOM.render(
 `Navbar.js`
 
 ```
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // custom components
 import NavbarAuth from './NavbarAuth';
-import NavbarUnAuth from './NavbarUnAuth';
+import NavbarUnauth from './NavbarUnauth';
 
 class Navbar extends Component {
+  static propTypes = {
+    session: PropTypes.object,
+  };
+
+  static defaultProps = {
+    session: null,
+  };
+
   render() {
     const { session } = this.props;
 
     return (
       <nav>
-        {session && session.getCurrentUser ? (
-          <NavbarAuth session={session} />
-        ) : (
-          <NavbarUnAuth />
-        )}
+        {session && session.getCurrentUser ? <NavbarAuth session={session} /> : <NavbarUnauth />}
       </nav>
     );
   }
@@ -265,14 +279,14 @@ export default Navbar;
 `NavbarAuth.js`
 
 ```
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 class NavbarAuth extends Component {
   render() {
     const { session } = this.props;
     return (
-      <Fragment>
+      <>
         <h2>Auth</h2>
         <ul>
           <li>
@@ -291,7 +305,7 @@ class NavbarAuth extends Component {
         <h2>
           Welcome <strong>{session.getCurrentUser.username}</strong>
         </h2>
-      </Fragment>
+      </>
     );
   }
 }
@@ -299,16 +313,16 @@ class NavbarAuth extends Component {
 export default NavbarAuth;
 ```
 
-`NavbarUnAuth.js`
+`NavbarUnauth.js`
 
 ```
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-class NavbarUnAuth extends Component {
+class NavbarUnauth extends Component {
   render() {
     return (
-      <Fragment>
+      <>
         <h2>Unauth</h2>
         <ul>
           <li>
@@ -324,12 +338,12 @@ class NavbarUnAuth extends Component {
             <NavLink to="/signup">Signup</NavLink>
           </li>
         </ul>
-      </Fragment>
+      </>
     );
   }
 }
 
-export default NavbarUnAuth;
+export default NavbarUnauth;
 ```
 
 ## Git stuff
