@@ -152,10 +152,10 @@ const path = require('path'); // add this
 const app = express();
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static('frontend/build'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
   });
 }
 
@@ -224,8 +224,8 @@ if (process.env.NODE_ENV === 'production') {
   "start": "node server.js",
   "precommit": "pretty-quick --staged",
   "server": "nodemon server.js",
-  "client": "cd client && npm start",
-  "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\"",
+  "client": "cd frontend && npm start",
+  "dev": "concurrently --names \"backend,frontend\" \"npm run server --silent\" \"npm run client --silent\"",
   "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
 },
 
@@ -233,11 +233,11 @@ if (process.env.NODE_ENV === 'production') {
 ```
 
 ## Change URI to be what our Heroku URI is
-* When you ran heroku create it shows you what your Heroku URI is
+* When you ran `$ heroku create` it shows you what your Heroku URI is
 * It will be something like: `https://fivestarcologne.herokuapp.com/`
 * Use that info to update your Apollo Client URI
 
-`client/src/index.js`
+`frontend/src/index.js`
 
 * Change this:
 
@@ -270,7 +270,7 @@ const client = new ApolloClient({
 // MORE CODE
 ```
 
-* I comment out dev graphql URL so I can easily switch back and forth between my development and production environments
+* I comment out dev graphql URL so I can easily switch back and forth between my `development` and `production` environments
 
 ## Environment Info
 * Find all environment info
