@@ -110,7 +110,6 @@ package.json
 ## Push to github
 `$ git push origin add-apollo`
 
-<<<<<<< HEAD
 ## Additional Resources
 * [wes bos tutorial setting up vs code with eslint and prettier](https://www.youtube.com/watch?v=YIvjKId9m2c)
 
