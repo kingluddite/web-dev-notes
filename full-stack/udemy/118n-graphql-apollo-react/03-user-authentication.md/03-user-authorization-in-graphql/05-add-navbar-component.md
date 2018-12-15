@@ -1,6 +1,6 @@
 # Add Navbar Component
 
-`components/Navbar.js`
+`components/shared/Navbar.js`
 
 ```
 import React, { Component } from 'react';
@@ -27,18 +27,23 @@ import React, { Fragment } from 'react';
 // MORE CODE
 
 import App from './components/App';
-import Navbar from './components/Navbar';
+import Navbar from './components/shared/Navbar';
 
 // MORE CODE
 
 const Root = ({ refetch }) => (
   <Router>
-    <Fragment>
+    <div id="wrapper">
       <Navbar />
       <Switch>
-        // MORE CODE
+        <Route path="/" exact component={App} />
+        <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+        <Route path="/signup" render={() => <Signup refetch={refetch} />} />
+        <Route path="/elements" component={Elements} />
+        <Redirect to="/" />
       </Switch>
-    </Fragment>
+      <Footer />
+    </div>
   </Router>
 );
 
@@ -56,9 +61,9 @@ const Root = ({ refetch }) => (
 * One feature is it makes it easy to see what is the active page
   - It adds a className of `active` on the active page that we can target with CSS
 
-```
-// MORE CODE
+`Navbar.js`
 
+```
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 const Navbar = () => {
@@ -89,8 +94,6 @@ const NavbarUnAuth = () => (
 );
 
 export default Navbar;
-
-// MORE CODE
 ```
 
 ## Git stuff

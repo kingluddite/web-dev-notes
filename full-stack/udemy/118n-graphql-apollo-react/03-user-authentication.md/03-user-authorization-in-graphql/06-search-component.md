@@ -1,5 +1,5 @@
 # Search
-`components/Cologne/Search.js`
+`components/cologne/Search.js`
 
 ```
 import React from 'react';
@@ -15,19 +15,10 @@ export default Search;
 `index.js`
 
 ```
-import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+// MORE CODE
 
-import './index.css';
-import App from './components/App';
-import Navbar from './components/Navbar';
-import Search from './components/Genealogy/Search';
+import Navbar from './components/sharedNavbar';
+import Search from './components/cologne/Search'; // add
 
 // MORE CODE
 
