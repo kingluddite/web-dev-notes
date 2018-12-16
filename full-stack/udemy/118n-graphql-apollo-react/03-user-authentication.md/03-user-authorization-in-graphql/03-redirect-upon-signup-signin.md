@@ -16,7 +16,7 @@
 
 ```
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'; // add this
 
 // MORE CODE
 ```
@@ -48,7 +48,7 @@ handleSubmit = (event, signinUser) => {
     console.log(signinUser);
     localStorage.setItem('token', signinUser.token);
     this.clearState();
-    this.props.history.push('/'); add this
+    this.props.history.push('/'); // add this
   });
 };
 
@@ -94,7 +94,7 @@ export default withRouter(Signup);
 ## Test in browser
 * `Signin` and `Signup` correctly redirect
 
-## Houston we have a problem - lost currentUser
+## Houston we have a problem - lost `currentUser`
 * We login and we are correctly redirected
 * But when we are redirected we lose our `currentUser`
 * We refresh the page and we get our `currentUser` **but only when we refresh**
@@ -103,7 +103,7 @@ export default withRouter(Signup);
 
 ### **note** google chrome console
 * You can find the token inside the `Application` tab > `Storage` > `Local Storage` > `http://localhost:3000`
-* After selecting that you may need to move window a bit to see the Key and Value of the token
+* After selecting that you may need to move window a bit to see the `Key` and `Value` of the token
 
 ## Prop Types
 * Makes your code more bug resistant

@@ -7,11 +7,17 @@
 
 `withSession.js`
 
+* This is a Higher Order Component (HOC)
+
 ```
-// MORE CODE
+import React from 'react';
+
+import { Query } from 'react-apollo';
+
+import { GET_CURRENT_USER_QUERY } from '../queries';
 
 const withSession = Component => props => (
-  <Query query={GET_CURRENT_USER}>
+  <Query query={GET_CURRENT_USER_QUERY}>
     {({ data, loading, refetch }) => {
       if (loading) return null;
       console.log(data);
@@ -21,16 +27,20 @@ const withSession = Component => props => (
   </Query>
 );
 
-// MORE CODE
+export default withSession;
 ```
 
 ### Now we can pass things down through our components
 
 ```
-// MORE CODE
+import React from 'react';
+
+import { Query } from 'react-apollo';
+
+import { GET_CURRENT_USER_QUERY } from '../queries';
 
 const withSession = Component => props => (
-  <Query query={GET_CURRENT_USER}>
+  <Query query={GET_CURRENT_USER_QUERY}>
     {({ data, loading, refetch }) => {
       if (loading) return null;
       console.log(data);
@@ -40,7 +50,7 @@ const withSession = Component => props => (
   </Query>
 );
 
-// MORE CODE
+export default withSession;
 ```
 
 ### How do we pass things down via HOCs?
@@ -85,6 +95,7 @@ const Root = ({ refetch }) => (
 // MORE CODE
 
 handleSubmit = (event, signinUser) => {
+  const { history, refetch } = this.props;
   event.preventDefault();
   // call our signinUser function
   // it is a promise so we can use `then()`
@@ -92,9 +103,9 @@ handleSubmit = (event, signinUser) => {
   signinUser().then(async ({ data: { signinUser } }) => {
     console.log(signinUser);
     localStorage.setItem('token', signinUser.token);
-    await this.props.refetch(); // add this
+    refetch(); // add this
     this.clearState();
-    this.props.history.push('/');
+    history.push('/');
   });
 };
 
@@ -108,15 +119,29 @@ handleSubmit = (event, signinUser) => {
 // MORE CODE
 
 handleSubmit = (event, signupUser) => {
+  const { history, refetch } = this.props;
   event.preventDefault();
   // call our signupUser function
   signupUser().then(async ({ data: { signupUser} }) => {
     console.log(data);
     localStorage.setItem('token', signupUser.token);
-    await this.props.refetch();
+    await refetch();
     this.clearState();
-    this.props.history.push('/');
+    history.push('/');
   });
+};
+
+// MORE CODE
+```
+
+* Add to prop types for both Signup and Signin
+
+```
+// MORE CODE
+
+static propTypes = {
+  history: PropTypes.object.isRequired,
+  refetch: PropTypes.func.isRequired,
 };
 
 // MORE CODE

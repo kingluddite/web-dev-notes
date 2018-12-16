@@ -33,6 +33,95 @@ import Navbar from './components/shared/Navbar';
 
 const Root = ({ refetch }) => (
   <Router>
+      <Navbar />
+      <Switch>
+        <Route path="/" exact component={App} />
+        <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+        <Route path="/signup" render={() => <Signup refetch={refetch} />} />
+        <Route path="/elements" component={Elements} />
+        <Redirect to="/" />
+      </Switch>
+      <Footer />
+  </Router>
+);
+
+// MORE CODE
+```
+
+* This will generate an error where Router is only allowed one child
+* Let's fix this with Fragment
+
+```
+import React, { Fragment } from 'react';
+// MORE CODE
+
+import App from './components/App';
+import Navbar from './components/shared/Navbar';
+
+// MORE CODE
+
+const Root = ({ refetch }) => (
+  <Router>
+    <Fragment>
+      <Navbar />
+      <Switch>
+        <Route path="/" exact component={App} />
+        <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+        <Route path="/signup" render={() => <Signup refetch={refetch} />} />
+        <Route path="/elements" component={Elements} />
+        <Redirect to="/" />
+      </Switch>
+      <Footer />
+    </Fragment>
+  </Router>
+);
+
+// MORE CODE
+```
+
+* There is a shortcut for using Fragment (remember you need to use the latest React which Create React App is using)
+
+```
+import React from 'react';
+// MORE CODE
+
+import App from './components/App';
+import Navbar from './components/shared/Navbar';
+
+// MORE CODE
+
+const Root = ({ refetch }) => (
+  <Router>
+    <>
+      <Navbar />
+      <Switch>
+        <Route path="/" exact component={App} />
+        <Route path="/signin" render={() => <Signin refetch={refetch} />} />
+        <Route path="/signup" render={() => <Signup refetch={refetch} />} />
+        <Route path="/elements" component={Elements} />
+        <Redirect to="/" />
+      </Switch>
+      <Footer />
+    </>
+  </Router>
+);
+
+// MORE CODE
+```
+
+* But we will use a div and as we'll style it to center our web app
+
+```
+import React from 'react';
+// MORE CODE
+
+import App from './components/App';
+import Navbar from './components/shared/Navbar';
+
+// MORE CODE
+
+const Root = ({ refetch }) => (
+  <Router>
     <div id="wrapper">
       <Navbar />
       <Switch>
@@ -69,12 +158,12 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav>
-      <NavbarUnAuth />
+      <NavbarUnauth />
     </nav>
   );
 };
 
-const NavbarUnAuth = () => (
+const NavbarUnauth = () => (
   <ul>
     <li>
       <NavLink to="/" exact>
