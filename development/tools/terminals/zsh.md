@@ -1,5 +1,10 @@
 # The ZSH shell
 
+## Oh My ZSH
+| Keyboard Shortcut      |    Value |
+| :-------- | --------:|
+| `$ ctrl` + `u`    |    clears line
+| `$ take` | better than `mkdir folder-name` because it creates the folder and moves you into it | 
 ## go to previous directory
 `$ cd -`
 
