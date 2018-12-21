@@ -6,8 +6,6 @@
 `Navbar.js`
 
 ```
-// MORE CODE
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 const Navbar = () => {
@@ -18,7 +16,7 @@ const Navbar = () => {
   );
 };
 
-const NavbarUnAuth = () => (
+const NavbarUnauth = () => (
   <ul>
     <li>
       <NavLink to="/" exact>
@@ -59,7 +57,7 @@ const NavbarAuth = () => (
   </ul>
 );
 
-// MORE CODE
+export default Navbar;
 ```
 
 ## Test it in browser

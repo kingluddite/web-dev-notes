@@ -135,8 +135,8 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 #### Why do I need to use a HOC?
 * Use them when you need to share the same functionality across multiple components
   - Example:
-    + How do we manage the state of currently logged in users inside our app
-    + We could manage that state across all of the components that need state but that would be a headache
+    + How do we manage the `state` of currently logged in users inside our app
+    + We could manage that `state` across all of the components that need `state` but that would be a headache
     + Instead we could create a HOC to separate the logged in user `state` into a container component
       * Then we could pass that `state` to the components that will make use of it
 
@@ -186,7 +186,7 @@ query GET_CURRENT_USER_QUERY {
 }
 ```
 
-## Inside our queries folder we'll create `GET_CURRENT_USER`
+## Inside our queries folder we'll create `GET_CURRENT_USER_QUERY`
 
 ## Add the shell
 `client/src/queries/index.js`
@@ -235,6 +235,8 @@ const withSession = Component => props => (
     }}
   </Query>
 );
+
+export default withSession;
 ```
 
 ## Add `withSession` to `client/src/index.js`
@@ -299,7 +301,7 @@ export default withSession;
 ```
 
 * If you log in you should see the currently logged in user in the client console
-* If you delete the token and login, `getCurrentUser` won't appear but it will show if you refresh the browser
+* If you delete the token and refresh the page you will see getCurrentUser is 'null'
 
 ## Review our work to see what we did
 * We pass `currentUser` to the **context** and that's what makes it available in our `resolvers.js`
@@ -352,7 +354,7 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 
 ![verifying our token](https://i.imgur.com/ic2mYxt.png)
 
-* We perform a query to get all that user data, and now our client knows all about it
+* We perform a query to get all that user data, and now our `client` knows all about it
 
 ## Try this test
 1. Sign in again with a different user
