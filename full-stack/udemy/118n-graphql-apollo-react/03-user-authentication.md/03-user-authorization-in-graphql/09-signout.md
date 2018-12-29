@@ -1,7 +1,7 @@
 # Signout
 ## Add Signout
 
-`Auth/Signout`
+`auth/Signout.js`
 
 * In this case we want to use a stateless functional component SFC
 * Take note how props are accessed
@@ -24,7 +24,7 @@ import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 
 // custom components
-import Signout from '../Auth/Signout';
+import Signout from '../auth/Signout';
 
 class NavbarAuth extends Component {
   render() {
