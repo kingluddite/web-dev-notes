@@ -328,11 +328,11 @@ export default Header;
 
 `/sell`
 
-```html
+```
 <!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1" class="next-head"/><meta charSet="utf-8" class="next-head"/><link rel="shortcut icon" href="/static/favicon.png" class="next-head"/><link rel="stylesheet" type="text/css" href="/static/nprogress.css" class="next-head"/><title class="next-head">Sick Fits!</title>
 <!-- MORE CODE -->
 ```
-<<<<<<< HEAD
+
 ## GIT 13
 1. Check Status
 2. Add to staging
@@ -347,8 +347,7 @@ export default Header;
 11. Pull Locally
 12. Run and test code
 13. Delete local branch
-=======
+
 ## Additional Resources
 * [What is this.props.children](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)
->>>>>>> 9331b8c75c39f981fdea6e6c03f6af635a52ec83
 

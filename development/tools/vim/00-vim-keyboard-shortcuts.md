@@ -1,28 +1,12 @@
-## Vim can be slow so here's how you speed it up
-* (cursorline, cursorcolumn, vim-powerline, vim-airline, matchit.vim, etc.) slow down Vim in the terminal most significantly
-* Here are some lines from my `.vimrc` to keep things speedy:
+# VIM
 
-```
-let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
-set noshowmatch         " Don't match parentheses/brackets
-set nocursorline        " Don't paint cursor line
-set nocursorcolumn      " Don't paint cursor column
-set lazyredraw          " Wait to redraw
-set scrolljump=8        " Scroll 8 lines at a time at bottom/top
-let html_no_rendering=1 " Don't render italic, bold, links in HTML
-Also see :help slow-terminal
-```
+## Keyboard shortcuts
 
-* add this to Profile in iTerm settings changing from login shell to command 
+## Swap Files
+* `.swp` files are for backing up and you really shouldn't turn the backup system off
 
-`/usr/local/bin/zsh -il` 
-
-* In iTerm's Preferences > Profiles > General > Command
-
-# VIM Keyboard shortcuts
-
-* swp files are for backing up and you really shouldn't turn the backup system off
-* A better solution is to add this in your vimrc
+### A better solution is to add this in your `vimrc`
+`.vimrc`
 
 ```
 " create backups
@@ -31,7 +15,7 @@ set backup
 set backupdir=/tmp
 ```
 
-* After adding that to your vimrc file, make sure to refresh your source 
+* After adding that to your `vimrc` file, make sure to refresh your source 
 
 `$ source ~/.zshrc`
 
@@ -40,41 +24,44 @@ set backupdir=/tmp
 `$ find . -name '*~' -exec rm {} \;`
 
 ## To Clean out ALL vim Swap Files in a Directory
+* If you are sure you don’t need any vim swap files in a directory tree and want to get rid of them, you can use the following command in the directory while vim is not running (not even in another window or even a different login session):
+* This will delete all files whose names end with `.swk`, `.swl`, `.swm`, `.swn`, `.swo`, or `.swp` in the current directory tree
+
 `$ find . -type f -name "*.sw[klmnop]" -delete`
 
-* If you are sure you don’t need any vim swap files in a directory tree and want to get rid of them, you can use the following command in the directory while vim is not running (not even in another window or even a different login session):
-* This will delete all files whose names end with .swk, .swl, .swm, .swn, .swo, or .swp in the current directory tree
-
-## Visual Block Mode
-`ctrl` + `v`
-select column
-move to right to highlight all words
-x to cut them
-shift + i to type new word
-esc and all words will be updated at same time
+## Visual Block Mode (DID NOT WORK)
+1. `ctrl` + `v`
+2. Select column
+3. Move to right to highlight all words
+4. `x` to cut them
+5. `shift` + `i` to type new word
+6. `esc` and all words will be updated at same time
 
 ## Open html file in Chrome browser (file:///)
 `:!open % -a Google\ Chrome`
 
-## Find each occurrence of 'foo' (in all lines), and replace it with 'bar'
+## Find each occurrence of `foo` (in all lines aka "globally"), and replace it with `bar`
+
 `:%s/foo/bar/g`
 
-## replace all spaces with underscore
+## Replace all spaces with underscore
 `:%s/ /_/g`
 
-* Makes this: `One Two Three` into this `One_Two_Three`
-* You need to add a `\` in front of the period – 
+* Example: `One Two Three` gets transformed into `One_Two_Three`
+* **note**: You need to add a `\` in front of the period – 
 
 `:%s/\./ /g`
 
-* since regular expressions use `.` as an "any character" wildcard
+* This is because **regular expressions** use `.` as an "any character" wildcard
 
-## close all tabs
-* `:qa`
-* `:wqa` - save and close all tabs
-* But they close vim too
-* :tabo (is better) closes all but current tab
-* :on (closes all windows except current)
+## Keyboard Shortcuts
+### Closing tabs and windows
+| Keyboard Shortcut      |    Action |
+| :-------- | --------:|
+| `:qa`  | Closes all tabs and vim |
+| `:wqa`  | Closes all tabs and saves and vim |
+| `:tabo` | Closes all tabs but current tab |
+| `:on` | Closes all windows except current |
 
 ## Paste inline into tag
 * Go to beginning of line `^`
@@ -92,7 +79,7 @@ esc and all words will be updated at same time
 `<h3>{numeral(amount / 100).format('$0,0.00')}</h3>`
 
 ## Toggle Uppercase/Lowercase
-* visual mode
+* Switch to visual mode
 * U uppercase
 * u lowercase
 
@@ -106,17 +93,6 @@ gT - previous tab
 | `u` | Undo
 | `ctrl` + `r` | Redo Undo
 
-## HTML comments (todo: fix)
-(Emmet - broken (tab doesn't work because of conflict ultisnip tab))
-* I like to add closing comments when I type an HTML block tag
-* `.product-list|c`
-  - That will add a closing comment
-  - 
-## Terminal
-| Command | Description |
-| ------- | -------- |
-| `ctrl` + `p` | See previous command in history | This saves from stretching to see previous terminal history using up arrow
-
 ## Multi-change word
 1. Search for word using `/`
 2. Press enter (that will highlight all words that match search)
@@ -124,11 +100,6 @@ gT - previous tab
 4. Enter into **Normal** mode
 5. Type `n` to get to next word match
 6. Type `.` to repeat (keep typing to keep repeating changes)
-
-## Git
-| Command | Description |
-| ------- | -------- |
-| `git commit -am` | Adds modified files and commits in one step | 
 
 ## Folding
 | Command | Description |
@@ -239,25 +210,6 @@ git config --global diff.tool vimdiff
 git config --global difftool.prompt false
 git config --global alias.d difftool
 
-## Mac Terminal tip: pbcopy and pbpaste
-Let you write and read from the OS X clipboard
-
-`$ cat file.txt | pbcopy`
-
-* That's a lot faster than:
-
-1. opening the file
-2. Selecting everything
-3. Copying it!
-
-`$ pbpaste > example.css`
-
-* Quicker than firing up Sublime/Atom/VS Code...
-
-Even do fancier things like:
-
-`$ tail -n 10 /var/log/messages | pbcopy`
-
 ### screens
 ```
 <C-w>s - :split window horizontally (editing current buffer)
@@ -317,20 +269,6 @@ Add this plugin to `.vimrc`
 * I love multi-cursor in Sublime Text
 * There is a plugin in Vim to mimic this behavior but it is buggy and vim default functionality is better and far more powerful
 
-### Steps to replace many
-
-1. Search for word using `/mysearch`
-2. Press `enter` on your keyboard
-
-* That will highlight all occurrences of that query
-
-3. `cgn` + your new word
-4. switch to normal mode (`jk` (my keyboard shortcut))
-4. Type `n` (next word)
-5. Type `.` (dot) to repeat change
-
-* Or save a stroke with just `.` (dot)
-
 ## Copy function
 * `va{Vy`
   - Say you are inside a function and you want to quickly copy the function so you can paste it somewhere else
@@ -370,16 +308,12 @@ vmap <c-j> xp`[V`]
 `.vimrc`
 
 ```
-Plugin 'phpfolding.vim'
-
 " Code fold bliss
 set foldmethod=indent
 
 " Toggle fold at current position
 nnoremap <s-tab> za
 ```
-
-* **note** php needs special folding
 
 ## Undo
 * `U`
@@ -461,10 +395,6 @@ nnoremap zz :update<cr>
 
 `Plugin 'prettier/prettier'`
 
-## Ohcount
-* (install with homebrew `$ brew install ohcount`)
-* Counts lines of code in programs
-
 ## Vim Comment
 * `gc` ---> comment out (visual mode too)
 * `gcgc` ---> uncomment
@@ -480,86 +410,115 @@ nnoremap zz :update<cr>
 * With leader key changed to `,` (comma)
 * `,,w`
 
+## Broken Stuff
+## HTML comments (todo: fix)
+(Emmet - broken (tab doesn't work because of conflict ultisnip tab))
+* I like to add closing comments when I type an HTML block tag
+* `.product-list|c`
+  - That will add a closing comment
+
+## Vim can be slow so here's how you speed it up
+  * (cursorline, cursorcolumn, vim-powerline, vim-airline, matchit.vim, etc.) slow down Vim in the terminal most significantly
+  * Here are some lines from my `.vimrc` to keep things speedy:
+
+  ```
+  let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
+  set noshowmatch         " Don't match parentheses/brackets
+  set nocursorline        " Don't paint cursor line
+  set nocursorcolumn      " Don't paint cursor column
+  set lazyredraw          " Wait to redraw
+  set scrolljump=8        " Scroll 8 lines at a time at bottom/top
+  let html_no_rendering=1 " Don't render italic, bold, links in HTML
+  Also see :help slow-terminal
+  ```
+
+  * add this to Profile in iTerm settings changing from login shell to command 
+
+  `/usr/local/bin/zsh -il` 
+
+  * In iTerm's Preferences > Profiles > General > Command
+
+  # vim-react-snippets
+  ```
+  " React code snippets
+  Plug 'epilande/vim-react-snippets'
+
+  " Ultisnips
+  Plug 'SirVer/ultisnips'
+
+  " Trigger configuration (Optional)
+  " let g:UltiSnipsExpandTrigger="<C-l>"
+  ```
+
+  ## Snippets
+
+  #### vim-react-snippets
+  ### React Snippets
+
+  | Trigger  | Content |
+  | -------: | ------- |
+  | `rrcc→`  | React Redux Class Component |
+  | `rcc→`   | React Class Component |
+  | `rfc→`   | React Functional Component |
+  | `rsc→`   | React Styled Component |
+  | `rsci→`   | React Styled Component Interpolation |
+
+
+  #### Lifecycle
+
+  | Trigger  | Content |
+  | -------: | ------- |
+  | `cwm→`   | `componentWillMount() {...}` |
+  | `cdm→`   | `componentDidMount() {...}` |
+  | `cwrp→`  | `componentWillReceiveProps(nextProps) {...}` |
+  | `scup→`  | `shouldComponentUpdate(nextProps, nextState) {...}` |
+  | `cwup→`  | `componentWillUpdate(nextProps, nextState) {...}` |
+  | `cdup→`  | `componentDidUpdate(prevProps, prevState) {...}` |
+  | `cwu→`   | `componentWillUnmount() {...}` |
+  | `ren→`   | `render() {...}` |
+
+
+  #### PropTypes
+
+  | Trigger    | Content |
+  | -------:   | ------- |
+  | `pt→`      | `propTypes {...}` |
+  | `pt.a→`    | `PropTypes.array` |
+  | `pt.b→`    | `PropTypes.bool` |
+  | `pt.f→`    | `PropTypes.func` |
+  | `pt.n→`    | `PropTypes.number` |
+  | `pt.o→`    | `PropTypes.object` |
+  | `pt.s→`    | `PropTypes.string` |
+  | `pt.no→`   | `PropTypes.node` |
+  | `pt.e→`    | `PropTypes.element` |
+  | `pt.io→`   | `PropTypes.instanceOf` |
+  | `pt.one→`  | `PropTypes.oneOf` |
+  | `pt.onet→` | `PropTypes.oneOfType (Union)` |
+  | `pt.ao→`   | `PropTypes.arrayOf (Instances)` |
+  | `pt.oo→`   | `PropTypes.objectOf` |
+  | `pt.sh→`   | `PropTypes.shape` |
+  | `ir→`      | `isRequired` |
+
+  #### Others
+
+  | Trigger  | Content |
+  | -------: | ------- |
+  | `props→` | `this.props` |
+  | `state→` | `this.state` |
+  | `set→`   | `this.setState(...)` |
+  | `dp→`    | `defaultProps {...}` |
+  | `cn→`    | `className` |
+  | `ref→`   | `ref` |
+  | `pp→`    | `${props => props}` |
+
 ## Remove next character multiple lines
 ```
-d/}/e
-does the job.
+  d/}/e
+  does the job.
 
-d/} deletes until the } but adding the /e flag moves the cursor on the last char of the match, effectively deleting everything between the cursor and the }, inclusive.
+  d/} deletes until the } but adding the /e flag moves the cursor on the last char of the match, effectively deleting everything between the cursor and the }, inclusive.
 
-Using visual selection works too, in a slightly more intuitive way:
+  Using visual selection works too, in a slightly more intuitive way:
 
-v/}<CR>d
+  v/}<CR>d
 ```
-
-# vim-react-snippets
-```
-" React code snippets
-Plug 'epilande/vim-react-snippets'
-
-" Ultisnips
-Plug 'SirVer/ultisnips'
-
-" Trigger configuration (Optional)
-" let g:UltiSnipsExpandTrigger="<C-l>"
-```
-
-## Snippets
-
-#### Skeleton
-
-| Trigger  | Content |
-| -------: | ------- |
-| `rrcc→`  | React Redux Class Component |
-| `rcc→`   | React Class Component |
-| `rfc→`   | React Functional Component |
-| `rsc→`   | React Styled Component |
-| `rsci→`   | React Styled Component Interpolation |
-
-
-#### Lifecycle
-
-| Trigger  | Content |
-| -------: | ------- |
-| `cwm→`   | `componentWillMount() {...}` |
-| `cdm→`   | `componentDidMount() {...}` |
-| `cwrp→`  | `componentWillReceiveProps(nextProps) {...}` |
-| `scup→`  | `shouldComponentUpdate(nextProps, nextState) {...}` |
-| `cwup→`  | `componentWillUpdate(nextProps, nextState) {...}` |
-| `cdup→`  | `componentDidUpdate(prevProps, prevState) {...}` |
-| `cwu→`   | `componentWillUnmount() {...}` |
-| `ren→`   | `render() {...}` |
-
-
-#### PropTypes
-
-| Trigger    | Content |
-| -------:   | ------- |
-| `pt→`      | `propTypes {...}` |
-| `pt.a→`    | `PropTypes.array` |
-| `pt.b→`    | `PropTypes.bool` |
-| `pt.f→`    | `PropTypes.func` |
-| `pt.n→`    | `PropTypes.number` |
-| `pt.o→`    | `PropTypes.object` |
-| `pt.s→`    | `PropTypes.string` |
-| `pt.no→`   | `PropTypes.node` |
-| `pt.e→`    | `PropTypes.element` |
-| `pt.io→`   | `PropTypes.instanceOf` |
-| `pt.one→`  | `PropTypes.oneOf` |
-| `pt.onet→` | `PropTypes.oneOfType (Union)` |
-| `pt.ao→`   | `PropTypes.arrayOf (Instances)` |
-| `pt.oo→`   | `PropTypes.objectOf` |
-| `pt.sh→`   | `PropTypes.shape` |
-| `ir→`      | `isRequired` |
-
-#### Others
-
-| Trigger  | Content |
-| -------: | ------- |
-| `props→` | `this.props` |
-| `state→` | `this.state` |
-| `set→`   | `this.setState(...)` |
-| `dp→`    | `defaultProps {...}` |
-| `cn→`    | `className` |
-| `ref→`   | `ref` |
-| `pp→`    | `${props => props}` |

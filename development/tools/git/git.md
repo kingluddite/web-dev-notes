@@ -498,4 +498,7 @@ Add a comment just so people know
 ### How do I rename the current branch?
 `$ git branch -m <newname>`
 
-
+## Git
+| Command | Description |
+| ------- | -------- |
+| `git commit -am` | Adds modified files and commits in one step | 
