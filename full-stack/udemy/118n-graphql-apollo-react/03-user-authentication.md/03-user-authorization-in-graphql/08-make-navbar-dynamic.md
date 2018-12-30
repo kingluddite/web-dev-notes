@@ -55,7 +55,7 @@ const Root = ({ refetch, session }) => (
 const Navbar = ({ session }) => {
   return (
     <nav>
-      {session && session.getCurrentUser ? <NavbarAuth /> : <NavbarUnAuth />}
+      {session && session.getCurrentUser ? <NavbarAuth /> : <NavbarUnauth />}
     </nav>
   );
 };
@@ -83,13 +83,14 @@ class Navbar extends Component {
         {session && session.getCurrentUser ? (
           <NavbarAuth session={session} />
         ) : (
-          <NavbarUnAuth />
+          <NavbarUnauth />
         )}
       </nav>
     );
   }
 }
 
+// MORE CODE
 ```
 
 ## Welcome user when logged in
@@ -109,7 +110,7 @@ class Navbar extends Component {
 
     return (
       <nav>
-        {session && session.getCurrentUser ? <NavbarAuth session={session} /> : <NavbarUnAuth />}
+        {session && session.getCurrentUser ? <NavbarAuth session={session} /> : <NavbarUnauth />}
       </nav>
     );
   }
@@ -234,9 +235,9 @@ ReactDOM.render(
 );
 ```
 
-### Create `shared` folder and we'll put 3 files inside it:
+### Create `shared` folder inside `components` and we'll put 3 files inside it:
 * `Navbar.js`
-* `NavbarUnAuth.js`
+* `NavbarUnanuth.js`
 * `NavbarAuth.js`
 
 #### Make it clear which nav we see
