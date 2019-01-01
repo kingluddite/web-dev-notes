@@ -1,4 +1,9 @@
 # Terminal
+## Search with grep but exclude a folder like `node_modules`
+* Here I search for all logs except in the node_modules directory
+
+`$ grep -R --exclude-dir=node_modules 'console.log(' .`
+
 ## Replace spaces in filenames with a dash
 `$ find . -type f -name "* *.md" -exec bash -c 'mv "$0" "${0// /_}"' {} \;`
 
