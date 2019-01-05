@@ -3,6 +3,11 @@
 
 `cmd` + `d` - split window
 
+## Making the clipboard work between iTerm2, tmux, vim and OSX
+* I was having problems yanking in vim and pasting into Sublime Text
+* I turned off allowing clipboard access in iTerm and then this worked fine
+* [resource](https://evertpot.com/osx-tmux-vim-copy-paste-clipboard/)
+
 ## Dim others except focused window
 * This is great if your workflow involves using multiple terminal windows open at one time
 
@@ -59,5 +64,27 @@ I used the above tutorial to make `cmd` + `left arrow` move left one word and `c
 * Change Minimum contrast and it will make invisible text no so invisible
 ![min contrast](https://i.imgur.com/8hZX0Ut.png)
 
+## Terminal
+| Command | Description |
+| ------- | -------- |
+| `ctrl` + `p` | See previous command in history | This saves from stretching to see previous terminal history using up arrow
 
+## Mac Terminal tip: pbcopy and pbpaste
+Let you write and read from the OS X clipboard
+
+`$ cat file.txt | pbcopy`
+
+* That's a lot faster than:
+
+1. opening the file
+2. Selecting everything
+3. Copying it!
+
+`$ pbpaste > example.css`
+
+* Quicker than firing up Sublime/Atom/VS Code...
+
+Even do fancier things like:
+
+`$ tail -n 10 /var/log/messages | pbcopy`
 

@@ -80,7 +80,7 @@ export default Nav;
 * **con** When you have 30 `index.js` files in your app it gets very confusing 
 
 ## Add inner
-* Make content max 1000px and responsive
+* Make content max `1000px` and responsive
 
 `Page.js`
 
