@@ -1,7 +1,7 @@
 # Create Cologne Page
 * Get Cologne page from path
 
-## List of Colognes
+## List of CGEolognes
 * Make them links that take to single page about that Cologne
 * To do this we'll use the `_id` property of the Cologne
 
@@ -37,8 +37,8 @@ const Root = ({ refetch, session }) => (
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/search" component={Search} />
-        <Route path="/Cologne/add" component={AddCologne} />
-        <Route path="/Cologne/:_id" component={ColognePage} />
+        <Route path="/cologne/add" component={AddCologne} />
+        <Route path="/cologne/:_id" component={ColognePage} />
         // MORE CODE
       </Switch>
     </Fragment>
@@ -50,11 +50,11 @@ const Root = ({ refetch, session }) => (
 ```
 
 ## Visit Route
-`http://localhost:3000/Cologne/1234`
+`http://localhost:3000/cologne/1234`
 
 * You will see Cologne Page
 
-## How do we get string at end of path?
+## How do we get a string at end of path?
 ### withRouter
 * We will need to use `withRouter` again from `react-router-dom`
 * We will destructure `match` from our `props`
@@ -75,7 +75,7 @@ export default withRouter(ColognePage);
 ```
 
 ## View in browser
-* `http://localhost:3000/Cologne/1234`
+* `http://localhost:3000/cologne/1234`
 * Use React Dev Tools and search for `withRouter`
 * Open it and you'll see `match.params._id = "1234"`
 

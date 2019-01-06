@@ -39,7 +39,7 @@ export default App;
 return (
           <ul>
             {data.getAllColognes.map(cologne => (
-              <li>{cologne.firstName}</li>
+              <li>{cologne.cologneName}</li>
             ))}
           </ul>
         );
@@ -163,7 +163,7 @@ ObjectId.prototype.valueOf = function () {
 * But below is a more robust solution (so we'll add that)
 * [scalar solution](https://github.com/apollographql/apollo-server/issues/1649#issuecomment-420840287)
 
-`resolvers.js`
+`resolvers.js` (TODO: check if this code is necessary!)
 
 ```
 const jwt = require('jsonwebtoken');
@@ -281,7 +281,7 @@ exports.typeDefs = gql`
 return (
   <ul>
     {data.getAllColognes.map(cologne => (
-      <li key={cologne._id}>{cologne.firstName}</li>
+      <li key={cologne._id}>{cologne.scentName}</li>
     ))}
   </ul>
 );
