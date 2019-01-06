@@ -138,7 +138,7 @@ type Query {
 
 ## Create the Resolver!
 * We just create a Mutation so now we need to create a resolver for that mutation
-* **important** Recalculate the total for teh price
+* **important** Recalculate the total for the price
     - If you just do this on the client side smart javascripters can change the total price from $100 to $0.01 so you need to check the total price on the server
     - They don't have to match up - so if someone tries to trick it on the client side, the price will always be recalculated on the server side
 
