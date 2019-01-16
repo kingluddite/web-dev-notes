@@ -94,7 +94,7 @@
 ```
 backend
     - backend stuff
-client
+frontend
     package.json (all react packages)
 package.json
 ```
@@ -105,10 +105,10 @@ package.json
 `$ git add -A`
 
 ### Commit with git
-`$ git commit -m 'Add basic linters`
+`$ git commit -m 'Add basic linters'`
 
 ## Push to github
-`$ git push origin add-apollo`
+`$ git push origin master`
 
 ## Additional Resources
 * [wes bos tutorial setting up vs code with eslint and prettier](https://www.youtube.com/watch?v=YIvjKId9m2c)

@@ -43,10 +43,10 @@
 `$ git add -A`
 
 ### Commit with git
-`$ git commit -m 'Create server side`
+`$ git commit -m 'Create server side'`
 
 ## Push to github
-`$ git push origin add-apollo`
+`$ git push origin master`
 
 ## Additional Resources
 ### Alternative to express

@@ -18,7 +18,7 @@
 ## server
 * Create a new folder in your project root
 
-`$ mkdir server`
+`$ mkdir backend`
 
 ## Make your file a git repo
 `$ git init`
