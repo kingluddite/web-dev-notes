@@ -1,5 +1,7 @@
 # Deploying to GitHub Pages
-A bit of a hack
+## Using the Command line:
+[use command line to push to github](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
+kA bit of a hack
 Free hosting, easy to set up
 
 URL - `kingluddite.GitHub.io/teamsanity`

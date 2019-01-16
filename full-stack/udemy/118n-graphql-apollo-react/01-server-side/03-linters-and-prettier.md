@@ -265,7 +265,6 @@ package.json
     ]
   },
   "plugins": [
-    // "html",
     "prettier"
   ]
 }
@@ -332,5 +331,3 @@ module.exports = {
 
 ## Eslint turn off for entire page
 `/* eslint react/no-did-mount-set-state: 0 */`
-=======
->>>>>>> 9331b8c75c39f981fdea6e6c03f6af635a52ec83
