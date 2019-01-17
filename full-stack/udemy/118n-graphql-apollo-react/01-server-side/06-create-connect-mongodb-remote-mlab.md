@@ -115,7 +115,7 @@ MONGO_URI=mongodb://admin:a12346@ds219672.mlab.com:19672/peh2-they-came-before-m
 
 ```
 const express = require('express');
-require('dotenv').config({ path: '../variables.env'}); // add this
+require('dotenv').config({ path: './variables.env'}); // add this
 
 const app = express();
 
@@ -128,7 +128,7 @@ const app = express();
 ### Mongoose
 * Connect our app's backend to `mLab`
 * We'll do this using a package called `mongoose` (_which we've already installed_)
-* We can now user our `MONGO_URI` varables we set in `variables.env` so we can use `Mongoose` to connect to our **remote Mongo DB on mLab**
+* We can now user our `MONGO_URI` variables we set in `variables.env` so we can use `Mongoose` to connect to our **remote Mongo DB on mLab**
 * We access environment variables using `process.env`
 * We'll `connect` or **throw an error**
 
@@ -137,7 +137,7 @@ const app = express();
 ```
 const express = require('express');
 const mongoose = require('mongoose'); // add this
-require('dotenv').config({ path: 'variables.env' });
+require('dotenv').config({ path: './variables.env' });
 
 const PORT = process.env.PORT || 4444;
 
@@ -176,10 +176,10 @@ const app = express();
 // MORE CODE
 
 "scripts": {
-  "precommit": "pretty-quick --staged",
-  "server": "nodemon server/server.js",
-  "client": "cd client && npm start",
-  "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
+    "precommit": "pretty-quick --staged",
+    "backend": "nodemon backend/server.js",
+    "frontend": "cd frontend && npm start",
+    "dev": "concurrently --names \"backend,frontend\" \"npm run backend --silent\" \"npm run frontend --silent\""
 },
 
 // MORE CODE

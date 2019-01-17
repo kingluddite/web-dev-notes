@@ -1,6 +1,10 @@
 # Troubleshooting
 
 ## Node
+* If you see this Error:
+`Error: listen EADDRINUSE: address already in use :::4444`
+
+`$ killall -9 node`
 * When working with async await you need a recent version of node
 * Update node to latest version
   - You can install directly

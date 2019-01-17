@@ -1,5 +1,5 @@
 # Express Server setup
-`$ cd server && touch server.js`
+`$ cd backend && touch server.js`
 
 * Create a file in the root of your app
 * A common name for this file is `server.js`
