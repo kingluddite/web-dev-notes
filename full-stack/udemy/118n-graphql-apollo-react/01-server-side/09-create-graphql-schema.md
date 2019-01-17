@@ -116,19 +116,12 @@ app.listen(PORT, () => {
 * But we get another error
 
 ## Error - DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead
-* [Stackoverflow solution](https://stackoverflow.com/questions/51960171/node63208-deprecationwarning-collection-ensureindex-is-deprecated-use-creat?noredirect=1&lq=1)
-
-```
-The issue is that mongoose still uses collection.ensureIndex and should be updated by them in the near future. To get rid of the message you can downgrade by using version 5.2.8 in your package.json (and delete any caches, last resort is to uninstall it the install it with npm install mongoose@5.2.8):
-
-"mongoose": "^5.2.8"
-```
 
 * The stackoverflow had a tip that removed the error
 
 ![stackoverflow solution](https://i.imgur.com/takMERN.png)
 
-`$ npm i mongoose@5.2.10`
+`$ npm i mongoose@5.2.13`
 
 * Then update mongoose in the server with:
 
