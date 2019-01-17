@@ -118,20 +118,29 @@ DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes inst
 * We'll fix that soon
 
 ## Git stuff
+Create a branch named `schemas` with `$ git checkout -b schemas`
 
+Note: You should create your branch at the beginning of working on your feature request
+
+* The `-b` is a flag that creates a new branch and moves you into it
+* Then you want to add and commit
 ### Add to staging with git
 `$ git add -A`
 
 ### Commit with git
 `$ git commit -m 'Add Mongoose Schemas'`
 
+### Not you will push to your GitHub (aka origin)
+
 ## Push to github
 `$ git push origin add-apollo`
+
+### Than from your GitHub you make a PR request (Pull Request) to Upstream
 
 ## Additional Resources
 * [Learn more about mongoose](https://code.tutsplus.com/articles/an-introduction-to-mongoose-for-mongodb-and-nodejs--cms-29527)
 * [What are JavaScript Promises](https://code.tutsplus.com/tutorials/keeping-promises-with-javascript--cms-25056)
-* [Async Await](https://www.youtube.com/watch?v=9YkUCxvaLEk) 
+* [Async Await](https://www.youtube.com/watch?v=9YkUCxvaLEk)
 
 ### Notes from article about mongoose
 * Mongoose is a JavaScript framework commonly used in a` Node.js` app with a MongoDB database
@@ -211,7 +220,7 @@ Book.find({
     title: /mvc/i
 }).exec(function(err, books) {
     if (err) throw err;
-     
+
     console.log(books);
 });
 ```
