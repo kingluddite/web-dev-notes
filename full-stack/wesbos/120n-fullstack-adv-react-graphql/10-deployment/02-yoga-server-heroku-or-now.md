@@ -35,7 +35,7 @@
 
 `$ git push origin master`
 
-**note** We don't need to use github, we only need to be using git (to work with heroku)
+**note** We don't need to use github, we only need to be using git (_to work with heroku_)
 
 ### Now we need to create a heroku app
 `heroku apps:create`
@@ -57,16 +57,17 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
 ## We won't be using the heroku remote
 * Because we just need to deploy subfolders
 * Why?
-    - Because I were to deploy this git repo it heroku wouldn't know how to deploy this application because the yoga apps in the backend folder and the frontend has a next.js node application inside it
-    - So to fix this we will add some more remotes that are for heroku frontend and heroku backend
-    - Let's do that now
+    - Because if I were to deploy this git repo to heroku, heroku wouldn't know how to deploy this application because the yoga apps in the `backend` folder and the `frontend` has a next.js node application inside it
+    - So to fix this we will add some more remotes that are for **heroku frontend** and **heroku backend**
+
+### Let's add some more remotes
 
 `$ git remote add heroku-backend https://git.heroku.com/peh2-yoga-prod.git`
 
 ## git subtree
 ### Now how do we push up a subfolder to a remote git repo?
 * We can do this using `git subtree`
-    - And this will only push the contents of the backend folder to heroku
+    - And this will only push the contents of the `backend` folder to heroku
 
 `$ git subtree push --prefix backend heroku-backend master`
 
@@ -82,8 +83,9 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
 
 * My version is `v11.6.0`
 
-#### Add engine to package.json
-* Heroku needs to know what version of Node.js to download for any app that is deployed on our platform
+#### Add engine to `package.json`
+* Heroku needs to know what version of `Node.js` to download for any app that is deployed on our platform
+
 `backend/package.json`
 
 ```
@@ -98,7 +100,7 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
 ```
 
 * Make sure your node version matches exactly or you may well be troubleshooting for hours
-* Add and commit your changes and push the backend subtree again
+* Add and commit your changes and push the **backend subtree** again
 
 `$ git subtree push --prefix backend heroku-backend master`
 
@@ -107,7 +109,7 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
 
 ## Clean up
 * I deleted `node_modules` and `package-lock.json` from backend
-* ran audit cleanup `$ npm audit fix`
+* I ran audit cleanup `$ npm audit fix`
 * I re-reran `$ npm i` from `backend`
 * Add and commit
 
@@ -118,7 +120,7 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
 * We were running `$ npm run dev`
 * But in production by default it will run `$ npm start`
     - That will run the `nodemon` command
-        + That will watch our js and graphql files
+        + That will watch our `js` and `graphql` files
     - And it will run the node command `node src/index.js`
 
 `$ heroku logs --tail --app peh2-yoga-prod` - only shows you log for this remote heroku
@@ -130,7 +132,7 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
 ## You need to add your environment variables to Heroku
 * Log in > dashboard > your yoga site > settings > Reveal Config Vars
 * Add all of them
-    - We'll use localhost:7777 for now for FRONTEND_URL
+    - We'll use `localhost:7777` for now for FRONTEND_URL
     - And add the new PRISMA_ENDPOINT too
 
 ![heroku settings](https://i.imgur.com/QVFt89O.png)
@@ -138,18 +140,18 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
 * Put your real live stripe token
 * Put your real SMTP host (Postmark, mailjet, mandral)
 * Make a change to your site (need to push to heroku)
-* add and commit
-* git push the backend subtree again
+* Add and commit
+* git push the **backend subtree** again
 
 `git subtree push --prefix backend heroku-backend master`
 
-That will do a whole restart of the dyno which is the machine we are running on
+* That will do a whole restart of the **dyno** which is the machine we are running on
 
 ## View URL
-* You will see playground appear (could take a moment for the app to start itself)
+* You will see playground appear (_could take a moment for the app to start itself_)
 * It will show all our schemas
 * If you get a `nodemon` error
-* you need to be in `backend` folder and add `nodemon` as a dependency
+* You need to be in `backend` folder and add `nodemon` as a dependency
 
 `$ npm nodemon`
 
@@ -157,9 +159,9 @@ That will do a whole restart of the dyno which is the machine we are running on
 
 `git subtree push --prefix backend heroku-backend master`
 
-* I was trying to add `nodemon` to `package.json` several times and it would not add it to `package.json`. I manually copied the line from devDependencies and added it to dependencies, then ran `$ npm i` and then added and commited and pushed backend to subtree again
+* I was trying to add `nodemon` to `package.json` several times and it would not add it to `package.json`. I manually copied the line from `devDependencies` and added it to `dependencies`, then ran `$ npm i` and then added, commited and pushed **backend subtree** again
 * This worked then I got the can't find `dotenv` and so for some reason it wasn't adding it to the `package.json` so I had to manually add it as well
-* Not sure why this happened but it took an hour to figure out - lesson learned is if you see module not found, check package.json and see if package is listed as a dependency (we are dealing with production and want all packages in dependency that we need)
+* Not sure why this happened but it took an hour to figure out - lesson learned is if you see module not found, check `package.json` and see if package is listed as a dependency (_we are dealing with production and want all packages in dependency that we need_)
 
 ## Tip
 * When you push to heroku it is based on your git so you need to add then commit and then push to heroku
@@ -204,9 +206,9 @@ query {
 }
 ```
 
-* So we know our schema is working even though our db is not populated
+* So we know our schema is working even though our `db` is not populated
 
-## Install Yoga on Now
+## Install Yoga on `Now`
 * Create an account [zeit/now](https://zeit.co/now)
 * Login
 * Install the now CLI globally

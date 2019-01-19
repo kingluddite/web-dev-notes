@@ -34,7 +34,7 @@ function createClient({ headers }) {
 
 * This will create a new git repo for us
 * We need to add this to heroku for frontend 
-    - We take the git.heroku.com URL we get from heroku by running that last `apps:create` Heroku CLI command
+    - We take the `git.heroku.com` URL we get from heroku by running that last `apps:create` Heroku CLI command
 
 `$ git remote add heroku-frontend https://git.heroku.com/peh2-next-prod.git`
 
@@ -49,7 +49,7 @@ heroku-frontend https://git.heroku.com/peh2-next-prod.git (fetch)
 heroku-frontend https://git.heroku.com/peh2-next-prod.git (push)
 ```
 
-* Now we have our backend and frontend
+* Now we have our `backend` and `frontend`
 
 * Add `$ git add -A`
 * Commit `$ git commit -m 'Add prod url'`
@@ -59,7 +59,7 @@ heroku-frontend https://git.heroku.com/peh2-next-prod.git (push)
 
 ### Wait - Before we push this git subtree up!
 * I will explain how next works in production
-* We have been running `$ npm run dev` and that will run on port 7777
+* We have been running `$ npm run dev` and that will run on port `7777`
 
 `frontend/package.json`
 
@@ -150,7 +150,7 @@ FRONTEND_URL: http://localhost:7777
 FRONTEND_URL: https://peh2-next-prod.herokuapp.com/
 ```
 
-* If Cors gets you mad you can turn it off (but know that turning it off increases a security risk)
+* If CORS gets you mad you can turn it off (but know that turning it off increases a security risk)
 
 `backend/src/index.js`
 
@@ -190,7 +190,7 @@ server.start(
 // MORE CODE
 ```
 
-* And you can also remove fetchOptions on the client side
+* And you can also remove `fetchOptions` on the client side
 
 `withData.js`
 
@@ -277,5 +277,5 @@ type User implements Node {
 
 * It will give you a URL - grab it and put it in the Heroku FRONTEND_URL environmental variable
 * Restart Heroku servers
-* Now knows to run the build command before you start it up
+* `Now` knows to run the build command before you start it up
 * **tip** Make sure you don't add the forward slash at the end of FRONTEND_URL!!!!

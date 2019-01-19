@@ -5,8 +5,10 @@
 2. Yoga Server
 3. React App
 
-* Normally you have 1 server side app and you push it live and you're done
-* Or you may have 2 deploys, a REST backend API and you have a React app on the frontend
+* **Normally** you have 1 server side app and you push it live and you're done
+* Or you may have 2 deploys
+  - A REST backend API
+  - And you have a React app on the frontend
 * But in our Case we have 3!
 
 1. Prisma Server
@@ -26,7 +28,7 @@
 * Prisma gives you development servers and you can't use them in production
 * You have to host your own
     - But you can use the Prisma dashboard to manage the data and interface with your Prisma
-    - You have the ability to Add a Server
+    - You have the ability to `Add a Server`
     - You also have the ability to create a Hosted Server and put in your own MySQL info into it
 
 ### Click on Add a Server
@@ -50,9 +52,9 @@
 * Allow permissions
 
 ### Create a new database
-* Database type: Only PostgresSQL now but will have others in future
-* Database region: US (Virginia)
-* Plan: Free
+* `Database type:` Only PostgresSQL now but will have others in future
+* `Database region:` US (Virginia)
+* `Plan:` Free
 
 ![db plan](https://i.imgur.com/cyt34Vt.png)
 
@@ -65,12 +67,12 @@ DB created!
 
 ![free plan](https://i.imgur.com/uhWNzV7.png)
 
-* note if you were not going through this dialog
+* **note** If you were not going through this dialog
     - You would need to set up a MySQL db (or get one from AWS)
     - Also set up a server that is going to sit on top of your DB
 
 ## Prisma server successfully deployed!
-* Now you can view your Prisma server in the Prisma Console.
+* Now you can view your Prisma server in the Prisma Console
 
 ### View the server
 * If you get a green "healthy" dot you can view it
@@ -105,16 +107,16 @@ Flags:
 ### Cool feature (make sure you are in the backend folder)
 `$ npm run deploy -- -n`
 
-* `--` tells npm to append the following things to the command that you are about to run (and we are appending the `-n` to the end)
+* `--` tells **npm** to append the following things to the command that you are about to run (and we are appending the `-n` to the end)
 * You will get these choices after running:
 
 ![choices for server](https://i.imgur.com/by37VAV.png)
 
-* Select the production db we just created (my db is `pip-5a52b7/peh2-production`)
-* Choose a name for your service - I'll call this peh2 production
-* Choose a name for your stage - prod
-* Hit enter and it will push everything up
-* Visit prisma.io and you will see your prod app listed under services
+* **Select the production** `db` we just created (my db is `pip-5a52b7/peh2-production`)
+* **Choose a name for your service** - I'll call this peh2 production
+* **Choose a name for your stage** - prod
+* Hit `enter` and it will push everything up
+* Visit `prisma.io` and you will see your prod app listed under services
     - But there is no data!
     - But you do see our schema has been pushed up to Prisma
         + CartItem
@@ -135,7 +137,8 @@ hooks:
 
 * We will comment out our old endpoint
 * And now add our new production endpoint (this was added automatically!)
-* But now we need to use a secret **so comment in your secret** in and redeploy
+* But now we need to use a secret **so comment in your secret in**
+  - And then redeploy
 
 `$ npm run deploy`
 
@@ -143,5 +146,6 @@ hooks:
 * Now we just deployed our backend to heroku
     - This is one way (and fairly easy)
         + This will be the most straightforward way to deploy the backend
-    - You can host your own
-    - You can use Docker images
+    - Alternatives
+      + You can host your own
+      + You can use Docker images
