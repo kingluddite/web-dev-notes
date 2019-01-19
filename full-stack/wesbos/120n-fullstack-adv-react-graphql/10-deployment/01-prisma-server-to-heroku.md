@@ -1,5 +1,5 @@
 # Deploying a Prisma Server to Heroku
-* We have 3 different pieces we need to manage
+* We have three different pieces we need to manage
 
 1. Prisma Server
 2. Yoga Server
