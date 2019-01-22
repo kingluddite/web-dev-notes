@@ -1,4 +1,6 @@
 # Mocking 101
+## **TIP** Just run `o` when you test and it will only run tests of code that has changed
+
 * You may have functions in your app that reach out and connect with an API or a database
 * You don't want those things inside your test
 
