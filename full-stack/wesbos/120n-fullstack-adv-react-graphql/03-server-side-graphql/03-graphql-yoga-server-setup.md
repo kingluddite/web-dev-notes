@@ -264,7 +264,7 @@ server.start(
 `$ npm i dotenv -D`
 
 ## Review
-* We created our DB in db.js
+* We created our DB in `db.js`
 * We created a function called `createServer()` which will ingest a `schema.graphql` and it will match up everything inside the schema with either a Mutation or a Query resolver
 * We exposed the DB to every single `req` (request)
 * Then in our `server` **index.js** we spin up an instance of a GraphQL Yoga Server, we add TODOs for authentication middleware in Express
@@ -330,7 +330,7 @@ or
 ## dependencies vs devDependencies
 
 * Need to move things around
-* Make sure the following are under devDependencies and not dependencies
+* Make sure the following are under `devDependencies` and not `dependencies`
 
 ### devDependencies
 * babel-preset-env

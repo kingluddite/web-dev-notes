@@ -70,8 +70,7 @@ set backupdir=/tmp
   - changes this:
 
 ```
-<h3></h3>
-      {numeral(amount / 100).format('$0,0.00')}
+<h3></h3{numeral(amount / 100).format('$0,0.00')}
 ```
 
 * into this:
