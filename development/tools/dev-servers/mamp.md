@@ -34,6 +34,12 @@
 `$ code /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf`
 
 `$ code /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf`
+<<<<<<< Updated upstream
+=======
+
+```
+NameVirtualHost *:80
+>>>>>>> Stashed changes
 
 `$ code /Applications/MAMP/conf/apache/extra/httpd-vhosts.conf`
 
