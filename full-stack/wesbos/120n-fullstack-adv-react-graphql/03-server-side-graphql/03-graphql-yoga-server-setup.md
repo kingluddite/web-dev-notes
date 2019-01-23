@@ -23,8 +23,8 @@
 
 `src/db.js`
 
-* Our React.js is going to use Apollo Client to query our GraphQL Yoga endpoint
-* And on the server GraphQL connect() is going to connect to our Prisma DB and pull the data back and forth
+* Our `React.js` is going to use Apollo Client to query our GraphQL Yoga endpoint
+* And on the server GraphQL `connect()` is going to connect to our Prisma DB and pull the data back and forth
     - Similar to if we were building an Express application there would be a mongoDB where Prisma is and your controller would query your MongoDB and then return the data to the Apollo Client
 
 ## Prisma-binding
@@ -76,10 +76,10 @@ const db = new Prisma({
 module.exports = db;
 ```
 
-* typeDefs: We will point to our generated `database.graphql`
-* debug: good to turn on if you are having GraphQL issues but it is "noisy" so only turn it on if you need it
+* `typeDefs`: We will point to our generated `database.graphql`
+* `debug`: good to turn on if you are having GraphQL issues but it is "noisy" so only turn it on if you need it
 * Make sure we export our db so we can use it elsewhere
-* We use common js on the server for node as for the next 12 months `import` will not be understood by node
+* We use `commonjs` on the server for node as for the next 12 months `import` will not be understood by node
 
 ## Now we will create the Yoga server
 * What is GraphQL Yoga?
@@ -113,9 +113,9 @@ const { GraphQLServer } = require('graphql-yoga');
     * When you push data and put it into our DB
 
 **note** We will put Query and Mutation in their own files
-* resolvers/Query.js
+* `resolvers/Query.js`
     - Anytime someone wants to pull data we will write a Query resolver
-* resolvers/Mutation.js
+* `resolvers/Mutation.js`
     - Anytime someone wants to push data we will write a Mutation resolver
 
 `src/resolvers/Mutations.js`
@@ -237,11 +237,11 @@ server.start(
 );
 ```
 
-* We use `cors` because we only want this endpoint to be visited from our approved URLs
+* We use `cors` because we only want this `endpoint` to be visited from our approved URLs
     - You definitely want to make sure the public can't hit your endpoints from anywhere
     - You only want your website from hitting that
     - We have a `FRONTEND_URL` pointing to `http://localhost:7777`
-    - And we tell cors that only our frontend can access our backend
+    - And we tell `cors` that only our frontend can access our backend
 * If you view the frontend folder and see it's `package.json` you will see
 
 `frontend/package.json`
@@ -256,7 +256,7 @@ server.start(
 ```
 
 #### What are `deets`
-* short of details
+* short way of saying "details"
 
 ### You may be missing modules
 * Install `dotenv`

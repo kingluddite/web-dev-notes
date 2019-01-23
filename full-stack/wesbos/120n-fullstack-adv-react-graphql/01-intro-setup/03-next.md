@@ -203,7 +203,6 @@ class Sell extends Component {
 export default Sell;
 ```
 
-<<<<<<< HEAD
 * View in browser
 * Both pages link to each other using HTML5 push state which prevents page refresh
 
@@ -221,11 +220,7 @@ export default Sell;
 11. Pull Locally
 12. Run and test code
 13. Delete local branch
-=======
-## View in browser
-* Both pages link to each other using HTML5 pushstate which prevents page refresh
 
 ## Additional Resources
 * [Avoid starters](https://hackernoon.com/next-js-razzle-cra-why-you-should-use-them-for-a-next-project-a78d320de97f)
 * [HTML5 pushstate](https://zinoui.com/blog/single-page-apps-html5-pushstate)
->>>>>>> 9331b8c75c39f981fdea6e6c03f6af635a52ec83

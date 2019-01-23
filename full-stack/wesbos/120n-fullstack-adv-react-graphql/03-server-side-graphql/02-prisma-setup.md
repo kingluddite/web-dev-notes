@@ -68,6 +68,7 @@
 * datamodel.graphql (you may see datamodel.prisma)
 * prisma.yml
 
+
 ## Let's open the backend
 `$ code .`
 
@@ -98,6 +99,7 @@ datamodel: datamodel.prisma
 # secret: ${env: PRISMA_SECRET}
 ```
 
+#### We took the hardcoded endpoint and moved it into our hidden `.env` file
 * We movie our prisma endpoint into our `.env` file
 * We add a secret that will enable us to lockdown our database but we comment it out because we need it open for development
     - We will uncomment that when we go to production
@@ -106,7 +108,7 @@ datamodel: datamodel.prisma
     -  We will modify our data model, we will add fields, user email address, user password then we need to update that new updated information to our prisma which is hosted on the prisma server
     -  In order to do that you need to deploy it
     -  And after the deploy is done the prisma server will return to us what is called a `graphql schema` (and that is why we need a post deploy hook that will pull down that schema for us)
-* **note** yml files use tabs and intents to relay information about the structure of content and do not use curly braces or parenthesees
+* **note** `yml` files use tabs and intents to relay information about the structure of content and do not use curly braces or parenthesees
 
 `prisma.yml`
 
@@ -133,7 +135,7 @@ type User {
 ### Deploy Data Model to the Prisma server that is running on prisma.io
 * Normally you will just use:
 
-`$ primsa deploy`
+`$ prisma deploy`
 
 * That will take everything in your `prisma.yml` file and deploy it
 
@@ -146,10 +148,26 @@ type User {
 ```
 A valid environment variable to satisfy the declaration 'env:PRISMA_ENDPOINT' could not be found.
 ```
-
+is
 * The reason is we named our `.env` file a nonstandard way with `variables.env`
 * You could get rid of the error and use this info from the help screen:
 * Here is how we search for help on Prisma
+* **note** If you just name it `.env` you will not have to worry about using ENV-FILE setting (scroll down to see this)
+
+`backend/.env`
+
+```
+FRONTEND_URL="http://localhost:7777"
+PRISMA_ENDPOINT="https://us1.prisma.sh/pip-5a52b7/sick/dev"
+PRISMA_SECRET="ikja;sdkfjsdie;aksdjfsdi"
+APP_SECRET="jwtsecret123"
+STRIPE_SECRET="sk_123youchangethis"
+PORT=4444
+MAIL_HOST="smtp.mailtrap.io"
+MAIL_PORT=2525
+MAIL_USER="024aaaa37d222"
+MAIL_PASS="9057db9bc81111"
+```
 
 `$ prisma --help`
 

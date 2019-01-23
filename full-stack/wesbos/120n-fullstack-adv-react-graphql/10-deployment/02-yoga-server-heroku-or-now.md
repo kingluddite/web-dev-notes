@@ -130,6 +130,7 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
     - You get an error
 
 ## You need to add your environment variables to Heroku
+**IMPORTANT!!!!!!!!! - Save hours of life and make sure you are entering these server variables in the Yoga server on Heroku**
 * Log in > dashboard > your yoga site > settings > Reveal Config Vars
 * Add all of them
     - We'll use `localhost:7777` for now for FRONTEND_URL
