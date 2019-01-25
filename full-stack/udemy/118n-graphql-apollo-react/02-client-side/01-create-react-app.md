@@ -1,4 +1,9 @@
 # Create React App
+## Caution: 
+* When you use create react app, if you have package.json in the root, some of those packages can conflict with your create react app install and you may have to set some packages to older versions to match with create react app settings (like: eslint-babel and eslint)
+* You need to make sure you upgrade to the latest version of node
+* **note** Depending on if you installed node via the the node website or brew, it will be installed differently and could cause problems so be aware
+
 ## The next is VS Code specific
 * Ignore if this is not your text editor
 
