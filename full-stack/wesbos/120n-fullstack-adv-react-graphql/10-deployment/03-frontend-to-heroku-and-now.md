@@ -1,5 +1,10 @@
 # Deploying Frontend to Heroku and Now
+* What we want to accomplish is have our code be smart and use our local yoga (developer) server when working locally and our remove (produciton) yoga server when in production
+
 `frontend/config.js`
+
+* You can find your production yoga endpoint by logging into your Heroku and in your yogo server dashboard > Settings > domains and certificates
+* Make sure you update your variable names 'endpoint' for development and 'prodEndpoint' for production
 
 ```
 // This is client side config only - don't put anything in here that shouldn't be public!
@@ -38,7 +43,9 @@ function createClient({ headers }) {
 
 `$ git remote add heroku-frontend https://git.heroku.com/peh2-next-prod.git`
 
-* Check out your git remote
+* Examine your git remote:
+
+`$ git remote -v`
 
 ```
 heroku  https://git.heroku.com/peh2-next-prod.git (fetch)
@@ -51,10 +58,13 @@ heroku-frontend https://git.heroku.com/peh2-next-prod.git (push)
 
 * Now we have our `backend` and `frontend`
 
+## Time to update our change in git
+* Navigate to the app root folder
 * Add `$ git add -A`
 * Commit `$ git commit -m 'Add prod url'`
 
 ## Let's do our frontend subtree push - HOLD! Don't enter this command yet!
+
 `$ git subtree push --prefix frontend heroku-frontend master`
 
 ### Wait - Before we push this git subtree up!
@@ -120,15 +130,15 @@ Could not find a valid build in the '/Users/YOU/Documents/dev/mern-stack/120e-si
 // MORE CODE
 ```
 
-* Be inside your main folder
-* Add and commit
+* Be inside your root folder of our app
+* Add and commit changes if there are any
 
 `$ git add -A`
 
 `$ git commit -m 'postbuild`
 
 ## Now we run the frontend subtree push
-`git subtree push --prefix frontend heroku-frontend master`
+`$ git subtree push --prefix frontend heroku-frontend master`
 
 * We should see it runs the **build** command before it runs the **start** command
     -  `Running heroku-postbuild`
@@ -279,3 +289,9 @@ type User implements Node {
 * Restart Heroku servers
 * `Now` knows to run the build command before you start it up
 * **tip** Make sure you don't add the forward slash at the end of FRONTEND_URL!!!!
+
+
+### Make note
+* hardcoded to prisma.yml to a local dev server and this was wrong and caused a blinking effect
+* needed to put dynamic value (variable) and then add and commit to git
+* Then push to backend submodule

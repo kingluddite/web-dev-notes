@@ -22,12 +22,18 @@
     - backend
 * **note** It is pretty common to run separate repos for your backend and your front end
 * Heroku needs you to have a git repo
-* Set one up on github
+
+### Set one up on github
+* Make sure you are in the root of your app
 
 `$ git init`
 
 * Add and commit all your changes
-* Create a remote repo on github
+
+### Create a remote repo on github
+* Hub is an app you can install with homebrew
+* But you need to configure it
+* Google `hub` github mac app to install it on your mac
 
 `$ hub create`
 
@@ -38,7 +44,9 @@
 **note** We don't need to use github, we only need to be using git (_to work with heroku_)
 
 ### Now we need to create a heroku app
-`heroku apps:create`
+* You are creating an app from the terminal on heroku and this is why you logged in to Heroku from the terminal and you previously installed the heroku CLI to give you the commands to do this
+
+`$ heroku apps:create`
 
 * Open heroku and you will see your new app
 * Heroku will give you a URL like `https://git.heroku.com/peh2-yoga-prod.git`
@@ -122,6 +130,7 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
     - That will run the `nodemon` command
         + That will watch our `js` and `graphql` files
     - And it will run the node command `node src/index.js`
+* If you have any errors you need to check the heroku remote log but it can be really long so `--tail` just
 
 `$ heroku logs --tail --app peh2-yoga-prod` - only shows you log for this remote heroku
 
@@ -151,18 +160,6 @@ heroku  https://git.heroku.com/peh2-yoga-prod.git (push)
 ## View URL
 * You will see playground appear (_could take a moment for the app to start itself_)
 * It will show all our schemas
-* If you get a `nodemon` error
-* You need to be in `backend` folder and add `nodemon` as a dependency
-
-`$ npm nodemon`
-
-* Add and commit again
-
-`git subtree push --prefix backend heroku-backend master`
-
-* I was trying to add `nodemon` to `package.json` several times and it would not add it to `package.json`. I manually copied the line from `devDependencies` and added it to `dependencies`, then ran `$ npm i` and then added, commited and pushed **backend subtree** again
-* This worked then I got the can't find `dotenv` and so for some reason it wasn't adding it to the `package.json` so I had to manually add it as well
-* Not sure why this happened but it took an hour to figure out - lesson learned is if you see module not found, check `package.json` and see if package is listed as a dependency (_we are dealing with production and want all packages in dependency that we need_)
 
 ## Tip
 * When you push to heroku it is based on your git so you need to add then commit and then push to heroku
@@ -232,3 +229,18 @@ or
     - This is currently using our `.env` file
         + You can overwrite that using [env variables and secrets](https://zeit.co/docs/v1/features/env-and-secrets)
         + **note** If you installed zeit/now awhile ago [upgrade to v2](https://zeit.co/docs/v2/platform/upgrade-to-2-0)
+
+### Nodemon error troubleshooting tips
+* If you get a `nodemon` error
+* You need to be in `backend` folder
+  -Add `nodemon` as a dependency
+
+`$ npm nodemon`
+
+* Add and commit again
+
+`git subtree push --prefix backend heroku-backend master`
+
+* I was trying to add `nodemon` to `package.json` several times and it would not add it to `package.json`. I manually copied the line from `devDependencies` and added it to `dependencies`, then ran `$ npm i` and then added, commited and pushed **backend subtree** again
+* This worked then I got the can't find `dotenv` and so for some reason it wasn't adding it to the `package.json` so I had to manually add it as well
+* Not sure why this happened but it took an hour to figure out - lesson learned is if you see module not found, check `package.json` and see if package is listed as a dependency (_we are dealing with production and want all packages in dependency that we need_)

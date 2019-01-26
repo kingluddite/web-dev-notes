@@ -32,6 +32,8 @@
     - You also have the ability to create a Hosted Server and put in your own MySQL info into it
 
 ### Click on Add a Server
+**note** As we do this keep in mind that we are using prisma.io to communicate with heroku, so when all this is done, you can also log into Heroku and see that it has set up a production server
+
 * Create a server
 
 ![create a server](https://i.imgur.com/z4fjIZR.png)
@@ -70,7 +72,7 @@ DB created!
 * **note** If you were not going through this dialog
     - You would need to set up a MySQL db (or get one from AWS)
     - Also set up a server that is going to sit on top of your DB
-
+* Click button 'Create Server'
 ## Prisma server successfully deployed!
 * Now you can view your Prisma server in the Prisma Console
 
@@ -113,10 +115,10 @@ Flags:
 ![choices for server](https://i.imgur.com/by37VAV.png)
 
 * **Select the production** `db` we just created (my db is `pip-5a52b7/peh2-production`)
-* **Choose a name for your service** - I'll call this peh2 production
-* **Choose a name for your stage** - prod
+* **Choose a name for your service** - I'll call this `peh2production`
+* **Choose a name for your stage** - `prod`
 * Hit `enter` and it will push everything up
-* Visit `prisma.io` and you will see your prod app listed under services
+* Visit `prisma.io` and you will see your prod app listed under services (congrats you just added the service)
     - But there is no data!
     - But you do see our schema has been pushed up to Prisma
         + CartItem

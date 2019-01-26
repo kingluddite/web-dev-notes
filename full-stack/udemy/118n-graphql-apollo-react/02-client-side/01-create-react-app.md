@@ -1,23 +1,23 @@
 # Create React App
-## Caution: 
-* When you use create react app, if you have package.json in the root, some of those packages can conflict with your create react app install and you may have to set some packages to older versions to match with create react app settings (like: eslint-babel and eslint)
+## PLEASE READ FIRST (WARNING): 
+* When you use create react app, if you have `package.json` in the root, some of those packages can conflict with your create react app install and you may have to set some packages to older versions to match with create react app settings (_like: eslint-babel and eslint_)
 * You need to make sure you upgrade to the latest version of node
 * **note** Depending on if you installed node via the the node website or brew, it will be installed differently and could cause problems so be aware
 
 ## The next is VS Code specific
 * Ignore if this is not your text editor
 
-## client and server
+## frontend and backend
 * We created a folder for each
 * Now we need a way to visually know whether we are in the client or server folder
 
-### Inside `client` folder
+### Inside `frontend` folder
 * Create `.vscode` folder
 * Create `settings.json` inside the `.vscode` folder
 
-`client/.vscode/settings.json`
+`frontend/.vscode/settings.json`
 
-* yellow background
+* Yellow background
 
 ```json
 {
@@ -30,7 +30,11 @@
 }
 ```
 
-### server/.vscode/settings.json
+### Inside `backend` folder
+`backend/.vscode/settings.json`
+
+* Pink background
+
 ```json
 {
   "workbench.colorCustomizations": {
