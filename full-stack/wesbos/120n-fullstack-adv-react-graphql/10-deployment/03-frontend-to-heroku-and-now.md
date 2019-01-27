@@ -9,7 +9,7 @@
 ```
 // This is client side config only - don't put anything in here that shouldn't be public!
 export const endpoint = `http://localhost:4444`;
-export const prodEndpoint = `https://peh2-yoga-prod.herokuapp.com/`;
+export const prodEndpoint = `https://acme-yoga-prod.herokuapp.com/`;
 export const perPage = 4;
 ```
 
@@ -32,43 +32,54 @@ function createClient({ headers }) {
 // MORE CODE
 ```
 
-## Now we need to add our heroku frontend
+## Now we need to add our heroku `frontend`
 * Make sure you are in the root of your project (main folder)
 
-`$ heroku apps:create peh2-next-prod`
+`$ heroku apps:create acme-next-frontend-prod`
 
 * This will create a new git repo for us
-* We need to add this to heroku for frontend 
-    - We take the `git.heroku.com` URL we get from heroku by running that last `apps:create` Heroku CLI command
 
-`$ git remote add heroku-frontend https://git.heroku.com/peh2-next-prod.git`
+![acme next frontend prod](https://i.imgur.com/yoo490E.png)
+
+* You will see on the left the frontend url
+  - `https://acme-next-frontend-prod.herokuapp.com`
+* On the right you will see the frontend heroku remote repo
+  - `https://git.heroku.com/acme-next-frontend-prod.git`
+
+## We need to add this to heroku for frontend 
+* This is very similar to what we did for the heroku backend remote repo
+
+`$ git remote add heroku-frontend https://git.heroku.com/acme-next-frontend-prod.git`
 
 * Examine your git remote:
 
 `$ git remote -v`
 
 ```
-heroku  https://git.heroku.com/peh2-next-prod.git (fetch)
-heroku  https://git.heroku.com/peh2-next-prod.git (push)
-heroku-backend  https://git.heroku.com/peh2-yoga-prod.git (fetch)
-heroku-backend  https://git.heroku.com/peh2-yoga-prod.git (push)
-heroku-frontend https://git.heroku.com/peh2-next-prod.git (fetch)
-heroku-frontend https://git.heroku.com/peh2-next-prod.git (push)
+heroku-backend  https://git.heroku.com/acme-yoga-prod.git (fetch)
+heroku-backend  https://git.heroku.com/acme-yoga-prod.git (push)
+heroku-frontend https://acme-next-frontend-prod.herokuapp.com (fetch)
+heroku-frontend https://acme-next-frontend-prod.herokuapp.com (push)
 ```
 
 * Now we have our `backend` and `frontend`
+* **note** remove the `heroku` repo
 
 ## Time to update our change in git
 * Navigate to the app root folder
 * Add `$ git add -A`
 * Commit `$ git commit -m 'Add prod url'`
 
-## Let's do our frontend subtree push - HOLD! Don't enter this command yet!
+## Let's do our frontend subtree push
 
 `$ git subtree push --prefix frontend heroku-frontend master`
 
-### Wait - Before we push this git subtree up!
-* I will explain how next works in production
+### View Heroku
+* Now you will see our next frontend
+
+![next frontend](https://i.imgur.com/6yaiRTE.png)
+
+### I will explain how Next.js works in production
 * We have been running `$ npm run dev` and that will run on port `7777`
 
 `frontend/package.json`
@@ -130,7 +141,7 @@ Could not find a valid build in the '/Users/YOU/Documents/dev/mern-stack/120e-si
 // MORE CODE
 ```
 
-* Be inside your root folder of our app
+* Be inside your **root** folder of our app
 * Add and commit changes if there are any
 
 `$ git add -A`
@@ -145,8 +156,6 @@ Could not find a valid build in the '/Users/YOU/Documents/dev/mern-stack/120e-si
     -  `next build`
 
 ## Try it out in the browser
-[https://peh2-next-prod.herokuapp.com](https://peh2-next-prod.herokuapp.com)
-
 * But if you look at the CDTC you will see an error that Access to fetch has been blocked
 * We need to go Heroku's environment variables and update this:
 
@@ -255,7 +264,7 @@ server.start(
 ![reboot heroku](https://i.imgur.com/g69txbI.png)
 
 ## If you are using Orders
-* You will get an error and need to add orders to User
+* You will get an error and need to add orders to `User`
 
 `schema.graphql`
 
@@ -273,14 +282,36 @@ type User implements Node {
 ```
 
 * Redeploy backend again after that change
+* Make sure you are in `backend`
+
+`$ npm run deploy`
 
 ## Make sure to do a browser refresh
 * Cors errors should be gone
 * Register
 
-## With Now
-* Remove frontend Port in package.json
-* Zeit built next.js so you don't need the PORT
+## Major Problem Fix
+* You need to supply the PRISMA_ENDPOINT on Heroku
+* It needs, needs, needs!!!! to have the Authorization code and the way you get this is you
+* In prisma.io > log in > Services > acme-service-production
+* Copy the HTTP Endpoint
+
+![HTTP ENDPOINT for acme-service-produciton](https://i.imgur.com/ZgL2WMN.png)
+
+* Paste the copied HTTP ENDPOINT into Heroku in `acme-yogo-prod`
+
+![heroku PRISMA_ENDPOINT](https://i.imgur.com/LXBQUqJ.png)
+
+## View the live site
+* [live site](https://acme-next-frontend-prod.herokuapp.com)
+* Sign In
+* Create a User (register)
+* The navbar should update
+* The site is now live and read to be used
+
+## With Zeit's Now (Optional)
+* Remove frontend Port in `package.json`
+* Zeit built `next.js` so you don't need the PORT
 * Be in the frontend folder
 
 `$ now`
@@ -292,6 +323,6 @@ type User implements Node {
 
 
 ### Make note
-* hardcoded to prisma.yml to a local dev server and this was wrong and caused a blinking effect
+* hardcoded to `prisma.yml` to a local dev server and this was wrong and caused a blinking effect
 * needed to put dynamic value (variable) and then add and commit to git
 * Then push to backend submodule

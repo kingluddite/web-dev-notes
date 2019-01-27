@@ -286,17 +286,153 @@ typings/
 $ npm i -D eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react react-testing-library prettier eslint-plugin-prettier husky pretty-quick prettier`
 ```
 
-## GIT 13
-1. Check Status
-2. Add to staging
-3. Commit with useful commit message
+## Formatting Code Automatically [source](https://github.com/Ihatetomatoes/react-image-slideshow)
+
+Prettier is an opinionated code formatter with support for JavaScript, CSS and JSON. With Prettier you can format the code you write automatically to ensure a code style within your project. See the [Prettier's GitHub page](https://github.com/prettier/prettier) for more information, and look at this [page to see it in action](https://prettier.github.io/prettier/).
+
+To format our code whenever we make a commit in git, we need to install the following dependencies:
+
+```sh
+npm install --save husky lint-staged prettier
+```
+
+* `husky` makes it easy to use githooks as if they are npm scripts.
+* `lint-staged` allows us to run scripts on staged files in git. See this [blog post about lint-staged to learn more about it](https://medium.com/@okonetchnikov/make-linting-great-again-f3890e1ad6b8).
+* `prettier` is the JavaScript formatter we will run before commits.
+
+Now we can make sure every file is formatted correctly by adding a few lines to the `package.json` in the project root.
+
+Add the following line to `scripts` section:
+
+```diff
+  "scripts": {
++   "precommit": "lint-staged",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+```
+
+Next we add a 'lint-staged' field to the `package.json`, for example:
+
+```diff
+  "dependencies": {
+    // ...
+  },
++ "lint-staged": {
++   "src/**/*.{js,jsx,json,css}": [
++     "prettier --single-quote --write",
++     "git add"
++   ]
++ },
+  "scripts": {
+```
+
+Now, whenever you make a commit, Prettier will format the changed files automatically. You can also run `./node_modules/.bin/prettier --single-quote --write "src/**/*.{js,jsx,json,css}"` to format your entire project for the first time.
+
+### Update on husky
+* This has changed and you will get this error in the terminal
+
+```
+Warning: Setting pre-commit script in package.json > scripts will be deprecated
+Please move it to husky.hooks in package.json, a .huskyrc file, or a husky.config.js file
+Or run ./node_modules/.bin/husky-upgrade for automatic update
+```
+
+* So run `$ ./node_modules/.bin/husky-upgrade`
+  - And you will get this change added to your `package.json`
+
+`package.json`
+
+```
+// MORE CODE
+
+"husky": {
+     "hooks": {
+       "pre-commit": "lint-staged"
+    }
+  }
+ }
+```
+
+* Now add and commit and you will get something like this in the terminal:
+
+![husky and lint-staged working](https://i.imgur.com/S0HbOnu.png)
+
+## Git and Github workflow
+* For each page of notes you should follow this workflow
+* Make sure you create a remote github repo
+* Check if you connected it with `$ git remote -v`
+  - Add with `$ git remote add origin GITHUB_REPO_URL_HERE`
+* Are you forking a team project?
+  - If so you'll also need to set up `upstream`
+
+1. Check Status 
+
+`$ git status`
+
+(use my alias: `$ gs`)
+
+2. Create a branch `$ git checkout -b branch-name`
+
+If your code is working you can add to stage and commit it
+
+3. Add to staging
+
+`$ git add -A`
+
+(use my alias: `$ ga -A`)
+
+4. Commit with useful commit message
+
+`$ git commit -m 'Useful message`
+
+* Use my shortcut `$ gc -m 'Useful message`
+* **note** Present tense message
+* Combine add and commit for modifications only `$ gc -am 'Useful message`
+
 4. Push Branch to Origin
+
+`$ git push origin branch-name`
+
 5. Create PR on Origin
-6. Code Review on Origin
-7. Merge to master branch on Origin (or reject and don't merge)
-8. Locally check out of feature branch and into master branch
-9. Fetch locally
-10. Git Diff to see changes
-11. Pull Locally
-12. Run and test code
-13. Delete local branch
+
+Remotely: Do this on Github
+* Code Review on Origin (Project Manager does this)
+* Merge to master branch on Origin (or reject and don't merge - Project Manager does this)
+
+Locally: On your computer
+
+6. Check out of feature branch and into master branch
+
+`$ git checkout master`
+
+7. Fetch locally
+
+`$ git fetch`
+
+8. Git Diff to see changes
+
+`$ git diff`
+
+9. Pull Locally
+
+`$ git pull origin master`
+
+10. Delete local branch
+
+`$ git branch -D branch-name`
+
+Rinse and repeat. Early and Often.
+
+## If you are working on your own project
+* Here is a shorter way
+* Create a new branch
+* Add and commit
+* Checkout to master
+* Merge your branch yourself
+
+`$ git merge branch-name`
+
+* Remove the branch `$ git branch -D branch-name`
+* Push to github
+
+`$ git push origin master`

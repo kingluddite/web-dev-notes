@@ -271,7 +271,7 @@ async requestReset(parent, args, ctx, info) {
 // MORE CODE
 ```
 
-* **Important Security Tip** - In Production you never want to `console.log` any of this token information, because the `resetToken` is super secret information (treat it as important as a password) and if in the wrong hands can help a malicious user have access to your account
+* **Important Security Tip** - In Production you never want to `console.log` any of this token information, because the `resetToken` is super secret information (_treat it as important as a password_) and if in the wrong hands can help a malicious user have access to your account
     - It should never be in server logs so remove all `console.logs` in production
 * I think you will agree that this is a much easier and cleaner solution
 
@@ -479,11 +479,10 @@ export default ResetPage;
 **note** After enter and confirming password if you received 'invalid password or expired' error message grab a new token by signing in again
 * Then log into Prisma and grab new token
 * Or you could grab it from the log we left in the server
-
-If you signout and signin you will see we are signin
+* If you `signout` and `signin` you will see we are signin
 
 ### How do we do that?
-* We use a `refetchQuery` in our Mutation
+* We use a `refetchQuery` in our `Mutation`
 * Just like we did before we want to refetch the current user
 
 `ResetPassword.js`
@@ -538,7 +537,7 @@ class ResetPassword extends Component {
     - Import `User.js` to access the `CURRENT_USER_QUERY` **named export**
     - Look at the bottom of `User.js` to see how we can access this
 * We user the `refetchQueries` Mutation prop that gives us access to an array of queries (because we can refetch multiple queries) this is where we tell it to refetch the `CURRENT_USER_QUERY`
-    - Now when this Mutation has successfully been called are there other queries that should be refetched and refreshed of their data
+    - Now when this `Mutation` has successfully been called are there other queries that should be refetched and refreshed of their data
 
 ## Test drive it in the browser one more time
 * Make sure you are initially logged out for this test

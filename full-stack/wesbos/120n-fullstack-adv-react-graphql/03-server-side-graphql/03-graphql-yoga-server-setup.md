@@ -8,7 +8,11 @@
 * Prisma we give it our data model 
 * Prisma we create a set of CRUD APIs
 * If we open `src/generated/prisma.graphql`
-* But there is not security layer and all we can do is create read update and delete and provide relationships between our data
+
+## Security Problem!!!! - Purpose of using GraphQL Yoga
+* But there is not security layer and all we can do is:
+    - CRUD - Create, Read, Update and Delete
+    - And provide relationships between our data
     - And in order to add things like:
         + Custom server side logic
         + We want to charge credit cards
@@ -16,21 +20,26 @@
         + If we want to hash passwords (JWT Authentications) before we save them to the DB
         + If we want to have permissions with different layers where people can do things
     - There is a whole section of logic that needs to happen before that data is saved to the DB or taken from the prisma DB
-    - And that is why we are using GraphQL Yoga for
+    - **And that is why we are using GraphQL Yoga for**
 
 ## Installing Yoga
 * Create `db.js`
 
 `src/db.js`
 
-* Our `React.js` is going to use Apollo Client to query our GraphQL Yoga endpoint
+* Our `React.js` is going to use `Apollo Client` to query our GraphQL Yoga endpoint
 * And on the server GraphQL `connect()` is going to connect to our Prisma DB and pull the data back and forth
-    - Similar to if we were building an Express application there would be a mongoDB where Prisma is and your controller would query your MongoDB and then return the data to the Apollo Client
+    - Similar to if we were building an Express application
+        + There would be a mongoDB where Prisma is
+        + And your controller would query your MongoDB
+        + And then return the data to the Apollo Client
 
 ## Prisma-binding
 * [prisma-binding github](https://github.com/prisma/prisma-binding)
     - This is just JavaScript bindings for the Prisma DB
     - It will allow us to connect to our DB
+
+### Here is a sample of the documentation from prisma-binding repo
 
 ```
 // Instantiate `Prisma` based on concrete service
@@ -56,7 +65,8 @@ prisma.mutation.updateUser({ where: { id: 'abc' }, data: { name: 'Sarah' } }, '{
 prisma.mutation.deleteUser({ where: { id: 'abc' } }, '{ id }')
 ```
 
-* We did all those things in the playground of GraphQL GUI but above is how we can do those same things in JavaScript
+* We did all those things in the playground of GraphQL GUI
+* Above is how we can do those same things in JavaScript
 
 ### Now let's start creating our `db.js`
 `db.js`
@@ -79,10 +89,10 @@ module.exports = db;
 * `typeDefs`: We will point to our generated `database.graphql`
 * `debug`: good to turn on if you are having GraphQL issues but it is "noisy" so only turn it on if you need it
 * Make sure we export our db so we can use it elsewhere
-* We use `commonjs` on the server for node as for the next 12 months `import` will not be understood by node
+* We use `commonjs` on the server for `node` (as `import` will not be understood by node until sometime in 2020)
 
-## Now we will create the Yoga server
-* What is GraphQL Yoga?
+##What is GraphQL Yoga?
+* Now we will create the Yoga server
     - GraphQL Yoga is an Express server
     - You can use all of your Express middlewares
     - GraphQL Yoga will sit on top of Apollo Server
@@ -101,7 +111,7 @@ const { GraphQLServer } = require('graphql-yoga');
 ```
 
 ## Import our resolvers
-* resolvers answer the question:
+* `resolvers` answer the question:
     - "Where does this data come from?"
     - OR
     - "What does this data do in the DB?"
@@ -112,11 +122,13 @@ const { GraphQLServer } = require('graphql-yoga');
 2. Mutation
     * When you push data and put it into our DB
 
-**note** We will put Query and Mutation in their own files
+**note** We will put `Query` and `Mutation` in their own files
 * `resolvers/Query.js`
     - Anytime someone wants to pull data we will write a Query resolver
 * `resolvers/Mutation.js`
     - Anytime someone wants to push data we will write a Mutation resolver
+
+### Create our Mutation file
 
 `src/resolvers/Mutations.js`
 
@@ -126,6 +138,7 @@ const Mutations = {};
 module.exports = Mutations;
 ```
 
+### Create our Query file
 `src/resolvers/Query.js`
 
 ```
@@ -133,6 +146,8 @@ const Query = {};
 
 module.exports = Query;
 ```
+
+## Tell our yoga server about our Queries and Mutations
 
 `createServer.js`
 
@@ -143,10 +158,10 @@ const Query = require('./resolvers/Query');
 const db = require('./db');
 ```
 
-## Create GraphQL server
+## Create GraphQL server - We need two!
 * We are creating 2 GraphQL servers
-    - We have our Prisma server which requires its own typeDefs and schemas
-    - We also have our GraphQL server which needs its own typeDefs and schemas
+    - We have our **Prisma server** which requires its own `typeDefs` and `schemas`
+    - We also have our **GraphQL server** which needs its own `typeDefs` and `schemas`
 
 `createServer.js`
 
@@ -196,17 +211,18 @@ function createServer() {
 module.exports = createServer;
 ```
 
-* We pass our resolvers (Query and Mutation - We use the es6 shortcut)
-* To prevent an annoying error we set requireResolversForResolveType to false
+* We pass our resolvers (`Query` and `Mutation` - We use the es6 shortcut (Object Literal Property Value Shorthand))
+* To prevent an annoying error we set requireResolversForResolveType to `false`
 * We use `context` to surface the `db` on every request (**req**)
 
 ## Summary
 * We create a DB
 * We created a function that will "spin up" a new GraphQL server
 * We created a blank `schema.graphql`
-    - This is where we put all of our client facing types and queries/mutations will be
+    - This is where we put all of our `client` facing types and `queries`/`mutations` will be
 
-## Not it is time to kickstart it in our `index.js`
+## Let's get this party started!
+* Not it is time to kickstart it in our `index.js`
 * We need a way to require all our environment variables
 * This is done using the `dotenv` package
 * Since `src/index.js` is the entry point of our server app we need to require dotenv here
@@ -214,7 +230,7 @@ module.exports = createServer;
 `src/index.js`
 
 ```
-require('dotenv').config({ path: '.env' });
+require('dotenv').config();
 
 const createServer = require('./createServer');
 const db = require('./db');
@@ -239,9 +255,9 @@ server.start(
 
 * We use `cors` because we only want this `endpoint` to be visited from our approved URLs
     - You definitely want to make sure the public can't hit your endpoints from anywhere
-    - You only want your website from hitting that
+    - Only want your website is allowed to hit that endpoint
     - We have a `FRONTEND_URL` pointing to `http://localhost:7777`
-    - And we tell `cors` that only our frontend can access our backend
+    - And we tell `cors` that **only our frontend can access our backend**
 * If you view the frontend folder and see it's `package.json` you will see
 
 `frontend/package.json`
@@ -258,14 +274,10 @@ server.start(
 #### What are `deets`
 * short way of saying "details"
 
-### You may be missing modules
-* Install `dotenv`
-
-`$ npm i dotenv -D`
-
 ## Review
 * We created our DB in `db.js`
-* We created a function called `createServer()` which will ingest a `schema.graphql` and it will match up everything inside the schema with either a Mutation or a Query resolver
+* We created a function called `createServer()` which will ingest a `schema.graphql`
+    - And it will match up everything inside the schema with either a `Mutation` or a `Query` resolver
 * We exposed the DB to every single `req` (request)
 * Then in our `server` **index.js** we spin up an instance of a GraphQL Yoga Server, we add TODOs for authentication middleware in Express
 * And then we start up our GraphQL Yoga GraphQL Server
@@ -294,7 +306,7 @@ or
 
 `$ npm run dev`
 
-* `debug` is how we start the actual server (better way to start server locally)
+* `debug` is how we start the actual server (_better way to start server locally_)
 * Or we can use `$ npm start`
 
 ## What is nodemon?
@@ -303,8 +315,8 @@ or
 `nodemon -e js,graphql`
 
 * `-e` makes sure we monitor the changes in JavaScript and graphql files
-    - Normally you don't tell nodemon to watch specific files but since we are working with and updating `.graphql` files we want nodemon to restart the server when we make changes to those files too
-*  `-x` what nodemon should actually be running, we are going to be running the command `node src/index.js`
+    - Normally you don't tell `nodemon` to watch specific files but since we are working with and updating `.graphql` files we want `nodemon` to restart the server when we make changes to those files too
+*  `-x` what `nodemon` should actually be running, we are going to be running the command `node src/index.js`
 *  `--inspect` We pass it the `inspect` flag which enables us to use chrome dev tools to see our console results rather than see them dumped into our terminal
 *  `"playground": "graphql playground --dotenv .env"`
     -  It will automatically open up our GraphQL GUI or you can also download the Desktop application of GraphQL Playground and it will open that up for you
@@ -326,21 +338,6 @@ or
 
 // MORE CODE
 ```
-
-## dependencies vs devDependencies
-
-* Need to move things around
-* Make sure the following are under `devDependencies` and not `dependencies`
-
-### devDependencies
-* babel-preset-env
-* dotenv
-* nodemon
-
-`$ npm uninstall babel-preset-env dotenv nodemon`
-
-`$ npm i babel-preset-env dotenv nodemon -D`
-
 
 ## We get an error
 `GraphQLError: Syntax Error: Cannot parse the unexpected character "/".`
@@ -377,8 +374,8 @@ function createServer() {
 // MORE CODE
 ```
 
-* But write now we don't have any Mutations or Queries
-* We will put fake placeholders to get rid of error for both Mutation and Query
+* But write now we don't have any `Mutations` or `Queries`
+* We will put **fake placeholders** to get rid of error for both `Mutation` and `Query`
 
 `schema.graphql`
 
@@ -447,18 +444,24 @@ type Query {
 ## Playground
 * If you visit GraphQL Playground `http://localhost:4444/` you will see fake data
 * This is great because it doesn't expose everything from our Prisma API because you may not want them exposed just yet and you want the power and control to expose API when you decide to
+* Our Yoga Server has made our app more secure
 
-## GIT 13
-1. Check Status
-2. Add to staging
-3. Commit with useful commit message
-4. Push Branch to Origin
-5. Create PR on Origin
-6. Code Review on Origin
-7. Merge to master branch on Origin (or reject and don't merge)
-8. Locally check out of feature branch and into master branch
-9. Fetch locally
-10. Git Diff to see changes
-11. Pull Locally
-12. Run and test code
-13. Delete local branch
+## Troubleshooting
+### You may be missing modules
+* Install `dotenv`
+
+`$ npm i dotenv -D`
+
+## dependencies vs devDependencies
+
+* Need to move things around
+* Make sure the following are under `devDependencies` and not `dependencies`
+
+### devDependencies
+* babel-preset-env
+* dotenv
+* nodemon
+
+`$ npm uninstall babel-preset-env dotenv nodemon`
+
+`$ npm i babel-preset-env dotenv nodemon -D`

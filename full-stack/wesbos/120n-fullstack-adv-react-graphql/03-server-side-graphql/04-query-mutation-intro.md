@@ -13,12 +13,6 @@
 * We will write our queries and mutations just on the Yoga layer and we will not be interfacing with the DB layer
     - This lets you know that you can use Yoga without Prisma
 
-## Download the App playground
-* [Playground desktop app](https://github.com/prisma/graphql-playground/releases)
-* Download, extract and drag to Applications
-* Open Your GraphQL Desktop App (search Alfred App for `Playground`)
-* Add an endpoint pointing to `http://localhost:4444`
-
 ### Write our first Query
 `schema.graphql`
 
@@ -404,17 +398,10 @@ query getAllCars {
 * So are data will be persistent and not lost after we restart the server
 * And other people on other computers will be able to access that data
 
-## GIT 13
-1. Check Status
-2. Add to staging
-3. Commit with useful commit message
-4. Push Branch to Origin
-5. Create PR on Origin
-6. Code Review on Origin
-7. Merge to master branch on Origin (or reject and don't merge)
-8. Locally check out of feature branch and into master branch
-9. Fetch locally
-10. Git Diff to see changes
-11. Pull Locally
-12. Run and test code
-13. Delete local branch
+## Resources
+## Download the App playground
+* [Playground desktop app](https://github.com/prisma/graphql-playground/releases)
+* Download, extract and drag to Applications
+* Open Your GraphQL Desktop App (search Alfred App for `Playground`)
+* Add an endpoint pointing to `http://localhost:4444`
+* **note** I uninstalled it as it was a resource hog

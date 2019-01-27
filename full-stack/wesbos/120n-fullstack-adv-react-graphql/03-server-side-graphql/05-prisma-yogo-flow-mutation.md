@@ -49,14 +49,14 @@ type Item {
 
 `$ cd backend && npm run deploy`
 
-* That will run: `prisma deploy --env-file .env`
-    - That will run `prisma deploy` and point to our `.env` file
+* That will run: `prisma deploy`
 * You will see a new item was created with a bunch of new fields
 
 ![new fields created for Item](https://i.imgur.com/xL7HHzq.png)
 
 ## Open `prisma.graphql`
-* This is a generated file based on the data model/schema that we gave it, it goes and creates an enormous GraphQL file that has all of the relationships and all of the types/queries/mutations that are required
+* This is a generated file based on the data model/schema that we gave it
+* It goes and creates an enormous GraphQL file that has all of the relationships and all of the types/queries/mutations that are required
 
 `src/generated/prisma.graphql`
 
@@ -136,7 +136,7 @@ type Query {
 * We return an Item (We haven't created it, and it is **required**)
 * If you have too many inputs, you can take them out and make just one input, called `data` and create custom inputs (fyi - that is what Prisma does on the backend)
 
-`prisma.graphql`
+`generated/prisma.graphql`
 
 ```
 // MORE CODE
@@ -626,20 +626,5 @@ type Item {
 
 ## Next - We want to pull our Query
 * With Mutations we `pushed` them
-
-## GIT 13
-1. Check Status
-2. Add to staging
-3. Commit with useful commit message
-4. Push Branch to Origin
-5. Create PR on Origin
-6. Code Review on Origin
-7. Merge to master branch on Origin (or reject and don't merge)
-8. Locally check out of feature branch and into master branch
-9. Fetch locally
-10. Git Diff to see changes
-11. Pull Locally
-12. Run and test code
-13. Delete local branch
 
 

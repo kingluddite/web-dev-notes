@@ -174,6 +174,7 @@ module.exports = Query;
   "extensions": {}
 }
 ```
+
 ### Better errors
 * In Public Playground view console
 * Switch to **Network** tab
@@ -223,18 +224,3 @@ module.exports = Query;
     * We can create the ability to create new functions (like createItem() or create items)
 5. Then to match up with these mutations and queries we go into our mutations and our queries and we write teh resolvers to go in and complete the logic that needs to happen
     * All the advanced logic (sending credit card) will go here
-
-## GIT 13
-1. Check Status
-2. Add to staging
-3. Commit with useful commit message
-4. Push Branch to Origin
-5. Create PR on Origin
-6. Code Review on Origin
-7. Merge to master branch on Origin (or reject and don't merge)
-8. Locally check out of feature branch and into master branch
-9. Fetch locally
-10. Git Diff to see changes
-11. Pull Locally
-12. Run and test code
-13. Delete local branch

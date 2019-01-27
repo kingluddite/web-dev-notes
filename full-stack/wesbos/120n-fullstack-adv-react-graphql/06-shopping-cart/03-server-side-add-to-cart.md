@@ -133,11 +133,12 @@ project prisma - Schema file was updated: src/generated/prisma.graphql
 ```
 
 ## Things to point out:
-* CartItem Type was created with all its fields
+* `CartItem` Type was created with all its fields
 * Check out the two relationships that were created!
-* Our generated prisma.graphql was regenerated with the new stuff inside it
+* Our generated `prisma.graphql` was regenerated with the new stuff inside it
 
 ## Install the latest prisma
+* Sometimes it gets outdated and you need to update it
 
 `$ npm i -g prisma`
 

@@ -1286,20 +1286,5 @@ class CreateItem extends Component {
 * Submit the form and it will take you to single page
 * **note** We will revisit this when we tackle **pagination** as an issue will develop that we will need to address
 
-## IT 13
-1. Check Status
-2. Add to staging
-3. Commit with useful commit message
-4. Push Branch to Origin
-5. Create PR on Origin
-6. Code Review on Origin
-7. Merge to master branch on Origin (or reject and don't merge)
-8. Locally check out of feature branch and into master branch
-9. Fetch locally
-10. Git Diff to see changes
-11. Pull Locally
-12. Run and test code
-13. Delete local branch
-
 ## Next - images
 * We'll learn how to interface with external upload APIs (We'll use cloudinary)

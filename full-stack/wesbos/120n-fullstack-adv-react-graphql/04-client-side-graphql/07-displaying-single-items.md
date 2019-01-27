@@ -557,20 +557,5 @@ const SINGLE_ITEM_QUERY = gql`
     - If image is too wide and short or if too tall and wide, it doesn't matter as it will always fit it in
         + This is similar to background cover and background contain but `object-fit` is for actual image tags
 
-## GIT 13
-1. Check Status
-2. Add to staging
-3. Commit with useful commit message
-4. Push Branch to Origin
-5. Create PR on Origin
-6. Code Review on Origin
-7. Merge to master branch on Origin (or reject and don't merge)
-8. Locally check out of feature branch and into master branch
-9. Fetch locally
-10. Git Diff to see changes
-11. Pull Locally
-12. Run and test code
-13. Delete local branch
-
 ## Additional Resources
 * [object fit explained](https://css-tricks.com/almanac/properties/o/object-fit/)

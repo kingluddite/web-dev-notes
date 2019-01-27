@@ -234,12 +234,12 @@ class UserPermissions extends Component {
   };
 
   
-              <input
-                type="checkbox"
-                checked={permissions.includes(permission)}
-                value={permission}
-                onChange={this.handlePermissionChange}
-              />
+      <input
+        type="checkbox"
+        checked={permissions.includes(permission)}
+        value={permission}
+        onChange={this.handlePermissionChange}
+      />
 
 // MORE CODE
 ```
