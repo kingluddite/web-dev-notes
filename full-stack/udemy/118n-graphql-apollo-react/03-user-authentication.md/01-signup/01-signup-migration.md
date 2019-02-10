@@ -14,11 +14,11 @@
 
 type Query {
     getAllColognes: [Cologne]
-  }
+}
 
-  type Token {
-    token: String!
-  }
+type Token {
+  token: String!
+}
 
 // MORE CODE
 ```
@@ -92,7 +92,6 @@ Mutation: {
         }).save();
         return { token: createToken(newUser, process.env.SECRET, '1hr') };
       },
-    },
 };
 
 ```

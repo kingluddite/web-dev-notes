@@ -1,5 +1,5 @@
 # Add Signup Form
-`Auth/Signup.js`
+`auth/Signup.js`
 
 * Convert to a class-based component
 
