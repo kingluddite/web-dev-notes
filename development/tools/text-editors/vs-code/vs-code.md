@@ -1,4 +1,16 @@
 # VS Code
+## plugins
+* .gitignore Generator
+    - Will generate new or update existing gitignore
+    - Add custom ignore rules below `# Custom rules` and they will not be overwritten
+* git history
+    - git file history (simple plain)
+    - gitlog file history (more detail! more useful)
+* gitlink
+    - simple but great way to share code with team members
+    - Highlight code right click and select `Goto online link`
+    - Will take you to URL of that code highlighted that you can share with team
+
 autosave - `"files.autoSave": "afterDelay"`
 
 keyboard shortcuts
