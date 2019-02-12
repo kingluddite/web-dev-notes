@@ -5,9 +5,9 @@
 * This is a security issue
 
 ## Install bcrypt (already installed)
-`$ npm i bcrypt`
+`$ npm i bcryptjs`
 
-### Where do we use brcrypt?
+### Where do we use bcrypt?
 * We will use it in `models/User.js`
 * We will use mongoose schema `pre()` method to do something before the user saves to the database
 * Check if the password was not modified because that means we are not signing up a new user and just updating the password
@@ -20,7 +20,7 @@
 ```
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // MORE CODE
 
@@ -62,10 +62,6 @@ mutation {
 
 * Hit play to execute mutation
 * Look into document and password will now be encrypted (salted and hashed)
-
-`$ db.users.find()`
-
-![encrypted password](https://i.imgur.com/xvlurSS.png)
 
 ## Git stuff
 

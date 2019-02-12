@@ -3,7 +3,7 @@
 * What if we want to have an about page or a contact page
 * We need to set up routing so that when specific routes are "hit" the React will rearrange the virtual DOM to only show the component specified on that route
 
-## Add a new package into `client` folder
+## Add a new package into `frontend` folder
 
 `$ npm i react-router-dom`
 
@@ -15,7 +15,7 @@
 
 `$ npm run dev`
 
-`client/index.js`
+`frontend/index.js`
 
 ```
 import React from 'react';
@@ -60,8 +60,8 @@ ReactDOM.render(
 ```
 
 # Auth
-* Create `client/components/Auth`
-* Create two files inside the **Auth** folder (`Auth/Signin.js` and `Auth/Signup.js`)
+* Create `frontend/components/auth`
+* Create two files inside the **Auth** folder (`auth/Signin.js` and `auth/Signup.js`)
 
 `Signin.js`
 

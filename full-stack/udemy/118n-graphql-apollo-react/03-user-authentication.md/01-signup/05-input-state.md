@@ -88,6 +88,40 @@ render() {
 // MORE CODE
 ```
 
+* Immprove the code to be accessible
+
+```
+<form className="form">
+  <label htmlFor="username">
+    Username
+    <input type="text" name="username" id="username" placeholder="Username" onChange={this.handleChange} />
+  </label>
+  <label htmlFor="email">
+    Email
+    <input type="email" name="email" id="email" placeholder="Email" onChange={this.handleChange} />
+  </label>
+  <label htmlFor="password">
+    Password
+    <input type="password" name="password" id="password" placeholder="Password" onChange={this.handleChange} />
+  </label>
+  <label htmlFor="passwordConfirmation">
+    Confirm Password
+    <input
+      type="password"
+      name="passwordConfirmation"
+      id="passwordConfirmation"
+      placeholder="Confirm Password"
+      onChange={this.handleChange}
+    />
+  </label>
+  <div>
+    <button type="button" className="button-primary">
+      Signup
+    </button>
+  </div>
+</form>
+```
+
 ## Test in browser
 * `http://localhost:3000/signup`
 * Open browser console
