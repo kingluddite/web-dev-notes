@@ -10,6 +10,13 @@
     - simple but great way to share code with team members
     - Highlight code right click and select `Goto online link`
     - Will take you to URL of that code highlighted that you can share with team
+* HTML CSS Support
+    - Intellisense to tell you CSS classes available from HTML
+* Color Picker (anseki)
+* CSS peek (let's you peek into your CSS files)
+* Material Icon Theme
+* SCSS IntelliSense
+    - helps with Sass intellisense across multiple files
 
 autosave - `"files.autoSave": "afterDelay"`
 
