@@ -1,7 +1,7 @@
 # Create Cologne Page
 * Get Cologne page from path
 
-## List of CGEolognes
+## List of Colognes
 * Make them links that take to single page about that Cologne
 * To do this we'll use the `_id` property of the Cologne
 

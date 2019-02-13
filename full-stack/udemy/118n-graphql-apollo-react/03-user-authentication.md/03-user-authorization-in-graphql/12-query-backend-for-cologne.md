@@ -12,7 +12,7 @@
 // MORE CODE
 
 type Query {
-    getAllCologne: [Cologne]
+    getAllColognes: [Cologne]
     getCologne(_id: ObjectID!): Cologne // add this
     getCurrentUser: User
   }
