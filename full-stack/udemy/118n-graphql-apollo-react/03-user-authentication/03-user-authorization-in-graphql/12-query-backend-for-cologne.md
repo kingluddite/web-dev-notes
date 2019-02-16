@@ -119,7 +119,7 @@ query($_id: ObjectID!) {
 ```
 // MORE CODE
 
-export const GET_Cologne = gql`
+export const GET_COLOGNE = gql`
   
 `;
 
@@ -131,7 +131,7 @@ export const GET_Cologne = gql`
 ```
 // MORE CODE
 
-export const GET_Cologne = gql`
+export const GET_COLOGNE = gql`
   query($_id: ObjectID!) {
     getCologne(_id: $_id) {
       _id
