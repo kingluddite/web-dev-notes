@@ -231,7 +231,7 @@ render() {
 `$ git add -A`
 
 ### Commit with git
-`$ git commit -m 'Add Input state`
+`$ git commit -m 'Add Input state'b`
 
 ## Push to github
 `$ git push origin signup`
