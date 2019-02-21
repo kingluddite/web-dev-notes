@@ -12,12 +12,12 @@ export const SIGNIN_USER_MUTATION = gql`
  // playground code paste here
 `;
 
-export const SIGNUP_USER = gql`
+export const SIGNUP_USER_MUTATION = gql`
 
 // MORE CODE
 ```
 
-### Next Paste in plaground code
+### Next Paste in Playground code
 
 ```
 // MORE CODE
@@ -31,7 +31,7 @@ export const SIGNIN_USER_MUTATION = gql`
   }
 `;
 
-export const SIGNUP_USER = gql`
+export const SIGNUP_USER_MUTATION = gql`
 
 // MORE CODE
 ```
@@ -43,9 +43,8 @@ export const SIGNUP_USER = gql`
 
 ```
 import React, { Component } from 'react';
-
 import { Mutation } from 'react-apollo';
-import { SIGNIN_USER } from '../../queries';
+import { SIGNIN_USER_MUTATION } from '../../queries/index';
 
 // custom components
 import Error from '../Error';
@@ -68,6 +67,7 @@ class Signin extends Component {
 
   handleChange = event => {
     const { name, value } = event.target;
+    // console.log(name, ':', value);
     this.setState({
       [name]: value,
     });
@@ -75,11 +75,9 @@ class Signin extends Component {
 
   handleSubmit = (event, signinUser) => {
     event.preventDefault();
-    // call our signinUser function
-    // it is a promise so we can use `then()`
-    // within `then()` we get our return `data`
-    signinUser().then(data => {
-      console.log(data);
+    // console.log(signinUser);
+    signinUser().then(({ data }) => {
+      // console.log(data);
       this.clearState();
     });
   };
@@ -97,45 +95,46 @@ class Signin extends Component {
     return (
       <div className="App">
         <h2 className="App">Signin</h2>
-        <Mutation mutation={SIGNIN_USER} variables={{ username, password }}>
-          {(signinUser, { data, loading, error }) => {
-            return (
-              <form
-                className="form"
-                onSubmit={event => this.handleSubmit(event, signinUser)}
-              >
+        <Mutation mutation={SIGNIN_USER_MUTATION} variables={{ username, password }}>
+          {(signinUser, { data, loading, error }) => (
+            <form className="form" onSubmit={event => this.handleSubmit(event, signinUser)}>
+              <label htmlFor="username">
+                Username
                 <input
                   type="text"
                   name="username"
+                  id="username"
                   placeholder="Username"
                   onChange={this.handleChange}
                   value={username}
                 />
+              </label>
+              <label htmlFor="password">
+                Password
                 <input
                   type="password"
                   name="password"
+                  id="password"
                   placeholder="Password"
                   onChange={this.handleChange}
                   value={password}
                 />
-                <button
-                  button="submit"
-                  className="button-primary"
-                  disabled={loading || this.validateForm()}
-                >
-                  Submit
+              </label>
+              <div>
+                <button type="submit" disabled={loading || this.validateForm()} className="button-primary">
+                  Signin
                 </button>
                 {error && <Error error={error} />}
-              </form>
-            );
-          }}
+              </div>
+            </form>
+          )}
         </Mutation>
       </div>
     );
   }
 }
 
-export default Signin;
+export default Signin;  
 ```
 
 * `Signin.js` will be very similar to `Signup.js`
