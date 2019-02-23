@@ -11,7 +11,7 @@
 ```
 // MORE CODE
 
-<button className="button-primary">Submit</button>
+<button type="submit" className="button-primary">Submit</button>
   {error && <p>{error.message}</p>}
 </form>
 

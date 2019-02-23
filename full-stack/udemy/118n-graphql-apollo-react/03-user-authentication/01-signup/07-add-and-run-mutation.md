@@ -93,7 +93,6 @@ handleSubmit = (event, signupUser) => {
   event.preventDefault();
   signupUser().then(data => {
     console.log(data);
-    this.clearState();
   });
 };
 ```
@@ -107,29 +106,12 @@ handleSubmit = (event, signupUser) => {
   event.preventDefault();
   signupUser().then(({ data }) => {
     console.log(data);
-    this.clearState();
   });
 };
 ```
 
 * Console.log() each different patch of code and observe the different results
 * Bottom line, destructuring is a way to "pluck" off the data you want
-
-## Houston we have an error
-`SIGNUP_USER` is not defined
-
-* We need to import it
-
-`Signup.js`
-
-```
-import React, { Component } from 'react';
-
-import { Mutation } from 'react-apollo';
-import { SIGNUP_USER } from '../../queries'; // add this
-
-// MORE CODE
-```
 
 # Test
 `http://localhost:3000/signup`

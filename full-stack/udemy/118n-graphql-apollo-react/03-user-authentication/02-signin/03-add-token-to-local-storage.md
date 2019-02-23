@@ -15,7 +15,7 @@ handleSubmit = (event, signinUser) => {
     console.log(data);
     console.log(data.data.signinUser.token);
     // localStorage.setItem('token', data.signinUser.token);
-    this.clearForm();
+    this.clearState();
   });
 };
 
@@ -42,7 +42,7 @@ handleSubmit = (event, signinUser) => {
     console.log(data);
     console.log(data.signinUser.token);
     // localStorage.setItem('token', data.signinUser.token);
-    this.clearForm();
+    this.clearState();
   });
 };
 
@@ -64,7 +64,7 @@ Now look at `data` object returned
 signinUser().then(({ data }) => {
   console.log(data);
   localStorage.setItem('token', data.signinUser.token);
-  this.clearForm();
+  this.clearState();
 });
 
 // MORE CODE
@@ -81,7 +81,7 @@ handleSubmit = (event, signinUser) => {
   signinUser().then(({ data: { signinUser } }) => {
     console.log(signinUser);
     localStorage.setItem('token', signinUser.token);
-    this.clearForm();
+    this.clearState();
   });
 };
 
@@ -112,7 +112,7 @@ handleSubmit = (event, signupUser) => {
   signupUser().then(({ data: { signupUser } }) => {
     console.log(signupUser);
     localStorage.setItem('token', signupUser.token);
-    this.clearForm();
+    this.clearState();
   });
 };
 
