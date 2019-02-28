@@ -17,14 +17,14 @@
     - By default starter gives us
         + React Helmet (lets us control the HTML meta tags, twitter share tags, title tags)
         + Add a manifest and offline plugin for offline support
-            * gives you progressive web app 100% score in lighthouse
+            * Gives you progressive web app 100% score in lighthouse
 
 ### `src` folder
 * `pages`
-    - pages/index.js (homepage)
+    - `pages/index.js` (homepage)
     - `{ Link }` from `gatsby`
-        + takes place of anchor link when you are linking locally
-            * when you are linking between pages we can preload the code that is going to be shown and makes sure we don't reload the browser so it feels instant
+        + Takes place of anchor link when you are linking locally
+            * When you are linking between pages we can preload the code that is going to be shown and makes sure we don't reload the browser so it feels instant
 
 `gatsby-config.js`
 
@@ -298,6 +298,8 @@ export default Footer
 * Font color will be blue on small screens
 * Font color will be red on larger screens (> 600px)
 
+`footer.module.css`
+
 ```
 .footer {
   max-width: 960px;
@@ -332,7 +334,6 @@ export default Footer
 ## Gatsby and Netlify
 * Gatsby will generate static assets
 * Netlify is a free great way to host static assets
-
 
 ## Deploy Gatsby to Netlify
 * need a github and netlify account (free)
