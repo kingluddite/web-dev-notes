@@ -62,6 +62,10 @@ Bundle 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
 ```
 
+### Nerdtree ?
+* When Nerdtree is open type ? and you will see all your options (help)
+* As you navigate up down the tree `C` lets you make that folder the root of your nerdtree (I use tip this a lot)
+
 ## Open Vim
 Open nerdtree with this shortcut:
 
