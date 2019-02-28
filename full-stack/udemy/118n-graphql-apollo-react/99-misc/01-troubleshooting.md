@@ -1,5 +1,21 @@
 # Troubleshooting
 
+## Eslint missing module
+* This will happen from time to time
+* remove global eslint and current files stuff
+
+```shell
+rm -rf node_modules && npm uninstall -g eslint eslint-plugin-react
+```
+
+* and then reninstall locally
+
+```shell
+npm install --save-dev eslint eslint-plugin-react && npm install
+```
+
+* Added the trailing npm install to compensate for rm'ing `node_modules` entirely, just in case anyone copy/pastes this without looking 😉
+
 ## Node
 * If you see this Error:
 `Error: listen EADDRINUSE: address already in use :::4444`

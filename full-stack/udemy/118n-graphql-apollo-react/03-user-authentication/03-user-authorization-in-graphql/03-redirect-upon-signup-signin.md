@@ -139,6 +139,8 @@ class Signin extends Component {
 
 * We also destructure `history`
 
+## Do the same for `Signup.js`
+
 ## Git stuff
 
 ### Add to staging with git
