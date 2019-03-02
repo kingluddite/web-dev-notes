@@ -24,14 +24,14 @@ import Search from './components/cologne/Search'; // add
 
 const Root = ({ refetch }) => (
   <Router>
-    <Fragment>
+    <div id="wrapper">
       <Navbar />
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/search" component={Search} />
         // MORE CODE
       </Switch>
-    </Fragment>
+    <div id="wrapper">
   </Router>
 );
 
