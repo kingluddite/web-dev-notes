@@ -1,4 +1,23 @@
 # Sublime Text 3
+
+## I love VIM in Sublime Text 3
+* Every now and then it breaks and it takes me a couple hours to fix it
+  - The key bindings are messed up, I have to type `d` 3 times to delete a line, appending adds an `a` at the end, it just becomes a terrible user experience and you need a fresh install of ST3 to get it back to work properly
+* Do this the next time this happens
+* https://www.sublimetext.com/docs/3/revert.html
+
+OS X: ~/Library/Application Support/Sublime Text 3
+
+Grab everything and put in a backup folder on your desktop
+Go to [my dot files](https://github.com/kingluddite/dotfiles)
+
+go into your dotfiles locally
+follow the 3 cp -R instructions
+
+* Here is a theme you could add if you want but you decide what you like best
+
+"theme": "Material-Theme.sublime-theme",
+
 Is a text editor. A few years ago I was using `Dreamweaver` as were many people. There were other popular `Text Editors` like `Text Wranger` and `Coda` but Sublime Text came out of nowhere and took the coding world by storm. It was fast and free (if you could put up with the pop up alert windows or pay the low fee to own a copy yourself).
 
 Dreamweaver was a full `IDE` but was way too bulky for your average coder. It had a `FTP` program built into it which lots of people loved but the free Filezilla made FTP free and simple. People wanted to know why Sublime Text didn't have FTP baked into it, and it probably was because most developers began to use the more secure SSH. Now people with `SSH` power, could transfer files directly from the `Terminal`, that was faster and more secure.
