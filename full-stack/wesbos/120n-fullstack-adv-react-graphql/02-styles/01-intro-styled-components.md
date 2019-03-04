@@ -3,7 +3,6 @@
 `$ git checkout -b feature-branch`
 
 * Replace `feature-branch` with the name of your feature branch
-* 
 * [link to styled components](https://www.styled-components.com/)
 * Tightly couple styles to your components
 

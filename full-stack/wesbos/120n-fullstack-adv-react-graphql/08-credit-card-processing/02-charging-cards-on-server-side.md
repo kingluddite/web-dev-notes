@@ -383,7 +383,7 @@ const config = stripe(process.env.STRIPE_SECRET);
 module.exports = config;
 ```
 
-* Paste your top secret Stripe secret into your .env
+* Paste your top secret Stripe secret into your `.env`
 
 ## Add Stripe to Mutation
 `Mutation.js`

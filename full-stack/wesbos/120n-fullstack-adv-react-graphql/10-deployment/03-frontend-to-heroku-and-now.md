@@ -1,5 +1,5 @@
 # Deploying Frontend to Heroku and Now
-* What we want to accomplish is have our code be smart and use our local yoga (developer) server when working locally and our remove (produciton) yoga server when in production
+* What we want to accomplish is have our code be smart and use our local yoga (developer) server when working locally and our remove (production) yoga server when in production
 
 `frontend/config.js`
 
@@ -156,7 +156,7 @@ Could not find a valid build in the '/Users/YOU/Documents/dev/mern-stack/120e-si
     -  `next build`
 
 ## Try it out in the browser
-* But if you look at the CDTC you will see an error that Access to fetch has been blocked
+* But if you look at the (Chrome Development Tool Console) CDTC you will see an error that Access to fetch has been blocked
 * We need to go Heroku's environment variables and update this:
 
 ```

@@ -63,11 +63,11 @@
 * We'll accept the default of `dev` and press `return`
 
 ### Select the programming language for the generated Prisma client
-* Select `Don't generate` and press return
+* Select `Don't generate` and press **return**
 
 ### Look at files that were generated
-* datamodel.prisma (you may see datamodel.graphql)
-* prisma.yml
+* `datamodel.prisma` (you may see `datamodel.graphql`)
+* `prisma.yml`
 
 `prisma.yml`
 
@@ -80,7 +80,7 @@ datamodel: datamodel.prisma
 * Copy the endpoint URL and paste it into the browser and you will get a GraphQL playground
   - Click the `SCHEMA` button and you will see nothing ever loads
   - We need to fix this
-  - First we will clean up our code by putting the hard coded endpoint into an **environmental variable** (This is a very important security step to keep our endpoint away from the public)
+  - First we will clean up our code by putting the hard coded endpoint into an **environmental variable** (_This is a very important security step to keep our endpoint away from the public_)
 
 ### Moving endpoint
 * When we ran `$ prisma init` Prisma generated the `prisma.yml` file and was kind enough to insert the endpoint into `prisma.yml`
@@ -132,7 +132,7 @@ MAIL_PASS="9057db9bc8422d"
 ```
 endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: datamodel.prisma
-# secret: ${env: PRISMA_SECRET}
+# secret: ${env:PRISMA_SECRET}
 hooks:
   post-deploy:
       - graphql get-schema -p prisma
@@ -158,7 +158,7 @@ type User {
 * We will build our GraphQL schema using this file
 
 ### Deploy Data Model to the Prisma server
-* That is running on `prisma.io`
+* That is running on `prisma.io` (in backend)
 
 `$ prisma deploy`
 
@@ -168,7 +168,7 @@ type User {
 ![terminal output after deploy](https://i.imgur.com/HznTZ08.png)
 
 * You will see:
-  - Creating stage `dev` for service a`cme-prisma-service`
+  - Creating stage `dev` for service a`acme-prisma-service`
   - Deploying service `acme-prisma-service` to stage `dev` to server `prisma-us1`
   - You will see all the changes
     + This just outputs your User schema and fields
@@ -239,7 +239,7 @@ type User {
 ### Add a deploy script
 * We add this to make our lives easier
 
-`frontend/package.json`
+`backend/package.json`
 
 ```
 // MORE CODE

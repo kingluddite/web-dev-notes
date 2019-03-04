@@ -69,7 +69,7 @@ prisma.mutation.deleteUser({ where: { id: 'abc' } }, '{ id }')
 * Above is how we can do those same things in JavaScript
 
 ### Now let's start creating our `db.js`
-`db.js`
+`backend/db.js`
 
 ```
 // This file connect ot the remote prisma DB
@@ -258,7 +258,9 @@ server.start(
     - Only want your website is allowed to hit that endpoint
     - We have a `FRONTEND_URL` pointing to `http://localhost:7777`
     - And we tell `cors` that **only our frontend can access our backend**
-* If you view the frontend folder and see it's `package.json` you will see
+
+## Frontend Stuff!
+* If you view the `frontend` folder and see it's `package.json` you will see
 
 `frontend/package.json`
 

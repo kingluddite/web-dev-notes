@@ -65,7 +65,7 @@ First thing first make sure you [sign up for a free Heroku account](https://sign
 
 ![sign into Heroku](https://i.imgur.com/cyt34Vt.png)
 
-* Click on `Connect to a new Herokue account`
+* Click on `Connect to a new Heroku account`
 * Log in
 * Click `Allow` to allow permissions
 
