@@ -126,7 +126,7 @@ import Profile from './components/profile/Profile';
 
 const Root = ({ refetch }) => (
   <Router>
-    <Fragment>
+    <div id="wrapper">
       <Navbar />
       <Switch>
         <Route path="/" exact component={App} />
@@ -136,7 +136,7 @@ const Root = ({ refetch }) => (
         // MORE CODE
         <Redirect to="/" />
       </Switch>
-    </Fragment>
+    </div>
   </Router>
 );
 

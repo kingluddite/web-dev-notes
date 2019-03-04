@@ -39,7 +39,6 @@ app.use(async (req, res, next) => {
 ```
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const jwt = require('jsonwebtoken'); // add this
 
 // MORE CODE
@@ -49,8 +48,6 @@ const jwt = require('jsonwebtoken'); // add this
 
 ```
 // MORE CODE
-
-app.use(cors(corsOptions));
 
 // set up JWT authentication middleware
 app.use(async (req, res, next) => {

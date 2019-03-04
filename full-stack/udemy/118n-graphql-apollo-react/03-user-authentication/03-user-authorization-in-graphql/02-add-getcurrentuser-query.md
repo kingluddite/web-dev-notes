@@ -376,3 +376,4 @@ getCurrentUser: async (root, args, { currentUser, User }) => {
 ## Additional Resources
 * [What are higher order components](https://css-tricks.com/what-are-higher-order-components-in-react/)
 * [HOC tutorial for React](https://www.youtube.com/watch?v=A9_9gQIkfx4)
+* [HOC vs Render Props](https://www.youtube.com/watch?v=BcVAq3YFiuc)

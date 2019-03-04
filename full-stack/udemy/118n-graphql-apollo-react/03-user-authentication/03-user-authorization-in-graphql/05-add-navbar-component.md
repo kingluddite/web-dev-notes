@@ -109,7 +109,8 @@ const Root = ({ refetch }) => (
 // MORE CODE
 ```
 
-* But we will use a div and as we'll style it to center our web app
+## Switch from Fragment to div
+* But we will use a `div` and as we'll style it to center our web app
 
 ```
 import React from 'react';

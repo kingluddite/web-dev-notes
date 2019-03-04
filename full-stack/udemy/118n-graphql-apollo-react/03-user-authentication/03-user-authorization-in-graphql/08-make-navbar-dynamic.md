@@ -31,12 +31,12 @@ const withSession = Component => props => (
 
 const Root = ({ refetch, session }) => (
   <Router>
-    <Fragment>
+    <div id="wrapper">
       <Navbar session={session} />
       <Switch>
         // MORE CODE
       </Switch>
-    </Fragment>
+    </div>
   </Router>
 );
 
