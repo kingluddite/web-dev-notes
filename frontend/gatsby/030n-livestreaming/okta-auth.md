@@ -221,9 +221,15 @@ export default () => (
 2. Then the user will end up on Okta (the address in the browser will be Okta)
 3. After the user finishes logging in, Okta sends them back to Gatsby with just a GET request to that callback URL
 
-
-* Need to double check is whether the clicks that we are going through for react is going to do that or is it going to do it built in where it all just kind of happens silently on the Gatsby site in the front end code where that whole exchange happens behind the scenes
+* Need to double check is whether the clicks that we are going through for react is going to do that or is it going to do it built-in where it all just kind of happens silently on the Gatsby site in the frontend code where that whole exchange happens behind the scenes
 * Okta can do it either way
 
 `$ npm install @okta/okta-react --save`
 
+## Configuring the Okta SDK
+* [scroll to Configuration heading](https://developer.okta.com/quickstart/#/react/nodejs/express)
+* It will need this for everything
+* This will need to be available for all components
+* It should be in the intitiation of the app
+
+<div id=""></div> Wrap the 
