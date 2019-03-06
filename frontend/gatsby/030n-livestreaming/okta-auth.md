@@ -232,4 +232,33 @@ export default () => (
 * This will need to be available for all components
 * It should be in the intitiation of the app
 
-<div id=""></div> Wrap the 
+## Wrap every component
+`$ touch gatsby-browser.js gatsby-ssr.js`
+
+### What is the difference between gatsby-browser.js and gatsby-ssr.js?
+* The difference is when they are run
+  - gatsby-browser.js runs on the client side
+  - gatsby-ssr.js runs during `$ gatsby build` on the server side
+  - In a majority of cases the code in them will be the same but there are cases when they are not the same and that is why they are separate
+
+## Problem with Gatsby and okta
+* This is Okta code
+
+```
+const config = {
+  issuer: 'https://ironcove-guide.oktapreview.com/oauth2/default',
+  redirect_uri: window.location.origin + '/implicit/callback',
+  client_id: '{clientId}'
+}
+```
+
+* This is a problem for Gatsby because during builds we don't have a window object to reference
+* It it just a way to get the base URL of the app so if there is another way where Gatsby can know what port it is running on
+
+* We will create `gatsby-browser.js`
+* And we'll need `gatsby-ssr.js` because we'll need it true in both places
+* But the code will be identical so
+
+`$ take utils && touch wrap-root-element.js`
+
+
