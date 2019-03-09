@@ -167,7 +167,7 @@ ObjectId.prototype.valueOf = function () {
 
 ```
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');

@@ -10,9 +10,7 @@
 ```
 import React from 'react';
 
-const Signout = () => {
-  return <button>Signout</button>;
-};
+const Signout = () => <button>Signout</button>;
 
 export default Signout;
 ```
@@ -167,7 +165,7 @@ export default withRouter(Signout);
 * Click signout button and watch token is set to an empty string and we are redirected to home page
 
 ## Note
-* You may be getting a `{ JsonWebTokenError: jwt must be provided` error
+* You may be getting a `{ JsonWebTokenError: jwt must be provided }` error
 * We'll address soon
 
 ## Git stuff

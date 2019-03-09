@@ -112,7 +112,9 @@ class Profile extends Component {
 export default Profile;
 ```
 
-## Import both components so we can use them in our routes
+## Add our Routes!
+* Import both components so we can use them in our routes
+
 `index.js`
 
 ```
