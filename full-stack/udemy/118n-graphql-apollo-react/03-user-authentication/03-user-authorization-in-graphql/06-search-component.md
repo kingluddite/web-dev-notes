@@ -4,9 +4,7 @@
 ```
 import React from 'react';
 
-const Search = () => {
-  return <div>Search</div>;
-};
+const Search = () => <div>Search</div>;
 
 export default Search;
 ```
@@ -42,7 +40,7 @@ const Root = ({ refetch }) => (
 * Test and you'll see that the `navbar` is showing and as you click on nav links those pages are highlighted in `navbar`
 * How does is the active link styled with CSS?
 
-`App.css`
+`shared/Navbar.css`
 
 ```
 .active {

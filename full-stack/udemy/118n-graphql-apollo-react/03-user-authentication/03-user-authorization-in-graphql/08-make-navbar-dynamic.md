@@ -237,7 +237,7 @@ ReactDOM.render(
 
 ### Create `shared` folder inside `components` and we'll put 3 files inside it:
 * `Navbar.js`
-* `NavbarUnanuth.js`
+* `NavbarUnauth.js`
 * `NavbarAuth.js`
 
 #### Make it clear which nav we see
