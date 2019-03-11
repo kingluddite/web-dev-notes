@@ -215,7 +215,6 @@ export default () => (
 * Does it send as a post or a get? Or what comes back?
     - Yes it will actually redirect the user's browser to that URL if we are doing the normal OpenID Connect flow
 
-
 #### The Normal OpenID Connect flow using Gatsby
 1. The user will be on Gatsby
 2. Then the user will end up on Okta (the address in the browser will be Okta)
@@ -232,4 +231,231 @@ export default () => (
 * This will need to be available for all components
 * It should be in the intitiation of the app
 
-<div id=""></div> Wrap the 
+## Here is the React Okta documentation
+```
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Security, ImplicitCallback } from '@okta/okta-react';
+import Home from './Home';
+
+const config = {
+  issuer: 'https://dev-414986.oktapreview.com/oauth2/default',
+  redirect_uri: window.location.origin + '/implicit/callback',
+  client_id: '{clientId}'
+}
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Security issuer={config.issuer}
+                  client_id={config.client_id}
+                  redirect_uri={config.redirect_uri}
+        >
+          <Route path='/' exact={true} component={Home}/>
+          <Route path='/implicit/callback' component={ImplicitCallback}/>
+        </Security>
+      </Router>
+    );
+  }
+}
+
+export default App;
+```
+
+## For Gatsby we will use wrapRootElement
+* [link to docs](https://www.gatsbyjs.org/docs/browser-apis/#wrapRootElement)
+* For simplicity we spread the `config` because it needs all 3
+* The implicit callback will be set elsewhere because that will live in the component that uses it not in the route here
+* We use `wrapRootElement` because we are telling Gatsby to put something around the whole site
+  - By default we take the pages and wrap them in a general wrapper div so the `Layout` would get unmounted and remounted on every page
+  - If you didn't want to do that you could use wrapRootElement to put that around everything on the page
+
+`utils/wrap-root-element.js`
+
+```
+import React from 'react'
+
+import { Security, ImplicitCallback } from '@okta/okta-react'
+
+const config = {
+  issuer: 'https://ironcove-guide.oktapreview.com/oauth2/default',
+  // TODO - make this production ready
+  redirect_uri: window.location.origin + '/implicit/callback',
+  client_id: '0oajl9xmnh64GtTIS0h7',
+}
+
+const wrapRootElement = ({ element }) => {
+  ;<Security {...config}>{element}</Security>
+}
+
+export default wrapRootElement
+```
+
+`gatsby-browser.js`
+
+```
+export { default as wrapRootElement } from './src/utils/wrap-root-element.js'
+```
+
+* We can remove the ImplicitCallback as we will use it in `pages/callback.js`
+  - Because the route will be `localhost:8000/callback` to match what we have in Okta
+
+```
+import React from 'react'
+
+import { Security } from '@okta/okta-react'
+
+const config = {
+  issuer: 'https://ironcove-guide.oktapreview.com/oauth2/default',
+  // TODO - make this production ready
+  redirect_uri: window.location.origin + '/implicit/callback',
+  client_id: '0oajl9xmnh64GtTIS0h7',
+}
+
+const wrapRootElement = ({ element }) => {
+  ;<Security {...config}>{element}</Security>
+}
+
+export default wrapRootElement
+```
+
+* The SDK is going to be dealing with all of this so we just need to make sure that the SDK is available at that page
+* It will handle all the verification and eventually redirect back where we started from
+
+## Houston we have a problem
+* The Okta SDK is using React Router and Gatsby using React Router
+* We could install React Router but that would be several steps
+* We can instead fallback and do this manually
+  - Two options using plain JavaScript:
+    1. Install a library that can do JWT validation, this is the format of OpenID tokens (that is what is happening under the hood that the SDK deals with - so the end result of the OpenID Connect flow there is an ID token sent back and that is a JWT and it needs to be verified, et certa..., thankfully the SDK handles this for us)
+    2. The other option (if we stay in front end only - and don't do anything server side) we can use the Okta sign in widget because that will be a small form that gets embedded into the webpage we're making and that will do everything on the page without redirecting, without page reloads and the end result of that in JavaScript the user information is returned back to us and then we can use it
+        * This will work because anything we do with auth in gatsby will be completely limited to client side
+        * We can treat it as a fully client side app in terms of how we build it, we just need to make sure it is properly escaped so that when we do the build it doesn't break for wanted the `window` to be available
+        * This is a good solution because it keeps us out of "router land"
+
+## Roll things back
+* Delete `utils` folder and `wrap-root-element.js`
+* Delete `callback.js`
+* Delete `gatsby-browser.js`
+* Delete `gatsby-ssr.js`
+* Remove the react library `@okta/okta-react`
+
+`package.json`
+
+```
+// MORE CODE
+
+  "dependencies": {
+    "gatsby": "^2.1.19",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+
+// MORE CODE
+```
+
+`$ npm i` to update dependencies
+
+## Back to a clean slate
+* Test to make sure all works
+
+`$ gatsby develop`
+
+## Test in browser
+* Page should be working
+
+## Move onto the sign in widget
+* [link](https://developer.okta.com/quickstart/#/widget/nodejs/express)
+* Put in Okta hosted code
+* Okta has a build step if you want to host it locally
+* But the easy way is to:
+
+1. Paste in the JS and CSS
+2. Put that on the page where you want the log in form to appear
+3. And the JS code initiates it (this is pure frontend JavaScript code which will tell the widget "hey you should appear now", and ask the user to log in, and instead of a redirect it will happen all on the page without a reload and the result of this function is here is the `id` token that corresponds to the user that logs in)
+
+### Review Code
+```
+<script type="text/javascript">
+// we do this sign in
+  var oktaSignIn = new OktaSignIn({
+    baseUrl: "https://dev-414986.oktapreview.com",
+    clientId: "{clientId}",
+    authParams: {
+      issuer: "https://dev-414986.oktapreview.com/oauth2/default",
+      responseType: ['token', 'id_token'],
+      display: 'page'
+    }
+  });
+  // this is the callback - checks for tokens in URL
+  if (oktaSignIn.token.hasTokensInUrl()) {
+    // okta will grab info
+    oktaSignIn.token.parseTokensFromUrl(
+      function success(res) {
+        // The tokens are returned in the order requested by `responseType` above
+        var accessToken = res[0];
+        var idToken = res[1]
+
+        // Say hello to the person who just signed in:
+        console.log('Hello, ' + idToken.claims.email);
+
+        // Save the tokens for later use, e.g. if the page gets refreshed:
+        // sets things so we know someone is logged in
+        oktaSignIn.tokenManager.add('accessToken', accessToken);
+        oktaSignIn.tokenManager.add('idToken', idToken);
+
+        // Remove the tokens from the window location hash
+        window.location.hash='';
+      },
+      function error(err) {
+        // handle errors as needed
+        console.error(err);
+      }
+    );
+  } else {
+    // if they don't have that it will run session
+    oktaSignIn.session.get(function (res) {
+      // Session exists, show logged in state.
+      if (res.status === 'ACTIVE') {
+        // we get user's log in status
+        console.log('Welcome back, ' + res.login);
+        return;
+      }
+      // No session, show the login form
+      // no we show user the log in button
+      oktaSignIn.renderEl(
+        { el: '#okta-login-container' },
+        function success(res) {
+          // Nothing to do in this case, the widget will automatically redirect
+          // the user to Okta for authentication, then back to this page if successful
+        },
+        function error(err) {
+          // handle errors as needed
+          console.error(err);
+        }
+      );
+    });
+  }
+</script>
+```
+
+* We need to execute the above page only on our dashboard page (the page you want to redirect to when the user signs in)
+* First chunk is on callback page (if there are tokens in URL)
+* And the bottom part says: 
+  - if they are logged in welcome back
+  - if they are not logged in, then redirect them out
+* This is the URL for redirect
+* There is a different URL for inline
+
+## Inline sign in widget
+* [link](https://developer.okta.com/code/javascript/okta_sign-in_widget)
+* We don't want to use the CDN because importing 3rd party scripts is not what we want to do
+
+### Install sign in widget
+`$ npm install @okta/okta-signin-widget --save`
+
+ 
+
+
+
