@@ -1,4 +1,7 @@
 # Add authentication to your apps with Okta
+https://www.youtube.com/watch?v=7b1iKuFWVSw&list=PLz8Iz-Fnk_eTpvd49Sa77NiF8Uqq5Iykx&index=9&t=2775s
+
+
 ## Aaron Parecki (Okta developer Advocate)
 Teacher: Aaron Parecki (https://twitter.com/aaronpk)
 
@@ -454,15 +457,14 @@ export default wrapRootElement
 
 ### Install sign in widget
 `$ npm install @okta/okta-signin-widget --save`
-
  
 ## Wrap every component
 `$ touch gatsby-browser.js gatsby-ssr.js`
 
 ### What is the difference between gatsby-browser.js and gatsby-ssr.js?
 * The difference is when they are run
-  - gatsby-browser.js runs on the client side
-  - gatsby-ssr.js runs during `$ gatsby build` on the server side
+  - `gatsby-browser.js` runs on the client side
+  - `gatsby-ssr.js` runs during `$ gatsby build` on the server side
   - In a majority of cases the code in them will be the same but there are cases when they are not the same and that is why they are separate
 
 ## Problem with Gatsby and okta
@@ -478,11 +480,217 @@ const config = {
 
 * This is a problem for Gatsby because during builds we don't have a window object to reference
 * It it just a way to get the base URL of the app so if there is another way where Gatsby can know what port it is running on
-
 * We will create `gatsby-browser.js`
 * And we'll need `gatsby-ssr.js` because we'll need it true in both places
 * But the code will be identical so
 
-`$ take utils && touch wrap-root-element.js`
+### Nope - change of plans
+* Remove the react library `@okta/okta-react` from Okta
 
+`$ npm i` to remove it from node-modules
 
+`layout.js`
+
+```
+import React from 'react'
+import { Link } from 'gatsby'
+// Okta stuff
+import OktaSignIn from '@okta/okta-signin-widget'
+import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css'
+import '@okta/okta-signin-widget/dist/css/okta-theme.css'
+
+const Layout = ({ children }) => (
+
+// MORE CODE
+```
+
+* We need to get `<div id="widget-container"></div>` into the DOM
+
+`gatsby-browser.js`
+
+```
+import React from 'react'
+import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css'
+import '@okta/okta-signin-widget/dist/css/okta-theme.css'
+import OktaSignIn from '@okta/okta-signin-widget'
+
+class AuthWrapper extends React.Component {
+  componentDidMount() {
+    var signIn = new OktaSignIn({
+      baseUrl: 'https://dev-414986.oktapreview.com',
+    })
+    signIn.renderEl(
+      {
+        el: '#okta',
+      },
+      function success(res) {
+        if (res.status === 'SUCCESS') {
+          console.log('Do something with this sessionToken', res.session.token)
+        } else {
+          // The user can be in another authentication state that requires further action.
+          // For more information about these states, see:
+          //   https://github.com/okta/okta-signin-widget#rendereloptions-success-error
+        }
+      }
+    )
+  }
+
+  render() {
+    return <>{this.props.children}</>
+  }
+}
+
+export const wrapRootElement = ({ element }) => (
+  <AuthWrapper>{element}</AuthWrapper>
+)
+
+```
+
+`layout.js`
+
+```
+// MORE CODE
+    <div id="okta" />
+    <main
+      style={{
+        margin: '5rem auto',
+        width: '90%',
+        maxWidth: 600,
+      }}
+    >
+      {children}
+    </main>
+  </>
+)
+
+export default Layout
+```
+
+https://developer.okta.com/blog/2018/06/05/authentication-vanilla-js#install-the-widget-for-secure-authentication
+
+```
+new OktaSignIn({
+  baseUrl: 'https://ironcove-guide.oktapreview.com',
+  clientId: '{clientId}',
+  redirectUri: window.location.origin,
+  authParams: {
+    issuer: 'default',
+    responseType: ['id_token','token']
+  }
+})
+```
+
+* issues with access token
+
+`gatsby-browser.js`
+
+```
+import React from 'react'
+import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css'
+import '@okta/okta-signin-widget/dist/css/okta-theme.css'
+import OktaSignIn from '@okta/okta-signin-widget'
+
+class AuthWrapper extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      user: false,
+    }
+
+    this.handleLogout = this.handleLogout.bind(this)
+  }
+
+  handleLogout = () => {}
+
+  componentDidMount() {
+    var signIn = new OktaSignIn({
+      baseUrl: 'https://dev-414986.oktapreview.com',
+      clientId: '0oajl9xmnh64GtTIS0h7',
+      redirectUri: window.location.origin,
+      authParams: {
+        issuer: 'default',
+        responseType: ['id_token', 'token'],
+      },
+      logo: '//logo.clearbit.com/gatsbyjs.org',
+      features: {
+        registration: true, // Enable self-service registration flow
+        rememberMe: true, // Setting to false will remove the checkbox to save username
+      },
+    })
+
+    const showSignIn = () => {
+      signIn.renderEl(
+        {
+          el: '#okta',
+        },
+        function success(res) {
+          if (res.status === 'SUCCESS') {
+            window.location.reload()
+            // console.log('Do something with this sessionToken', res.session.token)
+            console.log('Do something with this sessionToken', res)
+          } else {
+            // The user can be in another authentication state that requires further action.
+            // For more information about these states, see:
+            //   https://github.com/okta/okta-signin-widget#rendereloptions-success-error
+          }
+        }
+      )
+    }
+
+    signIn.session.get(async res => {
+      if (res.status === 'ACTIVE') {
+        signIn.tokenManager.add('access_token', res[1])
+        console.log(signIn.tokenManager.get('access_token'))
+        // console.log('active')
+        // console.log(res)
+        this.setState({ user: res.login })
+      } else {
+        showSignIn()
+      }
+    })
+
+    this.handleLogout = event => {
+      event.preventDefault()
+      signIn.session.close(err => {
+        if (err) {
+          console.error(err)
+          return
+        }
+
+        showSignIn()
+      })
+    }
+  }
+
+  render() {
+    return (
+      <>
+        {this.state.user ? (
+          <>
+            <p>
+              Logged in as {this.state.user}.{' '}
+              <a href="#logout" onClick={this.handleLogout}>
+                log out
+              </a>
+            </p>
+          </>
+        ) : null}
+        {this.props.children}
+      </>
+    )
+  }
+}
+
+export const wrapRootElement = ({ element }) => (
+  <AuthWrapper>{element}</AuthWrapper>
+)
+```
+
+* make sure to add localhost:8000 as trusted origin and CORS and Redirect
+* directory > self-service registration
+  - Enabled
+  - Show Sign Up link
+  - Custom URL (only will work if you add localhost:8000 as trusted origin)
+* Add API Key
+* Add SPA app and assign it a user that will log into it
