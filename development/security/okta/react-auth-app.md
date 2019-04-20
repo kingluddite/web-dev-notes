@@ -1,4 +1,10 @@
 # React Authentication App with Okta
+I would recommend covering:
+Integration approach and design
+What can be customized on the widget
+Supported code bases (Java, .Net, Gatsby, etc.)
+Customer requirements for Widget integration
+
 https://elasticpath.auth0.com/login
 ## Branding with the Okta Sign in Widget
 * [Okta authentication with vanilla login form and React](https://developer.okta.com/code/react/okta_react/)
