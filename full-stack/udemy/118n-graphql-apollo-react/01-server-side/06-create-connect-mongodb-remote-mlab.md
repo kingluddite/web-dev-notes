@@ -114,8 +114,8 @@ MONGO_URI=mongodb://admin:a12346@ds219672.mlab.com:19672/peh2-they-came-before-m
 `server.js`
 
 ```
-const express = require('express');
 require('dotenv').config({ path: './variables.env'}); // add this
+const express = require('express');
 
 const app = express();
 
@@ -135,9 +135,9 @@ const app = express();
 `server.js`
 
 ```
+require('dotenv').config({ path: './variables.env' });
 const express = require('express');
 const mongoose = require('mongoose'); // add this
-require('dotenv').config({ path: './variables.env' });
 
 const PORT = process.env.PORT || 4444;
 

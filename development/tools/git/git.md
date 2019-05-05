@@ -1,5 +1,13 @@
 # GIT
 
+## Remote branches
+* If you want to pull your remote branch down from github
+
+```
+$ $ git fetch
+$ git checkout <branch>
+```
+
 ## Remove .next from repo
 * I accidentally added .next folder to git and since these are generated files, I want to remove them
 * In the React folder (client) add `.gitignore` and add `.next` as a line inside the file (it should also have `node_modules`)
