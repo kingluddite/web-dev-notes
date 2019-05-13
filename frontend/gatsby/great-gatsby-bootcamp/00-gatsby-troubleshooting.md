@@ -29,3 +29,10 @@ exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
 * Sometimes you are readonly and your changes are not recorded
 * `$ w!` will force a write
 * Example of a problem, i was updating my siteMetadata and didn't see it in the GraphQL Playground and had to write to it with `w!` to make the changes stick
+
+## Node Sass does not yet support your current environment: OS X 64-bit with Unsupported runtime (67)
+For more information on which environments are supported please see:
+https://github.com/sass/node-sass/releases/tag/v4.9.0
+
+* Remove `$ rm -rf node_modules && npm i`
+* Also `$ npm rebuild node-sass`

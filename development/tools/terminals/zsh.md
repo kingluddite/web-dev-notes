@@ -1,5 +1,42 @@
 # The ZSH shell
 
+## Speed up ZSH - It might be your $PATH
+* My terminal was slow and this sped it up
+
+### super slow node npm commands
+* Check if you have a lot of items in your PATH - This a common symptom of that scenario
+* In your terminal, run:
+
+`$ echo "$PATH"`
+
+* If the output has more than 8 or 9 colons in it, or if there are big directories like the root directory / in there, then this very well may be the culprit.
+* As a basis for comparison, my carefully crafted PATH on macOS is:
+
+`/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin`
+
+And if I run `$ which npm`, the output is:
+
+`/usr/local/bin/npm`
+
+* This tells me that my npm is located early in my PATH, which is important for performance, as the PATH gets searched from left to right for the existence of npm within each directory.
+* You can quickly try out my PATH from above without any permanent consequences by simply running:
+
+```
+OLDPATH="$PATH"
+PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+Now try running the commands that were previously fast and slow and see if there is any difference.
+```
+
+If you start seeing "command not found" errors, try incrementally adding things back to your PATH or simply run:
+
+`$ PATH="$OLDPATH"`
+
+* Otherwise, if performance remains the same, then it is probably not your PATH. But if the situation improved, read on to make it permanent.
+
+* Take the `PATH` that works best for you and put it in your shell's startup file. This will typically be located at `~/.bashrc` or `~/.bash_profile`. (I have my dotfiles and have my `zshrc` at `/dotfiles/zshrc`) 
+* Try to find the startup file that already has a `PATH=...` line, comment out the existing line (be sure to add an explanatory comment) and then insert a similar line with the better value
+* I used this solution an it really made my use of `npm` and the terminal faster
+
 ## Antibody
 https://blog.callstack.io/supercharge-your-terminal-with-zsh-8b369d689770
 
