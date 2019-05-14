@@ -134,7 +134,7 @@ package.json
 
 * Or install them with `npm`
 
-`$ npm i -D eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react react-testing-library prettier eslint-plugin-prettier husky pretty-quick`
+`$ npm i -D eslint@5.12.0 eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react react-testing-library prettier eslint-plugin-prettier husky pretty-quick`
 
 ## You can have multiple `.eslintrc` files but they will cascade
 * To start off put `.eslintrc` in the root of your app

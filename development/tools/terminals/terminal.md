@@ -1,4 +1,47 @@
 # Terminal
+## check speed of zsh
+```
+zmodload zsh/zprof # top of your .zshrc file
+# Your .zshrc stuff
+zprof # bottom of .zshrc
+```
+
+
+
+
+Cron job
+```
+If you want to automatically run this script every once in a while, you can use cron jobs. Here are instructions to run the script every other hour. If you want to change how often it runs, I’d read more about cron jobs on the internet.
+
+In terminal, type:
+sudo env EDITOR=nano crontab -e
+
+This will open the crontab file. Add the following to it:
+0 */2 * * * rm -rf /private/var/log/asl/*.asl >/dev/null 2>&1
+
+Save the file by pressing Control + X. Then, press y, and then enter.
+```
+
+
+
+
+# How to run shell script
+https://help.ubuntu.com/community/FilePermissions
+
+```
+Here's a link which explains about Changing file permission (and ownership)
+
+If you want to skip these (for now of course), you can create a directory/folder in your user-home directory and work on your C programmes (or others) there.
+
+You can open the terminal (press Ctrl + Alt + T) and cd to the target directory:
+
+cd /path/to/target
+To give the file "the_file_name" execute permission (if the file-system allows you with the RW rights):
+
+chmod +x the_file_name
+```
+
+
 ## Search with grep but exclude a folder like `node_modules`
 * Here I search for all logs except in the node_modules directory
 
