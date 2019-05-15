@@ -120,11 +120,14 @@ module.exports = {
 ## Open GraphQL Playground
 * Let's examine what we just added with this plugin
 * We have access to 2 things that were not there before (Docs)
-    - file (single file)
-    - allFile (fetching multiple files)
+    - `file` (single file)
+    - `allFile` (fetching multiple files)
 
 ### allFile
 * Let's use all file to explore some of the files in our project
+* Remember all this info we are about to explore did not exist before because we were not sourcing the file system
+
+allFile > edges > file
 * `edges` enables us to perform pagination
     - Inside `edges` we have access to `node`
         + `node` represents and indivual file
@@ -260,48 +263,6 @@ And the output
 2. How do we take their content and convert them into something that is useful for us inside of react components?
 
 * We have a bunch of steps to get our markdown files inside our post
-* We need to transform these markdown files into HTML
-* We'll use `gatsby-transformer-remark` to do this
-  - Very easy to use
-    + zero configuration
-    + set it up and use it - simple
-  - https://www.gatsbyjs.org/packages/gatsby-transformer-remark/
-
-## Install it
-* Shut down server
-* `$  npm i gatsby-transformer-remark`
-
-## What is remark?
-* A standalone javascript library for parsing markdown files
-* And we are using a gatsby plugin that runs that library behind the scenes
-
-### Set up plugin in plugins array
-* Add `gatsby-transformer-remark` to the plugins array
-
-`gatsby-config.js`
-
-```
-// MORE CODE
-
-    'gatsby-transformer-remark',
-    'gatsby-plugin-sass',
-  ],
-}
-```
-
-## Start up dev server once again
-`$ npm run develop`
-
-* After this change we can access frontmatter and html body
-
-## Check things out in Playground
-* Refresh
-* You will see two new items in your Playground Docs
-
-  1. markdownRemark
-  2. allMarkdownRemark
-
-* After re-running server we'll now be able to access our posts via the graphql api 
 
 
 

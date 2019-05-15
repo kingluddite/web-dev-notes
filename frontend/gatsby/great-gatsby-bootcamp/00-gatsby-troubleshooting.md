@@ -1,4 +1,10 @@
 # Troubshooting:
+## Debug Gatsby Build process
+* https://github.com/microsoft/vscode-recipes/tree/master/Gatsby-js
+
+## Debug Gatsby React apps
+https://medium.com/@auchenberg/live-edit-and-debug-your-react-apps-directly-from-vs-code-without-leaving-the-editor-3da489ed905f
+
 * [react-fire-dom is not detected](https://i.imgur.com/n6q5txs.png)
 * https://github.com/gatsbyjs/gatsby/issues/11934
 * replace `react-dom` with `@hot-loader/react-dom` to remove this warning
