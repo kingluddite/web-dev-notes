@@ -6,7 +6,7 @@ src > pages
 
 `index.js`
 
-* Important to name home page `index.js` (similar to index.html for a site homepage)
+* Important to name home page `index.js` (similar to `index.html` for a site homepage)
 
 ```
 import React from 'react'
@@ -23,7 +23,8 @@ const IndexPage = () => {
 export default IndexPage
 ```
 
-* Prefer to separate variable and last line export of that variable (makes it easier to manage my code)
+* Prefer to separate variable and last line export of that variable
+  - This makes it easier to manage my code
 
 `blog.js`
 
@@ -83,7 +84,7 @@ export default AboutPage
 ```
 import React from 'react'
 
-const BlogPage = () => {
+const ContactPage = () => {
   return (
     <div>
       <h1>This is my Blog Page</h1>
@@ -92,6 +93,6 @@ const BlogPage = () => {
   )
 }
 
-export default BlogPage
+export default ContactPage
 ```
 

@@ -37,9 +37,9 @@ export default Layout
 
 * Now your site text will all be red
 
-## Let's add sass
+## Let's add Sass
 * https://www.gatsbyjs.org/plugins/
-* Search for sass
+* Search for Sass
 * https://www.gatsbyjs.org/packages/gatsby-plugin-sass/?=sass
 * Gatsby knows how to deal with CSS files but not sass files so we add the plugin to let it know how to handle sass preprocessor files
 * When adding plugins shut down the server `ctrl` + `c` as it is a good practice and if you don't it can lead to errors
