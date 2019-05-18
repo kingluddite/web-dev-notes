@@ -1,4 +1,4 @@
-# Gatsby Pages
+ # Gatsby Pages
 * Gatsby looks into the src/pages directory to find all static pages your site needs
 * react is already installed as part of a Gatsby project
 
