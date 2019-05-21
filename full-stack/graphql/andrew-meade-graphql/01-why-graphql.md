@@ -81,7 +81,7 @@ We could use this REST API and get back everything (post details, comments and o
     - We have slow and expensive data
     - It we abuse the device the app is going to give a poor user experience, the app will run slow and the user will likely uninstall
     - This is the actual reason  GraphQL was created - facebook had same problem - they had a desktop version of app and mobile version of app and they didn't always need the same data for both - they needed a way for the individual clients to request exactly the data they were going to use
-        + so on comments for mobile we don't want to load them until someone clicks to read the comments
+        + So on comments for mobile we don't want to load them until someone clicks to read the comments
         + With the REST API solution it doesn't matter because the comments have already been loaded
             * It would be nice if we didn't fetch the comments until the user clicked to read the comments
 
