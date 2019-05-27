@@ -77,5 +77,3 @@
 * We will define a single query - we will query for `hello`, nothing else
     - To do this we start by defining the query type
 
-
-stop @ 9:03 
