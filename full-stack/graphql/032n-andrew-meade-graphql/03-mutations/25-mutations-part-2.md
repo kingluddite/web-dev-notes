@@ -532,3 +532,4 @@ createComment(parent, args, ctx, info) {
 * Optimizations
     - Improve arguments
     - Improve the code inside
+    - Setup support for the object spread operator in our code
