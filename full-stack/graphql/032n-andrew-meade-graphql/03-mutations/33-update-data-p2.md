@@ -97,4 +97,112 @@ mutation {
 }
 ```
 
-## Challenge - do same for updating a comment
+## Challenge 2 - do same for updating a comment
+* Goal: Set up a mutation for updating a comment
+
+1. Define **mutation**
+  * Add `id`/`data` for arguments. 
+  * Return the updated `comment`
+
+  ```
+  // MORE CODE
+
+  type Mutation {
+
+    // MORE CODE
+
+    updateComment(id: ID!, data: UpdateCommentInput!): Comment!
+  }
+
+  // MORE CODE
+  ```
+
+  * Setup `data` to support `text`
+
+```
+// MORE CODE
+
+input UpdateCommentInput {
+  text: String
+}
+
+// MORE CODE
+```
+
+2. Create **resolver** method
+  * Verify `comment` exists, else throw error
+  * Update `comment` properties one at a time
+
+`Mutation.js`
+
+```
+// MORE CODE
+
+  updateComment(parent, args, { db }, info) {
+    const { id, data } = args;
+
+    // search for comment
+    const comment = db.comments.find(comment => {
+      return comment.id === id;
+    });
+
+    // if no comment - throw error
+    if (!comment) {
+      throw new Error('Comment not found');
+    }
+
+    // make sure text is a string
+    if (typeof data.text === 'string') {
+      // update text
+      comment.text = data.text;
+    }
+
+    // return required updated comment
+    return comment;
+  },
+
+// MORE CODE
+```
+
+3. Verify your work by updating all properties for a given `comment`
+
+### Test
+* Query comments to locate comment you want to update
+
+```
+query {
+  comments {
+    id
+    author {
+      id
+    }
+    text
+  }
+}
+```
+
+* Write updateComment Mutation and test that you can update comment `text`
+
+```
+mutation {
+  updateComment(id: "102", data: {
+    text: "Really, REALLY better than cats"
+  }) {
+    id
+    text
+  }
+}
+```
+
+* Check comments query and you should see it updated also in that list
+
+## Recap
+* We have created all our Mutations
+  - Update, Create and Delete
+  - We have all our Queries
+  - So we have all our basic CRUD operations
+
+## Next
+* Talk about the third operation in GraphQL `Subscription`
+  - `Subscription` enables us to perform real time communication between the **client** and the **server**
+    + The client can say "Hey, I want to subscribe to all comments" and the server will automatically update them anytime a new comment comes in
