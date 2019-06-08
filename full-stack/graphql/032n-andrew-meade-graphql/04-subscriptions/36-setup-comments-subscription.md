@@ -186,14 +186,58 @@ export { Subscription as default };
 
 1. We verified that the post exists
 2. We return the asyncIterator which allows the subscription to actually happen
-3. No we need to use `pubsub.publish` at the correct moment
+3. Now we need to use `pubsub.publish` at the correct moment
+
+## Important make sure your Subscription is structured properly
+* Make sure it looks like this:
+
+`Subscription.js`
+
+```
+const Subscription = {
+  count: {
+    subscribe(parent, args, { pubsub }, info) {
+      let count = 0;
+
+      setInterval(() => {
+        count++;
+        pubsub.publish('count', {
+          count,
+        });
+      }, 1000);
+
+      return pubsub.asyncIterator('count');
+    },
+  },
+
+  comment: {
+    subscribe(parent, { postId }, { db, pubsub }, info) {
+      // We have 2 jobs
+      // 1. Determin if that post actually exists and it is published
+      const post = db.posts.find(post => {
+        return post.id === postId && post.published;
+      });
+
+      // throw error if no post
+      if (!post) {
+        throw new Error('Post Not Found');
+      }
+
+      // 2. Return an asyncIterator with a valid channel name
+      return pubsub.asyncIterator(`comment ${postId}`); // "comment 44"
+    },
+  },
+};
+
+export { Subscription as default };
+```
 
 ## When do comments get created?
-* In our Mutation.js with `createComment` method
+* In our `Mutation.js` with `createComment` method
 * Since this is the exact place where comments get created so this is the best place to call `pubsub.publish`
 * Since we are calling the `publish` method on the pubsub object we need to destructure it on the `ctx` object argument
 
-### When should we call pubsub.publish
+### When should we call `pubsub.publish()`?
 * We'll call it right after it is added to the comments array
 * Remember to pass the 2 arguments when we call `pubsub.publish`
     - 1. The channel name + the postId (we have access to the postId from the data.post)
@@ -270,6 +314,14 @@ query {
     id
     title
     published
+    author {
+      id
+      name
+    }
+    comments {
+      id
+      text
+    }
   }
 }
 ```
@@ -283,17 +335,63 @@ query {
       {
         "id": "10",
         "title": "soccer",
-        "published": true
+        "published": true,
+        "author": {
+          "id": "1",
+          "name": "Manny"
+        },
+        "comments": [
+          {
+            "id": "103",
+            "text": "Not better than cats"
+          }
+        ]
       },
       {
         "id": "11",
         "title": "basketball",
-        "published": false
+        "published": false,
+        "author": {
+          "id": "1",
+          "name": "Manny"
+        },
+        "comments": [
+          {
+            "id": "104",
+            "text": "Was this about cats?"
+          }
+        ]
       },
       {
         "id": "12",
         "title": "tennis",
-        "published": true
+        "published": true,
+        "author": {
+          "id": "2",
+          "name": "Mo"
+        },
+        "comments": [
+          {
+            "id": "105",
+            "text": "I am not a cat lover"
+          },
+          {
+            "id": "efb5542e-e4e6-4189-a71c-e6a59ffa1704",
+            "text": "two"
+          },
+          {
+            "id": "456b1423-9d05-46af-8efd-8cc58cc09aba",
+            "text": "two"
+          },
+          {
+            "id": "f1651077-af13-4e23-b165-16d24f971f98",
+            "text": "three"
+          },
+          {
+            "id": "69775703-6324-4832-8743-88c50f470a15",
+            "text": "three"
+          }
+        ]
       }
     ]
   }
@@ -301,13 +399,84 @@ query {
 ```
 
 * Look at published and we see we only have 2 published posts
-* That means we can work with postId of 10 or 12
+* That means we can work with postId of `10` or `12`
+* I will use post id `10` and on that I will create a comment
+* I first create my subscription to `createComment`
+
+```
+subscription {
+  comment(postId: "12") {
+    id
+    text
+    author {
+      id
+      name
+    }
+  }
+}
+```
 
 ## Let's use comment subscription we just created in GraphQL Playground
 * We'll repurpose the count subscription as we'll delete that soon
-* We set up comment(postId: "10") and pass in the one argument we know we are required to pass in
+* We set up `comment(postId: "10")` and pass in the one argument we know we are required to pass in
 * We know that comment sends a comment object back so we'll have to provide a selection set determine what we want for each comment
     - We want
         + The comment id
         + The text
         + Information about the author who made the comment (id and name)
+
+## Write the subscription GraphQL Playground
+```
+subscription {
+  comment(postId: "12") {
+    id
+    text
+    author {
+      id
+      name
+    }
+  }
+}
+```
+
+* Execute and you will see it is listening...
+* Now write a comment
+
+```
+mutation {
+  createComment(data: { text: "three", author: "3", post: "10" }) {
+    id
+    text
+    author {
+      id
+      name
+    }
+  }
+}
+```
+
+* Jump back to your `listening` subscription and you will see:
+  - If you see nothing did you connect to the correct channel? (should be post id of 10)
+
+```
+{
+  "data": {
+    "comment": {
+      "id": "440e87a3-5225-4d76-b247-33999e1c8678",
+      "text": "three",
+      "author": {
+        "id": "3",
+        "name": "Jack"
+      }
+    }
+  }
+}
+```
+
+* If you try to add a comment to an unpublished post you will not see anything in subscription
+  - You will get `Post Not Found` error
+* If you add a comment to a post you didn't subscribe to you will see nothing because you added a comment to a post you didn't subscribe to :)
+
+## Next
+* We'll learn about subscribing to comment updates and comments removed
+* Challenge to use your knowledge to create subscriptions

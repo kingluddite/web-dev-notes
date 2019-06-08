@@ -131,13 +131,21 @@ gT - previous tab
 
 :help NERDTreeMappings
 
-t: Open the selected file in a new tab
-i: Open the selected file in a horizontal split window
-s: Open the selected file in a vertical split window
-I: Toggle hidden files
-m: Show the NERD Tree menu
-R: Refresh the tree, useful if files change outside of Vim
-?: Toggle NERD Tree's quick help
+If windows are open you can maximize current and minimize all others with
+```
+(Ctrl-Wo means holding Ctrl press W, and then o)
+```
+
+A better way: `:tab sp` splits current window into new tab
+* to close current window and return to splits `ctrl` + `w` and press `c`
+
+`t:` Open the selected file in a new tab
+`i:` Open the selected file in a horizontal split window
+`s:` Open the selected file in a vertical split window
+`I:` Toggle hidden files
+`m:` Show the NERD Tree menu
+`R:` Refresh the tree, useful if files change outside of Vim
+`?:` Toggle NERD Tree's quick help
 
 ### Directories
 Direct­ories
