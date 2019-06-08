@@ -30,7 +30,7 @@ createUser(user: { name:String, email: String!, age: Int})
     - Then we need to use an generic name that we use for these inputs
     - `CreateUserInput`
         + This is a common naming convention for inputs
-            * action.actual_object_we_are_working_on.input
+            * `action.actual_object_we_are_working_on.input`
             * .input lets us know that we are working on the input type
 
 ```
