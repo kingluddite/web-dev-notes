@@ -142,3 +142,265 @@ query {
 ```
 
 * You will see your newly created user at end of list
+
+## Challenge
+1. Create an input type for `createPost` with the same fields. Use "data" or "post" as arg name
+
+`index.js`
+
+```
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+  createPost(data: CreatePostInput!): Post! 
+  createComment(text: String, author: ID!, post: ID!): Comment!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  age: Int
+}
+```
+
+* **Note**: The argument is always required when the Mutation is executed
+
+2. Update `createPost` resolver to use this new object
+
+```
+// MORE CODE
+
+  Mutation: {
+    createUser(parent, args, ctx, info) {
+      const emailTaken = users.some(user => user.email === args.data.email);
+      // if email exists, throw error back to client
+      if (emailTaken) {
+        throw new Error('Email taken!');
+      }
+
+      // if email is not taken
+      // create new user
+      const user = {
+        id: uuidv4(),
+        // name: args.name,
+        // email: args.email,
+        // age: args.age,
+        ...args.data,
+      };
+
+      // save the user (add to array)
+      users.push(user);
+
+      // return the user
+      // so the client can get values off of user
+      return user;
+    },
+
+    createPost(parent, args, ctx, info) {
+      // make sure author id matches up with one of our users
+
+      const userExists = users.some(user => user.id === args.data.author);
+
+      if (!userExists) {
+        throw new Error('User not found!');
+      }
+
+      const post = {
+        id: uuidv4(),
+        ...args,
+      };
+
+      posts.push(post);
+
+      return post;
+    },
+
+// MORE CODE
+```
+
+* **Note** There is a mistake in the above code and if you try to run it in GraphQL Playground you will get an error `Cannot return null for non-nullable field Post.title.`
+* Analyze the code and see if you can find the mistake
+* Here is the fix
+
+```
+createPost(parent, args, ctx, info) {
+  // make sure author id matches up with one of our users
+
+  const userExists = users.some(user => user.id === args.data.author);
+
+  if (!userExists) {
+    throw new Error('User not found!');
+  }
+
+  const post = {
+    id: uuidv4(),
+    ...args.data,
+  };
+
+  posts.push(post);
+
+  return post;
+},
+```
+
+* We forgot to update `...args` with the new `...args.data`
+
+3. Verify application still works by creating a post and then fetching it
+
+GraphQL Playground
+
+* First run this to get a user id
+```
+mutation {
+  createUser(data: {
+    name: "Mike",
+    email: "mike4@mike.com",
+    age: 22
+  }) {
+    id
+  }
+}
+```
+
+* That will give you output like:
+
+```
+{
+  "data": {
+    "createUser": {
+      "id": "8c514609-84aa-4e98-821f-480b02303b78"
+    }
+  }
+}
+```
+
+* Take that `id` and paste it into your new `createPost`
+
+```
+mutation {
+  createPost(
+    data: {
+      title: "First Post"
+      body: "Great first Post"
+      published: true
+      author: "8c514609-84aa-4e98-821f-480b02303b78"
+    }
+  ) {
+    id
+    title
+    body
+    published
+  }
+}
+```
+
+* And that will give you the following output
+
+```
+{
+  "data": {
+    "createPost": {
+      "id": "8428a7d3-8b91-4215-a255-dd93ed3f9241",
+      "title": "First Post",
+      "body": "Great first Post",
+      "published": true
+    }
+  }
+}
+```
+
+4. Create an input type for `createComment` with the same fields. Use "data" or "comment" as arg name.
+
+```
+// MORE CODE
+
+  type Mutation {
+    createUser(data: CreateUserInput!): User!
+    createPost(data: CreatePostInput!): Post! 
+    createComment(data: CreateCommentInput!): Comment!
+  }
+
+// MORE CODE
+
+  input CreateCommentInput {
+    text: String
+    author: ID!
+    post: ID!
+  }
+
+// MORE CODE
+```
+
+5. Update `createComment` resolver to user this new object
+
+```
+// MORE CODE
+
+    createComment(parent, args, ctx, info) {
+      const userExists = users.some(user => user.id === args.data.author);
+
+      if (!userExists) {
+        throw new Error('User not found');
+      }
+
+      const postExists = posts.some(post => {
+        return post.id === args.data.post && post.published;
+      });
+
+      if (!postExists) {
+        throw new Error('Post not found!');
+      }
+
+      const comment = {
+        id: uuidv4(),
+        ...args.data,
+      };
+
+      comments.push(comment);
+
+      return comment;
+    },
+
+// MORE CODE
+```
+
+6. Verify application still works by creating a comment and then fetching it
+
+* You will need to generate a new user to get the **author** `id`
+* You will also need to generate a new post to get the **post** `id`
+* Paste the author and post id into the createComment to generate a new comment
+* Run the mutation
+
+```
+mutation {
+  createComment(data: {
+    text: "Loved this post!", 
+    author: "e4225b5b-b970-4665-b3e9-8a952a35c9cc", 
+    post: "87b693bd-2bbb-41dc-a8ba-7c4c80b762de"
+  }
+    
+  ) {
+    id
+    text
+  }
+}
+```
+
+* Response
+
+```
+{
+  "data": {
+    "createComment": {
+      "id": "0f0ea13f-95bc-4d62-8440-25e8a20287ee",
+      "text": "Loved this post!"
+    }
+  }
+}
+```
+
+## Next
+* Focus on Mutations that delete data
+  - delete
+    + users
+    + posts
+    + comments
