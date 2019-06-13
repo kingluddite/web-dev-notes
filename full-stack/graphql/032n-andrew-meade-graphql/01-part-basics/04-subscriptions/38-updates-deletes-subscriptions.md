@@ -200,7 +200,7 @@ const deletedPosts = db.posts.splice(postIndex, 1);
 * After
 
 ```
-const [posts] = db.posts.splice(postIndex, 1);
+const [post] = db.posts.splice(postIndex, 1);
 ```
 
 * **note** I can choose any names for the array elements
@@ -247,7 +247,7 @@ deletePost(parent, args, { db, pubsub}, info) {
 
 * Now our above code is much easier to read
 
-## Test deletePost subscription
+## Test `deletePost` subscription
 * In GraphQL Playground start up the `post` subscription so that it is listening
 
 ```
@@ -311,7 +311,7 @@ mutation {
 }
 ```
 
-* Try to delete a post id that doesn't exist (like 11)
+* Try to delete a post `id` that doesn't exist (like 11)
 * You will see that you receive no notification since there was no post to delete
 
 ## updatePost method
