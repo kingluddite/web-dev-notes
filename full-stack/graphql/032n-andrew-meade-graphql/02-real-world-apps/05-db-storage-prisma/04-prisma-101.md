@@ -146,7 +146,6 @@ services:
             connector: postgres
             host: ec2-54-163-230-199.compute-1.amazonaws.com
             database: dai47unkm7qct2
-            schema: public
             user: rygxsxbgcekbam
             password: 26ba370a37d77aa7d9238bdb3f00f3b1b5821ef8a47138f527408d0d28bd3984
             ssl: true
@@ -158,6 +157,7 @@ services:
 * Largest of the 3 files
 * It is the file that will start up the Docker container
 * All of the connection info for our DB is inside this file
+* **VERY IMPORTANT**: I removed `schema: public` from the config file because if you keep it you will not generate the default$default schema
 
 ##### dive into the code
 `version` - think of it for the version of our file (like HTML)

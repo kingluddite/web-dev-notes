@@ -1,4 +1,20 @@
 # MySQL
+## Lots of issues with Mysql 8.0.16
+* Doesn't play nicely with Sequel Pro
+* Installed workbench
+* Forgot password and after installing Workbench could not connect via Workbench or console. I installed MySQL via homebrew
+* Here is the fix ([thanks to this post](https://stackoverflow.com/questions/9695362/macosx-homebrew-mysql-root-password))
+
+```
+None of these worked for me. I think i already had mysql somewhere on my computer so a password was set there or something. After spending hours trying every solution out there this is what worked for me:
+
+$ brew services stop mysql
+$ pkill mysqld
+$ rm -rf /usr/local/var/mysql/ # NOTE: this will delete your existing database!!!
+$ brew postinstall mysql
+$ brew services restart mysql
+$ mysql -uroot
+```
 
 ## Commands
 
