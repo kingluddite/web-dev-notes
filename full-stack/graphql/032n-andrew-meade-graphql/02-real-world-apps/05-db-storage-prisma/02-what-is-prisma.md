@@ -1,5 +1,5 @@
 # What is Prisma?
-* We will use Prisma to connect our backend Node.js to the real DB we will be using
+* We will use Prisma to connect our backend `Node.js` to the real DB we will be using
 * Prisma works with a wide variety of DBs
 
 1. What does Prisma do?
@@ -21,14 +21,14 @@
     - Any client (web, mobile, server)
 * But there is a bit more complexity to what happens on the backend
 * In reality the server is just going to make up our backend programming language (and that can be any language)
-    - Could be Java but our server is written in Node.js
+    - Could be Java but our server is written in `Node.js`
 * As a separate node we have our DB
     - This could be any DB we like
         + MySQL
         + Postgres
         + MongoDB
 
-## How do we connect our backend Node.js with the DB of choice?
+## How do we connect our backend `Node.js` with the DB of choice?
 ![DB diagram](https://i.imgur.com/FYh9GmD.png)
 
 * We need a tool to facilitate that communication
@@ -40,8 +40,8 @@
 
 #### Options
 1. Use a Native driver
-    * All popular DBs like MySQL, MongoDB or Postgres have Native drivers for Node.js
-        - These are essentially npm libraries that make it easy for us to connect our backend in Node.js to those DBs
+    * All popular DBs like MySQL, MongoDB or Postgres have Native drivers for `Node.js`
+        - These are essentially npm libraries that make it easy for us to connect our backend in `Node.js` to those DBs
     * Native drivers are very bare bones implementations, we can perform all the queries necessary to read and write data but we can not get any nice-to-have features
         - Nice-to-have features like:
             + Migrations
@@ -50,7 +50,7 @@
     * If we chose a Native driver we would end up doing way more work than is really necessary
 2. ORM (Object Relational Mapping)
     * Examples (Sequelize or Mongoose)
-        - Sequelize is a great Node.js ORM for connecting Node.js to a SQL database like MySQL or Postgres
+        - Sequelize is a great `Node.js` ORM for connecting `Node.js` to a SQL database like MySQL or Postgres
         - Mongoose is a great Node.js ORM for connecting Node.js to a No SQL database like MongoDB
     * This is the next step up from a Native driver
     * ORMs give us some access to nice-to-have features
@@ -84,25 +84,25 @@
 
 * Prisma sits inbetween our server and our DB
 * Anytime we have communication between different layers, it's GraphQL
-    - If the client wants to communicate with Node.js, -it's GraphQL
-    - If Node.js wants to communicate with the DB, it's GraphQL
-    - So if Node.js wants to read data from the DB it sends off a GraphQL query
-    - If Node.js wants to write data to our DB, it sends off a Mutation
-    - And if Node.js wants to watch the DB for changes, it sets up a subscription
+    - If the client wants to communicate with `Node.js`, -it's GraphQL
+    - If `Node.js` wants to communicate with the DB, it's GraphQL
+    - So if `Node.js` wants to read data from the DB it sends off a GraphQL query
+    - If `Node.js` wants to write data to our DB, it sends off a Mutation
+    - And if `Node.js` wants to watch the DB for changes, it sets up a subscription
     - Because we are using GraphQL between the client and the server and the server and the database the server actually becomes a whole lot less important, there's not a lot to do there (a good thing) this enables us to reduce the amount of code and the complexity of that code
     - The server really just serves as a thin layer between the client and the DB
     - It's almost like the client has direct access to the DB but the server is still important for things like authentication and data authorization
     - We still want to make sure that someone can only read data that they should actually be able to read
     - And someone should only be able to write data they should be able to write after of course that data has been sanitized and validated
-    - So Node.js still servers a valuable purpose (but just less of a purpose)
+    - So `Node.js` still servers a valuable purpose (but just less of a purpose)
 
 ## Real world example
 * I have a client and I want to get all of the posts
 * I generate my operation and I send it off to Node.js
-* What does Node.js?
-    - Node.js does not write another operation to send to the Prisma GraphQL API, it just takes the same one and passes it through
-        + Prisma gets the data and Node.js passes that data back to the client
-        + So Node.js doesn't do a whole lot
+* What does `Node.js`?
+    - `Node.js` does not write another operation to send to the Prisma GraphQL API, it just takes the same one and passes it through
+        + Prisma gets the data and `Node.js` passes that data back to the client
+        + So `Node.js` doesn't do a whole lot
     - But if we were working with a Mutation, we need to first make sure that the user is authenticated and that the data was valid but after I would still pass that operation from the client to Prisma to perform that Mutation and when the data came back I would just sent it back to the client
 
 ## Recap

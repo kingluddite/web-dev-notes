@@ -1,5 +1,8 @@
 # Node.js
 
+## dunder
+* If you see this: `__dirname` (aka dunder dirname)
+
 show/hide hidden files
 
 Terminal is a default Apple application which you will find in the Launchpad. Terminal allows you to make different operations on Mac using special commands. To show hidden files on Mac using command line, follow these 2 steps:
@@ -85,16 +88,10 @@ v7.7.2
 $ npm -v
 4.1.2
 
-
-
-<<<<<<< HEAD
 ## install and update node with brew
 `$ brew install node`
 `$ brew update`
 `$ brew upgrade node`
-=======
-
->>>>>>> cb274c9ca8569ee644cd96a94b03760f02c6ee05
 
 ## PATH issues
 `$ npm bin -g` will tell you the path for npm
