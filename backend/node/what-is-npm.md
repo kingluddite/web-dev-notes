@@ -290,12 +290,19 @@ The `.` just puts the contents of the repo in the folder you created without add
 Look in `node_modules` and you will see a whole lot of packages. This is because it is not only the packages you installed but all of their dependencies as well.
 
 ## Practice
-* Look for package.json projects on Github
+* Look for `package.json` projects on Github
 * Clone them and run `$ npm install`
 * Research why you would need Git
 * Research what `.gitignore` is used for with Git
 * Practice again with Liveblog app
 
+## Npm Vulnerabilities
+![vulnerabilities](https://i.imgur.com/v92XPnt.png)
 
+* In newer version of npm we get all sorts of information
+* We get info about the vulnerabilities of modules we installed
+* You may see moderate and critical vulnerabilities
+* These come from sub-dependencies (so dependcies of our dependencies) and they'll get fixed once those sub-dependencies actually update
+* You don't have to worry about this
 
 
