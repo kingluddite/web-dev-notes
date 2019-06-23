@@ -286,6 +286,10 @@ const prisma = new Prisma({
 }
 ```
 
+* If you want to install them
+
+`$ npm i eslint-config-with-prettier eslint-plugin-prettier eslint -D`
+
 `.graphqlconfig`
 
 ```
