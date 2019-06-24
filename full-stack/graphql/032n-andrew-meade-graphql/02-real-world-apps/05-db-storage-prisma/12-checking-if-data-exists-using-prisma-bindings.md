@@ -221,7 +221,7 @@ const createPostForUser = async (authorId, data) => {
     },
     '{ author {  name email posts { id title published }}}'
   );
-  return post;
+  return post.author;
 };
 
 createPostForUser('cjx00qd8l008a0859zfb31bhw', {
@@ -239,4 +239,146 @@ createPostForUser('cjx00qd8l008a0859zfb31bhw', {
 // MORE CODE
 ```
 
+* The key here is `return post.author;`
+* We can clean up our code and now we have author on post so we use post.author
+* If our code is running and we are using a valid authorId, you create a new user post and see it in the Terminal
+* We have everything about the user and all of his posts
 
+## Challenge
+* Do the same thing we (using `exists` and converting two awaits into one) did for **createPostForUser** for **updatePostForUser**
+* Comment out createPostForUser so it doesn't run during the challenge
+
+### Goal: Improve updatePostForUser
+1. User prisma.exists to verify that the post exists
+  * If there is no post with that `id`, throw an error
+2. Remove the unnecessary user query by updating the selection set for updatePost
+3. Add a catch method call to catch and print error
+4. Test your method is working with an existing post and a non-existing post
+
+#### Challenge Solution
+```
+const updatePostForUser = async (postId, data) => {
+  // First determine if post exists
+  const postExists = await prisma.exists.Post({
+    id: postId,
+  });
+
+  // If post doesn't exist, error and let user know
+  if (!postExists) {
+    throw new Error('Post not found');
+  }
+
+  const post = await prisma.mutation.updatePost(
+    {
+      data,
+      where: {
+        id: postId,
+      },
+    },
+    '{ author { id name email posts { id title body published } } }'
+  );
+  return post.author;
+};
+
+updatePostForUser('ajx0117l300fd0859mgo0ra9o', {
+  title: 'HELLLLLLLO!',
+  body: 'From Prisma!',
+  published: true,
+})
+  .then(user => {
+    console.log(JSON.stringify(user, undefined, 2));
+  })
+  .catch(error => {
+    console.log(error.message);
+  });
+```
+
+* Passing a valid postId show the post with all the fields
+* Passing an invalid postId shows an error message 'Post not found'
+
+### Final code
+```
+import { Prisma } from 'prisma-binding';
+
+// create the connection
+const prisma = new Prisma({
+  typeDefs: 'src/generated/prisma.graphql',
+  endpoint: 'http://localhost:4466',
+});
+
+// notice we are using "async"
+const createPostForUser = async (authorId, data) => {
+  const userExists = await prisma.exists.User({
+    id: authorId,
+  });
+
+  if (!userExists) {
+    throw new Error('User not found');
+  }
+
+  const post = await prisma.mutation.createPost(
+    {
+      data: {
+        ...data,
+        author: {
+          connect: {
+            id: authorId,
+          },
+        },
+      },
+    },
+    '{ author {  name email posts { id title published }}}'
+  );
+  return post.author;
+};
+
+// createPostForUser('cjx00qd8l008a0859zfb31bhw', {
+//   title: 'Jaws 17',
+//   body: 'False Teeth',
+//   published: true,
+// })
+//   .then(user => {
+//     console.log(JSON.stringify(user, undefined, 2));
+//   })
+//   .catch(error => {
+//     console.log(error.message);
+//   });
+
+const updatePostForUser = async (postId, data) => {
+  // First determine if post exists
+  const postExists = await prisma.exists.Post({
+    id: postId,
+  });
+
+  // If post doesn't exist, error and let user know
+  if (!postExists) {
+    throw new Error('Post not found');
+  }
+
+  const post = await prisma.mutation.updatePost(
+    {
+      data,
+      where: {
+        id: postId,
+      },
+    },
+    '{ author { id name email posts { id title body published } } }'
+  );
+  return post.author;
+};
+
+// updatePostForUser('ajx0117l300fd0859mgo0ra9o', {
+//   title: 'HELLLLLLLO!',
+//   body: 'From Prisma!',
+//   published: true,
+// })
+//   .then(user => {
+//     console.log(JSON.stringify(user, undefined, 2));
+//   })
+//   .catch(error => {
+//     console.log(error.message);
+//   });
+```
+
+## Next
+* Focus on customizing our relationships to learn how the relationships between our types function
