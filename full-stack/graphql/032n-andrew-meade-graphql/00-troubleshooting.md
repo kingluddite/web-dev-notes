@@ -1,5 +1,9 @@
 # Troubleshooting Prisma
 
+## Wondering why my datamodel.graphql file is actually generated as: datamodel.prisma?
+* This was a small change that the Prisma team made a few months ago
+* VS Code may have updated their syntax code coloring by now - check for yourself
+
 * **note** Not sure why we do not see `default$default` db in pgAdmin
 
 ![user table in db](https://i.imgur.com/FzBdt8V.png)

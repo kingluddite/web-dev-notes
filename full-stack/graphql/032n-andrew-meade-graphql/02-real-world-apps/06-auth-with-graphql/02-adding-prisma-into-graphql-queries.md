@@ -3,7 +3,7 @@
 
 ## Why do this?
 * We don't want users to be able to directly interact with the GraphQL API because then they could use CRUD on our Database
-    - They could sabatage all our user data if they wanted
+    - They could sabotage all our user data if they wanted
 
 ## Node.js as the middleman
 * We'll place Node.js in the middle (aka as the middleman)
@@ -12,7 +12,8 @@
     - Authentication
 
 ## Can any of our GraphQL API be public?
-* Sure. We will expose the posts so that anyone can access posts even if they are not authenticated
+* Yes
+  - We will expose the `posts` so that anyone can access posts even if they are not authenticated
 
 ## What will we keep private?
 * A user's draft posts should only be accessible by the user who created the draft post - so that user will have to authenticate to access their draft posts
@@ -34,8 +35,8 @@ const Query = {
 // MORE CODE
 ```
 
-* We are using the static db.js to query an array of data
-* We want to use Prisma instead of db.js
+* We are using the static `db.js` to query an array of data
+* We want to use Prisma instead of `db.js`
     * We are going to use `prisma.query.users()` to fetch data from our Database
 
 ## We first need to update `prisma.js`
@@ -150,24 +151,24 @@ const Query = {
 ### Open GraphQL Playground
 * Make sure to browse to `http://localhost:4000`
 * You should see GraphQL Playground is running
-* Run the users query and you will see all the static data from the array in db.js
+* Run the users query and you will see all the static data from the array in `db.js`
 
-## Change that method from db.js to get the data from the prisma Database instead
+## Change that method from `db.js` to get the data from the prisma Database instead
 * `prisma.query.users(OPERATON_ARGUMENT/null, OUR_SELECTION_SET)`
     - Select Set ---> What fields to we want to grab?
 
 ## More about the SELECTION_SET argument
-* There are 3 distinct types of values for SELECTION_SET
+* There are 3 distinct types of values for `SELECTION_SET`
 
 1. nothing
     * I could leave the 2nd argument off entirely
         - `prisma.query.users(null)`
-    * add a falsey value like `null` or `undefined`
+    * Add a falsey value like `null` or `undefined`
         - In this case Prisma will fall back to a default and that default will have all the scaler fields for that type
     * `prisma.query.users(null, null)`
-        - So in this case we are fetching users which returns a user type which means you would get all scaler fields for that user
-            + So see below and you that we would get the `id`, `name`, `email`, `createdAt` and `updatedAt` scaler values
-        - We would not get anything back about the posts or comments (they are not scaler)
+        - So in this case we are fetching users which returns a `user` type which means you would get all scaler fields for that user
+            + See below and you that we would get the `id`, `name`, `email`, `createdAt` and `updatedAt` scaler values
+        - We would not get anything back about the `posts` or `comments` (they are not scaler)
         - But this is not what we want
             + The problem with not providing no second argument is that we can never ask for relational data!
 
@@ -250,7 +251,8 @@ query {
 `src/resolvers/Query.js`
 
 * We pass in `info` as the second argument to `prisma.query.users()`
-* This is something we will do throughout all of our resolvers (regardless of whether they are Queries or Mutations - We want to replay the query provided to Node.js we don't want to explicitly type out something new using a string and we want to get more than just the scaler values that providing nothing would give us)
+* This is something we will do throughout all of our resolvers (regardless of whether they are Queries or Mutations)
+  - We want to replay the query provided to `Node.js` we don't want to explicitly type out something new using a string and we want to get more than just the scaler values that providing nothing would give us
 
 ```
 const Query = {
@@ -260,9 +262,9 @@ const Query = {
 // MORE CODE
 ```
 
-## What do we have so far
+## What do we have so far?
 * We have a Promise and we need to do something with this Promise
-    - Our resolver method like users can actually take a Promise as the return value
+    - Our resolver method `users` can actually take a Promise as the return value
         + It will wait for the Promise to resolve and then it will send that data back which means we can return exactly what we have here
 
 ```
@@ -350,8 +352,128 @@ query {
 ```
 
 * Now we are getting all the data that we saved in our postgres Database
-* So now by putting Node.js right between our public API and Prisma we were able to fetch that data from the Database
+* So now by putting `Node.js` right between our public API and Prisma we were able to fetch that data from the Database
     - Currently there are no restrictions
 
+## Challenge
+* Before we start checklist:
+  - Is Docker running?
+  - Did you compose docker `$ docker-compose up -d` (make sure you are inside the `prisma` folder)
+  - Did you deploy prisma? `$ prisma deploy` (make sure you are inside the prisma folder)
+  - Is GraphQL Playground running and open?
 
- 
+### Now the Challenge
+* Goal: Modify posts query to return posts from the Database
+
+1. Comment out existing code
+2. Use the correct prisma method
+  * Ignore operation arguments for now
+3. Run the posts query on the Node.js GraphQL API to verify that it works
+  * Just ask for scaler fields
+
+#### Challenge Solution
+```
+// MORE CODE
+
+  posts(parent, args, { db, prisma }, info) {
+    return prisma.query.posts(null, info);
+    // if (!args.query) {
+    //   return db.posts;
+    // }
+
+    // return db.posts.filter(post => {
+    //   const isTitleMatch = post.title
+    //     .toLowerCase()
+    //     .includes(args.query.toLowerCase());
+    //   const isBodyMatch = post.body
+    //     .toLowerCase()
+    //     .includes(args.query.toLowerCase());
+    //   const isProfessionalLeagueMatch = post.professionalLeague
+    //     .toLowerCase()
+    //     .includes(args.query.toLowerCase());
+    //   return isTitleMatch || isBodyMatch || isProfessionalLeagueMatch;
+    // });
+  },
+
+// MORE CODE
+```
+
+* And the Node.js GraphQL Playground post query:
+
+```
+query {
+  posts {
+    id
+    title
+    body
+    published
+  }
+}
+```
+
+* Should return all your Database posts
+
+* **note** We are no longer using `db` so you can remove that from the restructured argument
+
+```
+const Query = {
+  users(parent, args, { prisma }, info) {
+    return prisma.query.users(null, info);
+    // if (!args.query) {
+    //   return db.users;
+    // }
+    //
+    // return db.users.filter(user =>
+    //   user.name.toLowerCase().includes(args.query.toLowerCase())
+    // );
+  },
+  posts(parent, args, { prisma }, info) {
+    return prisma.query.posts(null, info);
+    // if (!args.query) {
+    //   return db.posts;
+    // }
+
+    // return db.posts.filter(post => {
+    //   const isTitleMatch = post.title
+    //     .toLowerCase()
+    //     .includes(args.query.toLowerCase());
+    //   const isBodyMatch = post.body
+    //     .toLowerCase()
+    //     .includes(args.query.toLowerCase());
+    //   const isProfessionalLeagueMatch = post.professionalLeague
+    //     .toLowerCase()
+    //     .includes(args.query.toLowerCase());
+    //   return isTitleMatch || isBodyMatch || isProfessionalLeagueMatch;
+    // });
+  },
+  comments(parent, args, { db }, info) {
+    return db.comments;
+  },
+  me() {
+    return {
+      id: '123',
+      name: 'john',
+      email: 'john@john.com',
+    };
+  },
+  post() {
+    return {
+      id: '123',
+      title: 'Great Movies',
+      body: 'Jaws made me afraid of the water',
+      published: '1/1/2019',
+    };
+  },
+};
+
+export { Query as default };
+```
+
+## No authentication as of yet
+
+## Next
+* We will set up all operation arguments
+* For users we'll add support back into query for users and we'll do the same thing for posts
+
+
+
