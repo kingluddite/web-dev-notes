@@ -219,3 +219,268 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDYsImlhdCI6MTU2MTc4ODk2NH0.2JVMqG6
 ```
 
 ## Now let's use this in createUser inside Mutation.js
+
+* We won't return our createUser result, instead we'll store in in a variable and await it
+
+`Mutation.js`
+
+```
+const user = await prisma.mutation.createUser(
+  {
+    data: {
+      ...args.data,
+      password: hashedSaltedPassword,
+    },
+  },
+  info
+);
+```
+
+* Down below is where we'll return our statement
+* We want to return an object that has 2 things on it
+
+1. The user information
+2. And the token (we will create that now)
+
+`Mutation.js`
+
+```
+const Mutation = {
+  async createUser(parent, args, { prisma }, info) {
+    if (args.data.password.length < 8) {
+      throw new Error('Password length must be at least 8 characters');
+    }
+
+    const hashedSaltedPassword = await bcryptjs.hash(args.data.password, 10);
+
+    const user = await prisma.mutation.createUser(
+      {
+        data: {
+          ...args.data,
+          password: hashedSaltedPassword,
+        },
+      },
+      info
+    );
+
+    return {
+      user,
+      token: jwt.sign({ userId: user.id }, 'ihaveasecret'),
+    };
+  },
+```
+
+* Currently createUser returns a type of User but we will change that so that it returns a type that has Token and User on it
+
+`schema.graphql`
+
+```
+type AuthPayload {
+  token: String!
+  user: User!
+}
+```
+
+* Than we update createUser
+
+```
+// MORE CODE
+
+type Mutation {
+  createUser(data: CreateUserInput!): AuthPayload!
+
+  // MORE CODE
+```
+
+* delete this code we used for practice
+
+```
+const token = jwt.sign({ id: 46 }, 'ihaveasecret');
+console.log(`This is the token: ${token}`);
+
+const decodedToken = jwt.decode(token);
+console.log(decodedToken);
+
+const verifiedToken = jwt.verify(token, 'ihaveasecret');
+console.log(verifiedToken);
+```
+
+Graphql Playground
+
+```
+mutation{
+  createUser(
+    data: {
+      name:"mike",
+      email: "mike@mike.com",
+      password: "123Password"
+    }
+  ) {
+    id
+    name
+    email
+  }
+}
+```
+
+* We add the passord field but this will not work and we'll get an error
+* The reason is `createUser` is no longer returning what it was before (User) not it is return `AuthPayload`
+    - What we now have access to is `user` and `token`
+
+## Update Graphql Playground
+```
+mutation{
+  createUser(
+    data: {
+      name:"mike",
+      email: "mike2@mike.com",
+      password: "123Password"
+    }
+  ) {
+    user {
+      id
+      name
+      email
+    }
+    token
+  }
+}
+```
+
+* This will also return an error!
+* The problem is we are taking this selection set:
+
+```
+user {
+      id
+      name
+      email
+    }
+token
+```
+
+* And we are passing it into createUser via the `info` argument
+
+`Mutation.js`
+
+```
+// MORE CODE
+
+const Mutation = {
+  async createUser(parent, args, { prisma }, info) {
+    if (args.data.password.length < 8) {
+      throw new Error('Password length must be at least 8 characters');
+    }
+
+    const hashedSaltedPassword = await bcryptjs.hash(args.data.password, 10);
+
+    const user = await prisma.mutation.createUser(
+      {
+        data: {
+          ...args.data,
+          password: hashedSaltedPassword,
+        },
+      },
+      info
+    );
+
+// MORE CODE
+```
+
+* The problem with this is we can't select a token or a user on "what comes back"
+* We can only select the "fields" from the user
+* In this case when we are returning something custom like this object
+
+```
+return {
+  user,
+  token: jwt.sign({ userId: user.id }, 'ihaveasecret'),
+};
+```
+
+* Using `info` is not what we want
+* We remove it and then we can access all scaler fields
+
+```
+// MORE CODE
+
+    const user = await prisma.mutation.createUser(
+      {
+        data: {
+          ...args.data,
+          password: hashedSaltedPassword,
+        },
+      },// REMOVE info
+    );
+
+// MORE CODE
+```
+
+* Remember - when we leave off the second argument
+    - When we do this it will return all scaler fields
+    - So for the user it will return any of the scaler fields we have listed over in our type definition
+
+`schema.graphql`
+
+```
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  posts: [Post!]!
+  comments: [Comment!]!
+}
+```
+
+* The scaler values are:
+    - id
+    - name
+    - email
+    - password (we will lock this down later!)
+
+## Save and test
+```
+mutation{
+  createUser(
+    data: {
+      name:"mike",
+      email: "mike2@mike.com",
+      password: "123Password"
+    }
+  ) {
+    user {
+      id
+      name
+      email
+    }
+    token
+  }
+}
+```
+
+* Will finally work and output something like:
+
+```
+{
+  "data": {
+    "createUser": {
+      "user": {
+        "id": "cjxi895g200070701btxjz0gs",
+        "name": "mike",
+        "email": "mike2@mike.com"
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjanhpODk1ZzIwMDA3MDcwMWJ0eGp6MGdzIiwiaWF0IjoxNTYxODU1MTkzfQ.lTcTZFc6TdnmLxIyp-1ZL-J_1Nk1Cz5ykiZXCnlBq7E"
+    }
+  }
+}
+```
+
+* We have our user
+* And we have our authentication token that the user can store and use later to perform "privileged operations" like creating a post or updating a comment
+* We've moved all of those user fields onto a user property and we added the addition of a token
+* View it in the DB
+
+## Next
+* We know how to generate a token
+* Next we'll verify a token and use it to determine whether or not someone can do something
