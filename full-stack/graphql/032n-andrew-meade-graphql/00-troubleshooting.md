@@ -1,5 +1,12 @@
 # Troubleshooting Prisma
 
+## DateTime error
+"You are creating a required field but there are already nodes present that would violate that constraint.The fields will be pre-filled with the value `1970-01-01T00:00:00.000Z`."
+
+* Fix wipe Database (if you are just testing)
+
+`$ prisma reset && prisma deploy`
+
 ## Wondering why my datamodel.graphql file is actually generated as: datamodel.prisma?
 * This was a small change that the Prisma team made a few months ago
 * VS Code may have updated their syntax code coloring by now - check for yourself
