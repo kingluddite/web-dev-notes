@@ -10,6 +10,13 @@
 
 ### after and before methods
 * afterAll(fn, timeout)
+    - Will run a single time after all tests are done
 * afterEach(fn, timeout)
+    - Will run after each test case
 * beforeAll(fn, timeout)
+    - Will run before all tests are run
 * beforeEach(fn, timeout)
+    - Will run before each test case
+
+#### beforeEach()
+* We will use this to run before to clear all records so all tests start with the same test Database
