@@ -20,3 +20,19 @@
 
 #### beforeEach()
 * We will use this to run before to clear all records so all tests start with the same test Database
+* We call `beforeEach()` just like we would call test()
+    - Just takes a single argument
+        + Which is the function to run before each test case
+
+##### function signature
+* Will be the same for all 4 functions
+
+```
+beforeEach(async () => {
+
+});
+
+test('Should create a new user', async () => {
+```
+
+* We want to wipe the database inside beforeEach() so all tests will start with a clean database

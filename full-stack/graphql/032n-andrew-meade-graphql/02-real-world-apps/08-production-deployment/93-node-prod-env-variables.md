@@ -246,9 +246,10 @@ JWT_SECRET=pj5uEjRvxrV62oQHxN0jPb23PpL1wjUU
 
 `$ heroku config:set JWT_SECRET=pj5uEjRvxrV62oQHxN0jPb23PpL1wjUU`
 
+PRISMA_ENDPOINT=
 * Verify that you added your environment variable with:
 
-`$ heroku config`
+`$ heroku config:set https://kingluddite-blog-3736e1f779.herokuapp.com/kingluddite-blogging-app/prod --app prisma-dev-three-0619`
 
 * You should see all 3:
 

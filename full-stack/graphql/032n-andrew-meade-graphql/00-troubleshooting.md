@@ -1,4 +1,76 @@
 # Troubleshooting Prisma
+## A valid SECRET can't be found
+* [Here is the solution](https://www.prisma.io/forum/t/a-valid-environment-to-satisfy-prisma-secret-could-not-be-found/6976)
+
+## error "a-valid-environment-to-satisfy-prisma-secret-could-not-be-found"
+When I try to generate Prisma token, it keeps giving me the following error, even though I have the PRISMA_SECRET configured in dev.env.:
+
+```
+A valid environment variable to satisfy the declaration    
+'env:PRISMA_SECRET' could not be found.
+```
+
+### Solution:
+* You will need to run prisma token -e dev.env so that Prisma CLI can read your env file and generate the correct token.
+* Right now CLI is not reading that file as you are not referencing it. We auto reference file named .env but for any other filename you will need to pass the -e flag manually.
+
+```
+heroku config --app prisma-dev-three-0619
+```
+
+```
+heroku config:set PRISMA_ENDPOINT=https://kingluddite-blog-3736e1f779.herokuapp.com/kingluddite-blogging-app/prod --app prisma-dev-three-0619
+```
+
+```
+heroku config:set JWT_SECRET=pj5uEjRvxrV62oQHxN0jPb23PpL1wjUU --app prisma-dev-three-0619
+```
+
+```
+heroku config:set PRISMA_SECRET=z9tD9OI9G6eaI0fNriqLtXO1rKuat2zC --app prisma-dev-three-0619
+```
+
+* Make sure you login to Heroku and Prisma
+
+## I don't see docs/schema tabs :4466 
+* Create auth token
+
+`$ cd prisma && prisma token`
+
+## Can't connect to prisma docs
+```
+ ▸    [WARNING] in /Users/philiphowley/Documents/dev/graphql-stuff/032e-graphql-prisma/prisma/prisma.yml: A
+ ▸    valid environment variable to satisfy the declaration 'env:PRISMA_ENDPOINT' could not be found.
+
+ ▸    [WARNING] in /Users/philiphowley/Documents/dev/graphql-stuff/032e-graphql-prisma/prisma/prisma.yml: A
+ ▸    valid environment variable to satisfy the declaration 'env:PRISMA_SECRET' could not be found.
+
+There is no secret set in the prisma.yml
+```
+
+### Solution
+* You need to add your config folder with files with connection info
+
+## list heroku apps
+
+lists heroku apps `$ heroku apps`
+
+```
+$ heroku pg:killall --app prisma-dev-three-0619
+```
+
+To many connections
+
+## May need to recreate another server connection
+* If switching computers
+
+## Tests don't show up
+* Type `a` to run all tests
+
+## Error 
+* `GraphQL error: request to http://localhost:4466/default/test failed, reason: connect ECONNREFUSED 127.0.0.1:4466`
+
+* Make sure you are running your app in docker
 
 ## If you can't access prod Prisma GraphQL Playground
 * Make sure you set your secret as the environment variable on Heroku

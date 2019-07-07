@@ -35,7 +35,7 @@
                     * is exact same as `http://localhost:4466`
 
 ## Our new config values
-`dev.env`
+`config/dev.env`
 
 ```
 PRISMA_ENDPOINT=http://localhost:4466/default/default
@@ -43,7 +43,7 @@ PRISMA_SECRET=FBx6inXejHiMX7W6KLvXQwxWqP7cYiQH
 JWT_SECRET=sb79UOmzQc9ajhX7pR9S4l5jnBnX2Wz8
 ```
 
-`test.env`
+`config/test.env`
 
 ```
 PRISMA_ENDPOINT=http://localhost:4466/default/test
