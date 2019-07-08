@@ -1,5 +1,19 @@
 # Troubleshooting Prisma
+## Checklist
+* Make sure to start your Docker container (use alfred app)
+* Is your localhost:4000 GraphQL Playground running? `$ npm run dev`
+* Is your pgAdmin open? (use alfred app)
+* Do you need to see your Test Production docs? localhost:4466
+  - Did you generate a token?
+  `$ cd prisma && prisma token -e ../config/test.env` 
+* Are you running jest? `$ npm run test`
+
+
 ## A valid SECRET can't be found
+* Still having issues with this - had to hard code values in prisma.yml to get it to work in environments (TODO)
+  - I than ran `$ prisma token` (in prisma folder)
+  - Grabbed the token and used it in HTTP HEADERS as authorization token
+    + I was then able to see the docs tab
 * [Here is the solution](https://www.prisma.io/forum/t/a-valid-environment-to-satisfy-prisma-secret-could-not-be-found/6976)
 
 ## error "a-valid-environment-to-satisfy-prisma-secret-could-not-be-found"
@@ -11,7 +25,7 @@ A valid environment variable to satisfy the declaration
 ```
 
 ### Solution:
-* You will need to run prisma token -e dev.env so that Prisma CLI can read your env file and generate the correct token.
+* You will need to run `$ prisma token -e dev.env` so that Prisma CLI can read your env file and generate the correct token.
 * Right now CLI is not reading that file as you are not referencing it. We auto reference file named .env but for any other filename you will need to pass the -e flag manually.
 
 ```
