@@ -8,6 +8,13 @@
   `$ cd prisma && prisma token -e ../config/test.env` 
 * Are you running jest? `$ npm run test`
 
+## Error - ECONNREFUSED
+```
+This graphql-yoga server is running
+[Network error]: FetchError: request to http://localhost:4466/default/default failed, reason: connect ECONNREFUSED 127.0.0.1:4466
+```
+
+* Did you start your docker container?
 
 ## A valid SECRET can't be found
 * Still having issues with this - had to hard code values in prisma.yml to get it to work in environments (TODO)
