@@ -1,11 +1,15 @@
 # Troubleshooting Prisma
+## If you get a strange error after installing new modules
+* Make sure to stop the server and restart it so that it is using the latest modules installed
+
 ## Checklist
 * Make sure to start your Docker container (use alfred app)
-* Is your localhost:4000 GraphQL Playground running? `$ npm run dev`
+* Is your `localhost:4000` GraphQL Playground running? `$ npm run dev`
 * Is your pgAdmin open? (use alfred app)
-* Do you need to see your Test Production docs? localhost:4466
+* Do you need to see your Test Production docs? `localhost:4466`
   - Did you generate a token?
-  `$ cd prisma && prisma token -e ../config/test.env` 
+  `$ cd prisma && prisma token -e ../config/test.env`
+    + Use if you get this error message "Your token is invalid. It might have expired or you might be using a token from a different project." 
 * Are you running jest? `$ npm run test`
 
 ## Error - ECONNREFUSED

@@ -18,3 +18,8 @@
 * Word Count
     - Just counts words in a markdown file
 
+## Electron desktop app for GraphQL Playground
+* https://electronjs.org/apps/graphql-playground
+* Change config to localhost:4000
+* You will see just the Schema tab
+* This is better than the web app of GraphQL Playground

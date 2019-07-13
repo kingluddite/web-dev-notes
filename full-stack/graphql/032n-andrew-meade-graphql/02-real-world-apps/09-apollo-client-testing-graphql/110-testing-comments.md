@@ -166,6 +166,137 @@ test('Should expose public author profiles', async () => {
 // MORE CODE
 ```
 
-## Challenge
-* 9:00 start 
+### REMINDER
+* Is Docker running?
+* Is pgAdmin running?
+* Is your test suite running?
+
+## Challenge: Goal: Write a couple of test cases for comments
+1. `"Should delete own comment"`
+  * We are going to authenticate as one of our own `users` and delete their comment
+  * Then we will assert that it was indeed removed
+2. `"Should not delete other users comment"`
+  * We are going to authenticate as one of the users and try to delete the other user's comment
+  * Then I would expect it to throw an error, so I would use the `toThrow` functionality to make sure that the request fails
+  * **tips** Remember to get the necessary imports that this file requires
+    - And when you define your operations for deleting a comment make sure to add that in the `operations.js` file (or in the `comment-operations.js` file you can create to match the others (`user-operations.js` and `post-operations.js`))
+3. Test Your work
+
+* Now use the comments created in last Challenge to write a couple of test cases
+  - This will happen in a new test suite
+  - `$ mkdir tests/comment.test.js`
+  - * **note** As soon as you create this file (if you have the tests running) You will see one failed test (empty test files are a failing test)
+
+### Solution: All in one file
+`comment.test.js`
+
+```
+import 'cross-fetch/polyfill';
+import { gql } from 'apollo-boost';
+import getClient from './utils/getClient';
+import prisma from '../src/prisma';
+import seedDatabase, {
+  userOne,
+  postOne,
+  postTwo,
+  commentOne,
+  commentTwo,
+} from './utils/seedDatabase';
+
+let client = getClient();
+
+beforeEach(seedDatabase);
+
+test('Should delete own comment', async () => {
+  client = getClient(userOne.jwt);
+
+  const variables = {
+    id: commentTwo.comment.id,
+  };
+
+  const deleteComment = gql`
+    mutation($id: ID!) {
+      deleteComment(id: $id) {
+        id
+      }
+    }
+  `;
+
+  const { id } = await client.mutate({
+    mutation: deleteComment,
+    variables,
+  });
+});
+
+test("Should not delete other user's comment", async () => {
+  client = getClient(userOne.jwt);
+
+  const variables = {
+    id: commentOne.comment.id,
+  };
+
+  const deleteComment = gql`
+    mutation($id: ID!) {
+      deleteComment(id: $id) {
+id
+      }
+    }
+  `;
+
+  await expect(
+    client.mutate({
+      mutation: deleteComment,
+      variables,
+    })
+  ).rejects.toThrow();
+});
+
+```
+
+* Now extract all the comment operations into a new file `tests/utils/comment-operations.js`
+
+* I had to rename function to avoid collision
+
+`comment-operations.js`
+
+```
+import { gql } from 'apollo-boost';
+
+const canDeleteOwnComment = gql`
+  mutation($id: ID!) {
+    deleteComment(id: $id) {
+      id
+    }
+  }
+`;
+
+const canNotDeleteOtherUserComment = gql`
+  mutation($id: ID!) {
+    deleteComment(id: $id) {
+      id
+    }
+  }
+`;
+export { canDeleteOwnComment, canNotDeleteOtherUserComment };
+```
+
+* Import new operations into `comment.test.js`
+
+`comment.test.js`
+
+```
+// MORE CODE
+
+import {
+  canDeleteOwnComment,
+  canNotDeleteOtherUserComment,
+} from './utils/comment-operations';
+
+let client = getClient();
+
+// MORE CODE
+```
+
+## Next - Test Subscriptions
+
 
