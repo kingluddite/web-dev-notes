@@ -1,4 +1,19 @@
 # VS Code
+## lose font icons inside vs code:
+* If you are using zsh theme and lost your font icons
+* https://github.com/microsoft/vscode/issues/15119
+* Add this to settings.json
+
+```
+// MORE CODE
+
+{
+"terminal.integrated.fontFamily": "'inconsolata for powerline'",
+"terminal.integrated.fontSize": 16
+}
+// MORE CODE
+```
+
 ## plugins
 * .gitignore Generator
     - Will generate new or update existing gitignore

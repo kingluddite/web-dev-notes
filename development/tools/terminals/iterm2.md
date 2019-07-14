@@ -1,4 +1,9 @@
 # iTerm2
+## Did you lose your font icons?
+* Profile change font and size (use my dotfiles)
+
+![use dotfiles](https://i.imgur.com/6iwamYK.png)
+
 * to speed up GENERAL uncheck GPU rendering and it will speed up iTerm a ton
 
 `cmd` + `d` - split window
