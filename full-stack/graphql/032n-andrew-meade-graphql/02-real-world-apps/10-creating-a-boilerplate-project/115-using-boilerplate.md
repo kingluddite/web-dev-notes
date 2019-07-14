@@ -23,4 +23,6 @@ PRISMA_SECRET=9onYgi2qGslmPymd9myB0aaaH9EarBXW
 JWT_SECRET=sb79UOmzQc9ajhX7pR9S4l5jnBnX2Wz8
 ```
 
-
+## Deploy both of those to test and dev environments
+### dev
+`$ cd prisma && prisma deploy -e ../config/dev.env`
