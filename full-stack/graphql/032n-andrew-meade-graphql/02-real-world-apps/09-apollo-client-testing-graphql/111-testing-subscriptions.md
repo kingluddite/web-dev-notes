@@ -216,7 +216,7 @@ test('Should subscribe to comments for a post', async () => {
             * We'll start with this comment
         + post()
         + myPost()
-* View docs localhost:4466
+* View docs `localhost:4466`
     - https://kingluddite-blog-3736e1f779.herokuapp.com/kingluddite-blogging-app/prod
     - Look at `comment` subscription Schema and you'll see it requires a `postId: ID!`  argument
         + We will monitor our first test post (which is published)
@@ -307,7 +307,6 @@ import {
     - query - where we list out the subscription we want to use (and we just imported that)
     - variables we want to use
 
-##
 `comment.test.js`
 
 ```
@@ -655,8 +654,6 @@ export {
 ```
 
 2. Setup the subscription using the new operation
-
-
 3. Fire off a prisma mutation that would trigger the subscription such as deleting a published post
 4. Assert the mutation is correct
 5. Test your work

@@ -7,7 +7,8 @@ zprof # bottom of .zshrc
 ```
 
 
-
+## exclude folders for grep search
+`$ grep -R --exclude-dir=node_modules -i "getUsers" .`
 
 Cron job
 ```

@@ -518,7 +518,7 @@ test('Should fetch user profile', async () => {
 * We could also add some assertions to this test case actually looking at the profile object that came back
 
 ## Testing other operations
-* Make sure the id equals userOne.id
+* Make sure the `id` equals `userOne.id`
 * Check the name matches and email
 
 `user.test.js`

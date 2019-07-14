@@ -203,7 +203,6 @@ export { getClient as default };
 `user.test.js`
 
 ```
-// MORE CODE
 import 'cross-fetch/polyfill';
 import { gql } from 'apollo-boost';
 import prisma from '../src/prisma';

@@ -84,7 +84,7 @@ const postTwo = {
 // MORE CODE
 ```
 
-* Create two comments on postOne
+* Create two comments on `postOne`
 
 ```
 // MORE CODE
