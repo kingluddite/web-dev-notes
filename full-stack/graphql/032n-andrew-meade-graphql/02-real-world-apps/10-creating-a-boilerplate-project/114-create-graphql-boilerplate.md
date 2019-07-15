@@ -5,21 +5,21 @@
 * This project will be our starting point for all future Graphql projects
 
 ### Review folders
-#### config
+#### `config/`
 * We keep `config` folder (as it has nothing specific to the blogging app)
 
-#### dist and node_modules
+#### Delete `dist/` and `node_modules/`
 * `dist` and `node_modules` both generated directories and no need to have them in our boilerplate
     - We generate them by running our npm scripts
 
 #### prisma
 * `docker-compose.yml` - can keep it exactly the same
 * `prisma.yml` - can keep it exactly the same
-* `graphql.prisma` - We will change this
+* `datamodel.prisma` - We will change this
     - It currently contains stuff specific to our blogging app (Post and Comment - so delete them both)
     - Inside User we will remove `posts` and `comments` can be removed 
 
-`graphql.prisma`
+`datamodel.prisma`
 
 ```
 type User {
@@ -262,8 +262,8 @@ export { prisma as default };
 
 `schema.graphql`
 
-* Remove PostOrderByInput and CommentOrderByInput
-* Remove all post and comment stuff
+* Remove `PostOrderByInput` and `CommentOrderByInput`
+* Remove all `post` and `comment` stuff
 
 ```
 # import UserOrderByInput from './generated/prisma.graphql'
@@ -321,22 +321,17 @@ enum MutationType {
   UPDATED
   DELETED
 }
-
-type PostSubscriptionPayload {
-  mutation: MutationType!
-  node: Post
-}
-
-type CommentSubscriptionPayload {
-  mutation: MutationType!
-  node: Comment
-}
 ```
 
-* We comment Subscription type out because it is empty and invalid but we keep it in case we need to use it
-* We also need to comment out the Subscription inside our resolvers inside `index.js`
+* We comment `Subscription` type out because it is empty and invalid but we keep it in case we need to use it
+* We also need to comment out the `Subscription` inside our resolvers inside `index.js`
 
 ```
+import { extractFragmentReplacements } from 'prisma-binding';
+import Query from './Query';
+import Mutation from './Mutation';
+// import Subscription from './Subscription'; // comment this out
+
 // MORE CODE
 
 const resolvers = {
@@ -377,13 +372,199 @@ export { server as default };
 ```
 
 ### jest
-* Delete comment and post stuff for operations
+* Delete `comment` and `post` stuff for operations
+
+`tests/utils/user-operations.js`
+
+```
+import { gql } from 'apollo-boost';
+
+const createUser = gql`
+  mutation($data: CreateUserInput!) {
+    createUser(data: $data) {
+      token
+      user {
+        id
+        name
+        email
+      }
+    }
+  }
+`;
+
+const getUsers = gql`
+  query {
+    users {
+      id
+      name
+      email
+    }
+  }
+`;
+
+const login = gql`
+  mutation($data: LoginUserInput!) {
+    login(data: $data) {
+      token
+    }
+  }
+`;
+
+const getProfile = gql`
+  query {
+    me {
+      id
+      name
+      email
+    }
+  }
+`;
+
+export { createUser, getUsers, login, getProfile };
+```
+
+`tests/utils/seedDatabase.js`
+
+```
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import prisma from '../../src/prisma';
+
+const userOne = {
+  input: {
+    name: 'John',
+    email: 'john@acme.com',
+    password: bcryptjs.hashSync('123Password!'),
+  },
+  user: undefined,
+  jwt: undefined,
+};
+
+const userTwo = {
+  input: {
+    name: 'Jane',
+    email: 'jane@acme.com',
+    password: bcryptjs.hashSync('PassForJane'),
+  },
+  user: undefined,
+  jwt: undefined,
+};
+
+const seedDatabase = async () => {
+  jest.setTimeout(10000);
+  // Delete test data
+  await prisma.mutation.deleteManyUsers();
+
+  // Create user one
+  userOne.user = await prisma.mutation.createUser({
+    data: userOne.input,
+  });
+  userOne.jwt = jwt.sign({ userId: userOne.user.id }, process.env.JWT_SECRET);
+
+  // Create user two
+  userTwo.user = await prisma.mutation.createUser({
+    data: userTwo.input,
+  });
+  userTwo.jwt = jwt.sign({ userId: userTwo.user.id }, process.env.JWT_SECRET);
+};
+
+export { seedDatabase as default, userOne, userTwo };
+
+```
+
+`tests/user.test.js`
+
+```
+import 'cross-fetch/polyfill';
+import prisma from '../src/prisma';
+import seedDatabase, { userOne } from './utils/seedDatabase';
+import getClient from './utils/getClient';
+import {
+  createUser,
+  getUsers,
+  login,
+  getProfile,
+} from './utils/user-operations';
+
+let client = getClient();
+
+beforeEach(seedDatabase);
+
+test('Should create a new user', async () => {
+  const variables = {
+    data: {
+      name: 'Earth',
+      email: 'earth@quake.com',
+      password: '123password',
+    },
+  };
+
+  const response = await client.mutate({
+    mutation: createUser,
+    variables,
+  });
+
+  const isUser = await prisma.exists.User({
+    id: response.data.createUser.user.id,
+  });
+
+  expect(isUser).toBe(true);
+});
+
+test('Should expose public author profiles', async () => {
+  const response = await client.query({
+    query: getUsers,
+  });
+
+  expect(response.data.users).toHaveLength(2);
+  expect(response.data.users[0].email).toBeNull();
+  expect(response.data.users[0].name).toBe('John');
+});
+
+test('Should not login with bad credentials', async () => {
+  const variables = {
+    data: { email: 'bad@bad.com', password: 'badpassword' },
+  };
+  await expect(client.mutate({ mutation: login, variables })).rejects.toThrow();
+});
+
+test('Should not sign up with short password', async () => {
+  const variables = {
+    data: {
+      name: 'John',
+      email: 'john@acme.com',
+      password: '123',
+    },
+  };
+
+  await expect(
+    client.mutate({ mutation: createUser, variables })
+  ).rejects.toThrow();
+});
+
+test('Should fetch user profile', async () => {
+  client = getClient(userOne.jwt);
+
+  // fire off an operation - me Query (requires authentication)
+  const { data } = await client.query({ query: getProfile });
+
+  expect(data.me.id).toBe(userOne.user.id);
+  expect(data.me.name).toBe(userOne.user.name);
+  expect(data.me.email).toBe(userOne.user.email);
+});
+```
 
 ## blow up git
-* In root directory of graphql-boilerplate
+* In root directory of `graphql-boilerplate`
 
 `$ rm -rf .git`
 
+`$ git init`
+
 `$ git add .`
 
+`$ git commit -m 'Init commit`
+
 * Check to make sure all is as you expect
+
+## Next - use the boilerplate

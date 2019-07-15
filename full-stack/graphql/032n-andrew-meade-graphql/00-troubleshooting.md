@@ -310,3 +310,36 @@ I ran `$ npm run test`
 ```
 
 `$ npm install --save-dev @babel/plugin-transform-runtime`
+
+## npm run get-schema error
+```
+⚠Cannot use GraphQLSchema "[object Object]" from another module or realm.
+
+
+
+Ensure that there is only one instance of "graphql" in the node_modules
+
+directory. If different versions of "graphql" are the dependencies of other
+
+
+
+relied on modules, use "resolutions" to ensure only one version is installed.
+
+
+
+https://yarnpkg.com/en/docs/selective-version-resolutions
+
+
+
+Duplicate "graphql" modules cannot be used at the same time since different
+
+versions may have different capabilities and behavior. The data from one
+
+version used in the function from another could produce confusing and
+
+spurious results.
+```
+
+## Solution: Seems to be a version conflict with graphql-cli. Can you run npm install graphql-cli@2? That should fix this!
+* How do you find out which libraries are in conflict with each other?
+  -  Start with the `package-lock.json` file. In there, you can search for something like "graphql" to find all the different places it's used as a dependency. Then I was able to figure out where the conflict was based on those versions
