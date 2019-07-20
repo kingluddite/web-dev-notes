@@ -1,4 +1,10 @@
 # Troubleshooting
+* many times developers forget to shut down mongod properly with contrl + c and sometimes when you try to use mongo again it won't let you because it is already running on the same port - here is how you shut it down
+
+## kill terminal 
+`$ sudo lsof -i :<port number>`
+
+`$ kill -9 <pid>`
 
 ## Eslint missing module
 * This will happen from time to time
