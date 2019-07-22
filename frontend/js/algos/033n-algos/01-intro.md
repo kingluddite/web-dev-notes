@@ -14,4 +14,3 @@
 ## All solved problems
 * [solved problems](https://github.com/StephenGrider/algocasts)
 
-
