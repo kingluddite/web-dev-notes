@@ -1,8 +1,7 @@
-# Install
+# Stuff to Install
 ## Node.js
 
-## VSC
-### plugins
+## VSC plugins - Add these
 * Beautify
 * Babel ES6/ES6
 * Docker
@@ -23,3 +22,4 @@
 * Change config to localhost:4000
 * You will see just the Schema tab
 * This is better than the web app of GraphQL Playground
+    - **note** But I've had performance issues with this app and unsinstalled it because of it was slowing down my computer
