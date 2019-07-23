@@ -7,7 +7,7 @@
 ## The next is VS Code specific
 * Ignore if this is not your text editor
 
-## frontend and backend
+## `frontend` and `backend`
 * We created a folder for each
 * Now we need a way to visually know whether we are in the client or server folder
 
