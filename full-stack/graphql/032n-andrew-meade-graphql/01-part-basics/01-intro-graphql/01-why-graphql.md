@@ -8,8 +8,8 @@
     - A mobile app
         + One for Android and iOS that they can take with them on the go
 * We also have a server and a DB
-    - maybe we're using NodeJS with the MongoDB db
-    - maybe we're using Python with the Postgres db
+    - Maybe we're using NodeJS with the MongoDB db
+    - Maybe we're using Python with the Postgres db
     - Or maybe we're using Java with MySQL
     - (whatever we're using, it doesn't matter because the "glue" between the client and the server has always been the standard HTTP requests)
         + Typically represented as some sort of REST API (this is a typical setup)
@@ -46,18 +46,20 @@ Graph Query Langauge
 
 ![GraphQL API](https://i.imgur.com/zdsMDoD.png)
 
-* Now we are using GraphQL as the "glue" between the 2
+* Now we are using GraphQL as the "glue" between the two 
 * Remember that GraphQL can operate over HTTP - so at the end of the day we are still just making HTTP requests
 * Now we make a POST request and GraphQL exposes just a single endpoint we called the POST `/graphql` but we could name it whatever we want
-* But here's the catch, with our request we are going to be sending along a graphql query
-    - The GraphQL query lets the client decide what data it needs from the server
-    - The server than gets all of that data ready and it sends it back
-    - So the client can describe exactly what it needs and it gets that data - nothing more, nothing less
-    - This is a very powerful piece of the puzzle - instead of the server determining what data comes back it's up to the client to describe all of the data it needs
-        + So in this case I can
-            * request all the post details by that author
-            * and any post comments
-            * All with a SINGLE GraphQL request
+* But here's the catch, with our `request` **we are going to be sending along a graphql query**
+    - The `GraphQL query` **lets the client decide what data it needs from the server**
+        + The server than gets all of that data ready and it sends it back
+        + So the client can describe exactly what it needs and it gets that data - nothing more, nothing less
+
+##This is a very powerful piece of the puzzle!
+* Instead of the server determining what data comes back it's up to the client to describe all of the data it needs
+    - So in this case I can
+        + Request all the post details by that author
+        + And any post comments
+        + All with a SINGLE GraphQL request
 * Key take away difference between using GraphQL vs using a traditional REST API
     - GraphQL enables the client to determine what data it gets back as opposed to a traditional REST API endpoint where the server determines what data comes back from an endpoint
     - 3 request is more than 1 request so GraphQL is faster
@@ -95,4 +97,6 @@ We could use this REST API and get back everything (post details, comments and o
 
 ## Takeaway
 * GraphQL creates fast and flexible APIs, giving clients complete control to ask for just the data they need
-* Fewer HTTP request. Flexible data querying. Less code to manage
+* Fewer HTTP request
+* Flexible data querying
+* Less code to manage
