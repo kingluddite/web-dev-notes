@@ -2,7 +2,7 @@
 * Real world data is complex - not just simple strings
 
 ## Check out Schema docs
-* You will see me returns not a String but a User
+* You will see `me` returns not a String but a User
     - User is a custom data type we created for this app
     - Bottom line a custom user type is nothing more than an object with a standard set of fields
     - Click on the Me query and you will see the exact fields on a user that we can query

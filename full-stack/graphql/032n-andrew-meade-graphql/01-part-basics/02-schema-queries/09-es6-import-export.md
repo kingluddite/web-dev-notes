@@ -1,6 +1,6 @@
 # ES6 import/export
 * Like `require` will allow us to break up our application into multiple distinct files
-* This gives us the benefite of breaking one huge file into multiple smaller files which is far easier to manage
+* This gives us the benefit of breaking one huge file into multiple smaller files which is easier to manage
 * Each of these smaller files can have a concern with some sort of specific logical goal
 * This will also enable us to load in code from 3rd party libraries we install (we'll do that soon when we install a GraphQL 3rd party library)
 
@@ -28,8 +28,8 @@ export { name, message };
 `index.js`
 
 * `import` statement has 4 major components
-* We define a relative path to the file we want to import
-* You can leave off the `.js` extension, it is the default extension and is not necessary
+    - We define a relative path to the file we want to import
+    - You can leave off the `.js` extension, it is the default extension and is not necessary
     - **note** if your were importing a `.scss` or `.css` file you would need to include the extension
 * VS code will give you syntax highlight errors if you import something that is not being used, it goes away when you use it
 * I only import what I need (so I am not included `name` in my import)
@@ -37,7 +37,7 @@ export { name, message };
 `index.js`
 
 ```
-import { message } from './myModule.js';
+import { message } from './myModule';
 
 console.log(message);
 ```
@@ -104,7 +104,7 @@ My message is simple. Be good to each other
 ```
 
 ## Default export
-* There are Named exports and Default exports
+* There are `Named` exports and `Default` exports
 
 ### What is a Default export?
 1. It has no name
@@ -229,7 +229,7 @@ Welcome to the course Jill
 3. Define subtract function that takes 2 arguments and subtracts them
 4. Set up add as a default export
 5. Set up subtract as a named export
-6. Import both functions into index.js
+6. Import both functions into `index.js`
 7. Use both functions and print the results from each
 
 `math.js`

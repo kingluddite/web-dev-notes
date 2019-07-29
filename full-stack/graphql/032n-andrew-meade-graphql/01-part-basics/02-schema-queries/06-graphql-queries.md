@@ -107,7 +107,7 @@ const typeDefs = `
 ```
 
 ## Now we also have to define our Resolvers
-* Since we have only 1 Query, we just need to write one Resolver (which is just a function)
+* Since we have only one Query, we just need to write one Resolver (which is just a function)
 * In general the structure of the Resolver will mirror the structure of the Query
 
 ```
@@ -134,7 +134,7 @@ const resolvers = {
 * **note** The resolver function does get called with some **arguments** which we will ignore for now
 
 ## Done
-* Whew! We are fininished writing our query and resolver
+* Whew! We are finished writing our query and resolver
 * What next?
 
 ## Start up our server and query for that data
@@ -144,7 +144,7 @@ const resolvers = {
 1. typeDefs
 2. resolvers
 
-`indes.js`
+`index.js`
 
 ```
 // MORE CODE
@@ -166,7 +166,7 @@ const server = new GraphQLServer({
 })
 ```
 
-## Now we nee to start our sever
+## Now we need to start our sever
 * We use the `start()` method and we will pass to it a callback function and that callback function runs when the server is up and running
 
 ```

@@ -3,21 +3,21 @@
 * It is not an implementation
 * It is up to individual developer to take document that describes GraphQL and then implement it for that environment
 
-## We need to find an implementation of GraphQL that works with Node.js
+## We need to find an implementation of GraphQL that works with `Node.js`
 * **note** This is the same for JavaScript
     - We have the JavaScript spec script with how JavaScript should work (ECMA script specification)
     - Then we have various implementations
-        + Chrome and Node use the V8 engine
-        + Mozilla uses Spidermonkey
-        + Microsoft uses Jakara
+        + Chrome and Node use the `V8 engine`
+        + Mozilla uses `Spidermonkey`
+        + Microsoft uses `Jakara`
 
 ## View GraphQL spec
 * [docs](https://graphql.github.io/graphql-spec/)
 * [latest spec](https://graphql.github.io/graphql-spec/June2018/)
-* No JavaScript or Node.js code only GraphQL spec, up to developers for those other languages (Python, Java, Node) to make their own implementations
+* No JavaScript or `Node.js` code only GraphQL spec, up to developers for those other languages (Python, Java, Node) to make their own implementations
     - What does this mean?
         + It just means we might have multiple GraphQL implementations to choose from in a given environment
-        + The tool we are using to get GraphQL up and running with Node.js is called GraphQL Yoga
+        + The tool we are using to get GraphQL up and running with `Node.js` is called GraphQL Yoga
 
 ## GraphQL Yoga
 * [graphql-yoga docs](https://github.com/prisma/graphql-yoga)
@@ -37,7 +37,7 @@
 ## Get a bare bones graphql-yoga up an running
 * We will grab the `GraphQLServer` tool off of the GraphQL Yoga library
     - This tool allows us to create a brand new server
-    - Watch the spelling/capitalization, it is case sensative!
+    - Watch the spelling/capitalization, it is case sensitive!
     - GraphQLServer is a Named export
 * That's all we need to import to get GraphQL Yoga up and running
 
@@ -55,7 +55,7 @@
 * Also define what our custom data Types look like
 * Open up GraphQL SCHEMA tab
     - Analyze it
-    - You can see all the operations we can peform
+    - You can see all the operations we can perform
         + In our sample GraphQL Schema we see only Queries (7 of them)
         + All of the Type definitions are defined in the Schema
     - The Schema also defines what our data looks like
@@ -67,7 +67,7 @@
 * Our application resolvers are nothing more than a set of functions
 * We are going to define functions that run for each of the operations that can be performed on our API
 * Our demo GraphQL API
-*   hello, course, courseInstructor, me
+*   `hello`, `course`, `courseInstructor`, `me`
     - functions were created for each of them
     - Those functions know what do to when that query runs (they know how to get and return the correct data)
     - These functions will eventually be where we query data from a real db, write data or do whatever is necessary depending on what operation was performed

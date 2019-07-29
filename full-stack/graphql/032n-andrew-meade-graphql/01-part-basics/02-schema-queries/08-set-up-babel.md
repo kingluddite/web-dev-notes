@@ -7,10 +7,11 @@
 
 `$ take graphql-basics`
 
-* Babel is a JavaScript compiler, takes modern code and compiles it into older JavaScript code so all browsers can understand it
+* Babel is a JavaScript compiler
+    - Babel takes modern code and compiles it into older JavaScript code so all browsers can understand it
     - Babel will let us use the ES6 import export syntax from node
     - https://babeljs.io/
-    - try it out
+    - Try it out
         + left side `const myFunction = () => {}`
         + will output this on the right side:
 
@@ -22,19 +23,19 @@ var myFunction = function myFunction() {};
 
 ## VS code keyboard shortcuts
 * Toggle Terminal
-    - Show all Commands: shift + cmd + p
+    - Show all Commands: `shift` + `cmd` + `p`
     - Search for `toggle terminal` you will see shortcut to toggle terminal
-        + carrot + backtick `
+        + `^` + backtick (`)
 
 ## Set up babel for your project
 `$ npm init -y` (creates package.json)
 
 `$ npm i babel-cli babel-preset-env`
 
-* babel-cli
-    - allows us to run a command to compile babel
-* babel-preset-env
-    - tells babel exactly what it should change
+* `babel-cli`
+    - Allows us to run a command to compile babel
+* `babel-preset-env`
+    - Tells babel exactly what it should change
 
 ## Create `.babelrc`
 * Place it in the root of your project
@@ -106,14 +107,15 @@ console.log('hello from GraphQL');
 
 "scripts": {
   "start": "babel-node src/index.js",
-  "test": "echo \"Error: no test specified\" && exit 1"
+
+  // MORE CODE
 },
 
 // MORE CODE
 ```
 
 * `babel-node` is something we will use for local development purposes only
-* We will talk later about how we will run our projects later
+* We will talk later about how we will run our projects in production later
 
 ## Run our project
 `$ npm run start`
@@ -122,11 +124,12 @@ console.log('hello from GraphQL');
 
 ### What just happened?
 1. We run `$ npm run start` command
-2. babel grabs the file we specified
-3. It passes it through the babel compiler using the configuration we provided in `.babelrc`
-4. The the output file is what actually runs
+2. `babel` grabs the file we specified
+3. It passes it through the `babel` compiler using the configuration we provided in `.babelrc`
+4. Then the output file is what actually runs
 
-* **note** The output is not saved anywhere to our hard drive. It is just executed by the command itself
+* **note** The output is not saved anywhere to our hard drive
+    - It is just executed by the command itself
 
 ## Next - babel is used but it's not really being used
 * We'll change that when we start using the ES6 import/export syntax

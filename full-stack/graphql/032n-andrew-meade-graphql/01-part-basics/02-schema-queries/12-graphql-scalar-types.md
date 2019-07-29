@@ -31,11 +31,9 @@ const typeDefs = `
     gpa: Float
   }
 `;
-
-// MORE CODE
 ```
 
-* The only Scalar type that can return a `null` value is `gpa` because some people (like teachers) won't have a gpa
+* The only Scalar type that can return a `null` value is `gpa` because some people (like teachers) won't have a GPA
 * You are either employed or unemployed (Boolean)
 
 ## Now we create our resolvers (functions)
@@ -65,8 +63,6 @@ const resolvers = {
     gpa() {},
   },
 };
-
-// MORE CODE
 ```
 
 * Above we have individual resolvers methods for individual properties on something like a user (this is only temporary)
@@ -107,8 +103,6 @@ const resolvers = {
     },
   },
 };
-
-// MORE CODE
 ```
 
 * Now you need to add this:
@@ -128,11 +122,13 @@ server.start(() => {
 });
 ```
 
-* That will use GraphQLServer and point it to both your typeDefs and resolvers and run the server
+* That will use GraphQLServer
+    - And point it to both your `typeDefs` and `resolvers`
+    - And run the server
 * **important** If you don't do this your server won't run and your code will run and stop
 
 ## Let's start the GraphQL Yoga server up!
-* Restart server
+* Restart server `$ npm run start`
 * Visit your playground `http://localhost:4000`
 * Refresh Playground
 * View new updated Docs!
@@ -179,6 +175,8 @@ query {
 ```
 
 * `Save` and `restart` server and run again you'll see `gpa` returns a **Float**
+  - If you make changes to the Types or resolver you must restart the server to see the changes
+  - If your id resolver returns null and you restart the server you will see an error `Cannot return null for non-nullable field Query.id.`
 
 ## Challenge
 * Create a query definition and resolver for each
@@ -271,7 +269,7 @@ query {
     - That will help us not have to write 5 functions for 5 separate pieces of data
     - We'll be able to return everything a custom type has with just a single resolver
 
-### Bonus
+### Remember!
 * Restart our server when we change our GraphQL server code
 
 

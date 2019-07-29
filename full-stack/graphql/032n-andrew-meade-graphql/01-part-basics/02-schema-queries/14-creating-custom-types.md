@@ -21,7 +21,7 @@
 * They all sent back Strings
 * But queries like `me` sent back custom Types 
     - It allows us to send back an object with a set of fields
-* Me sent back a custom type of user
+* `me` sent back a custom type of user
     - If you look inside the API docs
         + The User has a set of defined fields
             * Inside that you would see scalar values and relational data
