@@ -1,6 +1,8 @@
 # Setting up Babel
 * Babel does nothing by default
-* To get it to work we have to add **presets** and **configs**
+* To get it to work we have to add:
+    - presets
+    - configs
 
 ## What is a Babel preset?
 * A group of plugins
@@ -21,7 +23,7 @@
 * It is faster and easier to just install a **preset** that _comes bundled with all of those plugins_
 
 ##### 2. `env`
-* This gives us access to es2015, es2016, and es2017 presets
+* This gives us access to `es2015`, `es2016`, and `es2017` presets
 * This gives us access to new JavaScript stuff like:
     - const
     - let
@@ -36,40 +38,43 @@
 3. react preset
 
 #### 1. Global install babel-cli
-`$ yarn global add babel-cli` (we already did this)
+`$ npm i -g babel-cli` (we already did this)
 
-* After intalling we'll have access to a new command called **babel**
+* After installing we'll have access to a new command called **babel**
 
 ## Check if babel was successfully installed
 `$ babel --help`
 
-## Create `package.json` with `yarn`
+* A bunch of info should appear in Terminal
+
+## Create `package.json` with npm
 * We already have our `package.json` created so we don't need to do this
 * I include it here so you remember to do this for future projects
 
-`$ yarn init -y`
+`$ npm init -y`
 
 ## Install our project dependencies
 
 ### Install our 2 presets
-`$ yarn add babel-preset-react babel-preset-env`
+`$ npm i babel-preset-react babel-preset-env`
 
 ### What is babel-preset-env?
 * http://babeljs.io/env
 * Instead of continuing yearly presets, the team recommends using `babel-preset-env`
 * By default, it has the same behavior as previous presets to compile ES2015+ to ES5
 
-### Difference between global yarn and local yarn installs
-* Global are places in a location all projects can access
+### Difference between global npm and local npm installs
+* Global are places in a location all projects can access `~/node_modules`
 * Non global get installed in our project's `node_modules` and placed in the `package.json` as a **dependency** or a **dev-dependency**
-    - When you install dependencies, those dependencies have other dependencies and on... and on... and on...
+    - When you install dependencies, those dependencies have other dependencies and so on... and so on... and so on...
         + This means when you install one dependency it can create the installation of dozens of other dependent packages
         + `node_modules` is a generated folder
-    - `yarn.lock `also was added
-        + We won't manually change this file
-        + Open it to examine it
-        + You never directly change it as it will change automatically as we update the dependencies
-        + It helps keep our dependencies in sync on all machines we use it on
+    - `package-lock.json `also was added
+        + **note** Remove `yarn.lock` (_could cause problems so let's just remove it since we aren't using yarn_)
+        + We won't manually change `package-lock.json`
+            * Open it to examine it
+            * You never directly change it as it will change automatically as we update the dependencies
+            * It helps keep our dependencies in sync on all machines we use it on
 
 ## `src` folder
 * This will hold all our custom `React` code
@@ -77,14 +82,28 @@
 * `$ touch src/app.js`
 * This is the file `src/app.js` that will have our `JSX` and we will use `babel` to transpile the ES5 JavaScript into `public/app.js` using this command:
 
+`src/app.js`
+
+```
+console.log('app.js is loading');
+
+// JSX - JavaScript XML
+const template = <p>I am JSX. Nice to meet you</p>;
+const appRoot = document.getElementById('root');
+ReactDOM.render(template, appRoot);
+```
+
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react`
 
+### Input
 * `src/app.js` points to our source `React` code (using `JSX`)
+
+### Output
 * `--out-file` points to the generated ES5 code location
 * `--presets=env,react` points to the **presets** we're using
 * After running the code look into `public/scripts/app.js` and you'll see the ES5 code that was generated
 
-## --watch
+#### --watch
 * We want to constantly watch for our `JSX` changes and then it will automatically update our ES5 generated code on each **save**
 
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`

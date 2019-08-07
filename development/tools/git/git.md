@@ -1,4 +1,10 @@
 # GIT
+## If you have a very large git repo it can take forever to open
+* Speed it up magically with:
+
+`$ git config --add oh-my-zsh.hide-dirty 1`
+
+* [resource](https://gist.github.com/msabramo/2355834)
 
 ## Remote branches
 * If you want to pull your remote branch down from github
