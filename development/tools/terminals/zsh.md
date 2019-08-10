@@ -1,5 +1,8 @@
 # The ZSH shell
 
+## Touch and open
+`$ touch .gitignore && open $_`
+
 ## Speed up ZSH - It might be your $PATH
 * My terminal was slow and this sped it up
 

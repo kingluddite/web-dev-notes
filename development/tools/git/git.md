@@ -1,4 +1,16 @@
 # GIT
+## How to remove local untracked files from the current Git branch
+* To remove directories, run:
+
+`$ git clean -fd`
+
+* To remove ignored files, run:
+
+`$ git clean -fX`
+
+* To remove ignored and non-ignored files, run:
+
+`$ git clean -fx`
 
 ## Remote branches
 * If you want to pull your remote branch down from github
