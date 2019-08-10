@@ -1,4 +1,8 @@
 # Homebrew
+## Brew upgrade broke Vim
+
+
+
 * Sierra MAC OS
 * Permissions issue with homebrew
 

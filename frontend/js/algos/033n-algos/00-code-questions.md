@@ -49,3 +49,14 @@ buzz
         + anagrams('rail safety', fairy tales') --> true
         + anagrams('RAIL! SAFETY!', 'fairy tales') --> true
         + anagrams('Hi there', 'bye there') -- false
+
+8. Write a function that accepts a string
+    - The function should capitalize the first letter of each word in the string
+        + Then return the capitalized string
+
+### Examples
+```
+//   capitalize('a short sentence') --> 'A Short Sentence'
+//   capitalize('a lazy fox') --> 'A Lazy Fox'
+//   capitalize('look, it is working!') --> 'Look, It Is Working!'
+```

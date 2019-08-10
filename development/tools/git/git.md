@@ -1,4 +1,5 @@
 # GIT
+
 ## How to remove local untracked files from the current Git branch
 * To remove directories, run:
 
@@ -11,6 +12,13 @@
 * To remove ignored and non-ignored files, run:
 
 `$ git clean -fx`
+
+## If you have a very large git repo it can take forever to open
+* Speed it up magically with:
+
+`$ git config --add oh-my-zsh.hide-dirty 1`
+
+* [resource](https://gist.github.com/msabramo/2355834)
 
 ## Remote branches
 * If you want to pull your remote branch down from github
@@ -140,7 +148,6 @@ git log to find sha on local machine (super long unique key)
 copy and past it
 `$ git revert e922cd7273ed37bc2574d44803ccaae50acff3a3`
 
-
 when we push from git it will push it into the var/www/thehollywoodmoguls.com directory (this should be where you site is on the remote site. if it's not there, create it now)
 * every time we push it, it will checkout the last copy into the var/www/thm.com folder
 
@@ -180,14 +187,14 @@ To see all remote branches you use `git branch -a`
 
 With the latest version of git, you can use `git fetch` to grab the remote branches and then you can check into that branch with `git checkout [branch name]`
 
-How to delete a branch?
+## How to delete a branch?
 
 ```
 $ git branch -d {the_local_branch} (use -D instead to force deletion without checking merged status)
 ```
 
-
 If you have an older version of git, you'll need to update or use the older syntax.
+
 ### Stash
 When you want to pull down the latest changes but you are in the middle of working on something. You can temporarily `stash` them with:
 
