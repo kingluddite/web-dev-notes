@@ -13,16 +13,16 @@
 * So we will need to install the `React` preset locally to get `babel` to transpile
 
 ### [learn about presets](http://babeljs.io/docs/plugins/)
-#### We will use 2 presets
+* We will use 2 presets
 1. `react`
 2. `env`
 
-##### 1. react preset
+#### 1. react preset
 * If you click the **react preset** you will see all the plugins it uses
 * It would take time to individually install all those plugins
 * It is faster and easier to just install a **preset** that _comes bundled with all of those plugins_
 
-##### 2. `env`
+#### 2. `env`
 * This gives us access to `es2015`, `es2016`, and `es2017` presets
 * This gives us access to new JavaScript stuff like:
     - const
@@ -30,7 +30,7 @@
     - arrow functions
     - rest and spread operators
 
-### Install time
+### Install stuff we need
 * We will install 3 things
 
 1. Babel
@@ -145,7 +145,7 @@ ReactDOM.render(template, appRoot);
 
 * If your public `app.js` looks similar to above, you now know that `babel` is transpiling `JSX` into ES5 JavaScript and the browser understands it
 
-## Two iterm tabs are better than one
+## Two iTerm tabs are better than one
 * We'll run the **babel watch** in one tab watching for changes to our `JSX`
 
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
@@ -159,19 +159,23 @@ ReactDOM.render(template, appRoot);
 
 ## Delete node_modules
 * This is not required and just here to show you that at anytime you can delete `node_modules`
-* And if you want to bring pack all your project dependencies, just type `$ yarn install`
+* And if you want to bring pack all your project dependencies, just type `$ npm install` or `$ npm i`
 
-```
-node_modules
-```
+## Delete `node_modules`
+* Let's see what happens without `node_modules`
 
-* Delete `node_modules`
-* Running `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch` will cause an error because we no longer have `babel` or the **presets**
+`$ rm -rf node_modules`
 
-`$ yarn install`
+* Running the following:
 
-* This will read our `package.json` file
-* Run this again:
+`$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
+
+* Will cause an error because we no longer have `babel` or the **presets**
+
+`$ npm i`
+
+* This will read our `package.json` file and install all our dependencies
+    - Run this again:
 
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
 

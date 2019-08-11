@@ -10,7 +10,7 @@
 
 `index.html`
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -156,7 +156,7 @@ const template = <p>I am JSX. Nice to meet you</p>;
 
 * **Important** To place our new `div` above our existing scripts so the DOM will load this `div` element before we load in our script custom js and React CDNs
 
-```
+```html
 // MORE CODE
 <body>
     <div id="root"></div> <!-- ADD IT HERE -->
@@ -176,7 +176,7 @@ const template = <p>I am JSX. Nice to meet you</p>;
 ## Render it
 `app.js`
 
-```
+```js
 console.log('app.js is loading');
 
 // JSX - JavaScript XML
@@ -189,7 +189,7 @@ ReactDOM.render(template, document.getElementById('root'));
 
 `app.js`
 
-```
+```js
 console.log('app.js is loading');
 
 // JSX - JavaScript XML
@@ -198,9 +198,9 @@ const appRoot = document.getElementById('root');
 ReactDOM.render(template, appRoot);
 ```
 
-* View in browser
+## View in browser
 
-## Houston we have a problem!
+### Houston we have a problem!
 * Chrome or any other browser doesn't know how to deal with JSX
 * We need to convert our JSX into old JavaScript that all browsers understand
 * Just like we transpile code from `Sass` to CSS we'll also use [Babel](https://babeljs.io) to transpile our JSX into JavaScript

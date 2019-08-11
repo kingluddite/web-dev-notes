@@ -13,16 +13,12 @@ console.log('yo');
 ```
 
 ## Tips
-* syntax JSX syntax highlighting
-    - Atom (Babel ES6/ES7)
-    - Atom (Path Intellisense - add nice auto-completion features)
-    - After installing (if using atom you should see Babel ES6/7 on bottom right)
-
+* Add Syntax JSX syntax highlighting to VS Code
 * Type this:
 
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react`
 
-* Then to run `live-server`
+## Run `live-server`
 
 `$ live-reload public`
 
@@ -36,9 +32,13 @@ const appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
 ```
 
-### Take it for a test drive
-* You will see we have an error
-* You have to have nodes inside one parent
+### Houston we have a problem
+* You will see we have an error in the browser
+
+#### Why?
+* You have to have two sibling nodes
+
+### Solution - One Parent 
 
 ```
 console.log('App.js is running');
@@ -56,7 +56,7 @@ ReactDOM.render(template, appRoot);
 ```
 
 * We wrap the elements in one parent `div` and all is good
-* We are running both the live-server with:
+* We are running both the `live-server` with:
 
 `$ live-server public`
 
@@ -67,9 +67,8 @@ ReactDOM.render(template, appRoot);
 ## The wrapper div
 * All our elements will be inside the single `wrapper` div
 
-## Indent for sanity
-* It just looks better this way
-* `Prettier` does this for you!
+## Prettier will make your life so much easier
+* `Prettier` auto indents your code
   - Make sure it is installed
 
 ```
@@ -106,17 +105,18 @@ const appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
 ```
 
-* If you view `scripts/app.js` you'll see how babel translates it all
+* If you view `scripts/app.js` you'll see how `babel` translates it all
 
 ## Challenge
-* Create a templateTwo var JSX expression
+* Create a `templateTwo` var JSX expression
 * root div (root wrapper)
 *   h1 --> your name
     -   p ---> age
     -   p ---> location
-*   render templateTwo instead of template
+*   render `templateTwo` instead of template
 
 ```
+// old code
 console.log('App.js is running');
 
 // JSX - JavaScript XML
@@ -132,6 +132,8 @@ console.log('App.js is running');
 //   </div>
 // );
 //
+
+// challenge code solution
 const templateTwo = (
   <div>
     <h1>Phil</h1>

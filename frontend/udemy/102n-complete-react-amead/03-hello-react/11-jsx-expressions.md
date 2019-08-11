@@ -1,5 +1,5 @@
 # JSX Expressions
-* User variables to create dynamic strings and numbers
+* Use variables to create dynamic strings and numbers
 
 ```
 console.log('App.js is running');
