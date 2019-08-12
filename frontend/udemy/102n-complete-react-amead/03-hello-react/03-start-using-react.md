@@ -123,12 +123,12 @@ Both are just language extension for CSS
   * Both offer variable support which used to not be available in CSS
 
 ### Explore JSX syntax
-`app.js`
+`public/app.js`
 
 * We will start using `var` but because we have eslint setup it will update it on save (if you have VScode setup properly) to autoupdate with proper ES6 code (so you will see the `var` turn into a `const`)
 * Below is our first JSX expression with no dynamic values injected inside it yet
 
-`app.js`
+`public/app.js`
 
 ```
 console.log('app.js is loading');
@@ -136,6 +136,8 @@ console.log('app.js is loading');
 // JSX - JavaScript XML
 const template = <p>I am JSX. Nice to meet you</p>;
 ```
+
+* No problems yet
 
 ## Now we will render our JSX template using ReactDOM
 * Remember we saw this on the client in Chrome browser
@@ -176,7 +178,7 @@ const template = <p>I am JSX. Nice to meet you</p>;
 ## Render it
 `app.js`
 
-```js
+```
 console.log('app.js is loading');
 
 // JSX - JavaScript XML
@@ -198,8 +200,6 @@ const appRoot = document.getElementById('root');
 ReactDOM.render(template, appRoot);
 ```
 
-## View in browser
-
 ### Houston we have a problem!
 * Chrome or any other browser doesn't know how to deal with JSX
 * We need to convert our JSX into old JavaScript that all browsers understand
@@ -209,14 +209,19 @@ ReactDOM.render(template, appRoot);
 * Is a transpiler
 * ES6 and ES7... so many new versions of JavaScript, I will just refer to all future JavaScript versions as **JavaScript Next**
 * Babel transpiles JavaScript Next to old JavaScript
-  - I call it "old JavaScript" but it is really JavaScript ES5 (2015) - 99% browsers support ES5 JavaScript
+  - "old JavaScript" is really JavaScript ES5 (2015) - 99% browsers support ES5 JavaScript
 
 ### Try it out Babel page
 1. Using the `babeljs.io` demo
 2. Put our JSX code into the left side of "try it out"
-3. And see what gets transpiled on the right side
-* The browser understands the right side but not the left side
 
+![try it out](https://i.imgur.com/JVFXX8S.png)
+
+3. Observe what gets transpiled on the right side
+
+* **note**: The browser understands the right side but not the left side
+
+## This is what JSX get transpiled into where the browser will understand it
 ```js
 'use strict';
 
@@ -228,26 +233,21 @@ var template = React.createElement(
   null,
   'This is JSX from app.js'
 );
-var appRoot = document.getElementById('app');
+var appRoot = document.getElementById('root');
 
 ReactDOM.render(template, appRoot);
 ```
 
 * The browser understands regular function calls
-* We'll never write out `React` like it is on the right as it would take longer and be unbearably tedious
-* `React` was meant to speed up our workflow so that is why we use JSX
 
-```js
-var template = React.createElement(
-  'p',
-  null,
-  'This is JSX from app.js'
-);
-```
+## We'll never write out `React` like it is on the right
+* Why? Because it would take longer and be unbearably tedious
+* `React` was meant to speed up our workflow so that is why we use JSX
 
 ## Separations of concerns?
 * First hurdle to get over with `JSX` is yes we are making a mashup of `JavaScript` and `HTML` and all previous classes in web told us to separate them
 * Forget those rules as `JSX` will grow on you and make development easier
+  - You will combine HTML, JavaScript and CSS together in one file and start to love it
 
 ### React.createElement(arg1, arg2, arg3)
 * 1st arg - element
@@ -265,7 +265,7 @@ var template = React.createElement(
 * The attributes will be an object using `name/value` pairs
 
 ## Make our site work using real JavaScript
-`app.js`
+`public/app.js`
 
 ```js
 'use strict';
@@ -283,7 +283,7 @@ var appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
 ```
 
-* Now view: `http://127.0.0.1:8080/` and you'll see:
+## Test - Now view: `http://127.0.0.1:8080/` and you'll see:
 
 `This is JSX from app.js`
 

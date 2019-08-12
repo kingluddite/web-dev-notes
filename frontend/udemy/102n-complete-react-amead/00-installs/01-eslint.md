@@ -177,4 +177,21 @@
 }
 ```
 
+## Prettier will make your life so much easier
+* `Prettier` auto indents your code
+  - Make sure it is installed
+
+```
+const template = (
+  <div>
+    <h1>Indecision App</h1>
+    <p>this is a test</p>
+  </div>
+);
+```
+
+### Vim notes
+* I am use `vim` and with `vim` I have **ale** and **prettier** setup together and in my `.vimrc` file I have it auto fix/format on save (major time saver!)
+* You can do the same with Atom/Sublime/Visual Code but you'll have to Google it yourself to get them working
+
 
