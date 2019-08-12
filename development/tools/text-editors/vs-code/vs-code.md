@@ -1,4 +1,42 @@
 # VS Code
+
+## Toggle Between Terminals in VS-Code
+* VSCode allows you to have multiple terminal tabs, but you have to manually switch between them with a drop down
+* That is a lot of mouse action so to speed things up using a keyboard shortcut to switch between them use commands for going to the `next` and `previous` terminal which can be attached to keybindings
+
+Try adding the following two entries to your `keybindings.json` file (inside the global bindings array:
+
+`keybindings.json`
+
+```
+[
+// MORE CODE
+
+{
+   "key": "cmd+shift+k",
+   "command": "workbench.action.terminal.focusNext"
+ },
+ {
+   "key": "cmd+shift+j",
+   "command": "workbench.action.terminal.focusPrevious"
+ },
+// MORE CODE
+
+]
+```
+
+* Restart VS-code for the changes to take affect
+* Also, make sure you have at least 2 terminals (so you can toggle - :) )
+
+## Use these keyboard shortcuts to switch between terminals
+* `cmd` + `shift` + `K` - focus on next terminal
+* `cmd` + `shift` + `J` - focus on previous terminal
+
+### Oh, and how do you open `keybindings.json` on a Mac?
+* It's not as straightforward as it used to be - the link is gone
+
+`CMD` + `SHIFT` + `P` then click `Preferences: Open Keyboard Shortcuts (JSON)`
+
 ## lose font icons inside vs code:
 * If you are using zsh theme and lost your font icons
 * https://github.com/microsoft/vscode/issues/15119
