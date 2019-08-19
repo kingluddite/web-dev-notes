@@ -1,46 +1,43 @@
 # Build-it! Adding State
-* Create component `VisibilityToggle`
-    - render, constructor (bind and setup default state)
-    - set up method, handleToggleVisibility
-* state ---> default `false`
-    - Toggle on click
+* Comment out all of `counter-example.js`
+* This was built without our knowledge of Component classes
+  - We didn't know we could create methods on those classes
+* We had a variable that managed our application state
+  - Now we will use Component state instead
 
-## Solution
+## Point babel to a new file
+`$ babel src/playground/counter-example.js --out-file=public/scripts/app.js --presets=env,react --watch`
+
+`$ live-server public`
+
+* Will show an empty screen - no code rendered yet
+
+## Add Code to make our Counter render to the page
 ```
-class VisibilityToggle extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      visible: false,
-      details: 'these are the details',
-    };
-
-    this.handleToggleVisability = this.handleToggleVisability.bind(this);
-  }
-
-  handleToggleVisability() {
-    this.setState(prevState => {
-      return {
-        visible: !prevState.visible,
-      };
-    });
-  }
-
+class Counter extends React.Component {
   render() {
     return (
       <div>
-        <h1>Toggle Visability</h1>
-        <button onClick={this.handleToggleVisability}>
-          {this.state.visible ? 'Hide Details' : 'Show Details'}
-        </button>
-        {this.state.visible ? <p>{this.state.details}</p> : ''}
+        <h1>Count: </h1>
+        <button>+1</button>
+        <button>-1</button>
+        <button>reset</button>
       </div>
     );
   }
 }
 
-ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
+ReactDOM.render(<Counter />, document.getElementById('root'));
 ```
 
-* That should show and hide the details on button clickjj
+* No user interaction yet
+
+## Challenge - Create 3 methods
+* handleAddOne()
+* handleMinusOne()
+* handleReset()
+* log to print method name when buttons clicked
+* Wire up onClick & bind in constructor function
+
+## Next
+* Go over the 5 steps necessary to set up component state in Counter

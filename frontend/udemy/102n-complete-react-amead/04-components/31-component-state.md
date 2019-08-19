@@ -1,373 +1,105 @@
 # What is Component State?
-* Component state enables our components to manage some data
+* `state` is a React core concept
+* Let's try to understand React `state` in an abstract way
 
-## We have an object
-* Our object has key/value pairs
-* When those values change, our object will automatically update with those changes
-* Before in `jsx-indecison` we made changes to the array and the only way our array was updated with the new items was by manually calling `render()` each and every time
-* With component state, we change the data and the component will handle updating itself
+## What does Component state allow us to do?
+* At its base level component state allows us to manage some data
 
-# Slides
-* Default state value
+### Think of an object with various key/value pairs
+* When that data changes the component will automatically rerender to reflect those changes
+* In the `jsx-indecision.js` app we did not have that in place
+  - Which means when we changed the array or added something onto app.options we had to call our rerender method
 
-## Steps
+```
+const app = {
+  title: 'My First React App',
+  subtitle: 'Learning About Expressions',
+  options: [],
+};
+const onFormSubmit = e => {
+  e.preventDefault();
+  const optionEl = e.target.elements.option;
+  const option = optionEl.value;
+
+  if (option) {
+    app.options.push(option);
+    optionEl.value = '';
+    rerenderPageEls();
+  }
+};
+// MORE CODE
+```
+
+## Component state to the rescue!
+* With Component state, all we have to do is manipulate the data and the Component will take care of rerendering itself! This is very helpful!
+
+## Let's review how Component state gets into our components
+### The Counter app
+![the counter app](https://i.imgur.com/eVAM4zT.png)
+
+* We tracked a single piece of data - it was a variable count who's value started off at 0
+* We showed that count value to the screen
+* We had a +1, -1 and a reset button
+  - Which allowed us to interact with that data based on button clicks
+
+## We'll create the same thing but this time with a React Component with Component state
+### Steps to setting up state
+#### Come up with a default set of values
+  * Our counter app we started the count at 0
+  * For our IndecisionApp we'll start our options array off as an empty array
+  * We need to come up with our default state value
+  * Outside of an React Component we had variables
+    - In the case of a React Component, we'll translate that into an object
+
 1. Setup default state object
 
-![default state object](https://i.imgur.com/YKCaEdI.png)
+![default state object set up](https://i.imgur.com/4HOhaDM.png)
 
-```js
+```
+// <Counter />
 {
-    count: 0
+  count: 0
 }
 ```
 
-* Our Component renders itself the very first time using the default values
-* `render()` gets called and count is set to `0`
+* **note** We can have as many properties as we want
+* We could also leave state off altogether which is how our Components work by default
 
-2. Component is rendered with default state values `*`
-    * Happens behind the scenes
-    * We do nothing for this to happen
-    * Happens automatically
+2. Component rendered with default state values*
+* Our component will render itself for the very first time using those values
 
-* We click button and code runs
+![React component rendered first time](https://i.imgur.com/lzPKcER.png)
 
-![click button and code runs](https://i.imgur.com/S0aT99m.png)
+* **note** The asterisk is because we never call `rener()` manually it happens automatically
 
-3. State changes based on some event
+## The user must interact with our app or it will never change
+* The user clicks a button, an event handler is called and does something
 
-* Click on button and state changes from 0 to 1
+![user interacts with our React component](https://i.imgur.com/OVjoaqw.png)
 
-4. Application re-renders itself `*` and this will change 0 to 1 in the UI
+* **note** The API for interacting with React state we'll discuss later
 
-5. Rinse and repeat starting at step 3
+3. Change state based on event
 
-**note** Our state is just an object
+* User clicks +1 button and eventHandler calls `handleAddOne()` method and state increases by 1
 
-## Coding state
-`src/playground/counter-example.js`
+4. The application re-renders itself (after state change) using new state values*
 
-```
-class Counter extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Count: </h1>
-        <button>+1</button>
-        <button>-1</button>
-        <button>reset</button>
-      </div>
-    );
-  }
-}
+![app rerenders itself](https://i.imgur.com/MNvLdlq.png)
 
-ReactDOM.render(<Counter />, document.getElementById('app'));
-```
+* **note** We don't do anything to get that done, behind the scenes the React Component API is going to see the state changed and it will make sure the UI gets updated
 
-* Just shows static stuff
+5. Start at 3 again (rinse and repeat)
 
-## Coding methods
-### Challenge
-* Create 3 methods: handleAddOne, handleMinusOne, handleReset
-* Use console.log to print method name
-* Wire up onClick & bind in the constructor
+* **note** React Component state is essential for interactive apps
 
-### Challenge Solution
-```
-class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleAddOne = this.handleAddOne.bind(this);
-    this.handleMinusOne = this.handleMinusOne.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-  }
+## Recap
+* Our component state is just an object with key/value pairs
+* We define our initial data and that allows us to get that rendered to the screen
+* The state object can be changed by us
+  - Whether a button click, form submission, the finishing of an HTTP request that got some JSON data from an API, or any other event
+* When we do change the state the app will automatically rerender itself
+  - React will work behind the sense to keep the UI up-to-date with our state
 
-  handleAddOne() {
-    console.log('handleAddOne');
-  }
-
-  handleMinusOne() {
-    console.log('handleMinusOne');
-  }
-
-  handleReset() {
-    console.log('handleReset');
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Count: </h1>
-        <button onClick={this.handleAddOne}>+1</button>
-        <button onClick={this.handleMinusOne}>-1</button>
-        <button onClick={this.handleReset}>reset</button>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<Counter />, document.getElementById('app'));
-```
-
-## Next - 5 steps to setup Component state
-### Step 1 Setup a default state object
-### Step 2 Render Component with default state value
-
-```
-class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleAddOne = this.handleAddOne.bind(this);
-    this.handleMinusOne = this.handleMinusOne.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-
-    this.state = {
-      count: 0,
-    };
-  }
-
-  handleAddOne() {
-    console.log('handleAddOne');
-  }
-
-  handleMinusOne() {
-    console.log('handleMinusOne');
-  }
-
-  handleReset() {
-    console.log('handleReset');
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Count: {this.state.count}</h1>
-        <button onClick={this.handleAddOne}>+1</button>
-        <button onClick={this.handleMinusOne}>-1</button>
-        <button onClick={this.handleReset}>reset</button>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<Counter />, document.getElementById('app'));
-```
-
-* That sets up the default count of 0 for our app
-* Change the `0` in the state of the contructor to `1000` and you'll see our UI update automatically
-* Change it back to `0`
-
-### Change state based on event
-#### Don't do this - It won't work!
-```js
-handleAddOne() {
-    this.state.count = this.state.count + 1;
-    console.log(this.state);
-  }
-```
-
-* If you click button you'll see count increases by 1 but the UI doesn't update with the new value of `count`
-
-#### The right way is `this.setState`
-```js
-handleAddOne() {
-    this.setState(() => {
-      return {
-        count: 1,
-      };
-    });
-  }
-```
-
-* That will update count from 0 to 1 but it stays at 1 with every new click
-* The state is getting manipulated (good)
-* The component is automatically refreshing (good)
-* **note** We have access to the current value of state in `prevState` the first argument of `setState`
-    - `prevState` is our state object BEFORE the new state changes have been applied
-
-## Questions about state
-* If you have a large state with lots of key/value pairs you don't always have to update all the state keys, only update what you want to change
-* The keys won't get updated
-
-```
-class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleAddOne = this.handleAddOne.bind(this);
-    this.handleMinusOne = this.handleMinusOne.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-
-    this.state = {
-      count: 0,
-      name: 'John',
-    };
-  }
-
-  handleAddOne() {
-    this.setState(prevState => {
-      return {
-        count: prevState.count + 1,
-      };
-    });
-  }
-
-  handleMinusOne() {
-    this.setState(prevState => {
-      return {
-        count: prevState.count - 1,
-      };
-    });
-  }
-
-  handleReset() {
-    this.setState(() => {
-      return {
-        count: 0,
-      };
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Count: {this.state.count}</h1>
-        <p>{this.state.name}</p>
-        <button onClick={this.handleAddOne}>+1</button>
-        <button onClick={this.handleMinusOne}>-1</button>
-        <button onClick={this.handleReset}>reset</button>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<Counter />, document.getElementById('app'));
-```
-
-* That increases, decreases and resets count state
-
-## Alternative setState syntax
-* This is the older approach to React state
-* You pass an object directly in, instead of a function
-* Passing in a function is the preferred way and more modern way
-* Rumor is future versions of React will degregate the old way of passing a function into state
-
-```js
-handleReset() {
-  // this.setState(() => {
-  //   return {
-  //     count: 0,
-  //   };
-  // });
-  this.setState({
-    count: 0,
-  });
-}
-```
-
-* That works
-* But...
-
-```js
-handleReset() {
-    // this.setState(() => {
-    //   return {
-    //     count: 0,
-    //   };
-    // });
-    this.setState({
-      count: 0,
-    });
-    this.setState({
-      count: this.state.count + 1,
-    });
-  }
-```
-
-* Causes a problem
-* You would think that the value will always be 1 (0 + 1)
-* But it isn't
-* Instead it just increments the value by 1 from the state's current value
-
-## Why?
-* **note** The calls to `this.setState()` are asynchronous
-    - That means just because we called this.setState() to change the value of `state` doesn't mean the value of setState will change the value of state on the very next line
-    - So using the old way runs into problems of accessing stale and outdated data
-    - The solution is to ALWAYS use `this.setState()` and pass it a function NOT AN OBJECT
-
-## Let's show how the new way works
-```
-handleReset() {
-    this.setState(() => {
-      return {
-        count: 0,
-      };
-    });
-    this.setState(prevState => {
-      return {
-        count: prevState.count + 1,
-      };
-    });
-    // this.setState({
-    //   count: 0,
-    // });
-    // this.setState({
-    //   count: this.state.count + 1,
-    // });
-  }
-```
-
-* Now state is working as it should (reset always prints out `1`)
-
-## Final code for this chapter
-```
-class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleAddOne = this.handleAddOne.bind(this);
-    this.handleMinusOne = this.handleMinusOne.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-
-    this.state = {
-      count: 0,
-      name: 'John',
-    };
-  }
-
-  handleAddOne() {
-    this.setState(prevState => {
-      return {
-        count: prevState.count + 1,
-      };
-    });
-  }
-
-  handleMinusOne() {
-    this.setState(prevState => {
-      return {
-        count: prevState.count - 1,
-      };
-    });
-  }
-
-  handleReset() {
-    this.setState(() => {
-      return {
-        count: 0,
-      };
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Count: {this.state.count}</h1>
-        <p>{this.state.name}</p>
-        <button onClick={this.handleAddOne}>+1</button>
-        <button onClick={this.handleMinusOne}>-1</button>
-        <button onClick={this.handleReset}>reset</button>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<Counter />, document.getElementById('app'));
-```
+## Next
+* We'll build out our app using Component state

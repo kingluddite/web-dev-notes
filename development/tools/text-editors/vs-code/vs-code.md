@@ -1,4 +1,60 @@
 # VS Code
+https://www.barbarianmeetscoding.com/blog/2019/02/08/boost-your-coding-fu-with-vscode-and-vim
+## Turn on relative line number
+settings.json
+
+```
+{
+// MORE CODE
+
+    "editor.lineNumbers": "relative",
+
+// MORE CODE
+}
+```
+
+## VSCode/Vim
+* [link to docs](https://github.com/VSCodeVim/Vim)
+
+ctrl + D - breaks with Vim plugin
+This is a kind of workaround
+
+```
+In VIM mode to select all matches use cmd+shift+L shortcut.
+To move selection to next find match and then add selection to the match stack without conflicts follow the next steps:
+
+install the next plugin:
+https://marketplace.visualstudio.com/items?itemName=ryuta46.multi-command
+
+go to user settings cmd+,
+
+add to the bottom:
+"multiCommand.commands": [
+{
+"command": "multiCommand.moveAndSelectMatch",
+"sequence": [
+"editor.action.moveSelectionToNextFindMatch",
+"editor.action.addSelectionToNextFindMatch"
+]
+}
+]
+
+go to the keybindings.json file (cmd+k cmd+s then press to the file relevant name)
+
+then add to the bottom of the file
+{
+"key": "cmd+d",
+"command": "multiCommand.moveAndSelectMatch",
+"when": "editorFocus"
+},
+
+make sure that any more keys not assigned when editorFocus.
+
+remark: vim extension also have been installed!
+https://marketplace.visualstudio.com/items?itemName=vscodevim.vim
+Get done! Good luck!
+```
+https://github.com/VSCodeVim/Vim/issues/2144
 
 ## Toggle Between Terminals in VS-Code
 * VSCode allows you to have multiple terminal tabs, but you have to manually switch between them with a drop down

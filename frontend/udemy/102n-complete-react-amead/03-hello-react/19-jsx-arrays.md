@@ -213,7 +213,7 @@ Number: 956
 ```
 // MORE CODE
 
-    <ol>{app.options.map(option => <li key={option}>option</li>)}</ol>
+    <ol>{app.options.map(option => <li key={option}>{option}</li>)}</ol>
 
 // MORE CODE
 ```
@@ -227,7 +227,7 @@ Number: 956
 ```
 // MORE CODE
 
-<ol>{app.options.map(option => <li key={option}>option</li>)}</ol>
+<ol>{app.options.map(option => <li key={option}>{option}</li>)}</ol>
 
 // MORE CODE
 ```
@@ -242,7 +242,7 @@ Number: 956
   <ol>
     {
       app.options.map(option => {
-        return <li key={option}>option</li>
+        return <li key={option}>{option}</li>
       })
     }
   </ol>

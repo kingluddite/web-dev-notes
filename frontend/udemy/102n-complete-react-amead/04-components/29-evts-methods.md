@@ -1,29 +1,35 @@
 # Events & Methods
-**note** There was an error because I used a value inside the input field of the AddOption class (remove that for now and we'll figure out what is causing the error and how to fix it later... stay tuned!)
-
-```
-// MORE CODE
-render() {
-   return (
-     <div>
-       <input type="text" name="optionName" value="type something here" />
-// MORE CODE
-```
-
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
 
 `$ live-server public`
 
-## Create a self containing class
-* `<button onClick={this.handlePick}>What should I do?</button>`
-* We reference the function, we don't call it
-    - That means we don't use `()`
+* We will work with our Action class and add an eventHandler to the button
 
 ```
 // MORE CODE
+
+class Action extends React.Component {
+  render() {
+    return (
+      <div>
+        <button onClick={}>What should I do?</button>
+      </div>
+    );
+  }
+}
+// MORE CODE
+```
+
+## Create a self containing class
+* We had global functions before
+* In our self-containing class we'll create a brand new class method
+
+```
+// MORE CODE
+
 class Action extends React.Component {
   handlePick() {
-    console.log('handlePick');
+    alert('handlePick clicked');
   }
 
   render() {
@@ -37,27 +43,33 @@ class Action extends React.Component {
 // MORE CODE
 ```
 
-* Click button and see in console `handlePick` every time you click
+* Make sure to only reference this function and do not call it
+* Click button in UI and see alert window pop up
+* **note** Don't forget `this` in `this.handlePick`
 
 ## Challenge
-* Add `Remove All` button to the Options class and add an event handler that logs "removed" when it is clicked
+1. Add `Remove All` button
+2. Setup `handleRemoveAll` method that alerts a message
+3. Setup onClick handler to fire the method
+4. Test to make sure it works
 
+## Challenge Solution
 ```
 // MORE CODE
+
 class Options extends React.Component {
   handleRemoveAll() {
-    console.log('remove all test');
+    alert('Remove all options');
   }
 
   render() {
     return (
       <div>
         <button onClick={this.handleRemoveAll}>Remove All</button>
-        <p>Options here</p>
+        <p>Options Text</p>
         {this.props.options.map(option => (
-          <Option key={option} optionText={option} />
+          <Option key={option} option={option} />
         ))}
-        <Option />
       </div>
     );
   }
@@ -65,33 +77,137 @@ class Options extends React.Component {
 // MORE CODE
 ```
 
-* CLick button and you'll see `remove all test`
+## Challenge Two
+1. Setup the form with text input and submit button
+2. Wire up onSubmit
+3. handleAddOption
+  * Fetch the value typed
+    - If value, then alert
 
-## Challenge 2
-* Setup the form with text input and submit form
-* wire up onSubmit
-* handleAddOption --> fetch the value typed --> if value, then log some message
-
+### Challenge Two Solution
 ```
 // MORE CODE
-class AddOption extends React.Component {
-  handleAddOption(e) {
-    e.preventDefault();
 
-    const option = e.target.elements.option.value;
-    if (option) {
-      console.log(option);
-    }
+class IndecisionApp extends React.Component {
+  render() {
+    const title = 'Indecision App';
+    const subtitle = 'Let your computer tell you what to do';
+    const options = ['Item One', 'Item Two', 'Item Four'];
+    return (
+      <div>
+        <Header title={title} subtitle={subtitle} />
+        <Action />
+        <Options options={options} />
+        <AddOption />
+      </div>
+    );
+  }
+}
+class Header extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subtitle}</h2>
+      </div>
+    );
+  }
+}
 
-    evt.target.elements.option.value = '';
+class Action extends React.Component {
+  handlePick() {
+    alert('handlePick clicked');
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleAddOption}>
+        <button onClick={this.handlePick}>What should I do?</button>
+      </div>
+    );
+  }
+}
+
+class Option extends React.Component {
+  render() {
+    return (
+      <div>
+        <p key={this.props.option}>
+          <strong>Option</strong>: {this.props.option}
+        </p>
+      </div>
+    );
+  }
+}
+class Options extends React.Component {
+  handleRemoveAll() {
+    alert('Remove all options');
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleRemoveAll}>Remove All</button>
+        <p>Options Text</p>
+        {this.props.options.map(option => (
+          <Option key={option} option={option} />
+        ))}
+      </div>
+    );
+  }
+}
+
+class AddOption extends React.Component {
+  handleFormSubmit(e) {
+    e.preventDefault();
+    const optionSelected = e.target.elements.option.value;
+    if (optionSelected) {
+      alert(`The selected Option is ${optionSelected}`);
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleFormSubmit}>
           <input type="text" name="option" />
-          <button>Add Option</button>
+          <button type="submit">Add Option</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<IndecisionApp />, document.getElementById('root'));
+
+// MORE CODE
+```
+
+* View in UI and click Add Option button and you will see alert
+* But if you add a bunch of spaces and click button you see a blank alert
+  - We can fix that by using **trim()**
+
+## trim() to the rescue
+* Try this in the console
+
+`>'    Space before and after   '.trim()` will give you this string without preceding or trailing spaces `Spaces before and after`
+
+```
+class AddOption extends React.Component {
+  handleFormSubmit(e) {
+    e.preventDefault();
+    const optionSelected = e.target.elements.option.value.trim();
+    if (optionSelected) {
+      alert(`The selected Option is ${optionSelected}`);
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleFormSubmit}>
+          <input type="text" name="option" />
+          <button type="submit">Add Option</button>
         </form>
       </div>
     );
@@ -100,9 +216,46 @@ class AddOption extends React.Component {
 // MORE CODE
 ```
 
-### Improve with `trim`
-* If people add spaces before or after you can trim all the space off using `trim`
+* Now if you add spaces before word or after or just spaces, `trim()` function will clear out all spaces
 
-`const option = e.target.elements.option.value.trim();`
+```
+// MORE CODE
+
+class AddOption extends React.Component {
+  handleFormSubmit(e) {
+    e.preventDefault();
+    const optionSelected = e.target.elements.option.value.trim();
+    if (optionSelected) {
+      alert(`The selected Option is ${optionSelected}`);
+    }
+    e.target.elements.option.value = '';
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleFormSubmit}>
+          <input type="text" name="option" />
+          <button type="submit">Add Option</button>
+        </form>
+      </div>
+    );
+  }
+}
+// MORE CODE
+```
+
+* Now the form clears after you close the alert window
+
+## Recap
+* We still use attributes onSubmit and onClick and we reference a function we want to call
+  - But instead of calling a global function on top of the file we call a class method (something that is contained inside of the class)
+    + That means our class AddOption
+      * Has everything it needs to run
+      * It has the HTML that will eventually render
+      * It has the eventHandler `this.handleAddOption`
+      * And it has the handleAddOption being defined inside the AddOption class
+      * We did the same thing for all methods in our 3 classes
 
 ## Next - problems `this` will cause us and how to fix them
+* This will be covering the `this` binding and issues it causes
