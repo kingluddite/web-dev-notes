@@ -107,4 +107,112 @@ ReactDOM.render(<Counter />, document.getElementById('root'));
 * Now we have set up our very first default component state and we've changed state and updated our UI
 * That is all 5 steps necessary
 
-Stop at 6:30 in vid
+## Common things that calls confusion with `this.setState()`
+* If you have multiple pieces of state, you do not have to provide them all here:
+
+```
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddOne = this.handleAddOne.bind(this);
+    this.handleMinusOne = this.handleMinusOne.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    this.state = {
+      count: 0,
+      name: 'John',
+    };
+  }
+  handleAddOne() {
+    this.setState(prevState => ({
+      count: prevState.count + 1,
+      name: 'Jane',
+    }));
+  }
+
+  handleMinusOne() {
+    console.log('minus one');
+  }
+
+  handleReset() {
+    console.log('reset');
+  }
+  render() {
+    return (
+      <div>
+        {this.state.name}
+// MORE CODE
+```
+
+## We update state object, not replace it
+* That will change John to Jane when button is clicked
+* **note** When we provide updates to state using `this.setState()` we are not overriding the entire state object, only changing specific values
+* Remove the name property for state as we won't use it
+
+## Challenge
+* Call `this.setState()` in `handleMinusOne()` method and decrement the **count** by 1
+
+### Challenge Solution
+
+```
+// MORE CODE
+
+  handleMinusOne() {
+    this.setState((prevState) => {
+      return {
+        count: prevState.count - 1
+      }
+    });
+  }
+// MORE CODE
+```
+
+* Refactored solutions
+* 
+```
+// MORE CODE
+
+  handleMinusOne() {
+    this.setState(prevState => ({
+      count: prevState.count - 1,
+    }));
+  }
+// MORE CODE
+```
+
+## Test in UI
+* Click +1 and -1 and watch your app increment and decrement the count
+  - React will automatically update the UI as the state changes
+
+## Let's do handleReset()
+* We don't care about previous state so we don't need to use `prevState`
+* All we do is set count to 0 like this:
+
+```
+// MORE CODE
+
+handleReset() {
+    this.setState(() => {
+      return {
+        count: 0
+      }
+    });
+  }
+// MORE CODE
+```
+
+* Refactored
+
+```
+// MORE CODE
+
+  handleReset() {
+    this.setState(() => ({
+      count: 0,
+    }));
+  }
+// MORE CODE
+```
+
+* Now that will set count to 0 in state and update UI whenever you click the handleReset method
+
+## Next - Alternative way to use this.setState()

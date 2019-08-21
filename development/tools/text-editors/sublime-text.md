@@ -1,4 +1,34 @@
 # Sublime Text 3
+## spell check with keyboard
+https://forum.sublimetext.com/t/spell-check-via-keyboard-possible/11583/3
+
+Install KeyboardSpellCheck
+Install Enchant, e.g. `$ brew install enchant`. This is required per package control docs above.
+Disable google use for spellcheck. My experience was that you actually had to create the settings file (You should be able to copy/paste this):
+
+```
+echo '{ 
+    "use_google": false,
+    "mark_google": false
+}' >> ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/KeyboardSpellCheck.sublime-settings;
+```
+
+4.If you don’t like the defaults, you can add your own bindings for moving between misspelled words, toggling spell check, and triggering possible replacements. I use my old Vim bindings here with comma as my hotkey:
+```
+  // Normal mode spell-check (Port of Vim mappings + KeyboardSpellCheck )
+
+  // Toggle SpellCheck / Highlight misspellings 
+  { "keys": [",", "z"], "command": "toggle_setting", "args": {"setting": "spell_check"}, "context": [{ "key": "setting.command_mode", "operand": true }, { "key": "setting.is_widget", "operand": false } ] },
+
+  // Check Spelling
+  { "keys": [",", "="], "command": "spell_check", "context": [{ "key": "setting.command_mode", "operand": true }, { "key": "setting.is_widget", "operand": false } ] },
+
+  // Go to next misspelling
+  { "keys": [",", "]"], "command": "next_misspelling" , "context": [{ "key": "setting.command_mode", "operand": true }, { "key": "setting.is_widget", "operand": false } ] }, 
+
+  // Go to previous misspelling
+  { "keys": [",", "["], "command": "prev_misspelling", "context": [{ "key": "setting.command_mode", "operand": true }, { "key": "setting.is_widget", "operand": false } ] },
+```
 
 ## I love VIM in Sublime Text 3
 * Every now and then it breaks and it takes me a couple hours to fix it
