@@ -1,7 +1,18 @@
 # Intro to Stateless functional components
 * It is stateless (no state)
-* Unlike class-based components it is just  function
+* Unlike class-based components it is just a function
 * It is a react component
+
+## We we use a combination of the two (in our app)
+* Some will stay class based components (CBC)
+* Some will be converted to stateless functional components (SFC)
+
+### IndecisionApp
+* It manages some state so we need this to remain a Class based component
+
+#### Header
+* Just a function we can convert this to a SFC
+* Action, Options and Option also can be converted as they are simple presentational components
 
 ## Presentational components
 * Not concerned with managing state
@@ -21,12 +32,51 @@ const User = () => {
 ReactDOM.render(<User />, document.getElementById('app'));
 ```
 
-* That will render Name and Age to screen
-* Stateless functional components don't allow for state
+* **note** In CBC inside of `render()` this is very similar to the function in SFCs
+  - Inside of `render()` it gets called behind the scenes and whatever comes back is shown to the screen
+    + And the exact same thing is true for SFC
+    + So for SFC we just have to render JSX
+
+## SFC Syntax
+* Spell with a capital letter
+* That will render `Name` and `Age` to screen
+* Stateless functional components don't allow for `state`
     - But they do allow `props`
     - Don't have access to `this`
     - `props` get passed into this function as a first argument
 
+### Pass in a prop
+```
+// MORE CODE
+const User = () => {
+  return (
+    <div>
+      <p>Name:</p>
+    </div>
+  )
+}
+
+ReactDOM.render(<User name="John Doe" />, document.getElementById('root'));
+```
+
+* But how do we use that prop in our SFC?
+
+```
+// MORE CODE
+const User = (prop) => {
+  return (
+    <div>
+      <p>Name: {prop.name}</p>
+    </div>
+  )
+}
+
+ReactDOM.render(<User name="John Doe" />, document.getElementById('root'));
+```
+
+* Will output `John Doe` to UI
+
+## Add more props
 ```
 const User = props => {
   return (
@@ -84,7 +134,7 @@ const Action = props => {
 ```
 
 ## Challenge
-* Change Options, Option and Header to SFCs
+* Change `Options`, `Option` and `Header` to SFCs
 
 ```
 class IndecisionApp extends React.Component {
