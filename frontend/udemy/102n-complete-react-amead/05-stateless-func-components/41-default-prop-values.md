@@ -1,76 +1,130 @@
 # Default prop values
+## Run our app (if not already running)
+
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
 
 `$ live-server public`
 
 * Default prop values can be added to Stateless Functional Components (SFC) or Class-based components (CBC)
 
+## Let's look at Header component
+* Set up a default prop for title so it didn't need to be provided
+* Set up a subtitle to not have a subtitle and if it isn't provided to remove the h2 altogether
+
 ## defaultProps
 * just an object
+* We can add this property to our component using [OurComponent].defaultProps
+* Can be added to CBC or SFC
+
+### add defaultProps to Header
+* Before
 
 ```
-  render() {
-    const subtitle = 'My computer is my BFF';
+// MORE CODE
 
+const Header = (props) => {
     return (
       <div>
-        <Header />
-        <Action
-          handlePick={this.handlePick}
-          hasOptions={this.state.options.length > 0}
-        />
-        <Options
-          options={this.state.options}
-          handleDeleteOptions={this.handleDeleteOptions}
-        />
-        <AddOption handleAddOption={this.handleAddOption} />
+        <h1>{props.title}</h1>
+        <h2>{props.subtitle}</h2>
       </div>
     );
-  }
 }
+// MORE CODE
+```
 
-const Header = props => {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      {props.subtitle && <h2>{props.subtitle}</h2>}
-    </div>
-  );
-};
+* Now let's add `defaultProps`
+
+```
+// MORE CODE
+
+const Header = props => (
+  <div>
+    <h1>{props.title}</h1>
+    <h2>{props.subtitle}</h2>
+  </div>
+);
 
 Header.defaultProps = {
-  title: 'Indecison',
+  title: 'This is my default title!',
 };
-
+// MORE CODE
 ```
 
-* We removed the **title** `prop` passed down to `<Header />` but because of the `defaultProp` we give **title** a default `prop`
-* Also removed the variable `title` up top
-* Conditionally show subtitle
-    - No H2 if we don't pass in the subtitle
-    - But if we do the text and surrounding h2 tags will appear
-* Add back in the subltitle
+* And remove title prop from getting passed into Header
 
 ```
-return (
+// MORE CODE
+
+        <Header title={title} subtitle={subtitle} />
+// MORE CODE
+```
+
+* To this:
+
+```
+// MORE CODE
+
+        <Header subtitle={subtitle} />
+// MORE CODE
+```
+
+## Now test in UI browser
+* You will see a title rendered `This is my default title!`
+* Undo change and since a prop was passed in that prop value is now used
+
+### We'll set our title to Indecision by default
+* And users can override this if they want to
+* But since we are on a page where we want the title to be Indecision we can remove the prop passed to head and the title variable
+
+```
+// MORE CODE
+
+  render() {
+    const subtitle = 'Let your computer tell you what to do';
+    return (
+      <div>
+        <Header subtitle={subtitle} />
+// MORE CODE
+```
+
+## Only show a subtitle if a subtitle prop was passed
+```
+// MORE CODE
+
+const Header = props => (
   <div>
-    <Header subtitle={subtitle} />
+    <h1>{props.title}</h1>
+    {props.subtitle && <h2>{props.subtitle}</h2>}
+  </div>
+);
+// MORE CODE
 ```
 
-## Add default options to the parent app containing component
+* Now it will only show a subtitle if a subtitle prop was provided to the Header component
+* This makes our component more flexible
+
+## Let's add default props to CBCs
+* By default our IndecisionApp has no options when it is first mounted
+* But let's give the user the ability to pass in starting app options if they want
+
 ```
 class IndecisionApp extends React.Component {
   constructor(props) {
-    // MORE CODE
-
+    super(props);
+    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    this.handlePick = this.handlePick.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      options: this.props.options,
+      options: props.options,
     };
   }
 
   // MORE CODE
+
+  render() {
+   // MORE CODE
   }
-// MORE CODE
 }
 
 IndecisionApp.defaultProps = {
@@ -78,66 +132,84 @@ IndecisionApp.defaultProps = {
 };
 
 // MORE CODE
+
 ReactDOM.render(
-  <IndecisionApp options={['manny', 'mo', 'jack']} />,
-  document.getElementById('app')
+  <IndecisionApp options={['one', 'two']} />,
+  document.getElementById('root')
 );
 ```
 
-* We create the `defaultProps` and assign it to an empty array
-* We set the state `options` to `this.props.options` to use that default value
-* Then we pass it in at the bottom to the:
+* Now you can override the default empty array for the options state
 
+## Leave off options so set this back to the way it was:
 ```
-ReactDOM.render(
-  <IndecisionApp options={['manny', 'mo', 'jack']} />,
-  document.getElementById('app')
-);
+ReactDOM.render(<IndecisionApp />, document.getElementById('root'));
 ```
-
-* Now the page has manny, mo and jack as the default options
-
-## Summary
-* Using defaultProps helps us create reusable components
-* Remove default props for now
-
-`ReactDOM.render(<IndecisionApp />, document.getElementById('app'));`
 
 ## Challenge
-* Create a default prop `count` for `Counter`
-* If prop count exists we'll use it for the default value for the Counter state
-* If it doesn't exist set up a default prop value to `0`
+* Do this for Counter CBC
 
-### Solution
+### Instructions
+* Allow counter to take a prop count
+  - If that prop exists we'll use it's value as the default state value
+  - If it doesn't exist we'll set up a default value of 0
+
 `$ babel src/playground/counter-example.js --out-file=public/scripts/app.js --presets=env,react --watch`
 
 `$ live-server public`
 
-* That will switch the server to our test file `counter-example.js`
-
+## Solution
 ```
 class Counter extends React.Component {
   constructor(props) {
-    // MORE CODE
-
+    super(props);
+    this.handleAddOne = this.handleAddOne.bind(this);
+    this.handleMinusOne = this.handleMinusOne.bind(this);
+    this.handleReset = this.handleReset.bind(this);
     this.state = {
-      count: this.props.count,
-      name: 'John',
+      count: props.count,
     };
   }
+  handleAddOne() {
+    this.setState(prevState => ({
+      count: prevState.count + 1,
+    }));
+  }
 
-  // MORE CODE
+  handleMinusOne() {
+    this.setState(prevState => ({
+      count: prevState.count - 1,
+    }));
+  }
+
+  handleReset() {
+    this.setState(prevState => ({
+      count: 0,
+    }));
+  }
+  render() {
+    return (
+      <div>
+        <h1>Count: {this.state.count} </h1>
+        <button onClick={this.handleAddOne}>+1</button>
+        <button onClick={this.handleMinusOne}>-1</button>
+        <button onClick={this.handleReset}>reset</button>
+      </div>
+    );
+  }
+}
 
 Counter.defaultProps = {
   count: 0,
 };
-ReactDOM.render(<Counter count="100" />, document.getElementById('app'));
+
+ReactDOM.render(<Counter count={5} />, document.getElementById('root'));
 ```
 
-* It has 100 as default value
-* Remvove 100 in ReactDOM.render() and it goes to the `defaultProps` value of 0
-
-## Switch back to app.js
+## Put code back to app.js
 `$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
 
 `$ live-server public`
+
+## Next
+* Debug React code
