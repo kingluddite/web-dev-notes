@@ -10,6 +10,8 @@
 * utils.js
 
 ## Working version of app.js
+* We'll copy the content of `src/playground/app.js` and override all the code in `src/app.js`
+
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -17,11 +19,10 @@ import ReactDOM from 'react-dom';
 class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    this.handleDeleteOption = this.handleDeleteOption.bind(this);
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
-    this.handleDeleteOption = this.handleDeleteOption.bind(this);
 
     this.state = {
       options: [],
@@ -34,28 +35,32 @@ class IndecisionApp extends React.Component {
       const options = JSON.parse(json);
 
       if (options) {
-        this.setState(() => ({ options }));
+        this.setState(() => ({
+          options,
+        }));
       }
     } catch (e) {
-      // do nothing
-      // fallback to empty array which is the default value
+      // do nothing at all!
     }
   }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevState.options.length !== this.state.options.length) {
-      // convert our json object into a string
       const json = JSON.stringify(this.state.options);
       localStorage.setItem('options', json);
     }
   }
-
   componentWillUnmount() {
-    console.log('IndecisionApp Component did unmount');
+    console.log('componentWillUnmount fired!');
   }
-
+  handlePick() {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum];
+    alert(option);
+  }
   handleDeleteOptions() {
-    this.setState(() => ({ options: [] }));
+    this.setState(() => ({
+      options: [],
+    }));
   }
 
   handleDeleteOption(optionToRemove) {
@@ -64,36 +69,26 @@ class IndecisionApp extends React.Component {
     }));
   }
 
-  handlePick() {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum];
-    console.log(option);
-  }
-
   handleAddOption(option) {
-    // only run if there is an empty string
     if (!option) {
-      return 'Enter valid value to add item';
+      return 'Enter a valid value to add option';
     } else if (this.state.options.indexOf(option) > -1) {
-      return 'This option already exists';
+      return 'Option already exists. Please enter another Item';
     }
 
-    // we have two returns above so we don't need to use an else
-    // here
     this.setState(prevState => ({
-      options: prevState.options.concat(option),
+      options: prevState.options.concat([option]),
     }));
   }
 
   render() {
-    const subtitle = 'My computer is my BFF';
-
+    const subtitle = 'Let your computer tell you what to do';
     return (
       <div>
         <Header subtitle={subtitle} />
         <Action
-          handlePick={this.handlePick}
           hasOptions={this.state.options.length > 0}
+          handlePick={this.handlePick}
         />
         <Options
           options={this.state.options}
@@ -106,99 +101,104 @@ class IndecisionApp extends React.Component {
   }
 }
 
-const Header = props => {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      {props.subtitle && <h2>{props.subtitle}</h2>}
-    </div>
-  );
-};
+const Header = props => (
+  <div>
+    <h1>{props.title}</h1>
+    {props.subtitle && <h2>{props.subtitle}</h2>}
+  </div>
+);
 
 Header.defaultProps = {
-  title: 'Indecison',
+  title: 'This is my default title!',
 };
 
-const Action = props => {
-  return (
-    <div>
-      <button onClick={props.handlePick} disabled={!props.hasOptions}>
-        What should I do?
-      </button>
-    </div>
-  );
-};
+const Action = props => (
+  <div>
+    <button onClick={props.handlePick} disabled={!props.hasOptions}>
+      What should I do?
+    </button>
+  </div>
+);
 
-const Options = props => {
-  return (
-    <div>
-      <button onClick={props.handleDeleteOptions}>Remove All</button>
-      {props.options.length === 0 && <p>Please add an option to get started</p>}
-      {props.options.map(option => (
-        <Option
-          key={option}
-          optionText={option}
-          handleDeleteOption={props.handleDeleteOption}
-        />
-      ))}
-    </div>
-  );
-};
+const Option = props => (
+  <div>
+    {props.optionText}
+    <button
+      onClick={e => {
+        props.handleDeleteOption(props.optionText);
+      }}
+    >
+      Remove
+    </button>
+  </div>
+);
 
-const Option = props => {
-  return (
-    <div>
-      <p>
-        {props.optionText}{' '}
-        <button
-          onClick={() => {
-            props.handleDeleteOption(props.optionText);
-          }}
-        >
-          remove
-        </button>
-      </p>
-    </div>
-  );
-};
+const Options = props => (
+  <div>
+    <button onClick={props.handleDeleteOptions}>Remove All</button>
+    <p>Options Text</p>
+    {props.options.length === 0 && (
+      <p>Currently no options. Please add one to get started</p>
+    )}
+    {props.options.map(option => (
+      <Option
+        key={option}
+        optionText={option}
+        handleDeleteOption={props.handleDeleteOption}
+      />
+    ))}
+  </div>
+);
 
 class AddOption extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleAddOption = this.handleAddOption.bind(this);
-
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.state = {
       error: undefined,
     };
   }
 
-  handleAddOption(e) {
+  handleFormSubmit(e) {
     e.preventDefault();
+    const optionSelected = e.target.elements.option.value.trim();
+    const error = this.props.handleAddOption(optionSelected);
+    this.setState(() => ({
+      error,
+    }));
 
-    const option = e.target.elements.option.value.trim();
-    const error = this.props.handleAddOption(option);
-
-    this.setState(() => ({ error }));
-
-    e.target.elements.option.value = '';
+    if (!error) {
+      e.target.elements.option.value = '';
+    }
   }
 
   render() {
     return (
       <div>
         {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.handleAddOption}>
+        <form onSubmit={this.handleFormSubmit}>
           <input type="text" name="option" />
-          <button>Add Option</button>
+          <button type="submit">Add Option</button>
         </form>
       </div>
     );
   }
 }
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
+ReactDOM.render(<IndecisionApp />, document.getElementById('root'));
 ```
+
+## components directory
+* Create `src/components/`
+
+### When naming files for components
+* Give it the same name as the component itself (common naming convention in React)
+
+### Make sure to export the components
+* After you create them make sure you give them `default` exports
+  - We could use named exports but since we are just exporting one thing it makes sense to use a default export
+* And make sure you import them into app.js
+* Make sure you import the `react` 3rd party module at the top of every component
 
 ## AddOptions
 ```
@@ -240,7 +240,7 @@ export default class AddOption extends React.Component {
 }
 ```
 
-* You can use export default like above for classes only
+* **note** You can use export `default` like above for classes only
 * You can't do this for SFCs
 
 ## Option
@@ -265,9 +265,13 @@ const Option = props => {
 export default Option;
 ```
 
-* There is no visual sign that react was used above but you need to import React here or you will get an error
-* The reason is this file has JSX and we need react to convert it into JavaScript
-* Make sure you import it like this:
+## Don't forget to import React
+* **note** There is no visual sign that React was used above but you need to import React here or you will get an error
+  - Why?
+    + The reason is this file has JSX and we need react to convert it into JavaScript
+* **notes**
+  + In some modern frameworks like `Next` or `Gatsbyjs` you will see that this import is optional
+  + Some of these frameworks also make using `semi-colons` optional
 
 ```
 import React from 'react';
@@ -352,29 +356,23 @@ const Options = props => {
 export default Options;
 ```
 
+## Test it out in the browser
 * Your app should work just as it did before
-* Remember you can't export const variables like this:
+* Remember you can't export `const` variables like this:
 
 `export default const Option = (props) => {`
 
 ## Bad Anonymous Components
-* Will use `Unknown` as the component name
+* This will be hard to test in React Dev tools as the the code is minified so you are just getting 1 letter components
+  - **UPDATE** - With the new React dev tools this is no longer an issue both ways of exports (shortcut or long way) both show name of component
 
-* You could do this:
-
-`export default (props) => {`
-
-* But that latter example is bad because you won't see a name of a component in the React dev tools in Chrome
-
-## Preferred Way
-
-`export default const Option = (props) => {`
-
-* It's component name will show up properly in React Dev tool
+## React dev tools issue
+* If you look at the component names they are just 1 letter and hard to know what they are, this is because of minification
+* We will fix this when we learn about sourcemaps (very soon!)
 
 ## Houston we have a problem
 * You get an error when you try to add an `option`
-* The reason is Option needs to be imported inside Options because that's where it is used
+* The reason is `Option` needs to be imported inside Options because that's where it is used
 
 ## Options
 ```

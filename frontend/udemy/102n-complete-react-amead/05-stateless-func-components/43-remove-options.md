@@ -1,6 +1,12 @@
 # Remove Options
+## Run our app (if not already running)
+
+`$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
+
+`$ live-server public`
+
 ## Fix verbose code (refactor)
-```js
+```
 handleDeleteOptions() {
   this.setState(() => {
     return {
@@ -13,7 +19,7 @@ handleDeleteOptions() {
 * We can make this shorter
 * We are just setting options to an empty array but it takes us 5 lines:
 
-```js
+```
 this.setState(() => {
   return {
     options: [],
@@ -283,7 +289,6 @@ const Option = props => {
 * There are a few ways to accomplish this task
   - The first way would be to change how our `Option` SFC works
 
-#
 ```
 // MORE CODE
 
@@ -402,7 +407,6 @@ handleDeleteOption(option) {
   - We need to check the option and see if it matches the argument that was passed in
      + We have an issue with clarity both the argument is named `option` and the filter variable is named `option` let's clear this up
 
-##
 ```
 // MORE CODE
 
@@ -585,7 +589,7 @@ const Option = props => {
 ## Stuff we'll do
 * We'll go into this method:
 
-```js
+```
 handleDeleteOption(option) {
   console.log('hdo', option);
 }
@@ -605,7 +609,7 @@ handleDeleteOption(option) {
 * It enables you to filter various items from an array and it returns a brand new array with just the filtered items
   - So we will use `filter()` to give us an new array with all or original items minus what we deleted and that will be our new state for `options`
 
-```js
+```
 var words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
 
 const result = words.filter(word => word.length > 6);
@@ -618,7 +622,7 @@ console.log(result);
 * If condition is `true` it is included in new array
 * If `false` it is not included in new array
 
-```js
+```
 handleDeleteOption(option) {
   this.setState(prevState => ({
     options: prevState.options.filter(option => {
@@ -635,7 +639,7 @@ handleDeleteOption(option) {
   - We need conditional logic inside here to make this work properly
   - The problem is we have two variable named `option` so we need to rename on
 
-```js
+```
 handleDeleteOption(optionToRemove) {
   this.setState(prevState => ({
     options: prevState.options.filter(option => {
@@ -650,7 +654,7 @@ handleDeleteOption(optionToRemove) {
 * Remove 1 and watch how that items if instantly removed from the UX
 
 ## Refactor with:
-```js
+```
 handleDeleteOption(optionToRemove) {
   this.setState(prevState => ({
     options: prevState.options.filter(option => optionToRemove !== option),
@@ -666,7 +670,7 @@ handleDeleteOption(optionToRemove) {
 
 * Why does this code not get immediately executed:
 
-```js
+```
 onClick={(e) => {
     props.handleDeleteOption(props.optionText)
  }}

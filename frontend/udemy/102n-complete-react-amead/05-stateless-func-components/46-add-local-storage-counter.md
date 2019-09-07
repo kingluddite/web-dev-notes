@@ -1,279 +1,286 @@
 # Add localStorage to counter example
-* We won't need JSON because we are working with numbers
-* But our numbers are converted to strings
+* As we count up and down we will store that count
+* If the user were to close down the tab and come back we're going to pick up right where they left off
+  - We will use LCMs and localStorage to keep track of that count over time
+
+## Do we need to use any of the JSON methods?
+* No
+
+### Why not?
+* We won't need JSON because we are working a single number
+
+### One thing you need to know
+* **remember** `localStorage` is a string based key/value store
+* This is important to know as we work with the counter example because we have a number not a string
+  - So we don't need to use `JSON.stringify()` and `JSON.parse()`
+  - We are going to have a few problems
+
+## What happens if we save a number in localStorage and try to fetch it back
+* We will get back a string
+
+`> const num = '12'`
+
+* We need the number `12` not the string `"12"`
+  - Because if we try to do math operations on a string it will not work
 
 ```
-> const num = '12';
-< undefined
-> num + 1
-< "121"
+const num = '12';
+num + 1; // "111"
 ```
 
-* You might expect 12 + 1 = 13 but when they are strings they are concatentated to form "123"
+* We expect 13 but we get '111' instead and this is a problem
 
-## parseInt()
-* Takes a string and converts it to a number
+### `parseInt()` to the rescue!
+* syntax
+  - `parseInt(string, base)`
+* So if we want to convert a string to a number we will use parseInt
+  - We use the base 10
+  - Default (if second argument not provided is base `10`)
 
 ```
-> parseInt(num)
-< 12
-parseInt(num) + 1
-< 13
+parseInt(num) // 12
 ```
 
-* Excellent!
-* We can convert strings to numbers
+* Now we can add 1 and get 13 like this:
 
-## What if you parseInt a string?
 ```
-> parseInt('abc', 10)
-< NaN
-> "a" * 33
-< NaN
+parseInt(num) + 1; // 13
 ```
 
-## Check to make sure NaN
+## What happens if you try to use parseInt() on a string?
+* You will get NaN (Not A Number)
+
 ```
-> isNaN('a' * 33)
-< true
-> isNaN(1 + 1)
-< false
+const name = 'Joe';
+parseInt(name); // NaN
 ```
 
-## No Props
-* Since we are reading from localStorage no need to pass a prop anymore so we can:
-* Set the default state for IndecisionApp to an empty array
-* and remove the defaultProps
-* Do the same for the counter app
+* The same thing happens if you try to multiple a string by a number
+
+```
+> 'a' * 123; // NaN
+```
+
+* JavaScript has no idea what to do
+
+## Check the type too with isNAN()
+* After using `parseInt()` you will also need to remember to check the type to make sure that it is actually a number and its not NaN
+* To do that use `isNaN`
+  - This enables you to check if something is NaN or not
+  - So if you try to multiple a string and a number using isNan() you will get true
+
+```
+> isNaN('a' * 12); // true
+```
+
+* And if you want to make sure it is indeed a number
+
+```
+> isNaN(122 * 12); // false
+```
+
+## User passing in props?
+* Doesn't make sense now that we are using localStorage because we are just going to read the saved data
+* So we'll remove `props.options` from IndecisionApp
+
+`app.js`
 
 ```
 class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    this.handleDeleteOption = this.handleDeleteOption.bind(this);
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
+
+    this.state = {
+      options: props.options,
+    };
+  }
+// MORE CODE
+```
+
+* And we'll replace `props.options` with an empty array
+
+```
+class IndecisionApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handleDeleteOption = this.handleDeleteOption.bind(this);
+    this.handlePick = this.handlePick.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
 
     this.state = {
       options: [],
     };
   }
-
-  componentDidMount() {
-    try {
-      const json = localStorage.getItem('options');
-      const options = JSON.parse(json);
-
-      if (options) {
-        this.setState(() => ({ options }));
-      }
-    } catch (e) {
-      // do nothing
-      // fallback to empty array which is the default value
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.options.length !== this.state.options.length) {
-      // convert our json object into a string
-      const json = JSON.stringify(this.state.options);
-      localStorage.setItem('options', json);
-    }
-  }
-
-  componentWillUnmount() {
-    console.log('IndecisionApp Component did unmount');
-  }
-
-  handleDeleteOptions() {
-    this.setState(() => ({ options: [] }));
-  }
-
-  handleDeleteOption(optionToRemove) {
-    this.setState(prevState => ({
-      options: prevState.options.filter(option => optionToRemove !== option),
-    }));
-  }
-
-  handlePick() {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum];
-    console.log(option);
-  }
-
-  handleAddOption(option) {
-    // only run if there is an empty string
-    if (!option) {
-      return 'Enter valid value to add item';
-    } else if (this.state.options.indexOf(option) > -1) {
-      return 'This option already exists';
-    }
-
-    // we have two returns above so we don't need to use an else
-    // here
-    this.setState(prevState => ({
-      options: prevState.options.concat(option),
-    }));
-  }
-
-  render() {
-    const subtitle = 'My computer is my BFF';
-
-    return (
-      <div>
-        <Header subtitle={subtitle} />
-        <Action
-          handlePick={this.handlePick}
-          hasOptions={this.state.options.length > 0}
-        />
-        <Options
-          options={this.state.options}
-          handleDeleteOptions={this.handleDeleteOptions}
-          handleDeleteOption={this.handleDeleteOption}
-        />
-        <AddOption handleAddOption={this.handleAddOption} />
-      </div>
-    );
-  }
-}
-
-const Header = props => {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      {props.subtitle && <h2>{props.subtitle}</h2>}
-    </div>
-  );
-};
-
-Header.defaultProps = {
-  title: 'Indecison',
-};
-
-const Action = props => {
-  return (
-    <div>
-      <button onClick={props.handlePick} disabled={!props.hasOptions}>
-        What should I do?
-      </button>
-    </div>
-  );
-};
-
-const Options = props => {
-  return (
-    <div>
-      <button onClick={props.handleDeleteOptions}>Remove All</button>
-      {props.options.length === 0 && <p>Please add an option to get started</p>}
-      {props.options.map(option => (
-        <Option
-          key={option}
-          optionText={option}
-          handleDeleteOption={props.handleDeleteOption}
-        />
-      ))}
-    </div>
-  );
-};
-
-const Option = props => {
-  return (
-    <div>
-      <p>
-        {props.optionText}{' '}
-        <button
-          onClick={() => {
-            props.handleDeleteOption(props.optionText);
-          }}
-        >
-          remove
-        </button>
-      </p>
-    </div>
-  );
-};
-
-class AddOption extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleAddOption = this.handleAddOption.bind(this);
-
-    this.state = {
-      error: undefined,
-    };
-  }
-
-  handleAddOption(e) {
-    e.preventDefault();
-
-    const option = e.target.elements.option.value.trim();
-    const error = this.props.handleAddOption(option);
-
-    this.setState(() => ({ error }));
-
-    e.target.elements.option.value = '';
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.handleAddOption}>
-          <input type="text" name="option" />
-          <button>Add Option</button>
-        </form>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
+// MORE CODE
 ```
 
-## Challenge
-* Do what we did for our app for the counter app
-    - Add LifeCycle methods
-    - Remove defaultProps
-    - Set default value of state to 0
-    - Use localStorage to save count to localStorage
+* And we'll also delete the default props
 
-### Solution
-`$ babel src/playground/counter-example.js --out-file=public/scripts/app.js --presets=env,react --watch`
+```
+IndecisionApp.defaultProps = {
+  options: [],
+};
+```
+
+* We'll do the same thing for the counter example
+
+```
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddOne = this.handleAddOne.bind(this);
+    this.handleMinusOne = this.handleMinusOne.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    this.state = {
+      count: props.count,
+    };
+  }
+// MORE CODE
+```
+
+* And we'll set the default count state to `0`
+
+```
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddOne = this.handleAddOne.bind(this);
+    this.handleMinusOne = this.handleMinusOne.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    this.state = {
+      count: 0,
+    };
+  }
+// MORE CODE
+```
+
+* And we'll also remove counter's `defaultProps`
+
+```
+// MORE CODE
+
+Counter.defaultProps = {
+  count: 0,
+};
+// MORE CODE
+```
+
+* We do this because any prop that got passed in (since we are using localStorage) would just be overridden
+
+## Challenge
+* Switch babel to counter
+* Set up `componentDidMount()` and `componentDidUpdate()`
+* And you'll want to use `localStorage()` to get everything working
+
+## Challenge Solution
+## Run our counter app
+
+`$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
 
 `$ live-server public`
 
-* Calls to DB can be expensive so you want to check if there is a change before you make the call
+### Now let's make our counter work with localStorage
+* Checking for a change in state is important not with localStorage as it is cheap to use but when we use Databases it will become expensive because we'll be polling a server with every change
+* We check if the previous state (prevState) is different than current state (this.state.count) and if it is then we update localStorage
 
-```js
-componentDidUpdate(prevProps, prevState) {
-  if (prevState.count !== this.state.count) {
-    localStorage.setItem('count', count);
+```
+// MORE CODE
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.count !== this.state.count) {
+      localStorage.setItem('count', this.state.count);
+    }
   }
-}
+// MORE CODE
 ```
 
-* We check that there is a difference in our `count` value
+* When we setItem to localStorage our number will be saved as a string (we'll need to deal with this later)
+
+## Test it out
+* Increase count to 5
+* Then in client console try `> localStorage.getItem('count')`
+  - And you will see the string "5" is returned
+
+### Question: Is parseInt() necessary?
+`const count = JSON.parse(json)`
+
+and
+
+`const count = parseInt(json, 10)`
+
+* Both seem to work
+* Is there any benefit or downside to using one over the other?
 
 ```
-> localStorage.getItem('count')
-> "2"
-```
+// MORE CODE
 
-* Our count is a string
-* Now we set up `componentDidMount()` and get the string from localStorage
-
-```js
-componentDidMount() {
-  const stringCount = localStorage.getItem('count');
-  const count = parseInt(stringCount, 10);
-
-  if (!isNaN(count)) {
-    this.setState(() => ({ count }));
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddOne = this.handleAddOne.bind(this);
+    this.handleMinusOne = this.handleMinusOne.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    this.state = {
+      count: 'abc',
+    };
   }
-}
+
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem('count');
+      const count = JSON.parse(json);
+
+      if (count) {
+        this.setState(() => ({
+          count,
+        }));
+      }
+    } catch (e) {
+      // do nothing
+    }
+  }
+// MORE CODE
 ```
 
+* Refresh page and count is "abc" string
+* Click +1 and get 1 appended to the count like "abc1111111"
+* Click -1 and you'll get NaN (Not a number)
+* Both break our app - Not good!
 
+#### Answer: Yes parseInt() is necessary
+*  If it's not a number then you'll run into issues so we need to ensure it's an integer specifically
+*  The first option only works in this scenario because we are only dealing with code generated numbers, i.e. they will always be numeric, not an input?
+
+```
+// MORE CODE
+
+  componentDidMount() {
+      const stringCount = localStorage.getItem('count');
+      const count = parseInt(stringCount, 10);
+
+      // check count is a number
+      if (!isNaN(count)) {
+        this.setState(() => ({ count }));
+      }
+  }
+// MORE CODE
+```
+
+* Now even if our default value is "abc" our app still works
+  - Because we only change the state if count is a number
+* Do we need try/catch?
+  - No
+      + `Try/catch` is only used for catching exceptions and parsing something that's not an integer won't throw an exception so it effectively does nothing
+
+## Run our app (if not already running)
+
+`$ babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch`
+
+`$ live-server public`
+
+## Next - Tooling and Webpack
