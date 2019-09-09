@@ -27,7 +27,7 @@ export default Action;
 ## Creat the file and add the .scss
 `src/styles/_button.scss`
 
-```css
+```
 .big-button {
   background: $purple;
 }
@@ -42,15 +42,18 @@ export default Action;
 @import './components/header';
 ```
 
-![blue big button](https://i.imgur.com/Jl790xI.png)
+![purple big button](https://i.imgur.com/Jl790xI.png)
 
 ## Sass built in function
-* darken($color, $amount)
-    - returns the color
+```
+darken($color, $amount);
+```
+
+* Returns the color
 
 `_button.scss`
 
-```css
+```
 .big-button {
   background: $purple;
   border: none;
@@ -62,7 +65,7 @@ export default Action;
 
 * [Read More on Sass built-in functions](http://sass-lang.com/documentation/Sass/Script/Functions.html)
 
-```css
+```
 .big-button {
   background: $purple;
   border: none;
@@ -73,8 +76,8 @@ export default Action;
 }
 ```
 
-### Adjust the spacing
-```css
+### Adjust the spacing of the button
+```
 .big-button {
   background: $purple;
   border: none;
@@ -93,7 +96,7 @@ export default Action;
 ## Style the state of the button
 * faded if not clickable, regular if clickable
 
-```css
+```
 .big-button {
   background: $purple;
   border: none;
@@ -118,7 +121,7 @@ export default Action;
 
 `_base.scss`
 
-```css
+```
 html {
   font-size: 62.5%
 }
@@ -155,7 +158,7 @@ button:disabled {
 * We have a regular button
 * We can use BEM to organize this a lot better
 
-`Actions.js`
+`Action.js`
 
 ```
 import React from 'react';
@@ -227,7 +230,7 @@ const Option = props => (
 
 `_buttons.scss`
 
-```css
+```
 .button {
   background: $purple;
   border: none;

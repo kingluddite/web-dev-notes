@@ -10,6 +10,8 @@
 ### Install normalize.css
 `$ yarn add normalize.css`
 
+`$ npm i normalize.css`
+
 ### Use normalize.css
 `app.js`
 
@@ -37,7 +39,7 @@ ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
 
 * Change this line:
 
-```js
+```
 // MORE CODE
 test: /\.scss$/,
 // MORE CODE
@@ -45,7 +47,7 @@ test: /\.scss$/,
 
 * To this line:
 
-```js
+```
 // MORE CODE
 test: /\.s?css$/,
 // MORE CODE
@@ -55,7 +57,7 @@ test: /\.s?css$/,
 * So we are looking at both `css` files and `scss` files
 
 ## That's it
-* We just added normalize.css to our site
+* We just added `normalize.css` to our site
 * Check it out in the browser
 * The change won't be drastic but rest assured, we just made a change that ensures the sites we build will be build on a foundation of cross-browser consistency
 

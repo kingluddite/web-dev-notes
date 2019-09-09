@@ -4,6 +4,9 @@
 * Option
 * Options
 
+## eslint
+* Since we are using eslint we won't have to make this change but if you were not, please update the following
+
 `Action.js`
 
 ```

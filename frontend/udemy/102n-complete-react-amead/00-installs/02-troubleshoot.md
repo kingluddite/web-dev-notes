@@ -1,5 +1,60 @@
 # Troubleshoot
 
+## scss not showing sourcemaps
+* Took awhile and shut down and restarted and it worked
+
+## Open browser with webpack
+* Remove this code
+* Was causing issues with not closing down port 8080
+
+`package.json`
+
+```
+// MORE CODE
+
+  "scripts": {
+    "build": "webpack",
+    "dev-server": "webpack-dev-server & open http://localhost:8080/"
+  },
+
+// MORE CODE
+```
+
+* Update to:
+
+```
+// MORE CODE
+
+  "scripts": {
+    "build": "webpack",
+    "dev-server": "webpack-dev-server"
+  },
+
+// MORE CODE
+```
+
+## can't compile CSS or SCSS
+* Not sure how to fix this error
+* Did a reboot and it went away
+* Removed node_modules and package-lock.json and reinstalled still didn't work
+
+`$ rm -rf node_modules && yarn cache clear --force && yarn install`
+`$ rm -rf node_modules && npm cache clear --force && npm install`
+
+### rebuild node-sass
+`$ npm rebuild node-sass`
+
+## Best solution find port 8080 and kill it (it wasn't properly shut down)
+```
+lsof -n -i4TCP:8080
+```
+
+* Then kill that port with something like `$ kill -9 2534`
+
+## webpack-dev-server
+* Was getting index.js not found in node_modules webpack-dev-server/client/index.js
+    - The file was there, I just deleted it and crated another index.js and it worked
+
 ## ESLint replaces jshint/jslint
 * If you don't know what jshint or lint is, skip this section
 

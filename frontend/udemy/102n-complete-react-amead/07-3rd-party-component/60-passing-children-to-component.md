@@ -122,7 +122,7 @@ const template = (
 ReactDOM.render(<Layout />, document.getElementById('root'));
 ```
 
-* Now we have this JSX data and we want to render it dynamically inside of our Layout component and specifically inbetween the header and footer content of Layout... how can we do that?
+* Now we have this JSX data and we want to render it dynamically inside of our Layout component and specifically in between the header and footer content of Layout... how can we do that?
   - When we want to pass data into a component we just pass it in as a `prop`
 
 `app.js`
@@ -222,14 +222,13 @@ ReactDOM.render(
 );
 ```
 
-## children prop
+## `children` prop
 * Now we are currently not using that nested JSX inside our opening and closing tag
 * To use it we can use the `children` prop
   - This is why we call this a built-in prop versus a prop we set up ourselves
     + props (SFC)
     + this.props (CBC)
 
-##
 `app.js`
 
 ```
@@ -318,5 +317,3 @@ import IndecisionApp from './components/IndecisionApp';
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('root'));
 ```
-
-

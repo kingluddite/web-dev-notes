@@ -2,7 +2,7 @@
 * New file in `src/styles/components/_option.scss`
 * Make sure you import it inside `styles.scss`
 
-```css
+```
 .option {
   display: flex;
   justify-content: space-between;
@@ -37,7 +37,7 @@ const Option = props => (
 
 `_options.scss`
 
-```css
+```
 .option {
   border-bottom: 1px solid lighten($light-blue, 10%);
   display: flex;
@@ -52,7 +52,7 @@ const Option = props => (
 ![item focus](https://i.imgur.com/ILVXF9W.png)
 
 ### The beauty of index
-* Where will get the number from that we want to pass into our list of options?
+* Where will we get the number that we want to pass into our list of options?
 * It can't be static, that would be a pain updating
 * Luckily map give us access to `index`
 
@@ -92,7 +92,7 @@ const Option = props => (
 
 `_option.scss`
 
-```css
+```
 .option {
   border-bottom: 1px solid lighten($light-blue, 10%);
   display: flex;
@@ -115,7 +115,7 @@ const Option = props => (
 ## AddOption
 `src/styles/components/_add-option.scss`
 
-```css
+```
 .add-option {
   &__error {
     color: $off-white;
@@ -169,7 +169,7 @@ render() {
 * Just give the form `display: flex`
 * And give the input `flex: 1` like this:
 
-```css
+```
 .add-option {
 
   &__error {
@@ -203,7 +203,7 @@ render() {
 
 ![final form style](https://i.imgur.com/odsMMl9.png)
 
-```css
+```
 &__input {
   background: $dark-blue;
   border: none;

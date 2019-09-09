@@ -1,7 +1,7 @@
 # Architecture and Header styles
 `src/styles/base/_base.scss`
 
-```css
+```
 body {
   font-family: Helvetica, Arial, sans-serif;
 }
@@ -14,21 +14,21 @@ h1 {
 * The font changes
 
 ## rem
-* We set `h1` to 1rem and if we check the computed style we see `16px`
+* We set `h1` to **1rem** and if we check the computed style we see `16px`
 
 ![font computed value](https://i.imgur.com/CzMEBc2.png)
 
 ### Make math easy
 * The best way to use **rems** and make the math simple is to set the `html` font-size to `62.5%`
-* Browsers by default have `16px` so if we set html to 62.5%
+* Browsers by default have `16px` so if we set HTML to `62.5%`
 
 `16 * 0.625 = 10`
 
-* We make the fonts base `10` so to figure out other rem values we just multiple the rem value by 10 and that will give us the pixel value
+* We make the fonts base `10` so to figure out other `rem` values we just multiple the `rem` value by 10 and that will give us the pixel value
 * So now my `h1` is only `10px` (1rem)
     - I want it to be `24px` computed value so I set it to `2.4rem`
 
-```css
+```
 html {
   font-size: 62.5%
 }
@@ -46,7 +46,7 @@ h1 {
 * This is a great way to start all your sites with font sizing
 * We'll remove `h1` for now:
 
-```css
+```
 html {
   font-size: 62.5%
 }
@@ -56,15 +56,17 @@ body {
 }
 ```
 
-* We'll create a `components` folder that will mirror their jsx components folder
+* We'll create a `components` folder that will mirror their JSX components folder
 * `$ mkdir src/styles/components`
-* And create our first component to style our Header
+* And create our first component to style our `Header`
     - `$ touch src/styles/components/_header.scss`
 
 ### import our new partial
 `styles.scss`
 
-```css
+* `@import` is different than `import` but they both import assets
+
+```
 @import './base/base';
 @import './components/header';
 ```
@@ -91,7 +93,7 @@ const Header = props => (
 );
 
 Header.defaultProps = {
-  title: 'Indecison',
+  title: 'Indecision',
 };
 
 export default Header;
@@ -107,7 +109,7 @@ export default Header;
 
 `_header.scss`
 
-```css
+```
 .header {
   background: #20222b;
   color: #ffffff;

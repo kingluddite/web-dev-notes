@@ -18,13 +18,11 @@ $purple: #8357c5;
 
 `_widget.scss`
 
-```css
-.widget {
-  &__header {
+```
+.widget-header {
     background: $blue;
     color: $off-white;
     padding: $m-size;
-  }
 }
 ```
 
@@ -33,9 +31,9 @@ $purple: #8357c5;
 ```
 // MORE CODE
 const Options = props => (
-  <div className="widget">
-    <div class="widget__header">
-      <h3 class="widget__title">Your Options</h3>
+  <div className="widget-header">
+    <div class="widget-header__header">
+      <h3 class="widget-header__title">Your Options</h3>
       <button
         className="button button--link"
         onClick={props.handleDeleteOptions}
@@ -49,7 +47,7 @@ const Options = props => (
 
 ## Side by side
 * The old way to do the was to use floats
-* But now most all browsers understand `flexbox` and this makes side-by-side a bit easier but you just have to know how flexbox works
+* But now most all browsers understand `flexbox` and this makes `side-by-side` a bit easier but you just have to know how flexbox works
 
 ### More on Flexbox
 * Wes Bos [free Flexbox tutorial videos](https://flexbox.io/)
@@ -60,7 +58,7 @@ const Options = props => (
 
 ![space displayed evenly inside](https://i.imgur.com/uV3fzfN.png)
 
-* We need to have the `widget__header` just be the container for `h3` and the `button`
+* We need to have the `widget-header` just be the container for `h3` and the `button`
 
 `Options.js`
 
@@ -68,8 +66,8 @@ const Options = props => (
 // MORE CODE
 const Options = props => (
   <div>
-    <div className="widget__header">
-      <h3 className="widget__title">Your Options</h3>
+    <div className="widget-header">
+      <h3 className="widget-header__title">Your Options</h3>
       <button
         className="button button--link"
         onClick={props.handleDeleteOptions}
@@ -94,15 +92,13 @@ const Options = props => (
 
 `_widget.scss`
 
-```css
-.widget {
-  &__header {
+```
+.widget-header {
     background: $blue;
     color: $off-white;
     display: flex; // add this line
     justify-content: space-between; // add this line
     padding: $m-size;
-  }
 }
 ```
 
@@ -115,19 +111,17 @@ const Options = props => (
 
 `_widget.scss`
 
-```css
-.widget {
-  &__header {
+```
+.widget-header {
     background: $blue;
     color: $off-white;
     display: flex;
     justify-content: space-between;
     padding: $m-size;
-  }
+}
 
-  &__title {
-    margin: 0;
-  }
+.widget-header__title {
+  margin: 0;
 }
 ```
 
@@ -138,7 +132,7 @@ const Options = props => (
 ## Add background for content of widget
 ![bg content widget](https://i.imgur.com/v7W14gb.png)
 
-`_settings.scss`
+`_theme.scss`
 
 ```
 // colors
@@ -153,91 +147,110 @@ $purple: #8357c5;
 
 `_widget.scss`
 
-```css
+```
+// Widget Header
 .widget {
   background: $light-blue;
-  margin-bottom: $xl-size;
+}
 
-  &__header {
-    background: $blue;
-    color: $off-white;
-    display: flex;
-    justify-content: space-between;
-    padding: $m-size;
-  }
+.widget-header {
+  background: $blue;
+  color: $off-white;
+  display: flex;
+  justify-content: space-between;
+  padding: $m-size;
+}
 
-  &__title {
-    margin: 0;
-  }
+.widget-header__title {
+  margin: 0
 }
 ```
 
+## Add to IndecisionApp
 `IndecisionApp.js`
 
 ```
 // MORE CODE
-return (
-  <div>
-    <Header subtitle={subtitle} />
-    <div className="container">
-      <Action
-        handlePick={this.handlePick}
-        hasOptions={this.state.options.length > 0}
-      />
-      <div className="widget">
-        <Options
-          options={this.state.options}
-          handleDeleteOptions={this.handleDeleteOptions}
-          handleDeleteOption={this.handleDeleteOption}
-        />
-        <AddOption handleAddOption={this.handleAddOption} />
+
+  render() {
+    const subtitle = 'Let your computer tell you what to do';
+    return (
+      <div>
+        <Header subtitle={subtitle} />
+        <div className="container">
+          <Action
+            hasOptions={this.state.options.length > 0}
+            handlePick={this.handlePick}
+          />
+          <div className="widget">
+            <Options
+              options={this.state.options}
+              handleDeleteOptions={this.handleDeleteOptions}
+              handleDeleteOption={this.handleDeleteOption}
+            />
+            <AddOption handleAddOption={this.handleAddOption} />
+          </div>
+          <OptionModal
+            selectedOption={this.state.selectedOption}
+            handleClearSelectedOption={this.handleClearSelectedOption}
+          />
+        </div>
       </div>
-    </div>
-    <OptionModal
-      ariaHideApp={false}
-      selectedOption={this.state.selectedOption}
-      handleClearSelectedOption={this.handleClearSelectedOption}
-    />
-  </div>
-);
+    );
+  }
+
 // MORE CODE
 ```
 
-![bg light blue widget](https://i.imgur.com/zQaQh91.png)
+* Add some space at the end of the widget
 
-## Challenge
-Make message code, "Please add an option to get started!" to look like this:
-
-![message code](https://i.imgur.com/Chnp5FS.png)
-
-### Solution
 `_widget.scss`
 
 ```
+// Widget Header
 .widget {
   background: $light-blue;
   margin-bottom: $xl-size;
+}
 
-  &__header {
-    background: $blue;
-    color: $off-white;
-    display: flex;
-    justify-content: space-between;
-    padding: $m-size;
-  }
+// MORE CODE
+```
 
-  &__title {
-    margin: 0;
-  }
-  
-  // add element below
-  &__empty-message {
-    border-bottom: 1px solid lighten($light-blue, 10%); 
-    color: $off-white;
-    margin: 0;
-    padding: $l-size;
-    text-align: center;
-  }
+## Challenge
+* Create a widget element selector (message) - use it on the p tag
+* off-white color
+* no margin
+* l-size padding on all sides
+* center the text using - text-align: center
+* set the bottom border to a 1px solid border lightened version of $light-blue
+
+`_widget.scss`
+
+```
+// Widget Header
+.widget {
+  background: $light-blue;
+  margin-bottom: $xl-size;
+}
+
+.widget__message {
+  border-bottom: 1px solid lighten($light-blue, 10%);
+  color: $off-white;
+  margin: 0;
+  padding: $l-size;
+  text-align: center;
+}
+
+.widget-header {
+  background: $blue;
+  color: $off-white;
+  display: flex;
+  justify-content: space-between;
+  padding: $m-size;
+}
+
+.widget-header__title {
+  margin: 0
 }
 ```
 
@@ -245,10 +258,11 @@ Make message code, "Please add an option to get started!" to look like this:
 
 ```
 // MORE CODE
+
 const Options = props => (
   <div>
-    <div className="widget__header">
-      <h3 className="widget__title">Your Options</h3>
+    <div className="widget-header">
+      <h3 className="widget-header__title">Your Options</h3>
       <button
         className="button button--link"
         onClick={props.handleDeleteOptions}
@@ -256,22 +270,47 @@ const Options = props => (
         Remove All
       </button>
     </div>
-    {props.options.length === 0 && (
-      <p className="widget__empty-message">
-        Please add an option to get started
-      </p>
-    )}
-    {props.options.map(option => (
-      <Option
-        key={option}
-        optionText={option}
-        handleDeleteOption={props.handleDeleteOption}
-      />
-    ))}
-  </div>
-);
 
-export default Options;
+    <p>Options Text</p>
+    {props.options.length === 0 && (
+      <p className="widget__message">
+        Currently no options. Please add one to get started
+      </p>
+
+// MORE CODE
 ```
 
-* We add the class to the optional `p` tag if there are options in our app
+![centered text](https://i.imgur.com/rqkLJCX.png)
+
+## Abbreviated way to right BEM with Sass
+`_widget.scss`
+
+```
+// Widget Header
+.widget {
+  background: $light-blue;
+  margin-bottom: $xl-size;
+  
+  &__message {
+    border-bottom: 1px solid lighten($light-blue, 10%);
+    color: $off-white;
+    margin: 0;
+    padding: $l-size;
+    text-align: center;
+  }
+
+  &-header {
+    background: $blue;
+    color: $off-white;
+    display: flex;
+    justify-content: space-between;
+    padding: $m-size;
+  }
+
+  &-header__title {
+    margin: 0
+  }
+}
+```
+
+* Same exact output but less typing
