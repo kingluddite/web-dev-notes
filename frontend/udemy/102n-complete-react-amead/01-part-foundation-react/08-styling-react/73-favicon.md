@@ -3,7 +3,7 @@
 
 `index.html`
 
-```html
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,5 +25,21 @@
 
 ![favicon working](https://i.imgur.com/QyYIv3x.png)
 
-
+## If you are using a .ico file
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Indecision App</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="/bundle.js"></script>
+  </body>
+</html>
+```
 

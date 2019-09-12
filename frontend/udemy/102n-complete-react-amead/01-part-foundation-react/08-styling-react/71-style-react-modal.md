@@ -3,7 +3,7 @@
 
 ![unstyled modal](https://i.imgur.com/YjRyCxy.png)
 
-* 3rd party
+* This is a 3rd party module
 * Comes with own
     - DOM structure
     - CSS classes
@@ -21,7 +21,7 @@
 
 ![dock on right](https://i.imgur.com/KixKWlB.png)
 
-```html
+```
 <div class="ReactModal__Overlay ReactModal__Overlay--after-open" aria-modal="true" ...>MORE CODE</div>
 ```
 
@@ -32,6 +32,7 @@
             *`ReactModal__Overlay`
                 - `ReactModal__Content`
                     + **Our Content**
+
 ![structure](https://i.imgur.com/RsU3Oq1.png)
 
 * For all 3rd party components you do the same thing
@@ -45,17 +46,56 @@
 * `/src/styles/components/_modal.scss`
 * import that style component into `styles.scss`
 
-`.ReactModalPortal > div` ----> only target direct `div` decendents of `.ReactModalPortal`
+`.ReactModalPortal > div` ----> only target direct `div` descendent's of `.ReactModalPortal`
 
-* This is the root elementof the React Modal component `<div class="ReactModalPortal></div>`
+```
+.ReactModalPortal > div {}
+```
+
+* This is the root element of the React Modal component `<div class="ReactModalPortal></div>`
 
 ### Modal Opacity
-* When modal opens we'll start it off with an opacity set to 0 (invisible)
+* When modal opens we'll start it off with an opacity set to `0` (invisible)
+* Here is what the code looks like before you click the button
+
+![no click no modal](https://i.imgur.com/xvMWcrm.png)
+
+* Just and empty `ReactModalPortal` element
 
 `_modal.scss`
 
-```css
-.ReactModalPortal>div {
+```
+.ReactModalPortal > div {
+  opacity: 0.5;
+}
+```
+
+* Test in UI and click `What should I do?` button
+* You will see the modal is transparent
+
+![now modal has code](https://i.imgur.com/WQoy2iB.png)
+
+* Look and see the React__Overlay--after-open class
+* If we add a transition like below it won't work
+
+```
+.ReactModalPortal > div {
+  opacity: 0.5;
+}
+//
+.ReactModalPortal .ReactModal__Overlay {
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+}
+```
+
+* It shows up right away and we don't want this
+* Using the `React__Overlay--after-open` class we can use this to then call the transition code
+
+### Animate as the modal opens
+
+```
+.ReactModalPortal > div {
   opacity: 0;
 }
 
@@ -66,12 +106,22 @@
 .ReactModalPortal .ReactModal__Overlay--after-open {
   opacity: 1;
 }
+
 ```
 
-* CLick `What should I do?` button and the modal will fade in
+* Click `What should I do?` button and the modal will fade in
 * But fade out is jarring when you close it
 * It is harder to work with this because when you click close the entire element is gone
+
+## ReactModal guts the entire empties ReactModalPortal right away
+* This means there's no time for the transition to take place
+* Transitioning in is easy, Transitioning out is harder
+  - ReactModal gives us a tool to make this easier
 * To see what is happening let's add this:
+
+## closeTimeoutMS
+* This is a property that we can tell ReactModal to wait before "gutting" the modal
+* We'll wait 4 full seconds to see the effect
 
 `OptionModal.js`
 
@@ -91,6 +141,7 @@ const OptionModal = props => (
     - Other wise we won't be able to fade it out
 
 * Set the time back to 200 milliseconds
+* And we'll target the `ReactModal__Overlay--before-close` modifier
 
 ```
 const OptionModal = props => (
@@ -122,11 +173,12 @@ const OptionModal = props => (
 }
 ```
 
+## It works now!
 * You should now be able to fade/out your modal on open and close
 
 ## Style the Modal box itself
 * Currently it is just white
-* Analyse the css of the `ReactModal__Overlay` and you'll see this:
+* Analyze the CSS of the `ReactModal__Overlay` and you'll see this:
 
 ```
 position: absolute;
@@ -141,7 +193,8 @@ border-radius: 4px;
 outline: none;
 ```
 
-* We could target that style but ReactModal gives us access to `className` where we supply it our name and our custom class will override their default styles
+## Override styles
+* We could target that style but `ReactModal` gives us access to `className` where we supply it our name and our custom class will override their default styles
 
 ```
 // MORE CODE
@@ -159,7 +212,7 @@ const OptionModal = props => (
 * After saving and viewing our React Modal things look a lot worse
 * We add our custom style to `_modal.scss`
 
-```css
+```
 // MORE CODE
 .ReactModalPortal .ReactModal__Overlay--before-close {
   opacity: 0;
@@ -170,9 +223,9 @@ const OptionModal = props => (
 }
 ```
 
-And we use flexbox to center our box vertically and horizontally in the browser
+And we use `flexbox` to center our box vertically and horizontally in the browser
 
-```css
+```
 .ReactModalPortal .ReactModal__Overlay {
   align-items: center;
   display: flex;
@@ -183,7 +236,7 @@ And we use flexbox to center our box vertically and horizontally in the browser
 
 ![centered](https://i.imgur.com/kmOSGtx.png)
 
-```css
+```
 .modal {
   background: $light-blue;
   color: white;
@@ -205,7 +258,7 @@ And we use flexbox to center our box vertically and horizontally in the browser
 
 `styles.scss`
 
-```css
+```
 // MORE CODE
 @import './components/react-modal';
 @import './components/custom-modal';
@@ -215,7 +268,7 @@ And we use flexbox to center our box vertically and horizontally in the browser
 
 `_react-modal.scss`
 
-```css
+```
 .ReactModalPortal>div {
   opacity: 0;
 }
@@ -238,7 +291,7 @@ And we use flexbox to center our box vertically and horizontally in the browser
 
 `_custom-modal.scss`
 
-```css
+```
 .custom-modal {
   background: $light-blue;
   color: white;

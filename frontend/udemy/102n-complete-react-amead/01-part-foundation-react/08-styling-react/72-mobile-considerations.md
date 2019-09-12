@@ -16,7 +16,7 @@
 ## Add the viewport to `index.html`
 `index.html`
 
-```html
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +31,24 @@
 </html>
 ```
 
-* Viewport added
+`<meta name="viewport" content="width=device-width, initial-scale=1">`
+
+* We add meta tag
+* We give it the name `viewport`
+* We use key/value pairs in `content`
+* We use a comma separated list of key/value
+* We will just set 2
+  - width
+    + This we set to `device-width`
+    + This will override the 980 default on IOS devices
+    + Most android devices it is approximately 800 pixels
+  - initial-scale
+    + We set this to `1`
+    + When we set this up we tell the viewport to use the real devices width
+* Adding these changes will give us (and you can test this in the devices button in Chrome) what we expect
+* When we switch devices it goes off on what the width is of that device
+
+## Viewport added
 * Old app without **viewport** looks like this:
 
 ![no viewport](https://i.imgur.com/RPrE8CI.png)
@@ -40,9 +57,18 @@
 
 ![with viewport](https://i.imgur.com/0Y4Wd32.png)
 
+# Media Queries
+* We'll reduce spacing on mobile
+* We'll adjust form
+  - On mobile screens
+      * the input will take up the whole width
+      * And below the input the button will take up the whole width
+
 ## Add Mobile Changes using `media queries`
 ### Stack input and button on mobile devices
+* **note** @media is a CSS feature (not a Sass feature)
 
+## We will experiment to show how this works
 ```
 @media (max-width: 45rem) {
  // up and until 45rem follow the rules of this media query
@@ -52,17 +78,36 @@
 }
 ```
 
+## View on phone device
 * View in device viewport and see red text
+
+## View on Desktop
 * Toggle device viewport off and stretch browser and see red text disappear
 * The text is changing at a **breakpoint**
 * Flip on head and change `max-width` to `min-width`
 
-### change to `min-width: 45rem`
+### Change to `min-width: 45rem`
+`_add-option.scss`
+
+```
+// MORE CODE
+
+// Media queries
+// up and until 45rem follow the rules of this media query
+@media (min-width: 45rem) {
+  * {
+    color: red;
+  }
+}
+```
+
+
 * This says from 45rem to infinity, color will be red
 * For devices less than 45rem, the styles will NOT be applied
-* result
-    - large screens we have red
-    - small screens we have white
+
+### The Result
+* Large (desktop) screens we have red
+* Small (phone) screens we have white
 
 #### flex-direction
 * By default it is **row** (items stacked left-to-right)
@@ -70,7 +115,7 @@
 
 `_add-option.scss`
 
-```css
+```
 .add-option {
 
   &__error {
@@ -192,6 +237,8 @@ $desktop-breakpoint: 45rem;
 ## Challenge
 * Remove excess spacing between button and content
 * Use `$m-size` for small screens and `$xl-size` for large screen
+  - Mobile First! so all the regular styles are for small screens
+  - Media Queries are for larger screens
 
 ### Solution
 `_header.scss`
