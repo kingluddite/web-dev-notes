@@ -1,7 +1,7 @@
-# Buildit Portfolio
-* Clone the expensify app
-* Modify the application router
-* Use routes for a portfolio website
+# Build-it Portfolio Challenge
+1. Clone the expensify app
+2. Modify the application router
+3. Convert the routes for your portfolio site 
 
 Header
 HomePorfolioContact
@@ -28,6 +28,7 @@ A Thing I've Done
 This page is for the item with id of 1
 
 The link becomes bold when you are on one of the main pages
+
 ### Solution
 `AppRouter.js`
 
@@ -144,5 +145,6 @@ const PortfolioSinglePage = props => {
 export default PortfolioSinglePage;
 ```
 
-
+## Next
+* Switch back to expensifyApp and run it
 

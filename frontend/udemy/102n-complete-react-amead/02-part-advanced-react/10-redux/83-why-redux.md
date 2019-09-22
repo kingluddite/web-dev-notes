@@ -1,16 +1,16 @@
 # Why Redux?
 * It is a state management library
-* Integrates well with react
+* Integrates well with React
 * Allows us to track changing data
 * Similar to component state
 
-## If we just use Component state we will hit a wall
+## If we just use Component `state` we will hit a wall
 * Both solve problem of tracking/changing data
 
 ![diagram of simple vs complex app](https://i.imgur.com/oxcHCoP.png)
 
-* Simple app has one parent container and easy to know where to save state
-* Complex app has no parent as it is using ReactRouter, the idea of state and where to save it becomes difficult
+* Simple app has one parent container and easy to know where to save `state`
+* Complex app has no parent as it is using ReactRouter, the idea of `state` and where to save it becomes difficult
 
 ## Other issue
 * Components we are creating aren't reusable
@@ -36,5 +36,6 @@
 ## What is redux?
 ![shows how redux works](https://i.imgur.com/5KNYmSb.png)
 
-* It is a state container    
+* It is a `state` container    
 
+## Next - Install Redux

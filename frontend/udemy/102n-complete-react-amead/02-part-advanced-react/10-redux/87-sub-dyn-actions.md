@@ -1,17 +1,30 @@
 # Subscribing and Dynamic Actions
-* Learn two things
-    1. Watch for changes to the store
-        - `store.getState()` do not rerun as the store changes
-        - We need to do that to re-render our app
-    2. How you can dispatch an action and pass data along too
+## Is your dev server running?
+`$ npm run dev-server`
 
-## Watch for changes to redux store state
-* store.subscribe(pass single function to it)
-    - gets called every single time the store changes
+`$ yarn run dev-server`
+
+## We will learn 2 things:
+1. Watch for changes to the store
+    * Currently we have calls to `store.getState()` but that doesn't get re-run
+        - We **need** to do that to re-render our app
+2. How you can dispatch an action and pass data along too
+    * This will enable us to pass more than just the action type
+
+## How can we watch for changes to Redux store state?
+* `store.subscribe()`
+* We pass a single function to `store.subscribe()`
+    - That single function gets called every single time the store changes
+
+```
+store.subscribe(SINGLE_FUNCTION)
+```
+
+* Let's just log the object to the console
 
 `redux-101.js`
 
-```js
+```
 import { createStore } from 'redux';
 
 const store = createStore((state = { count: 0 }, action) => {
@@ -20,13 +33,13 @@ const store = createStore((state = { count: 0 }, action) => {
       return {
         count: state.count + 1,
       };
-    case 'RESET':
-      return {
-        count: 0,
-      };
     case 'DECREMENT':
       return {
         count: state.count - 1,
+      };
+    case 'RESET':
+      return {
+        count: 0,
       };
     default:
       return state;
@@ -36,7 +49,6 @@ const store = createStore((state = { count: 0 }, action) => {
 store.subscribe(() => {
   console.log(store.getState());
 });
-
 store.dispatch({
   type: 'INCREMENT',
 });
@@ -44,11 +56,9 @@ store.dispatch({
 store.dispatch({
   type: 'INCREMENT',
 });
-
 store.dispatch({
   type: 'RESET',
 });
-
 store.dispatch({
   type: 'DECREMENT',
 });
@@ -58,16 +68,19 @@ store.dispatch({
 
 ![4 logs](https://i.imgur.com/9YN4MeZ.png)
 
-`$ yarn run dev-server`
+## Takeaway
+* Using `store.subscribe()` is a fantastic way to do something when the state changes
 
 ## Remove subscription
+* We just learned how to subscribe to the store
+* We can also remove our individual subscription
 * This is how we stop subscribing
 * The return value from subscribe is a function we can call to unsubscribe
     - Name it whatever you want
 
 `redux-101.js`
 
-```js
+```
 // MORE CODE
 const unsubscribe = store.subscribe(() => {
   console.log(store.getState());
@@ -102,7 +115,7 @@ store.dispatch({
     - `type` is required in Redux actions
     - But you can add other custom properties
 
-```js
+```
 import { createStore } from 'redux';
 
 const store = createStore((state = { count: 0 }, action) => {
@@ -153,7 +166,7 @@ store.dispatch({
 ## Challenge
 * Add decrementBy === 10
 
-```js
+```
 import { createStore } from 'redux';
 
 const store = createStore((state = { count: 0 }, action) => {

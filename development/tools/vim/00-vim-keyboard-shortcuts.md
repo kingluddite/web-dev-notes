@@ -1,4 +1,26 @@
 # VIM
+## Find things in a line
+* `f` + type letter you are looking for
+* `F` same thing as above but in reverse order
+* `t` + type letter you are looking for (drops you right in front of that letter)
+* `T` same thing as above but in reverse
+* If you are at the end of the line in `COMMAND` mode and type `I` you will be brought to the beginning of the line in INSERT mode
+* If you are at the beginning of the line in COMMAND mode and type `A` you will be brought the beginning of the line in `INSERT` mode
+
+## Finding things in an entire file
+* Type `/` and the word you want, let's use `the`, it will highlight all of those `the` words, hit enter and all the matches will be highlighted
+  - Type `n` key to cycle through each of the matches until it gets to the end and if you hit `n` again it will start at the top again and keep cycling through
+  - You can use `shift` + `n` and it will cycle through the highlighted words in reverse
+  - You can also use `?` to do a search and by default it searches in reverse and if you type `n` you go backwards and `shift` + `n` goes forwards
+
+### replace words globally
+`:%s/the/foobar/g`
+
+* Typing the above out is a bit slow and tedious, there is a faster way and that is hover over word and type `shift` + `8` (which is the `*`)
+  - You will see the word you are over is in the search bar
+
+### Undo
+`u`
 
 ## Keyboard shortcuts
 
@@ -92,8 +114,14 @@ gT - previous tab
 | `u` | Undo
 | `ctrl` + `r` | Redo Undo
 
+## Search and replace
+* https://vim.fandom.com/wiki/Search_and_replace
+
+
+
 ## Multi-change word
-1. Search for word using `/`
+1. Search for word using `/` and follow it with the word your are searching
+  * example: `/people`
 2. Press enter (that will highlight all words that match search)
 3. Type `cgn` and type new word
 4. Enter into **Normal** mode
@@ -103,7 +131,7 @@ gT - previous tab
 ## Folding
 | Command | Description |
 | ------- | -------- |
-| `zM` | close everthing | 
+| `zM` | close everything | 
 | `zR` | open everything | 
 | `za` | toggle state of the current fold | 
 | `zj` | jump down to next fold | 

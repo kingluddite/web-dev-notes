@@ -1,5 +1,10 @@
 # Vim Plugins
+## Markdown preview
+* Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+    - Type `:MarkdownPreview` and you can real time edit any markdown file
+
 ## Plugin Maintenance
+* [is.vim](https://github.com/haya14busa/is.vim) (clear search when you move cursor)
 * Vim has a built-in profile set of commands
     - See `:h profile`
 

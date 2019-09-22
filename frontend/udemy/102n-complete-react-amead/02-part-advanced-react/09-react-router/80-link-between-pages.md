@@ -5,7 +5,8 @@
   - The whole point of client side routing is to avoid page refreshes and do everything from the client side router - not the server router
   - We will use Links to get this done
 
-## Add link traditional way
+## 404 page
+### Add link traditional way
 * We'll add a link on the 404 page to take us to the home page
 `app.js`
 
@@ -31,7 +32,7 @@ const NotFoundPage = () => (
 2. Then we'll override the browser default behavior, and pretend the link was never clicked
 3. And we'll use JavaScript code to change the page
 
-**Good News** We don't have to build any of that as it's built-in to React router
+**Good News** We don't have to build any of that as it's built-in to `React router`
 
 ## `Link` and `NavLink` to the rescue!
 * [Link docs](https://reacttraining.com/react-router/web/api/Link)
@@ -63,7 +64,7 @@ const NotFoundPage = () => (
 * Now we don't get the full page refresh
 * Instead JavaScript just swaps components out on the fly
 
-### Link vs a
+### `<Link>` vs `<a>`
 * On all internal links on your app use `<Link>`
 * On external links use `<a>`
 
@@ -83,6 +84,7 @@ const NotFoundPage = () => (
 ```
 
 * And this is how you make `<Header />` appear on all pages
+* We use semantic HTML tags `<header>`
 
 ```
 // MORE CODE
@@ -201,7 +203,7 @@ const Header = () => (
 
 `_base.scss`
 
-```css
+```
 // MORE CODE
 button:disabled {
   cursor: default;
@@ -231,3 +233,5 @@ button:disabled {
 
 * Now only active page is in bold
 * On 404 page nothing is bold
+
+## Next - Organize our routes better

@@ -1,7 +1,16 @@
 # Organizing routes
-* Make a folder to hold our routes
+* Our router is currently inside `app.js`
+  - Now we'll take our router and put it inside its own location
+  - This will give us the ability to create a complex router without creating a real long `app.js` file
+  - We'll also break our components into their own files as well
+
+## New `routers` folder
+* Create `src/routes/AppRouter.js`
+  - Naming convention is same as a component because at the end of the day this file will export a react component
+* Make a folder to hold all our routes
 * It is a component but it is special
-    - We build it once and then never tuch it again (one-and-done)
+    - We aren't going to reuse this file, we will build it once and then never touch it again (one-and-done)
+    - We don't want to put it in the components folder because it is unique and deserve it's own folder
 
 `src/routers/AppRouter.js`
 
@@ -63,13 +72,15 @@ const AppRouter = () => (
 export default AppRouter;
 ```
 
+* AppRouter will implicitly return JSX
+
 `app.js`
 
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './routers/AppRouter';
 import 'normalize.css/normalize.css';
+import AppRouter from './routers/AppRouter';
 import './styles/styles.scss';
 
 ReactDOM.render(<AppRouter />, document.getElementById('app'));
@@ -79,7 +90,7 @@ ReactDOM.render(<AppRouter />, document.getElementById('app'));
 
 ## Challenge
 * Create 6 new files for the 6 components
-* setup imports, component, default export
+* Setup imports, component, default export
 * import into AppRouter so they can be used
 
 ### Solution
@@ -118,8 +129,8 @@ const Header = () => (
 export default Header;
 ```
 
-* Notice that we had to import React (all components need that at the top as they all have jsx that needs to be converted to JavaScript)
-* We also use the NavLink named export
+* Notice that we had to import React (all components need that at the top as they all have JSX that needs to be converted to JavaScript)
+* We also use the `NavLink` named export
 
 `NotFoundPage.js`
 
@@ -183,4 +194,11 @@ export default AppRouter;
 * We import all the components
 * We remove imports no longer needed
 
+## Important Note
+* Only Components that were set up via Route will get these "special" React Router props passed down to them
+  - Header won't have it because it wasn't set up as a Route
+
 ## Now our files are better organized!
+
+## Next
+* Practice on your own
