@@ -1,4 +1,14 @@
 # VIM
+quit all
+`$ qa!`
+## Find and replace in multiple files
+* Install
+  - fcf
+    + `$ brew install fzf`
+  - fcfvim
+  - riprep
+    + `$ brew install ripgrep`
+
 ## Find things in a line
 * `f` + type letter you are looking for
 * `F` same thing as above but in reverse order
@@ -22,7 +32,54 @@
 ### Undo
 `u`
 
-## Keyboard shortcuts
+### A better way to replace words with keybindings
+* I added this in my .vimrc
+
+```
+" -----------------------------------------------------------------------------
+" Basic mappings
+" -----------------------------------------------------------------------------
+" Press * to search for the term under the cursor or a visual selection and
+" then press a key below to replace all instances of it in the current file.
+nnoremap <Leader>r :%s///g<Left><Left>
+nnoremap <Leader>rc :%s///gc<Left><Left><Left>
+
+" The same as above but instead of acting on the whole file it will be
+" restricted to the previously visually selected range. You can do that by
+" pressing *, visually selecting the range you want it to apply to and then
+" press a key below to replace all instances of it in the current selection.
+xnoremap <Leader>r :s///g<Left><Left>
+xnoremap <Leader>rc :s///gc<Left><Left><Left>
+```
+
+1. Put cursor over word you want to change
+2. `shift` + `8`
+3. Type word you want to replace and all matching words
+  * **note** You could add `gc` at end an it will ask you to confirm each change (optional)
+  * Use the `leader` + r + c to get that output
+4. Press enter
+5. All words from that point on will be replaced with your new word
+6. Type `u` to undo changes
+
+**note** If you don't see a word like this `%s//foobar/g` that means vim will replace your new world with the highlighted word
+
+* You can also visually select a phrase and use `*` to select another match and keep pressing `n` to get more matches then just use `leader` + `r` to replace all the phrases with the new one you type * you need to add vim-visual-search plugin
+
+The second keybinding is if you just want to change a word in a visual selection of text
+1. move to the word
+2. Type `*`
+3. Visual mode and select chunk of code
+4. leader + r and
+5. enter
+6. All the matching words in that section will change
+
+## Multi-cursor (kindof but better)
+* add a key binding in vimrc
+* hover over word
+* type `s` + `*`
+* type replacement word
+* hit escape
+* press `.` to replace each word (you could hit `n` and go one by one and then hit . if you want to replace it)
 
 ## Swap Files
 * `.swp` files are for backing up and you really shouldn't turn the backup system off

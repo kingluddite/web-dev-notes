@@ -1,5 +1,9 @@
-# ES6 Destructuring
+# ES6 Object Destructuring
+* In playground folder create `destructuring.js`
+
 `webpack.config.js`
+
+* Don't forget to point webpack dev server to this sample file
 
 ```
 const path = require('path');
@@ -11,7 +15,7 @@ module.exports = {
 
 `src/playground/destructuring.js`
 
-```js
+```
 console.log('destructuring');
 ```
 
@@ -19,7 +23,7 @@ console.log('destructuring');
 
 * Will output `destructuring` in console
 
-```js
+```
 const person = {
   name: 'John',
   age: 46,
@@ -41,7 +45,7 @@ console.log(`${person.name} is ${person.age}.`);
 * So we don't have to use person.name or person.age we could just use `name` and `age`
 
 ### One option
-```js
+```
 const person = {
   name: 'John',
   age: 46,
@@ -63,7 +67,7 @@ console.log(`${name} is ${age}.`);
 ## We can do this in one line!
 * Using ES6 destructuring
 
-```js
+```
 const person = {
   name: 'John',
   age: 46,
@@ -85,7 +89,7 @@ console.log(`${name} is ${age}.`);
 * And it **pulls off** those values from the person object
 
 ## A more complex example of destructuring
-```js
+```
 console.log(`It's ${person.location.temp} in ${person.location.city}.`);
 ```
 
@@ -95,7 +99,7 @@ console.log(`It's ${person.location.temp} in ${person.location.city}.`);
 
 * We could add logic:
 
-```js
+```
 if (person.location.city && person.location.temp) {
   console.log(`It's ${person.location.temp} in ${person.location.city}.`);
 }
@@ -105,7 +109,7 @@ if (person.location.city && person.location.temp) {
 * I am trying to pull off the same complex data several times
 
 ## Destructure off a nested object
-```js
+```
 const { city, temp } = person.location;
 if (city && temp) {
   console.log(`It's ${temp} in ${city}.`);
@@ -113,7 +117,7 @@ if (city && temp) {
 ```
 
 ### Ability to rename variable you create
-```js
+```
 console.log(`${name} is ${age}.`);
 
 const { city, temp: temperature } = person.location;
@@ -124,7 +128,7 @@ if (city && temperature) {
 
 * **note** You would get an error if you tried to access `temp`
 
-```js
+```
 console.log(`${name} is ${age}.`);
 
 const { city, temp: temperature } = person.location;
@@ -136,7 +140,7 @@ if (city && temperature) {
 ## Setup default values
 * What if you didn't have a name in your object?
 
-```js
+```
 const person = {
   age: 46,
   location: {
@@ -161,7 +165,7 @@ if (city && temperature) {
 * You would get `undefined is 46`
 
 ### You can establish defaults when using destructuring
-```js
+```
 const person = {
   age: 46,
   location: {
@@ -186,7 +190,7 @@ if (city && temperature) {
 * Will output `Anonymous is 46`
 * But if we have a name in our object
 
-```js
+```
 const person = {
   name: 'Bob',
   age: 46,
@@ -212,7 +216,7 @@ if (city && temperature) {
 * Will output `Bob is 46`
 
 ## Combine default name and rename
-```js
+```
 const person = {
   name: 'Bob',
   age: 46,
@@ -240,7 +244,7 @@ if (city && temperature) {
 ## Challenge
 * Use destructuring to get `publisherName` to be a name if it exists and `Self-Published` if it doesn't
 
-```js
+```
 const book = {
   title: 'Ego is the Enemy',
   author: 'Ryan Holiday',
