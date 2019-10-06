@@ -898,7 +898,6 @@ console.log(expenseOne.expense.id); // 65e4d70b-bb38-4d17-a9c0-3194fbdee8a4
   - You will need to create the Action Generator
   - And fill out the reducer part
 
-#
 ```
 // MORE CODE
 

@@ -1,4 +1,6 @@
 # Terminal
+## create folder structure from CLI
+`$ mkdir -p src/js/components/{container,presentational}`
 ## check speed of zsh
 ```
 zmodload zsh/zprof # top of your .zshrc file
