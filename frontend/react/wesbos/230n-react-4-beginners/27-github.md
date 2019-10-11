@@ -1,3 +1,13 @@
+## Gitignore is not working
+* You may need to [remove the cache](http://blog.jonathanchannon.com/2012/11/18/gitignore-not-working-fixed/)
+* Long story short you have to remove all tracked files and add them back in using the below commands
+
+```
+git rm -r --cached .
+git add .
+git commit -m ".gitignore is now working"
+```
+
 # Deploying to GitHub Pages
 ## Using the Command line:
 [use command line to push to github](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
