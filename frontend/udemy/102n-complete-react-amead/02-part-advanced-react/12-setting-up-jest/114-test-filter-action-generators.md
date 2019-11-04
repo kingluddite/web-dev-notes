@@ -1,4 +1,8 @@
 # Testing filter action generators
+* START HERE 11/4/2019
+
+
+
 * Delete `add.test.js` file as we don't need it
 
 ```js

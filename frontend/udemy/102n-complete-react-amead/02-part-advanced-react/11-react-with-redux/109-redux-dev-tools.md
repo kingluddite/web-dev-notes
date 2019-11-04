@@ -1,5 +1,17 @@
 # Redux Dev Tools
+* Just like we have a React Dev tool we now will have one for Redux
+  - We'll be able to:
+    + View the store
+    + View all the actions
+    + View the data
+    + View the data changes
+
+## Add Redux Dev Tools
+* **note** We'll need to add a single line of code to get this to work
 * [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension)
+  - **tip** When searching make sure you are looking for the redux dev tool extension
+
+### I'll add the Chrome extension (also one for Firefox)
 * We need to [add an extension to chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
     - Hide in Chrome menu
 * Refresh page
@@ -10,7 +22,7 @@
 ## Add line from redux-devtools-extension
 * Copy line from live site as it may have changed but it should look like this when you update your `configureStore.js` file:
 
-```js
+```
 import { createStore, combineReducers } from 'redux';
 import expensesReducer from '../reducers/expenses';
 import filtersReducer from '../reducers/filters';
@@ -30,6 +42,7 @@ export default () => {
 
 * The `window` line is what we added above
 * View the tab again and we now see the Redux tab is working inside Chrome
+  - It is in its own panel
 
 ## A ton of information!
 * On left
