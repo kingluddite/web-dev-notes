@@ -201,3 +201,96 @@ test('should setup default filter values', () => {
 
 // MORE CODE
 ```
+
+## SORT_BY_AMOUNT
+```
+// MORE CODE
+
+test('should set sortBy to amount', () => {
+  const state = filtersReducer(undefined, { type: 'SORT_BY_AMOUNT' });
+  expect(state.sortBy).toEqual();
+});
+
+// MORE CODE
+```
+
+* That will let you know that just text is getting returned so we need to use `.toBe()` instead of `.toEqual()` and we just need to set our value to be `amount`
+
+```
+// MORE CODE
+
+test('should set sortBy to amount', () => {
+  const state = filtersReducer(undefined, { type: 'SORT_BY_AMOUNT' });
+  expect(state.sortBy).toBe('amount');
+});
+
+// MORE CODE
+```
+
+* And that test will pass
+
+## The test for SORT_BY_DATE
+* You would think that that would be very similar but it is a little different because the default value for sortBy is date and we need to first pass a state with a sortBy set to `amount` and then it will change to `date`
+
+```
+// MORE CODE
+test('should set sortBy to date', () => {
+  const currentState = {
+    text: '',
+    startDate: undefined,
+    endDate: undefined,
+    sortBy: 'amount',
+  };
+  const action = { type: 'SORT_BY_DATE' };
+  const state = filtersReducer(currentState, action);
+  expect(state.sortBy).toBe('date');
+});
+```
+
+* And that test will pass
+
+## Challenge
+* Complete 3 test cases
+  - should set text filter
+  - should set startDate filter
+  - should set endDate filter
+
+```
+// MORE CODE
+
+test('should set text filter', () => {
+  const text = 'This is my text';
+  const action = {
+    type: 'SET_TEXT_FILTER',
+    text,
+  };
+  const state = filtersReducer(undefined, action);
+  expect(state.text).toBe(text);
+});
+
+// MORE CODE
+test('should set startDate filter', () => {
+  const startDate = moment();
+  const action = {
+    type: 'SET_START_DATE',
+    startDate,
+  };
+  const state = filtersReducer(undefined, action);
+  expect(state.startDate).toEqual(startDate);
+});
+
+test('should set endDate filter', () => {
+  const endDate = moment();
+  const action = {
+    type: 'SET_END_DATE',
+    endDate,
+  };
+  const state = filtersReducer(undefined, action);
+  expect(state.endDate).toEqual(endDate);
+});
+```
+
+* Run all tests and all 21 tests should pass in 4 different Test Suites
+
+## Next - finish last reducer
+* After that we'll jump into how we can test React

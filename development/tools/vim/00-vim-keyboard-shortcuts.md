@@ -1,4 +1,58 @@
 # VIM
+:windo difft (show diff of open files)
+
+## Talk on going mouseless with Vim, Tmux, and Hotkeys
+[ref](https://www.youtube.com/watch?v=E-ZbrtoSuzw&t=1050s)
+## Operators
+
+c | change
+d | delete
+y | yank into register
+~ | swap case
+gu | make lowercase
+gU | make uppercase
+! | filter to external program
+< | shift left
+`>` | shift right
+= | indent
+
+## | Text objects
+aw | a word
+iw | inner word
+aW | a WORD
+iW | inner WORD
+ap | a paragraph
+ip | inner paragraph
+ab | a bracket
+ib | inner bracket
+at | a tag block
+it | inner tag block
+
+## Motions
+% | go to first matching paren / bracket
+[count]+ | down to first non-blank char of line
+[count]$ | to end of line
+[count]f/F{char} | to next occurrence of {char}
+[count]/t/T{char} | to before next occurrence of {char}
+[count]h/k/l | left, down, up, or right
+[count]]m | Go to beginning of next method (LIFE SAVER)
+[count]w/W | go a word/WORD to the right
+[count]b/B | go a word/WORD to the left
+[count]/e/E | go to the end of word/WORD right
+
+## Putting it all together
+[count][operator][text object / motion]
+
+6+ = 6x go down to line start
+gUaW = capitalize a WORD
+3ce = 3x change to word end
+4$ = 4x go to end of line
+d]m = delete to start of next method
+% = jump to match of next paren or bracket
+
+stopped at 15:01
+
+
 quit all
 `$ qa!`
 ## Find and replace in multiple files
