@@ -50,7 +50,30 @@ gUaW = capitalize a WORD
 d]m = delete to start of next method
 % = jump to match of next paren or bracket
 
-stopped at 15:01
+## Advanced Navigation
+* Flying at Warp Speed
+
+### 6 core topics
+1. Various Motions
+  * Using the screen and scrolling instead of using j k h l all the time
+  ![various motions](https://i.imgur.com/guxV7cl.png)
+  * H M L
+    - High Middle Low of screen
+  * zt, zz, zb (instead of going to the high, middle or low of the screen, this moves the screen such that your cursor is at the high/middle/low of the screen)
+  * go up (ctrl up arrow) half a screen
+  * go down (ctrl down arrow) half a screen
+  * go up a full screen length (ctrl - b)
+  * go down a full screen length (ctrl - f)
+  * scroll up (ctrl + y)
+  * scroll down (ctrl + e)
+2. Editing
+3. Searches
+4. Marks
+5. Tags
+  * Allow you to jump to the definition of certain key words
+6. Jumplist + Changelist
+
+16:48
 
 
 quit all
