@@ -1,6 +1,9 @@
 # VIM
 :windo difft (show diff of open files)
 
+## Delete to beginning of line
+`d0`
+
 ## Talk on going mouseless with Vim, Tmux, and Hotkeys
 [ref](https://www.youtube.com/watch?v=E-ZbrtoSuzw&t=1050s)
 ## Operators

@@ -215,7 +215,3 @@ test('should not set amount if invalid input', () => {
 * The second test should not allow a number with 3 decimals so the value should not change and be an empty string `''`
 * Change that to a number and you will see a failing test
 * You should have 40 passing tests
-
-## Next - Test Spies
-
-

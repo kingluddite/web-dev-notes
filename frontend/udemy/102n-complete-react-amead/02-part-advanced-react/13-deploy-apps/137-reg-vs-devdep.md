@@ -1,238 +1,418 @@
 # Regular vs Dev Dependencies
-* Install chalk
-* Won't use it but using it just as a demo of how to intall a dev dependency
+* We are going to focus on 2 optimizations we can make
+* The first one has to do what's in package.json
+  - Look at our dependencies: (we have ~ 30 dependencies)
+  - If you need dependencies install them but if not don't
+  - Some of our dependencies are only for testing (like enzyme)
+  - We only need live-server locally
+  - We only need webpack-dev-server locally
+  - Currently if they are dependencies we are installing them on our Heroku server even though we're never going to use them
+  - Let's change that
 
-`$ yarn add -D`
+## We'll create 2 different sections of Dependencies (dependencies and devDependencies)
+* devDependencies will only get install locally
 
-## Package to move to devDepency
-* 2 enzyme packages
-* jest
-* react-test-renderer
-* webpack-dev-server
+### My current devDependencies and dependencies
+package.json
 
-### remove
-* Live server
-* chalk
-* `"serve": "live-server public/`
-    - we don't need this
-    - we have the dev server for development purposes
-    - we have the start script for the production server
+```
+// MORE CODE
 
-`package.json`
-
-```json
-{
-  "name": "expensify",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "build:dev": "webpack --watch",
-    "build:prod": "webpack -p --env production",
-    "lint": "eslint --fix src/*.js",
-    "pretest": "npm run lint",
-    "dev-server": "webpack-dev-server",
-    "precommit": "lint-staged",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "start": "node server/server.js",
-    "heroku-postbuild": "yarn run build:prod"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.css": "stylelint",
-    "*.scss": "stylelint --syntax=scss"
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.6.1",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^0.28.11",
+    "dotenv": "^8.2.0",
+    "enzyme-to-json": "^3.4.3",
+    "eslint": "4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "2.7.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.1",
+    "eslint-plugin-prettier": "2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
+    "node-sass": "^4.12.0",
+    "postcss-loader": "^3.0.0",
+    "prettier": "1.8.2",
+    "prettier-eslint-cli": "^4.4.0",
+    "prettier-stylelint": "^0.4.2",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^0.18.2",
+    "stylelint": "^10.1.0",
+    "stylelint-order": "^3.1.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.1",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.7",
-    "eslint": "4.15.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-last": "0.0.5",
-    "eslint-config-prettier": "2.9.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-flowtype": "^2.41.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-prettier": "2.5.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.5.1",
-    "eslint-plugin-standard": "^3.0.1",
-    "express": "^4.16.2",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "husky": "^0.14.3",
-    "lint-staged": "^6.0.0",
-    "moment": "^2.20.1",
-    "node-sass": "^4.7.2",
-    "normalize.css": "^7.0.0",
-    "prettier": "1.10.2",
-    "prettier-eslint": "^8.7.5",
-    "prettier-eslint-cli": "^4.4.0",
-    "react": "^16.2.0",
-    "react-dates": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-modal": "^3.1.10",
-    "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.19.1",
-    "stylelint": "^8.4.0",
-    "stylelint-order": "^0.8.0",
-    "uuid": "^3.1.0",
-    "validator": "^9.2.0",
-    "webpack": "^3.10.0"
-  },
+    "@babel/cli": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@types/react": "^16.9.2",
+    "@types/redux": "^3.6.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "eslint-plugin-jest": "^23.0.5",
+    "express": "^4.17.1",
+    "firebase": "^7.4.0",
+    "live-server": "^1.2.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "moment": "^2.24.0",
+    "normalize.css": "^8.0.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "prop-types": "^15.7.2",
+    "raf": "^3.4.1",
+    "react": "^16.8.0",
+    "react-addons-shallow-compare": "^15.6.2",
+    "react-dates": "^21.2.1",
+    "react-dom": "^16.9.0",
+    "react-modal": "^3.10.1",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "react-test-renderer": "^16.11.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "strip-ansi": "^5.2.0",
+    "terser-webpack-plugin": "^2.2.1",
+    "validator": "^11.1.0"
+  }
+
+// MORE CODE
+```
+
+## Install chalk module
+* Won't use it but using it just as a demo of how to install a dev dependency
+
+`$ npm install chalk --dev`
+
+* Shortcut way of writing same line as above
+
+`$ npm i chalk -D`
+
+* By installing apps like we just did for `chalk` it will add that dependency in the `devDependencies` part of `package.json` and when deploying to Heroku or any other production server, any apps listed in `devDependencies` will not be installed on production servers which will save valuable server resources
+
+## Package to move to devDependencies
+* enzyme
+* enzyme-adapter-react-16
+* eslint-plugin-jest
+* live-server
+* react-test-renderer
+* anything for eslint
+
+### So uninstall all first
+`$ npm uninstall enzyme enzyme-adapter-react-16 eslint-plugin-jest live-server`
+
+* A faster way would just be to cut and paste them from `dependencies` to `devDependencies`
+* **important notes when moving code from dependencies to devDependencies**
+  - Don't forget trailing slashes
+  - Last item in list does not have a trailing slash
+
+### My new package.json
+```
+// MORE CODE
+
   "devDependencies": {
-    "enzyme": "^3.3.0",
-    "enzyme-to-json": "^3.3.0",
-    "jest": "^22.1.4",
-    "react-test-renderer": "^16.2.0",
-    "webpack-dev-server": "^2.9.7"
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.6.1",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^0.28.11",
+    "dotenv": "^8.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
+    "eslint-plugin-jest": "^23.0.5",
+    "eslint": "4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "2.7.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.1",
+    "eslint-plugin-prettier": "2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "jest": "^24.9.0",
+    "prettier": "1.8.2",
+    "prettier-eslint-cli": "^4.4.0",
+    "prettier-stylelint": "^0.4.2",
+    "react-test-renderer": "^16.11.0",
+    "stylelint": "^10.1.0",
+    "stylelint-order": "^3.1.0",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@types/react": "^16.9.2",
+    "@types/redux": "^3.6.0",
+    "express": "^4.17.1",
+    "firebase": "^7.4.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
+    "normalize.css": "^8.0.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "prop-types": "^15.7.2",
+    "raf": "^3.4.1",
+    "react": "^16.8.0",
+    "react-addons-shallow-compare": "^15.6.2",
+    "react-dates": "^21.2.1",
+    "react-dom": "^16.9.0",
+    "react-modal": "^3.10.1",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "sass-loader": "^8.0.0",
+    "strip-ansi": "^5.2.0",
+    "style-loader": "^0.18.2",
+    "terser-webpack-plugin": "^2.2.1",
+    "validator": "^11.1.0",
+    "webpack": "^4.39.3"
   }
 }
 ```
 
-## How do we install one or the other?
-* Delete `node_modules`
+## Live server
+* We are going to remove it as we won't use it anymore
+* We can remove it all together from our `devDependencies` list
+* We will also remove the `serve` script
 
-`$ yarn install --production`
+`package.json`
 
-* This tells yarn to only install the dependencies and leave off the devdependencies
-* We won't do this locally but this is what is running on heroku
-    - But try it locally to see what happens
-    - search for `jest` inside `node_modules` and you won't find it
+```
+// MORE CODE
 
-`$ yarn install`
+  "scripts": {
+    "serve": "live-server public/",
 
-* That will install both dependencies and dev dependencies
-* Using the smaller build process will mean less time to create remote app on heroku
-* good to stay organized
+// MORE CODE
+```
 
-## dist
-* We have our generated bundles directly inside public
-* Better to create a `dist` folder inside `public`
-* Then have webpack dump the 4 assets inside that directory
-    - makes for better organization
-    - easier to workwith and manage
-    - single dist folder in public
-    - we know that it will contain all of the compiled files as opposed to having 4 files buring in with other things
-        + and we also have 4 files listed in the .gitignore file
+* We have the dev server for development purposes
+  - We use the command `$ npm run dev-server` to run our dev server
+
+`"dev-server": "webpack-dev-server`
+
+* And we have the `start` script for the production server
+  - Heroku will use the command `npm run start` to run our Express server
+
+`"start": "node server/server.js`
+
+* So we don't need a third option and we remove `live-server` from `package.json`
+
+### Remove chalk
+`$ npm uninstall chalk`
+
+## How do we install just production dependencies (will be apps in the `dependencies` folder)
+* Delete `node_modules` to test if this will actually work as we expect
+
+`$ npm i --production`
+
+* We will never do this locally but this is what will actually run on Heroku so let's try it out
+* After running the command open `node_modules` and you will not see `enzyme`, `eslint` stuff or `jest`
+  - So our dependencies are installing correctly for production
+
+## But locally we will still install dependencies and devDependencies
+* So we will continue to use:
+
+`$ npm install` or the shortcut `$ npm i`
+
+* Look inside the `node_modules` and now you'll see all our dependencies like before but also devDepencies like `jest`, `eslint` and `enzyme` stuff
+
+## What did we accomplish?
+* After all that we have a slightly smaller build process
+* Heroku will require a little less time to deploy our app
+* It is always a good idea to stay organized like this
+
+## One more change - deals with our `public` directory
+* We are taking all our compiled assets and just dumping them in the public folder (this works but is not ideal)
+  - bundle.js
+  - bundle.js.map
+  - main.css
+  - main.css.map
+* A more ideal solution is create a `dist` folder and dump those files inside that directory and place that file inside the `public` folder (we are already doing this but just wanted to point this out)
+
+## Benefits of this solution
+* This will make things easier to work with and manage
+* We'll have a single `dist` folder and we know that contains all the compiled files (as opposed to having 4 files buried in with other slings which would be a sloppy solution)
+* We can remove 4 files listed in `.gitignore` and now we can just list `dist/`
+
+### Making the change
+* Make sure you CSS and JavaScript point to the `dist` folder in your `index.html`
 
 `index.html`
 
-```html
+```
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Expensify</title>
-  <link rel="icon" type="image/png" href="/img/favicon.png" />
-  <link rel="stylesheet" href="/dist/styles.css">
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="stylesheet" type="text/css" href="/dist/main.css" />
 </head>
+
 <body>
-  <div id="app"></div>
+  <div id="root"></div>
   <script src="/dist/bundle.js"></script>
 </body>
+
 </html>
 ```
 
-* We add the `/dist` path
-* remember the dev server never writes assets to the file system, it serves it up virtually which allows it to be very fast
+* Make sure Webpack places our compiled code in the `dist` folder
 
-## Public Path
-* https://webpack.js.org/configuration/dev-server/#devserver-publicpath-
+`webpack.config.js` (and `webpack.config.prod.js`)
 
-`webpack.config.js`
+```
+// MORE CODE
 
-```js
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-module.exports = env => {
-  const isProduction = env === 'production';
-  const CSSExtract = new ExtractTextPlugin('styles.css');
-
-  return {
-    entry: './src/app.js',
     output: {
       path: path.join(__dirname, 'public', 'dist'),
       filename: 'bundle.js',
     },
-    // // MORE CODE
-      devServer: {
-      contentBase: path.join(__dirname, 'public'),
-      historyApiFallback: true,
-      publicPath: '/dist',
-    },
-  };
-};
+
+// MORE CODE
 ```
 
-* We just make 2 changes to:
-    - the output path
-    - the devServer public path
+* The `output` path tells webpack where to put all those assets and if we were dumping them in the `public` folder it would look like this
 
-## Test to see if it works
-* Delete our 4 compiled files
-* `$ yarn run dev-server`
+`webpack.config.js` (and `webpack.config.prod.js`)
 
-`localhost:8080`
+```
+// MORE CODE
 
-* View chrome dev tools `Network` tab
-* We can't see the dist folder in local dev mode because the dev server does it all virtually and never generates it
+    output: {
+      path: path.join(__dirname, 'public'),
+      filename: 'bundle.js',
+    },
 
-### Try production build
-`$ yarn run build:prod`
+// MORE CODE
+```
 
-* You should see the dist folder was generated with our 4 assets
+* By adding a 3rd argument `dist` it will go from the `public` directory to `public/dist` directory
+  - Even if `dist` doesn't exist Webpack will create it for us on the fly
+  - We also need to make this change to the development server (down below in our webpack config file
 
-## Start the server
-`$ yarn run start`
+## Webpack dev-server
+* **Remember** The development server never writes assets to the file system it serves them up virtually
+  - This is why working in the dev-server is so quick
+  - But after our change above to point to the `dist` folder we need to make it here too
+    + Because if we have this:
 
-* And the app is running on localhost:3000
+`webpack.config.js`
 
-## Update .gitignore
+```
+// MORE CODE
+
+    devServer: {
+      contentBase: path.join(__dirname, 'public'),
+      historyApiFallback: true
+    },
+
+// MORE CODE
+```
+
+* That means the dev-server is looking for those virtual assets in the public folder
+* To do this we add a single property
+  - Webpack docs > Documentation > Configuration > DevServer > devServer.publicPath
+  - [docs](https://webpack.js.org/configuration/dev-server/#devserverpublicpath-)
+  - "The bundled files will be available in the browser under this path."
+    + By default it is the root of the server `/` so your bundle will be available as `http://localhost:8080/bundle.js`
+
+`webpack.config.js`
+
+* We set it up like this:
+
+```
+// MORE CODE
+
+    devServer: {
+      contentBase: path.join(__dirname, 'public'),
+      historyApiFallback: true,
+      publicPath: '/dist/',
+    },
+  };
+
+// MORE CODE
+```
+
+## When you run your app through the dev-server
+`$ npm run dev-server`
+
+* Use the Chrome dev tools to see the Network tab and see that your compiled js and css files are now located in the `dist` folder (refresh browser with `All` filter selected and hover over `bundle.js` and you will see path that pops up has `dist` in it, you will see the same path for `main.css`)
+
+![see dist in path](https://i.imgur.com/Ew1Rz53.png)
+
+* **note** But if you view the folder inside VS Code (or your editor) you will see the `dist` folder does not exist because the `dev-server` doesn't write files to the system and instead serves them virtually from memory
+
+## Test if files get written to public/dist for production
+* If `dist` folder exists, delete it
+
+`$ npm run build:prod`
+
+* You should see after the build completes that the `build` folder has been created and it has the compiled assets inside it
+
+## Finally run your express server to make sure it can access the assets inside the `dist` folder
+
+`$ npm run start` or the shortcut (`$ npm start`)
+
+## Our .gitignore
 `.gitignore`
 
 ```
-node_modules
-*.swp
-*js.swp
-*~
+yarn-error.log
 public/dist/
+*.env
+config/*.json
+playground.js
+node_modules
+.vscode
+*.log
+.DS_Store
+.env.test
+.env.development
 ```
 
-## Push to heroku
-`$ gc -am 'add dist'`
+* **note** We are now ignoring one folder `dist` instead of 4 files (cleaner code and much easier to maintain!)
 
-* Will be faster
-    - Many of the modules were already installed and cached
+## Git shortcut for "modified" files
+* You can add and commit with one line with `$ git commit -am "Add dist folder and setup devDependencies`
+* You may see people use the slightly longer `$ git commit -a -m "My message"`
+* **note** This will not include new files
 
-## Open
-`$ heroku open`
+## Add, commit and push to GH and Heroku
+* The build process on Heroku will be much faster
+  - A lot of the modules were already installed so they'll be cached
+  - Then it will run the Webpack build which will take some time
+  - Finally the app link will be provided and your app should be up and running
+  - Our app would be working except for our Firebase API keys are missing and we are erroring out
+  - But if it was running we could use the Chrome network tab to see that styles and bundle are properly loading in the `dist` folder
 
-* View network tab of chrome
-* Refresh
-* Make sure you see styles and bundle.js (dist)
-* And the app is running with no errors
+![dist path working](https://i.imgur.com/TksuH2E.png)
 
-## Need to do testing 
+## Recap
+* We rearranged our dependencies
+  - We created a devDependencies section in package.json
+  - This allows us to install all dependencies locally but when in production Heroku will only install dependencies it needs and not devDependencies
+* We added a `dist` folder which makes managing our bundled assets much easier
 
-* New Feature Workflow
-* Build It: Adding Total Selector
-* Build It: Adding Summary Component
-
-
+## Next - Feature Request workflow
+* Feature idea, testing and deploying

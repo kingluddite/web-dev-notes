@@ -196,3 +196,30 @@ ExpenseListItem.propTypes = {
 export default ExpenseListItem;
 ```
 
+# Defining PropTypes inside a React class
+* Eslint might give you an warning like: "react/prop-types children; is missing in props validation"
+* You need to add PropTypes
+
+`ExpenseForm.js`
+
+```
+// MORE CODE
+
+import PropTypes from 'prop-types';
+
+// MORE CODE
+
+
+export default class ExpenseForm extends Component {
+  static propTypes = {
+    onDescriptionChange: PropTypes.func,
+    onNotesChange: PropTypes.func,
+    onAmountChange: PropTypes.func,
+    onDateChange: PropTypes.func,
+    onFocusChange: PropTypes.func,
+    onSubmit: PropTypes.func,
+  };
+
+// MORE CODE
+```
+

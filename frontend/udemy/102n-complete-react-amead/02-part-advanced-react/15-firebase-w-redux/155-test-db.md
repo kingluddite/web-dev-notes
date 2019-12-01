@@ -1,3 +1,4 @@
+IMPORTANT!!!! - grab new jest notes from 138
 # Create a test db
 * We need to test a bunch of stuff
 * The ability to remove an expense
