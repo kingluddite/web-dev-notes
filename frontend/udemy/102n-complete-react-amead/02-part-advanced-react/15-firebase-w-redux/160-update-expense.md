@@ -7,7 +7,7 @@
 
 `actions/expenses.js`
 
-```js
+```
 export const startEditExpense = (id, updates) => dispatch =>
   database
     .ref(`expenses/${id}`)
@@ -21,7 +21,26 @@ export const startEditExpense = (id, updates) => dispatch =>
 
 `actions/expenses.test.js`
 
-```js
+```
+// MORE CODE
+
+import {
+  startAddExpense,
+  addExpense,
+  editExpense,
+  startEditExpense, add this
+  removeExpense,
+  startRemoveExpense,
+  setExpenses,
+  startSetExpenses,
+} from '../../actions/expenses';
+
+// MORE CODE
+```
+
+```
+// MORE CODE
+
 test('should edit expense from firebase', done => {
   const store = mockStore({});
   const { id } = expenses[0];
@@ -42,10 +61,12 @@ test('should edit expense from firebase', done => {
       done();
     });
 });
+
+// MORE CODE
 ```
 
 * Shut down server
-* Run test suite `$ yarn test --watch`
+* Run test suite `$ npm test -- --watch`
 * Tests should pass
 
 ## Update EditExpensePage.js

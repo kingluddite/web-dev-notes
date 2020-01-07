@@ -5,7 +5,7 @@
 `$ live-server public`
 
 # Saving Loading Options Data
-* Use localStorage and LCMs save our items and refresh them when the user comes back
+* Use `localStorage` and LCMs save our items and refresh them when the user comes back
 * This enables us to persist options between page loads
 
 ## Let's see how localStorage works
@@ -32,7 +32,7 @@
 * Now `getItem('name')` doesn't work because there is nothing in localStorage
 
 **IMPORTANT** `localStorage` only works with string data
-* If you try to save a number, localStorage would implicitly convert it into a string
+* If you try to save a **number**, `localStorage` would implicitly convert it into a string
 
 `localStorage.setItem('age', 100);`
 
@@ -71,14 +71,14 @@ Returns ----> `{age: 25}`
 * This gives us a real object back
   - We could store that object in a variable
   - We can access properties of that object `JSON.parse(json).age` will give us `26`
-* By using localStore and the JSON methods will be able to save our array and fetch it back
+* By using `localStore` and the JSON methods will be able to save our array and fetch it back
 
 ### Back to our code and test this:
-* Click Remove all button in UI 10 times and you will see `saving data` in console was fired 10 times
+* Click `Remove all` button in UI 10 times and you will see `saving data` in console was fired 10 times
 * For efficiency we don't need to keep saving this every time because we are saving data that already exists inside the Database
-  - componentDidUpdate() will continue to fire even if those items in state didn't change
-  - Changing the state from an empty array to a new empty array is considered a change in state
-  - We will use an if conditional to see if the options array length changed
+  - `componentDidUpdate()` will continue to fire even if those items in `state` didn't change
+  - Changing the `state` from an empty array to a new empty array is considered a change in `state`
+  - We will use an `if` conditional to see if the options array length changed
     + If `prevState.options.length !== this.state.options.length` are not equal than fire the log
 
 ```
@@ -145,7 +145,7 @@ Returns ----> `{age: 25}`
 ```
 
 ## This IS WRONG!!!!!
-* Remember we need to pass our updater function to setState()
+* Remember we need to pass our updater function to `setState()`
 * And we want to implicitly return an object
 
 ```

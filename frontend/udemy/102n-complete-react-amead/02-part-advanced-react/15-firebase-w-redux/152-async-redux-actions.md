@@ -225,7 +225,6 @@ export const editExpense = (id, updates) => ({
 1. Install it `$ npm i redux-thunk`
 2. Make changes to our Redux store (`configureStore.js`)
 
-
 #### Install redux-thunk
 `$ npm i redux-thunk`
 

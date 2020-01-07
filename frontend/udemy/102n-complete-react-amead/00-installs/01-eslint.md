@@ -8,7 +8,7 @@
 
 `eslintrc.json`
 
-```js
+```
 
 {   "globals": {
         "document": true,
@@ -80,7 +80,7 @@
 
 `package.json`
 
-```json
+```
 // // MORE CODE
 "scripts": {
   "serve": "live-server public/",
@@ -105,7 +105,7 @@
 
 `.eslintrc`
 
-```json
+```
 {
   "extends": [
     "airbnb",
@@ -194,4 +194,5 @@ const template = (
 * I am use `vim` and with `vim` I have **ale** and **prettier** setup together and in my `.vimrc` file I have it auto fix/format on save (major time saver!)
 * You can do the same with Atom/Sublime/Visual Code but you'll have to Google it yourself to get them working
 
-
+## Troubleshooting VIM + Eslint
+* Type `:ALEDetail` and it will tell you what the error is you need to fix

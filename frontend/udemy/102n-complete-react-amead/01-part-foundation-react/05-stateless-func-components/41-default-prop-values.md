@@ -8,11 +8,11 @@
 * Default prop values can be added to Stateless Functional Components (SFC) or Class-based components (CBC)
 
 ## Let's look at Header component
-* Set up a default prop for title so it didn't need to be provided
-* Set up a subtitle to not have a subtitle and if it isn't provided to remove the h2 altogether
+* Set up a **default prop** for `title` so it didn't need to be provided
+* Set up a `subtitle` to not have a subtitle and if it isn't provided to remove the h2 altogether
 
 ## defaultProps
-* just an object
+* `defaultProps` is just an object
 * We can add this property to our component using [OurComponent].defaultProps
 * Can be added to CBC or SFC
 
