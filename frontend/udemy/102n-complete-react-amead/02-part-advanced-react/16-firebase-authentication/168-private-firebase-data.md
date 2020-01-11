@@ -1,36 +1,96 @@
 # Private Firebase Data
-* Each user will have own part of DB they can manage
+* Each user will have own part of Database they can manage
+  - Create that private space for data
 * Rules from firebase will be used to secure it
 
-## firebase structure for each user
+## How our Database looks now
+* In the root of the Database we have expenses
+  - And inside that we have all of our expenses side-by-side
+  - We now need to split up expenses by user
+
+## Current Database structure
+
 ```
 const db = {
-    uidabc123: {
-        expenses: {
-            id123: {
+  expenses: {
+    sdfsjlfsdfs: {
 
-            }
-        }
     }
+  }
 }
 ```
 
-`users/uid/expenses`
+* We will convert this structure to this:
+
+```
+const db = {
+  users: {
+    w382993: {
+      expenses: {
+        sdfsjlfsdfs: {
+
+        }
+      }
+    }
+  }
+}
+```
+
+`users/uid/expenses` - will be path to get expenses for each user
 
 ### Let's make changes to `actions/expenses.js`
+```
+// MORE CODE
+
+export const startAddExpense = (expenseData = {}) => dispatch => {
+  const {
+    description = '',
+    note = '',
+    amount = 0,
+    createdAt = 0,
+  } = expenseData;
+  const expense = { description, note, amount, createdAt };
+
+  return database
+    .ref('expenses')
+    .push(expense)
+    .then(ref => {
+      dispatch(
+        addExpense({
+          id: ref.key,
+          ...expense,
+        })
+      );
+    })
+    .catch(error => {
+      console.log('could not add expense', error);
+    });
+};
+
+// MORE CODE
+```
+
+* This is where we write to the root ref `expenses`
+* We want to switch that up and making use of the user id
+  - Not just in `startAddExpenses` but in all of our async actions in this file
+
+## Let's switch up the ref
+* Modify this line:
+
 `return database.ref('expenses')`
 
-* And we'll update to:
+* And we'll update it to:
 
 `.ref('users/someuid/expenses')`
 
-## How will we get the user id?
+## How will we get the user id (someuid)?
 * To plugin to `someuid` above
-* thunk actions get called with `dispatch`
+* `thunk` actions get called with `dispatch`
 
 `export const startAddExpense = (expenseData = {}) => dispatch => {`
 
 * But they also get called with `getState()`
+* We can call `getState()` to get the current state and here is how we can call it
 
 `export const startAddExpense = (expenseData = {}) => (dispatch, getState) => {`
 
@@ -56,27 +116,77 @@ export const startAddExpense = (expenseData = {}) => (dispatch, getState) => {
 ```
 
 * So `getState` with thunk gives us the current `state`
-* And we can use `getState().auth.uid` to get the user `id`
+* And we can use `getState().auth.uid` to get the user `uid`
 * Then we reference the `uid` using a template string
 
 ## Take it for a test spin
-* If all works well and you run `$ yarn run dev-server`
-* It should create a new db structure in firebase `users/someuserid/expenses`
+* If all works well and you run `$ npm run dev-server`
+* It should create a new Database structure in firebase `users/someuserid/expenses`
 * Login to your app
 * Add an expense via `/create`
 * Data will get added
-* Check firebase DB
+* Check firebase Database
+
+## Had an error adding expenses
+* Change `AppRouter.js` from:
+
+```
+// MORE CODE
+
+import { AddExpensePage } from '../components/AddExpensePage';
+import { EditExpensePage } from '../components/EditExpensePage';
+
+// MORE CODE
+```
+
+* To this:
+
+```
+// MORE CODE
+
+import AddExpensePage from '../components/AddExpensePage';
+import EditExpensePage from '../components/EditExpensePage';
+
+// MORE CODE
+```
+
+* And now by changing from named exports to default exports we pass the startAddExpense to the `AddExpensePage` component
+  - I temporarilly added this log statement to see what was happening when I submitted my new expense
+    + In the previous code I did not have access to `startAddExpense` but after updating to default exports I did and now I can put the code back to the way it was
+
+`AddExpensePage.js`
+
+```
+// MORE CODE
+
+export class AddExpensePage extends Component {
+  // (no-undef)
+  // eslint-disable-next-line
+  onSubmit = expense => {
+    // use push
+    // attach then callback
+    // dispatch action
+    // redirect
+    this.props.startAddExpense(expense);
+    this.props.history.push('/');
+  };
+
+// MORE CODE
+```
+
+* Now add an expense
 
 ### Our new DB structure
-![what the fb db looks like](https://i.imgur.com/SC830bV.png)
+![what the Firebase db looks like](https://i.imgur.com/SC830bV.png)
 
 ### Houston we have a problem
 * Our other async actions won't work because they are not reading from the correct location
+* Refresh the page to see what I'm talking about
 
 #### Challenge
 * Fix it inside `startSetExpenses`
 
-```js
+```
 // MORE CODE
 export const startSetExpenses = () => (dispatch, getState) => {
     const { uid } = getState().auth;
@@ -102,7 +212,7 @@ export const startSetExpenses = () => (dispatch, getState) => {
 * Above example we were writing to the correct location
 
 ## Make the same change for `startEditExpense`
-```js
+```
 // MORE CODE
 export const startEditExpense = (id, updates) => ( dispatch, getState ) =>
   const { uid } = getState().auth;
@@ -116,7 +226,7 @@ export const startEditExpense = (id, updates) => ( dispatch, getState ) =>
 ```
 
 ## startRemoveExpense
-```js
+```
 export const startRemoveExpense = ({ id } = {}) => (dispatch, getState) => {
   const { uid } = getState().auth;
   return database
@@ -130,18 +240,17 @@ export const startRemoveExpense = ({ id } = {}) => (dispatch, getState) => {
 
 ## Take it for a test spin
 * Edit an expense and make sure it works
-* Check it out on firebase db
-* Remove the expense and make sure it work on app and firebase db
+* Check it out on Firebase Database
+* Remove the expense and make sure it work on app and Firebase Database
 
 ## Update our test file
 `expenses.test.js`
 
 * We need to create a fake `uid`
 
-```js
+```
 // MORE CODE
 
-const middlewares = [thunk];
 const uid = 'thisismytestuid';
 const mockStore = configureMockStore(middlewares);
 
@@ -461,8 +570,8 @@ test('should edit expense from firebase', done => {
 ```
 
 ## Take it for a test drive
-* shut down server
-* Start test suite `$ yarn test --watch`
+* Shut down server
+* Start test suite `$ npm test -- --watch`
 * We failed because snapshots don't match
     - Not a problem and type `u` to update snapshot
 * 72 tests pass
@@ -476,7 +585,7 @@ test('should edit expense from firebase', done => {
 ### Let's lock our site down!
 * Make read and write false (Rules)
 
-```js
+```
 {
   "rules": {
     ".read": false,
@@ -487,7 +596,7 @@ test('should edit expense from firebase', done => {
 
 * Now we'll allow people to read and write but only to specific parts of the db
 
-```js
+```
 {
   "rules": {
     ".read": false,
@@ -508,8 +617,8 @@ test('should edit expense from firebase', done => {
 
 ## Simulator
 * Inside Firebase
-* Click Simulate
-* Click write
+* Click `Simulate`
+* Click `set`
 
 ```
 {
@@ -533,11 +642,13 @@ test('should edit expense from firebase', done => {
 
 ## But if you authenticate simlulator
 * Paste this: `/users/3d041ceb-66b5-4c1e-a1ba-1d83317ou812`
-  - But substitute your own user id from the UID field
-  - Click run
+  - But substitute your own user `id` from the UID field in Firebase
+  - Click `run`
   - It will say 'Simulated write allowed'
   - You can also write to that user stuff
   - Plug in a different UID and you will get denied
 
 ## Takeaway
 * Users can only work with data that they own
+
+## Add/Commit/Push via Git

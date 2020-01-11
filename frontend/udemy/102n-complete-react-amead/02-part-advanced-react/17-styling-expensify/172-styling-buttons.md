@@ -12,9 +12,7 @@
 `LoginPage.js`
 
 ```
-import React from 'react';
-import { connect } from 'react-redux';
-import { startLogin } from '../actions/auth';
+// MORE CODE
 
 export const LoginPage = props => (
   <div className="box-layout">
@@ -28,46 +26,75 @@ export const LoginPage = props => (
   </div>
 );
 
-const mapDispatchToProps = dispatch => ({
-  startLogin: () => dispatch(startLogin()),
-});
-
-export default connect(undefined, mapDispatchToProps)(LoginPage);
+// MORE CODE
 ```
 
-`_settings.scss`
+`src/styles/base/_theme.scss`
+
+* Add our blue color to our theme
 
 ```
 // Colors
-$white: #FFFFFF;
-$dark-grey: #333333;
 $blue: #1C88BF;
+$dark-grey: #333333;
+$white: #FFFFFF;
 
-// Font Size
-$font-size-large: 1.8rem;
-
-// Spacing
-$s-size: 1.2rem;
-$m-size: 1.6rem;
-$l-size: 3.2rem;
-$xl-size: 4.8rem;
-
-// Media Query Breakpoints
-$desktop-breakpoint: 45rem;
+// MORE CODE
 ```
 
 `styles/components/_button.scss`
 
-```css
+```
 .button {
   background-color: $blue;
-  color: $white;
-  padding: $s-size;
   border: none;
+  color: $white;
+  font-size: 1.8rem;
   font-weight: 300;
-  font-size: $font-size-large;
+  padding: $s-size;
 }
 ```
+
+* We'll use `1.8rem` more than once for font size so we'll create a variable
+
+`_theme.scss`
+
+```
+// Colors
+$blue: #1C88BF;
+$dark-grey: #333333;
+$white: #ffffff;
+
+// Font Size
+$font-size-large: 1.8rem; /* add this */
+
+// MORE CODE
+```
+
+`_button.scss`
+
+```
+.button {
+  background-color: $blue;
+  border: none;
+  color: $white;
+  font-size: $font-size-large; /* update this line */
+  font-weight: 300;
+  padding: $s-size;
+}
+```
+
+## Import button styles
+`base/_theme.scss`
+
+```
+@import './base/theme';
+@import './base/base';
+@import './components/box-layout';
+@import './components/button'; /* add this */
+```
+
+## LoginPage is done!
 
 ## Login and and style dashboard
 * Final styles will look like:
@@ -76,18 +103,18 @@ $desktop-breakpoint: 45rem;
 ## Restructure Dashboard
 * Remove `Create Expense` link
 * We don't need to use NavLink
-    - We'll move h1 inside Link and change import of NavLink named export to Link
+    - We'll move `h1` inside `Link` and change import of `NavLink` named export to `Link`
 
 `Header.js`
 
 ```
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { startLogout } from '../actions/auth';
+
+// MORE CODE
 
 export const Header = props => (
-  <header>
+  <header className="header">
     <Link to="/dashboard">
       <h1>Expensified</h1>
     </Link>
@@ -95,21 +122,38 @@ export const Header = props => (
   </header>
 );
 
-const mapDispatchToProps = dispatch => ({
-  startLogout: () => dispatch(startLogout()),
-});
-
-export default connect(undefined, mapDispatchToProps)(Header);
+// MORE CODE
 ```
 
-* Remove this prop from Link `activeClassName="is-active"` as it is only used inside NavLink
+* Remove this prop from Link `activeClassName="is-active"` as it is only used inside `NavLink`
 
 ## Style Header.js
 * Make sure to import this file in `style.scss`
 
+`styles.scss`
+
+```
+// MORE CODE
+@import './components/button';
+@import './components/Header'; /* add this */
+```
+
+### Add new dark blue variable
+`_theme.scss`
+
+```
+// MORE CODE
+
+// Colors
+$blue: #1C88BF;
+$dark-blue: #364051; /* add this */
+
+// MORE CODE
+```
+
 `styles/components/_Header.scss`
 
-```css
+```
 .header {
   background: $dark-blue; 
 
@@ -127,10 +171,7 @@ export default connect(undefined, mapDispatchToProps)(Header);
 `Header.js`
 
 ```
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { startLogout } from '../actions/auth';
+// MORE CODE
 
 export const Header = props => (
   <header className="header">
@@ -141,24 +182,31 @@ export const Header = props => (
   </header>
 );
 
-const mapDispatchToProps = dispatch => ({
-  startLogout: () => dispatch(startLogout()),
-});
-
-export default connect(undefined, mapDispatchToProps)(Header);
+// MORE CODE
 ```
 
 ## Create content container
 * Create new file
 * Make sure to import it!
 
+`styles.scss`
+
+```
+@import './base/theme';
+@import './base/base';
+@import './components/content-container'; /* add this */
+@import './components/box-layout';
+@import './components/button';
+@import './components/Header';
+```
+
 `components/_content-container.scss`
 
-```css
+```
 .content-container {
   margin: 0 auto;
   max-width: 80rem;
-  padding: 0 $n-size;
+  padding: 0 $m-size;
 }
 ```
 
@@ -185,7 +233,7 @@ export const Header = props => (
 
 `_Header.scss`
 
-```css
+```
 .header {
   background: $dark-blue; 
 
@@ -206,3 +254,5 @@ export const Header = props => (
   }
 }
 ```
+
+![so far the header is styled](https://i.imgur.com/mvrlxdR.png)
