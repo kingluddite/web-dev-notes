@@ -1,5 +1,18 @@
 # Vim Plugins
+## vim-visual-star-search
+https://vimawesome.com/plugin/vim-visual-star-search
+
+* This allows you to select some text using Vim's visual mode and then hit *
+and # to search for it elsewhere in the file.  For example, hit V, select
+a strange sequence of characters like "$! $!", and hit star.  You'll find
+all other runs of "$! $!" in the file.
+
+## Markdown preview
+* Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+    - Type `:MarkdownPreview` and you can real time edit any markdown file
+
 ## Plugin Maintenance
+* [is.vim](https://github.com/haya14busa/is.vim) (clear search when you move cursor)
 * Vim has a built-in profile set of commands
     - See `:h profile`
 

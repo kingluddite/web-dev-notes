@@ -1,6 +1,174 @@
 # VIM
+:windo difft (show diff of open files)
 
-## Keyboard shortcuts
+## select content or inclusive content
+To select between the single quotes I usually do a vi' ("select inner single quotes").
+
+Inside a parenthesis block, I use vib ("select inner block")
+
+Inside a curly braces block you can use viB ("capital B")
+
+To make the selections "inclusive" (select also the quotes, parenthesis or braces) you can use a instead of i
+
+## Delete to beginning of line
+`d0`
+
+## Talk on going mouseless with Vim, Tmux, and Hotkeys
+[ref](https://www.youtube.com/watch?v=E-ZbrtoSuzw&t=1050s)
+## Operators
+
+c | change
+d | delete
+y | yank into register
+~ | swap case
+gu | make lowercase
+gU | make uppercase
+! | filter to external program
+< | shift left
+`>` | shift right
+= | indent
+
+## | Text objects
+aw | a word
+iw | inner word
+aW | a WORD
+iW | inner WORD
+ap | a paragraph
+ip | inner paragraph
+ab | a bracket
+ib | inner bracket
+at | a tag block
+it | inner tag block
+
+## Motions
+% | go to first matching paren / bracket
+[count]+ | down to first non-blank char of line
+[count]$ | to end of line
+[count]f/F{char} | to next occurrence of {char}
+[count]/t/T{char} | to before next occurrence of {char}
+[count]h/k/l | left, down, up, or right
+[count]]m | Go to beginning of next method (LIFE SAVER)
+[count]w/W | go a word/WORD to the right
+[count]b/B | go a word/WORD to the left
+[count]/e/E | go to the end of word/WORD right
+
+## Putting it all together
+[count][operator][text object / motion]
+
+6+ = 6x go down to line start
+gUaW = capitalize a WORD
+3ce = 3x change to word end
+4$ = 4x go to end of line
+d]m = delete to start of next method
+% = jump to match of next paren or bracket
+
+## Advanced Navigation
+* Flying at Warp Speed
+
+### 6 core topics
+1. Various Motions
+  * Using the screen and scrolling instead of using j k h l all the time
+  ![various motions](https://i.imgur.com/guxV7cl.png)
+  * H M L
+    - High Middle Low of screen
+  * zt, zz, zb (instead of going to the high, middle or low of the screen, this moves the screen such that your cursor is at the high/middle/low of the screen)
+  * go up (ctrl up arrow) half a screen
+  * go down (ctrl down arrow) half a screen
+  * go up a full screen length (ctrl - b)
+  * go down a full screen length (ctrl - f)
+  * scroll up (ctrl + y)
+  * scroll down (ctrl + e)
+2. Editing
+3. Searches
+4. Marks
+5. Tags
+  * Allow you to jump to the definition of certain key words
+6. Jumplist + Changelist
+
+16:48
+
+
+quit all
+`$ qa!`
+## Find and replace in multiple files
+* Install
+  - fcf
+    + `$ brew install fzf`
+  - fcfvim
+  - riprep
+    + `$ brew install ripgrep`
+
+## Find things in a line
+* `f` + type letter you are looking for
+* `F` same thing as above but in reverse order
+* `t` + type letter you are looking for (drops you right in front of that letter)
+* `T` same thing as above but in reverse
+* If you are at the end of the line in `COMMAND` mode and type `I` you will be brought to the beginning of the line in INSERT mode
+* If you are at the beginning of the line in COMMAND mode and type `A` you will be brought the beginning of the line in `INSERT` mode
+
+## Finding things in an entire file
+* Type `/` and the word you want, let's use `the`, it will highlight all of those `the` words, hit enter and all the matches will be highlighted
+  - Type `n` key to cycle through each of the matches until it gets to the end and if you hit `n` again it will start at the top again and keep cycling through
+  - You can use `shift` + `n` and it will cycle through the highlighted words in reverse
+  - You can also use `?` to do a search and by default it searches in reverse and if you type `n` you go backwards and `shift` + `n` goes forwards
+
+### replace words globally
+`:%s/the/foobar/g`
+
+* Typing the above out is a bit slow and tedious, there is a faster way and that is hover over word and type `shift` + `8` (which is the `*`)
+  - You will see the word you are over is in the search bar
+
+### Undo
+`u`
+
+### A better way to replace words with keybindings
+* I added this in my .vimrc
+
+```
+" -----------------------------------------------------------------------------
+" Basic mappings
+" -----------------------------------------------------------------------------
+" Press * to search for the term under the cursor or a visual selection and
+" then press a key below to replace all instances of it in the current file.
+nnoremap <Leader>r :%s///g<Left><Left>
+nnoremap <Leader>rc :%s///gc<Left><Left><Left>
+
+" The same as above but instead of acting on the whole file it will be
+" restricted to the previously visually selected range. You can do that by
+" pressing *, visually selecting the range you want it to apply to and then
+" press a key below to replace all instances of it in the current selection.
+xnoremap <Leader>r :s///g<Left><Left>
+xnoremap <Leader>rc :s///gc<Left><Left><Left>
+```
+
+1. Put cursor over word you want to change
+2. `shift` + `8`
+3. Type word you want to replace and all matching words
+  * **note** You could add `gc` at end an it will ask you to confirm each change (optional)
+  * Use the `leader` + r + c to get that output
+4. Press enter
+5. All words from that point on will be replaced with your new word
+6. Type `u` to undo changes
+
+**note** If you don't see a word like this `%s//foobar/g` that means vim will replace your new world with the highlighted word
+
+* You can also visually select a phrase and use `*` to select another match and keep pressing `n` to get more matches then just use `leader` + `r` to replace all the phrases with the new one you type * you need to add vim-visual-search plugin
+
+The second keybinding is if you just want to change a word in a visual selection of text
+1. move to the word
+2. Type `*`
+3. Visual mode and select chunk of code
+4. leader + r and
+5. enter
+6. All the matching words in that section will change
+
+## Multi-cursor (kindof but better)
+* add a key binding in vimrc
+* hover over word
+* type `s` + `*`
+* type replacement word
+* hit escape
+* press `.` to replace each word (you could hit `n` and go one by one and then hit . if you want to replace it)
 
 ## Swap Files
 * `.swp` files are for backing up and you really shouldn't turn the backup system off
@@ -92,8 +260,14 @@ gT - previous tab
 | `u` | Undo
 | `ctrl` + `r` | Redo Undo
 
+## Search and replace
+* https://vim.fandom.com/wiki/Search_and_replace
+
+
+
 ## Multi-change word
-1. Search for word using `/`
+1. Search for word using `/` and follow it with the word your are searching
+  * example: `/people`
 2. Press enter (that will highlight all words that match search)
 3. Type `cgn` and type new word
 4. Enter into **Normal** mode
@@ -103,7 +277,7 @@ gT - previous tab
 ## Folding
 | Command | Description |
 | ------- | -------- |
-| `zM` | close everthing | 
+| `zM` | close everything | 
 | `zR` | open everything | 
 | `za` | toggle state of the current fold | 
 | `zj` | jump down to next fold | 
@@ -271,6 +445,64 @@ git config --global alias.d difftool
 Add this plugin to `.vimrc`
 
 `Plugin 'tpope/vim-surround'`
+
+description
+Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more.  The plugin provides mappings to easily delete, change and add such surroundings in pairs.  While it works under Vim 6, much of the functionality requires Vim 7.
+
+Examples follow.  It is difficult to provide good examples in the variable width font of this site; check the documentation for more.
+
+Press cs"' (that's c, s, double quote, single quote) inside
+
+"Hello world!"
+
+to change it to
+
+'Hello world!'
+
+Now press cs'<q> to change it to
+
+<q>Hello world!</q>
+
+To go full circle, press cst" to get
+
+"Hello world!"
+
+To remove the delimiters entirely, press ds" .
+
+Hello world!
+
+Now with the cursor on "Hello", press ysiw] (iw is a text object).
+
+[Hello] world!
+
+Let's make that braces and add some space (use "}" instead of "{" for no space): cs]{
+
+{ Hello } world!
+
+Now wrap the entire line in parentheses with yssb or yss) .
+
+({ Hello } world!)
+
+Revert to the original text: ds{ds)
+
+Hello world!
+
+Emphasize hello: ysiw<em>
+
+<em>Hello</em> world!
+
+Finally, let's try out visual mode. Press a capital V (for linewise visual mode)
+followed by S<p>.
+
+<p>
+  Hello world!
+</p>
+
+This plugin is very powerful for HTML and XML editing, a niche which currently seems underfilled in Vim land.  (As opposed to HTML/XML *inserting*, for which many plugins are available).  Adding, changing, and removing pairs of tags simultaneously is a breeze.
+
+The "." command will work with ds, cs, and yss if you install repeat.vim, vimscript #2136.
+
+http://github.com/tpope/vim-surround
 
 ## Sublime had a cool feature to highlight a word and change all words with that spelling. How can I do that in Vim?
 * I love multi-cursor in Sublime Text
