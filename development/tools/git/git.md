@@ -1,5 +1,23 @@
 # GIT
 
+## Cloning GitHub repo and I get asked for username and password
+* To prevent this from every happening do 2 things:
+
+1. Make sure you set up SSH with GitHub
+2. Don't clone the https repo, use the SSH repo
+
+HTTPS repos have a URL like this: 
+
+`git@github.com:gatsbyjs/gatsby-starter-blog.git`
+
+SSH repos have a URL like this
+
+`git@github.com:gatsbyjs/gatsby-starter-blog.git`
+
+* Using my example to clone and not get asked for credentials use:
+
+`$ git clone git@github.com:gatsbyjs/gatsby-starter-blog.git`
+
 ## How to remove local untracked files from the current Git branch
 * To remove directories, run:
 

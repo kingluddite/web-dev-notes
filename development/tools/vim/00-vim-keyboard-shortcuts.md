@@ -87,7 +87,6 @@ d]m = delete to start of next method
 
 16:48
 
-
 quit all
 `$ qa!`
 ## Find and replace in multiple files
@@ -493,6 +492,11 @@ Emphasize hello: ysiw<em>
 
 Finally, let's try out visual mode. Press a capital V (for linewise visual mode)
 followed by S<p>.
+
+"scripts": {
+  "start": "node app.js",
+  "dev": "nodemon app.js"
+}
 
 <p>
   Hello world!
