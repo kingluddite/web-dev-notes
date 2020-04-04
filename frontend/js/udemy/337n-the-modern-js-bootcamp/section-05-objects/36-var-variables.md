@@ -21,7 +21,7 @@ var firstName = 'Tom';
 console.log(firstName);
 ```
 
-* const or let wouldn't let us declare a variable already declared
+* `const` or `let` wouldn't let us declare a variable already declared
 * This is a big problem with var and if we use var is could cause problems for our code
     - const and let help prevent us from overiding a variable we already declared
 
