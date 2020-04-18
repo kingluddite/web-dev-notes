@@ -9,14 +9,16 @@
 // MORE CODE
 render() {
   return (
-    <div>
-      <div className="page-header">
-        <div className="content-container">
-          <h1 className="page-header__title">Add Expense</h1>
-        </div>
+    <>
+    <div className="page-header">
+      <div className="content-container">
+        <h1 className="page-header__title">Add Expense</h1>
       </div>
-      <ExpenseForm onSubmit={this.onSubmit} />
+        {/* END .content-container */}
     </div>
+    {/* END .page-header */}
+      <ExpenseForm onSubmit={this.onSubmit} />
+    </>
   );
 }
 // MORE CODE
@@ -33,8 +35,8 @@ render() {
 `ExpenseForm.js`
 
 * Restructure
-    - Remove root div
-    - Move error inside form
+    - Remove root `div`
+    - Move error inside `form`
     - **note** no requirement that there must be a root `div`
         + You just are required to have any root parent container
             * So form is now our root container
@@ -50,15 +52,25 @@ render() {
 
 * We add our classNames of `form` and `form__error`
 
+## Add new style file to our app
+`_theme.scss`
+
+```
+// MORE CODE
+
+@import './components/button';
+@import './components/form';
+
+// MORE CODE
+```
+
 ## Create `_form.scss` and import it
-```css
+```
 .form {
   display: flex;
   flex-direction: column;
 
-  &__error {
-    
-  }
+  &__error {}
 }
 ```
 
@@ -66,26 +78,31 @@ render() {
 
 ### Houston we have problems
 #### Problem #1: Form elements are taking up the full width
-    - We will use `content-container` inside `AddExpensePage` to fix this
+* We will use `content-container` inside `AddExpensePage` to fix this
 
 `AddExpensePage.js`
 
 ```
 // MORE CODE
+
 render() {
   return (
-    <div>
-      <div className="page-header">
-        <div className="content-container">
-          <h1 className="page-header__title">Add Expense</h1>
-        </div>
-      </div>
+    <>
+    <div className="page-header">
       <div className="content-container">
-        <ExpenseForm onSubmit={this.onSubmit} />
+        <h1 className="page-header__title">Add Expense</h1>
       </div>
+        {/* END .content-container */}
     </div>
+    {/* END .page-header */}
+    <div className="content-container">
+      <ExpenseForm onSubmit={this.onSubmit} />
+    </div>
+    {/* END .content-container */}
+    </>
   );
 }
+
 // MORE CODE
 ```
 
@@ -93,38 +110,108 @@ render() {
 * We want `page-header` to have the full page width header so we keep that and use the `content-container` inside it to just center the form
 * Our Header and the grey box to be full width no matter the size of the device
 
+![AddExpensePage](https://i.imgur.com/n0CDOWi.png)
+
+## Style error and form
+* Let's add some margin bottom below every form field
+
+`_form.scss`
+
+```
+.form {
+  display: flex;
+  flex-direction: column;
+  /* set all the direct children of form to the following rules */
+  > * {
+    margin-bottom: $m-size;
+  }
+
+  &__error {
+    font-style: italic;
+    margin: 0 0 $m-size 0;
+  }
+}
+```
+
+![improve form spacing](https://i.imgur.com/oAdERoO.png)
+
+* Click Add Expense button and you'll see we need to style our error slightly
+
+## How can we make the button not take up the full width
+* Just put it inside some `div`s
+
+`ExpenseForm.js`
+
+```
+// MORE CODE
+
+        <div>
+          <button>Add Expense</button>
+        </div>
+
+// MORE CODE
+```
+
+![smaller button](https://i.imgur.com/VrCPG1R.png)
+
+* Then add the button class
+
+```
+// MORE CODE
+
+        <div>
+          <button className="button">Add Expense</button>
+        </div>
+
+// MORE CODE
+```
+
+![styled button](https://i.imgur.com/Vgfy9p9.png)
 ## Challenge
+* AddExpensePage looks good
+* EditExpensePage needs to have some styles applied
 * Make it look like this:
 
 ![EditExpense](https://i.imgur.com/mS4N7cN.png)
+
+### Follow these steps
+1. Setup page header
+2. Setup content container for form and remove button
+3. Add button and button--secondary (bg color #888888)
 
 `EditExpensePage.js`
 
 ```
 // MORE CODE
+
 render() {
+  // const { expense, dispatch, history } = this.props;
   return (
-    <div>
-      <div className="page-header">
-        <div className="content-container">
-          <h1 className="page-header__title">Edit Expense</h1>
-        </div>
+    <>
+    <div className="page-header">
+      <div className="content-container">
+        <h1 className="page-header__title">Edit Expense</h1>
       </div>
+      {/* END .content-container */}
+    </div>
+    {/* END .page-header */}
       <div className="content-container">
         <ExpenseForm expense={this.props.expense} onSubmit={this.onSubmit} />
         <button className="button button--secondary" onClick={this.onRemove}>
           Remove Expense
         </button>
       </div>
-    </div>
+      {/* END .content-container */}
+    </>
   );
 }
+
 // MORE CODE
 ```
 
 `_button.scss`
 
-```css
+```
 .button {
   background-color: $blue;
   border: none;
@@ -171,64 +258,7 @@ $grey: #888888;
 // MORE CODE
 ```
 
+![Edit Expense](https://i.imgur.com/xDJ4Qou.png)
 
-
-1. Setup page header
-2. Setup content contain for form and remove button
-3. Add button and button--secondary modifier with bg color of #888888 (grey)
-
-#### Problem #2 Form element have so spacing between each other
-`_form.scss`
-
-```css
-.form {
-  display: flex;
-  flex-direction: column;
-
-  > * {
-    margin-bottom: $m-size;
-  }
-
-  &__error {
-    margin: 0 0 $m-size 0;
-    font-style: italic;
-  }
-}
-```
-
-* I love the `> *` this sets all the **direct children** of `.form` to have margin-bottom
-* We style the error
-
-![form so far](https://i.imgur.com/rNer3N8.png)
-
-* Click `Save Expense` button to make the error appear
-
-### Fixes
-* Make button not cover full width
-    - That is because all direct children have flex-direction `column`
-        + To make button not inherit this value we put it inside it's own `div` therefor making it not a direct child and it will be be flex-direction of column
-
-`ExpenseForm.js`
-
-```
-// MORE CODE
-        <textarea
-          className="textarea"
-          placeholder="Add a note for your expense (optional)"
-          value={this.state.note}
-          onChange={this.onNoteChange}
-        />
-        <div>
-          <button className="button">Add Expense</button>
-        </div>
-      </form>
-    );
-  }
-}
-```
-
-* Now `Add Expense` does not cover width of page
-* We add button className to make it have button styles
-
-## EditExpensePage Challenge
-* Look at it now and make it look as nice as AddExpensePage
+## Next
+* Style list of existing expenses

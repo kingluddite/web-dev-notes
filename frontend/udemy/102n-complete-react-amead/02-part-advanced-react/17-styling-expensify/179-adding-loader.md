@@ -1,7 +1,10 @@
 # Adding Loader
 `app.js`
 
+* This is where our loader resides
 * Comment out firebase code
+  - This will show the loader screen and never get rid of it
+  - This will make it easier to target with styles (we won't have to constantly refresh the page just to see things)
 
 ```
 // MORE CODE
@@ -26,7 +29,9 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
 * Make sure you are on `localhost:8080`
 * You should just see `Loading...`
-* We comment out firebase so that we stay on this page and see Loading...
+
+## Now we are going to break this out into a separate component
+* We'll keep the same Loading message for now
 
 ```
 // MORE CODE
@@ -54,6 +59,7 @@ export default LoadingPage;
 * If you do, you know our SFC `LoadingPage` is working
 
 ## Add our animated gif
+* Now we just have to swap out the dots with an HTML `img` element
 `LoadingPage.js`
 
 ```
@@ -98,8 +104,9 @@ export default LoadingPage;
 
 `_loader.scss`
 
-```css
+```
 .loader {
+  /* Using flexbox to perfectly center an item in the browser */
   align-items: center;
   display: flex;
   height: 100vh;
@@ -114,16 +121,19 @@ export default LoadingPage;
 ```
 
 * That will make the loader center in the screen and slightly smaller
-* Comment back in firebase code and the app loads nicely and you briefly see our animated loader
+* Comment back in firebase code (`app.js`)and the app loads nicely and you briefly see our animated loader
 
-## We made a ton of changes to our app
+## We need to clean up our tests
+* We made a ton of changes to our app
 * We need to rerun our test suite and create new snapshots
-* Shut down dev server
-* `$ yarn test --watch`
+* Shut down dev server and run jest
+
+`$ npm test --watch`
+
 * You will see a ton of snapshot failures
 * Type `u` to create new snapshots
 * All tests are passing
-* Use the menu to make sure you run all snapshots and generate all new snapshots
+* **note** Use the menu to make sure you run all snapshots and generate all new snapshots
 * In the end you should have 73 passing tests
 
 ## Challenge
@@ -132,10 +142,10 @@ export default LoadingPage;
 
 `LoadingPage.test.js`
 
-```js
+```
 import React from 'react';
 import { shallow } from 'enzyme';
-import NotFoundPage from '../../components/NotFoundPage';
+import LoadingPage from '../../components/LoadingPage';
 
 test('should render NotFoundPage correctly', () => {
   const wrapper = shallow(<NotFoundPage />);

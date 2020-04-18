@@ -1,6 +1,8 @@
 # Final Boilerplate
 * Gut Expensify and break it down into something we can reuse for all future React projects
-* duplicate `103e-exensify-app` as `my-react-boilerplate-v2`
+
+## Let's get started
+* Duplicate `103e-exensify-app` as `my-react-boilerplate-v2`
 
 ## Gut files from `src`
 * Delete
@@ -60,21 +62,19 @@
 ## Open my-react-boilerplate-v2 in terminal
 `index.html`
 
-```html
+```
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boilerplate React App</title>
+  <title>BOILERPLATE CHANGE THIS TITLE</title>
   <link rel="icon" type="image/png" href="/img/favicon.png" />
   <link rel="stylesheet" href="/dist/styles.css">
 </head>
-<body>
-  <div id="app"></div>
-  <script src="/dist/bundle.js"></script>
-</body>
-</html>
+
+// MORE CODE
+
 ```
 
 `package.json`
@@ -87,7 +87,7 @@
 }
 ```
 
-* Must use hyphens for multi-word `name` in package.json
+* **note** Must use hyphens for multi-word `name` in `package.json` and must be lowercase
 
 ## Let's check out the `src` directory
 * `auth`
@@ -99,14 +99,12 @@
 `LoginPage.js`
 
 ```
-import React from 'react';
-import { connect } from 'react-redux';
-import { startLogin } from '../actions/auth';
+// MORE CODE
 
 export const LoginPage = props => (
   <div className="box-layout">
     <div className="box-layout__box">
-      <h1 className="box-layout__title">Boilerplate React App</h1>
+      <h1 className="box-layout__title">BOILERPLATE CHANGE THIS</h1>
       <p>Tag line for app.</p>
       <button className="button" onClick={props.startLogin}>
         Login with Google
@@ -115,27 +113,20 @@ export const LoginPage = props => (
   </div>
 );
 
-const mapDispatchToProps = dispatch => ({
-  startLogin: () => dispatch(startLogin()),
-});
-
-export default connect(undefined, mapDispatchToProps)(LoginPage);
+// MORE CODE
 ```
 
 `Header.js`
 
 ```
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { startLogout } from '../actions/auth';
+// MORE CODE
 
 export const Header = props => (
   <header className="header">
     <div className="content-container">
       <div className="header__content">
         <Link className="header__title" to="/dashboard">
-          <h1>Boilerplate React App</h1>
+          <h1>BOILERPLATE CHANGE THIS HEADING</h1>
         </Link>
         <button className="button button--link" onClick={props.startLogout}>
           Logout
@@ -145,11 +136,7 @@ export const Header = props => (
   </header>
 );
 
-const mapDispatchToProps = dispatch => ({
-  startLogout: () => dispatch(startLogout()),
-});
-
-export default connect(undefined, mapDispatchToProps)(Header);
+// MORE CODE
 ```
 
 ## Rename `ExpenseDashboardPage.js` to `DashboardPage.js`
@@ -166,7 +153,7 @@ export default DashboardPage;
 ## Firebase - Remove all comments
 `firebase.js`
 
-```js
+```
 import * as firebase from 'firebase';
 
 const config = {
@@ -187,7 +174,7 @@ export { firebase, googleAuthProvider, database as default };
 ```
 
 ## reducers
-* auth.js - good to go
+* `auth.js` - good to go
 
 ## routers
 `AppRouter.js`
@@ -229,7 +216,7 @@ export default AppRouter;
 ## `store`
 `configureStore.js`
 
-```js
+```
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from '../reducers/auth';
@@ -246,6 +233,19 @@ export default () => {
 
   return store;
 };
+```
+
+* Add this to allow underscore dangle eslint
+
+`.eslintrc`
+
+```
+// MORE CODE
+
+    "no-underscore-dangle": "off"],
+    "consistent-return": 0,
+
+// MORE CODE
 ```
 
 ## Tests
@@ -318,7 +318,7 @@ firebase.auth().onAuthStateChanged(user => {
 ```
 
 ## Run test
-`$ yarn test --watch`
+`$ npm test --watch`
 
 ### Update broken snapshots
 `u`
@@ -329,7 +329,7 @@ firebase.auth().onAuthStateChanged(user => {
 
 ## Run dev server
 * Stop test suite
-* `$ yarn run dev-server`
+* `$ npm run dev-server`
 
 ### view in `http://localhost:8080/`
 * Login and Logout
@@ -356,46 +356,3 @@ firebase.auth().onAuthStateChanged(user => {
 
 `$ git commit -m 'Initialize repo'`
 
-### Changes you can make to Expensify
-1. Add confirmation modal when removing expenses
-2. Show number of hidden expenses in `/dashboard` summary
-    * "Not showing x expenses because of filters"
-3. Add support for another social login system
-    * GitHub
-    * Facebook
-    * Twitter
-4. Buy a custom domain and configure it with Heroku (or use subdomain on domain you own)
-    * Heroku documentation for custom domains
-
-### Indecision Changes
-* Try to deploy it to the web
-    - create Github repo
-    - create heroku app
-    - deploy it and set all of that stuff up
-    - live URL someone can go to see and add list of items
-
-## New Ideas (using [balsamiq](https://balsamiq.com/))
-![login for blod](https://i.imgur.com/kfEsKbG.png)
-
-![dashboard](https://i.imgur.com/zUVpZru.png)
-
-* filter search posts
-* search by title
-* add post button
-* Logout
-* app.com/dashboard
-
-## after clicking add post button
-![add post](https://i.imgur.com/o3h8lFZ.png)
-
-* `app.com/create`
-* You can add a title and a body to the post
-* And `Save` post
-    - Takes you back to Dashboard with new post in list
-* Click on post and you can edit it
-    - `app.com/edit/123abc`
-    - change title
-    - change body
-    - save
-    - delete
-* Also get a readable link `app.com/read/123abc` (public route)
