@@ -1,6 +1,6 @@
 # Avoiding Global Modules
 * When sharing projects you want everything available to your team member
-* If we share our boilerplate code your team won't have babel-cli or live-server and we need them to have this
+* If we share our boilerplate code your team won't have `babel-cli` or live-server and we need them to have this
 * So don't install modules globally but have them all local to your project so everyone can just `$ npm i` and start working on your app
 
 ## Uninstall global npm modules

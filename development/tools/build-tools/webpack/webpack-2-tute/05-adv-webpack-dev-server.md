@@ -51,6 +51,9 @@ devServer: {
 * Running the server generates a ton of info
 * To truncate this data use `stats: "errors-only"`
 
+## Open automatically
+* It opens a browser to `localhost:9000` if it's not open and if it's open it's smart enough to not open another browser
+
 `webpack.config.js`
 
 ```

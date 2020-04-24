@@ -222,5 +222,5 @@ plugins: [
 
 ## Check it in Chrome dev tools
 * View the Network tab in Chrome
-* You will see only `index` bundle on home page (index.html)
+* You will see only `index` bundle on home page (`index.html`)
 * You will see only `contact` bundle on the contact page

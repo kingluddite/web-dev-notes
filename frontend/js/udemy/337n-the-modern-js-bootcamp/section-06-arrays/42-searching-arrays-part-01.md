@@ -146,10 +146,10 @@ console.log(someObject === otherObject); // true
 * Although we can't use the array method `indexOf()`
 * There are a many other array methods we can use
 
-## Alternative to get the indexOf something in our array when that something is an object
-* **note** `indexOf()` compares searchElement to elements of the Array using strict equality (the same method used by the` ===` or triple-equals operator)
+## Alternative to get the `indexOf` something in our array when that something is an object
+* **note** `indexOf()` compares `searchElement` to elements of the Array using strict equality (the same method used by the `===` or "triple-equals operator")
 
-### we need something with more flexibility and the is `findIndex()` 
+### We need something with more flexibility and that is `findIndex()` 
 #### findIndex()
 * [docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
 * This can work with an array of objects

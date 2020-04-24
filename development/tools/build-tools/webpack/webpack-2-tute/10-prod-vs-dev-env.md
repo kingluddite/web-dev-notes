@@ -74,7 +74,7 @@ body {
 ```
 
 * We want to disable `ExtractTextPlugin` if it is in development mode
-* So if `isProd` is true we will just that variable with `!isProduction` because if we are not in production mode, we are in devMode and we will set disable: false
+* So if `isProd` is true we will just that variable with `!isProduction` because if we are not in production mode, we are in `devMode` and we will set disable: false
 
 `webpack.config.js`
 

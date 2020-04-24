@@ -1,20 +1,28 @@
 # Style, CSS and Sass loaders
+
 ## Flash of CSS (Flash of Unstyled Content)
-* If all your CSS is baked inside the JavaScript, this is not good for producton
-* This solution doesn't allow cache CSS
-* You can also get a Flash of Unstyled Content (FOUC)
-  - FOUC happens because the browser takes a while to load JavaScript and the styles would be applied only then
-  - Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately
-* Webpack provides a means to generate a separate CSS bundles using ExtractTextPlugin
-* [How to avoid FOUC](https://survivejs.com/webpack/styling/separating-css/)
+### Cons
+* Bad for production
+  - If all your CSS is baked inside the JavaScript, this is not good for production
+* No cache
+  - This solution doesn't allow you to cache CSS
+* FOUC
+  - You can also get a Flash of Un-styled Content (FOUC)
+  - `FOUC` happens because the browser takes a while to load JavaScript and the styles would be applied only then
+  - [How to avoid FOUC](https://survivejs.com/webpack/styling/separating-css/)
+
+## Solution
+* Separating CSS to a file of its own avoids the problem by letting the browser to manage it separately
+* Webpack provides a means to generate a separate CSS bundles using `ExtractTextPlugin`
 
 ## Loaders
-* webpack enables use of loaders to preprocess files
+* Webpack enables use of loaders to preprocess files
 * This allows you to bundle any static resource way beyond JavaScript
-* You can easily write your own loaders using Node.js
+* You can easily write your own loaders using `Node.js`
 
 ## css-loader
-`$ yarn add -D css-loader`
+* `$ yarn add -D css-loader`
+* `$ npm i -D css-loader`
 
 `src/index.css`
 
@@ -43,6 +51,8 @@ module.exports = {
 ```
 
 ## require the stylesheet
+`index.js`
+
 ```
 import css from './index.css';
 
@@ -172,11 +182,13 @@ module.exports = {
 ```
 
 * We name it at the end and we can test and see if the file and our `sass` and `css` are working
-* Lots of fixes here:
-* Entry point---> Need to install a specific version of extract-text-webpack-plugin
+
+## Lots of fixes here:
+* Entry point---> Need to install a specific version of `extract-text-webpack-plugin`
 * **troubleshoot tip** `npm` isn't always up to date so check webpack site for compatibility issues
 
 `$ yarn add -D extract-text-webpack-plugin@next`
+`$ npm i -D extract-text-webpack-plugin@next`
 
 * At the end of the day, you now have `bundle.css`
 * `$ yarn run prod`

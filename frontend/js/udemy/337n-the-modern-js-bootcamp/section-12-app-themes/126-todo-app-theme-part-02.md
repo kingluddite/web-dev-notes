@@ -41,7 +41,7 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
   let text = e.target.elements.text.value.trim();
   e.preventDefault();
 
-  if (!text.length > 0) {
+  if (text.length > 0) {
     alert('please enter a note before submitting');
   } else {
     todos.push({

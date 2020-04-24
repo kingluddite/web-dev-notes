@@ -1003,3 +1003,6 @@ bodyElement.addEventListener('input', (e) => {
   - We also get source maps files too
     + edit-bundle.js.map
     + index-bundle.js.map
+
+## We are ready for production
+* Take public folder and drop it into netlify or surge.sh
