@@ -25,9 +25,6 @@ This will open the crontab file. Add the following to it:
 Save the file by pressing Control + X. Then, press y, and then enter.
 ```
 
-
-
-
 # How to run shell script
 https://help.ubuntu.com/community/FilePermissions
 
@@ -66,7 +63,6 @@ chmod +x the_file_name
 ```
 $ for f in *; do mv "$f" "$f.tmp"; mv "$f.tmp" "`echo $f | tr "[:upper:]" "[:lower:]"`"; done
 ```
-
 
 ## Search history of grep
 `$ history | grep grep`
