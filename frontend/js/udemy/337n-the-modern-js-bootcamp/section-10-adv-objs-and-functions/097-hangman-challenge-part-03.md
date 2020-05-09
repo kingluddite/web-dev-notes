@@ -187,7 +187,7 @@ window.addEventListener('keypress', function(e) {
 1. Setup new "status" property with initial value of "playing"
 2. Create method for recalculating status to "playing", "finished" or "failed"
   * I've failed the game if I ran out of remaining guesses
-  * If I finished the game all of the letters in word exist somewhere in the guessedLetters array (I've guessed all of the letters of the word I'm playing with - to accomplish this you'll need to turn to an array function like forEach to calculate whether or not all of the letters have been guessed)
+  * If I finished the game all of the letters in word exist somewhere in the `guessedLetters` array (I've guessed all of the letters of the word I'm playing with - to accomplish this you'll need to turn to an array function like forEach to calculate whether or not all of the letters have been guessed)
   * `playing` - if you haven't `failed` and you haven't `finished` you are `playing`
 3. Call that method after a guess is processed
 4. Use console.log to print the status
@@ -198,4 +198,339 @@ window.addEventListener('keypress', function(e) {
 2. Make 2 incorrect guesses to see "failed"
 3. Refresh the browser and guess "c", "a" and "t" to see "finished" in console 
 
-### LAST Time 6:54 in video
+#### Starting files
+`hangman.js`
+
+```
+const Hangman = function(word, remainingGuesses) {
+  this.word = word.toLowerCase().split('');
+  this.remainingGuesses = remainingGuesses;
+  this.guessedLetters = [];
+  // setup new "status" property with intial value of "playing"
+  this.status = 'playing';
+};
+
+// create method for recalculating status to: "playing", "finished", or "failed"
+// we set it to a regular function as we'll need to use 'this'
+Hangman.prototype.calculateStatus = function() {
+  if (this.remainingGuesses === 0) {
+    this.status = 'failed';
+  }
+};
+
+Hangman.prototype.getPuzzle = function() {
+  let puzzle = '';
+
+  this.word.forEach(letter => {
+    if (this.guessedLetters.includes(letter) || letter === ' ') {
+      puzzle += letter;
+    } else {
+      puzzle += '*';
+    }
+  });
+
+  return puzzle;
+};
+
+Hangman.prototype.makeGuess = function(guess) {
+  guess = guess.toLowerCase();
+  const isUnique = !this.guessedLetters.includes(guess);
+  const isBadGuess = !this.word.includes(guess);
+
+  if (isUnique) {
+    this.guessedLetters.push(guess);
+  }
+
+  if (isUnique && isBadGuess) {
+    this.remainingGuesses--;
+  }
+
+  // we need to call our new method
+  this.calculateStatus();
+};
+
+// console.log(game1.getPuzzle());
+// console.log(game1.remainingGuesses);
+
+window.addEventListener('keypress', function(e) {
+  const guess = String.fromCharCode(e.charCode);
+  game1.makeGuess(guess);
+  console.log(game1.getPuzzle());
+  console.log(game1.remainingGuesses);
+});
+```
+
+### Add status of "playing" at start of game
+`hangman.js`
+
+```
+// MORE CODE
+
+const Hangman = function(word, remainingGuesses) {
+  this.word = word.toLowerCase().split('');
+  this.remainingGuesses = remainingGuesses;
+  this.guessedLetters = [];
+  // setup new "status" property with intial value of "playing"
+  this.status = 'playing';
+};
+
+// MORE CODE
+```
+
+### If there are no guesses left set status to "failed"
+`hangman.js`
+
+* We could put all this code inside `makeGuess` but better to break it up into smaller more digestible chunks and keep tasks separated
+
+```
+// MORE CODE
+
+// create method for recalculating status to: "playing", "finished", or "failed"
+// we set it to a regular function as we'll need to use 'this'
+Hangman.prototype.calculateStatus = function() {
+  if (this.remainingGuesses === 0) {
+    this.status = 'failed';
+  }
+}
+
+// MORE CODE
+```
+
+### Our new method will never run unless we call it
+`hangman.js`
+
+```
+// MORE CODE
+
+Hangman.prototype.makeGuess = function(guess) {
+  guess = guess.toLowerCase();
+  const isUnique = !this.guessedLetters.includes(guess);
+  const isBadGuess = !this.word.includes(guess);
+
+  if (isUnique) {
+    this.guessedLetters.push(guess);
+  }
+
+  if (isUnique && isBadGuess) {
+    this.remainingGuesses--;
+  }
+
+  // we need to call our new method
+  this.calculateStatus(); // here we call our new method
+};
+
+// MORE CODE
+```
+
+## Test if our status "failed" is working
+### Starting file
+`app.js`
+
+```
+const puzzleEl = document.querySelector('#puzzle');
+const guessesEl = document.querySelector('#guesses');
+const game1 = new Hangman('Cat', 2);
+
+puzzleEl.textContent = game1.getPuzzle();
+puzzleEl.textContent = game1.remainingGuesses;
+
+window.addEventListener('keypress', function (e) {
+  const guess = String.fromCharCode(e.charCode);
+  game1.makeGuess(guess);
+  puzzleEl.textContent = game1.getPuzzle();
+  guessesEl.textContent = game1.remainingGuesses;
+}
+
+```
+
+### Run our test of the status
+`app.js`
+
+```
+const puzzleEl = document.querySelector('#puzzle');
+const guessesEl = document.querySelector('#guesses');
+const game1 = new Hangman('Cat', 2);
+
+puzzleEl.textContent = game1.getPuzzle();
+puzzleEl.textContent = game1.remainingGuesses;
+console.log(game1.status); // add 
+
+window.addEventListener('keypress', function (e) {
+  const guess = String.fromCharCode(e.charCode);
+  game1.makeGuess(guess);
+  puzzleEl.textContent = game1.getPuzzle();
+  guessesEl.textContent = game1.remainingGuesses;
+  console.log(game1.status); // add
+}
+```
+
+`index.html`
+
+```
+<!DOCTYPE html>
+
+<html>
+    <head></head>
+    <body>
+        <p id="puzzle"></p>
+        <p id="guesses"></p>
+        <script src="hangman.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
+```
+
+## Run app
+1. View `index.html` in browser
+2. You will see `playing`
+3. Guess `p` and the `o` and you'll see status change to `failed`
+
+* Test passes as expected
+
+## We need to test if someone has successfully solved the puzzle
+* We need to make sure that all of the letters that exist in the word array also exist in remaining guesses
+  - If they do that means that the end use has correctly guessed all of the letters
+  - We'll use a forEach method to accomplish this
+
+`hangman.js`
+
+```
+// create method for recalculating status to: "playing", "finished", or "failed"
+// we set it to a regular function as we'll need to use 'this'
+Hangman.prototype.calculateStatus = function() {
+  // create a flag and set the initial value to true
+  let finished = true;
+
+  // loop through all the letters in word
+  this.word.forEach(letter => {
+    // see if guessedLetters has all letters in word
+    if (this.guessedLetters.includes(letter)) {
+      //
+    } else {
+      finished = false;
+    }
+  });
+
+  if (this.remainingGuesses === 0) {
+    this.status = 'failed';
+  } else if (finished) {
+    // if status is finished the game is over
+    this.status = 'finished';
+  } else {
+    // if they haven't failed or finished they are still playing
+    this.status = 'playing';
+  }
+};
+```
+
+* Test
+  - Type `c`, `a`, `t` and status will change to `finished` in client console
+  - Type `p`, `o` and status changes to `failed`
+
+## Alternative way to solve this problem
+* We could have used the `filter` method
+  - We could have filtered out all of the letters that have been guessed, leaving just the ones that have not been guessed
+  - If I have any letters left, then I know the puzzle isn't finished
+
+```
+// MORE CODE
+
+Hangman.prototype.calculateStatus = function() {
+  // create a flag and set the initial value to true
+  // we pass filter a callback function and pass it a letter as an argument
+  const lettersUnguessed = this.word.filter(letter => {
+    // for filter we return true if we want to keep the letter
+    // and we return false if we don't want to keep the letter
+    // we only want to keep the letters that have not been guessed
+    return this.guessedLetters.includes(letter);
+  });
+
+// MORE CODE
+```
+
+* The above will return true if the letter has been guessed
+* But we want to return true when letters HAVE NOT BEEN GUESSED
+  - So we just flip our code using the logical NOT operator `!`
+
+#### Flipping the logic with `!`
+* Before
+
+```
+// MORE CODE
+
+    return this.guessedLetters.includes(letter);
+
+// MORE CODE
+```
+
+* Becomes
+
+```
+// MORE CODE
+
+    return !this.guessedLetters.includes(letter);
+
+// MORE CODE
+```
+
+* Now we need to see if `lettersUnguessed` has a length equal to `0`
+  - If it does we set that boolean value to our `finished` variable
+
+```
+// MORE CODE
+
+Hangman.prototype.calculateStatus = function() {
+  // create a flag and set the initial value to true
+  // we pass filter a callback function and pass it a letter as an argument
+  const lettersUnguessed = this.word.filter(letter => {
+    // for filter we return true if we want to keep the letter
+    // and we return false if we don't want to keep the letter
+    // we only want to keep the letters that have not been guessed
+    return !this.guessedLetters.includes(letter);
+  });
+  const finished = lettersUnguessed.length === 0;
+
+// MORE CODE
+```
+
+## Test
+* You should see the game works as before
+
+## every (array method)
+* `every` returns either `true` or `false`
+  - It returns `true` if every array item matches your function
+  - And every returns false otherwise
+* Let's look at one more JavaScript array method
+* [docs every MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every)
+
+### `every` example
+* If our test function test if a number is equal to 0
+* If we have 6 items in the array and their all 0, then the test function will test for all of them
+  - So `every` will return true
+  - But if just one of those numbers isn't zero, `every` will return false
+
+```
+// MORE CODE
+
+Hangman.prototype.calculateStatus = function() {
+  const finished = this.word.every(letter => {
+    return this.guessedLetters.includes(letter);
+  });
+
+// MORE CODE
+```
+
+* We get the same output but our code is more concise
+
+### We could refactor that into one line of code
+```
+// MORE CODE
+
+Hangman.prototype.calculateStatus = function() {
+  const finished = this.word.every(letter =>
+    this.guessedLetters.includes(letter)
+  );
+
+// MORE CODE
+```
+

@@ -1,5 +1,20 @@
 # Setting Up Mongoose and a Mongo DB
 
+## Install mongo on mac
+`$ brew install mongodb/brew/mongodb-community@4.0`
+
+* Mongo community runs mongod as a service
+  - You may need to restart your computer
+  - You may (if you upgraded your Mac OS) reinstall XCODE shell commands
+  - If mongod starts as service you don't have to keep opening it in separate tab as it runs always in the background
+* If you run `brew install mongo` it will give you choices
+
+### which version of mongo
+`$ mongod --version`
+
+### Access shell
+`$ mongo`
+
 ## Mongo
 Our NoSQL Database
 

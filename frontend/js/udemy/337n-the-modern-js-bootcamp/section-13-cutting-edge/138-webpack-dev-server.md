@@ -205,3 +205,35 @@ console.log(add(33, 332));
         + This solution will be similar to what we had before
         + The big difference is we'll either optimize for development which we're doing now or for production when we want to deploy our application
 
+## path to JavaScript
+* I dynamically created my `bundle.js` with a hash for cache busting, this means I didn't need to hard code my `script` with a src pointing to my JavaScript bundle. It was automatically injected
+  - When I hard coded it I was getting a 404
+  - I also had problems pushing images to production so I had to just bulk copy them automatically, not sure if this is the optimum solution but it works
+
+#
+* Comment out the hard coded path as it it no longer needed
+
+```
+// MORE CODE
+
+       
+<!-- <script src="/dist/assets/js/bundle.js"></script> -->
+</body>
+</html>
+
+// MORE CODE
+```
+
+* View page source and you'll see it was auto injected
+
+```
+// MORE CODE
+
+<!-- <script src="/dist/assets/js/bundle.js"></script> -->
+<script src="bundle.js?bde2f130eb7f9862fab0"></script></body>
+</html>
+// MORE CODE
+```
+
+
+

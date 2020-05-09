@@ -1,5 +1,26 @@
 # GIT
 
+## How can I remove a file with sensitive date from the entire history of git?
+* I accidentally added `.env` with all API key stuff. Help!
+* **IMPORTANT FIRST STEP** Make sure to save your local `.env` someone outside of your app (all traces of it will be wiped. You blow it up and then bring this back so you'll just have it locally)
+
+`git filter-branch --force --index-filter \ "git rm --cached --ignore-unmatch .env" --prune-empty --tag-name-filter cat -- --all`
+
+* Now force push the repo:
+
+`$ git push origin --force --all`
+
+Now tell your collaborators to `rebase`
+
+* [Source](https://stackoverflow.com/questions/43762338/how-to-remove-file-from-git-history)
+
+## .gitignore dist
+* If you see the dist and it is not getting removed with
+
+`dist/` in your `.gitignore` then use this line to delete the git cache
+
+`$ git rm -rf --cached dist/`
+
 ## Cloning GitHub repo and I get asked for username and password
 * To prevent this from every happening do 2 things:
 
