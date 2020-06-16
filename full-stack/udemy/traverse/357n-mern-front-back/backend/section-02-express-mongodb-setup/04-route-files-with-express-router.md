@@ -8,10 +8,9 @@
 ## routes folder
 * Will hold all routes
 * We'll have separate files for all our routes
-* All of these routes will return JSON for our API so we'll create a folder to hold all them called api
+* All of these routes will return JSON for our API so we'll create a folder to hold all them called `api`
     - There will be no server rendered templates
         + That will all happen on the frontend react application
-
 
 `routes/api/users.js`
 
@@ -32,7 +31,7 @@
 
 ## Express Router
 * If you want break routes up into separate files you need to use Express Router
-* You could put all routes inside server.js but that would make server.js very long so it makes sense to break them up into different resources
+* You could put all routes inside `server.js` but that would make `server.js` very long so it makes sense to break them up into different resources
 
 ### How to use Express Router
 ```

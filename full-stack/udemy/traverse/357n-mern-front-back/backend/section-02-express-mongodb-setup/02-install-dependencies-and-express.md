@@ -24,6 +24,7 @@ node_modules/
 * config - package for global variables
 * gravatar - package for profile avatars
 * request - will allow us to make http requests to another API (we'll use this to make API requests and hide our API keys and list latest repos)
+    - This is going to be updated
 
 ## Install all dev dependencies
 `$ npm -D nodemon concurrently`
