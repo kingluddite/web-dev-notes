@@ -126,6 +126,7 @@ module.exports = router;
 * Grab all profiles and get a user id of a user profile
 * You want to use `err.kind` to make sure if checking for a user id that you return a profile not found and not server error
 * Save `Find profile by user id` in Postman
+* Don't want to send catch error of `Server Error` if someone doesn't have a valid user id in URL, we still want to provide No profile for this user found, that is why we add the `if` conditional with a check for `err.king` this is a security improvement
 
 `routes/api/profile.js`
 
@@ -155,4 +156,10 @@ router.get('/user/:user_id', async (req, res) => {
 module.exports = router;
 ```
 
+* Save in Profile `Get profile by user id` with this GET route request `localhost:5000/api/profile/user/5ee3dbe3fb1e137843569e0b`
+    - You will obviously need to swap out the user `id` in the URL with the user profile you wish to see
+    - Note if we make this request `localhost:5000/api/profile/user/1` we will get this error in our terminal:
+        + `Cast to ObjectId failed for value "1" at path "user" for model "profile"`
 
+## Next - Delete profile and user
+* At the same time with one route (and when we add posts later on this delete should delete any posts from that user)
