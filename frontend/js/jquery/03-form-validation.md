@@ -281,7 +281,7 @@ $password.focus( validPwdLength )
 $confirmPassword.focus( confirmPassword ).keyup( confirmPassword );
 ```
 
-## What do we do if we want to programmatically disable the submit button until the form validates?
+## What do we do if we want to programatically disable the submit button until the form validates?
 
 * add `id` of `login-submit` to submit button in html to make it easier to select
 

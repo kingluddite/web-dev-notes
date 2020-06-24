@@ -10,3 +10,25 @@
 ## Atom Text Editor Checklist
 * Make sure you ignore `node_modules`, `.git`, `.meteor` to speed up your scuzzy searches
 * Are you using `.eslintrc`
+
+## Server and client in VScode
+```json
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#000",
+    "titleBar.inactiveForeground": "#000000CC",
+    "titleBar.activeBackground": "#FFC600",
+    "titleBar.inactiveBackground": "#FFC600CC"
+  }
+}
+```
+
+### backend - .vscode/settings.json
+```json
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#FF2C70",
+    "titleBar.inactiveBackground": "#FF2C70CC"
+  }
+}
+```

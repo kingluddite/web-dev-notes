@@ -1,4 +1,7 @@
 # Terminal
+## Clear Terminal
+`cmd` + `k`
+
 ## create folder structure from CLI
 `$ mkdir -p src/js/components/{container,presentational}`
 ## check speed of zsh
@@ -7,7 +10,6 @@ zmodload zsh/zprof # top of your .zshrc file
 # Your .zshrc stuff
 zprof # bottom of .zshrc
 ```
-
 
 ## exclude folders for grep search
 `$ grep -R --exclude-dir=node_modules -i "getUsers" .`
