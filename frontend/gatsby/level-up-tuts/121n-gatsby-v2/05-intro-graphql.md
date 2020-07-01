@@ -94,7 +94,7 @@ module.exports = {
 * Click play
 
 ## Houston we have a problem
-* We will not see our change to our local API in gatsby-config.js until we stop and re-start gatsby in development mode
+* We will not see our change to our local API in `gatsby-config.js` until we stop and re-start gatsby in development mode
 
 `ctrl` + `c` and then `$ gatsby develop`
 

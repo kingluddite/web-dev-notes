@@ -1,4 +1,7 @@
-# Setup backend
+# Setup
+* [repo to finished project](https://github.com/bradtraversy/devconnector_2.0)
+
+## Setup backend
 * https://github.com/wesbos/eslint-config-wesbos
 
 `$ npm init -y`

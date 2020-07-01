@@ -8,6 +8,8 @@ In the context of "nit: removed whitespace," I would assume that the term is sho
 ## Syntax Parser
 A program that reads your code and determines what it does and if it's grammar is valid
 
+![test](https://i.imgur.com/gxdylbX.png)
+
 ## Lexical Environment
 Where something sits physically in the code you write
 

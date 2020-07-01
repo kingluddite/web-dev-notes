@@ -21,12 +21,12 @@
 
 ### layouts/
 * This folder was in V1 and is not in V2 and the layout automatically wrapped arround your components
-* We now have in V2 a layout.js and header.js which are now just components
-* We have a layout.css which will layout out our base styles
+* We now have in V2 a `layout.js` and `header.js` which are now just components
+* We have a l`ayout.css` which will layout out our base styles
 
 ## pages/
-* 404.js
-* index.js
+* `404.js`
+* `index.js`
     - This imports our `Layout` from `layout.js` which has the `Header` component inside it
 * We now need to wrap the `Layout` component around each individual page
 
@@ -35,7 +35,7 @@
 
 ## Routing in Gatsby
 * Pages are routes and the URL will be the page file name
-    - /pages/page-2.js will have a route of `/page-2`
+    - `/pages/page-2.js` will have a route of `/page-2`
 
 ## images/
 * Should be self explanatory

@@ -1,4 +1,9 @@
 #Cheatsheet
+## VS Code Plugins
+* Auto Rename Tag (closing tag changes when you change opening tag)
+* ES7 React Redux Snippets
+
+test
 * Create the main folder for your app
 
 ## Add Eslint and Prettier quickly

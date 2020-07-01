@@ -6,7 +6,7 @@
 
 # Install Gatsby
 
-`$ npn i -g gatsby-cli`
+`$ npm i -g gatsby-cli`
 
 * That will install your basic Gatsby framework
 

@@ -1,5 +1,5 @@
 # Creating Pages
-* Gastby has an automatic page creation
+* Gatsby has an automatic page creation
 
 ## uppercase vs lowercase naming conventions
 * Pages will be lowercase

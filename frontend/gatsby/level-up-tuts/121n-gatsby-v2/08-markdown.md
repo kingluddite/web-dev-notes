@@ -4,7 +4,7 @@
 
 ## What is a transformer?
 * It takes a node (in this case a node is a markdown file) and it takes it and transforms it into something that we can query off of in a better more appropriate manner
-    - This transformer understands much more about markdown than the source-filesystem plugin
+    - This transformer understands much more about markdown than the `source-filesystem` plugin
     - We need a transformer to be able to access nuance attributes about markdown
 
 ## How can we install gatsby-transformer-remark?
