@@ -208,7 +208,7 @@ async (req, res) => {
     // If our errors array is not empty
     if (!errors.isEmpty()) {
       // return server error and errors
-      return res.status(400).json({ error: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const { name, email, password } = req.body;

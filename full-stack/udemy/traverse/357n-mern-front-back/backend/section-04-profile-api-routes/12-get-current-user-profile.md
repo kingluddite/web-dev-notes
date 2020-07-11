@@ -18,7 +18,7 @@ router.get('/me', auth, async (req, res) => {
   try {
     // Try to find the profile using the user id in the token
     // Grab the user name and avatar off the User object
-    const profile = await Profile.findOne({ id: req.user.id }).populate('user', ['name', 'avatar']);
+    const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
 
     // Do we have a profile?
     if (!profile) {

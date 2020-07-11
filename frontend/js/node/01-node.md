@@ -1,5 +1,59 @@
 # Node.js
 
+## Upgrade node with homebrew
+* I was getting mega errors using node 14.4.0 and needed to upgrade. It wouldn't until I did the following 2 commands:
+
+### Fix for upgrading node to latest version
+
+`$ brew update`
+
+* and then
+
+`$ brew upgrade node`
+
+### Other important node stuff
+
+* To see your current node version
+
+`$ node --version`
+
+* To see available node versions
+
+`$ brew search node`
+
+* To unlink from current version
+
+`$ brew unlink node`
+
+* Install any version e.g. 6
+
+`$ brew install node@6`
+* To link installed version
+
+`$ brew link node@6`
+
+* To see your current node version (again)
+
+`$ node --version`
+
+### Bonus
+* To revert to current node version (7.5 ATM)
+
+#### Gotcha
+`$ brew link --overwrite node`
+
+Linking /usr/local/Cellar/node/7.5.0...
+Error: Could not symlink share/doc/node/gdbinit
+
+##### Solution
+```
+$ sudo chown -R $USER /usr/local
+$ brew link --overwrite node
+```
+
+* [source for above info](https://medium.com/@katopz/how-to-install-specific-nodejs-version-c6e1cec8aa11)
+* [upgrade node](https://appdividend.com/2019/12/06/how-to-update-node-version-in-mac/)
+
 ## dunder
 * If you see this: `__dirname` (aka dunder dirname)
 

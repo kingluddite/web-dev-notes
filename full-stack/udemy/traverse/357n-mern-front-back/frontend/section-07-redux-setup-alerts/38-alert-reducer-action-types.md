@@ -5,8 +5,6 @@
         `reducers/index.js`
 
 ## Let's create our `Alert` Reducer
-`reducers/alert.js`
-
 
 `reducers/index.js`
 
@@ -18,7 +16,7 @@ import { combineReducers } from 'redux';
 import alert from './alert'; // add this
 
 export default combineReducers({
-  alert; // add this
+  alert // add this
 });
 ```
 
@@ -36,7 +34,6 @@ export default combineReducers({
     - alertType (success or error) - We'll use this to output a red or green color for our alert
     - It will be an array of objects
 
-#
 `reducers/alert.js`
 
 ```
@@ -123,7 +120,7 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 
 ```
 // actions
-import { SET_ALERT, REMOVE_ALERT } from './actions/types';
+import { SET_ALERT, REMOVE_ALERT } from '../actions/types';
 
 const initialState = [];
 
@@ -369,5 +366,5 @@ export const setAlert = (msg, alertType) => dispatch => {
 ## Next
 * Create an alert react component that will interact with our action
 * We'll call the setAlert action from the component
-    - Then SET_ALERT will get dispatched
+    - Then `SET_ALERT` will get dispatched
     - Then the state `return [...state, payload]` will get passed down to the component

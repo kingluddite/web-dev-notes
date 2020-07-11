@@ -79,3 +79,6 @@
     - `"app` pastes register a
 * `dzw` delete 2 named registers
 * `"Ayy` append to `a` register
+
+## Move to end of work in view mode
+* `V` + `e`
