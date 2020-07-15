@@ -1,4 +1,10 @@
 # Troubleshooting
+## Kill all node
+* If you shutdown and didn't end a server it might be still running
+* Just run this command to end all node
+
+`$ killall node`
+
 * Remove `node_modules` in server and client
 
 `$ rm -rf node_modules`

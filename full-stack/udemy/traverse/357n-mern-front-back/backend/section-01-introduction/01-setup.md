@@ -3,6 +3,7 @@
 
 ## Setup backend
 * https://github.com/wesbos/eslint-config-wesbos
+* Create a folder to holder your backend
 
 `$ npm init -y`
 
@@ -33,7 +34,8 @@
 * Scroll down to non-production dev mongodb atlas cluster
 * You create a project and inside the project you create a cluster and give it a name (it is free)
 
-### Security
+### Security IMPORTANT!!!!!
+* Click `Add New Database User`
 * You need to add a user
     - This is not the same user you used to log into MongoDB.com
     - This is a user that is specific to this db (cluster)

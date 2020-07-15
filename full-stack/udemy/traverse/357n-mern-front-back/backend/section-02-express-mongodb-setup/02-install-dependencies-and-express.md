@@ -19,16 +19,20 @@ node_modules/
 * MIT license
 
 ## Install all dependencies
-`$ npm i express express-validator bcryptjs config jsonwebtoken mongoose gravatar request dotenv`
+`$ npm i express express-validator bcryptjs config jsonwebtoken mongoose gravatar request dotenv` (no longer need to install `request` or `config`)
 
-* `config` - package for global variables
+### Here are the new modules to install
+`$ npm i express express-validator bcryptjs jsonwebtoken mongoose gravatar dotenv`
+
+* `config` - package for global variables (no)
 * `gravatar` - package for profile avatars
-* `request` - will allow us to make http requests to another API (we'll use this to make API requests and hide our API keys and list latest repos)
+* `request` - will allow us to make `http` requests to another API (we'll use this to make API requests and hide our API keys and list latest repos)
     - **UPDATE** 2020
         + As of 11th February 2020 `request` has been depreciated and is no longer maintained
-        + We were going to use `axios` in the `client` so we can easily change the above fetching of a users GitHub repositories to use axios
+        + We were going to use `axios` in the `client` so we can easily change the above fetching of a users GitHub repositories to use `axios`
 
 ### Before with `request`
+* We haven't created this file yet but when we do it looks similar to this: (just giving a heads up)
 
 ```
 const express = require('express');
@@ -70,7 +74,8 @@ router.get('/github/:username', (req, res) => {
 // MORE CODE
 ```
 
-* And your config file would be update to have the `client id` and `client secret`
+* And your `config` file would be update to have the `client id` and `client secret`
+  - We're going to use dotenv instead of `config`
 
 `config/default.json`
 
@@ -131,7 +136,7 @@ module.exports = router;
 ## Install all dev dependencies
 `$ npm -D nodemon concurrently`
 
-* Will allow us to run both our backend express server and our frontend react dev server at the same time with one single command
+* Will allow us to run both our `backend` express server and our `frontend` react dev server at the same time with one single command
 
 ## Main entry file `server.js`
 `server.js`

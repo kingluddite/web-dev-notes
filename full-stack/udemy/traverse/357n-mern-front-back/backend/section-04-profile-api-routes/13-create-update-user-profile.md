@@ -3,7 +3,6 @@
     - We'll pass this middleware in the 2nd argument as an array
     - We make sure they are not empty so we use `.not().isEmpty()`
 
-#
 ```
 // MORE CODE
 
@@ -337,6 +336,7 @@ module.exports = router;
 ```
 
 * **note** I misspelled `bio` as `bid` so the data was not properly entered. I changed to `bio` in my code and it was added to the response and the Database
+
 ## Check MongoDB to see that we saved the data properly in our Database
 
 ![here is Atlas Mongo](https://i.imgur.com/qkiSxLF.png)

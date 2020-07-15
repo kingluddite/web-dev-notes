@@ -76,16 +76,19 @@ connectDB();
 // MORE CODE
 ```
 
-## Add dotenv
+## My preferred way - Add dotenv
 * This will protect our secret info from github
-* A better solution than `config/default.json`
+* My preferred solution than using `config/default.json`
 
-`$ npm i dotenv`
+`$ npm i dotenv` (we already installed and you should see it in `package.json`)
 
 `config/config.env`
 
 * Put in your db name (change `<dbname>` to `devconnector`)
 * Put in your password
+  - Just to clarify - you have 2 passwords you need to remember on mongodb
+    + one password is to log in and administer mongo admin dashboard
+    + The other password is to the exclusive Database (cluster) you are storing your apps info inside
 
 ```
 MONGO_URI=mongodb+srv://philadmin:<password>@devconnector-a2gjt.mongodb.net/<dbname>?retryWrites=true&w=majority
@@ -96,6 +99,7 @@ MONGO_URI=mongodb+srv://philadmin:<password>@devconnector-a2gjt.mongodb.net/<dbn
 `.gitignore`
 
 * We don't want to see our environment variables on github
+* **note** The default location for environment variables is to create a `.env` in the root of your backend server folder
 
 ```
 node_modules/
