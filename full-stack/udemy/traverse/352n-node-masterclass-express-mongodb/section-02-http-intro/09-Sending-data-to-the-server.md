@@ -10,11 +10,11 @@
     - $.ajax (jquery)
     - We are using Postman
 * Let's fake send an authorization token via the header
-    - We Click on Headers tab in Request part of Postman
-    - We set `Authentication` for key and some long string `werqwerwersasfasfsd` as it's value
+    - We click on `Headers` tab in Request part of Postman
+    - We set `Authentication` for **key** and some long string `werqwerwersasfasfsd` as it's **value**
         + You would send authorization token or JWT token
-            * if you have authentication within your API
-            * You would send the id of the user that is being logged in
+            * If you have authentication within your API
+            * You would send the `id` of the user that is being logged in
 
 ```
 // MORE CODE
@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
 // MORE CODE
 ```
 
-* Look at the terminal after clicking send in postman (and adding Authorization key with a string value)
+* Look at the Terminal after clicking send in postman (and adding Authorization key with a string value)
 
 ```
 // MORE CODE
@@ -88,9 +88,6 @@ let body = [];
 
 * Then in Postman we need to send JSON in the body
 * We type raw JSON like this:
-    - We can remove the `Authorization` key and value
-    - And instead add `Content-Type` with a value of `application/json`
-* select Body > raw
 
 ```
 {
@@ -98,9 +95,12 @@ let body = [];
 }
 ```
 
-* Then we hit send and that gives us the Buffer (long string of numbers)
+* We can remove the `Authorization` key and value
+* And instead add `Content-Type` with a value of `application/json`
+* Select `Body` > `raw`
+* Then we click `Send` and that gives us the Buffer (long string of numbers)
     - Doesn't do us much good
-    - But if we turn that Buffer into a string with toString() method
+    - But if we turn that Buffer into a string with `toString()` method
 
 ```
 // MORE CODE
@@ -126,4 +126,4 @@ req.on('data', chunk => {
 ## Next
 * Work with the Methods and the URLs and do something based on that
     - This will give us the beginnings of a REST API
-    - We won't do the whole REST API with just the Node http module
+    - We won't do the whole REST API with just the Node `http` module

@@ -35,4 +35,25 @@ export default Navbar;
 * `./` is a relative path to the folder that I'm currently in
 
 ## Add Navbar component to our home page
+`index.js`
+
+```
+import React from 'react';
+import { Link } from 'gatsby';
+import Navbar from '../components/Navbar';
+
+export default function Home() {
+  return (
+    <div>
+      <Navbar />
+      <h1>Home</h1>
+      <div>
+        <a href="https://cnn.com">CNN</a>
+      </div>
+      <Link to="/blog">Blog</Link>
+    </div>
+  );
+}
+```
+
 

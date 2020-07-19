@@ -3,7 +3,6 @@
     - We will pass into `...roles` a comma separated value list of roles `publisher, admin`
     - We pass a `403` error which is a "Forbidden Error"
 
-#
 ```
 // MORE CODE
 // Grant access to specific roles

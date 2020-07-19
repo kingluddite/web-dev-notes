@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 * Postman
     - GET
-    - localhost:5000
+    - `localhost:5000`
     - Output: Hello from Express (Body tab of response)
     - 200 status
     - `text/html; charset=utf-8` default header for `Content-Type`
@@ -25,13 +25,13 @@ app.get('/', (req, res) => {
 ### fixing eslint
 * https://github.com/wesbos/eslint-config-wesbos/blob/master/.eslintrc.js
     - **error** VS code shows `html` plugin error from wes code 
-    -need to remove html plugin
+    - need to remove `html` plugin
     - save file as `.eslintrc.js`
     - copy and paste wes code to `.eslintrc.js`
     - Then eslint will work
 
-## What if I want to send JSON
-* I just pass and object (and Express is smart enough to run JSON.stringify() in the background)
+## What if I want to send JSON?
+* **note** I just pass an object (_and Express is smart enough to run `JSON.stringify()` in the background_)
 
 ```
 app.get('/', (req, res) => {
@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
 }
 ```
 
-* **Express is helping us!** And if you look at headers Express is converting `Content-Type` to `application/json`
+* **Express is helping us!** And if you look at Headers Express is converting `Content-Type` to `application/json`
 
 ## But if you want to send JSON you should use res.json()
 ```
@@ -82,7 +82,7 @@ app.get('/', (req, res) => {
 // MORE CODE
 ```
 
-## Even with success good to send 200 status and an object with success and data like this:
+* **Best Practice** Even with success it good to send 200 status and an object with success and data like this:
 
 ```
 // MORE CODE

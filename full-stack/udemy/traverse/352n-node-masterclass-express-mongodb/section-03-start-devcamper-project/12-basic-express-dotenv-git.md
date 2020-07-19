@@ -39,6 +39,7 @@
 
 NODE_ENV=development
 PORT=5000
+
 // MORE CODE
 ```
 
@@ -78,7 +79,7 @@ Server running in production mode on port 5000
 ```
 
 ## Postman
-* Open postman
+* Open Postman
 * You'll get GET 404 error
 * Any route you use in Postman, same error
     - This is because we haven't defined any routes

@@ -1,9 +1,9 @@
 # Request and Body validation
 ## Register user
 * We'll update our test route
-* We'll change it from GET to post and update the description
+* We'll change it from `GET` to `POST` and update the description
 
-`routes/api/user.js`
+`routes/api/v1/user.js`
 
 ```
 const express = require('express');
@@ -12,14 +12,15 @@ const router = express.Router();
 
 // @route    POST api/users
 // @desc     Register User
-// @access    Public
+// @access   Public
 router.post('/', (req, res) => res.send('user route'));
 
 module.exports = router;
 ```
 
 * We need to send data to this route
-* This data will be stored inside req.body (this is the object of data that will be sent to this route)
+* This data will be stored inside `req.body`
+  - This is the object of data that will be sent to this route
 
 `routes/api/users.js`
 
@@ -34,13 +35,14 @@ router.post('/', (req, res) => {
 // MORE CODE
 ```
 
-## undefined?
+## Test the POST route in Postman
 * We try to hit this post route in Postman (make sure to select POST)
 * We see `undefined` in Terminal
-* Why?
-    - In order for `req.body` to work we have to initialize the body parser
-    - You used to have to install body-parser as a separate package in Express and bring it in to server.js but now it is built into Express
-    - So instead of `app.use(bodyParser.json())` like we used to have to do we now use:
+
+## Houston we have a Problem! - Why are we getting undefined?
+* In order for `req.body` to work we have to initialize the body parser
+* You used to have to install `body-parser` as a separate package in Express and bring it in to `server.js` but now it is built into Express
+* So instead of `app.use(bodyParser.json())` like we used to have to do we now use:
 
 `server.js`
 
@@ -57,11 +59,17 @@ app.use(express.json({ extended: false }));
 // MORE CODE
 ```
 
-* Now by adding that one line we will be able to access the data inside `req.body`
+* **note** Now by adding that one line we will be able to access the data inside `req.body`
 
 ## How do we send data in a request?
-* We could use an HTML form but we can just use JSON directly inside Postman as we hit that route
-* To do this we need to add a HEADER of Content-Type with a value of `application/json`
+* We could use an HTML `form` but right now we have no UI
+
+## Postman to the rescue!
+* This is where Postman comes in handy because we can just use JSON directly inside Postman as we hit that route
+
+### Add stuf inside the Postman Headers tab
+* To do this we need to:
+    - Add a **Header** of `Content-Type` with a value of `application/json`
 
 ![content-type application/json](https://i.imgur.com/gZbN4dj.png)
 
@@ -74,6 +82,7 @@ app.use(express.json({ extended: false }));
 }
 ```
 
+## Houston we have a problem! - Not JSON data
 * That will give you an error because it is not JSON
 * Change it to:
 
@@ -96,6 +105,8 @@ app.use(express.json({ extended: false }));
 ## Express Validator
 * [docs](https://express-validator.github.io/docs/)
 * Add it
+
+`$ npm i express-validator`
 
 ```
 const express = require('express');
@@ -129,7 +140,7 @@ router.post(
 // MORE CODE
 ```
 
-* Now add email and password validation too
+* Now add `email` and `password` validation too
 
 `routes/api/users.js`
 
@@ -205,7 +216,7 @@ check(
 }
 ```
 
-* `locations` will always be body because that is the type of error - we're sending it in the body
+* **note** `locations` will always be body because that is the type of error - we're sending it in the body
 * `param` is the actual field
 * `msg` is our custom message i.e. - `Please include valid email`
 * Take name out of JSON data you are sending in Postman `req` and you'll get 3 errors because name is also required
@@ -233,8 +244,8 @@ check(
 ```
 
 * Now we can use this array of Errors on our front end with React however we want
-* React express-validator is a good solution
-* If you do custom validation it might be hard to deal with empty strings but express-validator makes it easy
+* React `express-validator` is a good solution
+* If you do custom validation it might be hard to deal with empty strings but `express-validator` makes it easy
     - Enter an empty string for `name` and you'll see it triggers the error
 
 ```

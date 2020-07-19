@@ -3,7 +3,7 @@
 
 1.xx Information  1.xx Informational
 
-* **note** We won't deal with 100 range http status codes
+* **note** We won't deal with 100 range `http` status codes
 
 2.xx Success
 200 Success
@@ -36,8 +36,8 @@
 
 ## Manually set a server status
 * We'll send a 404 error
-* This means we are sending no data back so we'll set that to null
-* And we'll set success to false
+* This means we are sending no data back so we'll set that to `null`
+* And we'll set success to `false`
 
 ```
 // MORE CODE

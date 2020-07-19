@@ -9,9 +9,9 @@ const server = http.createServer((req, res) => {
 // MORE CODE
 ```
 
-* Postman
+## Postman
 * GET
-* localhost:5000
+* `localhost:5000`
 * Click on `Body` tab
     - You will see `hello`
     - This is our 200 response
@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
 * Especially if you are sending HTML otherwise the browser won't know to render HTML
 
 ### How to send a header
-* We'll set the Content-Type for our header
+* We'll set the `Content-Type` for our header
 * We just want to send plain text
 
 ```
@@ -37,9 +37,9 @@ const server = http.createServer((req, res) => {
 // MORE CODE
 ```
 
-* Click send in Postman
-* Click on Headers tab
-    - You'll see Content-Type with a value of `text/plain`
+* Click `Send` in Postman
+* Click on `Headers` tab
+    - You'll see `Content-Type` with a value of `text/plain`
 
 ### What if I wanted to send HTML as a response?
 * **note** You can send as many res.write() as you want
@@ -169,9 +169,9 @@ const server = http.createServer((req, res) => {
 * With Chrome you'd need to install a Chrome extension to make it pretty
 
 ## Express will make this much easier
-* We won't have to use JSON.stringify()
+* We won't have to use `JSON.stringify()`
 * We can just use `res.send()` and put an object in and it will take that object and it will take care of the rest for us
-* We don't have to specify the Content-Type
+* We don't have to specify the `Content-Type`
 
 ### http module
 * Using this gives you an idea of what goes on under the hood under Express

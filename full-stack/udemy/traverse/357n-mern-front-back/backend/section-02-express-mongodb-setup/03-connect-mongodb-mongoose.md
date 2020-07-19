@@ -15,6 +15,14 @@
 }
 ```
 
+* **important** Make sure you give your Database a name so replace `<dbname>` with a name like:
+
+```
+{
+  "mongoURI": "mongodb+srv://philadmin:<password>@devconnector-a2gjt.mongodb.net/devconnect?retryWrites=true&w=majority"
+}
+```
+
 * We could put our connection logic directly inside our `server.js` but we want to keep that file clean
 * We'll create `config/db.js`
 
@@ -39,13 +47,12 @@ mongoose.connect(db);
 `config/db.js`
 
 ```
-
 const mongoose = require('mongoose');
 const config = require('config');
 
 const db = config.get('mongoURI');
 
-const connectDB = async () => {
+const connectDb = async () => {
   try {
     await mongoose.connect(db);
 
@@ -57,7 +64,7 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDb;
 ```
 
 * Connect our Database to our server
@@ -66,12 +73,12 @@ module.exports = connectDB;
 
 ```
 const express = require('express');
-const connectDB = require('./config/db');
+const connectDb = require('./config/db');
 
 const app = express();
 
 // Connect Database
-connectDB();
+connectDb();
 
 // MORE CODE
 ```
@@ -84,21 +91,21 @@ connectDB();
 
 `config/config.env`
 
-* Put in your db name (change `<dbname>` to `devconnector`)
+* Put in your db name (change `<dbname>` to `devconnect`)
 * Put in your password
   - Just to clarify - you have 2 passwords you need to remember on mongodb
     + one password is to log in and administer mongo admin dashboard
     + The other password is to the exclusive Database (cluster) you are storing your apps info inside
 
 ```
-MONGO_URI=mongodb+srv://philadmin:<password>@devconnector-a2gjt.mongodb.net/<dbname>?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://philadmin:<password>@devconnector-a2gjt.mongodb.net/devconnect?retryWrites=true&w=majority
 ```
 
 * Update `.gitignore`
 
 `.gitignore`
 
-* We don't want to see our environment variables on github
+* We don't want to see our environment variables on Github
 * **note** The default location for environment variables is to create a `.env` in the root of your backend server folder
 
 ```
@@ -111,10 +118,11 @@ config/config.env
 `server.js`
 
 * And point to our environment variables
+* **note** We need dotenv to come first in our required dependencies
 
 ```
-const express = require('express');
 const dotenv = require('dotenv').config({ path: './config/config.env' });
+const express = require('express');
 
 // MORE CODE
 ```
@@ -153,7 +161,7 @@ const dotenv = require('dotenv').config({ path: './config/config.env' });
 ```
 const mongoose = require('mongoose');
 
-const connectDB = async () => {
+const connectDb = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
@@ -173,7 +181,18 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDb;
+```
+
+## Woops - Connection error to MongoDB Atlas
+* We fixed this before but remember to be able to access the Database you need to whitelist your app
+  - Click `Network Access` and click `+ Add IP Address`
+  - **note** After adding give it a couple minutes to kick in and retry running your app with `$ npm run dev`
+
+![Add IP address](https://i.imgur.com/sFqekaH.png)
+
+```
+Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/
 ```
 
 ## Add NODE_ENV to config/config.env

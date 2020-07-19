@@ -1,20 +1,22 @@
 # Implementing JWT
 * [jwt.io](https://jwt.io/)
-    - Shows you the makeup of a jwt
+    - Shows you the makeup of a JWT
     - 2nd part is most important for us and that is the `payload`
-        + iat - time issued at
+        + `iat` - time issued at
 
 ## payload
-* We want to send the user's `id` in the payload so that the user
-    - This is so we can identify which user it is with the token
-    - If we want to update our profile we can easily look at the token to see which user it is that is logged in and which user it is who's profile we have to update
+* We want to send the user's `id` in the **payload**
+    - This is so we can identify which `user` it is with the **token**
+    - If we want to update our profile we can easily look at the `token` to see which **user** it is that is logged in and which **user** it is who's profile we have to update
 
 ## How does the jwt package work?
 * [repo for jsonwebtoken npm module](https://github.com/auth0/node-jsonwebtoken#readme)
     + We first have to sign the token
     + Then we pass in our payload
-    + The we can have a callback where we can send our response back to the client with that token
-    + Later on --- we'll protect our routes with a pieces of middleware that we'll create that will verify the token
+    + The we can have a callback where we can send our response back to the `client` with that **token**
+
+### In a few moments
+* We'll protect our routes with a piece of middleware that we'll create that will verify the token
 
 ### sign the token
 ```
@@ -37,7 +39,7 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
 // MORE CODE
 ```
 
-## How are we going to get the user's id?
+## How are we going to get the user's `id`?
 `routes/api/users.js`
 
 ```
@@ -55,13 +57,18 @@ await user.save();
 // MORE CODE
 ```
 
-* Our `user.save()` is a Promise and when we save the user it will create a user inside our users collection and automatically create an `_id` field (each document has a unique id when they are created inside mongodb)
-    - Why are we not using `_id`?
-        + Because with Mongoose it uses an abstraction so we can use `user.id` (instead of `user._id`)
+* Our `user.save()` is a Promise and when we save the `user` it will create:
+  - A `user` inside our `users` collection
+  - And automatically create an `_id` field
+  - **note** Each document has a unique `id` (**_id** more specifically) when they are created inside MongoDB
 
-## When we sign our jwt we need to use a secret
+## Why are we not using `_id`?
+* **note** Because with Mongoose it uses an abstraction so we can use `user.id` (instead of `user._id`)
+
+## Time to use a SECRET!
+* **note** When we sign our JWT we need to use a secret
 * We will add this inside our `environment variables`
-* Generate a random secret - https://www.grc.com/passwords.htm
+* [Generate a random secret](https://www.grc.com/passwords.htm)
 
 `config/config.env`
 
@@ -73,8 +80,14 @@ JWT_SECRET=E4BF61625583CE2325CBA792E1F6B13E69F2A97A88704C9C49965D5072599ACC
 // MORE CODE
 ```
 
-* expiresIn - for production we want it to expire in 3600 milliseconds (1 hour) but for development we'll add a couple of `0`s --- `3600000` (make sure to change it to 3600 in production)
-* The 3rd argument is a callback that takes in an error and the token
+## `expiresIn`
+* For **production**
+  - We want it to expire in 3600 milliseconds (1 hour)
+* For **development**
+  - We'll add a couple of `0`s --- `3600000` (make sure to change it to 3600 in `production`)
+* The 3rd argument is a **callback** that takes in:
+  - An `error`
+  - And the `token`
 
 `routes/api/users.js`
 
@@ -82,8 +95,9 @@ JWT_SECRET=E4BF61625583CE2325CBA792E1F6B13E69F2A97A88704C9C49965D5072599ACC
 const express = require('express');
 const { check, validationResult } = require('express-validator');
 const gravatar = require('gravatar');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken'); // add this
 const bcrypt = require('bcryptjs');
+
 // Bring in our User model
 const User = require('../../models/User');
 
@@ -162,13 +176,13 @@ router.post(
       // Sign the token
       jwt.sign(
         payload, // add payload
-        process.env.JWT_TOKEN, // pass in secret
+        process.env.JWT_SECRET, // pass in secret
         {
           expiresIn: 360000, // add when token expires
         },
         (err, token) => {
           if (err) throw err; // throw error if there is one
-          res.json({ token }); // no error? than send token to client in json format
+          res.json({ token }); // no error? than send token to client in JSON format
         }
       );
     } catch (err) {
@@ -182,7 +196,7 @@ module.exports = router;
 ```
 
 ## Postman
-* Use Register request API POST route and it will instert a user and send a jwt token back to the client
+* Use `Register request API POST route` and it will insert a user and send a jwt token back to the client
 
 ```
 {
@@ -190,6 +204,7 @@ module.exports = router;
 }
 ```
 
+## Now we have the user id!
 * Put the token in `jwt.io` and you'll see the user `id` in the payload
 
 ```
@@ -202,9 +217,9 @@ module.exports = router;
 }
 ```
 
-* We now need to add the functionality where we take this token and send it in the headers and access protected routes
-* We also get the `exp` (expiration) and we get this because we added the expiresAt property
-* Match the user id in the payload to the user _id in the mongoDB
+* We now need to add the functionality where we take this `token` and send it in the headers and access protected routes
+* We also get the `exp` (expiration) because we added the `expiresAt` property
+* **SEE FOR YOURSELF** Match the user `id` in the payload to the user `_id` in the mongoDB
 
 ![user id is the same as the one in the payload](https://i.imgur.com/I3hHDdy.png)
 

@@ -35,7 +35,7 @@
 ## Experiment with core node HTTP module
 * This is much lower level than Express
     - Express will give us a ton of tools, utilities and methods that makes things a lot easier
-    - But using the raw http module will give a better understanding of the request / response cycle and headers and content type
+    - But using the raw `http` module will give a better understanding of the request / response cycle and headers and content type
 * `http` is **core node module** so we don't need to install it
 
 `node-http/server.js`
@@ -120,7 +120,7 @@ const server = http.createServer((req, res) => {
         + Connect (keep-alive)
         + Content-Length (0)
 
-## Pull something off the req object
+## Pull something off the `req` object
 `req.method`
 
 * Run again and you'll see `GET` in terminal
@@ -143,7 +143,7 @@ const server = http.createServer((req, res) => {
 * You'll see headers and `/products` and `POST`
 
 ## Install nodemon
-* package.json
+* `package.json`
 * npm
 * Make sure you are in root of your project
 

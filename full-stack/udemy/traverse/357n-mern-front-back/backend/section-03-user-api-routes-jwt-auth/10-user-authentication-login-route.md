@@ -1,7 +1,7 @@
 # User Authentication / Login Route
-* We'll copy the registration rout as the login will be similar
+* We'll copy the registration route as the login will be similar
 * We remove `name` as we only need to check `email` and `password`
-* We check if there is not a user
+* We check if there is not a `user`
 * We can remove the gravatar as we don't need it for logging in
 * We can remove creating a user, salting and hashing a password
 * We want to keep signing a token and returning it
@@ -10,16 +10,19 @@
 ## We need to make sure the password matches
 * Bring in `bcrypt`
     - `bcrypt` has a method called `compare()`
-        + It takes in a plain text password (what the user entered) and an encrypted password (from the db) and it compares them and tells you if it is a match or not
-        + compare() returns a Promise (so we need to `await` it)
-* Best Practice - Have same error message `Invalid Credentials` whether there is no user or the username password isn't a match - just better security choice - don't give hackers any information they could use to hack you
+        + It takes in two arguments:
+          * plain text `password` (what the user entered)
+          * And an encrypted password (from the db)
+        + And it compares them and tells you if it is a match or not
+        + `compare()` returns a Promise (so we need to `await` it)
+* **Best Security Practice** - Have same error message `Invalid Credentials` whether there is no `user` or the use `password` isn't a match - just better security choice - don't give hackers any information they could use to hack you
 
 `routes/api/auth.js`
 
 ```
 // MORE CODE
 
-// @route    POST api/auth
+// @route    POST api/v1/auth
 // @desc     Authenticate User and get token
 // @access   Public
 router.post(
@@ -41,7 +44,7 @@ router.post(
 
     try {
       // See if user exists
-      const user = await User.findOne({ email });
+      let user = await User.findOne({ email });
 
       if (!user) {
         return res.status(400).json({
@@ -54,7 +57,7 @@ router.post(
       }
 
       // Check if the password matches
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, user.hashed_password);
 
       if (!isMatch) {
         return res.status(400).json({
@@ -95,9 +98,16 @@ router.post(
 
 ## Test in Postman
 * Open new tab
-* Since we are sending data (POST) we need to add a `Content-Type` in our Header with a value of `application/json`
-* Endpoint `http://localhost:5000/api/auth`
-* raw json
+
+### We are sending data!
+* Since we are sending data (POST) we need to do two things:
+
+1. Add a `Content-Type` in our Header
+2. And add a value for the `Content-Type` of `application/json`
+
+### Testing the Endpoint
+* Enter `POST` and `http://localhost:5000/api/auth`
+* For the request -> `raw` > `json` > `Body`
 
 ```
 {
@@ -106,7 +116,7 @@ router.post(
 }
 ```
 
-* If you don't enter username and password you get the validation
+* If you don't enter `email` and `password` you get the validation errors
 * If you enter a wrong user you get the same validation error
 * If you enter valid credentials you get the token
 
@@ -130,18 +140,18 @@ router.post(
 * We can generate tokens
 
 ## Improvement
-* We will rename our User `password` field to `hashedPassword`
+* We will rename our User `password` field to `hashed_password`
 * This minor change will make our code more readable
 * We can easily tell the difference from the plain text password and the hashed password
 * We'll need to make several changes to our code
-    - In our model User.js
+    - In our model `User.js`
 
 `models/User.js`
 
 ```
 // MORE CODE
 
-  hashedPassword: {
+  hashed_password: {
     type: String,
     required: true,
   },
@@ -160,30 +170,30 @@ user = new User({
         name,
         email,
         avatar,
-        hashedPassword: password,
+        hashed_password: password,
       });
 
       // Encrypt password
       const salt = await bcrypt.genSalt(10);
 
-      user.hashedPassword = await bcrypt.hash(password, salt);
+      user.hashed_password = await bcrypt.hash(password, salt);
 
 // MORE CODE
 ```
 
-* We need to not return our newly named `hashedPassword` field
+* We need to not return our newly named `hashed_password` field
 
 ```
 // MORE CODE
 
 router.get('/', auth, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-hashedPassword');
+    const user = await User.findById(req.user.id).select('-hashed_password');
 
 // MORE CODE
 ```
 
-* And we need to check our user.hashedPassword if it matches with the user entered `password`
+* And we need to check our `user.hashed_password` if it matches with the user entered `password`
 
 `routes/api/auth.js`
 
@@ -191,13 +201,14 @@ router.get('/', auth, async (req, res) => {
 // MORE CODE
 
       // Check if the password matches
-      const isMatch = await bcrypt.compare(password, user.hashedPassword)
+      const isMatch = await bcrypt.compare(password, user.hashed_password)
 
 // MORE CODE
 ```
 
 * That's it, it will work the same as before with registering, authenticating and logging in users but our code is slightly more readable
+  - We also try very hard to be as consistent with our codebase as possible so we and other can work on it tomorrow and 6 months from tomorrow with the least amount of confusion as possible
 
 ## Next - Profile
 * This will have a lot of data, lots of different fields
-* We'll have to create a model, a bunch of routes
+* We'll have to create a model, and a bunch of routes

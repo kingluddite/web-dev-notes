@@ -40,7 +40,6 @@ app.delete('/api/v1/bootcamps/:id', (req, res) => {
 * But we no longer have access to `app`
 * We'll import express and create a new variable called `router`
 
-
 `routes/bootcamps.js`
 
 ```
@@ -82,7 +81,7 @@ router.delete('/api/v1/bootcamps/:id', (req, res) => {
 ```
 
 ## But we can control our routes even better
-* We'll load in the routes/bootcamp in server.js
+* We'll load in the `routes/bootcamp` in `server.js`
 
 `server.js`
 
@@ -105,7 +104,7 @@ app.use('/api/v1/bootcamps', bootcamps); // add this
 ```
 
 * Now we don't need `/api/v1/bootcamps` in `routes/bootcamps.js`
-    - It will know automatically that taht's the route for all of these
+    - It will know automatically that that's the route for all of these
 
 ## Now we can update our routes
 `routes/bootcamps.js`

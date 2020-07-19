@@ -21,12 +21,12 @@
     - `/todos/1` (Delete todo with ID of 1)
 
 * **tip** Use plural throughout your REST API (or just be consistent throughout your API)
-* It's totally find to have exact same routes as long as they are different methods
+* It's totally fine to have exact same routes as long as they are different methods
 * **bad routes** 
     - POST /addtodos
     - PUT /updatetodos/1
     - You want your API to be RESTful like the standard above
-    - Your React and React router could be different
+    - **note** Your React and React router could be different
 
 ## Restructure our http server
 ```
@@ -149,11 +149,11 @@ if (method === 'GET' && url === '/todos') {
 }
 ```
 
-* Now hit send and you'll see that the todo is added into the todos array and your server status is `201` (created)
+* Now click `Send` and you'll see that the todo is added into the todos array and your server status is `201` (created)
 
 ## Validation
-* Let's say the todos need to have an id and text
-* Currently if we remove the text the route still works
+* Let's say the todos need to have an `id` and `text`
+* Currently if we remove the `text` the route still works
 
 ```
 // MORE CODE
@@ -173,7 +173,7 @@ if (method === 'GET' && url === '/todos') {
 // MORE CODE
 ```
 
-* Now you get a 400 client error if you submit json with both and id and text
+* Now you get a 400 client error if you submit JSON with both and `id` and `text`
 
 ## Send error info in response
 ```

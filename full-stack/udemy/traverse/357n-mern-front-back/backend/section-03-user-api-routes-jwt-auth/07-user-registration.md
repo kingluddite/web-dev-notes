@@ -1,8 +1,8 @@
 # User Registration
 * We need to do some things before we register a user
 
-1. See if the user exists (if they don't you want to send back an error because we don't want to create duplicate users)
-2. Get the users gravatar (based on their email and once we get it we want it to be part of the user we are registering
+1. See if the user exists (_if they don't you want to send back an error because we don't want to create duplicate users_)
+2. Get the users gravatar (_based on their email and once we get it we want it to be part of the user we are registering_)
 3. Encrypt the password using bcrypt
 4. Return the jwt (json web token) - We do this because in the front end we want the user to be logged in right away and in order to be "logged in" you have to have that token
 
@@ -17,7 +17,7 @@
 
 * Make sure to bring in our User model
 
-`routes/api/users.js`
+`routes/api/v1/users.js`
 
 ```
 const express = require('express');
@@ -29,7 +29,8 @@ const User = require('../../models/User');
 // MORE CODE
 ```
 
-* To find a user we could use `User.findOne().then()` because findOne() returns a Promise
+## Not then() but async/await
+* To find a user we could use `User.findOne().then()` because `findOne()`returns a **Promise**
 * But we are going to use `async/await` instead
 
 ## Try catch
@@ -58,7 +59,7 @@ const User = require('../../models/User');
 module.exports = router;
 ```
 
-* But in the catch we also want to send a 500 server error
+* But in the `catch` we also want to send a 500 server error
 
 ```
 // MORE CODE
@@ -149,7 +150,7 @@ const connectDB = async () => {
 * Gravatar
 * [docs](https://www.npmjs.com/package/gravatar)
 * syntax: `gravatar.url(email, options);`
-* options: size or s, default or d, rating or r
+* options: size or `s`, default or `d`, rating or `r`
 
 ```
 // MORE CODE
@@ -169,7 +170,7 @@ const gravatar = require('gravatar');
 // MORE CODE
 ```
 
-* You will see a long string that if you put in the browser you will see your gravator image (if you have one)
+* You will see a long string that if you put in the browser you will see your `gravatar` image (if you have one)
 * If the email doesn't have a gravatar you will see `404 Not Found` in browser
 * `mm` [gives default image](https://i.imgur.com/m64VFPS.png)
     - You can use abbreviated properties `s`, `d` and `r`
@@ -187,7 +188,7 @@ const avatar = gravatar.url(email, {
 // MORE CODE
 ```
 
-## Create a new users
+## Create a new user
 * This is a 2 step process
     - You use the `new User()` and you `User.save()`
     - We don't want to store a plain text user
@@ -259,7 +260,7 @@ async (req, res) => {
 
 ![new user in Database](https://i.imgur.com/Jlt3NoX.png)
 
-* Note the unencrypted plain text password (Not good to do this!)
+* **Note** the unencrypted plain text password (Not good to do this!)
 
 ## Using bcrypt
 * Now we'll encrypt our password before we store in inside our Database using bcrypt
@@ -275,7 +276,7 @@ const bcrypt = require('bcryptjs');
 ```
 
 ### Create salt first
-* genSalt() returns a Promise so we must `await` it
+* `genSalt()` returns a Promise so we must `await` it
 * The `rounds` is recommended to be `10` (higher number is more secure but takes more processing power)
 
 `const salt = await bcrypt.genSalt(10)`
@@ -292,7 +293,7 @@ const bcrypt = require('bcryptjs');
 * `user.save()` returns a Promise so we need to put `await` in front of it
     - **IMPORTANT** Anything that returns a `Promise` we need to put `await` in front of it
     - If we didn't use `async/await` we'd have to use `then()` and inside it we'd have to write the code we just wrote and our code gets messy
-    - async/await makes our code much cleaner and easier to understand what is happening
+    - `async/await` makes our code much cleaner and easier to understand what is happening
     - Makes it look synchronous even though it is asynchronous
 
 ## Let's add our user with encrypted Database to make sure it is working
@@ -387,7 +388,10 @@ module.exports = router;
 
 ![encrypted password](https://i.imgur.com/RhFghHb.png)
 
+## View the avatar in the browser
 * If you view avatar URL in browser and prepend `http` you will see `http://www.gravatar.com/avatar/3b41307d2d4dd21d7ef3a7470e0c80c3?size=200&default=mm&rating=pg`
+
+## No Duplicate users!
 * If you try to register the user again you will see you won't be able to due to our no duplicate user validation
 
 ```
@@ -400,6 +404,7 @@ module.exports = router;
 }
 ```
 
+## Frontend and backend errors easy peasy
 * Notice our errors array is formatted the same as if we forgot a name (so we can easily use both ways on front end)
 
 ```
@@ -442,4 +447,4 @@ if (user) {
 
 * Enter another dupe user and you'll see the Headers already sent error is gone
 
-## Next - Sending back jwt once user has registered
+## Next - Sending back jwt once the user has registered
