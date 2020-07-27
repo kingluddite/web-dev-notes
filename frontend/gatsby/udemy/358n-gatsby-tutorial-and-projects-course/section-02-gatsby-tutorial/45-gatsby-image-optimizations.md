@@ -1,0 +1,1 @@
+# gatsby-image optimization

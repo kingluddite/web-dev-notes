@@ -1,0 +1,1 @@
+# Render gatsby-image

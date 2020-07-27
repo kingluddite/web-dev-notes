@@ -1,0 +1,1 @@
+# render gatsby-image setup
