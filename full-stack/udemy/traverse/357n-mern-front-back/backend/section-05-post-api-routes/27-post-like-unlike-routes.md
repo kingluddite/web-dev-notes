@@ -24,27 +24,29 @@ if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
 
 ```
 // MORE CODE
-// @route.    PUT api/posts/like/:id
+
+// @route.    PUT api/posts/likes/:post_id
 // @desc.     Like a post
 // @access.   Private
-router.put('/like/:id', auth, async (req, res) => {
+router.put('/likes/:post_id', auth, async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const { id: userId } = req.user;
+    const { post_id: postId } = req.params;
+    const post = await Post.findById(postId);
 
-    // Check if the post has already been liked
-    if (
-      post.likes.filter(like => like.user.toString() === req.user.id).length > 0
-    ) {
-      return res.json(400).json({ msg: 'Post already liked' });
+    // check if the post has already been liked
+    if (post.likes.filter(like => like.user.toString() === userId).length > 0) {
+      return res.status(400).json({ msg: 'Post already liked' });
     }
 
-    post.likes.unshift({ user: req.user.id });
+    post.likes.unshift({ user: userId });
 
     await post.save();
 
     res.json(post.likes);
   } catch (err) {
     console.error(err.message);
+
     res.status(500).send('Server Error');
   }
 });
@@ -52,12 +54,15 @@ router.put('/like/:id', auth, async (req, res) => {
 module.exports = router;
 ```
 
-* Log in as a jane doe and like john doe's post
-* Make sure to grab John Doe's post 'id' and paste into URL
+## Like a post using Postman
+1. Log in as a jane doe
+2. And like john doe's post
+* **note** Make sure to grab John Doe's post `id` and paste into URL
 
-`http://localhost:5000/api/posts/like/5ef800f757296e7a95e3326d`
+`http://localhost:5000/api/v1/posts/likes/5ef800f757296e7a95e3326d`
 
-* Send in Postman and you'll get (make sure to past Jane's token as `x-auth-token`)
+3. **Remember** Make sure to past Jane's token as `x-auth-token`
+4. Send in Postman and you'll get 
 
 ```
 [
@@ -68,9 +73,10 @@ module.exports = router;
 ]
 ```
 
-* That is the likes (an array of objects (with like `id` and user id))
-* If you send again you should get an error `Post already liked`
-* View all posts and you'll see John's post has a like with a like id and user id
+* That is the likes (an array of objects (with like `id` and user **id**))
+
+5. If you send again you should get an error `Post already liked`
+6. View all posts and you'll see John's post has a like with a like `id` and user `id`
 
 ```
 // MORE CODE
@@ -96,28 +102,34 @@ module.exports = router;
 ```
 
 ## Unlike a post
-* Duplicate like post request and change `like` to `unlike` in route
-* We check if the length of the match from filter equals zero if it does the post has yet to be liked
-* We use map to loop through the likes to find the index of the match (like id matches the id in the URL) and store that index in removeIndex so we can use it to remove the like using `splice()`
-* 
+1. Duplicate like post request and change `likes` to `unlikes` in route
+2. We check if the length of the match from filter equals zero if it does the post has yet to be liked
+3. We use map to loop through the likes to find the index of the match (like `id` matches the `id` in the URL)
+4. We store that index in `removeIndex` so we can use it to remove the like using `splice()`
+
 ```
 // MORE CODE
-// @route.    PUT api/posts/unlike/:id
+
+// @route.    PUT api/v1/posts/unlikes/:post_id
 // @desc.     Unlike a post
 // @access.   Private
-router.put('/unlike/:id', auth, async (req, res) => {
+router.put('/unlikes/:post_id', auth, async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const { id: userId } = req.user;
+    const { post_id: postId } = req.params;
+    const post = await Post.findById(postId);
 
-    // Check if the post has already been liked
+    // check if the post has already been liked
     if (
-      post.likes.filter(like => like.user.toString() === req.user.id).length === 0
+      post.likes.filter(like => like.user.toString() === userId).length === 0
     ) {
       return res.status(400).json({ msg: 'Post has not yet been liked' });
     }
 
-    // Get remove index
-    const removeIndex = post.like.map(like => like.user.toString()).indexOf(req.user.id)
+    // get remove index
+    const removeIndex = post.likes
+      .map(like => like.user.toString())
+      .indexOf(userId);
 
     post.likes.splice(removeIndex, 1);
 
@@ -126,20 +138,21 @@ router.put('/unlike/:id', auth, async (req, res) => {
     res.json(post.likes);
   } catch (err) {
     console.error(err.message);
+
     res.status(500).send('Server Error');
   }
 });
 
-module.exports = router;
 ```
 
 ## Test in Postman
-* First test unlike (duplicate like route and rename as `Unlike a Post`)
-* Make sure the request has `x-auth-token` (a "fresh" one) in the Headers of the request
-* Click send and you'll see an empty array (the like has been unliked)
-* Click again and you'll trigger the error `Post has not yet been liked`
-* Click like request and you'll see the post has been liked
-* Log in as another user and you'll see the array of likes now has 2 likes
+### First test unlike 
+1. (duplicate like route and rename as `Unlike a Post`)
+2. Make sure the request has `x-auth-token` (a "fresh" one) in the Headers of the request
+3. Click send and you'll see an empty array (the like has been unliked)
+4. Click again and you'll trigger the error `Post has not yet been liked`
+5. Click like request and you'll see the post has been liked
+6. Log in as another user and you'll see the array of likes now has 2 likes
 
 ```
 [

@@ -1,6 +1,6 @@
 # Add Post Route
 
-`routes/api/posts.js`
+`routes/api/v1/posts.js`
 
 ```
 // 3rd party dependencies
@@ -19,9 +19,9 @@ const Post = require('../../models/Post');
 // We are going to place our routes in their own 'routes' folder
 const router = express.Router();
 
-// @route    POST api/posts
+// @route    POST api/v1/posts
 // @desc     Create a post
-// @access   Public
+// @access   Private
 router.post(
   '/',
   [
@@ -64,7 +64,7 @@ module.exports = router;
 ```
 
 ## Test it in Postman
-* Try the new route `PUT http://localhost:5000/api/posts`
+* Try the new route `PUT http://localhost:5000/api/v1/posts`
 * Click `Send`
 * You will get this error
 
@@ -74,12 +74,12 @@ module.exports = router;
 }
 ```
 
-* Why the error?
-    - This is an auth route
-    - We need a token in our Header `x-auth-token`
-        + Add Presets
-            * Content-Type
-            * x-auth-token
+## Why the error?
+* This is an `auth` route
+* We need a token in our Header `x-auth-token`
+  - Add Presets
+    + `Content-Type`
+    + `x-auth-token`
 
 ## You may get another error "Token is not valid"
 ```
@@ -107,7 +107,7 @@ module.exports = router;
 
 * You hit the validate error from your Post model
 
-`routes/api/posts.js`
+`routes/api/v1/posts.js`
 
 ```
 // MORE CODE
@@ -126,7 +126,7 @@ router.post(
 // MORE CODE
 ```
 
-* So we need to add body content as JSON to this Postman request rout
+* So we need to add `body` content as JSON to this Postman request route
 * Grab some lorem ipsum from any site and paste into Postman request body
 
 ```
@@ -158,7 +158,7 @@ router.post(
 }
 ```
 
-`routes/api/posts.js`
+`routes/api/v1/posts.js`
 
 ```
 // MORE CODE

@@ -15,7 +15,7 @@ plugins: ["gatsby-plugin-stylelint"]
 ```
 
 ## Install
-`$ gatsby-plugin-stylelint stylelint stylelint-webpack stylelint-config-standard stylelint-order`
+`$ npm i gatsby-plugin-stylelint stylelint stylelint-webpack-plugin stylelint-config-standard stylelint-order -D`
 
 Create `.stylelintrc.json` in root of your project
 
@@ -82,7 +82,7 @@ Create `.stylelintrc.json` in root of your project
 ## Test
 * You now need to use proper spacing and order for css properties
 
-`layout.js`
+`layout.css`
 
 ```
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');

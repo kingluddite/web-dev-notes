@@ -262,8 +262,6 @@ gT - previous tab
 ## Search and replace
 * https://vim.fandom.com/wiki/Search_and_replace
 
-
-
 ## Multi-change word
 1. Search for word using `/` and follow it with the word your are searching
   * example: `/people`

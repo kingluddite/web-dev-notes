@@ -1,12 +1,17 @@
 # Create and Update user profile
-* We will add auth and validation
+## Adding auth and validation
+* We will add `auth` and `validation`
     - We'll pass this middleware in the 2nd argument as an array
     - We make sure they are not empty so we use `.not().isEmpty()`
 
 ```
 // MORE CODE
 
-// @route    POST api/profile
+const { check, validationResult } = require('express-validator');
+
+// MORE CODE
+
+// @route    POST api/v1/profiles
 // @desc     Create or update user profile
 // @access   Private
 router.post('/', [auth, [
@@ -23,11 +28,11 @@ module.exports = router;
 ```
 
 ## Postman
-* Add POST request route is `localhost:4000/api/profile`
+* Add POST request route is `localhost:4000/api/v1/profiles`
 * Headers:
     - Content-Type: `application/json`
     - x-auth-token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVlM2JkMzAxZmM1Zjg3NDEyZWNiZWE3In0sImlhdCI6MTU5MTk4MzQwOCwiZXhwIjoxNTkyMzQzNDA4fQ.9AvsF47v7zhJz01RSbfmAnOky28Ww6yTOUvbMnQF_SM`
-        + Grab token from register or login routes
+        + **note** Grab your own token (similar to above) from register or login routes
 
 ### Press send
 * You'll get a 400 error that says `Status is required` in body
@@ -41,10 +46,16 @@ module.exports = router;
 ```
 
 * We want to turn skills into an array and spaces or no spaces should not matter
-* If you Send, the validation passes but nothing is happening because we didn't send a response in our server side route
+
+## Houston we have a problem!
+* If you `Send`, the validation passes but nothing is happening because we didn't send a response in our server side route
+* The request just "hangs"
 
 ## Make life easier - Save token as a preset in Postman
 1. Copy token
+
+* **NOTE** You need to select `Headers` in your request
+ 
 2. Under `Presets` > `Manage Presets` click `Add`
 3. Give Name of Header Preset as `Phil's token`
 4. Add `x-auth-token` Key
@@ -59,7 +70,7 @@ module.exports = router;
 
 ### Work on route response
 * We'll need to pull all the fields out (destructuring will save us lots of time)
-* We then grab our skills and turn it into an array of skills and deal with spaces using JavaScript
+* We then grab our `skills` and turn it into an **array of skills** and deal with spaces using JavaScript
 * We Use `console.log()` to test that it is working as we expect
     - `[ 'HTML', 'CSS', 'JavaScript', 'SQL' ]`
 
@@ -90,7 +101,7 @@ router.post(
       company,
       website,
       location,
-      bid,
+      bio,
       status,
       github_username, // eslint-disable-line camelcase
       skills,
@@ -107,7 +118,7 @@ router.post(
     if (company) profileFields.company = company;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
-    if (bid) profileFields.bid = bid;
+    if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
     if (github_username) profileFields.github_username = github_username; // eslint-disable-line camelcase
     if (skills) {
@@ -143,10 +154,9 @@ module.exports = router;
 // MORE CODE
 
     if (skills) {
-      // Go through String of skills
-      // turn them into an array with split()
-      // Use map to take each array item and trim any spaces
-      profileFields.skills = skills.split(',').map(skill => skill.trim());
+     
+     // MORE CODE 
+    
     }
 
     // Build social object
@@ -164,7 +174,7 @@ module.exports = router;
 
 ## Time to update our Profile model
 
-`routes/api/profile.js`
+`routes/api/v1/profiles.js`
 
 ```
 // MORE CODE
@@ -221,7 +231,7 @@ module.exports = router;
       // Create Profile
       profile = new Profile(profileFields);
 
-      await Profile.save();
+      await profile.save();
       res.json(profile);
     } catch (err) {
       console.error(err.message);
@@ -235,13 +245,13 @@ module.exports = router;
 
 ## Test in Postman
 * We'll add profile info
-    - Education and others will use separate routes to update them
+    - `Education` will use separate routes to update them
 
 ```
 {
     "company": "Acme",
     "status": "Developer",
-    "website" "http://example.com",
+    "website": "http://example.com",
     "skills": "HTML, CSS,JavaScript,SQL",
     "location": "Sellersville, PA",
     "bio": "I am a developer and Instructor",
@@ -283,10 +293,13 @@ module.exports = router;
 }
 ```
 
-* Notice the `user` id and the profile `_id` - Every collection has a unique `_id` but our profile that was created has a user `id` associated with it that is the user that is logged in - so that user is associated with this profile
+* Notice the `user` **id** and the profile `_id`
+  - Every collection has a unique `_id` but our profile that was created has a user `id` associated with it (that is the user that is logged in)
+  - So that user is associated with this profile
 * **Note** Education and Experience is empty
 * Our social object is properly set up
 
+### Check if we can update our profile also
 ## Check to see if our same route is updating info
 * Just change (in Postman) the bio description and add 'SCSS' as a skill
 
@@ -335,7 +348,9 @@ module.exports = router;
 }
 ```
 
-* **note** I misspelled `bio` as `bid` so the data was not properly entered. I changed to `bio` in my code and it was added to the response and the Database
+* **note** (In a previous notes version) I misspelled `bio` as `bid` so the data was not properly entered
+* I changed to `bio` in my code and it was added to the response and the Database
+* I keep this note here to make you aware that you need to spell your object properties correctly or you won't save to them when you want to
 
 ## Check MongoDB to see that we saved the data properly in our Database
 

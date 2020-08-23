@@ -57,7 +57,7 @@ GITHUB_CLIENT_SECRET=7dd542d9d1e8d88af592127eac6bab26527ff200
 4. Give token a descriptive name
 5. Select scopes or permissions you'd like to grant this token (we don't need any scopes (aka permissions) as our requests will be public)
 6. Click Generate token
-7. Copy your token to the clipboard and replace your client id and client secret
+7. Copy your token to the clipboard and replace your `client id` and `client secret`
     * Remove them from GitHub as your no longer using it
 
 `config/config.env`

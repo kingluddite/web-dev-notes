@@ -2,14 +2,14 @@
 * This is the same as adding experience
 * We can copy and paste the PUT and DELETE of experience and paste them below in `routes/api/profile.js` and use a find/replace to change all experience to `education` and `:exp_id` to `:edu_id`
 
-`routes/api/profile.js`
+`routes/api/v1/profiles.js`
 
 ```
 // MORE CODE
-// @route.    PUT api/profile/education
+// @route.    PUT api/profiles/educations
 // @desc.     Add profile education
 // @access.   PRIVATE
-router.put('/education', [auth, [
+router.put('/educations', [auth, [
   check('school', 'School is required').not().isEmpty(),
   check('degree', 'Degree is required').not().isEmpty(),
   check('field_of_study', 'Field of Study is required').not().isEmpty()
@@ -56,10 +56,10 @@ router.put('/education', [auth, [
   }
 });
 
-// @route.    DELETE api/profile/education/edu_id:
+// @route.    DELETE api/v1/profiles/educations/edu_id:
 // @desc.     Delete an education
 // @access.   PRIVATE
-router.delete('/education/:edu_id', auth, async (req, res) => {
+router.delete('/educations/:edu_id', auth, async (req, res) => {
   // use try catch to see if our code will work
   // if not we'll throw an error
   try {
@@ -113,7 +113,7 @@ module.exports = router;
 ```
 
 ### Test in Postman
-`PUT` with `http://localhost:5000/api/profile/education`
+`PUT` with `http://localhost:5000/api/v1/profiles/educations`
 
 * Add Headers `Content-Type` and `x-auth-token` with Postman Presets
 * Try to submit with no body data and you'll see the server side validation kicking in
@@ -177,7 +177,7 @@ module.exports = router;
 }
 ```
 
-* Save the PUT request with:
+* Save the PUT request with `Add Education` in Postman Profile Collection:
 
 ### And add this request route to see if we can delete an education
 * Add another education
@@ -214,7 +214,7 @@ module.exports = router;
 
 * And we now will delete UCLA so we'll grab the `_id` and add it to the URL of the DELETE request route
 
-DELETE `http://localhost:5000/api/profile/education/5ef2d508eb3e462f0e8df856`
+DELETE `http://localhost:5000/api/v1/profiles/educations/5ef2d508eb3e462f0e8df856`
 
 * Don't forget to add the `x-auth-token`
 * Hit Submit button
@@ -234,7 +234,7 @@ DELETE `http://localhost:5000/api/profile/education/5ef2d508eb3e462f0e8df856`
 // MORE CODE
 ```
 
-* Try to submit again and you'll get the error `education not found`
+* **Try** to submit again and you'll get the error `education not found`
 * Save the Request route as `Delete Education` in **Profiles** collections folder
 
 

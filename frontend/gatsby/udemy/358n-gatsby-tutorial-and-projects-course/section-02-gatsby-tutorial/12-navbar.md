@@ -28,7 +28,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
 ```
 
 * **note** Default exports can be named whatever you want when you import

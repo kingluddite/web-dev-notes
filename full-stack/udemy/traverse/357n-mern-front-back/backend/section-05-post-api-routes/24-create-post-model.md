@@ -64,9 +64,8 @@ const PostSchema = new Schema({
 ## Adding ability to like
 * And unlike `but not dislike` (similar to facebook)
 * But how can we tie a like to a specific user?
-    - We can do that by assigning a like to a a user like this:
+    - We can do that by assigning a like to a user like this:
 * Notice we have an array of all users who like this post
-    - It will just be an array of all the users who like the post
 
 ```
 // MORE CODE

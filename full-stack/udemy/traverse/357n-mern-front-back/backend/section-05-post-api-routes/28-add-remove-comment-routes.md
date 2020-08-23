@@ -1,7 +1,7 @@
 # Add & Remove Comment Routes
 * How we add a comment to a post will be similar to adding a post "The POST request to api/posts"
 * Copy add a post route and paste at bottom
-* The new post request will be `POST /api/posts/comment/:id`
+* The new post request will be `POST /api/v1/posts/comments/:post_id`
   - **Remember** comments is a property on the Post model
     + It has an array of objects inside it with:
       * user (referencing the user object)
@@ -49,16 +49,16 @@
 ```
 
 # New Post request for Adding comment
-* Posted clipboard at bottom of `routes/api/posts.js`
+* Posted clipboard at bottom of `routes/api/v1/posts.js`
 
 ```
 // MORE CODE
 
-// @route    POST api/posts/comment/:id
+// @route    POST api/v1/posts/comments/:post_id
 // @desc     Comment on a post
 // @access   Private
 router.post(
-  '/comment/:id',
+  '/comments/:post_id',
   [
     auth,
     [
@@ -68,6 +68,8 @@ router.post(
     ],
   ],
   async (req, res) => {
+    const { post_id: postIdUrl } = req.params;
+    const { id: userIdReq } = req.user;
     // error checking
     const errors = validationResult(req);
 
@@ -77,31 +79,33 @@ router.post(
 
     try {
       // Get the user
-      const user = await User.findById(req.user.id).select('-hashed_password');
+      const user = await User.findById(userIdReq).select('-hashed_password');
       // Get a post (that we are commenting on)
-      const post = await Post.findById(req.params.id);
+      const post = await Post.findById(postIdUrl);
 
-      // Comments are not a new collection in the Database
-      //  so we don't need to create a new Comment() (like we did for new Post())
-      //  instead we just create a newComment object
+      // note: comments are not a new collection in the Database
+      // so we don't need to create a new comment (like we did with post)
+      // instead we just create a newComment object
+      // destructure
+      const { text } = req.body;
+      const { name, avatar } = user;
       const newComment = {
-        // all the key value properies will be the same as what we did for a new post
-        text: req.body.text,
-        name: user.name,
-        avatar: user.avatar,
-        user: req.user.id,
+        text,
+        name,
+        avatar,
+        user: userIdReq,
       };
 
       // We need to add this new comment onto the post comments array
-      //  We want to place the comment not at the end but at the beginning
-      //  so we use unshift() (rather than push())
+      // We wan to place the comment not at the end but at the beginning of the array
+      // So we unshift() (rather than push())
       post.comments.unshift(newComment);
 
       // No need to save the post in a variable
-      // But we do need to save it to our Database
+      // but we do need to save it to our Database
       await post.save();
 
-      // Send back all the comments
+      // Send back all the comments to the client (react)
       res.json(post.comments);
     } catch (err) {
       console.error(err.message);
@@ -109,16 +113,17 @@ router.post(
     }
   }
 );
-module.exports = router;
 
+// MORE CODE
 ```
 
+## Do our comments also have likes and unlikes?
 * Comments are identical to Posts except they don't have `likes`
   - If you want to implement likes into them, it will be the identical steps to liking posts
 
 ## Test in Postman
-* Create a new request `PUT http://localhost:5000/api/posts/comment/ID_OF_POST_HERE`
-* Find all posts to capture a post id
+1. Make sure to find all posts to capture a post `id` (like below)
+2. Create a new request `PUT http://localhost:5000/api/v1/posts/comments/ID_OF_POST_HERE`
 
 ```
 // MORE CODE
@@ -144,12 +149,11 @@ module.exports = router;
 // MORE CODE
 ```
 
-* I grab the post id of `5ef800f757296e7a95e3326d`
-* Postman - `POST http://localhost:5000/api/posts/comment/5ef800f757296e7a95e3326d`
-* Add in Headers
-  - `x-auth-token` with token from log in request
-  - Add `Content-Type` with `application/json`
-* Add body comment
+3. Add in `Headers`
+  a. `x-auth-token` with token from log in request
+  b. Add `Content-Type` with `application/json`
+4. Add `body` comment
+  a. Change body from none > raw > JSON
 
 ```
 {
@@ -242,15 +246,15 @@ module.exports = router;
 
 ## Delete a comment
 
-`routes/api/posts.js`
+`routes/api/v1/posts.js`
 
 ```
 // MORE CODE
 
-// @route.    DELETE api/posts/comment/:id/:comment_id
+// @route.    DELETE api/v1/posts/comments/:post_id/:comment_id
 // @desc.     Delete a comment
 // @access.   Private
-router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
+router.delete('/comments/:post_id/:comment_id', auth, async (req, res) => {
   try {
     // Get the post
     const post = await Post.findById(req.params.id);
@@ -299,11 +303,14 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 ```
 
 ## Test in Postman
-* This is the route
-  - Grab a post id and a comment id from that post (your post needs a comment to delete so make sure both id's exist and if they don't create a comment to delete)
-    + Search all posts to get both `id's`
-    + `DELETE http://localhost:5000/posts/comment/5ef800f757296e7a95e3326d/5ef8bfbcf1fd502fda48ddec`
-    + This is a Private route so add `x-auth-token` with the user logged in that made the comment
+1.Grab a post `id` and a comment `id` from that post
+  * **note** Your post needs a comment to delete so make sure both `id`'s exist and if they don't create a comment to delete
+2. Search all posts to get both `id's`
+3. The route will resemble:
+
+`DELETE http://localhost:5000/posts/comments/5ef800f757296e7a95e3326d/5ef8bfbcf1fd502fda48ddec`
+
+**note** This is a Private route so add `x-auth-token` with the user logged in that made the comment
       * If you try to delete a comment you don't own you will get 'You are not authorized' error
       * If you delete a comment you'll get:
 
