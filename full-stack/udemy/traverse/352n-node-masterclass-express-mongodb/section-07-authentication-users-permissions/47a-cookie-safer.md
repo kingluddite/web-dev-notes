@@ -34,9 +34,9 @@
 ## Other CSRF mitigation approaches
 * `State Variable` (Auth0 uses it) - The client will generate and pass with every request a cryptographically strong random nonce which the server will echo back along with its response allowing the client to validate the nonce 
   - It's explained in Auth0 docs.
-* Always check the `referer` header and accept requests only when `referer` is a trusted domain
+* Always check the `referrer` header and accept requests only when `referer` is a trusted domain
 * If `referer` header is absent or a non-whitelisted domain, simply reject the request
 * When using `SSL/TLS` referrer is usually present
-* Landing pages (_that is mostly informational and not containing login form or any secured content may be little relaxed ​and allow requests with missing referer header_)
+* Landing pages (_that is mostly informational and not containing login form or any secured content may be little relaxed ​and allow requests with missing referrer header_)
 * `TRACE HTTP` method should be blocked in the server as this can be used to read the `httpOnly` cookie
 * Also, set the header `Strict-Transport-Security: max-age=; includeSubDomains​` to allow only secured connections to prevent any man-in-the-middle overwrite the `CSRF` cookies from a sub-domain

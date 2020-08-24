@@ -20,7 +20,7 @@
             * We'll want to add them in manually
         + This makes it easy so I never have to retype this
         + But also if we deploy it we can change it in one spot and that saves us a ton of time
-* Click `Add` button
+* Click `Save` button
 
 ### Congrats - Now we have an environment called `devcamper`
 
@@ -68,7 +68,7 @@ GET `{{URL}}/api/v1/bootcamps` and press `Send`
             * Desc: `Update single bootcamp to database. Must be authenticated and must be publisher or admin`
             * Save request to Bootcamps folder
     - `DELETE` `{{URL}}/api/v1/bootcamps/1` bootcamp and save as:
-        + Request name: Delete single Bootcamp`
+        + Request name: `Delete single Bootcamp`
             - Desc: Delete single bootcamp to database. Must be authenticated and must be publisher or admin`
             - Save request to Bootcamps folder
 

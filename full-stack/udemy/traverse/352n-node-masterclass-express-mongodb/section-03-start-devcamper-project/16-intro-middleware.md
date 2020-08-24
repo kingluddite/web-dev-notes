@@ -47,7 +47,10 @@ const logger = (req, res, next) => {
 ```
 
 ## IMPORTANT! You can never use middleware unless you use `app.use()` method
+
 `server.js`
+
+* **note** You won't see the logger if you put it at the bottom of `server.js`, place it right after `const app = express()`
 
 ```
 // MORE CODE
@@ -143,7 +146,7 @@ exports.getBootcamps = (req, res, next) => {
 exports.createBootcamp = (req, res, next) => {
   res.status(200).json({
     success: true,
-    msg: 'Create a bootcamps',
+    msg: 'Create a bootcamp',
     error: null,
   });
 };
@@ -193,7 +196,7 @@ exports.deleteBootcamp = (req, res, next) => {
 * When we build our authentication middleware:
     - We are going to validate a `token` that is sent in
     - And if that token validates
-    - Then we are going to set a `user` on our req object `req.user`
+    - Then we are going to set a `user` on our **req** object `req.user`
         + And that user will come from the Database (and that will be the currently logged in user)
         + And then we can use that user object within our controller methods to do what we need to do
         + THIS IS EXTREMELY POWERFUL!
@@ -290,7 +293,7 @@ app.use(morgan('dev'));
 * It works the same but has more info when you hit an API endpoint
 
 ### Only run morgan in development environment
-* `morgan()` is a function that takes many options, we'll just pass in `dev` and we'll only run in our development environment
+* **note** `morgan()` is a function that takes many options, we'll just pass in `dev` and we'll only run in our development environment
 
 `server.js`
 

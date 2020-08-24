@@ -25,10 +25,8 @@ app.get('/', (req, res) => {
 ### fixing eslint
 * https://github.com/wesbos/eslint-config-wesbos/blob/master/.eslintrc.js
     - **error** VS code shows `html` plugin error from wes code 
-    - need to remove `html` plugin
-    - save file as `.eslintrc.js`
-    - copy and paste wes code to `.eslintrc.js`
-    - Then eslint will work
+    - Update eslint and the plugin to the latest
+    - `$ npm i eslint@latest eslint-plugin-html@latest -D`
 
 ## What if I want to send JSON?
 * **note** I just pass an object (_and Express is smart enough to run `JSON.stringify()` in the background_)
@@ -49,7 +47,7 @@ app.get('/', (req, res) => {
 }
 ```
 
-* **Express is helping us!** And if you look at Headers Express is converting `Content-Type` to `application/json`
+* **Express is helping us!** And if you look at `Headers` Express is converting `Content-Type` to `application/json`
 
 ## But if you want to send JSON you should use res.json()
 ```

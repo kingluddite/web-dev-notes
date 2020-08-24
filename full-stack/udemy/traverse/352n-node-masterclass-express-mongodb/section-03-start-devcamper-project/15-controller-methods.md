@@ -11,7 +11,7 @@
 ## Create a `controllers` folder
 * We'll create a file for each "resource"
     - So we'll create `bootcamps.js`
-    - We need to `export` each method so we can bring it in to the `routes` files
+    - We need to `export` each method so we can bring it into the `routes` files
 
 ## Renaming files (TODO - Might remove this as is it necessary?)
 * `controllers/bootcamps.js` --> `controllers/controllers-bootcamps.js`
@@ -72,7 +72,7 @@ const {
 ```
 
 ## Efficient allocation of resources
-* see how we can group routes together?
+* See how we can group routes together?
 
 ```
 // we point to `/` route and bind it to both a GET calling our getBootcamps controller method and the POST createBootcamp controller method
@@ -92,7 +92,8 @@ router
 ## Make our VS Code look cool on the server (gives pink bg)
 In root create `.vscode/settings.json`
 
-```.
+```
+{
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#FF2C70",
     "titleBar.inactiveBackground": "#FF2C70CC"
