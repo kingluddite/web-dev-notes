@@ -224,10 +224,10 @@ exports.createBootcamp = async (req, res, next) => {
 ### You just added your first document inside MongoDB
 ![new document added](https://i.imgur.com/OPY2tT0.png)
 
-* You will see an _id with unique value added automatically
+* You will see an `_id` with unique value added automatically
 * Date with current date/timestamp added to `createdAt`
-* careers has 3 values
-* photo has default value
+* `careers` has 3 values
+* `photo` has default value
 * We know website passed the regex expression
 * We know the email passed the regex expression
 
@@ -265,15 +265,15 @@ exports.createBootcamp = async (req, res, next) => {
 // MORE CODE
 ```
 
+* **note** We add a `return` so we don't get the "headers already sent" error
+* **note** If you don't add a new email you'll get a duplicate key error for email too
 * Now instead of hanging
 * We get back a 400 Bad Request status and we see in the Response body success is `false`
 
 ## In a moment we'll create a custom error handler
 * We will also create a piece of middleware so we don't have to do a try/catch inside of every controller method
     - We'll wrap it inside a custom method
-* Above is the easiest way to handle errors
-    - But we'll refactor to make our code more efficient and safe us time when we add new things
-
+* Above is the easiest way to handle errors - But we'll refactor to make our code more efficient and save us time when we add new things
 ## Save Request with Content-Type header
 * So that when we use it again it will be just like it is now
 

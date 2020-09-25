@@ -1,14 +1,14 @@
 # Updating and Deleting bootcamps - PUT DELETE
 * Mongoose
-    - Update - findbyIdAndUpdate(id, what-we-will-insert(req.body), optons)
+    - Update - `findbyIdAndUpdate(id, what-we-will-insert(req.body), optons)`
         + We use async/await
-        + We get the id from the URL so we use `req.params.id`
+        + We get the `id` from the URL so we use `req.params.id`
         + For options we have an object
             * We use `new: true`
                 - Because when we get our response we want the data to be the **updated** data
                 - We also want to run our mongoose validators on update `runValidators: true`
                 - We need to check that the `bootcamp` exists
-                    + We need to `return` our res.status to prevent the other `res` in the `try` block from also running and giving us the `headers already sent` error
+                    + We need to `return` our `res.status()` to prevent the other `res` in the `try` block from also running and giving us the `headers already sent` error
                 - We only send a status of `200` (not 201) because we are not creating a new resource just modifying an existing resource
 
 ## Update code
@@ -18,7 +18,7 @@
 // MORE CODE
 
 exports.updateBootcamp = async (req, res, next) => {
-  const bootcamp = Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
+  const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
@@ -32,19 +32,19 @@ exports.updateBootcamp = async (req, res, next) => {
 // MORE CODE
 ```
 
-* Then you need to copy an id to the clipboard from an existing bootcamp in MongoDB and paste onto the URL/route using `PUT` HTTP request method
+* Then you need to copy an `id` to the clipboard from an existing bootcamp in MongoDB and paste onto the URL/route using `PUT` HTTP request method
 
 ### How do we update using Postman
-* We save our GET pointing to a bootcamp id in URL `{{URL}}/api/v1/bootcamps/5ec17a8b1956be6716e6b126`
+* We "Save As" our GET pointing to a bootcamp id in URL `{{URL}}/api/v1/bootcamps/5ec17a8b1956be6716e6b126` in Postman
 * We switch to PUT
 * We will test and change `housing` to true (or anything you want to change)
 * Click on Update bootcamp tab 
 
 ![update bootcamp tab](https://i.imgur.com/DWpBEs2.png)
 
-* Paste the id you had for a bootcamp into URL `{{URL}}/api/v1/bootcamps/5ec17a8b1956be6716e6b126`
-* Click Headers tab and select `JSON Content` type preset
-* Click Body tab and choose raw
+* Paste the `id` you had for a bootcamp into URL `{{URL}}/api/v1/bootcamps/5ec17a8b1956be6716e6b126`
+* Click Headers tab and select `JSON Content` type **preset**
+* Click `Body` tab and choose `raw`
 * Set housing to true
 
 `Body > raw`
@@ -70,8 +70,36 @@ exports.updateBootcamp = async (req, res, next) => {
 }
 ```
 
-* But we we run into ENUM errors because we can only use the set values in our model
+* But we run into ENUM errors because we can only use the set values in our model
+
+```
+Error: Validation failed: careers.2: `Businesses` is not a valid enum value for path `careers.$`., careers.3: `Soccer Star` is not a valid enum value for path `careers.$`.
+```
+
 * To change it like we did above and not get a validation error, update your model
+
+`models/Bootcamp.js`
+
+```
+// MORE CODE
+
+  careers: {
+    // Array of strings
+    type: [String],
+    required: true,
+    enum: [
+      'Web Development',
+      'Mobile Development',
+      'UI/UX',
+      'Data Science',
+      'Business',
+      'Other',
+      'Soccer Star', // Add this
+    ],
+  },
+
+// MORE CODE
+```
 
 #### But we can remove a career
 * After our server crashes we need to stop it with `ctrl` + `c` and re-start it with `$ npm run dev`
@@ -112,7 +140,7 @@ exports.updateBootcamp = async (req, res, next) => {
     - Make sure to save JSON type preset in POST
     - Copy to clipboard the `id` from the Dummy bootcamp so we can delete this bootcamp
     - `5ec17f2db7fa99954d88f9f7`
-* Add id to DELETE URL - `{{URL}}/api/v1/bootcamps/5ec17f2db7fa99954d88f9f7`
+* Add `id` to DELETE URL - `{{URL}}/api/v1/bootcamps/5ec17f2db7fa99954d88f9f7`
 * Test URL with wrong id and completely different id and see they both fail error handling
 * Test with dummy id and the document will be deleted
 
@@ -134,7 +162,7 @@ exports.deleteBootcamp = async (req, res, next) => {
 // MORE CODE
 ```
 
-* You could also send back and empty object
+* You could also send back an empty object
 
 ```
 // MORE CODE

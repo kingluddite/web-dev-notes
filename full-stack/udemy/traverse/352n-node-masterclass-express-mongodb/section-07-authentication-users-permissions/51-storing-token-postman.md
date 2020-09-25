@@ -58,5 +58,10 @@ pm.environment.set("TOKEN", pm.response.json().token)
     - Update Course
     - Delete Course 
 
-
+## This is really amazing!
 * **note** After doing the above we just need to login in or register and then we can access all the protected routes
+
+## Make sure in Postman
+* You save to variables and not global variables (the latter is if you want to use with multiple REST API collections)
+
+## Export Postman as JSON (You can share this with team members)

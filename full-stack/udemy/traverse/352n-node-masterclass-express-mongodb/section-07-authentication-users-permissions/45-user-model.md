@@ -1,13 +1,19 @@
 # User Model
+* jsonwebtoken
+* bcryptjs - used to encrypt passwords
+
 ## Install jsonwebtoken
 `$ npm i jsonwebtoken bcryptjs`
 
-## We are going to create User
-* This is another resource in our application
+## Add a `User` model
+`$ touch models/User.js`
+
+* We are going to create `User` model
+* This is another **resource** in our application
 * Just like all models it will have a schema
     - So we'll need mongoose
-    - We won't have usernames so the email will be required
-    - And it needs to be unique (we can't have 2 users have the same email)
+    - We won't have usernames so the `email` will be **required**
+    - And it needs to be `unique` (we can't have 2 users have the same email)
 
 `User.js`
 
@@ -28,12 +34,12 @@
 
 ## Add Role field
 * Each user will have a role
-* We only have 2 role types `user` and `publisher`
-    - We'll use `enum` type to limit it to those 2 types
-    - There will also be `admin` but the only way to add that is to go into the Database and add that
+* We only have two role types `user` and `publisher`
+    - We'll use `enum` type to limit it to those two types
+    - There will also be `admin` but the only way to add that is to go into the MongoDB Database and add that
         + You can do this via Compass or the shell and just change their role to admin
-    - All users will default to a role of `user`
-        + **note** With the role of `publisher` a user can create bootcamps and courses etc and `user`s are people who can create reviews about bootcamps  
+    - **BUSINESS RULE** All users will default to a role of `user`
+        + **note** With the role of `publisher` a user can create bootcamps and courses etc and `user`s are people who can create `reviews` about `bootcamps`  
 
 ```
 // MORE CODE
@@ -48,12 +54,13 @@
 ```
 
 ## Password is needed
-* `select: false` - What this does is when we get a user through our API, it won't show the password
+* `select: false` - What this does is when we get a `user` through our API, it won't show the password
+* **note** Even though we don't encrypt this yet I will name this `hashed_password` because eventually it will store a hashed password
 
 ```
 // MORE CODE
 
-  password: {
+  hashed_password: {
     type: String,
     required: [true, 'Please enter a password'],
     minlength: 6,
@@ -64,6 +71,7 @@
 ```
 
 ## Reset a password
+* We'll add reset password functionality
 * We'll need a token and an expiration for that token
 
 ```
@@ -75,7 +83,7 @@
 // MORE CODE
 ```
 
-* Every model will have a createdAt field that will default to the current time using `Date.now`
+* Every model will have a `createdAt` field that will default to the current time using `Date.now`
 
 ```
 // MORE CODE
@@ -89,9 +97,9 @@
 ```
 
 ## Make sure you export you model
-* Here is our file User model
+* Here is our final `User` model
 
-`User.js`
+`models/User.js`
 
 ```
 const mongoose = require('mongoose');
@@ -99,7 +107,7 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please add a name'],
+    required: [true, 'Please add a name']
   },
   email: {
     type: String,
@@ -110,15 +118,37 @@ const UserSchema = new mongoose.Schema({
       'Please add a valid email',
     ],
   },
+  role: {
+    type: String,
+    enum: ['user', 'publisher'],
+    default: 'user'
+  },
+  hashed_password: {
+    type: String,
+    required: [true, 'Please enter a passord'],
+    minlength: 6,
+    select: false
+  },
+  resetPasswordToken: String,
+  resetPasswordExpire: Date,
+  avatar: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('User', UserSchema);
 ```
 
-## Route update
-* Now we will have an auth route and a user route
-    - And we'll have an auth controller
-    - And a user controller
+## Update our `route`
+### auth route and controller
+### user route and controller
+* Now we will have an `auth` route and a `user` route
+    - And we'll have an `auth` controller
+    - And a `user` controller
 
 ## Why do we need separate auth and user routes and controllers?
 * Because they are different
@@ -128,7 +158,7 @@ module.exports = mongoose.model('User', UserSchema);
     - Logging in
     - Getting the currently logged in user
     - Resetting passwords
-* But Users will be the CRUD functionality for the admin
+* But `Users` will be the CRUD functionality for the admin
     - Add a user
     - Update a user
     - Delete a user
@@ -139,11 +169,12 @@ module.exports = mongoose.model('User', UserSchema);
         + You could do a straight `users.js` route and controller and put everything that has to do with users in there but it is a good idea to separate the two (auth and users)
 
 ### Create 2 new files
-* `routes/route-auth.js`
-* `controllers/controller-auth.js`
+* **note** All my routes are plural with one exception `auth.js`
+* `$ touch routes/api/v1/auth.js`
+* `$ touch controllers/auth.js`
 
-### Working on auth controller
-* Grab the ErrorResponse and asyncHandler from `controller-bootcamps.js`
+### Working on `auth` controller
+* Grab the `ErrorResponse` and `asyncHandler` from `controller-bootcamps.js`
 * **note** I removed color from models as it is not needed
 
 `controller-auth.js`
@@ -158,7 +189,7 @@ const User = require('../models/User');
 
 ## Let's set up our register route
 ### Register User
-`controller-auth.js`
+`controllers/auth.js`
 
 * We have a public route (anyone can register) to a new route
 
@@ -186,17 +217,28 @@ exports.register = asyncHandler(async (req, res, next) => {
 ```
 
 ## Now we'll build our route
-`routes/route-auth.js`
+`routes/api/v1/auth.js`
 
 ```
 const express = require('express');
-const { register } = require('../controllers/controller-auth');
+const { register } = require('../controllers/auth');
 
 const router = express.Router();
 
 // /api/v1/auth
 router.post('/register', register);
 ```
+
+## Postman
+* Create a new collection folder called `Authentication`
+* Description: `Routes for user authentication including register, login, reset password, etc`
+* **note** In postman I renamed my environment variable from `{{URL}}` to `{{DOMAIN}}`
+
+### Test in Postman
+`GET {{DOMAIN}}:{{PORT}}/api/v1/auth/register`
+
+#### Houston we have a problem!
+* You forgot to point to the user route inside `server.js`
 
 ## Don't forget to add the route to our main server file
 `server.js`
@@ -210,8 +252,8 @@ router.post('/register', register);
 connectDB();
 
 // Route files
-const bootcamps = require('./routes/route-bootcamps');
-const auth = require('./routes/route-auth'); // add this line
+const bootcamps = require('./routes/api/v1/bootcamps');
+const auth = require('./routes/api/v1/auth'); // add this line
 
 const app = express();
 
@@ -219,17 +261,19 @@ const app = express();
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
-app.use('/api/v1/auth', auth);
+app.use('/api/v1/auth', auth); // ADD this!
 
 // MORE CODE
 ```
 
 ## Update Postman
-* Add a new folder in Postman called `Authentication`
-    - Give it a description of: `Routes for user authentication inluding register, login, reset password, etc`
-    - Add a Post request called Register with this endpoint `{{URL}}/api/v1/auth/register`
+* Add a `POST` request called `Register user` with this endpoint:
+
+`{{DOMAIN}}:{{PORT}}/api/v1/auth/register`
 
 ![POST register added](https://i.imgur.com/UtlFJcr.png)
+
+* Save the POST request to the `Authentication` collection folder
 
 ## Test
 * Send that POST request and you should get
@@ -240,7 +284,7 @@ app.use('/api/v1/auth', auth);
 }
 ```
 
-* And a 200 status
+* And we get a 200 status
 
 ## Next
 * Add to this controller method our register functionality

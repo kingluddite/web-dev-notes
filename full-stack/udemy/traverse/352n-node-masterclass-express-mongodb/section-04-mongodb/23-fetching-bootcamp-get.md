@@ -57,7 +57,8 @@ exports.getBootcamp = async (req, res, next) => {
 // MORE CODE
 ```
 
-* Then grab an id from MongoDB, copy to clipboard
+* Then grab an `id` from MongoDB, copy to clipboard
+  - Or if you have the Get all bootcamps you can grab it from there (in Postman)
 * Past the URL into Postman `{{URL}}/api/v1/bootcamps/5ec0b97da72140a3ac1225a7`
     - Use a GET method request
 * Hit send in Postman
@@ -112,18 +113,30 @@ Error: Cannot set headers after they are sent to the client
 ```
 // MORE CODE
 
+// @desc     Get bootcamp
+// @route    GET /api/v1/bootcamps/:id
+// @access   Public
 exports.getBootcamp = async (req, res, next) => {
   try {
-    const bootcamp = await Bootcamp.findById(req.params.id);
-
+    const { id: bootcampIdReq } = req.params;
+    const bootcamp = await Bootcamp.findById(bootcampIdReq);
+    // search for a correctly formatted id but doesn't exist in our Database generate an error
     if (!bootcamp) {
+      // IMPORTANT! You can't send 2 responses so you need to return the first one so it won't go to the 2nd one
       return res.status(400).json({ success: false });
     }
+
+    res.status(200).json({ success: true, data: bootcamp });
+  } catch (err) {
+    res.status(400).json({ success: false });
+  }
+};
+
 // MORE CODE
 ```
 
 ### Tip: Make sure you handle both situations with both responses in try block
-* Hit send again and now if you URL is correctly formatted but the id is not one of your bootcamps you will get `success: false` in the response body
+* Hit send again and now if you URL is correctly formatted but the `id` is not one of your bootcamps you will get `success: false` in the response body
     - And we get our 400 Bad request server status
 
 # Next - Update and Delete of CRUD

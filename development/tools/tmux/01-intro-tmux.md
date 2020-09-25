@@ -1,6 +1,68 @@
 # Tmux Intro
+## vim
+### Remove highlights
+`:noh<cr>`
+
+## Kill all buffers
+`:bufdo bd`
+    
+## kill all tmux sessions
+* You can use `tmux kill-server` to cleanly and gracefully kill all tmux open sessions (and server)
+* If you are inside a tmux session you would like to keep, use 
+    - `tmux kill-session -a` to close all other sessions
+* To close a specific session, use tmux list-sessions to identify the session you want to kill, and then use
+    - `tmux kill-session -t targetSession` to kill that specific session
+* Also you can grossly kill all tmux processes with 
+    - `pkill -f tmux`
+
+## attach and detach
+* Jump out of tmux and jump back in whenever you want
+
+### detach from tmux
+`ctrl` + `b` + `d` (you are detached!)
+
+### attach to tmux
+`$ tmux attach` (and now you are back in!)
+
+### Delete buffer by buffer number
+`:bd n` (example: `:bd 29`)
+
+## Super Basic Tmux
+## Tmux
+`$ tmux -u` runs it
+
+`$ nvim`
+
+`ctrl` + `b` + `%` (splits into 2 vertical windows)
+
+## close pane
+* ctrl + b + x
+
+## get rid of window
+`$ exit`
+
+## Move windows
+* `ctrl` + `b` + `h` (left)
+* `ctrl` + `b` + `;` (right)
+
+## Create a new window
+`ctrl` + `b` + `c`
+
+## How to navigate between windows
+`ctrl` + `b` + `p` (previous)
+`ctrl` + `b` + `n` (next)
+
+## Make tmux screen wider
+`ctrl` + `b` + `alt` + `right arrow`
+
+## htop
+* https://www.cyberciti.biz/faq/install-htop-on-macos-unix-desktop-running-macbook-pro/
+* watch and manage system resources efficiently
+
 ## change bg of tmux window
 `$ ctrl + b + :select-pane -P 'bg=red'`
+
+* All the following are supported: black, red, green, yellow, blue, magenta, cyan, white, default, bright, bold, dim, underscore, blink, reverse, hidden,italics, color0 ... color255, colour0 ... colour255 and RGB strings (#ff0000).
 
 * Change focus of window
 
@@ -19,11 +81,6 @@
 * `htop`
     - keeps polling proc every second
     - if I close ssh session it will kill htop
-* but if you detach from a session
-
-### detach from a session
-`ctrl` + `b` + `d` will detach you from the session
-
 * Will bring you back to the shell but that htop process is still running
 
 `$ ps aux | grep htop`
@@ -34,6 +91,8 @@
 * Go home for the day
 * Problem at night
 * SSH back into server
+
+### What tmux sessions do I have running?
 * `$ tmux list-sessions`
 
 * You will see `backupsession`
@@ -58,9 +117,6 @@ bind -r C-h select-window -t :-
 bind -r C-l select-window -t :+
 ```
 
-## close pane
-* ctrl + b + x
-
 ## Make alt + arrow keys move panes
 ![image of iterm meta keys](https://i.imgur.com/r6J9r98.png)
 
@@ -70,15 +126,6 @@ bind -r C-l select-window -t :+
 
 ## dot-tmux
 * [my tmux dotfile](https://github.com/kingluddite/dot-tmux)
-
-## kill all tmux sessions
-* You can use `tmux kill-server` to cleanly and gracefully kill all tmux open sessions (and server)
-* If you are inside a tmux session you would like to keep, use 
-    - `tmux kill-session -a` to close all other sessions
-* To close a specific session, use tmux list-sessions to identify the session you want to kill, and then use
-    - `tmux kill-session -t targetSession` to kill that specific session
-* Also you can grossly kill all tmux processes with 
-    - `pkill -f tmux`
 
 ## Refresh tmux
 * After adding the tmux dotfile you need to refresh it to make the changes take effect

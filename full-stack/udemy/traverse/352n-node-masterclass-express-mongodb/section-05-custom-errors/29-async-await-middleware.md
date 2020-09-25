@@ -1,7 +1,7 @@
 # Async/Await Middleware
 ## DRY
 * Clean up our code
-* We have lots of try/catch
+* We have lots of `try/catch`
 
 ## What is callback hell?
 * Here is an example:
@@ -101,7 +101,7 @@ async function run() {
 * **Note**: There is nothing new, the same way we need to use `.catch()` for promises
 
 ## Middlewares
-* Express is one of the most popular Node.js frameworks
+* Express is one of the most popular `Node.js` frameworks
 * Express adds the concept of middleware
 * Given an HTTP request (also the response) we can imagine a pipeline to traverse, where on each step a task is made like:
     - check request is authenticated
@@ -111,8 +111,9 @@ async function run() {
 
 ![HTTP req res with Express JS](https://i.imgur.com/Rixgqqq.png)
 
-* In Express, `middleware` is nothing more than a callback function that receives three params: 
+* **GOOD TO KNOW** In Express, `middleware` is nothing more than a callback function that receives three params: 
 
+## The Three parameters middleware requires
 ```
 function middleware (request, response, next) {}
 ```
@@ -125,9 +126,9 @@ function middleware (req, res, next) {}
 
 * `request` (req): Reference to the object representing the HTTP request
     - We use it to get any data associated to the request: 
-        + body
-        + url
-        + headers
+        + `body`
+        + `url`
+        + `headers`
         + etc.
 * `response` (res): Reference to the object representing the HTTP response
     - We need it to write a response:
@@ -160,9 +161,9 @@ app.get('/hello', async (req, res, next) => {
 ```
 
 * Because if for some reason the code inside the `async` function fails
-    - It will throw the error to the caller function (which is Express JS) and it will never be handled!
+    - It will throw the error to the caller function (which is Express JS) and **it will never be handled!**
 
-## This is the write way to handle errors
+## This is the correct way to handle errors
 ```
 // DO THIS !!!
 app.get('/hello', async (req, res, next) => {
@@ -182,7 +183,7 @@ app.get('/hello', async (req, res, next) => {
         + We `catch` the error and invoke the `next` middleware with the error (this way Express JS) will detect and handle the error
 
 ## Apply the DRY
-* You will have a lot of try/catch which is a lot of repeating, which is a lot of repeating, which is a lot of repeating
+* You will have a lot of `try/catch` which is a lot of repeating, which is a lot of repeating, which is a lot of repeating (lol)
     - Stop! We need to make our code dry
     - One thing we can do to avoid repeating the `try/catch` code on each and every `async` **middleware** is write one in a high order function (HOC)
 
@@ -200,7 +201,7 @@ const asyncHandler = fn => (req, res, next) =>
 
 ```
 app.get('/hello', asyncHandler( (req, res, next) => {
-  // Some code here. Any error will be catch and pass to expressjs
+  // Some code here. Any error will be caught (catch) and pass to Expressjs
 }) );
 ```
 
@@ -221,6 +222,7 @@ module.exports = asyncHandler; // make sure you export so we can use it in other
 ## We import and wrap it like this:
 * Here is the controller before using a try/catch
 
+### Before we add it:
 ```
 // MORE CODE
 
@@ -245,6 +247,7 @@ exports.getBootcamp = async (req, res, next) => {
 
 * And look how much cleaner our controller is when we use the HOC wrapper
 
+## After we add it
 ```
 // MORE CODE
 
@@ -268,7 +271,6 @@ exports.getBootcamp = asyncHandler(async (req, res, next) => {
 `controller-bootcamps.js`
 
 ```
-const colors = require('colors'); // eslint-disable-line no-unused-vars
 const Bootcamp = require('../models/Bootcamp');
 const ErrorResponse = require('../utils/error-response');
 const asyncHandler = require('../middleware/async');
@@ -348,14 +350,14 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
 });
 ```
 
-* You only need to add this asyncHandler if you are doing asynchronous operations
+* **note** You only need to add this asyncHandler if you are doing asynchronous operations
 
 ## Test to make sure it all works as it did before
 * getAllBootcamps in Postman
 * getSingleBootcamp and see if errorHandler still works
     - add characters onto `id` in URL
         + We should still get our 404 not found status
-        + And it should still go through our errorHandler
+        + And it should still go through our `errorHandler`
             * It is looking at the err.name (from error.js) and spitting out that error message with a 404
 * createBootcamp
     - Make sure duplicate key is still working

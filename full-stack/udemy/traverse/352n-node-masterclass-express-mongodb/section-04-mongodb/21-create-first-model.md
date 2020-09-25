@@ -10,7 +10,7 @@
 * Singular
 
 #### Example of Model Name
-* Bootcamp.js
+* `Bootcamp.js`
 * Create a file `models/Bootcamp.js`
 * [RegEx for HTTP or HTTPS](https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url)
 * [Mongoose GeoJSON](https://mongoosejs.com/docs/geojson.html)

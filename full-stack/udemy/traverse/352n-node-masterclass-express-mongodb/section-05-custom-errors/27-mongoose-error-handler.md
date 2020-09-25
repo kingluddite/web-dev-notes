@@ -1,5 +1,5 @@
 # Mongoose Error Handling Part 1
-* Now we want to catch specific errors in our error handler and handle response from there rather than handle it in the catch
+* Now we want to catch specific errors in our error handler and handle response from there rather than handle it in the `catch`
 
 ## Modify our code
 * From this:
@@ -12,8 +12,7 @@ exports.getBootcamp = async (req, res, next) => {
     const bootcamp = await Bootcamp.findById(req.params.id);
 
     if (!bootcamp) {
-      // return res.status(400).json({ success: false });
-      return next(ErrorResponse(`No bootcamp found`, 400));
+      return res.status(400).json({ success: false });
     }
 
     res.status(200).json({ success: true, data: bootcamp });
@@ -49,7 +48,7 @@ exports.getBootcamp = async (req, res, next) => {
 ```
 
 * Now test in Postman with an id that is not properly formatted
-    - We'll still get our 500 error because I took out the ErrorReponse
+    - We'll still get our 500 error because I took out the `ErrorReponse`
 
 ## Errors have different names
 * Let's log one out
@@ -71,9 +70,24 @@ const errorHandler = (err, req, res, next) => {
 module.exports = errorHandler;
 ```
 
-* Click `Send` in Postman and look in the terminal and you'll see `CaseError`
+* Click `Send` in Postman and look in the terminal and you'll see `CastError`
+  - You only get this when you have an improperly formed `id`
+  - If you `id` is properly formed but a wrong `id` you'll get this error
+
+```
+// MORE CODE
+
+TypeError: Class constructor ErrorResponse cannot be invoked without 'new'
+    at exports.getBootcamp (/Users/philiphowley/Documents/dev/ics/361e-icc-mern-app/controllers/bootcamps.js:17:19)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+TypeError
+GET /api/v1/bootcamps/5f452f885a31372449e211f3 500 51.341 ms - 91
+// MORE CODE
+```
 
 `error.js`
+
+* Make sure to change `err` to `error`
 
 ```
 const ErrorResponse = require('../utils/error-response');
@@ -304,5 +318,26 @@ exports.deleteBootcamp = async (req, res, next) => {
 };
 ```
 
+## Now when you enter a bad id
+* You will get 404 status error
+* Here is the reponse
+
+```
+{
+    "success": false,
+    "error": "Resource not found with id of 5f452f885a31372449e211f23"
+}
+```
+
+* The server will show this:
+
+```
+CastError: Cast to ObjectId failed for value "5f452f885a31372449e211f23" at path "_id" for model "Bootcamp"
+    at model.Query.exec (/Users/USER/Documents/dev/ics/361e-icc-mern-app/node_modules/mongoose/lib/query.js:4351:21)
+    at model.Query.Query.then (/Users/USER/Documents/dev/ics/361e-icc-mern-app/node_modules/mongoose/lib/query.js:4443:15)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+GET /api/v1/bootcamps/5f452f885a31372449e211f23 404 10.385 ms - 83
+```
+
 ## Next - Handle validation errors
-* Similar to CastError in `error.js` we will check for bad emails and output the error messages
+* Similar to **CastError** in `error.js` we will check for bad emails and output the error messages

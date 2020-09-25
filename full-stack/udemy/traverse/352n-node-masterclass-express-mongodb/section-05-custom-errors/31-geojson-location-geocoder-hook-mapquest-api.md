@@ -1,6 +1,6 @@
 # GeoJSON Location & Geocoder Hook - MapQuest API
-* We will geocode the address that is submitted from the client in order to get the geojson field which will include the lat and lng
-    - And we'll have city, state, country
+* We will geocode the address that is submitted from the `client` in order to get the geojson field which will include the `lat` and `lng`
+    - And we'll have `city`, `state`, `country`
 
 ## node-geocoder
 
@@ -8,8 +8,9 @@
 `$ npm i node-geocoder`
 
 ### We'll create a separate utility file
-* We'll initialize node-geocoder and we'll be able to use it anywhere
-    - And we'll also put our node-geocoder options here too
+* We'll initialize `node-geocoder`
+* We'll be able to use it anywhere
+* We'll also put our `node-geocoder` options here too
 
 ### Put new API key info in `config/config.env`
 `config/config.env`
@@ -32,7 +33,8 @@ GEOCODER_API_KEY=l4kx1DVAKxLYxko36HWEO3r5yYad0Y11
     - We'll use mapquest
     - We'll need to use the mapquest API keys
     - They are using `.then()` we'll use async await
-* We'll get a response with all the data we need
+
+## We'll get a response with all the data we need
 
 ```
 const NodeGeocoder = require('node-geocoder');
@@ -73,7 +75,7 @@ const res = await geocoder.geocode('29 champs elysée paris');
 ];
 ```
 
-* The cool thing about this package is we'll get all this lng, lat and other stuff just by putting in an address
+* The cool thing about this package is we'll get all this `lng`, `lat` and other stuff just by putting in an address
 
 ## We'll use mapquest
 * Register for API key at [developer mapquest](https://developer.mapquest.com/)
@@ -82,9 +84,14 @@ const res = await geocoder.geocode('29 champs elysée paris');
         + Click `Manage Keys` and click on `My Application` and you'll see your key info
 
 ### We'll place our Geocode and create location field in our model
+
 `Bootcamp.js`
 
 ```
+// MORE CODE
+
+const geococoder = require('../utils/geococoder');
+
 // MORE CODE
 // Create bootcamp slug from the name
 BootcampSchema.pre('save', function(next) {
@@ -93,6 +100,24 @@ BootcampSchema.pre('save', function(next) {
 });
 
 // Geocode & create location field
+BootcampSchema.pre('save', async function (next) {
+  const loc = await geococoder.geocode(this.address);
+  this.location = {
+    type: 'Point',
+    coordinates: [loc[0].longitude, loc[0].latitude],
+    formattedAddress: loc[0].formattedAddress,
+    street: loc[0].streetName,
+    city: loc[0].city,
+    state: loc[0].state,
+    zipcode: loc[0].zipcode,
+    country: loc[0].country
+  };
+
+  // Do not save address in Database (we don't need to)
+  // as it will be created for us
+  this.address = undefined;
+  next();
+})
 
 module.exports = mongoose.model('Bootcamp', BootcampSchema);
 ```
@@ -115,35 +140,11 @@ module.exports = geocoder;
 ```
 
 ## Now we bring it into our Model and consume it
-* **note** Most times you'll see lat then long but this requires long then lat
+* **IMPORTANT**
+  - Most times you'll see `lat` then `long`
+  - But this requires **long** then **lat**
 
-### This is what is available to us:
-* **note** It is in an array with a single object so that is why we are using `loc[0]`
-
-```
-// output :
-[
-  {
-    latitude: 48.8698679,
-    longitude: 2.3072976,
-    country: 'France',
-    countryCode: 'FR',
-    city: 'Paris',
-    zipcode: '75008',
-    streetName: 'Champs-Élysées',
-    streetNumber: '29',
-    administrativeLevels: {
-      level1long: 'Île-de-France',
-      level1short: 'IDF',
-      level2long: 'Paris',
-      level2short: '75'
-    },
-    provider: 'google'
-  }
-];
-```
-
-## Let's try it out
+#
 ```
 const mongoose = require('mongoose');
 const slugify = require('slugify');
@@ -169,14 +170,57 @@ BootcampSchema.pre('save', async function(next) {
 module.exports = mongoose.model('Bootcamp', BootcampSchema);
 ```
 
-* Regarding our formatted address we don't need to save it in our Database as we have all the field on their own
-* So we can tell it to not save the address in our Database
-    - We do this by just setting it to undefined
+### This is what is available to us in the location object on MapQuest:
+* **note** It is in an array with a single object
+  - That is why we are using `loc[0]`
 
-## Test it out
-* Make sure it is running
+```
+// output :
+[
+  {
+    latitude: 48.8698679,
+    longitude: 2.3072976,
+    country: 'France',
+    countryCode: 'FR',
+    city: 'Paris',
+    zipcode: '75008',
+    streetName: 'Champs-Élysées',
+    streetNumber: '29',
+    administrativeLevels: {
+      level1long: 'Île-de-France',
+      level1short: 'IDF',
+      level2long: 'Paris',
+      level2short: '75'
+    },
+    provider: 'google'
+  }
+];
+```
+
+## Let's try it out
+* **note** Regarding our formatted address we don't need to save it in our Database as we have all the field on their own
+  - So we can tell it to not save the address in our Database
+    - We do this by just setting it to `undefined`
+
+`models/Bootcamp.js`
+
+```
+// MORE CODE
+
+  // Do not save address in Database (we don't need to)
+  // as it will be created for us
+  this.address = undefined;
+  next();
+})
+
+module.exports = mongoose.model('Bootcamp', BootcampSchema);
+```
+
+## Test it out in Postman
+* Make sure server running `$ npm run dev`
 * Delete the bootcamp
-* Create a new bootcamp and look at the respone and you'll see we didn't save address but we have all the fields in our Database
+* Create a new bootcamp and look at the response and you'll see we didn't save address
+  - But we have all the fields in our Database!
 
 ```
 // MORE CODE
@@ -198,9 +242,13 @@ module.exports = mongoose.model('Bootcamp', BootcampSchema);
 // MORE CODE
 ```
 
+## Houston we have a problem!
+* Not getting the duplicate email error - TODO: fix
+  - **IMPORTANT** Emails and names must be unique for the record to be entered into the Database
+
 ## dotenv stuff
 ```
-// long
+// long version
     const dotenv = require('dotenv');
     dotenv.config({path: './config/config.env'});
 
@@ -210,4 +258,4 @@ const dotenv = require('dotenv').config({path: './config/config.env'});
 ```
 
 * Make sure that you are loading the `env` variables before you load the route files
-* As long as you have these lines inside your `server.js` file, you won't need to require dotenv in every file that uses it
+* **IMPORANT** As long as you have these lines inside your `server.js` file, you won't need to require dotenv in every file that uses it

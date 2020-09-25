@@ -16,7 +16,7 @@
 `$ npm i mongoose`
 
 ### config
-* To keep server.js clean from Database stuff we'll create a config file for our connection info to MongoDB
+* To keep `server.js` clean from Database stuff we'll create a config file for our connection info to MongoDB
 
 `db.js`
 
@@ -36,7 +36,7 @@ const connectDB = () => {
 
 * We could use the above syntax but instead we'll use `async/await` syntax
     - It's cleaner and easier to read
-    - mongoose.connect() returns a promise
+    - `mongoose.connect()` returns a promise
         + First parameter is the URI (we get that from Atlas)
 
 `config/config.env`
@@ -47,11 +47,14 @@ PORT=5000
 MONGO_URI=mongodb+srv://myuser:mypassword@cluster0-unb2p.mongodb.net/devcamper?retryWrites=true&w=majority
 ```
 
-* We add MONGO_URI
-    - We replace the `<password>` with our Database user password
-    - You get this from Atlas (URI for app)
-    - You change the Database name from `test` to `devcamper`
-        + MongoDB creates db when you first store stuff inside it (by default they'll name the Database `test` and that is not a good Database name)
+## We add MONGO_URI
+* **IMPORTANT** Make sure to give you Database a manual name (it's easy to miss this step - otherwise a default name will be assigned)
+* We replace the `<password>` with our Database user password
+  - Make sure to create a new user and create this password
+    + And save the password into your `.env` file
+    + **note** You get this from Atlas (URI for app)
+* You change the Database name from `test` to `devcamper`
+        + MongoDB creates `db` when you first store stuff inside it (by default they'll name the Database `cluster0` and that is not a good Database name)
 
 `config/db.js`
 
@@ -108,8 +111,8 @@ const connectDB = async () => {
 * You'll see all those annoying errors are gone
 
 ## IMPORTANT
-* If you change the stuff inside `config/config.env` you need to restart the server for the changes to take effect
-* Change the password to a wrong password
+* **NOTE** If you change the stuff inside `config/config.env` you need to restart the server for the changes to take effect
+* Change the `password` to a wrong password
     - re-start server and you'll get this error
 
 ```
@@ -128,13 +131,12 @@ const connectDB = async () => {
 * We'll store our express listen method in a variable
     - And this is so we can close the server and stop our app if we get this unhandled rejection
 
-#
 `server.js`
 
 * We use the `process` object
 * We use `on` and listen for `unhandledRejection` (and we run a function that takes in an error and a possible promise)
 * We want the app to fail if this event happens 
-    - We use server.close() and it take in a callback and we use `process.exit()` to exit out of our application and we want it to exit with failures (and we pass in a `1` to accomplish this)
+    - We use `server.close()` and it take in a **callback** and we use `process.exit()` to exit out of our application and we want it to exit with failures (and we pass in a `1` to accomplish this)
 
 ```
 // MORE CODE

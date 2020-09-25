@@ -3,7 +3,7 @@
 
 ## Create a seeder file
 * `$ touch seeder.js`
-* `fs` is filesystem comes built-in to Node.js
+* `fs` is filesystem comes built-in to `Node.js`
     - We don't have to install it
     - We need this to work with files on our machine
 * We'll use `mongoose` and `colors`
@@ -144,6 +144,7 @@ if (process.argv[2] === '-i') {
 * You should have an empty Database
     - If not delete all documents in your Bootcamp collection
 
+### Delete all documents in your Bootcamp collection
 `$ node seeder -d`
 
 * This will delete all data

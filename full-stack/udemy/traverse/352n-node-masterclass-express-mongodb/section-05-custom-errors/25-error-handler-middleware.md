@@ -1,6 +1,6 @@
 # Error Handler Middleware
 * [docs](https://expressjs.com/en/guide/error-handling.html)
-* Express has an error hander that's includes
+* Express has an error hander that includes
 
 ## How we can call Express custom error handler:
 * For errors returned from asynchronous functions invoked by route handlers and middleware, you must pass them to the `next()` function, where Express will catch and process them
@@ -50,13 +50,13 @@ exports.getBootcamp = async (req, res, next) => {
 ```
 
 ## Make an error
-* Use a bogus id (not correctly formatted) in the URL and you'll get HTML with an error in the response (default in built-in Express error handler)
-    - We don't want HTML
+* Use a bogus `id` (not correctly formatted) in the URL **and you'll get HTML with an error in the response** (_default in built-in Express error handler_)
+    - We don't want HTML!
     - We need to create a custom event handler
     - The docs show us how to build custom error handler middleware
 * Define error-handling middleware functions in the same way as other middleware functions, except error-handling functions have four arguments instead of three: (err, req, res, next)
 
-### our custom error
+### Our custom error
 * We'll define it inside our middleware folder
 * We'll use a simple log to log out the error
 * We use `colors` module to make it red
@@ -94,7 +94,7 @@ module.exports = errorHandler;
 ```
 
 ## Remember this is middleware and to use it we need to use `app.use`
-* So in our Express server.js
+* So in our Express `server.js`
 
 ### ignore eslint for one line
 ```
@@ -134,6 +134,15 @@ app.use(error);
     "success": false,
     "error": "Cast to ObjectId failed for value \"5ec17a8b1956be6716e6b1233\" at path \"_id\" for model \"Bootcamp\""
 }
+```
+
+* And in the terminal we'll see this error with a poorly formed `id`
+
+```
+CastError: Cast to ObjectId failed for value "5f452f885a31372449e211f33" at path "_id" for model "Bootcamp"
+    at model.Query.exec (/Users/USER/Documents/dev/ics/361e-icc-mern-app/node_modules/mongoose/lib/query.js:4351:21)
+    at model.Query.Query.then (/Users/USER/Documents/dev/ics/361e-icc-mern-app/node_modules/mongoose/lib/query.js:4443:15)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
 ```
 
 * Congrats we now have a custom error handler

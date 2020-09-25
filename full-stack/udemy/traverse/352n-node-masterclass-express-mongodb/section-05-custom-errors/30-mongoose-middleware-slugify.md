@@ -11,7 +11,7 @@
 ## 4 Different types of mongoose middleware
 * document middleware
     - We'll mostly work with this
-    - When you use `this` with document middleware it refers to the document itself (so the document that is being `saved`, `removed` or `validated`...)
+    - When you use `this` with document middleware it refers to the `document` itself (so the document that is being `saved`, `removed` or `validated`...)
 * model middleware
 * `aggregate` middleware
 * `query` middleware
@@ -22,7 +22,7 @@
         + and all others are on docs page
 
 ## You have pre middleware
-* pre will run before the operations
+* `pre` will run before the operations
     - example: before the document gets saved
 
 ```
@@ -49,9 +49,11 @@ schema.post('save', function(doc) {
 
 ### Include slugify in your Bootcamp model
 * Go below our schema
-* We want to run this before the document is saved so we'll use `pre`
+* We want to **run this code before the document is saved** so we'll use `pre`
 * **IMPORTANT** Use regular functions and not arrow functions
     - Because we are using the `this` keyword and arrow functions scope the `this` keyword differently
+
+`models/Bootcamp.js`
 
 ```
 const mongoose = require('mongoose');
@@ -73,12 +75,100 @@ BootcampSchema.pre('save', function(next) {
 });
 ```
 
+## Test in Postman
 * Insert a bootcamp using Postman POST
 * You will see the name of the bootcamp in the Terminal (we logged it)
-* Make sure you pass in `next` and call `next()` (VERY IMPORTANT)
+* Make sure you pass in `next` and call `next()` (VERY IMPORTANT!!!!)
     - This let's it know it is to go on to the next piece of middleware
 
-## Delete all bootcamps from Atlas using compass
+### Houston we have a problem!
+* I was getting `colors` not defined so I updated my error.js file
+
+`middleware.error.js`
+
+```
+const ErrorResponse = require('../utils/error-response');
+
+const errorHandler = (err, req, res, next) => {
+  let error = {...err};
+
+  error.message = err.message;
+
+  // Log to console for dev
+  console.log(err);
+
+  // Mongoose bad ObjectId
+  if (err.name === 'CastError') {
+    const message = `Resource not found`;
+    error = new ErrorResponse(message, 404);
+  }
+
+  // Mongoose duplicate key
+  if (err.code === 11000) {
+    const message = 'Duplicate field value entered';
+    error = new ErrorResponse(message, 400);
+  }
+
+  // Mongoose validation error
+  if (err.name === 'ValidationError') {
+    const message = Object.values(err.errors).map(val => val.message);
+    error = new ErrorResponse(message, 400);
+  }
+
+  res.status(error.statusCode || 500).json({
+    success: false,
+    error: error.message || 'Server Error'
+  });
+};
+
+module.exports = errorHandler;
+```
+
+* And I updated a utility class
+
+`utils/error-response.js`
+
+```
+// We are extending the Error class that comes with Express
+// We pass as arguments into our extended class a new `statusCode` property and the existing `message` property
+// We use `super` to refer to the Error class and get it's `message` value
+// We set `statusCode` passed to this custom error class extension
+// We export the class so we can use it in other files
+
+class ErrorResponse extends Error {
+  constructor(message, statusCode) {
+    super(message);
+    this.statusCode = statusCode;
+
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+
+module.exports = ErrorResponse;
+```
+
+## What we get in Postman
+* Run this route request POST `{{URL}}/api/v1/bootcamps`
+* 500 Internal Server error
+
+```
+{
+    "success": false,
+    "error": "Server Error"
+}
+```
+
+* And in the server we see:
+
+```
+Slugify ran Devworks Bootcamp
+A bootcamp could not be created
+POST /api/v1/bootcamps 500 40.397 ms - 40
+```
+
+* So we see the name of our bootcamp after we create it
+
+## Delete all bootcamps from Atlas using Compass
 * With server running
 * Run get all bootcamps in Postman
 * Even without any bootcamps we still get a successful request
@@ -105,6 +195,7 @@ POST /api/v1/bootcamps 201 107.212 ms - 640
 ## Make slugify create a slug
 ```
 // MORE CODE
+
 // Create bootcamp slug from the name
 BootcampSchema.pre('save', function() {
   this.slug = slugify(this.name, { lower: true });
@@ -125,12 +216,12 @@ module.exports = mongoose.model('Bootcamp', BootcampSchema);
     - View the response and see our new slug that was created from our middleware
 
 ```
-"slug": "devcentral-bootcamp111",
+"slug": "devcentral-bootcamp",
 ```
 
-### Benefit of this slug
-* If we have this slug available to the client
-    - And we're using react
+### SEO Benefit of this slug
+* If we have this slug available to the `client`
+    - And we're using `react`
     - And you want your React Router to hit the slug and make it a more user friendly URL, for SEO and now we can do that with this API
 
 ## Next - Geocoding

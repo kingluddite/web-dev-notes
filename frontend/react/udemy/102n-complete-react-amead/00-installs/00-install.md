@@ -213,6 +213,10 @@
 // MORE CODE
 ```
 
+* Install them with:
+
+`$ npm i babel-eslint eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-prettier eslint-plugin-react prettier prettier-eslint-cli`
+
 `$ npm install` or just `$ npm i`
 
 * **note** If `node_modules` are already installed this command won't reinstall them so it's safe to use again

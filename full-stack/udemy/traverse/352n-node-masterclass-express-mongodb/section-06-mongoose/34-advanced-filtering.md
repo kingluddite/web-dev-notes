@@ -88,7 +88,6 @@ exports.getBootcamps = async (req, res, next) => {
 * That is close to correct but it is missing a `$` because `$lte` is a mongoose operator
     - But in order to use these operators you need to have a `$` prefacing the `lte` operator
 
-
 ## Regex
 * We need to create a `query` variable
 * We need to take the query object and stringify it -   `JSON.stringify()`

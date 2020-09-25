@@ -1,5 +1,10 @@
 # GIT
 
+## Clear git local cache
+* You have to remove them from the staging area
+
+`$ git rm --cached THE_NAME_OF_THE_FILE_HERE`
+
 ## How can I remove a file with sensitive date from the entire history of git?
 * I accidentally added `.env` with all API key stuff. Help!
 * **IMPORTANT FIRST STEP** Make sure to save your local `.env` someone outside of your app (all traces of it will be wiped. You blow it up and then bring this back so you'll just have it locally)

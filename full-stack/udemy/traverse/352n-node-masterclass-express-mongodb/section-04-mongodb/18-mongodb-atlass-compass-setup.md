@@ -34,7 +34,7 @@
 ## Add a new user
 * New username and password
 * Choose default options "Read and write to any database"
-* Free tier has one permenant user and all other users are temp only for up to a week.
+* Free tier has one permanent user and all other users are temp only for up to a week.
 
 ## Network Access
 * Click Network Access under security
