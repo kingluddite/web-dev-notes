@@ -1,6 +1,10 @@
 # Create a review
 `controllers/reviews.js`
 
+* Try this
+    - Write a controller that will `console.log()` the **user id** and the **word id**
+    - You need to add those to the body when you create a review
+
 ```
 // MORE CODE
 
@@ -30,7 +34,7 @@ exports.createReview = asyncHandler(async (req, res, next) => {
         );
     }
 
-    // We now have the bootcampId attached to the req.body
+    // We now have the bootcampId and user id attached to the req.body
     const review = await Review.create(req.body);
 
     return res.status(201).json({
@@ -40,6 +44,80 @@ exports.createReview = asyncHandler(async (req, res, next) => {
         error: null,
     });
 })
+
+// MORE CODE
+```
+
+* **note** Above has a mistake - who is leaving a review? We don't want the user to created the review to leave a review it would be better to have a role of `user` leave reviews so our community can talk about the value of the word
+* We also will create a rule that only lets a user leave one review per word
+* Remove that check so our controller will look like this:
+
+```
+// MORE CODE
+
+// @desc    Create a review 
+// @route   POST /api/v1/bootcamps/:bootcampId/reviews
+// @access  Private
+exports.createReview = asyncHandler(async (req, res, next) => {
+    // grab bootcamp id from URL
+    req.body.bootcamp = req.params.bootcampId;
+    // grab user id from logged in user
+    req.body.user = req.user.id;
+
+    // grab the bootcamp by it's id
+    const bootcamp = await Bootcamp.findById(req.params.bootcampId);
+
+    if (!bootcamp) {
+        return next(
+            new ErrorResponse(`No bootcamp with the id of ${req.params.bootcampId} exists`, 404)
+        )
+    }
+
+});
+```
+
+* And now we create the review with:
+
+```
+// MORE CODE
+
+    // We now have the bootcampId and user id attached to the req.body
+    const review = await Review.create(req.body);
+// MORE CODE
+```
+
+* And we'll add our response and our controller now looks like:
+
+```
+// MORE CODE
+
+// @desc     Create review
+// @route    POST /api/v1/words/:wordId/reviews
+// @access   PRIVATE
+exports.createReview = asyncHandler(async (req, res, next) => {
+  // Add user id to req.body
+  req.body.user = req.user.id;
+  // Add word id to req.body
+  req.body.word = req.params.wordId;
+
+  // Grab the word
+  const word = await Word.findById(req.params.wordId);
+
+  // Check if word exists
+  if (!word) {
+    return next(new ErrorResponse(`Word not found with id ${req.params.wordId}`));
+  }
+
+  // We now have the bootcampId and user id attached to the req.body
+  const review = await Review.create(req.body);
+
+  res.status(200).json({
+    success: true,
+    msg: 'Get single review',
+    data: review,
+    error: null
+  });
+});
 
 // MORE CODE
 ```
@@ -73,7 +151,7 @@ router
     ), getReviews)
 
     // POST /api/v1/bootcamps/:bootcampId/reviews
-    .post(protect, authorize('publisher', 'admin'), createReview) // ADD!
+    .post(protect, authorize('admin'), createReview) // ADD!
 
 
 // MORE CODE
@@ -86,7 +164,7 @@ router
 
 `POST {{DOMAIN}}:{{PORT}}/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/reviews`
 
-* Content-Type
+* Content-Type: application/json
 * Authorization tab set to `Bearer Token` **{{TOKEN}}**
 * raw JSON in body
 
@@ -98,7 +176,7 @@ router
 }
 ```
 
-* Find a list of bootcamps get an id
+* Find a list of bootcamps get an `id`
 * Add to the URL
 * Make sure the logged in user owns that bootcamp (search by id to find bootcamp)
 * Log in as that owner of that bootcamp
@@ -151,7 +229,7 @@ router
 ## New business rule!
 * Users can only write one review per bootcamp
 * **Tip** This is not hard to do
-    - We just add an index to our Review model
+    - We just add an `index` to our `Review` model
     - And it looks like this:
 
 `models/Review.js`
@@ -203,6 +281,15 @@ module.exports = mongoose.model('Review', ReviewSchema);
     "success": false,
     "error": "Duplicate field value entered"
 }
+```
+
+* And the terminal will show even more info on this error:
+
+```
+// MORE CODE
+
+MongoError: E11000 duplicate key error collection: sftpw.reviews index: word_1_user_1 dup key: { word: ObjectId('5f67c544a1de045a01325619'), user: ObjectId('5d7a514b5d2c12c7449be011') }
+// MORE CODE
 ```
 
 * So we can't add more than one review per bootcamp!

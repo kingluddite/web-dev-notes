@@ -1,5 +1,5 @@
 # Reset Password
-1. We can hit our forgetpassword route
+1. We can hit our `forgetpassword` route
 2. Get an email sent with the reset token
 3. NOW we want to create the route that we use the token with
 
@@ -43,11 +43,11 @@ const ErrorResponse = require('../utils/ErrorResponse');
 * We pull the resettoken from the URL using `req.params.resettoken`
 * We switch to using mongoose's `findOne()`
     - [findOne() docs](https://mongoosejs.com/docs/api.html#model_Model.findOne)
-* We try to find a user with the resetPasswordToken (the one we just created and we want to make sure it is the same as the one in our Database)
-    - And we want to make sure that the resetPasswordExpire hasn't expired so we are looking for a date that is greater than now `$gt: Date.now()`
+* We try to find a user with the `resetPasswordToken` (_the one we just created and we want to make sure it is the same as the one in our Database_)
+    - And we want to make sure that the `resetPasswordExpire` hasn't expired so we are looking for a date that is greater than now `$gt: Date.now()`
 
 ## Setting a new password
-* Since the password is being modified the salt and hash will fire off
+* Since the `password` is being modified the **salt** and **hash** will fire off
 
 `controllers/auth.js`
 
@@ -110,7 +110,7 @@ router.put('/resetpassword/:resettoken', resetPassword);
 module.exports = router;
 ```
 
-## Test it out in postman
+## Test it out in Postman
 * Let's delete all emails from mailtrap
 * Run forgot password request again with this email:
 
@@ -129,7 +129,7 @@ module.exports = router;
 }
 ```
 
-* Mongo will have resetPasswordExpire and resetPaswordToken inside it
+* Mongo will have `resetPasswordExpire` and `resetPaswordToken` inside it
 
 ![mongo has our reset password stuff fields](https://i.imgur.com/HW68cmv.png)
 

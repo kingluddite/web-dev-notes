@@ -42,7 +42,7 @@
 
 * You will see your app on your DO server
 
-`# cd my-api`
+`# cd apps`
 
 ## Rename your config
 `# mv config/config.env.env config/config.env`
@@ -51,7 +51,7 @@
 * Install neovim on DO with `# apt install neovim`
 
 ## Note
-* You should use Sendgrid for email in production
+* You should use `Sendgrid` for email in production
 
 ## Install our dependencies
 `# npm install`
@@ -59,9 +59,13 @@
 ## Try to start your app
 `# npm start`
 
-* We won't be able to connect because it is trying to access localhost as it is using my local IP
-* We now add the DO IP
-* Name it `Digital Ocean Prod Server`
+* We won't be able to connect because it is trying to access localhost as it is using my local IP - via mongodb
+    - Log into mongo and make your DO IP
+    - Open you Database
+    - Network Access
+    - Add IP Address
+    - Grab your IP from DO and paste into MongoDB
+    - Name it `Digital Ocean Prod Server`
     - **note** It could take a couple minutes to make this change
 
 ## Try to run your server again
@@ -75,7 +79,7 @@
 * We don't want our app to run on port 5000 (we want to run it on port 80 so we don't have to add the port)
 * We don't want to have to start our app to get it to run
 * We want to set up PM2 (which is a process manager that will keep our app running)
-    - We can stop it with ctrl c
+    - We can stop it with `ctrl c`
     - Or if something happens to the server it will close and not work
 
 ## Next

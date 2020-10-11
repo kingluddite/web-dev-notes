@@ -100,7 +100,7 @@ async function run() {
 
 * **Note**: There is nothing new, the same way we need to use `.catch()` for promises
 
-## Middlewares
+## Middleware
 * Express is one of the most popular `Node.js` frameworks
 * Express adds the concept of middleware
 * Given an HTTP request (also the response) we can imagine a pipeline to traverse, where on each step a task is made like:
@@ -149,7 +149,7 @@ app.get('/hello', (req, res, next) => {
 });
 ```
 
-## How to use async/await functions as middlewares
+## How to use async/await functions as middleware
 * Simply remember to handle async/await errors
 
 ### NEVER EVER EVER EVER DO THIS!

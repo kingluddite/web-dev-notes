@@ -60,8 +60,6 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
 `routes/api/v1/users.js`
 
 ```
-// MORE CODE
-
 const express = require('express');
 const {
   getUsers
@@ -118,7 +116,7 @@ modules.export = router;
 
 // @desc     Get single user
 // @route    GET /api/v1/users/:id
-// @access   Private
+// @access   Private/Admin
 exports.getUser = asyncHandler(async (req, res, next) => {
     const user = await User.findById(req.params.id);
 
@@ -235,6 +233,18 @@ router
 }
 ```
 
+### Houston we have a problem!
+```
+{
+    "success": false,
+    "error": "Please enter a password"
+}
+```
+
+* You need to provide a password
+* And it should be `"hashed_password": "123456"`
+
+## Make sure your user has a role of `admin`
 * If logged in as `admin` you can add a user
 * If not logged in a `admin` you can not
 
@@ -277,7 +287,7 @@ router
 ```
 
 ## Quick fix
-* Spelling in hashed_password validation in User model
+* Spelling in `hashed_password` validation in User model
 
 `models/User.js`
 
@@ -294,7 +304,7 @@ router
 // MORE CODE
 ```
 
-## And update and delete a user
+## Update and delete a user
 `controllers/users.js`
 
 ```
@@ -370,7 +380,7 @@ router
 }
 ```
 
-* **Note** You can not change role to admin because it is not in the ENUM for users
+* **Note** You can not change role to `admin` because it is not in the ENUM for users
     - You have to manually change it in the Database
 * You must be an "admin" to update user
 * Save route as `Update` a user in the Users folder
@@ -446,10 +456,10 @@ const {
 } = require('../../../controllers/users');
 
 const User = require('../../../models/User');
-const advancedResults = require('../../../middleware/advancedResult');
 
 const router = express.Router();
 
+const advancedResults = require('../../../middleware/advancedResult');
 const {protect, authorize} = require('../../../middleware/auth');
 
 router.use(protect);
@@ -472,7 +482,7 @@ module.exports = router;
 ```
 
 * **note** In postman give the desc for the `Users` folder
-    - desc: CRUD functionality for users only available to admins
+    - `desc`: CRUD functionality for users only available to admins
 
 ## Quick fix
 * The user relationship on Bootcamp was wrong

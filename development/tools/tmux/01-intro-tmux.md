@@ -1,4 +1,16 @@
 # Tmux Intro
+
+## gd and gD
+1. gd will take you to the local declaration
+2. gD will take you to the global declaration
+
+## Kill node
+`$ htop`
+
+* Search for node
+* Hit enter
+* Press F9 to kill the process
+
 ## vim
 ### Remove highlights
 `:noh<cr>`
@@ -62,11 +74,7 @@
 ## change bg of tmux window
 `$ ctrl + b + :select-pane -P 'bg=red'`
 
-* All the following are supported: black, red, green, yellow, blue, magenta, cyan, white, default, bright, bold, dim, underscore, blink, reverse, hidden,italics, color0 ... color255, colour0 ... colour255 and RGB strings (#ff0000).
-
-* Change focus of window
-
-`$ ctrl + b + :select-pane -P 'bg=blue'`
+* All the following are supported: black, red, green, yellow, blue, magenta, cyan, white, default, bright, bold, dim, underscore, blink, reverse, hidden,italics, color0 ... color255, colour0 ... colour255 and RGB strings (#ff0000)
 
 * [tmux cheat sheet](https://gist.github.com/afair/3489752)
 * [greatest tmux sheet](https://gist.github.com/spicycode/1229612)

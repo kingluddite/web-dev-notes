@@ -1,5 +1,5 @@
 # Projects Query
-* Make sure to find all and one for projects to make the api public
+* Make sure to find all and one for projects to make the API public
 
 ## also do this for api
 `gatsby-config.js`
@@ -32,7 +32,7 @@
 
 `package.json`
 
-* Save time and add above line to when you run `$ gatsby develop`
+* Save time and add above line to `scripts` when you run `$ gatsby develop`
 
 ```
 // MORE CODE
@@ -49,14 +49,17 @@
 // MORE CODE
 ```
 
-## When gatsby re-starts you need to look for one thing in GraphQL sandbox
-## Troubleshoot - if you get error `Cannot query field "allStrapiJobs` on type "Query" -----> start your strapi server!
+## Troubleshoot
+* If you get error `Cannot query field "allStrapiJobs" on type "Query" ----->`
+  - Start your strapi server!
+* When gatsby re-starts you need to look for one thing in GraphQL sandbox
 
-1. Browse to your local api for strapi folder
-2. `$ npm run develop`
+1. Browse to your local API for `strapi` folder
+
+`$ npm run develop`
 
 ## Houston we have a problem!
-* Make sure to surround your types with backticks
+* **IMPORTANT** Make sure to surround your `types` with backticks
 
 ```
 // MORE CODE
@@ -104,8 +107,8 @@ query MyQuery {
 ```
 
 ## Filter by feature
-* If feature equals true then display that project
-* I added `totalCount` which is 3 since they were all set to true in strapi's projects
+* If `feature` equals **true** then display that project
+* I added `totalCount` which is 3 since they were all set to `true` in strapi's projects
 
 ```
 query MyQuery {
@@ -135,5 +138,5 @@ query MyQuery {
 
 ## Next
 * We'll set 2 queries
-    - One to featured true
+    - One to `featured` **true**
     - One with out (on projects page we will show all projects)

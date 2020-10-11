@@ -3,7 +3,7 @@
 `# apt install nginx`
 
 ## View our app
-* Now once NGINX is intalled and we visit our app on port 80
+* Now once NGINX is installed and we visit our app on port 80
     - We just go to our IP as port 80 is the default
     - We see the `Welcome to nginx` web page
     - We don't want that, instead we want our API to run there
@@ -86,7 +86,7 @@ server_name yourdomain.com www.yourdomain.com;
 
 * Replace the domain with your domain
 * If you used a different port than 5000, update that
-* Save the file on DO
+* Save the file on DO remote server
 * Exit out of file
 
 ## Restart nginx service

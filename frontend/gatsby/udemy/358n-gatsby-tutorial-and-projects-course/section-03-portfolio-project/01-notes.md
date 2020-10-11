@@ -71,7 +71,6 @@ strapi is a node app
         + Now we have `/jobs/:id`
         + Save and visit `http://localhost:1337/jobs` again our our API is public
 
-
 ## Next - Set up gatsby to grab this data
 * How can we consume this data in Gatsby?
     - It would be easy to set up a REST API for React in a matter of 5 minutes

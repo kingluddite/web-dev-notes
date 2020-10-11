@@ -46,7 +46,7 @@
 }
 ```
 
-* Now the cookie gets put in the client
+* Now the cookie gets put in the `client`
     - Click the `Cookies` tab of the response
 * And now that we commented that code in, the token inside the cookie will get sent with every request
     - And if you go to a protected route like (Get Logged in User)
@@ -222,9 +222,11 @@ exports.logout = asyncHandler(async (req, res, next) => {
 ```
 
 ## We will comment it out
-* So we force to sent the token in the Header
+* So we force to send the token in the Header
 
 ## Add some comments to show how we are setting our token
+`middleware/auth.js`
+
 ```
 // MORE CODE
 

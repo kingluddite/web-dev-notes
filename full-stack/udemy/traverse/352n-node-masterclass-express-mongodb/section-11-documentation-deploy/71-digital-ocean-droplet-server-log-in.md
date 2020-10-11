@@ -74,7 +74,7 @@
 * If you want to improve security and want to set up another user you can
 
 ## Next
-1. Install Node.js on our server
+1. Install `Node.js` on our server
 2. Push our app to Github
 3. Clone it onto our server
 

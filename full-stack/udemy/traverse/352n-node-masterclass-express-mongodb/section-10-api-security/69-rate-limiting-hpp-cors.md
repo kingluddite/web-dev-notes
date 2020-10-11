@@ -37,7 +37,7 @@ app.use(limiter);
 ### Use it
 ```
 // ...
-var hpp = require('hpp');
+const hpp = require('hpp');
 
 // ...
 app.use(bodyParser.urlencoded()); // Make sure the body is parsed beforehand.

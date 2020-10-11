@@ -18,7 +18,7 @@ ReviewSchema.statics.getAverageRating = async function (bootcampId) {
       // the object that we want to create
       // the calculated object
       // We need to use `_id: $bootcamp`
-      // We createdOur field and say we want to average `$avg`
+      // We created our field and say we want to average `$avg`
       // And point to field we want to average `$rating`
       $group: {
         _id: '$bootcamp',
@@ -42,7 +42,7 @@ ReviewSchema.post('save', function () {
 })
 
 // Call getAverageReview after (so we use "post") save
-ReviewSchema.pre('remove', function () {
+ReviewSchema.post('remove', function () {
   this.constructor.getAverageRating(this.bootcamp);
 })
 

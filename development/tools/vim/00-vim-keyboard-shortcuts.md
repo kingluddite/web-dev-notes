@@ -1,4 +1,7 @@
 # VIM
+## Select word under cursor
+`$ viw` (view inner word)
+
 :windo difft (show diff of open files)
 
 ## select content or inclusive content

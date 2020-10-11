@@ -113,7 +113,7 @@ exports.deleteReview = asyncHandler(async (req, res, next) => {
     if (review.user.toString() !== req.user.id && req.user.role !== 'admin') {
         return next(
             // User not authorized error message - 401
-            new ErrorResponse(`Not authorized to delete this review with an id of ${req.params.id}})`, 401)
+            new ErrorResponse(`Not authorized to delete this review with an id of ${req.params.id})`, 401)
         );
     }
 
@@ -215,7 +215,7 @@ ReviewSchema.post('remove', function () {
 ```
 
 ## TODO
-* Double check averageRating changes when updates and deletes
+* Double check `averageRating` changes when updates and deletes
 
 ## Seed data
 ```

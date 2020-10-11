@@ -1,18 +1,19 @@
 # Documentation with Postman and Docgen
 * We can create documentation using just Postman
-* But we'll take it a step further and create HTML files with our documenation (that we can put on the index of our API (whatever domain we're using))
+* But we'll take it a step further and create HTML files with our documentation
+    - That we can put on the index of our API (whatever domain we're using)
 * And we can accomplish that with a utility call Docgen
 
 ## Docgen
 * [docs for docgen](https://github.com/thedevsaddam/docgen)
-* We'll have this availble at `http://localhost:5000`
+* We'll have this available at `http://localhost:5000`
     - Currently it says `Cannot GET /`
 * If we hit our API route `http://localhost:5000/api/v1/bootcamps` we'll get the JSON
 * But for the root of our API we'll display our docs
 
 ## Open environments in Postman
-* We have our current API using localhost:5000
-* We'll be using a domain called sftpw.com
+* We have our current API using `localhost:5000`
+* We'll be using a domain called `sftpw.com`
 * Click `Duplicate Environment`
 * Name it: `SOMETHING Prod` (production)
     - Delete the TOKEN
@@ -21,7 +22,7 @@
 * sftpw and sftpw prod
 * Now Right click and choose `Publish Docs`
     - That will open a new window
-    - For the environment choose sftwp.com
+    - For the environment choose `sftwp.com`
 * We have color options (we'll leave them at their default colors) 
 * Click `Publish Collection`
 * You will get [a URL with your documentation](https://documenter.getpostman.com/view/12086149/TVKFzbVJ)
@@ -59,10 +60,10 @@
 
 * -o (output)
 
-* You should see index.html successfully generated to index.html (in folder where you created it)
+* You should see `index.html` successfully generated to `index.html` (in folder where you created it)
 
 ## Show this page on the index of our api
-* Just place the `index.html` generated file into the public folder
+* Just place the `index.html` generated file into the public folder inside our local site
 
 ## Comment out the test route
 `server.js`
@@ -104,7 +105,7 @@
 ```Refused to execute inline script because it violates the following Content Security Policy directive: "script-src 'self'". Either the 'unsafe-inline' keyword, a hash ('sha256-ZomnyosL2bmZ79LmErHEhL+1fVaBj9NngvpOK/l4qio='), or a nonce ('nonce-...') is required to enable inline execution.
 ```
 
-* The error does not allows me to open the accordeon for each of the requests 
+* The error does not allows me to open the accordion for each of the requests 
 
 ## Solution
 `server.js`

@@ -51,7 +51,7 @@ router
 `GET {{DOMAIN}}:{{PORT}}/api/v1/reviews/1`
 
 ### Houston we have a problem!
-* We are getting a CastError
+* We are getting a `CastError`
 
 ```
 // MORE CODE
@@ -69,7 +69,7 @@ CastError: Cast to ObjectId failed for value "1" at path "_id" for model "Review
 // MORE CODE
 ```
 
-* Take a look at our ErrorResponse (our custom error)
+* Take a look at our `ErrorResponse` (our custom error)
 
 `middleware/error.js`
 
@@ -103,12 +103,12 @@ CastError: Cast to ObjectId failed for value "1" at path "_id" for model "Review
 // MORE CODE
 ```
 
-* **note** The reason the CastError is firing off is we do not have a properly formatted `id`
+* **note** The reason the `CastError` is firing off is we do not have a properly formatted `id`
     - If we did have a properly formatted `id` like this:
 
 `{{DOMAIN}}:{{PORT}}/api/v1/reviews/5d713a66ec8f2b88b8f830b8`
 
-* Then it would throw our ErrorResponse we have in our controller which would look like this:
+* Then it would throw our `ErrorResponse` we have in our controller which would look like this:
 
 ```
 {
@@ -135,7 +135,7 @@ CastError: Cast to ObjectId failed for value "1" at path "_id" for model "Review
 // MORE CODE
 ```
 
-* And our status error is outside the parenthesees and should be like this:
+* And our status error is outside the parentheses and should be like this:
 
 ```
 // MORE CODE
@@ -161,7 +161,7 @@ CastError: Cast to ObjectId failed for value "1" at path "_id" for model "Review
 
 ## Name Request in Postman
 `name`: Get single review
-`description`: Fetch a review from database by id and populate Bootcamp name and description
+`description`: Fetch a review from database by `id` and populate Bootcamp name and description
 
 ## Now let's edit or Database seeder
 * Let's add our Review model to our seeder

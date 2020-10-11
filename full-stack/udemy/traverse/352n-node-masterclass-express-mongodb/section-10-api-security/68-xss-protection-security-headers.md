@@ -6,8 +6,11 @@
 ## helmet
 * Easy to implement:
 
-1. Just bring it in 
+1. Just bring it in
 2. And initialize the middleware
+
+## Install helmet
+`$ npm i helmet`
 
 ```
 const express = require("express");

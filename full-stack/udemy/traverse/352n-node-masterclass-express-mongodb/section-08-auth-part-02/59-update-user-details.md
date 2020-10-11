@@ -22,7 +22,7 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
 ```
 
 * We want to use `findByIdAndUpdate()`
-    - But we don't just want to pass in req.body
+    - But we don't just want to pass in `req.body`
         + Because if a password is sent, or a role or any other field in the model is sent, it will update that and we don't want that
         + This update should just be for `name` and `email`
 
@@ -62,29 +62,15 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
 const express = require('express');
 const {register, login, getMe, forgotPassword, resetPassword, updateDetails} = require('../../../controllers/auth');
 
-const {protect} = require('../../../middleware/auth');
-
-const router = express.Router();
-
-// /api/v1/auth/register
-router.post('/register', register);
-
-// /api/v1/auth/login
-router.post('/login', login);
+// MORE CODE
 
 // /api/v1/auth/me
 router.get('/me', protect, getMe);
 
-// /api/v1/auth/me
-router.put('/updatedetails', protect, updateDetails);
+// /api/v1/auth/updatedetails
+router.put('/updatedetails', protect, updateDetails); // ADD!
 
-// /api/v1/auth/forgotpassword
-router.post('/forgotpassword', forgotPassword);
-
-// /api/v1/auth/resetpassword/:resettoken
-router.put('/resetpassword/:resettoken', resetPassword);
-
-module.exports = router;
+// MORE CODE
 ```
 
 ## Test in Postman
@@ -121,7 +107,7 @@ module.exports = router;
 * Change them back
 
 ## Now let's update the password
-`controllers/autht.js`
+`controllers/auth.js`
 
 ```
 // MORE CODE
@@ -194,10 +180,17 @@ router.put('/updatepassword', protect, updatePassword);
 
 * Save in Postman Authentication folder
     - `name`: Update password
-    - `desct`: Update logged in user password, send in the body `currentPassword` and `newPassword`
+    - `desc`: Update logged in user password, send in the body `currentPassword` and `newPassword`
 * Add `Content-Type` and `application/json`
 * Add body > raw > json
 * Set Authorization to Bearer Token and {{TOKEN}}
+
+```
+{
+    "currentPassword": "newpassword",
+    "newPassword": "1234567"
+}
+```
 
 ## Try to log in with old password
 * It won't work

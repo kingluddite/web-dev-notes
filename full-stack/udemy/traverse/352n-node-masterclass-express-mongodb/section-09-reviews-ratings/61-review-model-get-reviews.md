@@ -62,7 +62,7 @@ const Bootcamp = require('../models/Bootcamp');
 // @route    GET /api/v1/reviews
 // @route    GET /api/v1/:bootcampId/reviews
 // @access   Public
-exports.getCourses = asyncHandler(async (req, res, next) => {
+exports.getReviews = asyncHandler(async (req, res, next) => {
     if (req.params.bootcampId) {
         const reviews = await Review.find({bootcamp: req.params.bootcampId});
 
@@ -85,28 +85,17 @@ exports.getCourses = asyncHandler(async (req, res, next) => {
 ```
 // MORE CODE
 
-// Route files
-// Route authentication
-const auth = require('./routes/api/v1/auth');
-// Route resources
-const users = require('./routes/api/v1/users');
-const bootcamps = require('./routes/api/v1/bootcamps');
 const courses = require('./routes/api/v1/courses');
 const reviews = require('./routes/api/v1/reviews'); // ADD!
 
 // MORE CODE
 
-// DEFINE ROUTES
-// Mount Route Authentication
-app.use('/api/v1/auth', auth);
-// Mount Route Resources
-app.use('/api/v1/bootcamps', bootcamps);
-app.use('/api/v1/courses', courses);
 app.use('/api/v1/users', users);
 app.use('/api/v1/reviews', reviews); // ADD!
 
 // MORE CODE
 ```
+
 ## Now let's update our reviews route file
 
 `routes/api/v1/reviews.js`
@@ -161,7 +150,7 @@ module.exports = router;
 * Grab a bootcamp id from another request
 * The route we want to hit is:
 
-`GET {{DOMAIN}}:{{PORT}}/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/reviews1`
+`GET {{DOMAIN}}:{{PORT}}/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/reviews`
 
 * If you test now you'll see it is not working:
     - You just get HTML with an error 404 status
@@ -185,6 +174,8 @@ module.exports = router;
 ### Houston we have a problem!
 * The reason we get this error is in our bootcamps route we need to redirect to reviews
 * Make this
+
+`routes/api/v1/bootcamps.js`
 
 ```
 // MORE CODE
