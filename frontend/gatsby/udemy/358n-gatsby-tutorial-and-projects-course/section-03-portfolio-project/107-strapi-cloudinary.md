@@ -52,3 +52,5 @@ I ran npm run develop again and my strapi server started with no problems (Victo
 Now on my strapi dashboard I tried to upload a new image in media and strapi was acting strange. I received errors but the image appeared. I did this a few times with similar behavior. I think this was happening because of a delay to update my media to the new cloudinary domain but that's just a guess.Then I tried to add an image as markdown and I saw that the image was being served from cloudinary
 
 ![image_4.jpg](https://res.cloudinary.com/elvisisking/image/upload/v1602388111/image_4_6f99609111.jpg) 
+
+## The great thing about this way is the images will work when you deploy, becuse the URL is live to cloudinary but before it was pointing to `localhost:1337`
