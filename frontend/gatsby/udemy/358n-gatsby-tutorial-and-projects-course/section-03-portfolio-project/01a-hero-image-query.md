@@ -24,7 +24,7 @@ query MyQuery {
 
 ## Put the code in gatsby
 * We use `StaticQuery` in GraphQL Code Explorer
-    - But we just copy the graphql with code inside backticks
+    - But we just copy the GraphQL with code inside backticks
 
 `Code Exporter`
 

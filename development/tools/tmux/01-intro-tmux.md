@@ -1,6 +1,12 @@
 # Tmux Intro
+## Great resources
+* [tmux cheat sheet](https://gist.github.com/afair/3489752)
+* [greatest tmux sheet](https://gist.github.com/spicycode/1229612)
+* https://danielmiessler.com/study/tmux/
 
 ## gd and gD
+* Quickly navigate around files by "jumping" into a function or file
+
 1. gd will take you to the local declaration
 2. gD will take you to the global declaration
 
@@ -13,74 +19,40 @@
 
 ## vim
 ### Remove highlights
+* When searching for something you will see that it highlights the term and it's hard to remove the highlight, here's how to quickly remove the highlight
 `:noh<cr>`
 
-## Kill all buffers
+## All about buffers
+
+### Kill all buffers
+* If you have a ton of buffers and want to clean them up with one command, here it is
+
 `:bufdo bd`
-    
-## kill all tmux sessions
-* You can use `tmux kill-server` to cleanly and gracefully kill all tmux open sessions (and server)
-* If you are inside a tmux session you would like to keep, use 
-    - `tmux kill-session -a` to close all other sessions
-* To close a specific session, use tmux list-sessions to identify the session you want to kill, and then use
-    - `tmux kill-session -t targetSession` to kill that specific session
-* Also you can grossly kill all tmux processes with 
-    - `pkill -f tmux`
-
-## attach and detach
-* Jump out of tmux and jump back in whenever you want
-
-### detach from tmux
-`ctrl` + `b` + `d` (you are detached!)
-
-### attach to tmux
-`$ tmux attach` (and now you are back in!)
 
 ### Delete buffer by buffer number
 `:bd n` (example: `:bd 29`)
 
-## Super Basic Tmux
-## Tmux
-`$ tmux -u` runs it
+## All about sessions
 
-`$ nvim`
+### attach and detach session
+* Jump out of tmux and jump back in whenever you want
 
-`ctrl` + `b` + `%` (splits into 2 vertical windows)
+#### detach from tmux
+`ctrl` + `b` + `d` (you are detached!)
 
-## close pane
-* ctrl + b + x
+#### attach to tmux
+`$ tmux attach` (and now you are attached!)
+    
+## kill all tmux sessions
+* You can run multiple sessions and if you want to blow them all up, here's how:
+    - You can use `tmux kill-server` to cleanly and gracefully kill all tmux open sessions (and server)
+    - If you are inside a tmux session you would like to keep, use 
+        + `tmux kill-session -a` to close all other sessions
+    - To close a specific session, use tmux list-sessions to identify the session you want to kill, and then use
+        + `tmux kill-session -t targetSession` to kill that specific session
+    - Also you can grossly kill all tmux processes with 
+        + `pkill -f tmux`
 
-## get rid of window
-`$ exit`
-
-## Move windows
-* `ctrl` + `b` + `h` (left)
-* `ctrl` + `b` + `;` (right)
-
-## Create a new window
-`ctrl` + `b` + `c`
-
-## How to navigate between windows
-`ctrl` + `b` + `p` (previous)
-`ctrl` + `b` + `n` (next)
-
-## Make tmux screen wider
-`ctrl` + `b` + `alt` + `right arrow`
-
-## htop
-* https://www.cyberciti.biz/faq/install-htop-on-macos-unix-desktop-running-macbook-pro/
-* watch and manage system resources efficiently
-
-## change bg of tmux window
-`$ ctrl + b + :select-pane -P 'bg=red'`
-
-* All the following are supported: black, red, green, yellow, blue, magenta, cyan, white, default, bright, bold, dim, underscore, blink, reverse, hidden,italics, color0 ... color255, colour0 ... colour255 and RGB strings (#ff0000)
-
-* [tmux cheat sheet](https://gist.github.com/afair/3489752)
-* [greatest tmux sheet](https://gist.github.com/spicycode/1229612)
-* https://danielmiessler.com/study/tmux/
-
-## sessions
 ### create session
 `$ tmux new -s backupsession`
 
@@ -110,13 +82,74 @@
 
 * So htop was tied to session on tmux as opposed to tied to shell
 
+## Super Basic Tmux
+## Tmux
+`$ tmux -u` runs it
+
+`$ nvim`
+
+## Window managment in Tmux
+### Splitting windows
+#### Vertical splits
+
+`ctrl` + `b` + `%` (splits into 2 vertical windows)
+
+## close pane
+* `ctrl` + `b` + `x`
+
+## get rid of window
+* You have a bunch of windows running in your session and you want to get rid of one, here's how:
+
+`$ exit`
+
+## Move cursor to open split windows
+* `ctrl` + `b` + `h` (left)
+* `ctrl` + `b` + `;` (right)
+
+## Create a new window
+`ctrl` + `b` + `c`
+
+## How to navigate between windows
+`ctrl` + `b` + `p` (previous)
+`ctrl` + `b` + `n` (next)
+
+## Make tmux screen wider
+`ctrl` + `b` + `alt` + `right arrow`
+
+## htop
+* Watch and manage system resources efficiently
+* https://www.cyberciti.biz/faq/install-htop-on-macos-unix-desktop-running-macbook-pro/
+
+## change bg color of tmux window
+`$ ctrl + b + :select-pane -P 'bg=red'`
+
+* All the following are supported:
+    - black
+    - red
+    - green
+    - yellow
+    - blue
+    - magenta
+    - cyan
+    - white
+    - default
+    - bright
+    - bold
+    - dim
+    - underscore
+    - blink
+    - reverse
+    - hidden
+    - italics
+    - color0 ... color255, colour0 ... colour255 and RGB strings (#ff0000)
+
 #### Windows
 
 * `bind-key v split-window -h`
 * `bind-key s split-window -v`
 
 ## Cycle through windows
-* Use C-b ' to select the window index
+* Use `C-b` + `'` to select the window index
 * Use C-b w to get an interactive index to choose from (0-9a-z)
 
 ## Add bindings to cycle through quickly in tmux.conf

@@ -1,7 +1,7 @@
 # Blog content
-* The title and slug are connected
-* If you type a title it will also add a slug separated with dashed
-* But if you save your title and edit it later you need to click the `regenerate` button to update the old slug
+* The `title` and `slug` are connected
+* If you type a `title` it will also add a `slug` separated with dashed
+* But if you save your `title` and edit it later you need to click the `regenerate` button to update the old slug
 
 * https://hipsum.co/ (for description) 2 sentences
 
@@ -28,6 +28,6 @@
 // MORE CODE
 ```
 
-* Make sure you stop gatsby and restart it
+* Make sure you stop `gatsby` and restart it
 
 `$ gatsby develop`

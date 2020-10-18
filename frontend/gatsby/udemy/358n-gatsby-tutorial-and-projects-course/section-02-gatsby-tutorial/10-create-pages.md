@@ -60,7 +60,7 @@ export default products;
 ## 404 page
 * Got to a non-existent page `/junk` you will get an ugly 404
 * To get a nice 404 name the page `404.js`
-* We can't name a file based on a number so we can call this NotFound
+* We can name a file based on a number `404.js` but we can store variables inside number `const 404 = 86` so we can call this variable `NotFound`
 
 `404.js`
 
@@ -82,4 +82,6 @@ export default NotFound;
     - `/blog`
     - `/products`
     - `/junk`
-        + The 404 shows differently on development and it gives us info we need as a developer but you can also preview the production 404 by clicking link in page not found dev
+        + The 404 shows differently on development and it gives us info we need as a developer
+          * But you can also preview the production 404 by clicking link in page not found dev
+          * Or `$ gatsby build` and `$ gatsby source` to see production in development

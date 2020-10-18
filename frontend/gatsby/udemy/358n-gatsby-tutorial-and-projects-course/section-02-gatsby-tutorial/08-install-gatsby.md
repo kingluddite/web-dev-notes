@@ -36,8 +36,8 @@ gatsby clean
     - One to the dev URL running the site - http://localhost:8000/
 
 ## folders
-* public - holds our production ready app
-* src - where we do our development
+* `public` - holds our production ready app
+* `src` - where we do our development
     - We'll setup
         + Our pages
         + Our components

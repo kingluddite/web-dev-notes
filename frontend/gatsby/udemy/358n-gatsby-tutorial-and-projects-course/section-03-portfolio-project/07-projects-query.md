@@ -22,8 +22,8 @@
 // MORE CODE
 ```
 
-* You need to restart the gatsby server
-* **tip** also run gatsby clean
+* You need to restart the `gatsby` server
+* **tip** also run `$ gatsby clean`
 
 `$ gatsby clean`
 
