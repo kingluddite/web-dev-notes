@@ -76,7 +76,8 @@ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubuserc
     - press `ctrl` + `o` to come back
 * press tab to circle through open "buffer" files
 * TODO :vsplit works (vertical split) but adjust sizing of windows alt + hkjl does not work?
-* 
+
+
 ## Resources
 * [Switching from vim to Neovim & rebuilding config](https://www.youtube.com/watch?v=Kx-SDJwL01o)
 * [Setting up Neovim for web dev 2020](https://medium.com/better-programming/setting-up-neovim-for-web-development-in-2020-d800de3efacd)
@@ -166,7 +167,6 @@ type `gr` to see everywhere that component is being used (example Layout in gats
 * restart terminal and choose hack and you will see icons if you `nvim .` and space + e
 
 ![hack working](https://i.imgur.com/fh89ckr.png)
-
 
 ## Ranger
 * https://www.chrisatmachine.com/Neovim/07-ranger/

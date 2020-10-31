@@ -6,7 +6,7 @@
 1. Continuous Deployement - with github
 2. Drag/Drop option
 
-* We only can use option two with our local strapi because Netlify will never know where is localhost:1337
+* We only can use option two with our local strapi because Netlify will never know where is `localhost:1337`
 * But if you deploy strapi, then you can use one because then your URL will change and you can use that so Netlify is aware of it and then continuous deployment with github solution works
 * This is not a problem because we are only using static assets
     - But if we are using dynamic assets than strapi should be deployed

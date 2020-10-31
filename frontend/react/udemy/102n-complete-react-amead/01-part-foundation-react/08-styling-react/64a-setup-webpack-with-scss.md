@@ -47,7 +47,7 @@ module.exports = {
 * That change alone will not work
 
 ## We also need to add a loader
-* We will need to use 2 loaders
+* Actually we need to use 2 loaders
 
 ### css-loader
 * Will be a package that will allow us to load

@@ -17,6 +17,11 @@
 * Hit enter
 * Press F9 to kill the process
 
+## Kill port number
+* Maybe you forgot to shut down an app running somewhere else - here's how
+* 1. `$ lsof -w -n -i tcp:8080` (enter your port number)
+* 2. `$ kill -9 processId`
+
 ## vim
 ### Remove highlights
 * When searching for something you will see that it highlights the term and it's hard to remove the highlight, here's how to quickly remove the highlight
@@ -35,6 +40,13 @@
 ## All about sessions
 
 ### attach and detach session
+
+## VS code
+### vim-tmux-navigator
+* This plugin is a repackaging of Mislav Marohnić's tmux-navigator configuration described in this [gist](https://gist.github.com/mislav/5189704)
+* When combined with a set of tmux key bindings, the plugin will allow you to navigate seamlessly between `vim` and `tmux` splits using a consistent set of hotkeys
+    - [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
+
 * Jump out of tmux and jump back in whenever you want
 
 #### detach from tmux
@@ -53,8 +65,11 @@
     - Also you can grossly kill all tmux processes with 
         + `pkill -f tmux`
 
+## kill targeted session
+`$ tmux kill-session -t TARGETSESSIONNAME`
+
 ### create session
-`$ tmux new -s backupsession`
+`$ tmux new -s bn`
 
 * Will create a new session called `backupsession`
 * just like starting tmux but this is a named session
@@ -106,7 +121,7 @@
 * `ctrl` + `b` + `h` (left)
 * `ctrl` + `b` + `;` (right)
 
-## Create a new window
+## Create a  dow
 `ctrl` + `b` + `c`
 
 ## How to navigate between windows

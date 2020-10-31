@@ -163,7 +163,7 @@ module.exports = {
 
 View in each environemen and see the difference. You will have to search bundle.js in production for `box:` and you will find it.
 
-## Add CSS to a seperate file
+## Add CSS to a separate file
 Currently, all our CSS is injected into the head of the document. Now let's use webpack to inject a separate file into our document
 
 ### extract-text-webpack-plugin

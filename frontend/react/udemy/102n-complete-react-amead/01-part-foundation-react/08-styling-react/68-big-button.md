@@ -25,7 +25,7 @@ export default Action;
 ```
 
 ## Creat the file and add the .scss
-`src/styles/_button.scss`
+`src/styles/components/_button.scss`
 
 ```
 .big-button {

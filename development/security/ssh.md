@@ -1,5 +1,9 @@
 # SSH
 
+## If you get permission denied
+* Make sure you cloned the SSH link and not the HTTPS link
+* I was trying to push a branch and got a 403 saying I did not have permission. It was looking at another github username I use. I just removed the origin `$ git remote remove origin` made sure I had the SSH link (not the HTTPS link) I copied the SSH link and added it as my remote origin `$ git remote add origin git@github.com:MYUSERNAME/MYREPO.git`
+
 * If you are using a public library that may block ports so if you need to push to github you need to switch to https using this
 
 `$ git config --local -e`
