@@ -10,7 +10,7 @@
 ## Run the build command
 `$ gatsby build`
 
-### Houston we have a problem!
+### Houston we have a problem! (when we build gatsby doens't know our environment variables!!!!)
 * This is because we are using environment variables
 * Here is the error
 

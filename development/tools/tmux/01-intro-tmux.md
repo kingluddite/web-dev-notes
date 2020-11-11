@@ -165,7 +165,7 @@
 
 ## Cycle through windows
 * Use `C-b` + `'` to select the window index
-* Use C-b w to get an interactive index to choose from (0-9a-z)
+* Use `C-b` + `w` to get an interactive index to choose from (0-9a-z)
 
 ## Add bindings to cycle through quickly in tmux.conf
 ```
@@ -176,7 +176,7 @@ bind -r C-l select-window -t :+
 ## Make alt + arrow keys move panes
 ![image of iterm meta keys](https://i.imgur.com/r6J9r98.png)
 
-* Terminal multiplixer
+## Tmux - Terminal multiplixer
 * [documentation](https://github.com/tmux/tmux/wiki)
 * If you are using multiple terminal windows and want to make life easier for yourself, switch to tmux
 

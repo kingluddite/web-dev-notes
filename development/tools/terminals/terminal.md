@@ -1,4 +1,9 @@
 # Terminal
+## ll
+`$ ll`
+
+* Just show regular files and not hidden files
+
 ## Clear Terminal
 `cmd` + `k`
 

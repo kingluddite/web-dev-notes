@@ -25,7 +25,7 @@ KEY3=VALUE3
 ```
 
 ## dotenv
-* dotenv comes preinstalled with Gatsby
+* `dotenv` comes preinstalled with Gatsby
 * It is a node file so we use `require`
 
 `gatsby-config.js`

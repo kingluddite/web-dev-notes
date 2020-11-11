@@ -1,6 +1,24 @@
 # nvim cheatsheet
+## Close a tab (buffer)
+`:bd`
+
+## Search
+* Using FZF
+
+`ctlr` + `f`
+
 ## Vimrc files to reference
 * [nickj dotfiles](https://github.com/nickjj/dotfiles/blob/master/.vimrc)
+
+## Add e7 react snippets used in VSCode into nvim
+* https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
+
+### Conquer of Completion
+* It is possible to use this package in your vim/neovim text editor, to make this possible, make sure you have the coc.nvim previously configured, then add this command to your init.vim
+
+`Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }`
+
+* Update your vim / neovim settings with `:source %` and then install the new package with `:PlugInstall`
 
 ## Buffer tabs
 Switch between them with `<TAB>`

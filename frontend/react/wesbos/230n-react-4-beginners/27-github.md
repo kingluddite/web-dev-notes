@@ -1,4 +1,10 @@
 ## Gitignore is not working
+
+## How do I push to GitHub under a different username
+* https://stackoverflow.com/questions/13103083/how-do-i-push-to-github-under-a-different-username
+
+`$ git config --local credential.helper ""`
+
 * You may need to [remove the cache](http://blog.jonathanchannon.com/2012/11/18/gitignore-not-working-fixed/)
 * Long story short you have to remove all tracked files and add them back in using the below commands
 
