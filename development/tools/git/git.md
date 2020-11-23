@@ -1,5 +1,14 @@
 # GIT
 
+## Git add patch
+`$ git add . -p`
+## Remove last commit
+* You added a commit and want to remove it
+
+`$ git reset --soft HEAD~1`
+
+* [more info](https://www.git-tower.com/learn/git/faq/undo-last-commit/)
+
 ## Clear git local cache
 * You have to remove them from the staging area
 

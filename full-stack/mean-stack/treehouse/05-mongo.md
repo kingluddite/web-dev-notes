@@ -1,4 +1,15 @@
 # MongoDB
+## Mongo Shell Commands 
+* [docs for mongodb shell commands](https://docs.mongodb.com/manual/reference/mongo-shell/)
+
+## Do I need to start mongo?
+* Some machines may have the MongoDB server running by default, and some may not (it it is running it is running as a `Service`)
+
+### How can I check if mongo is running?
+* To check, run `$ mongod` from your command line
+    - If a process starts running without bringing you back to the command-line prompt, that means you have to manually `start` and `stop` MongoDB every time you use it, and you must open a new command-line window or tab if you need to use other commands
+    - If your machine kicks you back to the command prompt after entering mongod, it's likely running by default and you don't need to do anything!
+
 # Installing MongoDB on your Machine
 ### Contents
 * [Installing MongoDB on your Machine](#installing-mongodb-on-your-machine)
