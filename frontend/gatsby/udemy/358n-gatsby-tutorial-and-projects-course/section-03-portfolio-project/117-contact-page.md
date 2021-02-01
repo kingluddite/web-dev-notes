@@ -44,3 +44,24 @@ const contact = () => {
 
 export default contact
 ```
+
+* If you are going to use hooks you need to capitalize the component and with pages name them like ContactPage
+
+```
+import React from "react"
+import Layout from "../components/Layout"
+
+const ContactPage = () => {
+  return (
+    <Layout>
+
+    </Layout>
+  )
+}
+
+export default ContactPage
+```
+
+## Resources
+* [Handling forms in a react app](https://www.netlify.com/blog/2017/07/20/how-to-integrate-netlifys-form-handling-in-a-react-app)
+* [video to add form to netlify](https://www.youtube.com/watch?v=2gDRR86ZycQ&t=553s)

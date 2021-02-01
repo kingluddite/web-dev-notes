@@ -1,5 +1,35 @@
 # GIT
 
+## Use function in dotfiles to quickly create .gitignore
+`$ gi node,macos >> .gitignore`
+
+* Below is the function in my dotfiles
+
+```
+// MORE CODE
+
+# Generate .gitignore
+# `$ gi node,macos >> .gitignore`
+function gi() { curl -sLw "\n" https://www.gitignore.io/api/\$@ ;}
+
+// MORE CODE
+```
+
+## Rename master branch to main
+`$ git branch -m master main`
+
+## Remove file from git cache
+* [how to clear git cache](https://devconnected.com/how-to-clear-git-cache/)
+
+## Git add patch
+`$ git add . -p`
+## Remove last commit
+* You added a commit and want to remove it
+
+`$ git reset --soft HEAD~1`
+
+* [more info](https://www.git-tower.com/learn/git/faq/undo-last-commit/)
+
 ## Clear git local cache
 * You have to remove them from the staging area
 

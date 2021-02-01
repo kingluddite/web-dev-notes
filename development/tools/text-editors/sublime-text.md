@@ -970,3 +970,14 @@ User settings;
 
 ## Reg Ex Phone number
 `[0-9]{3}+[.]+[0-9]{3}+[.]+[0-9]{4}`
+
+## How to track down a strange keymap conflict?
+* https://forum.sublimetext.com/t/how-to-track-down-a-strange-keymap-conflict/32506
+
+You can try following these steps:
+
+1. Open the Sublime console with `View` > `Show Console` from the menu
+2. Enter the command `sublime.log_commands(True)` and press `Enter`
+3. Perform the sequence of commands you want to see what keybinding was fireda
+
+

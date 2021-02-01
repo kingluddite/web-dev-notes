@@ -1,4 +1,32 @@
 # Terminal
+## Search all aliases on mac
+`$ alias`
+
+## rename
+* If you find yourself batch-renaming files frequently, consider installing a specialized tool such as the Perl-based rename utility
+* On macOS you can install it using popular package manager Homebrew as follows:
+
+`$ brew install rename`
+
+* Here's the equivalent of the command at the top using rename:
+
+`$ rename -n -e 's/_.*_/_/'  *.png`
+
+* Again, this command performs a dry run; remove `-n` to perform actual renaming
+* Similar to the bash solution, `s/.../.../` performs text substitution, but - unlike in bash - true regular expressions are used
+* [source](https://stackoverflow.com/questions/24102974/how-to-batch-rename-files-in-a-macos-terminal)
+
+* Let's say you want to remove `-min` from a batch of images
+
+`$ rename -n -e 's/-min//' *.jpg`
+
+## Search for files using grep
+`grep` stands for `get regular expression`
+
+* example: Find all files that have `Hack` in them
+
+`$ ls | grep Hack`
+
 ## ll
 `$ ll`
 

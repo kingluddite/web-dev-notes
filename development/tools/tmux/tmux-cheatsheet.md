@@ -1,4 +1,35 @@
 # Tmux Cheatsheet
+* https://gist.github.com/MohamedAlaa/2961058
+* https://michaelsoolee.com/moving-tmux-panes/#:~:text=To%20move%20your%20tmux%20panes,in%20a%20clock%2Dwise%20direction 
+
+## prefix
+`$ ctrl + b`
+
+## panes
+Open up a horizontal pane
+
+`$ prefix + "`
+
+## Resize down
+`prefix + :`
+
+* Then `:resize-pane -D 20`
+    - `-D` Down
+    - `20` units to move down
+
+* Resize up with `:resize-pane -U 4`
+* Resize left with -L
+* Resize right with -R
+
+## Split vertical is %
+* Makes sense as the top and bottom of the percent
+
+## Move panes
+`prefix + o` (cycles through open panes)
+
+## Version
+`$ tmux -v`
+
 ## Run Tmux
 `$ tmux -u`
 
@@ -16,13 +47,13 @@
 `$ tmux list-sessions`
 
 ### create session
-`$ tmux new -s bn`
+`$ tmux new -s NAMEOFSESSION`
 
 ### detach from tmux
 `ctrl` + `b` + `d` (you are detached!)
 
 ### attach to tmux
-`$ tmux attach` (and now you are attached!)
+`$ tmux attach -t NAMEOFSESSION` (and now you are attached!)
 
 ### kill all sessions
 `$ tmux kill-server`
@@ -60,3 +91,12 @@
 ### Make tmux screen wider
 `ctrl` + `b` + `alt` + `right arrow`
 
+## Resources
+### GNU Stow
+* GNU Stow - https://www.gnu.org/software/stow/
+* GNU Stow is a symlink farm manager which takes distinct packages of software and/or data located in separate directories on the filesystem, and makes them appear to be installed in the same place
+* [managing dotfiles with stow great informative article](https://alexpearce.me/2016/02/managing-dotfiles-with-stow/)
+
+### Tmux dotfile examples
+* https://github.com/hamvocke/dotfiles/blob/master/tmux/.tmux.conf
+* 

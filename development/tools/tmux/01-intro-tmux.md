@@ -1,4 +1,19 @@
 # Tmux Intro
+## config file
+* If you want to use your mouse to do things like scroll through the window you need this configuration
+
+`.tmux.conf`
+
+```
+// MORE CODE
+
+# mouse control (clickable windows, panes, resizable panes)
+set -g mouse on
+
+// MORE CODE
+```
+
+
 ## Great resources
 * [tmux cheat sheet](https://gist.github.com/afair/3489752)
 * [greatest tmux sheet](https://gist.github.com/spicycode/1229612)

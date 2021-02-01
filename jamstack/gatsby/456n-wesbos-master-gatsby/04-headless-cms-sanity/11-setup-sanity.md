@@ -3,13 +3,14 @@
 
 ## The URL
 * https://www.sanity.io/
+
 ## sanity init
 * Normally with a new sanity project you:
 
 `$ sanity init`
 
 * That will download all the start files
-* We use npm instead of yarn (yarn may not be around for a long time according to wes)
+* We use `npm` instead of `yarn` (yarn may not be around for a long time according to wes)
 
 ## We have a project already setup
 * In order to:

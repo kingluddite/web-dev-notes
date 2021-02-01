@@ -20,7 +20,7 @@
   plugins: [
     'gatsby-plugin-eslint',
     `gatsby-plugin-styled-components`,
-    `gatsby-transformer-shart`,
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
 
 // MORE CODE
