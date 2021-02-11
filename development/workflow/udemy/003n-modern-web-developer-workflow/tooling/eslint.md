@@ -1,4 +1,11 @@
 # Eslint
+## If using [wes bos eslint with Create React app](https://github.com/wesbos/eslint-config-wesbos)
+* You need to delete eslint from parent folder node_modules
+
+`$ rm -rf node_modules/eslint`
+
+* [source](https://stackoverflow.com/questions/60124662/create-react-app-eslint-error-while-deployment-on-local-machine)
+
 * Using airbnb styleguide
 
 `/.eslintrc`

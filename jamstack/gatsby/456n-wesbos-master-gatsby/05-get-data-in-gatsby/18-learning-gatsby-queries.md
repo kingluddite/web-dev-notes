@@ -2,6 +2,7 @@
 ## Page Queries
 * Can be dynamic with variables
 * Can only be run on a top level page
+    - If you want to have variables in your query, it HAS TO HAPPEN AT A PAGE LEVEL (limitation of gatsby)
 
 ## Static Queries
 * Can not be dynamic, no variables can be passed in
@@ -37,8 +38,8 @@ export const query = graphql``;
 `pizzas.js`
 
 ```
-import { graphql } from 'gatsby'; // ADD this!
 import React from 'react';
+import { graphql } from 'gatsby'; // ADD this!
 
 // MORE CODE
 ```

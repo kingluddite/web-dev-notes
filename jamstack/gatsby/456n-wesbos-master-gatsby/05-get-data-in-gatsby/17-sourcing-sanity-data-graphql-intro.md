@@ -201,7 +201,6 @@ It started up and I saw that my environment variable token was working as shown 
     - Select the nodes
         + Check name and price
 
-#
 ```
 query MyQuery {
   allSanityPizza {
@@ -299,7 +298,6 @@ query MyQuery {
 ## Grabbing nested data types
 * We have pizzas that have toppings
 
-#
 ```
 query MyQuery {
   allSanityPizza {

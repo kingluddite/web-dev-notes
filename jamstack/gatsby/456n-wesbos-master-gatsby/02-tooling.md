@@ -8,6 +8,19 @@
 ## Backend
 * sanity
 
+## Make sure you Oauth into the correct Sanity account
+* Are you using Google or Github?
+
+## If you have session error
+* I had one after I bought a new computer not sure if this was the cause but my token was not working
+* I updated sanity `$ sanity update`
+* I ran sanity `$ cd sanity && npm start`
+* I logged into my online sanity account, deleted the old API token (click on the project you are working on, click API link, delete API and create and copy new API and paste into your `.env` file, then `$ cd gatsby && npm start` and that got it working on `http://localhost:8000/`
+
+### Troubleshooting sanity "session" issue
+* I had a session error and had to `$ sanity logout` and `$ sanity login`
+* Then typed the above command and all was good
+
 * **tip** Keep front end and backend separate
     - They have their own dependencies
     - They deploy to different places

@@ -1,4 +1,10 @@
 # Installing the Heroku CLI
+
+## How to add seeder data
+1. Log in `$ heroku login`
+2. `$ heroku run bash`
+3. `$ node seeders/seeds` (or path to seeds)
+
 ## Steps you repeat for any Node JS project you want to deploy on Heroku
 ![steps for heroku deploy](https://i.imgur.com/Se3L9Vj.png)
 

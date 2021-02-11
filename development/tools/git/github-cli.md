@@ -7,6 +7,9 @@
 ## View issue on web
 `$ gh issue view [number of issue] --web`
 
+### Close issue
+`$ gh issue close [issue number]`
+
 ## Change editor to nvim
 `$ gh config set editor nvim`
 
