@@ -1,4 +1,22 @@
 # Cool Time saving Web techniques
+
+## How to I change name of `master` branch to `main`
+`$ git branch -M` main
+
+
+## Searching keywords in Chrome
+`ctrl` + `f` (win)
+`cmd` + `f` (mac)
+
+find next work
+`ctrl` + `g` (win)
+`cmd` + `g` (mac)
+
+## If you accidentilly tracked `node_modules` by git
+* Use this command to remove the tracking
+
+`$ git rm -r --cached node_modules`
+
 ## How do copy from the terminal and paste somewhere else
 ## Kill port 300[n]
 

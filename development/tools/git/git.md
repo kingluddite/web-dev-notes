@@ -1,5 +1,10 @@
 # GIT
 
+## If you accidentilly tracked `node_modules` by git
+* Use this command to remove the tracking
+
+`$ git rm -r --cached node_modules`
+
 ## Use function in dotfiles to quickly create .gitignore
 `$ gi node,macos >> .gitignore`
 
