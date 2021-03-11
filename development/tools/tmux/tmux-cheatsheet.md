@@ -35,8 +35,10 @@ Open up a horizontal pane
 `$ tmux -u`
 
 ## Buffers
+`:%bd|e#` (kills all buffers but current one)
+
 ### Kill all buffers
-* If you have a ton of buffers and want to clean them up with one command, here it is
+* If you have a ton of buffers and want to clean them up with one command, here it is:
 
 `:bufdo bd`
 

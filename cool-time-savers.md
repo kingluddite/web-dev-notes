@@ -1,7 +1,37 @@
 # Cool Time saving Web techniques
+## Get rid of favicon error
+* Just refresh browser (fastest way)
+
+## JSON viewer
+* I like [JSONFormatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa) over [JSONView](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc) because I can easily view to raw mode to copy and paste JSON
+
+## Upgrade all homebrew stuff
+`$ brew upgrade --cask`
+
+## Remove heroku
+`$ git remote remove heroku`
+
+## Add a GitHub remote repo
+`$ git remote add origin YOUR_GITHUB_URL`
+
+## Install nodemon
+`$ npm i nodemon -D`
+
+`package.json`
+
+```
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server"
+  },
+
+```
+
+* And the script to run it is now `$ npm run dev`
 
 ## How to I change name of `master` branch to `main`
-`$ git branch -M` main
+`$ git branch -M main`
 
 
 ## Searching keywords in Chrome

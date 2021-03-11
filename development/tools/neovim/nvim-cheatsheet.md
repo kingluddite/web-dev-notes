@@ -1,4 +1,102 @@
 # nvim cheatsheet
+## coc-bookmark deprecated error
+* After uninstalling with `:Uninstall coc-bookmark` it would just automatically reintall once I opened neovim
+* I had to remove coc-bookmark from `plug-config/coc/coc-extensions.vim`
+* Then Run uninstall again
+
+## Rebuild
+* Remove from extensions
+* Then `:CocInstall coc-fzf-preview`
+* `:CocRebuild`
+* That fixed it! 
+
+## I was having COC add double quotes when I altered code and saved
+* I needed to open coc config `:CocConfig` and add this:
+    - **note** Just added the prettier lines
+    - And that worked!
+
+```
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "python",
+    "typescript",
+    "typescriptreact"
+  ],
+  "coc.preferences.formatOnType": true,
+  "powershell.integratedConsole.showOnStartup": false,
+  "prettier.arrowParens": "avoid",
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 4,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "python.formatting.provider": "yapf",
+  "python.jediEnabled": false
+}
+```
+## Ts server was driving me nuts
+* I wanted to turn it off so this is what I used:
+
+```
+"javascript.suggestionActions.enabled": false,
+"typescript.suggestionActions.enabled": false,
+```
+
+* to disable tsserver suggestion
+
+* And this:
+
+```
+// MORE CODE
+
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+// MORE CODE
+```
+
+* To disable tsserver validation totally, same as VSCode
+* Run `:CocUpdate` to update coc-tsserver
+* [source](https://www.reddit.com/r/neovim/comments/9q0d0a/cocvim_for_javascript_but_get_tsserver_errors_in/)
+
+## vim multi cursor
+* Plugin
+* You can do this with macros in vanilla vim but this is still very useful
+
+`ctrl` + `n` to select word
+`c` to change
+
+### How to get out
+
+* `esc` + `esc`
+
+### Multicursor all words that match
+`alt` + `n` to select all matching words
+`c` to change
+
+### To ignore word boundry and select all
+* By default it acknowledges word boundaries
+
+`g` + `ctrl` + `n`
+
+* And `g` `alt` + `n` selects every matching pattern
+
+### working with mulicursor in javascript
+* Use `v` to be in visual mode
+* Then use `ctrl` + `n`
+
+### using regex
+* Select group of text
+* Enter command mode
+* `:MultipleCursorsFind`
+
+example: just select text that is in angle brackets
+`>\zs.*\ze<`
+
 ## delete to the beginning of the line
 `$ d0`
 

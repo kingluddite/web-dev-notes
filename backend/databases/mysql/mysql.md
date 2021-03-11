@@ -1,4 +1,29 @@
 # MySQL
+## Reset MySQL password
+* I've tested this successfully with Homebrew install on MySQL 8.0.23
+
+## If you installed MySQL installed via Homebrew
+# Log in
+`$ mysql -u root -p` (enter current password)
+
+## In the mysql Command Line
+`$ UPDATE mysql.user SET authentication_string=null WHERE User='root';`
+
+* Flush privileges
+
+`$ FLUSH PRIVILEGES;`
+
+## Quit MySQL
+`$ exit;`
+
+## Log in without a password
+`$ mysql -u root`
+
+## In MySQL change the root password to what you want
+* We are changing the password to "yourpassword"
+
+`$ ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'yourpasswd';`
+
 ## Lots of issues with Mysql 8.0.16
 * Doesn't play nicely with Sequel Pro
 * Installed workbench
