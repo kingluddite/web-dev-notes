@@ -1,5 +1,175 @@
 # Installing the Heroku CLI
 
+## Deploy to heroku
+* Make sure all code is merged to `main` branch
+
+```
+$ git push origin feature/comments
+$ git checkout develop
+$ git merge feature/comments
+$ git checkout main
+$ git merge develop
+$ git push origin main
+```
+
+`$ gh issue close 5`
+
+`$ gh repo view --web`
+
+## Do you ALWAYS have to push to Heroku from the `main` branch?
+* No
+* Feature branches can be deployed using:
+
+`$ git push heroku <feature-branch>:main`
+
+* This is very helpful if you are using the Heroku URL for testing
+    - **note** But you wouldn't want to do this if the app is already in production 
+
+## Deploy Node App with mysql Database to heroku
+`$ heroku create just-tech-knews` (can't be a name already used)
+
+`$ git push heroku main`
+
+## Heroku port
+* You've already taken one step in making your app Heroku-compatible with the following line in `server.js`:
+
+`server.js`
+
+```
+// MORE CODE
+
+const PORT = process.env.PORT || 3001;
+
+// MORE CODE
+```
+
+* This uses Heroku's `process.env.PORT` value when deployed and `3001` when run locally
+* **tip** Having a dynamic port number is important, because it is very unlikely that the port number you hardcode (e.g., `3001`) would be the port Heroku runs your app on
+
+## Make sure our Database is not hardcoded
+`config/connection.js`
+
+* This wouldn't work
+    - As of now, this will only work with your local database
+
+```
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
+  host: 'localhost',
+  dialect: 'mysql',
+  port: 3306
+});
+```
+
+### Could you continue using your local database even on Heroku? 
+* Well, yes, but then you'd have to make your ports public (probably not a good idea)
+* And always leave your computer on
+
+## Better idea
+* Instead, we should make a new remote database on Heroku and tell the app to connect to that one when deployed but still use the local database when run locally
+* Fortunately, Heroku comes with a variety of add-ons that make setting up a remote database relatively easy
+* The one we'll use for MySQL is called `JawsDB`
+    - **important** Credit Card Required
+        + When using Heroku add-ons, Heroku will require you to put a credit card on file
+        + Heroku will not charge you, though, unless you specifically upgrade to one of their paid services
+
+### Our checklist we need
+* Remote Database
+* Tell our apps to connect to that Database when deployed
+* But we still want to use our local Database when running locally
+
+### How can we achieve all this?
+* We'll install an add-on on Heroku called `JawsDB`
+
+### What's my app name again on Heroku?
+`$ git remove -v` will show you your name
+
+* It will look something like:
+
+```
+heroku  https://git.heroku.com/sacred-cow-72631.git (fetch)
+heroku  https://git.heroku.com/sacred-cow-72631.git (push)
+origin  git@github.com:myGitHub/just-tech-news.git (fetch)
+origin  git@github.com:myGitHub/just-tech-news.git (push)
+```
+
+* Get to the Heroku Dashboard
+* Find your app
+* Click Resources tab
+* Search under `Add-on` for `JawsDB MySQL` and click on it when it appears
+
+* Heroku will confirm that you want to add JawsDB to your app
+* Click the `Provision` button, and you're done!
+* You now have access to a remote MySQL database hosted by Heroku
+
+### Settings
+* If you click the settings tab you'll see under Config Vars that behind the scenes Heroku added `JAWSDB_URL` and it's string connection value automatically
+* We'll now update our code to take this Heroku remote environment variable into consideration
+
+## Update our code connection
+* Return to your codebase and open the connection.js file again. Update the connection logic to look like the following code:
+
+`config/connection.js`
+
+```
+// import the Sequelize constructor from the library
+const Sequelize = require('sequelize');
+
+// load environment variables
+require('dotenv').config();
+
+let sequelize;
+// create conn to our Database, pass in your MySQL info for username and password
+if (process.env.JAWSDB_URL) {
+  sequelize = new Sequelize(process.env.JAWSDB_URL);
+} else {
+  sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
+    host: 'localhost',
+    dialect: 'mysql',
+    port: 3306,
+    define: {
+      timestamps: true,
+      freezeTableName: true,
+      underscored: true,
+    },
+  });
+}
+
+module.exports = sequelize;
+```
+
+* After we deploy our app
+    - It will have access to Heroku's `process.env.JAWSDB_URL` variable and use that value to connect [aka production environment]
+    - Otherwise, it will continue using the localhost configuration (our local machine configuration) [aka dev environment]
+
+## Push our changes to Heroku
+```
+$ git add -A
+$ git commit -m "connect to jawsdb"
+$ git push heroku main
+```
+
+## Test remote stuff
+* **note** The app still doesn't have a front end, so there won't be much to see in the browser
+* You can still test the API endpoints with Insomnia Core, though
+* Simply replace http://localhost:3001 with the name of your Heroku app
+* Example: `https://just-tech-knews.herokuapp.com/api/posts`
+
+## Why is our data empty?
+* Of course, all of your GET requests will return empty data sets, because you're connected to a brand new database
+* You'll need to make a few POST requests first to fill up the JawsDB database
+
+## TODO
+* How can I remotely seed Heroku Database?
+
+## Do you ALWAYS have to push to Heroku from the `main` branch?
+* No
+* Feature branches can be deployed using:
+
+`$ git push heroku <feature-branch>:main`
+
+* This is very helpful if you are using the Heroku URL for testing
+    - **note** But you wouldn't want to do this if the app is already in production 
+
 ## How to add seeder data
 1. Log in `$ heroku login`
 2. `$ heroku run bash`

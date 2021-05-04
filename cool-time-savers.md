@@ -1,4 +1,25 @@
 # Cool Time saving Web techniques
+## Make all branches `main` by default
+
+`$ git config --global init.defaultBranch main`
+
+* **note** If the command executes successfully, no confirmation message will appear; it will simply return back to the command-line prompt
+
+## MacOS needs Git version 2.28 or later
+* What verion of git `$ git --version`
+
+## How do I add animated gifs to Github?
+* [recordit](https://recordit.co/)
+* [other ways Paul Irish to screencapture and make animated gifs for whatever you have](https://gist.github.com/paulirish/b6cf161009af0708315c)
+
+## Speed up Youtube
+* Great for tutes:
+
+![speed up youtube chrome extension](https://chrome.google.com/webstore/detail/youtube-playback-speed-co/hdannnflhlmdablckfkjpleikpphncik/reviews?hl=en)
+## Make github look like VS Code
+This is super super super cool "The Github 1s trick"
+https://github.com/conwnet/github1s
+
 ## Get rid of favicon error
 * Just refresh browser (fastest way)
 

@@ -1,8 +1,18 @@
-
 # Tmux Cheatsheet
 * https://gist.github.com/MohamedAlaa/2961058
 * https://michaelsoolee.com/moving-tmux-panes/#:~:text=To%20move%20your%20tmux%20panes,in%20a%20clock%2Dwise%20direction 
 
+## Kill all server
+`$ killall tmux`
+
+## [exited] in tmux
+* Anytime I try to open a new tmux session I get this in my terminal
+
+![tmux not working and getting this](https://i.imgur.com/wlFfNFz.png)
+
+* The fix is simple
+
+[the fix](https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x)
 ## prefix
 `$ ctrl + b`
 
@@ -68,6 +78,13 @@ Open up a horizontal pane
 `$ tmux kill-session -t TARGETSESSIONNAME`
 
 ## Window managment in Tmux
+## maximize split window temporarilly
+* :tabedit % (maximizes)
+* :q (returns to split window)
+
+## Make current window max and close others
+* `ctrl` + `w` + `o`
+
 ### Create a new window
 
 `ctrl` + `b` + `c`

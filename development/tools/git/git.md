@@ -1,4 +1,26 @@
 # GIT
+## Global Git configuration
+* To configure your user name to be used by Git, type the following at the prompt (include the quotation marks):
+
+`$ git config --global user.name "Your Name"`
+
+* EXAMPLE:
+
+`$ git config --global user.name "Bob Bobbington"`
+
+* To configure your email to be used by Git, type the following at the prompt (leave out the angle brackets):
+
+`$ git config --global user.email <your email address>`
+
+* EXAMPLE:
+
+`$ git config --global user.email bob@nucamp.co`
+
+* You can check that your configuration is correct by typing the following at the prompt:
+
+`$ git config --global --list`
+
+* **note** You should be able to see your `user.name` and `user.email` in the output 
 
 ## If you accidentilly tracked `node_modules` by git
 * Use this command to remove the tracking

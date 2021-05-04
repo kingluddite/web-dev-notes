@@ -1,4 +1,119 @@
 # nvim cheatsheet
+
+## folding
+* These settings fixed issues I was having with folding
+* I was in html and tried to folder and got `no fold` error
+* I made these changes and folding is working again
+
+`nvim/general/settings`
+
+```
+ set foldmethod=indent "syntax highlighting items specify folds"
+ set foldnestmax=10
+ set nofoldenable
+ set foldlevel=2
+ set foldcolumn=1 "defines 1 col at window left, to indicate folding"
+ let javaScript_fold=1 "activate folding by JS syntax"
+ set foldlevelstart=99 "start file will all folds opened"
+```
+
+## Copying multiple words (from different lines) and paste them at once
+* Use an uppercase register when yanking (copying):
+
+`"Ay`
+
+* `"A` says to append to the a register, as opposed to `"a` which would replace the contents of the a register
+* Once you've copied everything into the register, you can then paste it all at once with:
+
+`"ap`
+
+* And then you can clear (empty) with:
+
+`qaq`
+
+* **note** Alternatively, if you just want to avoid having previous stuff in there, you can copy your first word using the lower case register: `"ay`
+* **note** Remember, `a` and `A` refer to the same register, they just affect how things are added
+  - `A` append
+  - `a` replace
+
+## Open NERDTREE by default
+* This is great. It opens nerdtree and puts your cursor on the right so you can start searching!
+
+* [source](https://stackoverflow.com/questions/1447334/how-to-add-nerdtree-to-your-vimrc)
+* If, however, you're annoyed by the fact that the cursor always starts in the NERDTree window, you can add a second autocommand that will move the cursor into the main window:
+
+```
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+```
+
+## How to disable netrw
+* I tried to use this and hated it
+* I wanted to turn it off
+* I added the plugin and pointed to that plugin
+
+`init.vim`
+
+* Comment this line in:
+
+```
+// MORE CODE
+
+source $HOME/.config/nvim/plug-config/netrw.vim
+
+// MORE CODE
+```
+
+* And added this to `netrw.vim`
+  - [source](https://github.com/bling/dotvim/issues/4)
+
+```
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
+" Changing the directory view in netrw
+" let g:netrw_liststyle = 3
+
+" Removing the banner
+" let g:netrw_banner = 0
+
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 25
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
+"
+```
+
+## Delete several words
+`*cgn`
+
+* Breakdown:
+
+- `*`: start a search for the word under the cursor (`g*` if you don’t want the word boundaries)
+- `c`change
+- `gn` the next match
+
+* So you put your cursor somewhere in a word, press `*cgn`, type the replacement, hit `<esc>`, and then hit `.` to change the next occurence
+
+If you already searched for the word, ignore the * and just cgn.
+## Select current word
+`viw`
+
+## Select opening and closing tag
+`vat`
+
+## Indenting with ==
+* To indent the current line you’d run `==`
+* Indenting 4 lines below the current line you’d run `4==`
+* To indent a block of code, you can place your cursor at one of the braces and use command `=%`
+* To fix indentation in entire file, run `gg=G`
+  - Command `gg` will take you to the top of the file, command `=` is the indentation command, and `G` at the end tells Vim to run indentation command to the end of the file
+
+* As an additional step, you can add a mapping for a command like **gg=G``zz**
+  - This one will basically fix indentation in the entire file, get the cursor back to where it was, and put the current line in the middle of your window
+
 ## coc-bookmark deprecated error
 * After uninstalling with `:Uninstall coc-bookmark` it would just automatically reintall once I opened neovim
 * I had to remove coc-bookmark from `plug-config/coc/coc-extensions.vim`

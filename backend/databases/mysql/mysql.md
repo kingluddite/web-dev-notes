@@ -1,4 +1,12 @@
-# MySQL
+# MySQL m1 issues mysql workbench
+## only 1 3306 running at a time
+* When you can't connect (must mean mysql server is running somewhere else)
+* https://thoughtbot.com/blog/starting-and-stopping-background-services-with-homebrew
+* https://www.reddit.com/r/mysql/comments/l2070q/installing_mysql_workbench_on_m1_mac/
+
+## How to install an older version of homebrew
+* https://remarkablemark.org/blog/2017/02/03/install-brew-package-version/
+
 ## Reset MySQL password
 * I've tested this successfully with Homebrew install on MySQL 8.0.23
 
