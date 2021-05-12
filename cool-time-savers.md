@@ -1,4 +1,8 @@
 # Cool Time saving Web techniques
+## Emmet
+### 3 radio buttons with labels snippet
+`(input[type='radio'][id="radio$"][name="radioGroup"]+label[for="radio$"]{radio$})*3`
+
 ## Make all branches `main` by default
 
 `$ git config --global init.defaultBranch main`

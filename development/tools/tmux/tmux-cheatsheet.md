@@ -12,7 +12,20 @@
 
 * The fix is simple
 
-[the fix](https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x)
+`$ killall tmux`
+
+[the source of the fix and more details](https://superuser.com/questions/397076/tmux-exits-with-exited-on-mac-os-x)
+
+* **note** If you are on a M1 macOS chip you will get this error after the install:
+Error: Cannot install under Rosetta 2 in ARM default prefix (/opt/homebrew)!
+
+```
+To rerun under ARM use:
+    arch -arm64 brew install ...
+```
+
+So use this `arch -arm64 brew install reattach-to-user-namespace`
+
 ## prefix
 `$ ctrl + b`
 
