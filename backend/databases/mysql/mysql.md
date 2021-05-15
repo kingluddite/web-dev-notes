@@ -1,4 +1,24 @@
-# MySQL m1 issues mysql workbench
+# MySQL 
+## If you have installed mysql using homebrew and you can't run mysql, can't connect to Database do this:
+
+```
+$ brew services stop mysql
+$ pkill mysqld
+$ rm -rf /usr/local/var/mysql/ # NOTE: this will delete your existing database!!!
+$ brew postinstall mysql
+$ brew services restart mysql
+$ mysql -uroot
+```
+
+* when you are logged into mysql eventually, use:
+
+```
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'YOURNEWPASSWORD';
+```
+
+* To set your new root password; that's it and it works like a charm!
+
+##m1 issues mysql workbench
 ## only 1 3306 running at a time
 * When you can't connect (must mean mysql server is running somewhere else)
 * https://thoughtbot.com/blog/starting-and-stopping-background-services-with-homebrew

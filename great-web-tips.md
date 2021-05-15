@@ -1,4 +1,11 @@
 # Great Web Tips
+## Show Git branch
+`$ git branch`
+
+* But I always forget how I spelled a branch and end up typing `git branch` over and over again
+* It would be great if I could see all the branch names while I'm in the same git history
+
+`$ git show-branch`
 
 ## VS Code tips
 ## Commentings
