@@ -1,4 +1,27 @@
 # nvim cheatsheet
+## Navigation fast
+`ctrl-u` move up half page
+`ctrl-d` move down half page
+## Detect if a key is bound to something in vim
+`:map` user-defined mappings
+
+`:map!` plugin mappings
+
+`:help index` built-in mappings
+
+* **note** mappings are in the... mappings.vim file
+
+## source Neovim
+* If you install a plugin
+
+`:PlugInstall` and then source it with `:source $MYNVIM`
+## close all buffers
+`%bd!`
+
+## change around word
+`caw`
+
+## moving to next spot in emmet snippet for vim is `ctrl` + `j`
 
 ## notes for M1 homebrew
 

@@ -1,7 +1,19 @@
-## What is a Headless CMS
+## What is a Headless CMS?
+* No theme, no way to view the data in your website with sanity because it is just the backend
+  - We log into Sanity
+  - We are able to create our content types and our fields and crud data
+  - The front end (what we are building in gatsby) will pull in our sanity data
+  - We will pull in the data using a GraphQL plugin
+  - All Headless CMS (there are a lot) works same way
+    + You create your data
+    + Then we ingest it into our gatsby site
+
+## Make sure Sanity is globally installed on your computer
 * Install sanity as a CLI (done) `$ npm i -g @sanity/cli`
 
-## The URL
+`$ sanity --version`
+
+## Sanity.io - The URL
 * https://www.sanity.io/
 
 ## sanity init
@@ -9,7 +21,7 @@
 
 `$ sanity init`
 
-* That will download all the start files
+* That will download all the starter files
 * We use `npm` instead of `yarn` (yarn may not be around for a long time according to wes)
 
 ## We have a project already setup
@@ -27,6 +39,28 @@
 * I had a session error and had to `$ sanity logout` and `$ sanity login`
 * Then typed the above command and all was good
 
+### One error was
+```
+Error: Failed to communicate with the Sanity API:
+Unauthorized - Session not found. For more information, see https://docs.sanity.io/help/cli-errors.
+```
+
+* So I:
+
+`$ sanity logout` and `$ sanity login`
+
+* Used my Github account to log in (I already created a sanity user account)
+
+`$ sanity init --reconfigure` (must be in the sanity folder)
+
+* And then the error went away and Sanity asked me a series of questions
+  - create an existing project or new project? (create a new project)
+  - name it `pizza-guy-peh2`
+  - Your content is stored in a dataset (can be public or private)
+    + The default is production (we'll use this)
+      * But you can have multiple datasets for development)
+  - When you accept the production data (saying Yes) it will create a new dataset in the sanity dashboard (and we are up and running)
+
 ### sanity terminal questions
 * project name: `slicks-slices-peh2`
 * The dataset will by default be called `production` (you can have multiple datasets - staging, development, production... feel free)
@@ -36,12 +70,13 @@
 `$ ll`
 
 * If you see `yarn.lock` feel free to delete
-    - Since we are using `package-lock.json` and npm we don't need the yarn.lock file
+    - Since we are using `package-lock.json` and npm we don't need the `yarn.lock` file
 
 ## Start up sanity
-`$ npm start`
+`$ npm start` (that in turn runs the command `sanity start`)
 
-* sanity is the API
+* That will fire up a localhost server that will give us "sanity studio"
+* sanity is the API we interact with
 * sanity studio is the UI we log into to to CRUD all of our data
 
 ### You will see a local URL
@@ -50,14 +85,14 @@
 * Visit it (you may have to log in)
 
 ### After logging in to sanity
-* You will see an empty schema (we didn't create anything yet)
+* You will see an empty schema (it's empty! - we didn't create anything yet)
 
-### Open sanity in VS Code
+### Open sanity.json in VS Code
 * Color coded (pink for sanity - yellow for gatsby)
 * View `sanity.json`
     - shows the path to `./schema/schema`
     - Open `./schema/schema`
-        + **important** You'll see in this fill we take all of our data types and incorporate them into our own schema
+        + **important** You'll see in this fill we take all of our data types and concatenate them into our own schema
 
 `schemas/pizza.js`
 
@@ -141,34 +176,20 @@ export default {
 * 15 different icon libraries built into it
 * md (material design)
 * Use aliases to make it easier to reference
+* type of slug "slugifies" your name
 
 ## Hotspot
 ```
 import { MdLocalPizza as icon } from 'react-icons/md';
 
 export default {
-  // Computer Name
-  name: 'pizza',
-  // visible title
-  title: 'Pizzas',
-  type: 'document',
-  icon,
+
+ // MORE CODE
+ 
   fields: [
-    {
-      name: 'name',
-      title: 'Pizza Name',
-      type: 'string',
-      description: 'Name of the pizza',
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'name',
-        maxLength: 100,
-      },
-    },
+
+  // MORE CODE
+
     {
       name: 'image',
       title: 'Image',
@@ -187,14 +208,8 @@ export default {
 
 ## Add a number with validation
 ```
-    {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    },
+  // MORE CODE
+
     {
       name: 'price',
       title: 'Price',
@@ -211,3 +226,5 @@ export default {
     - minimum $10 pizza
 
 ## Hit Publish
+
+## Next - Creating the Toppings Content Type and custom previews

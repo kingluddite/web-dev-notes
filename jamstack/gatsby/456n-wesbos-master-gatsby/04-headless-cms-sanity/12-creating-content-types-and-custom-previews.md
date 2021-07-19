@@ -2,14 +2,14 @@
 ## Use the sanity docs!
 * [sanity docs](https://www.sanity.io/docs)
 
-## 1 to many relationship
+## 1-to-many relationship
 * 1 pizza has many toppings
     - You could reverse that and say show me pizzas that have that topping
 
 ## Topping schema
 * Create `topping.js`
 * react-icons is cool
-    - You can pull 1 icon from 1 library and 1 icon from another icon... but it just imports that 1 icon
+    - **VERY COOL** You can pull 1 icon from 1 library and 1 icon from another icon... but it just imports that 1 icon
     - **rule** use single lowercase for machine name
         + `name: 'topping,`
 
@@ -114,8 +114,7 @@ export default createSchema({
 ## Preview
 * This lets you show up what shows up under Toppings
 * **note** Since we are working in the UI look for "Sanity Studio"
-
-* docs here
+* docs here (search site using magnifying glass)
 
 `toppings.js`
 

@@ -10,6 +10,27 @@
 ### Close issue
 `$ gh issue close [issue number]`
 
+## Delete a repo
+* gh-cli doesn't make it easy because deleting a repo is dangerous so here are the steps:
+
+* In main settings, go to developer > Personal access tokens (PATs)
+* Create a token with:
+    - repo checked
+    - read:org checked
+    - delete_repo checked
+    save token and paste to file on local machine (token.txt)
+* In that directory use:
+
+`$ gh auth login --with-token < token.txt`
+
+* Then run delete command:
+
+`$ gh repo-delete kingluddite/marvel-vs-dc`
+
+* To see list of all your repos use:
+
+`$ gh repo list`
+
 ## Change editor to nvim
 `$ gh config set editor nvim`
 

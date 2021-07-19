@@ -86,5 +86,11 @@ export default createSchema({
 // MORE CODE
 ```
 
+* Add New Slicemaster
+  - Slick
+  - slick (slug)
+  - bio from text-data.md
+  - Slick b/w image with grey bearded guy
+  
 ## Next - Create custom react components for inputs
 * For the price

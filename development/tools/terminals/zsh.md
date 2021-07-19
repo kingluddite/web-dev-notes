@@ -1,5 +1,8 @@
 # The ZSH shell
+## Update zsh
+* You will periodically be asked to update but you can update anytime with:
 
+`$ omz update`
 ## Touch and open
 `$ touch .gitignore && open $_`
 

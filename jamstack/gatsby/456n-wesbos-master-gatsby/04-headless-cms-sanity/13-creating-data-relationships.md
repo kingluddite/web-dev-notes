@@ -114,7 +114,7 @@ prepare: ({ title, media, ...toppings }) => {
 // MORE CODE
 ```
 
-* **tip** Use the log to avoid the implict return from prettier
+* **tip** Use the log to avoid the implicit return from prettier
 * This will show the title, the image (media) and a subtitle
 
 ## and the javascript
@@ -137,3 +137,5 @@ prepare: ({ title, media, ...toppings }) => {
   },
 };
 ```
+
+## Next - Create our Person Data Type

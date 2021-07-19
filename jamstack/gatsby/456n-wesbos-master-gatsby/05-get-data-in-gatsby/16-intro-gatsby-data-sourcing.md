@@ -1,16 +1,33 @@
 # Intro to gatsby-data-sourcing
-* localhost:8000
-* localhost:8000/___graphql
-* GraphiQL
+## Where we are now
+1. We setup our Gatsby
+  * Basic templating and layout
+  * Creating of pages
+2. We added sanity
+  * Created our schemas and content types
+
+## How do I take the data that lives in my sanity and get it into my Gatsby website?
+* We'll anwer that soon but first let's talk about the GraphQL Playground
+
+### GraphQL Playground
+* Run gatsby `$ npm start`
+  - This gives us our localhost server running Gatsby on `localhost:8000`
+  - And it also gives us access to GraphQL Playground server running on a local server `localhost:8000/___graphql`
+    + You will see GraphiQL running
+    + This allows you to see GraphQL queries
+    + You run queries in here to see what data is returned
 
 ## The idea behind Gatsby
-* At build time gatsby goes and grabs all the data it needs in order to run
-    - It goes to sanity and grabs all the people, toppings... all the data
-    - It takes all this data and sticks it in its memory and it allows us to query that data via GraphQL queries (not stored in a Database, but rather just memory)
+* At build time (when we build our website before we deploy it to the internet) gatsby goes and grabs all the data it needs in order to run
+    - It goes to sanity and grabs all the people, toppings, all the relationships... all the data
+    - It takes all this data and sticks it (not inside a Database because as soon as its done it disappears) but in its memory and it allows us to query that data via GraphQL queries (**repeat** it is not stored in a Database, but rather just memory)
 
-### GraphQL endpoint
+### GraphiQL endpoint
 * Comes with some standard GraphQL queries
-    - all files, directory, are not very useful for developers (more for lower level plugin developers)
+    - allDirectory
+    - allFile
+    - allSite
+    - are not very useful for developers (more for lower level plugin developers)
 
 ### How do we surface the data from our sanity into our GraphQL explorer (GraphiQL)?
 * We do this using the `gatsby-config.js`
@@ -21,8 +38,35 @@
 
 ### gatsby-config.js
 * **UPDATE**
+    - Cool to use backtics for all your strings
+    - spelling is important... `siteMetadata` (not siteMetaData!!!!!)
+    - **note** Restart gatsby any time you change your `gatsby-config.js`, `gatsby-browser.js` or `gatsby-ssr.js`
+      + Currently Gatsby is working on making the changes without a restart but have no idea when that change becomes a reality
+        * <kbd>ctrl</kbd> + <kbd>c</kbd> (kill server)
+        * <kbd>cmd</kbd> + <kbd>k</kbd> (clear)
+        * `$ npm start` (clear terminal)
+        * Now Gatsby will restart and it first checks for `gatsby-config.js` and then any settings that are inside this file get applied to that build
+        * Open GraphiQL
+        * You will see `site` > `siteMetaData`
+        * **problem** <kbd>ctrl</kbd> + <kbd>space</kbd> gives you dropdown in GraphiQL but that conflicts with my Alfred App open keyboard shortcut
+          - Thank goodness Gatsby also offers an alternative <kbd>shift</kbd> + <kbd>space</kbd>
     - The docs show `module.exports` (which is Common JS syntax)
     - NOW Node.js has added the ability to use ES Modules
+      + It is beneficial to just use one and since everything else is ES modules
+
+#### Common JS syntax
+```
+module.exports = {
+  // common js syntax
+}
+```
+
+#### ES Modules (Node has added ability to use these instead)
+```
+export default {
+  // ES modules
+}
+```
 
 ### Enable ES Modules in Gatsby
 `package.json`

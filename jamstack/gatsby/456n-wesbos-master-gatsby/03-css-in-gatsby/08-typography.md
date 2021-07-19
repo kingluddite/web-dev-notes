@@ -1,30 +1,13 @@
 # Typography
+## TODO
+* Add custom font @font-face
+* And a bunch of links good discussion on working with fonts
+* system fonts
 * Good to put typography styles in their own file
 
 `styles/Typography.js`
 
-* **note** we use `createGlobalStyle` to insert global styles into our app
-* We import fonts through gatsby too
-    - `import font from '../assets/fonts/frenchfries.woff';`
-    - It puts the URL of the file into a variable `font`
-    - Then we can use that `font` variable when we use that font face later in our css
-        + Gatsby will take the font out of our assets folder and an they'll put it in our `static` folder for us (great!)
-        + You declare you font using `@font-face`
-        + More info here - https://dev.to/alaskaa/how-to-import-a-web-font-into-your-react-app-with-styled-components-4-1dni
-
 ```
-// MORE CODE
-
-  @font-face {
-    font-family: FrenchFries;
-    src: url(${font});
-  }
-// MORE CODE
-```
-
-```
-// MORE CODE
-
 import { createGlobalStyle } from 'styled-components';
 
 import font from '../assets/fonts/frenchfries.woff';
@@ -69,6 +52,24 @@ const Typography = createGlobalStyle`
 `;
 
 export default Typography;
+```
+
+* **note** we use `createGlobalStyle` to insert global styles into our app
+* We import fonts through gatsby too
+    - `import font from '../assets/fonts/frenchfries.woff';`
+    - It puts the URL of the file into a variable `font`
+    - Then we can use that `font` variable when we use that font face later in our css
+        + Gatsby will take the font out of our assets folder and an they'll put it in our `static` folder for us (great!)
+        + You declare your font using `@font-face`
+        + More info here - https://dev.to/alaskaa/how-to-import-a-web-font-into-your-react-app-with-styled-components-4-1dni
+
+```
+// MORE CODE
+
+  @font-face {
+    font-family: FrenchFries;
+    src: url(${font});
+  }
 // MORE CODE
 ```
 
@@ -113,5 +114,7 @@ export default function Layout({ children }) {
 }
 ```
 
-## View in browser and you'll see new font
+* View in browser and you'll see new font
+
+## Next - Styling the Nav and Logo
 

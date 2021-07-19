@@ -1,4 +1,7 @@
 # GIT
+## Git shortlog
+* Great way to list in a readable format all who contributed and what all
+*  commits they did
 ## Global Git configuration
 * To configure your user name to be used by Git, type the following at the prompt (include the quotation marks):
 

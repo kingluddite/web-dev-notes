@@ -1,4 +1,36 @@
 # Best Web Practices
+
+## HTML validator VC Code extension
+https://marketplace.visualstudio.com/items?itemName=CelianRiboulet.webvalidator#review-details
+
+## Preventing Automatic Favicon Requests
+* This is a performance quick tip to get rid of that annoying favicon error
+* [credit to source](https://webdesign.tutsplus.com/tutorials/prevent-automatic-favicon-requests--cms-34762)
+
+### Why do we get the favicon error?
+* Most we browsers make an automatic favicon request on each page load
+* If you have a default favicon, you won't notice
+
+### Solution - one line of HTML
+`<link rel="icon" href="data:,">`
+
+* Customize your Emmet Snippets in VSCode
+  - (video showing you how)[https://www.youtube.com/watch?v=ePNT21D3d2M]
+
+sample `snippets.json` file to include boilerplate
+
+```
+{
+  "html": {
+    "snippets": {
+      "!!": "{<!DOCTYPE html>}>html[lang='${lang}']>(head>meta[charset='${charset}']+meta[http-equiv='X-UA-Compatible'][content='IE=edge']+meta[name='viewport'][content='width=device-width,initial-scale=1.0']+link[rel=icon href=data:,]+link:css+title>{${title}${1}})+(body>(header>h1>{${title}})+(main>h2>{Page Title})+(footer>p>{&copy;})+script:src)",
+    }
+  }
+}
+```
+
+* Restart VS Code and type `!!` and your new HTML boilerplate with the favicon request buster built in is genenerated
+
 ## CSS
 * Style Guide - https://codeguide.co/
 

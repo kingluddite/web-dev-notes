@@ -1,4 +1,10 @@
 # Stylelint rules
+## Getting it to work with styled-components
+* Use my css-boilerplate as a starter
+* These links
+  - https://github.com/styled-components/stylelint-processor-styled-components
+  - https://styled-components.com/docs/tooling
+  - https://www.reddit.com/r/reactjs/comments/fb1o97/is_there_a_favoured_way_to_lint_styled_components/
 * Rules
     Use double quotes
 

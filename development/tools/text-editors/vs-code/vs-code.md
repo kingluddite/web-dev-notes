@@ -1,7 +1,19 @@
 # VS Code
-
-
+## Extensions
+* Auto Rename Tag
+    - If you change the opening tag it will change your closing tag
+* stylelint - https://github.com/stylelint/vscode-stylelint
+    - Use with css-boilerplate repo
+    - https://github.com/kingluddite/my-css-boilerplate
+    - Fix with command pallete and stylelint fix (will automatically fix all stylint rules (that are fixaxable - you will still have to manually fix other changes))
+* advanced-file - https://github.com/patbenatar/vscode-advanced-new-file
+    - creating new files
+    - helps eliminate major use of sidebar
+* file utils - https://github.com/sleistner/vscode-fileutils
 https://www.barbarianmeetscoding.com/blog/2019/02/08/boost-your-coding-fu-with-vscode-and-vim
+    - moving files
+    - helps eliminate major use of sidebar
+
 ## Turn on relative line number
 settings.json
 
