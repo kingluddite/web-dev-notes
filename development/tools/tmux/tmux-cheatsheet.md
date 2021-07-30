@@ -29,7 +29,7 @@ $ ruby -v
 
 `export EDITOR=nvim`
 
-* Source your .zshrc (I use an alias I called `zfrash` to do this)
+* Source your `.zshrc` (I use an alias I called `zfrash` to do this)
 
 ## Not using mouse in terminal
 * So how can you scroll?

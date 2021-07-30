@@ -1,4 +1,12 @@
 # nvim cheatsheet
+## Vim Surround plugin
+https://github.com/tpope/vim-surround
+* This is awesome
+
+How to delete curly braces around a word
+
+`ds{`
+
 ## Navigation fast
 `ctrl-u` move up half page
 `ctrl-d` move down half page

@@ -66,8 +66,58 @@
 `Prefix-r`
 
 ## Buffers
-`:%bd|e#` (kills all buffers but current one)
+### Kill all buffers but the current one
+`:%bd|e#` (command mode)
 
+* `%bd` - delete all buffers
+* `e#` - open the last buffer for editing
+* `|` - The pipe in between just does one command after another
+
+`:%bd|e#|bd#` - to delete the `[No Name]` buffer that gets created
+
+### Scrolling through output with Copy Mode
+####  How do I get INTO Copy mode?
+`Prefix` + <kbd>[</kbd>
+
+####  How do I get OUT OF Copy mode? `Prefix` + <kbd>[</kbd>
+`Prefix` + <kbd>enter</kbd>
+
+### Moving faster than one key at a time in output
+#### Jump to next word
+<kbd>w</kbd> 
+
+#### Jump back one word
+<kbd>b</kbd> 
+
+#### Jump to that character on same line
+<kbd>f</kbd> + <kbd>any character</kbd>
+
+#### Jump back to that character on same line
+<kbd>F</kbd> + <kbd>any character</kbd>
+
+### Moving Quickly Through the Buffer
+#### Move up one page
+<kbd>ctrl</kbd> + <kbd>b</kbd>
+
+#### Move down one page
+<kbd>ctrl</kbd> + <kbd>f</kbd>
+
+#### Move to top of buffer history
+<kbd>g</kbd>
+
+#### Move to bottom of buffer history
+<kbd>G</kbd>
+
+### Searching through the Buffer
+#### Search upwards for phrases or keywords
+* while in copy mode + <kbd>?</kbd> + phrase + Enter (jumps to first occurence)
+    - Press <kbd>n</kbd> to jump to next occurence
+    - Press <kbd>N</kbd> to jump back to previous occurence
+
+#### Search downwards for phrases or keywords
+* while in copy mode + <kbd>/</kbd> + phrase + Enter (jumps to first occurence)
+    - Press <kbd>n</kbd> to jump to next occurence
+    - Press <kbd>N</kbd> to jump back to previous occurence
 ## No Mouse in Tmux? (Off and not the default On)
 * Have turned this setting off
 * How to navigate without a mouse
@@ -189,3 +239,15 @@ brew services start postgresql
 `psql: FATAL: role “postgres” does not exist`
 
 * **solution** To solve this problem, go to this [link](https://stackoverflow.com/questions/15301826/psql-fatal-role-postgres-does-not-exist#answer-15309551)
+
+# Rectangle
+* This tool replaces Spectacle which is no longer managed and they recommend using Rectangle
+* I like to move windows around with keyboard shortcuts
+
+## Main keys bindings I use
+* Top left quarter <kbd>cmd</kbd> + <kbd>cntl</kbd> + <kbd>alt</kbd> + <kbd>[</kbd>
+* Top right quarter <kbd>cmd</kbd> + <kbd>cntl</kbd> + <kbd>alt</kbd> + <kbd>]</kbd>
+* Bottom right quarter <kbd>cmd</kbd> + <kbd>cntl</kbd> + <kbd>alt</kbd> + <kbd>'</kbd>
+* Bottom left quarter <kbd>cmd</kbd> + <kbd>cntl</kbd> + <kbd>alt</kbd> + <kbd>;</kbd>
+* Full screen <kbd>cmd</kbd> + <kbd>cntl</kbd> + <kbd>alt</kbd> + <kbd>space</kbd>
+* Next Screen (I use multiple monitors) <kbd>cmd</kbd> + <kbd>cntl</kbd> + <kbd>alt</kbd> + <kbd>p</kbd>
