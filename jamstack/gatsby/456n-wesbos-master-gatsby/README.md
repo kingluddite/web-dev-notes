@@ -1,68 +1,46 @@
-# CSS Boilerplate
+# Review Wes Bos Course
+## Gatsby
+* **note** If you change your .env you must restart gatsby!
 
-## Purpose
+## Build a Gatsby site
+* Traditionally we use `$ gatsby build`
 
-- I just want a quick way to get setup with tools and standards I use for all sites
+### Buiding with ES Modules support
+`$ npm run build`
 
-## Requirements
+* If you are building a site with serverless functions you need to have a `netlify.toml` in the root pointing to where your serverless functions are located
 
-- node (The `npx` stands for Node Package Execute and it comes with the `npm`, when you installed npm above 5.2.0 version then automatically npx will installed)
-
-## What this repo has
-
-- box-sizing
-- responsive images
-- normalize.css
-- live-server
-- stylelint
-- eslint & prettier ([thanks Wes!](https://github.com/wesbos/eslint-config-wesbos))
-
-## Install instructions
-
-- I like to jump into a folder and add my magic really quick
-- I use a function in my dotfiles to do this quickly
-- (If you have dotfiles) Add this function to your dotfiles and call it with:
-
-`$ css-boilerplate`
-
-- **note** After adding this function to your dotfiles don't forget to source the file holding this new function or it won't work (example: `$ source functions`)
+`netlify.toml`
 
 ```
-css-boilerplate(){
-  git clone https://github.com/kingluddite/eslint-boilerplate.git . && npm i
-}
+[build]
+  functions = "functions/"
 ```
 
-## Fix CSS code with stylelinter
 
-`$ npx stylelint --fix "**/*.css"`
+## Sanity
+### Sanity GraphQL Endpoint
+* In sanity folder
 
-## If you are using VS Code
+`$ sanity graphql list`
 
-- Install the [ESLint package](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- Add these settings in the VS Code settings file📦
+* Click on URL and it will open a GraphQL Playground to work with your Sanity Data
 
-```
-// These are all my auto-save configs
-"editor.formatOnSave": true,
+## Sanity GraphQL changes
+* If you made changes to your Sanity backend and you don't see the changes in your GraphQL Playground (looking at the SCHEMA sidebar) you need to redeploy your GraphQL API for Sanity
+* **note** Make sure you are inside your sanity folder
 
-// turn it off for JS and JSX, we will do this via eslint
-"[javascript]": {
-  "editor.formatOnSave": false
-},
+`$ sanity graphql deploy production`
 
-"[javascriptreact]": {
-  "editor.formatOnSave": false
-},
+## Sanity Studio
+* This is the remote site where you add pizzas and slicers
+* If you click on your project in sanity you will see the URL listed under STUDIO and it will look like: `https://thepeezzaguypeh.sanity.studio/desk`
+* The local machine URL of this studio will be `http://localhost:3333`
 
-// show eslint icon at bottom toolbar
-"eslint.alwaysShowStatus": true,
+### If you local Sanity Studio looks different than your remote Sanity Studio...
+* This means you made changes to your local Sanity Studio but did not deploy them to the remote Sanity Studio
+* You can easily sync them up by deploying to sanity using the sanity CLI
 
-// tell the ESLint plugin to run on save
-"editor.codeActionsOnSave": {
-  "source.fixAll": true
-},
+`$ sanity deploy`
 
-// Optional BUT IMPORTANT: If you have the prettier extension enabled for other languages like CSS and HTML, turn it off for JS since we are doing it through Eslint already
-"prettier.disableLanguages": ["javascript", "javascriptreact"],
-```
+* You should see after it builds the terminal will tell you the URL where the studio was deployed (just refresh the open page and you will see your remote Sanity Studio is updated )
