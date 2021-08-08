@@ -1,4 +1,7 @@
 # CSS Tips
+## Caffeine
+* Mac app keeps screen from going to sleep when you turn it on
+* I use this running builds and it keeps the screen active so I don't have to keep typing in my password everytime the screen falls asleep
 ## Google fonts
 * Make sure you include font weights if you use them
   - See I am using 400 700 and 900 so I can use: `h1 { font-weight: 700; }`

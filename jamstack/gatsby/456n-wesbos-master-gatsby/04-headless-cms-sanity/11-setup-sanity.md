@@ -96,7 +96,7 @@ Unauthorized - Session not found. For more information, see https://docs.sanity.
 
 `schemas/pizza.js`
 
-```
+```js
 export default {
   // Computer Name
   name: 'pizza',
@@ -110,7 +110,7 @@ export default {
 * We point to the pizza schema we just created
 * Very important to add the custom schema you imported to the schema
 
-```
+```js
 // MORE CODE
 
 import pizza from './pizza';
@@ -128,7 +128,7 @@ export default createSchema({
 ## You will get an error because we need to add `fields`
 `schemas/pizza.js`
 
-```
+```js
 export default {
   // Computer Name
   name: 'pizza',
@@ -152,12 +152,12 @@ export default {
 ## Now you see your new content added in the UI
 * You can edit and see the title - just look at it and lets add more
 
-## Everthing in sanity studio is a React component
+## Everything in sanity studio is a React component
 * So you can pass an icon
 
 `pizza.js`
 
-```
+```js
 export default {
   // Computer Name
   name: 'pizza',
@@ -179,7 +179,7 @@ export default {
 * type of slug "slugifies" your name
 
 ## Hotspot
-```
+```js
 import { MdLocalPizza as icon } from 'react-icons/md';
 
 export default {
@@ -207,7 +207,7 @@ export default {
 * We will leave off toppings - we'll add a new content type and create a relationship between toppings and pizza
 
 ## Add a number with validation
-```
+```js
   // MORE CODE
 
     {

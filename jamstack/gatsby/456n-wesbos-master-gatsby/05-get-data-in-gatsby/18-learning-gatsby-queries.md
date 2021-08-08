@@ -14,7 +14,7 @@
 
 `pages/pizzas.js`
 
-```
+```js
 import React from 'react';
 
 export default function PizzasPage() {
@@ -39,7 +39,7 @@ export const query = graphql``;
 
 * auto-import pulls in the `graphql` named export
 
-```
+```js
 import React from 'react';
 import { graphql } from 'gatsby'; // ADD this!
 
@@ -48,7 +48,7 @@ import { graphql } from 'gatsby'; // ADD this!
 
 ## A name or not a name
 * You may see this - no name
-```
+```js
 // MORE CODE
 
 export const query = graphql`
@@ -61,7 +61,7 @@ export const query = graphql`
 * You may see a name (I like this)
     - It's good to have names for GraphiQL history
 
-```
+```js
 // MORE CODE
 export const query = graphql`
  query PizzaQuery {
@@ -72,7 +72,7 @@ export const query = graphql`
 
 * You don't need parentheses unless you are filtering
 
-```
+```js
 // MORE CODE
 export const query = graphql`
  query PizzaQuery() { // NO NEED FOR PARENTHESEES HERE
@@ -106,7 +106,7 @@ export const query = graphql`
 * We can rename them to whatever we want (something easier to type)
 * Let's rename `allSanityPizza` to `pizzas` by doing this:
 
-```
+```js
 export const query = graphql`
   query PizzaQuery {
     pizzas: allSanityPizza {
@@ -153,7 +153,7 @@ export const query = graphql`
 
 * Now you'll see we have `pizzas` directly in our console
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 
@@ -175,7 +175,7 @@ export default function PizzasPage(props) {
 ### We also add PropTypes
 `src/pages/pizzas.js`
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -223,7 +223,7 @@ export const query = graphql`
 ## Destructure even further
 * But this is harder to read
 
-```
+```js
 // MORE CODE
 
 export default function PizzasPage({ data: { pizzas } }) {
@@ -236,7 +236,7 @@ export default function PizzasPage({ data: { pizzas } }) {
 * **Wes Preference** He just likes to destructure one level deep
 
 ## We'll use this (as it was before)
-```
+```js
 // MORE CODE
 
 export default function PizzasPage({ data }) {
@@ -247,7 +247,7 @@ export default function PizzasPage({ data }) {
 
 * Output our pizzas number
 
-```
+```js
 // MORE CODE
 
 export default function PizzasPage({ data }) {
@@ -265,7 +265,7 @@ export default function PizzasPage({ data }) {
 
 * But we could use this to clean it up
 
-```
+```js
 // MORE CODE
 
 export default function PizzasPage({ data }) {
@@ -303,7 +303,7 @@ export default function PizzasPage({ data }) {
 ### PizzaList
 `components/PizzaList.js`
 
-```
+```js
 import React from 'react';
 
 export default function PizzaList() {
@@ -315,7 +315,7 @@ export default function PizzaList() {
 
 `src/pages/pizzas.js`
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -336,7 +336,7 @@ export default function PizzasPage({ data }) {
 
 * Pass our pizzas down as props
 
-```
+```js
 // MORE CODE
 
 export default function PizzasPage({ data }) {
@@ -354,7 +354,7 @@ export default function PizzasPage({ data }) {
 
 * And show the pizzas in our PizzaList
 
-```
+```js
 // MORE CODE
 
 import React from 'react';
@@ -373,7 +373,7 @@ PizzaList.propTypes = {
 
 ## Loop over pizzas and show the names we have
 
-```
+```js
 // MORE CODE
 
 import React from 'react';
@@ -386,7 +386,7 @@ export default function PizzaList({ pizzas }) {
 ```
 
 ### Adding a div
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -416,7 +416,7 @@ PizzaList.propTypes = {
 ## West Practice
 * Give it a "hot supper refresh"
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -447,7 +447,7 @@ SinglePizza.propTypes = {
 * Anytime you map over something you must give the individual item a unique key so the react virtual dom can keep track of it and update it quickly
 * And that's why we queried for the `id` of the pizza because that is the perfect use case for an `id`
 
-```
+```js
 // MORE CODE
 
 export default function PizzaList({ pizzas }) {
@@ -472,7 +472,7 @@ export default function PizzaList({ pizzas }) {
     - How to know you need that
         + Use dev tools and search for `SinglePizza` and you will see slug > current
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
@@ -498,7 +498,7 @@ function SinglePizza({ pizza }) {
 ## Add toppings
 * We get all the toppings right after each other
 
-```
+```js
 // MORE CODE
 
 function SinglePizza({ pizza }) {
@@ -535,7 +535,7 @@ function SinglePizza({ pizza }) {
         + This saves us from having to wrap them each in `<span>`
 
 
-```
+```js
 // MORE CODE
 function SinglePizza({ pizza }) {
   return (

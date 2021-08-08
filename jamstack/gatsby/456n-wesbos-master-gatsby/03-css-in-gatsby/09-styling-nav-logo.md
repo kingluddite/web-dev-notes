@@ -1,6 +1,7 @@
 # Styling Nav and Logo
 
 ## Styled-components
+* I believe this is just a stylelint with styled components error
 * TODO The default `//` causes and error - how can I make all comments `/* */`?
 
 ## fix vs code prettier settings 
@@ -8,16 +9,16 @@ settings.json
 
 * Wes note:
 
-```
+```js
 // MORE CODE
 
 // Optional BUT IMPORTANT: If you have the prettier extension enabled for other languages like CSS and HTML, turn it off for JS since we are doing it through Eslint already
 // MORE CODE
 ```
 
-* this is no longer accepted
+* This is no longer accepted
 
-```
+```js
 // MORE CODE
 
 "prettier.disableLanguages": ["javascript", "javascriptreact"]
@@ -26,7 +27,7 @@ settings.json
 
 * Change to this:
 
-```
+```js
 // MORE CODE
 
  },
@@ -40,17 +41,17 @@ settings.json
 ```
 
 ## Stylelint
-
-* **cool** styled-components automatically vendor prefixes your code, so you don't need to do it manually
+* **note** We can't use Stylelint in Gatsby V3 (yet!)
+* **cool** `styled-components` automatically vendor prefixes your code, so you don't need to do it manually
 * Cool feature of styled components with stylelint
   - better debugging
     + https://styled-components.com/docs/tooling#better-debugging
     + This option enhances the attached CSS class name on each component with richer output to help identify your components in the DOM without React DevTools. In your page source you'll see: `<button class="Button-asdf123 asdf123" />` instead of just `<button class="asdf123" />`
     + It also allows you to see the component's displayName in React DevTools. For example, consider writing a styled component that renders a button element, called MyButton. It will normally show up in DevTools as styled.button, but with the displayName option enabled, it has the name you gave it: MyButton.
-    + By default, the displayName of a component will be prefixed with the filename in order to make the component name as unique as possible.
+    + By default, the displayName of a component will be prefixed with the filename in order to make the component name as unique as possible
+    + This makes it easier to find your components and to figure out where they live in your app.
 
-This makes it easier to find your components and to figure out where they live in your app.
-* stylelint with custom components
+## stylelint with custom components
 * No autofix! lame
 * https://styled-components.com/docs/tooling#setup
 * stylelint-recommended - https://github.com/stylelint/stylelint-config-recommended/blob/master/package.json
@@ -64,7 +65,7 @@ https://github.com/stylelint/awesome-stylelint
 
 `s/c/Nav.js`
 
-```
+```js
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
@@ -101,7 +102,7 @@ export default function Nav() {
 
 `s/s/GlobalStyles.js`
 
-```
+```js
 // MORE CODE
 
   html {
@@ -118,7 +119,7 @@ export default function Nav() {
 
 `s/c/Nav.js`
 
-```
+```css
 // MORE CODE
 
 const NavStyles = styled.nav`
@@ -136,10 +137,11 @@ const NavStyles = styled.nav`
 
 // MORE CODE
 ```
+
 ## transform
 * To overwrite you can use variables to store and not overwrite entire property
 
-```
+```css
 // MORE CODE
 
   li {
@@ -158,7 +160,7 @@ const NavStyles = styled.nav`
 * You can't reference a variable when your setting it to a variable
     - You can overwrite a variable but it can't reference itself
 
-```
+```css
 &:hover {
     --rotate: calc(var(--rotate) + 0.5deg);
 }
@@ -167,7 +169,7 @@ const NavStyles = styled.nav`
 ## Nav now
 `Navbar.js`
 
-```
+```css
 // MORE CODE
 
 import React from 'react';
@@ -269,7 +271,7 @@ const NavStyles = styled.nav`
 * We duplicate in case browser doesn't support `clamp`
 
 ## current page
-```
+```css
 // MORE CODE
 
   &[aria-current='page'] {
@@ -278,6 +280,8 @@ const NavStyles = styled.nav`
 // MORE CODE
 ```
 
-* html
+* And this is what is targeted in the HTML
 
-`<a href="/" aria-current="page" class="">Hot Now</a>`
+```html
+<a href="/" aria-current="page" class="">Hot Now</a>
+```

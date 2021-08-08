@@ -1,60 +1,88 @@
 # Deploy to Netlify
-* Netlify currently most popular way to host a Gatsby site
-    - **note** You can deploy gatsby sites anywhere
-    - Netlify facilitates making your site fast to load
-    - Netlify hosts your website
-    - Makes getting HTTPS super easy (click of button)
-    - Netlify does the build for you
-        + This build can be triggered
-            * When some data in sanity changes
-            * When your git repo changes
-    - Netlify also host serverless functions
+* **note** You can deploy gatsby sites anywhere
 
-## New site from Git
-1. Log into Netlify (create a account if you haven't)
-2. Click `new site from Git`
+## Netlify
+* Currently most popular way to host a Gatsby site
+* Facilitates making your site fast to load
+* Hosts your website
+* Makes getting HTTPS super easy (click of button)
+    - Uses LetsEncrypt behind the season
+    - Auto renews (huge perk!)
+* Does the build for you
+    - This build can be triggered
+        + When some data in sanity changes
+        + When your git repo changes
+* Also hosts serverless functions
+
+## Netlify free alternatives
+* gatsby cloud
+* vercel
+
+## Netlify works with Git and Github
+* Your normal git workflow is adding, committing and pushing changes to Github
+* You will set up `Continous Deployment` on Netlify
+
+### What is Continuous Deployment
+* You push your changes to Github, Netlify will listen for any changes and rebuild your site on Netlify
+* Since Netlify is also hosting your site, this is very conventient because now whenever you push your site to Github it will update your live site
+
+## Configuring Continuous Deployment on Netlify with Github
+1. Log into Netlify (create a account if you haven't yet)
+2. Click `New site from Git`
 3. Connect to your Git Provider (I use GitHub)
-4. Now we want to put the website on Github
-5. We grouped both gatsby and sanity in same folder so we'll push them both up to Github
-    - You can also have separate repos for frontend (gatsby) and backend (sanity)
+
+### Now we want to put the website on Github
+* We grouped both `gatsby` and `sanity` in same folder so we'll push them both up to Github
+    - **note** You can also have separate repos for frontend (gatsby) and backend (sanity)
 
 ### Putting both gatsby and sanity in one repo
-* In their parent folder initialize git
+#### Working locally on your machine
+* In their parent folder initialize git with `$ git init`
+    - **IMPORTANT** You need to remove the `.git` files from inside gatsby (there is not one by default inside your sanity folder)
+    - **note** I forgot to do this and ended up pushing a gatsby submodule folder up to GitHub (you know it is a submodule folder because the folder icon has an arrown on on)
 
 `$ git init`
 
 * Create a `.gitignore` and populate it as you see fit
 * Git add and commit
 
-## IMPORTANT - Where did you initialize git?
+## TROUBLESHOOTING - Where did you initialize git?
 * I accidentilly created it inside my `gatsby` folder which is not what I wanted
     - Delete the `.git`
     - Go up one directory and `$ git init`
     - Create a `.gitignore` and populate it as you see fit in the root folder
 
-## Hook your site upto Github (create a new repo and push your code)
-* Name it
-* Public or Private
-* Add the origin
-* Push the code
+## Setting up your Remote GitHub repo
+* We are all set locally now we need to push our code to our remote GitHub repo
+
+### Create a remote GitHub repo
+* **tip** Using the `gh` CLI will save you time and you never have to leave the terminal
+
+1. Name your repo
+2. Make it Public or Private
+3. Add the origin
+4. Push the code to Github
 
 ## West Practice - On Netlify
 * You have two choices when you connect to netlify
-    - all code (DO NOT DO THIS! - Why let anyone have permission to all your code?)
-    - just the one repo
-    - Search for repo (if you can't find it click the link at the bottom "Configure the Netlify app on GitHub."
-        * Point to your github org
-        * Scroll down
-        * Click under `Repository access` "Only select repositories"
-        * Search for your repo
-        * Find it
-        * Click Save
+
+1. all code (DO NOT DO THIS! - Why let anyone have permission to all your code?)
+2. just the one repo
+
+### Add your repo to Netlify
+1. Search for the single repo (if you can't find it click the link at the bottom "Configure the Netlify app on GitHub."
+2. Point to your GitHub organization
+3. Scroll down
+4. Click under `Repository access` "Only select repositories"
+5. Search for your repo
+6. Find it
+7. Click `Save`
 
 ## Create a new site page on Netlify
-* Branch to deploy `main`
-* The `build command` is `$ npm run build`
-* The `Publish directory` is: `gatsby/public`
-* Then click `Deploy`
+1. Branch to deploy: `main` (unless you want to deploy another branch)
+2. The `build command` is: `$ npm run build`
+3. The `Publish directory` is: `gatsby/public`
+4. Then click `Deploy`
 
 ### Warning! - This won't work yet
 * The deploy fails
@@ -63,7 +91,9 @@
     - We need to tell it our gatsby site lives inside our `gatsby` directory
     - **note** This "extra" configuration is because we have both our gatsby and sanity in separate folders inside one git repo
 
-## Solution:
+## Solution to Deploying our site successfully:
+* Use your common sense here. For our client site we named our gatsby folder `clientgatsby` and so the base directy would be `clientgatsby` not `gatsby`
+
 1. In Netlify `Site Settings` > Click on `Build & Deploy` in the sidebar
 2. Click on `Edit settings` button
 3. Update the `Base directory` to: `gatsby`
@@ -179,7 +209,6 @@
 * That will trigger a change and will auto deploy a build
 * It will rebuilt and redeploy our entire website
 
-
 ## What if you edit a pizza in Sanity?
 * You won't see the new pizza immediately
 
@@ -188,9 +217,9 @@ You need to set up a webhook in Sanity so sanity will push everytime you add new
 
 ### Let's do that now
 * In Netlify
-    - Goto Settings > Build and Deploy > Continuous deployment
+    - Goto `Settings` > `Build and Deploy` > `Continuous deployment`
     - Scroll down to Build Hooks
-    - Click Add a Build Hook
+    - Click `Add a Build Hook`
     - Name it (something like: Rebuild from Sanity)
     - Save it
     - Copy the URL it gives us

@@ -2,7 +2,7 @@
 * **note** Wes switches to `person` but I used `slicemaster` as that follows his previous naming convention
 * `cool to have` - like next "file based routing"
 * We will need to create a new component for the single slicemaster
-* In gatsby-node.js
+* In `gatsby-node.js`
     - query all the data
     - loop over them
     - create the page

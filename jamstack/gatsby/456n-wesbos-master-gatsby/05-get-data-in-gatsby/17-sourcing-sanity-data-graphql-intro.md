@@ -1,4 +1,12 @@
 # Sourcing Sanity Data GraphQL intro
+## Summary
+* You have a sanity GraphiQL API and a Gatsby GraphQL API and they need to work together - specifically the GraphiQL API has to consume the Sanity GraphQL API This is a confusing part to a Headless CMS working with Gatsby so let me give a real world example of how this works
+
+1. I already created by schema in Sanity for the About Us page and I wanted to add an image field
+2. I open the `aboutUs.js` schema and added the image but I did not see any `image` in my GraphiQL playground. That is to say, I opened up the `sanityAboutUs` field in Gatsby's GraphiQL and saw `heading` field I created earlier but no `image` field. Gatsby did not see the Sanity GraphQL API. (note: I added the `gatsby-image` plugin to Gatsby and still did not see it). In order to actually see it in the Gatsby GraphiQL I had to deploy the sanity GraphQL by running (inside the `sanity` folder `$ sanity graphql deploy production`)
+3. I still won't see that in Gatsby's GraphiQL until I stop Gatsby (inside the `gatsby` folder) and then starting it again with `$ npm start` (inside `gatsby` folder)
+4. It is finally at that point that the Gatsby GraphiQL API can see and pull inside it the Sanity GraphQL API
+
 ## Gatsby plugins
 * Make working with other packages/libraries/services easy in Gatsby
 
@@ -12,7 +20,7 @@
 
 `gatsby-config.js`
 
-```
+```js
 export default {
   siteMetadata: {
     title: `Pizza Slices`,
@@ -33,7 +41,7 @@ export default {
       + Log into Sanity, click on project, click icon to copy `PROJECT ID`
 
 ## Grab your project id
-1. Visit `manage.sandity.io`
+1. Visit `manage.sanity.io`
 2. Click your project
 3. Copy your project `id` to the clipboard
 
@@ -53,6 +61,7 @@ it will automatically be updated inside of your gatsby (you don't have to rebuil
 * You just want a token to `Read`
 * We will not be writing data to Sanity (that's what our Sanity Studio is for)
 * We also won't be deploying to Sanity Studio
+
 #### New Settings
 * First option is Deploy Studio (token only) - no
 * Editor -> read and write access to all datasets (no)
@@ -63,7 +72,7 @@ it will automatically be updated inside of your gatsby (you don't have to rebuil
     + You only get this token once so save it in a temp secure spot
       * But don't put it directly in your code (you need to keep it safe)
 
-```
+```js
 export default {
   siteMetadata: {
     title: `Pizza Slices`,
@@ -108,14 +117,14 @@ export default {
     - So for now no changes on CORS
 
 ## Protect our API keys/secrets
-* **note** You don't want to put sensative information
+* **note** You don't want to put sensitive information
   - Even in your `gatsby.config` and even though this file will not be "surfaced" via your website
   - But since this file does go in your version control, (aka it will be checked into Git)
   - **BEST PRACTICE** You don't put secrets (which are equivalents to passwords)
     + Anyone that has this secret can use it to get all of your data
 
 ## What is the solutions
-* Put the sensative info inside a `.env` file
+* Put the sensitive info inside a `.env` file
 * Create a `.env` in the root of your project 
 
 `.env`
@@ -162,7 +171,7 @@ SANITY_TOKEN=skAccTHuKqHs4GFqlZWlOJkFi1gWj7JDJPWZGFtfeqyZIPSX3EyAVZJzPX7AtC4JqhT
 * This is the default pointing to a `.env` in the root of your project
 * You can leave the default setting off but it is a good practice to be explicit
 
-```
+```js
 import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env' }); // good to add even though this is the default
@@ -180,7 +189,7 @@ export default {
 * My file is `.env.development`
 * But in production it would be `.env.production`
 
-```
+```js
 import dotenv from 'dotenv';
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
@@ -195,7 +204,7 @@ dotenv.config({
 
 `gatsby-config.js`
 
-```
+```js
 import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env' });
@@ -233,7 +242,6 @@ Error: GraphQL API not deployed - see https://github.com/sanity-io/gatsby-source
 * It will Generate GraphQL schema
 * It will Validate GraphQL API
 * It will deploy GraphQL API
-
 * Will look something like:
 
 ![screenshot from terminal](https://i.imgur.com/6Tw9ca9.png)
@@ -244,7 +252,7 @@ Error: GraphQL API not deployed - see https://github.com/sanity-io/gatsby-source
 * This GUI GraphQL is similar to GraphiQL
 
 ## Test out a query
-```
+```js
 query {
   allPizza {
     name
@@ -254,7 +262,7 @@ query {
 
 * Output of our data on GraphQL Playground
 
-```
+```js
 {
   "data": {
     "allPizza": [
@@ -342,7 +350,7 @@ query {
     - Select the `nodes`
         + Check `name` and `price`
 
-```
+```js
 query MyQuery {
   allSanityPizza {
     nodes {
@@ -356,7 +364,7 @@ query MyQuery {
 
 * And the result in `data` object
 
-```
+```js
 {
   "data": {
     "allSanityPizza": {
@@ -382,7 +390,7 @@ query MyQuery {
         + _type (not useful we can remove)
         + current 
 
-```
+```js
 query MyQuery {
   allSanityPizza {
     nodes {
@@ -400,7 +408,7 @@ query MyQuery {
 ```
 
 ### Results in data object
-```
+```js
 {
   "data": {
     "allSanityPizza": {
@@ -437,14 +445,14 @@ query MyQuery {
 * **very cool** This is possible because there is only one endpoint in GraphQL and you can grab anything you want
 
 ## Troubleshooting
-* My first problem - I accidentilly pointed to the wrong project id (I had 2 and connected to my old one)
+* My first problem - I accidentally pointed to the wrong project id (I had 2 and connected to my old one)
   - I could tell this because the data I was getting in my queries was not the data I had in my project
   - After fixing this (inside `gatsby-config.js` projectId) I got the Session error
   - This was because the token I set up was on other project
   - So I need to create a new read token in the correct project, delete the old token in `.env` and put in the new one
   - Start Gatsby up again `$ npm start` and now my data was correct
 
-```
+```js
 query MyQuery {
   allSanityPerson {
     nodes {
@@ -462,7 +470,7 @@ query MyQuery {
 ```
 
 ## Data
-```
+```js
 {
   "data": {
     "allSanityPerson": {
@@ -584,10 +592,10 @@ query MyQuery {
 ## Grab a single pizza
 * We'll use the `id`
 * Use allSanityPizza query to get id's and pick one to seach by it in
-* **note** Had problem copying id - a bit glitchy
+* **note** Had problem copying `id` - a bit glitchy
 
 ### Search all pizzas and grab one by id
-```
+```js
 query {
   sanityPizza(id: {eq: "-3776d14e-f9d1-5be6-93b3-f703ed5e0220"}) {
     name
@@ -596,9 +604,9 @@ query {
 ```
 
 ### Search for pizzas that have the regex of "Veg"
-* `i` is case insensative search in RegEx
+* `i` is case insensitive search in RegEx
 
-```
+```js
 query MyQuery {
   sanityPizza(name: {regex: "/veg/i"}) {
       name
@@ -611,7 +619,7 @@ query MyQuery {
 ```
 
 ## And the data
-```
+```js
 {
   "data": {
     "sanityPizza": {

@@ -10,7 +10,7 @@
 ## Create new `components` folder in sanity root
 
 ## ES7 React/Readux/GraphQL snippets
-```
+```js
 import React from 'react';
 
 const PriceInput = () => (
@@ -24,7 +24,7 @@ export default PriceInput;
 
 ## Add to pizza.js
 
-```
+```js
 import { MdLocalPizza as icon } from 'react-icons/md';
 import PriceInput from '../components/PriceInput';
 
@@ -75,7 +75,7 @@ export default {
 * Anytime in react that you put a value into an input YOU MUST ALSO supply an onChange handler
 * For sanity to work with react we need to import some stuff
 
-```
+```js
 import React from 'react';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
 
@@ -110,7 +110,7 @@ export default PriceInput;
 * Intl is built into browser and it is a great way to format money based on the location of the user 
 
 ## Final
-```
+```js
 import React from 'react';
 import PatchEvent, { set, unset } from 'part:@sanity/form-builder/patch-event';
 
@@ -146,7 +146,7 @@ PriceInput.focus = function () {
 ```
 
 ## Troubleshooting
-* Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+* Warning: Function components cannot be given `refs`. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 * Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
 * Warning: A component is changing a controlled input of type number to be uncontrolled. Input elements should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://fb.me/react-controlled-components
 

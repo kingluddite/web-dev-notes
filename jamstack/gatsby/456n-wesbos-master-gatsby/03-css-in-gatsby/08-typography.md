@@ -1,13 +1,13 @@
 # Typography
 ## TODO
-* Add custom font @font-face
+* Add custom font `@font-face`
 * And a bunch of links good discussion on working with fonts
 * system fonts
 * Good to put typography styles in their own file
 
 `styles/Typography.js`
 
-```
+```css
 import { createGlobalStyle } from 'styled-components';
 
 import font from '../assets/fonts/frenchfries.woff';
@@ -87,13 +87,13 @@ export default Typography;
 ```
 
 * [resource on fonts](https://www.internetingishard.com/html-and-css/web-typography/)
-* Setting base font stack on html makes sure you don't get any weird times new romans sneak up buttons (TODO - research this more)
+* Setting base font stack on html makes sure you don't get any weird times new roman sneak up buttons (TODO - research this more)
 * We export it so we can use it elsewhere
 
 ## Add in our fonts
 `Layout.js`
 
-```
+```js
 import React from 'react';
 import Footer from './Footer';
 import Navbar from './Navbar';

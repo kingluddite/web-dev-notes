@@ -1,11 +1,11 @@
 # Layouts in Gatsby
-* **TIP** auto import (you type your component and this keyboard shortcut shows items, select the component and it will automatically add the import)
+* **West Practice** auto import (you type your component and this keyboard shortcut shows items, select the component and it will automatically add the import)
   - (VS Code) ctrl + space brings up "code actions" click cube icon to auto import
 * You can auto import in Vim (pulls in function but works)
 
 ## Self closing React component verses open and close
 * You can do either
-* If you open and close it means that you expect the component to have children
+* If you open and close it means that you expect the component to have `children`
 
 `components/Layout.js`
 
@@ -27,7 +27,7 @@ export default function Layout() {
 ```
 
 ## How do we use this Layout?
-* We surround our pages with the Layout component
+* We surround our pages with the `Layout` component
 
 `pages/index.js`
 
@@ -46,7 +46,7 @@ export default function HomePage() {
 }
 ```
 
-## But how do we get the content that was passed down
+## props - how do we get the content that was passed down
 * Or put inbetween the Layout tag for each one?
 * To figure this out we can use `prop`
   - Every React component will react something called `props`
@@ -69,7 +69,7 @@ export default function Layout(props) {
 }
 ```
 
-* And let's pass props into a page using Layout (home page)
+* And let's pass `props` into a page using `Layout` (home page)
 
 ```
 import React from 'react';
@@ -87,6 +87,7 @@ export default function HomePage() {
 
 ```
 
+### children
 * And you will see `children`, and age and name in console of chrome inspector
   - We just care about the children
     + Which is the Nav and Paragraph of content
@@ -109,7 +110,7 @@ export default function Layout(props) {
 
 ```
 
-* We can destructure
+### We can destructure
 
 ```
 import React from 'react';
@@ -132,9 +133,30 @@ export default function Layout({ children }) {
 * Make sure the type of page is JavaScript React for proper syntax highlighting
 
 ## default props
-* Eslint should notify you about prop types (currently not)
-* You can use TypeScript instead of proptypes
-  - You can deactivate this prop types setting if you want
+* Eslint can notify you about prop types (currently not)
+  - If you want to require prop types
+  - Currenty we have them not required
+
+`package.json`
+
+* Wes overrides the default airbnb eslint config to turn it off but you can remove this code if you want prop-types to be required
+
+```
+// MORE CODE
+
+  "eslintConfig": {
+    "extends": [
+      "wesbos"
+    ],
+    "rules": {
+      "react/prop-types": 0
+    }
+  },
+
+// MORE CODE
+```
+
+* You can use TypeScript instead of prop-types
 
 ## Do you want to have to wrap `<Layout>` around all elements
 * You can or you can use 2 special gatsby files
@@ -174,8 +196,8 @@ export function wrapPageElement({ element, props }) {
 ```
 
 * Docs don't use import as we are using special way to use import
-* We delete all occurences of Layout in our pages
-* **TODO** You will see a props spreading prohibited
+* We delete all occurences of `Layout` in our pages
+* **TODO** You will see a `props` spreading prohibited
 * In all our pages we'll add a React Fragment
   - "ghost element"
   - It will allow us to return 2 elements at once

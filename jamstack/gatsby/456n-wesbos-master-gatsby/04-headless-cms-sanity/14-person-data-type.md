@@ -1,7 +1,7 @@
 # Person data type
 `schemas/person.js`
 
-```
+```js
 import { MdPerson as icon } from 'react-icons/md';
 
 export default {
@@ -42,7 +42,7 @@ export default {
 ## Add to schema
 `schema.js`
 
-```
+```js
 // MORE CODE
 import topping from './topping';
 import person from './person';
@@ -65,7 +65,7 @@ export default createSchema({
 
 ## You can easily add fields (let's add a person description)
 
-```
+```js
 // MORE CODE
 
   {

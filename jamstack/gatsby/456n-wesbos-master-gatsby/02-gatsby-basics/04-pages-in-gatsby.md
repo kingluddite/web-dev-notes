@@ -1,32 +1,55 @@
-# Pages in Gatsby
-* public
-    - you can delete and gatsby will regenerate
-    - This is the deploy folder
-    - This is where gatsby builds to
-    - `$ gatsby clean`
+# Folders in Gatsby
+* The `public` folder
+    - Is created on build
+    - You can delete and gatsby will regenerate on build
+    - This is the "deploy/build" folder
+    - This folder is where gatsby builds to when your run
 
-## src vs static
-* static (avoid like the plaque unless you absolutely must)
-    - This is where you put files that you just want to be served up
-        + stuff like favicons
-        + Almost always you don't want to put things in static
-            * You don't want to put stuff like an image/font/css
-                - Why?
-                    + We don't want to import things into Gatsby just by their static path
-                    + "Everything must go through Gatsby!"
-                        * All imported into Gatsby
-                            - all images
-                            - all css
-                            - all javascript
-                        * If you import through Gatsby, then Gatsby knows about them and can do cool optimizing stuff around performance and speed
+`$ gatsby build`
+
+## "Cleaning" Gatsby
+`$ gatsby clean`
+
+* This is useful as a last resort when your local project seems to have issues or content does not seem to be refreshing
+
+### What issues need cleaning in Gatsby?
+* Issues this may fix commonly include:
+    - Stale data, e.g. this file/resource/etc. isn’t appearing
+    - GraphQL error, e.g. this GraphQL resource should be present but is not
+Dependency issues, e.g. invalid version, cryptic errors in console, etc.
+Plugin issues, e.g. developing a local plugin and changes don’t seem to be taking effect
+
+## `src` vs `static` - What's the difference?
+
+### static
+* Avoid like the plaque unless you absolutely must
+* This is where you put files that you just want to be served up
+    - Stuff like favicons
+    - Almost always you don't want to put things in the `static` folder
+
+#### You especially don't want to put stuff like:
+* images
+* fonts
+* css
+
+##### Why?
+* Because we don't want to import things into Gatsby just by their static path
+
+#### What's the other way? - Place inside your `src` folder
+* "Everything must go through Gatsby!" 
+* All imported into Gatsby
+    - All images
+    - All css
+    - All javascript
+* If you import through Gatsby, then Gatsby knows about them and can do cool optimizing stuff around performance and speed
 
 ## pages folder
 * The only folder in our project that is truly "Gatsby" specific
     - We put all our pages inside the `pages` folder
-    - The rest of the folder are made up
-    - But this is a common layout for Gatsby websites
+    - The rest of the folders are names we can make up
+        * **note** But the names we use are a common folder structure and naming convention for Gatsby websites
 
-## Let's talk folders
+## The suggest folder structure/names
 * assets
      - fonts
      - images
@@ -43,23 +66,30 @@
 * utils
     - We'll stick common utility functions (example: formatMoney()) 
 
-### More about pages
-* Two types of pages
-    - `pages` can be dynamically generated
-    - Or `pages` can be done via "file system routing"
-        + What does this mean?
-            * If you go into pages directory and you make a page like `index.js` than this is the page that shows up when someone visits it
-            * But we don't just drop HTML into this `index.js` page
-                - Instead we need to export a function from this file and that will be rendered out to the page
+## Two types of pages
+1. Dynamically generated pages
+2. File system routing pages
+
+### Dynamically generated pages
+* Put your pages directly inside `pages` folder and you can navigate to the page in the browser by browsing to it's name
+    - So if you create a `about.js` file inside `pages` folder then you can browser to `http://localhost:8000/about` and you'll see that page
+
+#### Why are we not creating HTML files and putting them in the pags folder?
+* We use JavaScript instead of HTML and export a function from this `.js` file and that React JSX will be rendered out to the page eventually as HTML
+* Gatsby uses React on the frontend to render pages
 
 #### import React from 'react'
-* Any Gatsby page you need to include this (but soon you won't)
-* **Question**: Do we need to import React into Gatsby?
-    - https://blog.saeloun.com/2021/07/01/react-17-adds-jsx-runtime-and-jsx-dev-runtime-for-the-new-jsx-transform
-    - `import React from 'react'`
-    - In React 17 and starting with Babel version v7.9.0, `@babel/plugin-transform-react-jsx` plugin automatically imports “special functions” from the new React package when needed so that we don’t have to manually include them
-    - https://reactjs.org/blog/2020/08/10/react-v17-rc.html
-* **Question** Do you have problems with emmet tab and have you added the expand e keyboard shortcut like Wes has for VS code?
+* Any Gatsby page you need to include this (**note** This may soon not be required)
+
+* **FOLLOW UP QUESTION**: Do we need to import React into Gatsby?
+```
+import React from 'react'
+```
+
+* Some [research notes](https://blog.saeloun.com/2021/07/01/react-17-adds-jsx-runtime-and-jsx-dev-runtime-for-the-new-jsx-transform)
+* In React 17 and starting with Babel version v7.9.0, `@babel/plugin-transform-react-jsx` plugin automatically imports “special functions” from the new React package when needed so that we don’t have to manually include them - [ref](https://reactjs.org/blog/2020/08/10/react-v17-rc.html)
+
+* **FOLLOW UP QUESTION**: Do you have problems with emmet tab and have you added the expand e keyboard shortcut like Wes has for VS code?
 
 `src/pages/index.js`
 
@@ -77,8 +107,8 @@ function HomePage() {
 ```
 
 * But we need to export this function
-* All of your Gatsby files (with the exception of a couple) are just ECMA script modules (meaning that you can export things from them)
-* Gatsby is assuming that the main export (aka the default export)_from a page will be what is rendered when someone visits that page
+* All of your Gatsby files (_with the exception of a couple_) are just ECMA script modules (meaning that you can export things from them)
+* Gatsby is assuming that the main export (_aka the default export_) from a page will be what is rendered when someone visits that page
     - So if you add `export default` before the function like below that is what will be rendered out
 
 ```
@@ -163,7 +193,7 @@ export default function HomePage() {
 * Why? Just like index.html gets rendered `index.js` gets rendered when you go to the home page route `/`
 
 ### Hot reloading
-* When you change the code inside `pages/index.js` you will see the rendered localhost:8000 gets updated instantaneously!
+* When you change the code inside `pages/index.js` you will see the rendered `localhost:8000` gets updated instantaneously!
 
 ## 404 page
 * If you go to a page that doesn't exist Gatsby by default will render out a 404 page

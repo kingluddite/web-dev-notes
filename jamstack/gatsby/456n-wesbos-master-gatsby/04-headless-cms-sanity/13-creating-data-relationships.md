@@ -7,7 +7,7 @@
 
 `pizza.js`
 
-```
+```js
 // MORE CODE
  description: 'Price of the pizza in cents',
       validation: (Rule) => Rule.min(1000),
@@ -30,7 +30,7 @@
 ## Schema types: Reference
 * Note: Not great UI cause you have to add + close + add + close to add multiple toppings
 
-```
+```js
 // MORE CODE
     {
       title: 'Toppings',
@@ -47,11 +47,11 @@
 * Create a new pizza with an image and 2 toppings
 
 ### We'll create a custom preview of our pizza with toppings
-* We'll use console.log() to troubleshoot this
+* We'll use `console.log()` to troubleshoot this
 * Text pastry - https://marketplace.visualstudio.com/items?itemName=jkjustjoshing.vscode-text-pastry (VS Code)
     - example: https://twitter.com/wesbos/status/926484635437228038?lang=en
 
-```
+```js
 // MORE CODE
 
  preview: {
@@ -72,7 +72,7 @@
 ```
 
 ## Rest param!
-```
+```js
 // MORE CODE
   preview: {
     select: {
@@ -96,7 +96,7 @@
 ## Filter out undefined and return the preview object
 * Watch out for prettier converting the object into an implicit return (we don't want that)
 
-```
+```js
 // MORE CODE
 
 prepare: ({ title, media, ...toppings }) => {
@@ -117,8 +117,8 @@ prepare: ({ title, media, ...toppings }) => {
 * **tip** Use the log to avoid the implicit return from prettier
 * This will show the title, the image (media) and a subtitle
 
-## and the javascript
-```
+## and the JavaScript
+```js
 // MORE CODE
     prepare: ({ title, media, ...toppings }) => {
       //   1. filter undefined toppings out

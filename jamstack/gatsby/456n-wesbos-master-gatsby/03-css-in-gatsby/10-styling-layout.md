@@ -5,7 +5,7 @@
 
 `Layout.js`
 
-```
+```js
 import React from 'react';
 import 'normalize.css'; // reset
 import styled from 'styled-components';
@@ -47,13 +47,12 @@ export default function Layout({ children }) {
     </>
   );
 }
-
 ```
 
 ## How to style current page
 * Current page will have a class of `aria-current`
 
-```
+```css
 // MORE CODE
 
   a {
@@ -73,7 +72,7 @@ export default function Layout({ children }) {
 ```
 
 ## TODO - Can we do this?
-```
+```css
 // MORE CODE
 
     &[aria-current='page'] {
@@ -83,6 +82,4 @@ export default function Layout({ children }) {
 
 // MORE CODE
 ```
-
-
 

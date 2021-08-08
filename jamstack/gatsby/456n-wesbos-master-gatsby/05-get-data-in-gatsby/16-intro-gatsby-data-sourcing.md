@@ -1,13 +1,14 @@
 # Intro to gatsby-data-sourcing
+
 ## Where we are now
-1. We setup our Gatsby
-  * Basic templating and layout
-  * Creating of pages
-2. We added sanity
-  * Created our schemas and content types
+* We setup our Gatsby
+    - Basic templating and layout
+    - Creating of pages
+* We added sanity
+    - Created our schemas and content types
 
 ## How do I take the data that lives in my sanity and get it into my Gatsby website?
-* We'll anwer that soon but first let's talk about the GraphQL Playground
+* We'll answer that soon but first let's talk about the GraphQL Playground
 
 ### GraphQL Playground
 * Run gatsby `$ npm start`
@@ -38,7 +39,7 @@
 
 ### gatsby-config.js
 * **UPDATE**
-    - Cool to use backtics for all your strings
+    - Cool to use backticks for all your strings
     - spelling is important... `siteMetadata` (not siteMetaData!!!!!)
     - **note** Restart gatsby any time you change your `gatsby-config.js`, `gatsby-browser.js` or `gatsby-ssr.js`
       + Currently Gatsby is working on making the changes without a restart but have no idea when that change becomes a reality
@@ -55,14 +56,14 @@
       + It is beneficial to just use one and since everything else is ES modules
 
 #### Common JS syntax
-```
+```js
 module.exports = {
   // common js syntax
 }
 ```
 
 #### ES Modules (Node has added ability to use these instead)
-```
+```js
 export default {
   // ES modules
 }
@@ -73,7 +74,7 @@ export default {
 
 * Use ES Modules in Gatsby
 
-```
+```js
 // MORE CODE
 
   "scripts": {
@@ -91,6 +92,8 @@ export default {
 ### Install esm
 `$ npm i esm cross-env` (we also install cross-env for windows users)
 
+* **note** We install `esm` and `cross-env` as dependencies (not devDependencies)
+
 * There were issues getting this working on Windows and here was [Wes' GHI](https://github.com/wesbos/master-gatsby/issues/28)
 
 ### You will get this error
@@ -106,7 +109,7 @@ export default {
 * Then add this to `package.json`
     - Make sure you save and restart your server!
 
-```
+```js
 // MORE CODE
 
 "//": "⁉️ we want to use es modules with gatsby, we use a package called esm. One way to require it is to set the NODE_OPTIONS environmental variable to -r esm. Finally to make this work for windows users, we use the cross-env package. once Node es modules are stable, we can bring this back to simple gatsby build",
@@ -121,7 +124,7 @@ export default {
     - This is something Gatsby is working on fixing so you can change the config without having to restart the server
 
 ## GraphiQL
-```
+```js
 query MyQuery {
   site {
     siteMetadata {
@@ -131,11 +134,10 @@ query MyQuery {
     }
   }
 }
-
 ```
 
 ### Data result
-```
+```js
 {
   "data": {
     "site": {

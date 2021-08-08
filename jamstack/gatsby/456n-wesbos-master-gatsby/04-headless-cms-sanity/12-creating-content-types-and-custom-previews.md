@@ -15,7 +15,7 @@
 
 `schemas/topping.js`
 
-```
+```js
 import { FaPepperHot as icon } from 'react-icons/fa';
 
 export default {
@@ -41,7 +41,7 @@ Update our main schema
 
 `schemas/schema.js`
 
-```
+```js
 // MORE CODE
 import pizza from './pizza';
 import topping from './topping';
@@ -68,7 +68,7 @@ export default createSchema({
 ## Add boolean
 `topping.js`
 
-```
+```js
 // MORE CODE
     {
       name: 'vegetarian',
@@ -88,7 +88,7 @@ export default createSchema({
 
 * Now you'll see a checkbox
 
-```
+```js
 // MORE CODE
  {
       name: 'vegetarian',
@@ -118,7 +118,7 @@ export default createSchema({
 
 `toppings.js`
 
-```
+```js
 // MORE CODE
     {
       name: 'vegetarian',
@@ -146,7 +146,7 @@ export default createSchema({
 
 ## Template literal to make the `name` pull from the field object
 
-```
+```js
 preview: {
     select: {
       name: 'name',
@@ -161,7 +161,7 @@ preview: {
 
 * Show a leaf if vegetarian
 
-```
+```js
 // MORE CODE
 
   preview: {
@@ -177,7 +177,7 @@ preview: {
 ```
 
 ## Destructure field
-```
+```js
 // MORE CODE
   preview: {
     select: {

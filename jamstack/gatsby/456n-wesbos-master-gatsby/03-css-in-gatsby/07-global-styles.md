@@ -1,7 +1,7 @@
 # Gatsby global styles
 `src/styles/GlobalStyles.js`
 
-```
+```css
 import { createGlobalStyle } from 'styled-components';
 import bg from '../assets/images/bg.svg';
 import stripes from '../assets/images/stripes.svg';
@@ -95,7 +95,7 @@ export default GlobalStyles;
 
 `src/components/Layout.js`
 
-```
+```js
 import React from 'react';
 import Footer from './Footer';
 import Nav from './Nav';
@@ -128,7 +128,7 @@ export default function Layout({ children }) {
 
 `red.css`
 
-```
+```css
 body {
   background: red;
 }
@@ -140,7 +140,7 @@ body {
 
 * Run `$ npm start` and background will be red
 
-```
+```js
 import React from 'react';
 import Layout from './src/components/Layout';
 
@@ -170,7 +170,7 @@ export function wrapPageElement({ element, props }) {
 2. Then we'll set some typography styles
 3. Then we'll write CSS for the rest of our app
 
-## Remove the red.css and import!
+* **note** Remove the `red.css` and import!
 
 ### Let's tackle global styles
 * Why do I need global styles?
@@ -181,7 +181,7 @@ export function wrapPageElement({ element, props }) {
   - Is there any max-width on the images?
 
 ### Add our reset
-* We'll use normalize.css as our reset
+* We'll use `normalize.css` as our reset
 
 `$ npm i normalize.css`
 
@@ -189,9 +189,9 @@ export function wrapPageElement({ element, props }) {
 
 `components/Layout.js`
 
-* The import isn't special because it literally is just pointing to a folder called normalize.css that has a file called normalize.css inside it
+* The import isn't special because it literally is just pointing to a folder called `normalize.css` that has a file called `normalize.css` inside it
 
-```
+```js
 import React from 'react';
 import 'normalize.css'; // reset
 import Footer from './Footer';
@@ -215,7 +215,7 @@ export default function Layout({ children }) {
 ## Create our global styled component file
 `$ npm i styled-components`
 
-`styles/GlobalStyle.js` (not .css - since we are using `styled-components` package)
+`styles/GlobalStyle.js` (not `.css` - since we are using `styled-components` package)
 
 * We use `createGlobalStyle` **styled-components** function
 * We use regular CSS variables (aka custom properties)
@@ -228,6 +228,8 @@ export default function Layout({ children }) {
 
 #### Why am I importing them and storing them as variables?
 * If I just pointed to the path where they are in the CSS then gatsby won't know about them and I'd have to put them in the static folder and I would not get any of the performance benefits that Gatsby offers
+
+## West Practice
 * buttons
   - one global button?
     + Some people like to create reusable buttons over and over again, but Wes likes to use a regular button and style it the same way for the entire application
@@ -235,22 +237,22 @@ export default function Layout({ children }) {
 ## How I select gatsby images before they are fully rendered
 * Looking at pizzas page
   - What gatsby does under the hood
-  - gatsby renders out their images with all kinds of cool things
-  - gatsby renders out image with multiple formats
-    + webp (format that works in chrome, firefox (not safari) - it works in some browsers but not all and fall back to other versions if the browser doesn't support)
-  - gatsby also ships multiple sizes of that image (so based on the users device they will load large or smaller images)
-  - gatsby, when you load up an image for the first time, before any of these images have finished downloading from the server, gatsby will just render out a base64 string, this is cool because instead of having to wait for a small thumbnail it just ships that image as text in base64, if you copy and paste that super tiny image you can scale up and blur that image (and inside of the base64 are the piece of code that represent the image)
+  - Gatsby renders out their images with all kinds of cool things
+  - Gatsby renders out image with multiple formats
+    + `webp` (_format that works in chrome, firefox (not safari) - it works in some browsers but not all and fall back to other versions if the browser doesn't support_)
+  - Gatsby also ships multiple sizes of that image (so based on the users device they will load large or smaller images)
+  - Gatsby, when you load up an image for the first time, before any of these images have finished downloading from the server, gatsby will just render out a base64 string, this is cool because instead of having to wait for a small thumbnail it just ships that image as text in base64, if you copy and paste that super tiny image you can scale up and blur that image (and inside of the base64 are the piece of code that represent the image)
   - so the above code will pixelate the images to give it a cool fade in effect
 * scrollbar styles are applied (to work cross browser)
 * use
 
-```
+```css
 img {
   max-width: 100%; /* used so no images ever overflow */
 }
 ```
 
-```
+```css
 // MORE CODE
 
   .gatsby-image-wrapper img[src*=base64\\,] {
@@ -271,7 +273,7 @@ img {
 
 `GlobalStyles.js`
 
-```
+```js
 // MORE CODE
 
 const GlobalStyles = createGlobalStyle`
@@ -303,7 +305,7 @@ const GlobalStyles = createGlobalStyle`
         + Copy and paste that image and you'll see it is tiny but you can scale up that image very large and blur it
         + We apply the `image-rendering` css property to give it a pixelated fade in effect
 
-```
+```css
 // MORE CODE
 
   .gatsby-image-wrapper img[src*=base64\\,] {
@@ -314,7 +316,7 @@ const GlobalStyles = createGlobalStyle`
 ```
 
 ### scrollbar styles to get it to work cross-browser
-```
+```css
 // MORE CODE
 
   /* Scrollbar Styles */
@@ -337,12 +339,12 @@ const GlobalStyles = createGlobalStyle`
 ```
 
 ## How can we use these GlobalStyles?
-* We stuck them in a variable and exported them
-* Then we'll injext them into our Layout
+* We stick them in a variable and export them
+* Then we'll inject them into our Layout
 
 `Layout.js`
 
-```
+```js
 // MORE CODE
 
 import GlobalStyles from '../styles/GlobalStyles';
@@ -362,7 +364,7 @@ export default function Layout({ children }) {
 
 * View in browser and inspect `html` element and you'll see our global css
 
-```
+```css
 // MORE CODE
 
 html {
@@ -371,5 +373,5 @@ html {
 // MORE CODE
 ```
 
-* The bg image is not equalt to `bg.svg`
+* The bg image is not equal to `bg.svg`
 * Gatsby takes the images processes it, optimizes it and renames it with a cachebuster (unique identifier), so if you change the image (gatsby will know and put on a different random modifier string on it) and you don't have to do a "hard refresh" on the browser because the image will have a new cache busting name
