@@ -1,6 +1,7 @@
 # Review Wes Bos Course
 <!-- MarkdownTOC -->
 
+- [Follow up Questions for Team](#follow-up-questions-for-team)
 - [General Good to knows](#general-good-to-knows)
 - [How To a Gatsby Website using Sanity as a Headless CMS Instructions](#how-to-a-gatsby-website-using-sanity-as-a-headless-cms-instructions)
   - [Gatsby Stuff](#gatsby-stuff)
@@ -22,24 +23,45 @@
     - [What is CORS?](#what-is-cors)
 - [Sanity Troubleshooting](#sanity-troubleshooting)
 - [West Practices](#west-practices)
-- [Gatsby troubleshooting](#gatsby-troubleshooting)
-- [Gatsby Follow up](#gatsby-follow-up)
-- [CSS](#css)
-  - [Follow up:](#follow-up)
-- [Sanity](#sanity)
-  - [Sanity GraphQL Endpoint](#sanity-graphql-endpoint)
-- [Install the sanity cli globally](#install-the-sanity-cli-globally)
-- [Sanity GraphQL changes](#sanity-graphql-changes)
-- [Sanity Studio](#sanity-studio-1)
-  - [If you local Sanity Studio looks different than your remote Sanity Studio...](#if-you-local-sanity-studio-looks-different-than-your-remote-sanity-studio)
-- [Sanity Troubleshooting](#sanity-troubleshooting-1)
-- [Stylelint](#stylelint)
-  - [Warnings](#warnings)
-    - [Comments break your page](#comments-break-your-page)
-    - [No auto correct](#no-auto-correct)
-    - [Misc](#misc)
 
 <!-- /MarkdownTOC -->
+
+## Follow up Questions for Team
+* Do we need to import React into Gatsby?
+```
+import React from 'react'
+```
+
+* Do you have problems with emmet tab and have you added the expand e keyboard shortcut like Wes has for VS code?
+* VS code Wes <kbd>ctrl</kbd> + <kbd>e</kbd> Emmet expand because <kbd>tab</kbd> is problematic - did you have to do this?
+* CSS Subgrid
+* All our rules for base fonts (CSS)
+* Should we use Prop Types?
+* Setting base font stack on html (discuss benefits)
+* Clamp with CSS
+* VS Code - ES7 React/Readux/GraphQL snippets
+* Wes different .env environments
+* The red striped border doesn’t work like it does on Firefox
+* edges vs nodes in GraphQL, What's the difference?
+* Missing images on beers API
+* How is Wes seeing the data coming in the FF console? 05:39 of video #47
+* Using a `forEach` would return another scope and **IMPORTANT** you can't return from an inner scope of an outer scope
+        - So to avoid this we'll use a `for of` loop
+* [Link to Formik](https://formik.org/)
+
+`gatsby-config.js`
+
+* My file is `.env.development`
+* But in production it would be `.env.production`
+
+```js
+import dotenv from 'dotenv';
+dotenv.config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+// MORE CODE
+```
 
 ## General Good to knows
 * Know difference between Common JS and ES Modules and we are using ES Modules (note the `esm` package and in your scripts of package.json)
@@ -403,64 +425,86 @@ import {graphql, useStaticQuery} from 'gatsby';
 
 ## West Practices
 * Everything must "go through" gatsby
+* PRO of styled components is you can put your media queries directly inside your selector
+* If you ever need syntax highlighting without importing a library just use this
+        - `const gql = String.raw`
+        - `const css = String.raw`
+* When using several grids stick them in their own grids file
+* Use `rems` for grid gap
+* `font-size: 0`
+    - Sometimes an image has “ghost space”
+    - They you have this spacing between them
+    - It is not margin or padding (it is just a natural space that CSS gives you)
+    - And the size of that space is determined by the font-size\
+    - So if you run into weird issues try `font-size: 0`
+* Disable on loading - Do it on fieldsets and you won’t be able to type in fields while loading
+* Intl.NumberFormat
+    - Is built into both the browser and Node.js
+    - And it is built in for formatting currency (which is great!)
+* [Sample APIs](https://sampleapis.com/)
+* When debugging Promises chances are you forgot to `await` it
+    - You could also destructure the error property
+
+```js
+// MORE CODE
+
+const { data, error } = graphql(…code here…`)
+
+// MORE CODE
+```
+
+* Troubleshooting Gatsby
+    - Stop gatsby and restart
+    - Comment out offending code
+    - Log out the problem
+* `$r` in Chrome Dev tools gives us the currently selected component in React Dev Tools
+    - example: `$r.props.pizza.toppings.map(topping => topping.name)`
+* How to tell if the error you see is yours or internal Gatsby?
+    - If the actual error is coming from one of your components (_versus some junk inside of gatsby_) many times if you don't know what the error means, stop Gatsy restart it, also use `$ gatsby clean` and remove `package-lock.json` and `node_modules` and reinstall with `$ npm i`
+* Use React Dev Tools Chrome Extension
+* Wes just likes to destructure one level deep
+* Keep your Gatsby pages as "thin" as possible
+* Anytime you have a grid of items and then a singular item you should almost always make both a separate item for the grid and the item
+    - But you can group them together if they are thin and once they grow too large export them
+    - Feel free to keep components in same file if they are thin but once they are used more than once, put them in their own file to improve the modularity of your codebase
+* Give it a "hot supper refresh" :) 
+* Use React Dev Tools to see that you can go to that single page and get all the props and you will see `pathContext` with the slug
+* Name your page components as it helps with React Dev Tools
+* Name your GraphQL queries as it helps with GraphiQL history
+* Use aliasing in GraphQL as it makes your code more readable
 * Don't capitalize gatsby pages
 * Capitalize components
+* <kbd>cmd</kbd> + <kbd>k</kbd> (clear) terminal
+* Auto import in VS Code
+* Code coloring VS Code sanity (backend pink) and gatsby (frontend yellow)
+* one global button? Some people like to create reusable buttons over and over again, but Wes likes to use a regular button and style it the same way for the entire application
+* Never end your URLs with a forward slash because it’s always easy to add them on yourself
+* If you don't know where the email will go use `example.com` domain
+* Put the template query inside the component not inside `gatsby-node.js`
+        - Why?
+        - Because all your pages have to work like our query it seems to make sense to tightly couple the query with the template page
+        - That way if you need to modify the page you can easily modify the query without having to jump back into your `gatsby-node.js`
+* Another benefit of doing the query directly inside of your template is when you hit save the data for that page will immediately update
+    - If you wrote your entire query in `gatsby-node.js` you'd have to kill your entire process and start it again
+    - And if you have a large site, that can take minutes and makes building the site frustrating
+* Test environment variables are working by logging them (but be careful logging environment variables on server logs)
+* Logging out two things and giving them names by wrapping them inside an object
+    - This is not helpful `console.log(toppings, pizza)`
+        + Assuming toppings and pizza are `arrays`
+        + But this is very helpful `console.log({toppings, pizza})`
+            * Nothing special here but ES6 when the name of the object is the same name as the property
+* Clear your console before hot reloading
 
-## Gatsby troubleshooting
-* What's the gatsby version? `$ gatsby -v`
+```js
+console.clear();
+console.log({ toppings, pizza });
+```
 
-## Gatsby Follow up
-* Do we need to still import react?
-* VS code Wes <kbd>ctrl</kbd> + <kbd>e</kbd> Emmet expand because <kbd>tab</kbd> is problematic - did you have to do this?
-
-## CSS
-### Follow up:
-* Subgrid
-
-## Sanity
-### Sanity GraphQL Endpoint
-* In sanity folder
-
-`$ sanity graphql list`
-
-* Click on URL and it will open a GraphQL Playground to work with your Sanity Data
-
-## Install the sanity cli globally
-`$ npm i @sanity/cli -g`
-
-## Sanity GraphQL changes
-* If you made changes to your Sanity backend and you don't see the changes in your GraphQL Playground (looking at the SCHEMA sidebar) you need to redeploy your GraphQL API for Sanity
-* **note** Make sure you are inside your sanity folder
-
-`$ sanity graphql deploy production`
-
-## Sanity Studio
-* This is the remote site where you add pizzas and slicers
-* If you click on your project in sanity you will see the URL listed under STUDIO and it will look like: `https://thepeezzaguypeh.sanity.studio/desk`
-* The local machine URL of this studio will be `http://localhost:3333`
-
-### If you local Sanity Studio looks different than your remote Sanity Studio...
-* This means you made changes to your local Sanity Studio but did not deploy them to the remote Sanity Studio
-* You can easily sync them up by deploying to sanity using the sanity CLI
-
-`$ sanity deploy`
-
-* You should see after it builds the terminal will tell you the URL where the studio was deployed (just refresh the open page and you will see your remote Sanity Studio is updated )
-
-## Sanity Troubleshooting
-* Update sanity `$ sanity update`
-* Did you start sanity inside the sanity folder with `$ npm start`?
-* Session issues? Try `$ sanity logout` and `$ sanity login`
-* Sanity version - `$ sanity -v`
-
-## Stylelint
-### Warnings
-#### Comments break your page
-* toggle comment breaks code, you must manually add `/* comment */`
-* By default it adds `//` which breaks the page
-
-#### No auto correct
-* But css property order rule violations are set to warning so they won't break your page
-
-#### Misc
-* 1 empty line above comments
+* VS Code Tips
+    - Double click and hit `cmd` + `d` and then type with multiple cursors
+    - Use the `console.log()` to avoid the implicit return from prettier
+    - Copy Line Up/Down
+        + On Windows: Shift + Alt + Up/Down
+        + On Mac: Shift + Option + Up/Down
+    - **tip** If the VS Code import shortcut is giving you require instead of import it is because VS Code does not see any evidence of ES Modules (like import/export and so it assume Common JS)
+    - hover over it and hold option down and click it and it will open that component
