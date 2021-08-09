@@ -1,10 +1,29 @@
 # Static Queries and Building the Toppings Filter
+<!-- MarkdownTOC -->
+
+- [Create filter](#create-filter)
+- [Next - Stuff we need to do to get our filter working](#next---stuff-we-need-to-do-to-get-our-filter-working)
+  - [Before we exported a query from a page](#before-we-exported-a-query-from-a-page)
+- [Gatsby Rule - If you want to query data anywhere else outside of a page \(like inside a component\) you MUST use a `Static Query`](#gatsby-rule---if-you-want-to-query-data-anywhere-else-outside-of-a-page-like-inside-a-component-you-must-use-a-static-query)
+  - [Write a query that gets all the toppings](#write-a-query-that-gets-all-the-toppings)
+  - [alias to save having a stroke on keystrokes `:)`](#alias-to-save-having-a-stroke-on-keystrokes-)
+- [Stylelint aside](#stylelint-aside)
+- [Now we need to get all our pizzas](#now-we-need-to-get-all-our-pizzas)
+- [WEST PRACTICE - Logging out 2 things and giving them names](#west-practice---logging-out-2-things-and-giving-them-names)
+- [Now we need to count how many pizzas are in each topping](#now-we-need-to-count-how-many-pizzas-are-in-each-topping)
+  - [WEST PRACTICE](#west-practice)
+- [Returning our pizzas with counts](#returning-our-pizzas-with-counts)
+- [Now filter to get return the count we want](#now-filter-to-get-return-the-count-we-want)
+- [Next](#next)
+
+<!-- /MarkdownTOC -->
+
 ## Create filter
 * You click the filter and show only those pizzas that have those toppings
 
 `components/ToppingsFilter.js`
 
-```
+```js
 import React from 'react';
 
 export default function ToppingsFilter() {
@@ -18,7 +37,7 @@ export default function ToppingsFilter() {
 
 * Add to our pizzas page
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -41,6 +60,7 @@ export default function PizzasPage({ data }) {
 
 ## Next - Stuff we need to do to get our filter working
 * **note** Now we enter the topic of gatsby "Static Queries"
+
 1. Get a list of all the toppings
 2. Get a list of all the pizzas with their toppings
 3. Count how many pizzas are in each topping
@@ -52,7 +72,7 @@ export default function PizzasPage({ data }) {
 
 * We could also pass variables into the page query to make it dynamic
 
-```
+```js
 // MORE CODE
 PizzasPage.propTypes = {
   data: PropTypes.object,
@@ -96,7 +116,7 @@ export const query = graphql`
     - `useStaticQuery` comes from gatsby
     - `graphql` comes from gatsby
 
-```
+```js
 // MORE CODE
 
 import {graphql, useStaticQuery} from 'gatsby';
@@ -125,7 +145,7 @@ import {graphql, useStaticQuery} from 'gatsby';
 ### alias to save having a stroke on keystrokes `:)`
 * And we log out to make sure we get the data we expect (toppings) in the browser console
 
-```
+```js
 // MORE CODE
 
 export default function ToppingsFilter() {
@@ -153,7 +173,7 @@ export default function ToppingsFilter() {
 
 * We don't want `toppings.toppings` so we should have named our data `data`
 
-```
+```js
 // MORE CODE
 
 export default function ToppingsFilter() {
@@ -166,7 +186,7 @@ export default function ToppingsFilter() {
 * And then destructure it to `toppings`
     - This will gives us all our toppings inside `nodes`
 
-```
+```js
 // MORE CODE
 
 export default function ToppingsFilter() {
@@ -190,7 +210,7 @@ export default function ToppingsFilter() {
 ## Stylelint aside
 * How to ignore a line (didn't know how to solve this stylint error)
 
-```
+```js
 // MORE CODE
 
 const PizzaStyles = styled.div`
@@ -209,7 +229,7 @@ const PizzaStyles = styled.div`
 ## Now we need to get all our pizzas
 * We add another Static query and log both out
 
-```
+```js
 // MORE CODE
 
 export default function ToppingsFilter() {
@@ -258,19 +278,18 @@ export default function ToppingsFilter() {
 
 ## Now we need to count how many pizzas are in each topping
 
-### West Practice
+### WEST PRACTICE
 * Clear your console before hot reloading
     - Otherwise your console is always cluttered with old data and you have to scroll forever
 
-```
+```js
 console.clear();
 console.log({ toppings, pizzas });
 ```
 
 ## Returning our pizzas with counts
-```
-m 'gatsby';
-import React from 'react';
+```js
+// MORE CODE
 
 function countPizzasInToppings(pizzas) {
   // return the pizzas with counts
@@ -318,7 +337,7 @@ export default function ToppingsFilter() {
 ## Now filter to get return the count we want
 * This will give us an array of arrays
 
-```
+```js
 // MORE CODE
 
 function countPizzasInToppings(pizzas) {
@@ -340,7 +359,7 @@ function countPizzasInToppings(pizzas) {
             * It takes an array of arrays and turns it into one really big array
 * Now below will give us an array of 49 toppings
 
-```
+```js
 // MORE CODE
 
 function countPizzasInToppings(pizzas) {
@@ -359,7 +378,7 @@ function countPizzasInToppings(pizzas) {
 * If the topping doesn't exist add the topping with a value of 1
 * If the topping exists, just increment the topping value by 1
 
-```
+```js
 // this will get us all the unique toppings and counts
 function countPizzasInToppings(pizzas) {
   // return the pizzas with counts
@@ -391,7 +410,7 @@ function countPizzasInToppings(pizzas) {
 
 * Now we want to assort his object in descending order by toppings
 
-```
+```js
 // MORE CODE
 
 function countPizzasInToppings(pizzas) {
@@ -431,7 +450,7 @@ function countPizzasInToppings(pizzas) {
 
 * Now we need to loop over the array and show them
 
-```
+```js
 // MORE CODE
 
   return (
@@ -460,7 +479,7 @@ function countPizzasInToppings(pizzas) {
     - **REACT RULE** Anytime you map over something you need to provide a unique `key` prop value for the react virtual DOM to update efficiently
         + **note** The immediate child of the `map()` needs a `key` prop
 
-```
+```js
 // MORE CODE
   return (
     <div>
@@ -481,7 +500,7 @@ function countPizzasInToppings(pizzas) {
         + name
         + count
 
-```
+```js
 // MORE CODE
   return (
     <div>
@@ -500,7 +519,7 @@ function countPizzasInToppings(pizzas) {
 
 * Style our toppings
 
-```
+```js
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
@@ -533,7 +552,7 @@ const ToppingsStyles = styled.div`
 
 * Style the links and the count
 
-```
+```js
 // MORE CODE
 
 const ToppingsStyles = styled.div`

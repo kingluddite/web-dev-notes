@@ -1,10 +1,26 @@
 # Create a one-off store settings page
+<!-- MarkdownTOC -->
+
+- [Let's jump to our sanity folder!](#lets-jump-to-our-sanity-folder)
+- [Now run your sanity backend](#now-run-your-sanity-backend)
+- [Click on Settings](#click-on-settings)
+- [sidebar](#sidebar)
+- [Now we'll build a custom sidebar](#now-well-build-a-custom-sidebar)
+- [View in backend](#view-in-backend)
+- [Add an icon](#add-an-icon)
+- [Create an editor for the schema type](#create-an-editor-for-the-schema-type)
+- [Add the rest of our settings in the sidebar](#add-the-rest-of-our-settings-in-the-sidebar)
+- [Test](#test)
+- [Next - pull in current slicers and pizzas into the front end](#next---pull-in-current-slicers-and-pizzas-into-the-front-end)
+
+<!-- /MarkdownTOC -->
+
 ## Let's jump to our sanity folder!
 * Duplicate `sanity/schemas/pizza.js` to `sanityschemas/storeSettings.js`
 
 `sanity/schemas/storeSettings.js`
 
-```
+```js
 import { MdStore as icon } from 'react-icons/md';
 
 export default {
@@ -27,7 +43,7 @@ export default {
 
 `sanity/schemas/schema.js`
 
-```
+```js
 // First, we must import the schema creator
 // eslint-disable-next-line import/no-unresolved
 import createSchema from 'part:@sanity/base/schema-creator';
@@ -60,7 +76,7 @@ export default createSchema({
 
 `storeSettings.js`
 
-```
+```js
 import { MdStore as icon } from 'react-icons/md';
 
 export default {
@@ -96,7 +112,7 @@ export default {
 
 `sanity/sidebar.js`
 
-```
+```js
 import React from 'react';
 import S from '@sanity/desk-tool/structure-builder';
 ```
@@ -104,7 +120,7 @@ import S from '@sanity/desk-tool/structure-builder';
 * Update our `sanity.json`
     - From this:
 
-```
+```js
 // MORE CODE
   },
   "parts": [
@@ -118,7 +134,7 @@ import S from '@sanity/desk-tool/structure-builder';
 
 * To this:
 
-```
+```js
 // MORE CODE
   "parts": [
     {
@@ -136,7 +152,7 @@ import S from '@sanity/desk-tool/structure-builder';
 ## Now we'll build a custom sidebar
 `sidebar.js`
 
-```
+```js
 import React from 'react';
 import S from '@sanity/desk-tool/structure-builder';
 
@@ -159,7 +175,7 @@ export default function Sidebar() {
 ## Add an icon
 * Now you will see the options we had before to the stores, slicers and available pizzas
 
-```
+```js
 // MORE CODE
 
 import React from 'react';
@@ -181,7 +197,7 @@ export default function Sidebar() {
 ```
 
 ## Create an editor for the schema type
-```
+```js
 import React from 'react';
 import S from '@sanity/desk-tool/structure-builder';
 
@@ -205,7 +221,7 @@ export default function Sidebar() {
 ```
 
 ## Add the rest of our settings in the sidebar
-```
+```js
 import React from 'react';
 import S from '@sanity/desk-tool/structure-builder';
 
@@ -234,7 +250,7 @@ export default function Sidebar() {
 * Remove settings (we don't need it anymore)
     - We only want users to be able to edit the home page data from the sidebar
 
-```
+```js
 import React from 'react';
 import S from '@sanity/desk-tool/structure-builder';
 

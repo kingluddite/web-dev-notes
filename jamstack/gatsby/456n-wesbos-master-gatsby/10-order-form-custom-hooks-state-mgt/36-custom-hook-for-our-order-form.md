@@ -1,9 +1,33 @@
 # Custom Hook for our Order Form
-* What the custom hook will do?
-    - When you click on one of the buttons it will add it to your order
-        + And then we will loop over the order and display it in the order box
-        + We'll add a button to checkout
-        + We'll add a button to show the total
+<!-- MarkdownTOC -->
+
+- [What the custom hook will do?](#what-the-custom-hook-will-do)
+- [usePizza custom hook](#usepizza-custom-hook)
+  - [What our custom hook will do](#what-our-custom-hook-will-do)
+- [Remove an item from order](#remove-an-item-from-order)
+  - [How this works](#how-this-works)
+- [The finished custom usePizza hook](#the-finished-custom-usepizza-hook)
+- [We'll consume the usePizza custom hook](#well-consume-the-usepizza-custom-hook)
+- [Inspect our hooks using RDTs](#inspect-our-hooks-using-rdts)
+- [But when we add a button to add the size and pizza id when clicked like:](#but-when-we-add-a-button-to-add-the-size-and-pizza-id-when-clicked-like)
+- [New component to hold the displaying of our ordered items](#new-component-to-hold-the-displaying-of-our-ordered-items)
+- [Consume our PizzaOrder component](#consume-our-pizzaorder-component)
+  - [Test in browser](#test-in-browser)
+- [Now we'll loop over the items in the order](#now-well-loop-over-the-items-in-the-order)
+- [Add remove button](#add-remove-button)
+  - [Don't forget position relative](#dont-forget-position-relative)
+  - [Accessibility tip](#accessibility-tip)
+- [Remove from order](#remove-from-order)
+- [The finished PizzaOrder component](#the-finished-pizzaorder-component)
+- [But if we jump to another page we lose the persistance of our order](#but-if-we-jump-to-another-page-we-lose-the-persistance-of-our-order)
+
+<!-- /MarkdownTOC -->
+
+## What the custom hook will do?
+* When you click on one of the buttons it will add it to your order
+    + And then we will loop over the order and display it in the order box
+    + We'll add a button to checkout
+    + We'll add a button to show the total
 
 ## usePizza custom hook
 `src/utils/usePizza.js`
@@ -21,7 +45,7 @@
 ## Remove an item from order
 * Here's our function
 
-```
+```js
 // MORE CODE
 
   // 3. Make a function remove things forom order
@@ -35,13 +59,13 @@
 // MORE CODE
 ```
 
-* How this works
-    - If you have an array `[1,2,3,4,5]` and you want to remove `3`
-        + We want to make an new array of the parts before `[1,2]`
-        + And the parts after `[4,5]`
-        + So the new array will be `[1,2,4,5]` (so 3 was removed)
+### How this works
+* If you have an array `[1,2,3,4,5]` and you want to remove `3`
+    - We want to make an new array of the parts before `[1,2]`
+    - And the parts after `[4,5]`
+    - So the new array will be `[1,2,4,5]` (so 3 was removed)
 
-```
+```js
 // MORE CODE
 
   // 3. Make a function remove things forom order
@@ -61,7 +85,7 @@
 ## The finished custom usePizza hook
 `utils/usePizza.js`
 
-```
+```js
 import { useState } from 'react';
 
 export default function usePizza({ pizzas, inputs }) {
@@ -100,7 +124,7 @@ export default function usePizza({ pizzas, inputs }) {
         + TODO Also some loading and error state
 
 ## We'll consume the usePizza custom hook
-```
+```js
 // MORE CODE
 
 import usePizza from '../utils/usePizza';
@@ -128,7 +152,7 @@ export default function OrdersPage({ data }) {
 * If you inspect them you'll see our state is empty
 
 ## But when we add a button to add the size and pizza id when clicked like:
-```
+```js
 // MORE CODE
 
 >
@@ -162,7 +186,7 @@ export default function OrdersPage({ data }) {
 ## New component to hold the displaying of our ordered items
 `src/components/PizzaOrder.js`
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -185,7 +209,7 @@ PizzaOrder.propTypes = {
 ## Consume our PizzaOrder component
 `orders.js`
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -290,7 +314,7 @@ export const query = graphql`
 
 * Pass our props our hook wants
 
-```
+```js
 // MORE CODE
 
         <fieldset className="order">
@@ -305,7 +329,7 @@ export const query = graphql`
 * Why do we pass `removeFromHook` instead of just grabbing it from our hook?
     - **answer** This removeFromHook prop we are passing to PizzaOrder is bound to our state and if you were to use the custom hook again you would create a separate set of pizzas and you wouldn't be able to talk to each other 
 
-```
+```js
 // MORE CODE
 
         <fieldset className="order">
@@ -318,7 +342,7 @@ export const query = graphql`
 
 * Update our hook to increase the items in our order
 
-```
+```js
 // MORE CODE
 
 import React from 'react';
@@ -351,7 +375,7 @@ PizzaOrder.propTypes = {
 
 `PizzaOrder.js`
 
-```
+```js
 import React from 'react';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
@@ -389,7 +413,7 @@ PizzaOrder.propTypes = {
 ### Don't forget position relative
 `MenuItemStyles.js`
 
-```
+```js
 // MORE CODE
 
 const MenuItemStyles = styled.div`
@@ -402,7 +426,7 @@ const MenuItemStyles = styled.div`
 ### Accessibility tip
 * If we don't tell sight impaired users what we are removing they will just hear "muliplication sign!" (because we use the html encoded `&times;`)
 
-```
+```js
 // MORE CODE
 
               <button type="button" className="remove" title={`Remove ${singleOrder.size} ${pizzaObj.name} from Order`}>
@@ -413,7 +437,7 @@ const MenuItemStyles = styled.div`
 ```
 
 ## Remove from order
-```
+```js
 // MORE CODE
 
               <button
@@ -429,7 +453,7 @@ const MenuItemStyles = styled.div`
 ```
 
 ## The finished PizzaOrder component
-```
+```js
 import React from 'react';
 import Img from 'gatsby-image';
 import PropTypes from 'prop-types';

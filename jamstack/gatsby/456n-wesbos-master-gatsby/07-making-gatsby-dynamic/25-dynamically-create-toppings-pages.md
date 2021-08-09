@@ -1,11 +1,32 @@
 # Dynamically creating Toppings pages
+<!-- MarkdownTOC -->
+
+- [Create a similar function](#create-a-similar-function)
+- [We need to create our Topping page](#we-need-to-create-our-topping-page)
+- [Solution](#solution)
+  - [If we want to run them concurrently we use `await Promise.all(ARRAY_OF_PROMISES)`](#if-we-want-to-run-them-concurrently-we-use-await-promiseallarray_of_promises)
+- [The fix](#the-fix)
+- [Test our site](#test-our-site)
+- [Problem](#problem)
+- [GraphQL Playground](#graphql-playground)
+  - [West Practice](#west-practice)
+- [Here is our filter using `in`](#here-is-our-filter-using-in)
+- [Tips on using regex in GraphQL](#tips-on-using-regex-in-graphql)
+- [How to pass in a Regex](#how-to-pass-in-a-regex)
+- [Highlight the active topping](#highlight-the-active-topping)
+- [Test](#test)
+- [Add all pizzas link](#add-all-pizzas-link)
+- [Next - Sourcing Data from an external API](#next---sourcing-data-from-an-external-api)
+
+<!-- /MarkdownTOC -->
+
 * We will do something similar for our toppings page
 * But we'll reuse our Pizza.js page but just pass it the ability to pass toppings
 
 ## Create a similar function
 `gatsby-node.js`
 
-```
+```js
 const path = require('path');
 
 // MORE CODE
@@ -44,7 +65,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
 ## We need to create our Topping page
 * We can't do this
 
-```
+```js
 // MORE CODE
 
 export async function createPages(params) {
@@ -66,7 +87,7 @@ export async function createPages(params) {
             * Then it will go and turn toppings into pages
             * These methods are not related
 
-```
+```js
 // MORE CODE
 
   await turnPizzasIntoPages(params);
@@ -92,7 +113,7 @@ export async function createPages(params) {
 
 * And this is how gatsby knows to wait for these pages to be created before it starts the server and tells you that it's OK to go to `localhost:8000`
 
-```
+```js
 // MORE CODE
 export async function createPages(params) {
   // Create pages dynamically
@@ -107,7 +128,7 @@ export async function createPages(params) {
 
 * Let's make some topping pages
 
-```
+```js
 // MORE CODE
 
 async function turnToppingsIntoPages({ graphql, actions }) {
@@ -152,7 +173,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
     - **note** You could also destructure the error property
         + `const { data, error } = graphql(`...code here...`)
 
-```
+```js
 // MORE CODE
 
 async function turnToppingsIntoPages({ graphql, actions }) {
@@ -193,7 +214,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
 ![promise pending](https://i.imgur.com/G8SFG0y.png)
 
 ## The fix
-```
+```js
 // MORE CODE
 
 async function turnToppingsIntoPages({ graphql, actions }) {
@@ -242,7 +263,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
 
 `src/pages/pizzas.js`
 
-```
+```js
 // MORE CODE
 export const query = graphql`
   query PizzaQuery {
@@ -278,7 +299,7 @@ export const query = graphql`
 * Let's find a match where the topping is "Pepperoni"
 
 ## GraphQL Playground
-```
+```js
 {
     {
       allSanityPizza(filter: {toppings: {elemMatch: {name: {in: "Pepperoni"}}}}) {
@@ -294,7 +315,7 @@ export const query = graphql`
 
 * Will give you this data:
 
-```
+```js
 {
   "data": {
     "allSanityPizza": {
@@ -328,7 +349,7 @@ export const query = graphql`
 
 * Regex
 
-```
+```js
 {
   allSanityPizza(filter: {toppings: {elemMatch: {name: {regex: "/pep/i"}}}}) {
     nodes {
@@ -377,14 +398,14 @@ export const query = graphql`
 `;
 ```
 
-## Tips on using regex
+## Tips on using regex in GraphQL
 * You can't do this:
     - You can't interpolate values into a regex
     - You also can't create a string in JavaScript and pass it in either
-    - This is a GraphQL template string and there is no way to interpolate a varaiable into an input (in our case a regex)
+    - This is a GraphQL template string and there is no way to interpolate a variable into an input (in our case a regex)
     - **note** String is not in an array and not required (vs `[String!]`)
 
-```
+```js
 // MORE CODE
 
 export const query = graphql`
@@ -397,7 +418,7 @@ export const query = graphql`
 ## How to pass in a Regex
 * You would need to create the regex in JavaScript (in our gatsby-node.js)
 
-```
+```js
 // MORE CODE
 
   data.toppings.nodes.forEach((topping) => {
@@ -425,7 +446,7 @@ export const query = graphql`
 ## Highlight the active topping
 `s/p/pizzas.js`
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -455,7 +476,7 @@ PizzasPage.propTypes = {
 
 `ToppingsFilter.js`
 
-```
+```js
 // MORE CODE
 export default function ToppingsFilter({ activeTopping }) {
   
@@ -483,7 +504,7 @@ ToppingsFilter.propTypes = {
 ## Test
 * Click on a topping and the text of the topping (current topping) appears on page
 
-```
+```js
 // MORE CODE
 
     <ToppingsStyles>
@@ -510,7 +531,7 @@ ToppingsFilter.propTypes = {
 
 * Forgot the `&`
 
-```
+```js
 // MORE CODE
 
     &.active {
@@ -522,7 +543,7 @@ ToppingsFilter.propTypes = {
 
 * But we don't even need this and can just use `aria-current` from gatsby!
 
-```
+```js
 // MORE CODE
 
     &[aria-current='page'] {
@@ -535,7 +556,7 @@ ToppingsFilter.propTypes = {
 ## Add all pizzas link
 `ToppingsFilter.js`
 
-```
+```js
 // MORE CODE
 
     <ToppingsStyles>

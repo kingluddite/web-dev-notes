@@ -1,4 +1,30 @@
 # Modify custom hook to send the order data
+<!-- MarkdownTOC -->
+
+- [usePizza custom hook update](#usepizza-custom-hook-update)
+- [Use these pieces of state in our orders.js](#use-these-pieces-of-state-in-our-ordersjs)
+- [We'll handle loading first](#well-handle-loading-first)
+- [Create a handler for when someone clicks "Order Ahead" button](#create-a-handler-for-when-someone-clicks-order-ahead-button)
+  - [Test in browser](#test-in-browser)
+- [Gather the data](#gather-the-data)
+- [Test it in the browser](#test-it-in-the-browser)
+- [Now we need to send all that data over to the backend](#now-we-need-to-send-all-that-data-over-to-the-backend)
+  - [Create a new attachNamesAndPrices function](#create-a-new-attachnamesandprices-function)
+- [Now we can use the attachNamesAndPrices function](#now-we-can-use-the-attachnamesandprices-function)
+- [Now we'll send our data to the serverless function](#now-well-send-our-data-to-the-serverless-function)
+- [West Practice](#west-practice)
+  - [Fetching and sending our data to the serverless function](#fetching-and-sending-our-data-to-the-serverless-function)
+- [Now we need to parse the reponse](#now-we-need-to-parse-the-reponse)
+- [Handling showing and hiding of errors](#handling-showing-and-hiding-of-errors)
+- [Test our error](#test-our-error)
+- [Deal with if there is a message](#deal-with-if-there-is-a-message)
+- [Test the message](#test-the-message)
+- [That is the client side part finished](#that-is-the-client-side-part-finished)
+  - [Finished files](#finished-files)
+- [Next Email](#next-email)
+
+<!-- /MarkdownTOC -->
+
 * Get the list of pizzas
 * Their names
 * Their emails
@@ -11,7 +37,7 @@
 
 `src/utils/usePizza.js`
 
-```
+```js
 export default function usePizza({ pizzas, inputs }) {
   // 1. Create some state to hold our order
   // We moved the line below (useState) up to the Provider
@@ -29,7 +55,7 @@ export default function usePizza({ pizzas, inputs }) {
 
 * And we need to remember to return these new states from our custom usePizza hook
 
-```
+```js
 // MORE CODE
   return {
     order,
@@ -45,7 +71,7 @@ export default function usePizza({ pizzas, inputs }) {
 ## Use these pieces of state in our orders.js
 `src/pages/orders.js`
 
-```
+```js
 // MORE CODE
   const { order, addToOrder, removeFromOrder, error, loading, message } = usePizza({
     pizzas,
@@ -59,7 +85,7 @@ export default function usePizza({ pizzas, inputs }) {
 ## We'll handle loading first
 * We need to disable the submit button until our data has loaded from our serverless function
 
-```
+```js
 // MORE CODE
 
         <fieldset>
@@ -75,7 +101,7 @@ export default function usePizza({ pizzas, inputs }) {
 ## Create a handler for when someone clicks "Order Ahead" button
 * We use `event.preventDefault()` to make sure our form data gets added to URL and no page refresh
 
-```
+```js
 // MORE CODE
   // add this function!
   async function submitOrder(event) {
@@ -100,7 +126,7 @@ export default function usePizza({ pizzas, inputs }) {
 
 `orders.js`
 
-```
+```js
 // MORE CODE
 
   const { order, addToOrder, removeFromOrder, error, loading, message, submitOrder } = usePizza({
@@ -114,7 +140,7 @@ export default function usePizza({ pizzas, inputs }) {
 * Invoke the function when the form is clicked
     - **Remember** our styled component was formerly a form tag
 
-```
+```js
 // MORE CODE
 
   return (
@@ -137,7 +163,7 @@ export default function usePizza({ pizzas, inputs }) {
 ## Gather the data
 * We change in orders.js `inputs: values` to just `values`
 
-```
+```js
 // MORE CODE
 
   const { order, addToOrder, removeFromOrder, error, loading, message, submitOrder } = usePizza({
@@ -150,7 +176,7 @@ export default function usePizza({ pizzas, inputs }) {
 
 * To this:
 
-```
+```js
 // MORE CODE
 
   const { order, addToOrder, removeFromOrder, error, loading, message, submitOrder } = usePizza({
@@ -163,7 +189,7 @@ export default function usePizza({ pizzas, inputs }) {
 
 * Then we update this in `userPizza.js`
 
-```
+```js
 // MORE CODE
 
 export default function usePizza({ pizzas, values }) {
@@ -174,7 +200,7 @@ export default function usePizza({ pizzas, values }) {
 
 * And we gather our data and log it out to make sure it works
 
-```
+```js
 // MORE CODE
 
   async function submitOrder(event) {
@@ -215,7 +241,7 @@ export default function usePizza({ pizzas, values }) {
 
 * **tip** Putting all these utility functions in their own file and folder is great because we use them all over the place
 
-```
+```js
 import calculatePizzaPrice from './calculatePizzaPrice';
 import formatMoney from './formatMoney';
 
@@ -235,7 +261,7 @@ export default function attachNamesAndPrices(order, pizzas) {
 ## Now we can use the attachNamesAndPrices function
 `usePizza.js`
 
-```
+```js
 import { useContext, useState } from 'react';
 import OrderContext from '../components/OrderContext';
 import attachNamesAndPrices from './attachNamesAndPrices'; // add!
@@ -273,7 +299,7 @@ import attachNamesAndPrices from './attachNamesAndPrices'; // add!
 
 `usePizza.js`
 
-```
+```js
 // MORE CODE
 
   // this is the function that is run when user submits the form
@@ -299,7 +325,7 @@ import attachNamesAndPrices from './attachNamesAndPrices'; // add!
 
 `.env`
 
-```
+```js
 // MORE CODE
 MAIL_USER=jayson.bradtke@ethereal.email
 MAIL_PW=XFq7QwDPAVMaJEUnNH
@@ -331,7 +357,7 @@ GATSBY_SERVERLESS_BASE=http://localhost:8888/.netlify/functions
 
 `usePizza.js`
 
-```
+```js
 // MORE CODE
 
 is run when user submits the form
@@ -375,7 +401,7 @@ is run when user submits the form
     * If we get a success then also set loading to false and send a success message
     * If the error is set (happens in the >= 400 < 600) and when they correct their order, then we need to clear it
 
-```
+```js
 // MORE CODE
 
   async function submitOrder(event) {
@@ -390,7 +416,7 @@ is run when user submits the form
 
 * And here is the complete submitOrder function
 
-```
+```js
 // MORE CODE
 
  the form
@@ -437,7 +463,7 @@ is run when user submits the form
 ## Handling showing and hiding of errors
 `orders.js`
 
-```
+```js
 // MORE CODE
 
           <h3>Your Total is {formatMoney(calculateOrderTotal(order, pizzas))}</h3>
@@ -452,7 +478,7 @@ is run when user submits the form
 ## Test our error
 `usePizza.js`
 
-```
+```js
 // MORE CODE
 
   // this is the function that is run when user submits the form
@@ -493,7 +519,7 @@ is run when user submits the form
 ## Deal with if there is a message
 `orders.js`
 
-```
+```js
 // MORE CODE
 
   // END CUSTOM HOOKS
@@ -510,7 +536,7 @@ is run when user submits the form
 ```
 
 ## Test the message
-```
+```js
 // MORE CODE
 
   // this is the function that is run when user submits the form
@@ -550,7 +576,7 @@ is run when user submits the form
 ### Finished files
 `usePizza.js`
 
-```
+```js
 import { useContext, useState } from 'react';
 import OrderContext from '../components/OrderContext';
 import attachNamesAndPrices from './attachNamesAndPrices';
@@ -634,7 +660,7 @@ export default function usePizza({ pizzas, values }) {
 
 `orders.js`
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';

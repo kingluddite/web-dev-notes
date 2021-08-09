@@ -1,11 +1,18 @@
 # Style Order Form
+<!-- MarkdownTOC -->
+
+- [Create an external styled component](#create-an-external-styled-component)
+- [Next - When someone clicks the button, add that item to our order](#next---when-someone-clicks-the-button-add-that-item-to-our-order)
+
+<!-- /MarkdownTOC -->
+
 * We'll create styles in separate folder
 * **tip** If the VS Code import shortcut is giving you require instead of import it is because VS Code does not see any evidence of ES Modules (like import/export and so it assume Common JS)
 
 ## Create an external styled component
 `src/styles/OrderStyles.js`
 
-```
+```js
 import styled from 'styled-components';
 
 const OrderStyles = styled.form`
@@ -40,7 +47,7 @@ export default OrderStyles;
 
 * We consume our OrderStyles so we can use it on our page
 
-```
+```js
 // MORE CODE
 
 import OrderStyles from '../styles/OrderStyles';
@@ -68,7 +75,7 @@ export default function OrdersPage({ data }) {
 
 `src/styles/MenuItemStyles.js`
 
-```
+```js
 import styled from 'styled-components';
 
 const MenuItemStyles = styled.div`

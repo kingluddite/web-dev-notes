@@ -1,4 +1,13 @@
 # Build Gatsby Site
+<!-- MarkdownTOC -->
+
+- [Traditionally we run `$ gatsby build`](#traditionally-we-run-%24-gatsby-build)
+- [Troubleshoot](#troubleshoot)
+- [We can't run `$ npm run build`](#we-cant-run-%24-npm-run-build)
+- [After the successful build](#after-the-successful-build)
+
+<!-- /MarkdownTOC -->
+
 * **remember** Gatsby is just a static site generator
 
 ## Traditionally we run `$ gatsby build`

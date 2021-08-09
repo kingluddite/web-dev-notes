@@ -1,4 +1,23 @@
 # Serverless functions intro
+<!-- MarkdownTOC -->
+
+- [What are serverless functions?](#what-are-serverless-functions)
+- [How can I use serverless functions?](#how-can-i-use-serverless-functions)
+- [We will use Netlify functions](#we-will-use-netlify-functions)
+- [Create our first netlify serverless function](#create-our-first-netlify-serverless-function)
+    - [What is .toml?](#what-is-toml)
+- [Change in how we run gatsby when using netlify serverless functions](#change-in-how-we-run-gatsby-when-using-netlify-serverless-functions)
+- [Run Netlify](#run-netlify)
+    - [We'll get a new URL `http://localhost:8888`](#well-get-a-new-url-httplocalhost8888)
+    - [Writing our first serverless function](#writing-our-first-serverless-function)
+- [Inside of our `yo.js` file we can install any npm package we want](#inside-of-our-yojs-file-we-can-install-any-npm-package-we-want)
+    - [We will write a serverless function that will](#we-will-write-a-serverless-function-that-will)
+- [email testing site: `https://ethereal.email`](#email-testing-site-httpsetherealemail)
+    - [Don't hardcode your values](#dont-hardcode-your-values)
+- [WEST PRACTICE](#west-practice)
+
+<!-- /MarkdownTOC -->
+
 * With gatsby we have HTML, CSS and JavaScript so it's all frontend
 * But if you need to do something on the backend you can't really do that
     - Sanity allows us to create, using and pulling data
@@ -51,7 +70,7 @@
 * We now will run `$ npm run netlify`
     - That in turn will run `$ netlify dev`
         +  
-```
+```js
 // MORE CODE
 
   "scripts": {
@@ -100,7 +119,7 @@
                 - **note** but the [AWS LAMDBDA docs](https://docs.aws.amazon.com/lambda/index.html) are good
 `functions/yo/yo.js`
 
-```
+```js
 exports.handler = async (event, context) => {
   console.log(event);
   return {
@@ -141,9 +160,9 @@ exports.handler = async (event, context) => {
 * Just click create ethereal Account button
 * Copy and paste the code like this:
 
-functions/placeOrder/placeOrder.js
+`functions/placeOrder/placeOrder.js`
 
-```
+```js
 const nodemailer = require('nodemailer');
 
 // create a transport for nodemailer
@@ -162,7 +181,7 @@ const transporter = nodemailer.createTransport({
 
 `.env`
 
-```
+```js
 SANITY_TOKEN=blablabla
 GATSBY_PAGE_SIZE=2
 MAIL_HOST=smtp.ethereal.email
@@ -173,7 +192,7 @@ MAIL_PW=LArKXadXbbvNhQn2PT
 
 `functions/placeOrder/placeOrder.js`
 
-```
+```js
 const nodemailer = require('nodemailer');
 
 // create a transport for nodemailer
@@ -187,13 +206,13 @@ const transporter = nodemailer.createTransport({
 });
 ```
 
-##West Practice
-* If you don't know where the email will go us `example.com` domain
+## WEST PRACTICE
+* If you don't know where the email will go use `example.com` domain
     - jdoe@example.com
     - example.com was set aside specifically for testing emails
     - If you test and send to a real email that will cause problems
 
-```
+```js
 const nodemailer = require('nodemailer');
 
 // create a transport for nodemailer
@@ -219,7 +238,7 @@ transporter.sendMail({
 
 `placeOrder.js`
 
-```
+```js
 const nodemailer = require('nodemailer');
 
 // create a transport for nodemailer
@@ -275,4 +294,4 @@ exports.handler = async (event, context) => {
 * And click on the new email and you'll see it's content
     - If you do see it, it worked!
 
-![a sent email with the order](https://i.imgur.com/iBBMLdh.png) 
+![a sent email with the order](https://i.imgur.com/iBBMLdh.png)

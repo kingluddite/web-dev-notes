@@ -1,4 +1,14 @@
 # Create a Honey Pot to defend against bots
+<!-- MarkdownTOC -->
+
+- [What is a honeypot?](#what-is-a-honeypot)
+- [Test it out](#test-it-out)
+- [Hide our input](#hide-our-input)
+  - [solution -hide with css display: none](#solution--hide-with-css-display-none)
+- [Test again](#test-again)
+
+<!-- /MarkdownTOC -->
+
 * Stop bots from spamming your form
 * Best way is adding a captcha to prove you are not a robot
     - [syntax.fm on honeypots](https://syntax.fm/show/263/hasty-treat-forms-captchas-honeypots-dealing-with-malicious-users-and-the-sad-state-of-contact-forms)
@@ -13,7 +23,7 @@
 
 `orders.js`
 
-```
+```js
 // MORE CODE
 
   const { values, updateValues } = useForm({
@@ -37,7 +47,7 @@
 
 * This will send the value of this input box to our server
 
-```
+```js
 // MORE CODE
 
     const body = {
@@ -54,7 +64,7 @@
 * The we'll go server side (placeOrder.js) to see if they submitted
     **West Practice** - Give an error number with honeypot message so if a user tells you that error number you know you need to fix your honeypot
 
-```
+```js
 // MORE CODE
 
   // check if they have filled out the honeypot
@@ -84,7 +94,7 @@
 
 `orders.js`
 
-```
+```js
 // MORE CODE
 
           <input
@@ -110,7 +120,7 @@
     - text-indent to -10000px
     - **caution** Lots of ways to hide things on the internet but make sure you are not throwing off screenreaders
 
-```
+```js
 // MORE CODE
 
   .blackhole {

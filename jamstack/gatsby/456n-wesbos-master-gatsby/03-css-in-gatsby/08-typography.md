@@ -1,4 +1,13 @@
 # Typography
+<!-- MarkdownTOC -->
+
+- [TODO](#todo)
+- [Set a base font stack](#set-a-base-font-stack)
+- [Add in our fonts](#add-in-our-fonts)
+- [Next - Styling the Nav and Logo](#next---styling-the-nav-and-logo)
+
+<!-- /MarkdownTOC -->
+
 ## TODO
 * Add custom font `@font-face`
 * And a bunch of links good discussion on working with fonts

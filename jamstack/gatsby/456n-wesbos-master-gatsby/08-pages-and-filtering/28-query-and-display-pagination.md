@@ -1,10 +1,20 @@
 # Query and Display Pagination
+<!-- MarkdownTOC -->
+
+- [GraphQL Playground](#graphql-playground)
+- [Style it with a grid](#style-it-with-a-grid)
+- [Test and the grid is working](#test-and-the-grid-is-working)
+- [Style the individual person](#style-the-individual-person)
+- [Next Paginate data](#next-paginate-data)
+
+<!-- /MarkdownTOC -->
+
 1. query the data
 2. loop over it
 3. display it
 
 ## GraphQL Playground
-```
+```js
 query MyQuery {
   allSanityPerson {
     totalCount
@@ -30,7 +40,7 @@ query MyQuery {
 * And pull data into our page
 `src/pages/slicemasters.js`
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -81,7 +91,7 @@ export const query = graphql`
         + Pass in a css variable
         + Or use a css variable that overwrites the number of columns you want
 
-```
+```js
 // MORE CODE
 
 import styled from 'styled-components';
@@ -127,7 +137,7 @@ export default function SlicemastersPage({ data }) {
         + Because it is wrapped in a `div` and has all that extra stuff, you grab the image using `.gatsby-image-wrapper`
             * This is the class that gatsby puts on the image (when you use gatsby-image)
 
-```
+```js
 // MORE CODE
 
 const SliceMasterStyles = styled.div`
@@ -170,7 +180,7 @@ export default function SlicemastersPage({ data }) {
 
 `slicemasters.js`
 
-```
+```js
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -266,7 +276,7 @@ export const query = graphql`
 
 * And I updated some style order on beers.js
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -344,6 +354,5 @@ export const query = graphql`
   }
 `;
 ```
-
 
 ## Next Paginate data

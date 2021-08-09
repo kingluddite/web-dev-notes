@@ -1,4 +1,23 @@
 # What is Gatsby?
+<!-- MarkdownTOC -->
+
+- [Static site generator](#static-site-generator)
+- [Why is Gatsby Fast?](#why-is-gatsby-fast)
+- [Gatsby's process](#gatsbys-process)
+    - [Other cool features](#other-cool-features)
+        - [Intelligent with CSS](#intelligent-with-css)
+        - [Gatsby does rehydration](#gatsby-does-rehydration)
+        - [Lazy loading](#lazy-loading)
+        - [Gatsby will compress all your images](#gatsby-will-compress-all-your-images)
+        - [Routing](#routing)
+        - [Gatsby has a huge plugin system](#gatsby-has-a-huge-plugin-system)
+        - [Currently Gatsby is not a CMS](#currently-gatsby-is-not-a-cms)
+- [Gatsby Gotchas](#gatsby-gotchas)
+- [Google Lighthouse - high score out of the box](#google-lighthouse---high-score-out-of-the-box)
+
+<!-- /MarkdownTOC -->
+
+
 * Framework for building modern websites
     - Why framework?
         + Comes with everything

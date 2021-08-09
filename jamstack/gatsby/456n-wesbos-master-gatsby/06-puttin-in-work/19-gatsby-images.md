@@ -1,3 +1,23 @@
+### UPDATE!!!! Gatsby in V3 has totally revamped how images work
+<!-- MarkdownTOC -->
+
+- [gatsby images](#gatsby-images)
+    - [Problems with web images today](#problems-with-web-images-today)
+        - [Gatsby addresses all of this for you](#gatsby-addresses-all-of-this-for-you)
+    - [How can I process images?](#how-can-i-process-images)
+    - [What are those services?](#what-are-those-services)
+    - [So you make a decision](#so-you-make-a-decision)
+        - [We will use Sanity Image Pipeline](#we-will-use-sanity-image-pipeline)
+    - [Run your app](#run-your-app)
+    - [There are two different images that you can feed to gatsby-image](#there-are-two-different-images-that-you-can-feed-to-gatsby-image)
+    - [Let's use gatsby-image](#lets-use-gatsby-image)
+        - [Install the gatsby-image plugin](#install-the-gatsby-image-plugin)
+    - [West Practice](#west-practice)
+    - [Don't forget that alt attribute!](#dont-forget-that-alt-attribute)
+    - [What if you need a different size of that image?](#what-if-you-need-a-different-size-of-that-image)
+
+<!-- /MarkdownTOC -->
+
 # gatsby images
 * One of the greatest benefits gatsby offers is with images
 * Working with images in web today is hard because there is so much to know and do
@@ -5,7 +25,7 @@
 ## Problems with web images today
 * too large - like 8mb
 * not compressed (lossless (smaller without giving up quality) and lossy (makes smaller and gives up quality) - you can compress without the human eye noticing a difference)
-* width / height discrepencies
+* width / height discrepancies
 * poor loading performance - as it's loading you see nothing
 * wrong format
     - lots of formats for images

@@ -1,10 +1,20 @@
 # Setting Error, Loading and Success States
+<!-- MarkdownTOC -->
+
+- [Let's test our loading state](#lets-test-our-loading-state)
+- [West Practice](#west-practice)
+- [Take wait function off \(comment out\)](#take-wait-function-off-comment-out)
+- [Now we'll test success](#now-well-test-success)
+  - [But we shouldn't be able to submit empty pizza orders](#but-we-shouldnt-be-able-to-submit-empty-pizza-orders)
+
+<!-- /MarkdownTOC -->
+
 ## Let's test our loading state
 * We'll write a test function to make the function take a few more seconds
 
 `placeOrder.js`
 
-```
+```js
 // MORE CODE
 
 // test loading by waiting some time
@@ -25,7 +35,7 @@ exports.handler = async (event, context) => {
 
 `usePizza.js`
 
-```
+```js
 // MORE CODE
 
   async function submitOrder(event) {
@@ -41,7 +51,7 @@ exports.handler = async (event, context) => {
 1. When someone submits the order
 2. We set the loading to true
 
-```
+```js
 // MORE CODE
 
   // this is the function that is run when user submits the form
@@ -56,7 +66,7 @@ exports.handler = async (event, context) => {
 3. When the order is successfully done
 4. Then we turn the loading off
 
-```
+```js
 // MORE CODE
 
     // check if everything worked
@@ -83,7 +93,7 @@ exports.handler = async (event, context) => {
 
 * Put `disabled` on all fieldsets
 
-```
+```js
 // MORE CODE
 
         <fieldset disabled={loading}>
@@ -99,7 +109,7 @@ exports.handler = async (event, context) => {
 
 * All fieldsets with disabled
 
-```
+```js
 // MORE CODE
 
   return (
@@ -170,7 +180,7 @@ exports.handler = async (event, context) => {
 
 `placeOrder.js`
 
-```
+```js
 // MORE CODE
 
 for (const field of requiredFields) {

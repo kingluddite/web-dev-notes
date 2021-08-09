@@ -1,4 +1,17 @@
 # Custom CMS inputs in Sanity
+<!-- MarkdownTOC -->
+
+- [Challenge](#challenge)
+- [Create new `components` folder in sanity root](#create-new-components-folder-in-sanity-root)
+- [ES7 React/Readux/GraphQL snippets](#es7-reactreaduxgraphql-snippets)
+- [Add to pizza.js](#add-to-pizzajs)
+- [Format money](#format-money)
+- [Final](#final)
+- [Troubleshooting](#troubleshooting)
+- [Next - Getting Data into Gatsby with GraphQL](#next---getting-data-into-gatsby-with-graphql)
+
+<!-- /MarkdownTOC -->
+
 * Price is just cents
     - We want the UI editors
     - We have full control over sanity

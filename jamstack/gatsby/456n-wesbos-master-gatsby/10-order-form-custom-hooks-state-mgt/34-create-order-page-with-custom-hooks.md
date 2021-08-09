@@ -1,4 +1,29 @@
 # Create Order page with Custom Hooks
+<!-- MarkdownTOC -->
+
+- [How does our order form work?](#how-does-our-order-form-work)
+- [TODO - fix title SEO for order page](#todo---fix-title-seo-for-order-page)
+- [Test in browser on orders page](#test-in-browser-on-orders-page)
+- [Houston we have a problem!](#houston-we-have-a-problem)
+- [Create a custom hook called useForm\(\)](#create-a-custom-hook-called-useform)
+- [Finished orders.js](#finished-ordersjs)
+- [Test it out](#test-it-out)
+  - [Troubleshoot by logging out](#troubleshoot-by-logging-out)
+- [Also check if the state is populating as you would expect using the RDTs](#also-check-if-the-state-is-populating-as-you-would-expect-using-the-rdts)
+- [Next - loop over all our pizzas](#next---loop-over-all-our-pizzas)
+  - [How are we going to get all of our pizzas?](#how-are-we-going-to-get-all-of-our-pizzas)
+- [Do I need to worry about fetching extra data fields with Gatsby GraphQL?](#do-i-need-to-worry-about-fetching-extra-data-fields-with-gatsby-graphql)
+- [map through all the pizzas](#map-through-all-the-pizzas)
+- [Wes form label control error](#wes-form-label-control-error)
+- [s,m,l buttons](#sml-buttons)
+- [Solution for key unique error for s,m,l](#solution-for-key-unique-error-for-sml)
+- [Price](#price)
+  - [Benefits of ES Modules](#benefits-of-es-modules)
+- [Another utility function to format money](#another-utility-function-to-format-money)
+- [Next - Styling our order form](#next---styling-our-order-form)
+
+<!-- /MarkdownTOC -->
+
 * Now our website gets a bit more "appy"
 * Our side will be functional and can:
     - List out all the pizzas that we have
@@ -19,7 +44,7 @@
 ## TODO - fix title SEO for order page
 `pages/orders.js`
 
-```
+```js
 import React from 'react';
 import SEO from '../components/SEO';
 
@@ -36,7 +61,7 @@ export default function OrdersPage() {
 * Add fieldsets
     - **West Practice** `<fieldset>` are easy to disable
 
-```
+```js
 import React from 'react';
 import SEO from '../components/SEO';
 
@@ -68,7 +93,7 @@ export default function OrdersPage() {
         + [It was](https://github.com/wesbos/eslint-config-wesbos/commit/35adb5b18aeba2083f6c88df71941cacb5bc5031)
 * To allow nesting input inside label or as a sibling with htmlFor attribute use this rule:
 
-```
+```js
 // MORE CODE
 
  "jsx-a11y/label-has-associated-control": [
@@ -82,7 +107,7 @@ export default function OrdersPage() {
 
 `.eslintrc`
 
-```
+```js
 {
   "extends": ["wesbos"],
   "rules": {
@@ -110,7 +135,7 @@ export default function OrdersPage() {
 
 `orders.js`
 
-```
+```js
 import React, { useState } from 'react';
 import SEO from '../components/SEO';
 
@@ -143,7 +168,7 @@ export default function OrdersPage() {
 ## Test in browser on orders page
 * Type in name field and you can't and you get this error:
 
-```
+```js
 Warning: Failed prop type: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
 ```
 
@@ -153,7 +178,7 @@ Warning: Failed prop type: You provided a `value` prop to a form field without a
     - We are using the `useState` React Hook (and importing it)
     - We default to nothing (empty string)
 
-```
+```js
 // MORE CODE
 
 export default function OrdersPage() {
@@ -180,7 +205,7 @@ export default function OrdersPage() {
 ## Houston we have a problem!
 * What happens if we have 10 inputs? 20 inputs? Our code starts to quickly violate DRY principles
 * Libraries for making this easier
-    - [Link to Forkik](https://formik.org/)
+    - [Link to Formik](https://formik.org/)
     - Better, easier way, make a custom hook
 
 ## Create a custom hook called useForm()
@@ -188,7 +213,7 @@ export default function OrdersPage() {
 
 `src/utils/useForm.js`
 
-```
+```js
 import { useState } from 'react';
 
 export default function useForm(defaults) {
@@ -217,7 +242,7 @@ export default function useForm(defaults) {
     -  You have to explicitly set the default values for whatever inputs you have
         +  Otherwise react will put in a new value for you
 
-```
+```js
 // MORE CODE
 
 import React from 'react';
@@ -237,7 +262,7 @@ export default function OrdersPage() {
 ```
 
 ## Finished orders.js
-```
+```js
 import React from 'react';
 import SEO from '../components/SEO';
 import useForm from '../utils/useForm';
@@ -282,7 +307,7 @@ index.js:2177 Warning: Failed prop type: You provided a `value` prop to a form f
 ```
 
 ### Troubleshoot by logging out
-```
+```js
 // MORE CODE
 
 export default function OrdersPage() {
@@ -304,7 +329,7 @@ export default function OrdersPage() {
 
 `utils/useForm.js`
 
-```
+```js
 import { useState } from 'react';
 
 export default function useForm(defaults) {
@@ -343,7 +368,7 @@ export default function useForm(defaults) {
 * **Follow Up** I did not get a number like Wes at 15:58 of #34 video
     - I got undefined
 
-```
+```js
 // MORE CODE
 
 import { query } from './pizzas';
@@ -362,7 +387,7 @@ export default function OrdersPage() {
 
 `orders.js`
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -433,7 +458,7 @@ export const query = graphql`
 * We get all our pizzas in the console
 
 ## map through all the pizzas
-```
+```js
 // MORE CODE
 
         <fieldset>
@@ -456,7 +481,7 @@ export const query = graphql`
 * **solution on wes slack** https://app.slack.com/client/T0B6Z0ZL1/C01AHHRCTU2/thread/C01AHHRCTU2-1601505406.397300
 
 ## s,m,l buttons
-```
+```js
 // MORE CODE
 
           <legend>Menu</legend>
@@ -479,7 +504,7 @@ export const query = graphql`
 ```
 
 ## Solution for key unique error for s,m,l
-```
+```js
 // MORE CODE
 
               <div>
@@ -503,7 +528,7 @@ export const query = graphql`
 * I just declare a small piece of JavaScript inside the file and it will be accessible anywhere inside this module
 
 `src/utils/calculatePizzaPrice.js`
-```
+```js
 const sizes = {
   S: 0.75,
   M: 1,
@@ -517,7 +542,7 @@ export default function calculatePizzaPrice(cents, size) {
 
 `orders.js`
 
-```
+```js
 // MORE CODE
 
 import useForm from '../utils/useForm';
@@ -545,7 +570,7 @@ export default function OrdersPage({ data }) {
 
 `src/utils/formatMoney.js`
 
-```
+```js
 const formatter = Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -560,7 +585,7 @@ export default function formatMoney(cents) {
 
 `orders.js`
 
-```
+```js
 // MORE CODE
 
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';

@@ -1,4 +1,22 @@
 # Move Order state to React Context with custom Provider
+<!-- MarkdownTOC -->
+
+- [How can you maintain state in react across page changes?](#how-can-you-maintain-state-in-react-across-page-changes)
+- [Gatsby gives us the `wrapRootElement` that we can use inside `gatsby-browser.js`](#gatsby-gives-us-the-wraprootelement-that-we-can-use-inside-gatsby-browserjs)
+- [How do we wrap our state in Root?](#how-do-we-wrap-our-state-in-root)
+- [`src/components/OrderContext.js`](#srccomponentsordercontextjs)
+- [We also need to copy and paste the wrapRootElement in gatsby-ssr.js](#we-also-need-to-copy-and-paste-the-wraprootelement-in-gatsby-ssrjs)
+- [Let's see if it has our default state of `yo adrian!`](#lets-see-if-it-has-our-default-state-of-yo-adrian)
+- [So our data is high up on the food chain. Great!](#so-our-data-is-high-up-on-the-food-chain-great)
+- [Why is it undefined?](#why-is-it-undefined)
+    - [Review what we accomplished](#review-what-we-accomplished)
+    - [And show what we accomplished](#and-show-what-we-accomplished)
+- [Fixing warning](#fixing-warning)
+- [VS Code trick](#vs-code-trick)
+- [Next - Serverless Functions](#next---serverless-functions)
+
+<!-- /MarkdownTOC -->
+
 * Our state only currently resides in our order page
 * If you leave and come back our state is empty
     - Why?
@@ -22,7 +40,7 @@
 ## How do we wrap our state in Root?
 * We are sticking state in order level here:
 
-```
+```js
 // MORE CODE
 
   const { values, updateValues } = useForm({
@@ -41,7 +59,7 @@
 * Provider
     - A component that will live at a higher level and then we'll inject that around our root
 
-```
+```js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -66,7 +84,7 @@ export default OrderContext;
 
 `gatsby-browser.js`
 
-```
+```js
 import React from 'react';
 import Layout from './src/components/Layout';
 import { OrderProvider } from './src/components/OrderContext';
@@ -86,7 +104,7 @@ export function wrapRootElement({ element }) {
 
 `gatsby-ssr.js`
 
-```
+```js
 import React from 'react';
 import Layout from './src/components/Layout';
 import { OrderProvider } from './src/components/OrderContext';
@@ -116,7 +134,7 @@ export function wrapRootElement({ element }) {
 
 * We need to import both useState and useContext from react
 
-```
+```js
 // MORE CODE
 
 import { useContext, useState } from 'react';
@@ -141,7 +159,7 @@ export default function usePizza({ pizzas, inputs }) {
 
 `usePizza.js`
 
-```
+```js
 // MORE CODE
 
 import { useContext, useState } from 'react';
@@ -178,7 +196,7 @@ export default function usePizza({ pizzas, inputs }) {
     - But if you put the same key in your cart twice they are not unique
 * One solution is to combine key to make it unique (we use map's index argument):
 
-```
+```js
 <MenuItemStyles key={`${singleOrder.id}-${index}`}>
 ```
 

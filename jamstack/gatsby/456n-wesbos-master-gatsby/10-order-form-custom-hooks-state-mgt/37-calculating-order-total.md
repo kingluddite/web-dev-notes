@@ -1,11 +1,23 @@
 # Calculate Order Total
+<!-- MarkdownTOC -->
+
+- [calculateOrderTotal custom hook](#calculateordertotal-custom-hook)
+  - [What do we want do do in our calculateOrderTotal custom hook?](#what-do-we-want-do-do-in-our-calculateordertotal-custom-hook)
+- [And here is the custom hook](#and-here-is-the-custom-hook)
+- [We can refactor our hook](#we-can-refactor-our-hook)
+- [Upper scope error wes fix](#upper-scope-error-wes-fix)
+- [Format our money](#format-our-money)
+- [Next - Persist our order using React Context](#next---persist-our-order-using-react-context)
+
+<!-- /MarkdownTOC -->
+
 * And display it at the bottom
 * We'll display a button that when clicked
     - We can generate the order
     - Sending it over via email
 
 ## calculateOrderTotal custom hook
-```
+```js
 export default function calculateOrderTotzal(order, pizzas) {
   return 'yo!';
 }
@@ -13,7 +25,7 @@ export default function calculateOrderTotzal(order, pizzas) {
 
 * Consume our custom hook
 
-```
+```js
 // MORE CODE
 
         <fieldset>
@@ -34,18 +46,18 @@ export default function calculateOrderTotzal(order, pizzas) {
 
 * **Tip** Using a reduce
     - Great for taking an array of things and reducing it down into a single number
-        + The reduce() method takes two things
+        + The `reduce()` method takes two things
             * (the first argument) The callback function where that callback function takes and accumulator (acc) and the single item in the order
             * (the second argument) What you start with (we'll start with `0`)
 
-```
+```js
 order.reduce((acc, singleOrder) => {
  // what you want to reduce
 }, 0);
 ```
 
 ## And here is the custom hook
-```
+```js
 import calculatePizzaPrice from './calculatePizzaPrice';
 
 export default function calculateOrderTotzal(order, pizzas) {
@@ -62,7 +74,7 @@ export default function calculateOrderTotzal(order, pizzas) {
 
 * `acc` is the accumulator but we could name it to fit in with our function to make our code more readable
 
-```
+```js
 // MORE CODE
 
 export default function calculateOrderTotzal(order, pizzas) {
@@ -80,7 +92,7 @@ export default function calculateOrderTotzal(order, pizzas) {
 ```
 
 ## We can refactor our hook
-```
+```js
 import calculatePizzaPrice from './calculatePizzaPrice';
 
 export default function calculateOrderTotzal(order, pizzas) {
@@ -100,7 +112,7 @@ export default function calculateOrderTotzal(order, pizzas) {
 ## Upper scope error wes fix
 * You don't want to name your variable what the same name as the find array method's single variable name
 
-```
+```js
 import calculatePizzaPrice from './calculatePizzaPrice';
 
 export default function calculateOrderTotzal(order, pizzas) {
@@ -117,7 +129,7 @@ export default function calculateOrderTotzal(order, pizzas) {
 ## Format our money
 `orders.js`
 
-```
+```js
 // MORE CODE
 
 >

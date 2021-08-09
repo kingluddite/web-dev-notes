@@ -1,4 +1,22 @@
 # Querying, Displaying, and Styling the Beers Page
+<!-- MarkdownTOC -->
+
+- [Steps](#steps)
+- [Navigate to our beers page](#navigate-to-our-beers-page)
+- [Lightbulb moment](#lightbulb-moment)
+  - [Using edges](#using-edges)
+  - [vs using nodes](#vs-using-nodes)
+- [Prettier fix](#prettier-fix)
+- [Show all our beer names](#show-all-our-beer-names)
+- [Note: These images are not using gatsby image](#note-these-images-are-not-using-gatsby-image)
+- [Problem with beer images appearing](#problem-with-beer-images-appearing)
+- [Problem with API data in beers](#problem-with-api-data-in-beers)
+- [Making rating show](#making-rating-show)
+- [Style it with grid](#style-it-with-grid)
+- [Now we'll style the singular beer](#now-well-style-the-singular-beer)
+
+<!-- /MarkdownTOC -->
+
 ## Steps
 1. Query the data
 2. Loop over the data and display it
@@ -6,13 +24,13 @@
 
 * Rinse and repeat over and over again in gatsby land
 
-## navigate to our beers page
+## Navigate to our beers page
 * http://localhost:8000/beers
 
 * **caution** If you don't export, you won't have access
     - So this is bad:
 
-```
+```js
 // MORE CODE
 
 BeersPage.propTypes = {
@@ -26,7 +44,7 @@ const query = graphql`
 
 * And this is good:
 
-```
+```js
 // MORE CODE
 
 BeersPage.propTypes = {
@@ -40,7 +58,7 @@ export const query = graphql`
 
 * Code with prop-types
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -82,7 +100,7 @@ export const query = graphql`
     - plugin documentation that they often query "edges" first
 
 ### Using edges
-```
+```js
 {
   allDataJson {
     edges {
@@ -95,7 +113,7 @@ export const query = graphql`
 ```
 
 ### vs using nodes
-```
+```js
 {
   allDataJson {
     nodes {
@@ -113,7 +131,7 @@ export const query = graphql`
 ## Prettier fix
 * When you map if you only have 1 line prettier will convert to an implicit return and if you don't want that use multiple lines
 
-```
+```js
 // MORE CODE
 
 {beers.nodes.map(beer => {
@@ -125,7 +143,7 @@ return <p>yo</p>
 
 * automatically transforms into:
 
-```
+```js
 // MORE CODE
 
 {beers.nodes.map((beer) => (
@@ -138,7 +156,7 @@ return <p>yo</p>
 * To circumvent that prettier behavior add a log and some code
 
 ## Show all our beer names
-```
+```js
 // MORE CODE
 
 export default function BeersPage({ data: { beers } }) {
@@ -172,7 +190,7 @@ export default function BeersPage({ data: { beers } }) {
         + But the images we are using is sized and ready
 * I forget `image` so I just add it in the GraphQL
 
-```
+```js
 // MORE CODE
 
         {beers.nodes.map((beer) => {
@@ -201,7 +219,7 @@ export default function BeersPage({ data: { beers } }) {
 
 `gatsby-node.js`
 
-```
+```js
 // MORE CODE
 
 export default function BeersPage({ data: { beers } }) {
@@ -230,13 +248,12 @@ export default function BeersPage({ data: { beers } }) {
 // MORE CODE
 ```
 
-
 * I used help from slack - https://app.slack.com/client/T0B6Z0ZL1/C01AHHRCTU2/thread/C01AHHRCTU2-1615404390.054600
 * Added this to only show beers with names:
 
 `gatsby-node.js`
 
-```
+```js
 // MORE CODE
 
 async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContentDigest }) {
@@ -259,7 +276,7 @@ async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContent
 * We have the rating
 * And we need to show the others (5 - rating)
 
-```
+```js
 // MORE CODE
 
               <p>{'⭐️'.repeat(rating)}</p>
@@ -271,7 +288,7 @@ async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContent
 
 * And we need to style the stars
     - And we make it accessible with the title attribute
-```
+```js
 // MORE CODE
 
           return (
@@ -292,7 +309,7 @@ async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContent
 
 * Add the reviews
 
-```
+```js
 // MORE CODE
 
 <span style={{ filter: `grayscale(100%)` }}>{'‚≠êÔ∏è'.repeat(5 - rating)}</span>
@@ -302,7 +319,7 @@ async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContent
 ```
 
 ## Style it with grid
-```
+```js
 // MORE CODE
 
 import styled from 'styled-components';
@@ -344,7 +361,7 @@ export default function BeersPage({ data: { beers } }) {
 ```
 
 ## Now we'll style the singular beer
-```
+```js
 // MORE CODE
 
 const SingleBeerStyles = styled.div`
@@ -394,7 +411,7 @@ export default function BeersPage({ data: { beers } }) {
 * Styling for missing images (doens't fix this in Chrome)
     - Looks good in Firefox
 
-```
+```js
 // MORE CODE
 
 const SingleBeerStyles = styled.div`

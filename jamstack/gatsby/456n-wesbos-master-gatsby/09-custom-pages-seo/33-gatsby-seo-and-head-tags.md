@@ -1,13 +1,36 @@
 # Gatsby SEO and Head Tags
+<!-- MarkdownTOC -->
+
+- [What is the highest level we can get?](#what-is-the-highest-level-we-can-get)
+- [So how to you stick stuff in the `` when you need to?](#so-how-to-you-stick-stuff-in-the-when-you-need-to)
+- [Let's use React Helmet in a page](#lets-use-react-helmet-in-a-page)
+- [A better way it to modular SEO](#a-better-way-it-to-modular-seo)
+- [A change](#a-change)
+  - [Page back to the way it was before](#page-back-to-the-way-it-was-before)
+- [Create our Seo component](#create-our-seo-component)
+  - [What tags do we need?](#what-tags-do-we-need)
+- [How do we query data into a component when we are not at a page level?](#how-do-we-query-data-into-a-component-when-we-are-not-at-a-page-level)
+- [Test it out that our HTML is working](#test-it-out-that-our-html-is-working)
+- [Add a favicon](#add-a-favicon)
+  - [Adding a backup `.ico` favicon too](#adding-a-backup-ico-favicon-too)
+- [Add metatags](#add-metatags)
+- [Adding opengraph](#adding-opengraph)
+- [Update site with SEO component](#update-site-with-seo-component)
+- [slicemasters.js page](#slicemastersjs-page)
+- [orders.js page](#ordersjs-page)
+- [Single slicemaster template page](#single-slicemaster-template-page)
+
+<!-- /MarkdownTOC -->
+
 * **note** Wes spills his coffee right at the beginning of this video
 
-## What is the highest lever we can get?
-* Layout.js
+## What is the highest level we can get?
+* `Layout.js`
     - There is no HTML tags
     - There is body tag
     - All of that stuff gets added by gatsby
 
-```
+```js
 // MORE CODE
 
 // eslint-disable-next-line react/prop-types
@@ -46,7 +69,7 @@ export default function Layout({ children }) {
 
 `Slicemaster.js`
 
-```
+```js
 // MORE CODE
 
 import Img from 'gatsby-image';
@@ -68,7 +91,7 @@ export default function SingleSlicemasterPage({ data: { slicemaster } }) {
         - When JavaScript reaches outside of the component and updates something outside of itself
         - If ever the title tags overlap, the one that comes later will take precedent
 
-```
+```js
 // MORE CODE
 
 import { Helmet } from 'react-helmet';
@@ -106,7 +129,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
       * **note** Helmet imported now as a named export (recent change)
         - so `import { Helmet } from react-helmet`
 
-```
+```js
 // MORE CODE
 
 export default {
@@ -122,7 +145,7 @@ export default {
 ```
 
 ### Page back to the way it was before
-```
+```js
 // MORE CODE
 
 import React from 'react';
@@ -148,7 +171,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
 ## Create our Seo component
 `components/SEO.js`
 
-```
+```js
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -163,7 +186,7 @@ export default function SEO() {
 * **Accessibility Tip**
   - Specify the language of your site `<html lang="en" />`
 
-```
+```js
 <Helmet titleTemplate={`%s - My Pizza`}>
 ```
 
@@ -176,7 +199,7 @@ export default function SEO() {
 
 `gatsby-config.js`
 
-```
+```js
 // MORE CODE
 
 export default {
@@ -192,7 +215,7 @@ export default {
 
 `SEO.js`
 
-```
+```js
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -235,7 +258,7 @@ SEO.propTypes = {
 
 `Pizza.js`
 
-```
+```js
 // MORE CODE
 
 import SEO from '../components/SEO';
@@ -263,7 +286,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
 
 `SEO.js`
 
-```
+```js
 // MORE CODE
 
   return (
@@ -277,7 +300,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
 * Pass it into our Pizza page
   - Test page and the title is now dynamically added to our title
 
-```
+```js
 // MORE CODE
 
 export default function SinglePizzaPage({ data: { pizza } }) {
@@ -295,7 +318,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
 
 * This is pulling the favicon from the `static` folder
 
-```
+```js
 // MORE CODE
 
   return (
@@ -319,7 +342,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
 ### Adding a backup `.ico` favicon too
 `SEO.js`
 
-```
+```js
 // MORE CODE
 
   return (
@@ -339,7 +362,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
 ## Add metatags
 * **Wes added these but they are not needed** The viewport and utf-8 are already there and don't need to be added
 
-```
+```js
 // MORE CODE
 
   return (
@@ -365,9 +388,9 @@ export default function SinglePizzaPage({ data: { pizza } }) {
 
 `<meta property="og:image" content={image || '/logo.svg'} />`
 
-  * (above - we either pass in a custom image for the open graph image, or we default to the logo - we can do this because the logo is in our static folder we can reference it with an absolute path)
+* (above - we either pass in a custom image for the open graph image, or we default to the logo - we can do this because the logo is in our static folder we can reference it with an absolute path)
 
-```
+```js
  // MORE CODE
 
      <Helmet titleTemplate={`%s - ${site.siteMetadata.title}`}>
@@ -395,7 +418,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
     + That allows us to open and close our `SEO` tag
 * So later on I could do this to override the title
 
-```
+```js
 export default function SinglePizzaPage({ data: { pizza } }) {
   return (
     <>
@@ -415,12 +438,12 @@ export default function SinglePizzaPage({ data: { pizza } }) {
     + `image={pizza.image?.asset?.fluid?.src}`
       * It makes sure pizza.image exists before it grabs pizza.image.asset
       * And it will make sure pizza.image.asset exists before it grabs pizza.image.asset.fluid
-    + This is called "nested chaining" in ES7
+    + This is called "optional chaining" in ES7
       * https://kiranvj.com/blog/blog/optional-chaining-in-es7-and-support-in-react-js/
       * Previously you would have to check if all of these things existed
       * Gatsby is set up to convert those `?` to into a long drawn out `if` statement
 
-```
+```js
 // MORE CODE
 
 export default function SinglePizzaPage({ data: { pizza } }) {
@@ -434,7 +457,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
 * Add SEO component to:
   - pizzas.js
 
-```
+```js
 // MORE CODE
 
   return (
@@ -447,7 +470,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
 * Different title when on all pizzas versus a topping page
 
 ## slicemasters.js page
-```
+```js
 // MORE CODE
 
 export default function SlicemastersPage({ data, pageContext }) {
@@ -461,10 +484,9 @@ export default function SlicemastersPage({ data, pageContext }) {
 ```
 
 ## orders.js page
-```
+```js
 // MORE CODE
 
-;
 import SEO from '../components/SEO';
 
 export default function OrdersPage() {
@@ -480,7 +502,7 @@ export default function OrdersPage() {
 
 * Beers page
 
-```
+```js
 // MORE CODE
 
 export default function BeersPage({ data: { beers } }) {
@@ -492,7 +514,7 @@ export default function BeersPage({ data: { beers } }) {
 ```
 
 ## Single slicemaster template page
-```
+```js
 // MORE CODE
 
 export default function SingleSlicemasterPage({ data: { slicemaster } }) {

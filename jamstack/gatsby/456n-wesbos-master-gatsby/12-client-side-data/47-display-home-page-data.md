@@ -1,4 +1,26 @@
 # Display Home page data
+<!-- MarkdownTOC -->
+
+- [We get an error and here is the way around it](#we-get-an-error-and-here-is-the-way-around-it)
+  - [West Practice](#west-practice)
+- [This is super cool](#this-is-super-cool)
+- [Alter our queries to grab all that we need](#alter-our-queries-to-grab-all-that-we-need)
+- [View browser and we have an error](#view-browser-and-we-have-an-error)
+  - [We'll use a catch to troubleshoot better](#well-use-a-catch-to-troubleshoot-better)
+- [Fragments to the rescue](#fragments-to-the-rescue)
+  - [But this works](#but-this-works)
+- [We'll loop over data and display it](#well-loop-over-data-and-display-it)
+- [Make a new style component called ItemGrid](#make-a-new-style-component-called-itemgrid)
+- [Test in browser](#test-in-browser)
+- [Sanity image resizing via URL!](#sanity-image-resizing-via-url)
+- [To maintain aspect ratio we do this](#to-maintain-aspect-ratio-we-do-this)
+- [Now we'll show the `lqip` while images are loading](#now-well-show-the-lqip-while-images-are-loading)
+- [Global tilt style](#global-tilt-style)
+- [VS code tip](#vs-code-tip)
+  - [Fix small margin issue](#fix-small-margin-issue)
+
+<!-- /MarkdownTOC -->
+
 * VS Code tip
     - adding gql
     - question - why are we not using these with gatsby and GraphQL?
@@ -14,7 +36,7 @@
 
 * Now we get formatting for GraphQL and syntax highlighting too!
 
-```
+```js
 import { useEffect, useState } from 'react';
 
 const gql = String.raw;
@@ -49,7 +71,7 @@ export default function useLatestData() {
 
 `useLatestData.js`
 
-```
+```js
 import { useEffect, useState } from 'react';
 
 const gql = String.raw;
@@ -129,7 +151,7 @@ export default function useLatestData() {
 ### We'll use a catch to troubleshoot better
 `useLatestData.js`
 
-```
+```js
 // MORE CODE
       .then((res) => res.json())
       .then((res) => {
@@ -164,7 +186,7 @@ export default function useLatestData() {
 * We typed the same thing twice DRY alert!
 * We can use a fragment to save us time
 
-```
+```js
 import { useEffect, useState } from 'react';
 
 const gql = String.raw;
@@ -241,7 +263,7 @@ export default function useLatestData() {
     - **tip** Use curly braces so you can format
     - Then remove your curly braces after formatted
 
-```
+```js
 // MORE CODE
 
 const deets = gql`
@@ -264,7 +286,7 @@ const deets = gql`
 
 * Look no curly braces!
 
-```
+```js
 // MORE CODE
 
 const deets = gql`
@@ -286,7 +308,7 @@ const deets = gql`
 * That works (but not worth the effort)
 * We can also remove the gql since it isn't GraphQL but just a string so:
 
-```
+```js
 // MORE CODE
 
 const deets = `
@@ -308,7 +330,7 @@ const deets = `
 ## We'll loop over data and display it
 `index.js`
 
-```
+```js
 // MORE CODE
 
 import useLatestData from '../utils/useLatestData';
@@ -346,7 +368,7 @@ function HotSlices({ hotSlices }) {
 ## Make a new style component called ItemGrid
 `styles/ItemGrid.js`
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ItemsGrid } from './Grids';
@@ -376,7 +398,7 @@ ItemGrid.propTypes = {
 * This is the downside of not having our images go through gatsby
     - **AWESOME** But Sanity has image resizing just via the URL!
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ItemsGrid, ItemStyles } from './Grids';
@@ -402,54 +424,52 @@ ItemGrid.propTypes = {
 ```
 
 ## Sanity image resizing via URL!
-```
-          <img src={`${item.image.asset.url}?w=500&h=400&fit=crop`} alt={item.name} />
-
+```js
+<img src={`${item.image.asset.url}?w=500&h=400&fit=crop`} alt={item.name} />
 ```
 
 ## To maintain aspect ratio we do this
-```
-          <img width="500" height={400} src={`${item.image.asset.url}?w=500&h=400&fit=crop`} alt={item.name} />
-
+```js
+<img width="500" height={400} src={`${item.image.asset.url}?w=500&h=400&fit=crop`} alt={item.name} />
 ```
 
 ## Now we'll show the `lqip` while images are loading
-```
+```js
 // MORE CODE
 
-          <img
-            width="500"
-            height={400}
-            src={`${item.image.asset.url}?w=500&h=400&fit=crop`}
-            alt={item.name}
-            style={{ background: `url(${item.image.asset.metadata.lqip})` }}
-          />
+  <img
+    width="500"
+    height={400}
+    src={`${item.image.asset.url}?w=500&h=400&fit=crop`}
+    alt={item.name}
+    style={{ background: `url(${item.image.asset.metadata.lqip})` }}
+  />
 
 // MORE CODE
 ```
 
 * Using cover
 
-```
+```js
 // MORE CODE
 
-          <img
-            width="500"
-            height={400}
-            src={`${item.image.asset.url}?w=500&h=400&fit=crop`}
-            alt={item.name}
-            style={{
-              background: `url(${item.image.asset.metadata.lqip})`,
-              backgroundSize: 'cover',
-            }}
-          />
+  <img
+      width="500"
+      height={400}
+      src={`${item.image.asset.url}?w=500&h=400&fit=crop`}
+      alt={item.name}
+      style={{
+        background: `url(${item.image.asset.metadata.lqip})`,
+        backgroundSize: 'cover',
+      }}
+    />
 
 // MORE CODE
 ```
 
 * Titles and more
 
-```
+```js
 // MORE CODE
 
 function CurrentlySlicing({ slicemasters }) {
@@ -485,7 +505,7 @@ function HotSlices({ hotSlices }) {
 ## Global tilt style
 `styles/GlobalStyles.js`
 
-```
+```js
 // MORE CODE
   .tilt {
     position: relative;
@@ -505,7 +525,7 @@ export default GlobalStyles;
 ### Fix small margin issue
 `Nav.js`
 
-```
+```js
 // MORE CODE
 
 const NavStyles = styled.nav`
@@ -513,5 +533,3 @@ const NavStyles = styled.nav`
 
 // MORE CODE
 ```
-
-

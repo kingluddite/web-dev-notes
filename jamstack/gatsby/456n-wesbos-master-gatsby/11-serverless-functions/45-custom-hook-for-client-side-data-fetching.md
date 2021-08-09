@@ -1,4 +1,41 @@
 # Custom Hook for Client Side Data Fetching
+<!-- MarkdownTOC -->
+
+- [Data changing fast - client side data fetching](#data-changing-fast---client-side-data-fetching)
+  - [**FOLLOW UP** Wes thinks in the future](#follow-up-wes-thinks-in-the-future)
+- [Instead we are going to build this entirely client side](#instead-we-are-going-to-build-this-entirely-client-side)
+- [Our gatsby home page](#our-gatsby-home-page)
+  - [View the home page in :8888 in browser](#view-the-home-page-in-8888-in-browser)
+- [Now we'll fetch the data](#now-well-fetch-the-data)
+  - [What is the URL of my Sanity endpoint?](#what-is-the-url-of-my-sanity-endpoint)
+  - [Wes ran over the butterfly net with the lawnmower :(](#wes-ran-over-the-butterfly-net-with-the-lawnmower-)
+  - [Click on your Sanity GraphQL URL](#click-on-your-sanity-graphql-url)
+- [Create a custom react hook](#create-a-custom-react-hook)
+  - [Make sure you are inside your gatsby folder](#make-sure-you-are-inside-your-gatsby-folder)
+- [Now we need to go off and fetch the data](#now-we-need-to-go-off-and-fetch-the-data)
+- [Enter this in GraphQL Playground](#enter-this-in-graphql-playground)
+- [Now let's show why this is faster doing it in the browser](#now-lets-show-why-this-is-faster-doing-it-in-the-browser)
+  - [Now let's fetch our GraphQL data](#now-lets-fetch-our-graphql-data)
+  - [Let's make our GraphQL endpoint a variable](#lets-make-our-graphql-endpoint-a-variable)
+- [Let's review what is happening](#lets-review-what-is-happening)
+  - [Don't forget to export this hook](#dont-forget-to-export-this-hook)
+  - [And don't forget to return in an object the state we will use](#and-dont-forget-to-return-in-an-object-the-state-we-will-use)
+- [Review what will happen](#review-what-will-happen)
+- [NOTE - If you change your .env you must restart gatsby!](#note---if-you-change-your-env-you-must-restart-gatsby)
+- [You will get a CORS error](#you-will-get-a-cors-error)
+- [Do these steps](#do-these-steps)
+- [When you log into sanity.io make sure you are in the correct project \(if you have multiple\)](#when-you-log-into-sanityio-make-sure-you-are-in-the-correct-project-if-you-have-multiple)
+- [Refresh home page](#refresh-home-page)
+- [Now we set the data to state](#now-we-set-the-data-to-state)
+- [Test and see if we log our state](#test-and-see-if-we-log-our-state)
+- [It is working as it should - Here's the play-by-play](#it-is-working-as-it-should---heres-the-play-by-play)
+- [You could fix this](#you-could-fix-this)
+- [Take our data and pass it into each of the components](#take-our-data-and-pass-it-into-each-of-the-components)
+  - [First we'll destructure](#first-well-destructure)
+- [Test in RDTs](#test-in-rdts)
+
+<!-- /MarkdownTOC -->
+
 * We'll pull in the list of
     - current employees
     - current available pizzas
@@ -6,8 +43,8 @@
 
 ## Data changing fast - client side data fetching
 * Limitation of gatsby because gatsby requires a build and it may be 15 minutes before the site updates
-* Time sensative data not meant to go through the Gatsby GraphQL
-* You could rebuild everything everytime there is a change but for time sensative data it makes more sense to fetch that data client side rather than fetch that data at build time
+* Time sensitive data not meant to go through the Gatsby GraphQL
+* You could rebuild everything every time there is a change but for time sensitive data it makes more sense to fetch that data client side rather than fetch that data at build time
 * Currently gatsby does not have an API
     - There is only a Gatsby API at build time
     - And when you launch your website there is not GraphQL API that we can hit
@@ -27,8 +64,8 @@
 ## Our gatsby home page
 `gatsby/src/pages/index.js`
 
-```
- 'react';
+```js
+// MORE CODE
 
 function CurrentlySlicing() {
   return (
@@ -37,6 +74,7 @@ function CurrentlySlicing() {
     </div>
   );
 }
+
 function HotSlices() {
   return (
     <div>
@@ -90,7 +128,6 @@ export default function HomePage() {
 * This will go and fetch the data that we want
 * And it will store it inside of "there" (where is there?) TODO
 
-
 ### Make sure you are inside your gatsby folder
 `gatsby/src/utils/useLatestData.js`
 
@@ -102,7 +139,7 @@ export default function HomePage() {
 
 `src/utils/useLatestData.js`
 
-```
+```js
 import { useEffect, useState } from 'react';
 
 function useLatestData() {
@@ -133,7 +170,7 @@ function useLatestData() {
 ![StoreSettings](https://i.imgur.com/bCsx4Ei.png)
 
 ## Enter this in GraphQL Playground
-```
+```js
 query {
   StoreSettings(id: "downtown") {
     name
@@ -143,7 +180,7 @@ query {
 
 * And your data will be:
 
-```
+```js
 {
   "data": {
     "StoreSettings": {
@@ -155,7 +192,7 @@ query {
 
 * And our full query
 
-```
+```js
 query {
   StoreSettings(id: "downtown") {
     name
@@ -186,7 +223,7 @@ query {
 
 `gatsby/.env`
 
-```
+```js
 // MORE CODE
 GATSBY_SERVERLESS_BASE=http://localhost:8888/.netlify/functions
 GATSBY_SANITY_GRAPHQL_ENDPOINT=https://dbdsf0i.api.sanity.io/v1/graphql/production/default
@@ -206,7 +243,7 @@ GATSBY_SANITY_GRAPHQL_ENDPOINT=https://dbdsf0i.api.sanity.io/v1/graphql/producti
 * The paste looks strange
 * We will fix both in a bit but first let's get it working
 
-```
+```js
 import { useEffect, useState } from 'react';
 
 function useLatestData() {
@@ -253,7 +290,7 @@ function useLatestData() {
     - So rather than doing another function inside of that we'll just use a regular `.then()` syntax
 * Find the end of the fetch() and add a then to it
 
-```
+```js
 import { useEffect, useState } from 'react';
 
 function useLatestData() {
@@ -295,7 +332,7 @@ function useLatestData() {
 ```
 
 ### Don't forget to export this hook
-```
+```js
 // MORE CODE
 
 import { useEffect, useState } from 'react';
@@ -308,8 +345,9 @@ export default function useLatestData() {
 ### And don't forget to return in an object the state we will use
 `useLatestData.js`
 
-```
+```js
 // MORE CODE
+
 s) => res.json())
       .then((res) => {
         // TODO: check for errors
@@ -328,7 +366,7 @@ s) => res.json())
 
 `gatsby/src/pages/index.js`
 
-```
+```js
 // MORE CODE
 
 export default function HomePage() {
@@ -343,7 +381,7 @@ export default function HomePage() {
 ## Review what will happen
 1. We use the useLatestData hook
 2. When the home page renders out it will run the useLatestData hook ONCE
-3. That hook will inturn run the "use effect" hook which will run the fetch to hit our Sanity GraphQL endpoint
+3. That hook will in turn run the "use effect" hook which will run the fetch to hit our Sanity GraphQL endpoint
 4. Then that response comes back as JSON
 5. Then we turn it into an object
 6. Then we console log the response data returned
@@ -372,7 +410,7 @@ export default function HomePage() {
 * If you click on the URL to the Sanity studio you will see it is different that your Sanity localhost:3333 (we added the Home Page in our :3333)
 * Open your `sanity/sanity.json` file and look at this:
 
-```
+```js
 // MORE CODE
 
   "api": {
@@ -398,8 +436,8 @@ export default function HomePage() {
 
  `useLatestData.js`
 
- ```
- // MORE CODE
+```js
+// MORE CODE
  )
        .then((res) => {
          // TODO: check for errors
@@ -414,7 +452,7 @@ export default function HomePage() {
      slicemasters,
    };
  }
- ```
+```
 
 ## Test and see if we log our state
 ![our state is working](https://i.imgur.com/qqGFJ2t.png)
@@ -424,7 +462,7 @@ export default function HomePage() {
 
 `useLatestData.js`
 
-```
+```js
 // MORE CODE
 
   const [slicemasters, setSlicemasters] = useState();
@@ -456,7 +494,7 @@ export default function HomePage() {
 
 `pages/index.js`
 
-```
+```js
 // MORE CODE
 
 export default function HomePage() {
@@ -479,5 +517,3 @@ export default function HomePage() {
 * Make sure you see the props in each component
 
 ![RDTs looking good](https://i.imgur.com/OoN3wMT.png)
-
-

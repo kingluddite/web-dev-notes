@@ -1,4 +1,23 @@
 # Intro to gatsby-data-sourcing
+<!-- MarkdownTOC -->
+
+- [Where we are now](#where-we-are-now)
+- [How do I take the data that lives in my sanity and get it into my Gatsby website?](#how-do-i-take-the-data-that-lives-in-my-sanity-and-get-it-into-my-gatsby-website)
+  - [GraphQL Playground](#graphql-playground)
+- [The idea behind Gatsby](#the-idea-behind-gatsby)
+  - [GraphiQL endpoint](#graphiql-endpoint)
+  - [How do we surface the data from our sanity into our GraphQL explorer \(GraphiQL\)?](#how-do-we-surface-the-data-from-our-sanity-into-our-graphql-explorer-graphiql)
+  - [gatsby-config.js](#gatsby-configjs)
+    - [Common JS syntax](#common-js-syntax)
+    - [ES Modules \(Node has added ability to use these instead\)](#es-modules-node-has-added-ability-to-use-these-instead)
+  - [Enable ES Modules in Gatsby](#enable-es-modules-in-gatsby)
+  - [Install esm](#install-esm)
+  - [You will get this error](#you-will-get-this-error)
+- [TODO - I could not get this working](#todo---i-could-not-get-this-working)
+- [GraphiQL](#graphiql)
+  - [Data result](#data-result)
+
+<!-- /MarkdownTOC -->
 
 ## Where we are now
 * We setup our Gatsby

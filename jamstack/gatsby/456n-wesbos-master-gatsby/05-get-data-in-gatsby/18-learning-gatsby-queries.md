@@ -1,4 +1,39 @@
 # Gatsby Queries
+<!-- MarkdownTOC -->
+
+- [Page Queries](#page-queries)
+- [Static Queries](#static-queries)
+- [More About Page Queries](#more-about-page-queries)
+  - [Is there anything special about `query` name?](#is-there-anything-special-about-query-name)
+    - [auto-import GraphQL](#auto-import-graphql)
+- [A name or not a name](#a-name-or-not-a-name)
+- [GraphQL](#graphql)
+  - [Gatsby fragments](#gatsby-fragments)
+  - [WEST PRACTICE - Name your page components](#west-practice---name-your-page-components)
+- [Renaming queries \(aliases in GraphQL\)](#renaming-queries-aliases-in-graphql)
+- [Now how can we gain access to our data in our Gatsby react component](#now-how-can-we-gain-access-to-our-data-in-our-gatsby-react-component)
+  - [Test it out](#test-it-out)
+  - [We also add PropTypes](#we-also-add-proptypes)
+- [Destructure even further](#destructure-even-further)
+- [We'll use this \(as it was before\)](#well-use-this-as-it-was-before)
+- [To load or not to load](#to-load-or-not-to-load)
+- [Now build a component that will display all the pizzas that we have](#now-build-a-component-that-will-display-all-the-pizzas-that-we-have)
+  - [PizzaList](#pizzalist)
+- [Loop over pizzas and show the names we have](#loop-over-pizzas-and-show-the-names-we-have)
+  - [Adding a div](#adding-a-div)
+- [West Practice](#west-practice)
+- [West Practice](#west-practice-1)
+- [Fixing the "each child in a list should have a unique 'key' prop" error](#fixing-the-each-child-in-a-list-should-have-a-unique-key-prop-error)
+- [How can you tell if the error you see is yours or gatsbys?](#how-can-you-tell-if-the-error-you-see-is-yours-or-gatsbys)
+  - [Working on the individual pizzas](#working-on-the-individual-pizzas)
+- [You see links](#you-see-links)
+- [Add toppings](#add-toppings)
+- [Using the chrome console for some coolness](#using-the-chrome-console-for-some-coolness)
+  - [Let's use the console and show what we did](#lets-use-the-console-and-show-what-we-did)
+- [Next](#next)
+
+<!-- /MarkdownTOC -->
+
 ## Page Queries
 * Can be dynamic with variables
 * Can only be run on a top level page
@@ -27,14 +62,14 @@ export default function PizzasPage() {
 
 export const query = graphql``;
 ```
-
-* Is there anything special about `query` name?
-    - No
-    - You will also see `pageQuery` used
+### Is there anything special about `query` name?
+* No
+    - *note** You will also see `pageQuery` used
     - It doesn't matter what you call it
     - All that matters is that if you are exporting something that is a GraphQL query it will then turn that into data for you
-    - **note** Make sure to auto-import it
+* **note** Make sure to auto-import it with `import { graphql } from 'gatsby';`
 
+#### auto-import GraphQL
 `pizzas.js`
 
 * auto-import pulls in the `graphql` named export
@@ -59,7 +94,7 @@ export const query = graphql`
 ```
 
 * You may see a name (I like this)
-    - It's good to have names for GraphiQL history
+    - **WEST PRACTICE** It's good to have names for GraphiQL history
 
 ```js
 // MORE CODE
@@ -93,7 +128,7 @@ export const query = graphql`
     - min 7 of video Wes shows Gatsby Fragment not working
     - Just use `src` in GraphiQL and when you are in your top level pages, then use the fragments
 
-### Name your page components
+### WEST PRACTICE - Name your page components
 * You will need to find your page components so name them
     - Then finding them with React Dev Tools is easy 
     - **tip** It is important to name you page components

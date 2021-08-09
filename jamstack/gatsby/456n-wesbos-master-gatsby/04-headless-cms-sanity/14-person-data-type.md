@@ -1,4 +1,13 @@
 # Person data type
+<!-- MarkdownTOC -->
+
+- [Add to schema](#add-to-schema)
+- [View in Sanity Studio \(UI\)](#view-in-sanity-studio-ui)
+- [You can easily add fields \(let's add a person description\)](#you-can-easily-add-fields-lets-add-a-person-description)
+- [Next - Create custom react components for inputs](#next---create-custom-react-components-for-inputs)
+
+<!-- /MarkdownTOC -->
+
 `schemas/person.js`
 
 ```js

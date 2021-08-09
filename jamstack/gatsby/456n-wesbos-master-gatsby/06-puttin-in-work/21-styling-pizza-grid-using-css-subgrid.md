@@ -1,11 +1,22 @@
 # Styling our Grid using CSS subgrid
+<!-- MarkdownTOC -->
+
+- [We have a problem](#we-have-a-problem)
+  - [Solution](#solution)
+- [Make another style for a single pizza](#make-another-style-for-a-single-pizza)
+- [Subgrid only works in firefox](#subgrid-only-works-in-firefox)
+- [But we can use a backup for browsers that don't support grid](#but-we-can-use-a-backup-for-browsers-that-dont-support-grid)
+- [Create the Toppings filter](#create-the-toppings-filter)
+
+<!-- /MarkdownTOC -->
+
 `PizzaList.js`
 
 * **note** In css grid you can use `gap` instead of `grid-row` or `column-row`
     - The older version was `grid-column-gap` and `grid-row-gap`
     - You can also use `gap` for flexbox
 
-```
+```js
 // MORE CODE
 
 import Img from 'gatsby-image';
@@ -51,13 +62,13 @@ export default function PizzaList({ pizzas }) {
     - The second `auto` (ingredients)
     - The third `500px` (the image) 
 
-```
+```css
   grid-auto-rows: auto auto 500px;
 ```
 
 * And here is our code (it won't have any affect yet)
 
-```
+```js
 // MORE CODE
 
 const PizzaGridStyles = styled.div`
@@ -96,7 +107,7 @@ function SinglePizza({ pizza }) {
     - img
     - (see below)
 
-```
+```js
 // MORE CODE
 
 function SinglePizza({ pizza }) {
@@ -116,7 +127,7 @@ function SinglePizza({ pizza }) {
 // MORE CODE
 ```
 
-* We need to tell h2, p and img to align themselves not based on their `parent` `<div>` but based on the grandparent
+* We need to tell `h2`, `p` and `img` to align themselves not based on their `parent` `<div>` but based on the grandparent
     - What is sub grid again?
         + It is when children elements of another child will align themselves with a grandparent grid
         + **note** We altered our `Link` so it only surrounds the `h2`
@@ -124,7 +135,7 @@ function SinglePizza({ pizza }) {
 ## Make another style for a single pizza
 * This starts to work but our images are different sizes and not lining up
 
-```
+```js
 // MORE CODE
 
 const PizzaStyles = styled.div`
@@ -159,7 +170,7 @@ https://caniuse.com/?search=subgrid
 ## But we can use a backup for browsers that don't support grid
 * the beauty of `@supports not (grid-template-rows: subgrid) {...}`
 
-```
+```js
 // MORE CODE
 
 const PizzaStyles = styled.div`
@@ -186,8 +197,7 @@ const PizzaStyles = styled.div`
     - Stick that in the logic of our `@supports not() {}`
     - If the browser doesn't support that property the variable will be defined and used later on, otherwise, the value of `subgrid` will be used
 
-#
-```
+```js
 // MORE CODE
 
 const PizzaStyles = styled.div`

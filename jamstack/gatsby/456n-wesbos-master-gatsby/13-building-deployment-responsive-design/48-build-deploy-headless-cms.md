@@ -1,4 +1,13 @@
 # Build and Deploy headless sanity CMS
+<!-- MarkdownTOC -->
+
+- [Let's deploy sanity](#lets-deploy-sanity)
+    - [You get some questions](#you-get-some-questions)
+- [If you want to host sanity anywhere you want](#if-you-want-to-host-sanity-anywhere-you-want)
+- [Next - Build and Deploy gatsby website](#next---build-and-deploy-gatsby-website)
+
+<!-- /MarkdownTOC -->
+
 * Let's build the backend
 * We need the whole sanity to be online somewhere
     - Sanity Studio has been our backend and you can host that on sanity

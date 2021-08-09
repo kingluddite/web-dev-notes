@@ -1,10 +1,27 @@
 # Make website responsive
+<!-- MarkdownTOC -->
+
+- [Touchups](#touchups)
+- [unique key errors](#unique-key-errors)
+- [ItemGrid also has the same issue](#itemgrid-also-has-the-same-issue)
+- [Center logo](#center-logo)
+  - [Mobile button](#mobile-button)
+- [Follow up](#follow-up)
+- [Fix long titles](#fix-long-titles)
+- [Home page grid responsive issues](#home-page-grid-responsive-issues)
+- [Toppings font size](#toppings-font-size)
+- [Pagination](#pagination)
+- [My error](#my-error)
+- [Chrome vs Firefox](#chrome-vs-firefox)
+
+<!-- /MarkdownTOC -->
+
 ## Touchups
 * Center footer copyright
 
 `Footer.js`
 
-```
+```js
 // MORE CODE
 
     <footer className="center">
@@ -19,7 +36,7 @@
 
 * I used `i` (index) but this could be duplicated
 
-```
+```js
 // MORE CODE
 
     <ItemsGrid>
@@ -31,7 +48,7 @@
 
 * Better to to this:
 
-```
+```js
 // MORE CODE
 
     <ItemsGrid>
@@ -47,7 +64,7 @@
 
 `ItemGrid.js`
 
-```
+```js
 // MORE CODE
 
 export default function ItemGrid({ items }) {
@@ -58,7 +75,7 @@ export default function ItemGrid({ items }) {
 
 * And so we use this:
 
-```
+```js
 // MORE CODE
 
 export default function ItemGrid({ items }) {
@@ -79,7 +96,7 @@ export default function ItemGrid({ items }) {
 * Pagination.js
     - console.log(skip)
 
-```
+```js
 // MORE CODE
 
   return (
@@ -98,7 +115,7 @@ export default function ItemGrid({ items }) {
     - Remember when you are getting the data in gatsby it is just `id`
     - But in Sanity it is `_id` 
 
-```
+```js
 // MORE CODE
 
       <SlicemasterGridStyles>
@@ -129,7 +146,7 @@ export default function ItemGrid({ items }) {
     - stylelint
         + @media comes before rule
 
-```
+```js
 // MORE CODE
 
   a {
@@ -145,7 +162,7 @@ export default function ItemGrid({ items }) {
 
 * Also removed `skip` as it is not used
 
-```
+```js
 // MORE CODE
 
 // skip was destructured here but we did not use it so we removed it
@@ -157,7 +174,7 @@ export default function Pagination({ pageSize, totalCount, currentPage, base }) 
 * When the device gets smaller (600px) place logo on top an icons below it
 * **note** I removed skip from prop types:
 
-```
+```js
 // MORE CODE
 
 Pagination.propTypes = {
@@ -173,7 +190,7 @@ Pagination.propTypes = {
 
 `slicemasters.js`
 
-```
+```js
 // MORE CODE
 
       <Pagination
@@ -189,7 +206,7 @@ Pagination.propTypes = {
 
 `Nav.js`
 
-```
+```js
 // MORE CODE
 
           <Link to="/pizzas">Pizza Menu</Link>
@@ -204,7 +221,7 @@ Pagination.propTypes = {
 
 * And style it (will appear at 600px device size)
 
-```
+```js
 // MORE CODE
 
 const NavStyles = styled.nav`
@@ -241,7 +258,7 @@ const NavStyles = styled.nav`
 
 `.stylelintrc`
 
-```
+```js
 // MORE CODE
 
   "rules": {
@@ -258,7 +275,7 @@ const NavStyles = styled.nav`
 
 * ItemStyles
 
-```
+```js
 // MORE CODE
 
   p {
@@ -272,11 +289,11 @@ const NavStyles = styled.nav`
 // MORE CODE
 ```
 
-## Home page grid resonsive issues
+## Home page grid responsive issues
 * **note** 320px is smallest a phone will go
 * Below will make the columns go from 2 to 1 columns
 
-```
+```js
 // MORE CODE
 
 export const HomePageGrid = styled.div`
@@ -298,7 +315,7 @@ export const HomePageGrid = styled.div`
 
 `ItemStyles` (Grids.js)
 
-```
+```js
 // MORE CODE
 
   p {
@@ -319,7 +336,7 @@ export const HomePageGrid = styled.div`
 
 `ToppingsFilter.js`
 
-```
+```js
 // MORE CODE
 
   a {
@@ -340,7 +357,7 @@ export const HomePageGrid = styled.div`
 
 * Comment this in:
 
-```
+```js
 // MORE CODE
 
     &menu (max-width: 900px) {
@@ -359,7 +376,7 @@ export const HomePageGrid = styled.div`
 
 `Pagination.js`
 
-```
+```js
 // MORE CODE
 
 >
@@ -385,7 +402,7 @@ export const HomePageGrid = styled.div`
 
 * But since we are hiding the word `previous` and `next` we need to make them accessible and we do that with the `title` attribute
 
-```
+```js
 // MORE CODE
 
     <PaginationStyles>
@@ -411,7 +428,7 @@ export const HomePageGrid = styled.div`
 
 * Add our class that will hide the word on 800px or less
 
-```
+```js
 // MORE CODE
 
     @media (max-width: 800px) {
@@ -432,7 +449,7 @@ export const HomePageGrid = styled.div`
 
 `Pagination.js` (finished page)
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';

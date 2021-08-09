@@ -1,4 +1,22 @@
 # Creating the Toppings Content Type and custom previews
+<!-- MarkdownTOC -->
+
+- [Use the sanity docs!](#use-the-sanity-docs)
+- [1-to-many relationship](#1-to-many-relationship)
+- [Topping schema](#topping-schema)
+  - [We don't see it yet in sanity](#we-dont-see-it-yet-in-sanity)
+  - [typing tip in VS Code](#typing-tip-in-vs-code)
+  - [Tip - click the edit button](#tip---click-the-edit-button)
+- [Add boolean](#add-boolean)
+  - [Add checkbox instead of switch](#add-checkbox-instead-of-switch)
+- [Create a custom prepared view](#create-a-custom-prepared-view)
+- [Preview](#preview)
+- [Template literal to make the `name` pull from the field object](#template-literal-to-make-the-name-pull-from-the-field-object)
+- [Destructure field](#destructure-field)
+- [Next - relate these 2 content types](#next---relate-these-2-content-types)
+
+<!-- /MarkdownTOC -->
+
 ## Use the sanity docs!
 * [sanity docs](https://www.sanity.io/docs)
 

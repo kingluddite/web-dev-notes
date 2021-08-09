@@ -1,5 +1,18 @@
 # Loading Sample Data
+<!-- MarkdownTOC -->
+
+- [Alfred App \(MacOs\)](#alfred-app-macos)
+- [Easy way to load seed data into sanity](#easy-way-to-load-seed-data-into-sanity)
+  - [How can we load sample data into sanity?](#how-can-we-load-sample-data-into-sanity)
+- [Watch out for null error](#watch-out-for-null-error)
+  - [West Practice \(Troubleshooting\)](#west-practice-troubleshooting)
+- [How to export sanity data](#how-to-export-sanity-data)
+- [Some CSS styling and CSS subgrid](#some-css-styling-and-css-subgrid)
+
+<!-- /MarkdownTOC -->
+
 ## Alfred App (MacOs)
+* This app saved me so much time (snippets is cool but searching through bookmarks is even cooler - [Here is a resource to find Alfred App like apps in in Windows](https://www.makeuseof.com/free-windows-alternatives-to-macs-alfred-app/))
 * I added snippets to quickly load
     - sanity local server, http://localhost:3333 using `!san`
     - gatsby local server, http://localhost:8000 using `!gat`
@@ -24,7 +37,7 @@
 * If you are loading images (or any asset) from sanity or any Headless CMS and one of the images or assets is missing you will get a `TypeError` pointing to a null value
 * Example:
 
-```
+```js
 // MORE CODE
 
 <Img fluid={pizza.image.asset.fluid} alt={pizza.name} />
@@ -38,7 +51,7 @@
 * Comment out offending code
 * Log out the problem
 
-```
+```js
 // MORE CODE
 
 function SinglePizza({ pizza }) {
@@ -80,9 +93,3 @@ https://coderwall.com/p/l8byfq/using-gzip-in-os-x
 ```
 
 ## Some CSS styling and CSS subgrid
-when you log out, you log out from the sp everywhere
-you kill okta session
-
-second browse open in another browser
-we are logging out from the sp everyone
-and from the idp everyone

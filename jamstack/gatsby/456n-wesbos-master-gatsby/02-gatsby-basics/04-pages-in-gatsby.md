@@ -1,4 +1,37 @@
 # Folders in Gatsby
+<!-- MarkdownTOC -->
+
+- ["Cleaning" Gatsby](#cleaning-gatsby)
+    - [What issues need cleaning in Gatsby?](#what-issues-need-cleaning-in-gatsby)
+- [`src` vs `static` - What's the difference?](#src-vs-static---whats-the-difference)
+    - [static](#static)
+        - [You especially don't want to put stuff like:](#you-especially-dont-want-to-put-stuff-like)
+            - [Why?](#why)
+        - [What's the other way? - Place inside your `src` folder](#whats-the-other-way---place-inside-your-src-folder)
+- [pages folder](#pages-folder)
+- [The suggest folder structure/names](#the-suggest-folder-structurenames)
+- [Two types of pages](#two-types-of-pages)
+    - [Dynamically generated pages](#dynamically-generated-pages)
+        - [Why are we not creating HTML files and putting them in the pags folder?](#why-are-we-not-creating-html-files-and-putting-them-in-the-pags-folder)
+        - [import React from 'react'](#import-react-from-react)
+- [Start our gatsby build](#start-our-gatsby-build)
+- [package.json scripts](#packagejson-scripts)
+- [Run gatsby](#run-gatsby)
+- [Troubleshooting](#troubleshooting)
+- [Running Gatsby in develop mode](#running-gatsby-in-develop-mode)
+- [Troubleshoot caniuse warning \(fixed\)](#troubleshoot-caniuse-warning-fixed)
+- [Now `localhost:8000` works](#now-localhost8000-works)
+    - [Hot reloading](#hot-reloading)
+- [404 page](#404-page)
+- [Warning - You won't see your 404 page in development](#warning---you-wont-see-your-404-page-in-development)
+- [Scaffold Pages](#scaffold-pages)
+    - [Gatsby Pages naming convention \(lowercase\)](#gatsby-pages-naming-convention-lowercase)
+- [Here are the pages \(`pages/`\)](#here-are-the-pages-pages)
+    - [Test each page in the browser to make sure they work](#test-each-page-in-the-browser-to-make-sure-they-work)
+- [Next - navigating page to page in Gatsby](#next---navigating-page-to-page-in-gatsby)
+
+<!-- /MarkdownTOC -->
+
 * The `public` folder
     - Is created on build
     - You can delete and gatsby will regenerate on build

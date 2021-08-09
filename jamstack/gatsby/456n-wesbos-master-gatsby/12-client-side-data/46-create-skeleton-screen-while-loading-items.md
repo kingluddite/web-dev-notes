@@ -1,4 +1,19 @@
 # Create skeleton screen while loading items
+<!-- MarkdownTOC -->
+
+- [We'll need to use several grids](#well-need-to-use-several-grids)
+- [Deal with the items being loaded Grid](#deal-with-the-items-being-loaded-grid)
+- [Load in our grid to both components](#load-in-our-grid-to-both-components)
+- [pass in our prop count of 4 for each component](#pass-in-our-prop-count-of-4-for-each-component)
+- [Let's work with arrays](#lets-work-with-arrays)
+- [SingleGrid item styles](#singlegrid-item-styles)
+- [**West Practice** - `font-size: 0`](#west-practice---font-size-0)
+- [Cool gradient bg](#cool-gradient-bg)
+- [Now conditionally show these items while we are in a loading state](#now-conditionally-show-these-items-while-we-are-in-a-loading-state)
+- [Next - Loop through the slicers and pizzas and display them](#next---loop-through-the-slicers-and-pizzas-and-display-them)
+
+<!-- /MarkdownTOC -->
+
 * This is client side data
 
 ## We'll need to use several grids
@@ -7,7 +22,7 @@
 
 `styles/Grids.js`
 
-```
+```js
 import styled from 'styled-components';
 
 export const HomePageGrid = styled.div`
@@ -19,7 +34,7 @@ export const HomePageGrid = styled.div`
 
 `pages/index.js`
 
-```
+```js
 import React from 'react';
 import { HomePageGrid } from '../styles/Grids';
 import useLatestData from '../utils/useLatestData';
@@ -60,7 +75,7 @@ export default function HomePage() {
 
 `src/components/LoadingGrid.js`
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ItemsGrid } from '../styles/Grids';
@@ -82,7 +97,7 @@ LoadingGrid.propTypes = {
 ```
 
 ## Load in our grid to both components
-```
+```js
 import React from 'react';
 import LoadingGrid from '../components/LoadingGrid';
 import { HomePageGrid } from '../styles/Grids';
@@ -111,7 +126,7 @@ function HotSlices() {
 ![four columns with grid](https://i.imgur.com/JYXWE6W.png)
 
 ## pass in our prop count of 4 for each component
-```
+```js
 // MORE CODE
 
 function CurrentlySlicing() {
@@ -143,7 +158,7 @@ function HotSlices() {
     - We use `( )` for an implicit return
 `LoadingGrid.js`
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ItemsGrid } from '../styles/Grids';
@@ -169,7 +184,7 @@ LoadingGrid.propTypes = {
 
 `LoadingGrid.js`
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ItemsGrid } from '../styles/Grids';
@@ -210,16 +225,16 @@ LoadingGrid.propTypes = {
 
 `Grids.js`
 
-```
+```js
 // MORE CODE
 export const ItemStyles = styled.div`
   background: #ff0000;
-`;
+`
 ```
 
 * Consume the styles
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ItemsGrid, ItemStyles } from '../styles/Grids';
@@ -258,7 +273,7 @@ LoadingGrid.propTypes = {
         + And the size of that space is determined by the font-size
         + So if you run into weird issues try `font-size: 0`
 
-```
+```js
 // MORE CODE
 
 export const ItemStyles = styled.div`
@@ -274,7 +289,7 @@ export const ItemStyles = styled.div`
 ```
 
 ## Cool gradient bg
-```
+```js
 // MORE CODE
 
   img.loading {
@@ -288,7 +303,7 @@ export const ItemStyles = styled.div`
 
 * mine
 
-```
+```js
 // MORE CODE
 
 /* Single Grid Item (for home page) */
@@ -336,7 +351,7 @@ export const ItemStyles = styled.div`
 ## Now conditionally show these items while we are in a loading state
 `pages/index.js`
 
-```
+```js
 import React from 'react';
 import PropTypes from 'prop-types';
 import LoadingGrid from '../components/LoadingGrid';

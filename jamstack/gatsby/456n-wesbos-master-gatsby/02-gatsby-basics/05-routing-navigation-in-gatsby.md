@@ -1,4 +1,24 @@
 # Routing and navigation in Gatsby
+<!-- MarkdownTOC -->
+
+- [Pages vs Components](#pages-vs-components)
+- [We'll create a Navbar which will be a reusable component](#well-create-a-navbar-which-will-be-a-reusable-component)
+  - [Two ways to create a function](#two-ways-to-create-a-function)
+- [But we need to render JSX so we return it and our function component becomes this:](#but-we-need-to-render-jsx-so-we-return-it-and-our-function-component-becomes-this)
+- [We will import our Nav component into our sliemasters page](#we-will-import-our-nav-component-into-our-sliemasters-page)
+- [Problem](#problem)
+- [Use `Link` from gatsby instead of HTML `a`(anchor tags)](#use-link-from-gatsby-instead-of-html-aanchor-tags)
+  - [Other type of link](#other-type-of-link)
+  - [React jargon](#react-jargon)
+    - [Example of an imperative](#example-of-an-imperative)
+  - [Tips](#tips)
+- [Important part of navigate](#important-part-of-navigate)
+- [Caution using buttons](#caution-using-buttons)
+- [Here's what we want our Nav to look like](#heres-what-we-want-our-nav-to-look-like)
+- [Next - Creating General Layouts in Gatsby](#next---creating-general-layouts-in-gatsby)
+
+<!-- /MarkdownTOC -->
+
 ## Pages vs Components
 * We use a page once
 * Components are reusable pieces inside a page

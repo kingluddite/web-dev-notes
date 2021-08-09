@@ -1,4 +1,14 @@
 # Single User pages
+<!-- MarkdownTOC -->
+
+- [Single Slicemaster page](#single-slicemaster-page)
+- [Testing](#testing)
+- [Create query for that person](#create-query-for-that-person)
+- [show the data of the slicemaster](#show-the-data-of-the-slicemaster)
+- [Finished slicemaster page](#finished-slicemaster-page)
+
+<!-- /MarkdownTOC -->
+
 * **note** Wes switches to `person` but I used `slicemaster` as that follows his previous naming convention
 * `cool to have` - like next "file based routing"
 * We will need to create a new component for the single slicemaster
@@ -10,7 +20,7 @@
 ## Single Slicemaster page
 `templates/Slicemaster.js`
 
-```
+```js
 // MORE CODE
 
 import { graphql } from 'gatsby';
@@ -35,7 +45,7 @@ SingleSlicemasterPage.propTypes = {
 
 * Fix link on `slicemasters.js` page
 
-```
+```js
 // MORE CODE
 
           <SliceMasterStyles key={person.id}>
@@ -46,7 +56,7 @@ SingleSlicemasterPage.propTypes = {
 
 * And in `gatsby-node.js` we create the single pages from the `Slicemaster.js` template we just created
 
-```
+```js
 // MORE CODE
 
 async function turnSlicemastersIntoPages({ graphql, actions }) {
@@ -89,7 +99,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
 ## Create query for that person
 `src/templates/Slicemaster.js`
 
-```
+```js
 // MORE CODE
 SingleSlicemasterPage.propTypes = {
   data: PropTypes.object,
@@ -116,7 +126,7 @@ export const query = graphql`
 ## show the data of the slicemaster
 * Log data first
 
-```
+```js
 // MORE CODE
 
 export default function SingleSlicemasterPage({ data: { slicemaster } }) {
@@ -133,7 +143,7 @@ export default function SingleSlicemasterPage({ data: { slicemaster } }) {
 ```
 
 ## Finished slicemaster page
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -173,5 +183,4 @@ export const query = graphql`
   }
 `;
 ```
-
 

@@ -1,4 +1,17 @@
 # Creating Data Relationships
+<!-- MarkdownTOC -->
+
+- [Let's add our relationship](#lets-add-our-relationship)
+- [Schema types: Reference](#schema-types-reference)
+- [Check out the pizza is showing in the UI list](#check-out-the-pizza-is-showing-in-the-ui-list)
+  - [We'll create a custom preview of our pizza with toppings](#well-create-a-custom-preview-of-our-pizza-with-toppings)
+- [Rest param!](#rest-param)
+- [Filter out undefined and return the preview object](#filter-out-undefined-and-return-the-preview-object)
+- [and the JavaScript](#and-the-javascript)
+- [Next - Create our Person Data Type](#next---create-our-person-data-type)
+
+<!-- /MarkdownTOC -->
+
 * Open up our Pepperoni pizza
     - There currently is no way to add any toppings
 

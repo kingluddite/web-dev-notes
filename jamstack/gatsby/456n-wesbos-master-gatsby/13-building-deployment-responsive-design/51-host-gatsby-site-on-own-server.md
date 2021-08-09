@@ -1,4 +1,10 @@
 # Host Gatsby site on own server
+<!-- MarkdownTOC -->
+
+- [Create a folder on your server](#create-a-folder-on-your-server)
+
+<!-- /MarkdownTOC -->
+
 * If you want to host your site on your own server
     - Examples
         + Digital Ocean
@@ -10,7 +16,7 @@
 * In order to run your gatsby website on a subfolder you need to change the build slightly so it won't run on your domain `example.com` but instead run on `example.com/pizza`
 * In your `gatsby-config.js` add a new property
 
-```
+```js
 export default {
  pathPrefix: '/pizza',
  siteMetadata: ...
@@ -39,5 +45,3 @@ export default {
     - You'll need to update the favicon because the path changed to where it is
     - **One Con** There are no serverless functions running on your own server
         + If you wanted to get that to work then you'd have to deploy it to some other serverless function host (that is a whole ordeal on its own)
-
-

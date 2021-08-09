@@ -1,4 +1,29 @@
 # Tooling
+<!-- MarkdownTOC -->
+
+- [Frontend](#frontend)
+- [Backend](#backend)
+- [Make sure you Oauth into the correct Sanity account](#make-sure-you-oauth-into-the-correct-sanity-account)
+- [If you have session error](#if-you-have-session-error)
+  - [Troubleshooting sanity "session" issue](#troubleshooting-sanity-session-issue)
+- [gatsby and sanity will be in a folder](#gatsby-and-sanity-will-be-in-a-folder)
+- [Install global cli's](#install-global-clis)
+  - [Errors are ok here \(just means you have them already installed\)](#errors-are-ok-here-just-means-you-have-them-already-installed)
+- [After installing check versions](#after-installing-check-versions)
+- [Eslint](#eslint)
+- [Pages in Gatsby](#pages-in-gatsby)
+  - [Folder structure](#folder-structure)
+  - [pages](#pages)
+    - [naming convention for pages](#naming-convention-for-pages)
+- [Expand abbreviation for Emmet](#expand-abbreviation-for-emmet)
+  - [Run your gatsby app](#run-your-gatsby-app)
+  - [404.js](#404js)
+- [Why we do not capitalize Gatsby pages?](#why-we-do-not-capitalize-gatsby-pages)
+  - [Our pages](#our-pages)
+- [Navigate to the pages](#navigate-to-the-pages)
+
+<!-- /MarkdownTOC -->
+
 * Node Current
 * VS code shell command
 

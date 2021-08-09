@@ -1,4 +1,25 @@
 # Code Serverless Function
+<!-- MarkdownTOC -->
+
+- [Update our placeOrder serverless functions](#update-our-placeorder-serverless-functions)
+- [Add a for of loop](#add-a-for-of-loop)
+- [Troubleshooting](#troubleshooting)
+- [Testing in browser](#testing-in-browser)
+- [Check that our data was being sent](#check-that-our-data-was-being-sent)
+- [Test in browser](#test-in-browser)
+  - [Huge Lightbulb](#huge-lightbulb)
+- [WEST Practice](#west-practice)
+- [Test](#test)
+- [Next - Send a "templated" email](#next---send-a-templated-email)
+  - [Our generatorOrderEmail function](#our-generatororderemail-function)
+- [Now we'll send the email with our new template](#now-well-send-the-email-with-our-new-template)
+- [Let's add minimal styles](#lets-add-minimal-styles)
+- [Test it out](#test-it-out)
+- [Removing the commas](#removing-the-commas)
+- [Next](#next)
+
+<!-- /MarkdownTOC -->
+
 1. Will validate the function
 2. Send off email
 
@@ -13,7 +34,7 @@
 * We'll loop over each and if we are missing
     - We'll send an error back
 
-```
+```js
 // MORE CODE
 
   const requiredFields = ['email', 'name', 'order'];
@@ -26,7 +47,7 @@
         + **FOLLOW UP** Using a forEach would return another scope and **IMPORTANT** you can return from an inner scope of an outer scope
             * So to avoid this we'll use a `for of` loop
 
-```
+```js
 // MORE CODE
 
 exports.handler = async (event, context) => {
@@ -37,7 +58,7 @@ exports.handler = async (event, context) => {
 ```
 
 ## Add a for of loop
-```
+```js
 // MORE CODE
 
 exports.handler = async (event, context) => {
@@ -76,7 +97,7 @@ exports.handler = async (event, context) => {
 
 `placeOrder.js`
 
-```
+```js
 // MORE CODE
 
 exports.handler = async (event, context) => {
@@ -112,7 +133,7 @@ exports.handler = async (event, context) => {
 
 * **note** We also see name, email and total too!
 
-```
+```js
 // MORE CODE
 
 exports.handler = async (event, context) => {
@@ -130,7 +151,7 @@ exports.handler = async (event, context) => {
 
 * We run again in `:8888`, fill form out and submit and we get this in the terminal:
 
-```
+```js
 // MORE CODE
 
 {
@@ -152,7 +173,7 @@ exports.handler = async (event, context) => {
 
 `placeOrder.js`
 
-```
+```js
 // MORE CODE
 
 exports.handler = async (event, context) => {
@@ -198,7 +219,7 @@ exports.handler = async (event, context) => {
         + Since it is not React the syntax will be different
 
 ### Our generatorOrderEmail function
-```
+```js
 // MORE CODE
 
 function generateOrderEmail({ order, total }) {
@@ -222,7 +243,7 @@ function generateOrderEmail({ order, total }) {
 ## Now we'll send the email with our new template
 * Old
 
-```
+```js
 // MORE CODE
 
   const info = await transporter.sendMail({
@@ -237,7 +258,7 @@ function generateOrderEmail({ order, total }) {
 
 * And update it to:
 
-```
+```js
 // MORE CODE
 
   const info = await transporter.sendMail({
@@ -252,7 +273,7 @@ function generateOrderEmail({ order, total }) {
 
 * And we update what we return from:
 
-```
+```js
 // MORE CODE
 
   console.log(info);
@@ -268,7 +289,7 @@ function generateOrderEmail({ order, total }) {
 
 * To this:
 
-```
+```js
 // MORE CODE
 
   return {
@@ -280,7 +301,7 @@ function generateOrderEmail({ order, total }) {
 ```
 
 ## Let's add minimal styles
-```
+```js
 // MORE CODE
 
     <p>Your total is <strong>$${total}</strong> due at pickup</p>
@@ -303,7 +324,7 @@ function generateOrderEmail({ order, total }) {
 
 `order.js`
 
-```
+```js
 // MORE CODE
 
 image {
@@ -322,7 +343,7 @@ image {
 * The comma appears when you loop over things using `map` it automatically joins them using a comma
 * Fix it with:
 
-```
+```js
 // MORE CODE
 
     <ul>

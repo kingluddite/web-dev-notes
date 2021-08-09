@@ -1,4 +1,18 @@
 # Deploy to Vercel
+<!-- MarkdownTOC -->
+
+- [Changes in the gatsby folder](#changes-in-the-gatsby-folder)
+  - [Updating our serverless functions](#updating-our-serverless-functions)
+- [Now we'll open the placeOrder.js](#now-well-open-the-placeorderjs)
+  - [All the functions stay the same](#all-the-functions-stay-the-same)
+  - [But the function signatures need to be updated](#but-the-function-signatures-need-to-be-updated)
+- [Install the vercel CLI](#install-the-vercel-cli)
+  - [You need to create an account](#you-need-to-create-an-account)
+- [Then type:](#then-type)
+- [Then it will deploy it](#then-it-will-deploy-it)
+
+<!-- /MarkdownTOC -->
+
 * [vercel website](https://vercel.com/)
 * Very similar to Netlify
 * It hosts serverless functions just like Netlify
@@ -8,7 +22,7 @@
 ### Updating our serverless functions
 * Before for Netlify
 
-```
+```js
 exports.handler = async (event, context) =>
   // console.log(event);
   ({
@@ -19,7 +33,7 @@ exports.handler = async (event, context) =>
 
 * After in Vercel
 
-```
+```js
 module.exports = async (req, res) => ({
   statusCode: 200,
   body: 'Yo!',
@@ -37,7 +51,7 @@ module.exports = async (req, res) => ({
 ### But the function signatures need to be updated
 * Update from `exports.handler` (this is the Lamda AWS function syntax)
 
-```
+```js
 // MORE CODE
 
 module.exports = async (req, res) => {
@@ -135,7 +149,7 @@ module.exports = async (req, res) => {
 * After build finishes
 * Click the `Visit` button to see your live site
     - Copy the URL
-* The pizza menu doesn't work (CORS!) add the domain to the API cors
+* The pizza menu doesn't work (CORS!) add the domain to the API CORS
     - Sanity.io > login > project > settings > API > Add the new Origin > Paste the URL into Sanity API
     - Make sure you don't add the trailing forward slash
     - Site used to be called ZEIT NOW

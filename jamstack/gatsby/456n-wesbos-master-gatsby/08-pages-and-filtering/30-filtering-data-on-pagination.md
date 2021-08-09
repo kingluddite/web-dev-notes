@@ -1,4 +1,12 @@
 # Filterning the data on Pagination
+<!-- MarkdownTOC -->
+
+- [Here is how we set up our page query to accept variables](#here-is-how-we-set-up-our-page-query-to-accept-variables)
+- [Test it out](#test-it-out)
+- [Next - Get links of next and previous working](#next---get-links-of-next-and-previous-working)
+
+<!-- /MarkdownTOC -->
+
 * **note** Any context that gets passed via createPage is automatically available inside your GraphQL query
     - As long as you specify it when writing your query
     - `skip` won't be required (you can just browse to slicemasters on its own)
@@ -16,7 +24,7 @@
 
 * It will rerun automatically and you will see only 2 slicemasters per page
 
-```
+```js
 // MORE CODE
 export const query = graphql`
   query ($skip: Int = 0, $pageSize: Int = 4) {
@@ -48,7 +56,7 @@ export const query = graphql`
 
 `slicemasters.js`
 
-```
+```js
 // MORE CODE
 
 export const query = graphql`

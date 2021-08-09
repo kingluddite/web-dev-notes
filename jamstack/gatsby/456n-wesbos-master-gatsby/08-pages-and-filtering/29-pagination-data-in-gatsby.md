@@ -1,4 +1,24 @@
 # Paginating Data in Gatsby
+<!-- MarkdownTOC -->
+
+- [Gatsby paginates differently](#gatsby-paginates-differently)
+  - [Example](#example)
+- [We will add these settings in our environment variables](#we-will-add-these-settings-in-our-environment-variables)
+- [And we now will surface GATSBY_PAGE_SIZE in gatby](#and-we-now-will-surface-gatsby_page_size-in-gatby)
+- [Wait! Won't that also surface my secret Sanity environment variable too?](#wait-wont-that-also-surface-my-secret-sanity-environment-variable-too)
+- [Wes says to add this to .env](#wes-says-to-add-this-to-env)
+- [New function to turn slicemasters into pages](#new-function-to-turn-slicemasters-into-pages)
+- [1. Query all slicemasters](#1-query-all-slicemasters)
+  - [Add to our function gatsby-node.js](#add-to-our-function-gatsby-nodejs)
+- [3. Determine how many pages](#3-determine-how-many-pages)
+- [4. Loop from 1 to n \(n = number of pages we have\)](#4-loop-from-1-to-n-n--number-of-pages-we-have)
+  - [How to you loop through from 1 to 3?](#how-to-you-loop-through-from-1-to-3)
+- [Restart Gatsby](#restart-gatsby)
+- [So we change the number of slicemasters per page to 2](#so-we-change-the-number-of-slicemasters-per-page-to-2)
+- [Next](#next)
+
+<!-- /MarkdownTOC -->
+
 * Slightly different than traditional site generate on demand
 
 `localhost:8000/slicemasters?page=3`
@@ -8,7 +28,7 @@
     - So we need to know at build time how many pages there are
 
 ### Example
-* We'll do this in gatsby-node.js
+* We'll do this in `gatsby-node.js`
     - If we have 10 people and 2 per page
     - Then we need 5 pages
         + slicemasters
@@ -18,17 +38,17 @@
         + slicemasters/5
     - And those pages need to be generated ahead of time
 
-## We will add these settings in our enviroment variables
+## We will add these settings in our environment variables
 * These environmental variables will show how many are on each page
     - We could also put this file on a JavaScript file in settings.js (as an example)
 * We will also show how to add these environmental variables in our `.env` file and "surface" them to Gatsby
-    - **Note** To surface an enviromental variable in Gatsby you must preface it with:
+    - **Note** To surface an environmental variable in Gatsby you must preface it with:
         + `GATSBY_`
             * `GATSBY_PAGE_SIZE=4`
 
 `.env`
 
-```
+```js
 // MORE CODE
 
 SANITY_TOKEN=YOURKEYHERE
@@ -53,14 +73,14 @@ GATSBY_PAGE_SIZE=4
     - https://www.gatsbyjs.com/docs/reference/local-development/fast-refresh/
         + Ways says it speeds up gatsby a lot and css refreshes are even better
 
-```
+```js
 GATSBY_HOT_LOADER=fast-refresh
 ```
 
 * **note** Any changes to `.env` requires a gatsby restart
 
 ## New function to turn slicemasters into pages
-```
+```js
 // MORE CODE
 
 async function turnSlicemastersIntoPages({ graphql, actions }) {
@@ -90,7 +110,7 @@ export async function createPages(params) {
 ## 1. Query all slicemasters
 * DO this in GraphQL Playground
 
-```
+```js
 query MyQuery {
   allSanityPerson {
     nodes {
@@ -105,9 +125,9 @@ query MyQuery {
 }
 ```
 
-* Add to our function gatsby-node.js
+### Add to our function gatsby-node.js
 
-```
+```js
 // MORE CODE
 
 async function turnSlicemastersIntoPages({ graphql, actions }) {
@@ -142,7 +162,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
 * There are based on how many slicemasters there are, and how many per page?
     - **warning!** Data from environment variables come in as a string (not a number!)
 
-```
+```js
 // MORE CODE
 
   const pageSize = process.env.GATSBY_PAGE_SIZE;
@@ -152,7 +172,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
 
 * So make sure to convert to a number
 
-```
+```js
 // MORE CODE
 
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
@@ -166,7 +186,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
 
 `gatsby-node.js`
 
-```
+```js
 // MORE CODE
 
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
@@ -208,7 +228,7 @@ There are 11 total pages. And we have 3 pages with 4 per page.
     - But we'll need to add 1 (to start from 1)
     - **note** we don't care about the `undefined` in the array and it is common for developers to put an underscore as a placeholder (wes calls it a garbage variable because we won't use it)
 
-## Restart gatsby
+## Restart Gatsby
 * You should see in the build terminal
     - This shows we created 3 pages
     - Go to a 404 page and you'll see the 3 pages that were creates (the urls)
@@ -224,7 +244,7 @@ There are 11 total pages. And we have 3 pages with 4 per page.
 
 ![pages created for slicemasters](https://i.imgur.com/b4WV7NN.png)
 
-```
+```js
 // MORE CODE
 
 Creating page 0
@@ -233,7 +253,7 @@ Creating page 2
 // MORE CODE
 ```
 
-```
+```js
 // MORE CODE
 
 async function turnSlicemastersIntoPages({ graphql, actions }) {

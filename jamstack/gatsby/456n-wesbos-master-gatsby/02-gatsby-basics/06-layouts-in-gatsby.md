@@ -1,4 +1,20 @@
 # Layouts in Gatsby
+<!-- MarkdownTOC -->
+
+- [Self closing React component verses open and close](#self-closing-react-component-verses-open-and-close)
+- [How do we use this Layout?](#how-do-we-use-this-layout)
+- [props - how do we get the content that was passed down](#props---how-do-we-get-the-content-that-was-passed-down)
+  - [children](#children)
+  - [We can destructure](#we-can-destructure)
+- [Tip](#tip)
+- [default props](#default-props)
+- [Do you want to have to wrap `` around all elements](#do-you-want-to-have-to-wrap-around-all-elements)
+- [Adding the fragment](#adding-the-fragment)
+- [gatsby-ssr.js](#gatsby-ssrjs)
+- [Next - Styles in Gatsby](#next---styles-in-gatsby)
+
+<!-- /MarkdownTOC -->
+
 * **West Practice** auto import (you type your component and this keyboard shortcut shows items, select the component and it will automatically add the import)
   - (VS Code) ctrl + space brings up "code actions" click cube icon to auto import
 * You can auto import in Vim (pulls in function but works)

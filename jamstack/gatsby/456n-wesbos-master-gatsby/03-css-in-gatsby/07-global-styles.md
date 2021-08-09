@@ -1,4 +1,27 @@
 # Gatsby global styles
+<!-- MarkdownTOC -->
+
+- [ways to import css](#ways-to-import-css)
+  - [css modules](#css-modules)
+  - [styled components](#styled-components)
+- [Our CSS strategy](#our-css-strategy)
+  - [Let's tackle global styles](#lets-tackle-global-styles)
+  - [Add our reset](#add-our-reset)
+- [Create our global styled component file](#create-our-global-styled-component-file)
+    - [Are we allowed to import svg into javascript? No](#are-we-allowed-to-import-svg-into-javascript-no)
+    - [Why am I importing them and storing them as variables?](#why-am-i-importing-them-and-storing-them-as-variables)
+- [West Practice](#west-practice)
+- [How I select gatsby images before they are fully rendered](#how-i-select-gatsby-images-before-they-are-fully-rendered)
+- [How are we able to import `svgs` and `css` into javascript files?](#how-are-we-able-to-import-svgs-and-css-into-javascript-files)
+- [Why am I importing them and referencing them and not just having them in my images folder and referencing them in my css code?](#why-am-i-importing-them-and-referencing-them-and-not-just-having-them-in-my-images-folder-and-referencing-them-in-my-css-code)
+- [CSS custom properties \(we know them as variables\)](#css-custom-properties-we-know-them-as-variables)
+- [Tip](#tip)
+- [How we can select the gatsby images before they are fully rendered](#how-we-can-select-the-gatsby-images-before-they-are-fully-rendered)
+  - [scrollbar styles to get it to work cross-browser](#scrollbar-styles-to-get-it-to-work-cross-browser)
+- [How can we use these GlobalStyles?](#how-can-we-use-these-globalstyles)
+
+<!-- /MarkdownTOC -->
+
 `src/styles/GlobalStyles.js`
 
 ```css

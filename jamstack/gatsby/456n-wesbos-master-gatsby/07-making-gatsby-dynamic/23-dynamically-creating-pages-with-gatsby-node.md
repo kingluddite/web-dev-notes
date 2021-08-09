@@ -1,4 +1,28 @@
 # Dynamically creating pages with gatsby-node
+<!-- MarkdownTOC -->
+
+- [\(gatsby-node.js\) gatsby node APIs](#gatsby-nodejs-gatsby-node-apis)
+  - [createPages](#createpages)
+- [Here is our plan](#here-is-our-plan)
+- [Get a template for this page](#get-a-template-for-this-page)
+- [We'll generate our pizza template](#well-generate-our-pizza-template)
+- [Now we loop over each pizza and create a page for each pizza](#now-we-loop-over-each-pizza-and-create-a-page-for-each-pizza)
+- [Create the pages for each pizza](#create-the-pages-for-each-pizza)
+- [Test it out](#test-it-out)
+  - [What is context?](#what-is-context)
+- [Using our page as if it were a regular query](#using-our-page-as-if-it-were-a-regular-query)
+  - [GraphQL](#graphql)
+- [In GraphQL Playground](#in-graphql-playground)
+- [Now we pass into our template](#now-we-pass-into-our-template)
+- [Test it out for all pizza pages](#test-it-out-for-all-pizza-pages)
+- [An alternative way to query dynamic data](#an-alternative-way-to-query-dynamic-data)
+- [WEST PRACTICE on putting the template query inside the component?](#west-practice-on-putting-the-template-query-inside-the-component)
+- [Let's finish with our Pizza query](#lets-finish-with-our-pizza-query)
+- [Let's build it in GraphQL Playground first](#lets-build-it-in-graphql-playground-first)
+- [Next - Put the data into the UI and style it](#next---put-the-data-into-the-ui-and-style-it)
+
+<!-- /MarkdownTOC -->
+
 * We don't want to manually create millions of pages
 * We have all these toppings
     - If we had to manually create a page for each that would not be fun
@@ -10,7 +34,11 @@
 * https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/
 * Code in the file `gatsby-node.js` is run once in the process of building your site
 * You can use its APIs to create pages dynamically, add data into GraphQL, or respond to events during the build lifecycle
-* We will tap into the `createPages` "extension poing" (think of it as a Hook)
+* We will tap into the `createPages` "extension point" (think of it as a Hook)
+  - This extension point is called only after the initial sourcing and transformation of nodes plus creation of the GraphQL schema are complete so you can query your data in order to create pages
+  - [createPages docs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createPages)
+* We'll build a file in the `src/templates` folder to be the template used to create all these single pages
+    + Because there is time involved we will build these pages using async/await
 
 ### createPages
 * [docs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/#createPages)
@@ -18,7 +46,7 @@
 
 `gatsby-node.js`
 
-```
+```js
 export async function createPages() {
   console.log('Create Page');
   console.log('Create Page');
@@ -34,7 +62,7 @@ export async function createPages() {
 * You will see the logs appear after the sanity data has come and before we do our gatsby build (which is what we want to do so we can create pages in gatsby and put our sanity data inside it)
 
 ## Here is our plan
-```
+```js
 async function turnPizzaIntoPages(params) {
   // 1. Get a template for this page
   //  2. query all pizzas
@@ -61,7 +89,7 @@ export async function createPages(params) {
 
 `src/templates/Pizza.js`
 
-```
+```js
 export default SinglePizzaPage() {
   return <p>Single Pizza</p>
 }
@@ -72,7 +100,7 @@ export default SinglePizzaPage() {
 * **note** Don't forget the `.js` extension
     - It is not an import, it is a file path resolution
 
-```
+```js
 import path from 'path'; // node core
 
 async function turnPizzaIntoPages(params) {
@@ -89,7 +117,7 @@ async function turnPizzaIntoPages(params) {
     - We call `await` before calling turnPizzasInto pages because turnPizzasIntoPages is an async function and it will take several seconds to query all the data and create the pages for us
         + If we don't do the async await then createPages will run before we are done creating and we won't have our pages
 
-```
+```js
 import path from 'path'; // node core
 
 async function turnPizzaIntoPages(params) {
@@ -110,7 +138,7 @@ export async function createPages(params) {
 ```
 
 ## We'll generate our pizza template
-```
+```js
 // MORE CODE
 
 import path from 'path'; // node core
@@ -149,7 +177,7 @@ async function turnPizzaIntoPages({ graphql, actions }) {
 * We will use `forEach()`
     - This is not a `map()` as we are just returning anything from this, we are just going off and doing some work with the data
 
-```
+```js
 // MORE CODE
 
 async function turnPizzaIntoPages({ graphql, actions }) {
@@ -190,7 +218,7 @@ async function turnPizzaIntoPages({ graphql, actions }) {
 
 `gatsby-node.js`
 
-```
+```js
 // MORE CODE
 
 async function turnPizzaIntoPages({ graphql, actions }) {
@@ -238,7 +266,7 @@ async function turnPizzaIntoPages({ graphql, actions }) {
 
 `gatsby-node.js`
 
-```
+```js
 // MORE CODE
 
   data.pizzas.nodes.forEach((pizza) => {
@@ -254,7 +282,7 @@ async function turnPizzaIntoPages({ graphql, actions }) {
 
 * Using context
 
-```
+```js
 // MORE CODE
 
   data.pizzas.nodes.forEach((pizza) => {
@@ -282,7 +310,7 @@ async function turnPizzaIntoPages({ graphql, actions }) {
 * **note** the GraphQL query has access to all of our pageContext variables directly
 
 ### GraphQL
-```
+```js
 {
   sanityPizza(slug: {
 current: {
@@ -299,7 +327,7 @@ eq: "nacho-average-pizza"
 
 * Output
 
-```
+```js
 {
   "data": {
     "sanityPizza": {
@@ -328,7 +356,7 @@ eq: "nacho-average-pizza"
   - The slug is a required string `String!`
 
 ## In GraphQL Playground
-```
+```js
 query ($slug: String!) {
   pizza: sanityPizza(slug: {current: {eq: $slug}}) {
     name
@@ -341,7 +369,7 @@ query ($slug: String!) {
 
 * Adding Query Variabels
 
-```
+```js
 {
   "slug": "nacho-average-pizza"
 }
@@ -350,7 +378,7 @@ query ($slug: String!) {
 ## Now we pass into our template
 `s/templates/Pizza.js`
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 
@@ -379,7 +407,7 @@ export const query = graphql`
 
 * From the context (we remove blablabla property as it is not needed)
 
-```
+```js
 // MORE CODE
 
   data.pizzas.nodes.forEach((pizza) => {
@@ -408,7 +436,7 @@ export const query = graphql`
 
 `gatsby-node.js`
 
-```
+```js
 // MORE CODE
 
 async function turnPizzaIntoPages({ graphql, actions }) {
@@ -434,7 +462,7 @@ async function turnPizzaIntoPages({ graphql, actions }) {
 
 * Then we can pass the entire pizza via context here:
 
-```
+```js
 // MORE CODE
 
   data.pizzas.nodes.forEach((pizza) => {
@@ -456,7 +484,7 @@ async function turnPizzaIntoPages({ graphql, actions }) {
 
 `Pizza.js`
 
-```
+```js
 // MORE CODE
 export const query = graphql`
   query ($slug: String!) {
@@ -470,16 +498,12 @@ export const query = graphql`
 `;
 ```
 
-* Wes thoughts
-  - You can do that
-  - But because all your pages have to work like our Pizza.js query
-  - It seems to make sense to tighly couple the query with the template page
-    + That way if you need to modify the page you can easily modify the query
-      * Without having to jump back into your `gatsby-node.js`
-  - Another benefit of doing the query directly inside of your template is:
-    + When you hit save the data for that page will immediately update
-      * If you wrote your entire query in `gatsby-node.js` you'd have to kill your entire process and start it again
-        - And if you have a large site, that can take minutes and makes building the site frustrating
+## WEST PRACTICE on putting the template query inside the component?
+* You can do that but because all your pages have to work like our `Pizza.js` query it seems to make sense to tighly couple the query with the template page
+    - That way if you need to modify the page you can easily modify the query without having to jump back into your `gatsby-node.js`
+* Another benefit of doing the query directly inside of your template is when you hit save the data for that page will immediately update
+    - If you wrote your entire query in `gatsby-node.js` you'd have to kill your entire process and start it again
+    - And if you have a large site, that can take minutes and makes building the site frustrating
 
 ## Let's finish with our Pizza query
 * We need
@@ -510,7 +534,6 @@ query ($slug: String!) {
     }
   }
 }
-
 ```
 
 * We see our data is working

@@ -1,4 +1,29 @@
 ## What is a Headless CMS?
+<!-- MarkdownTOC -->
+
+- [Make sure Sanity is globally installed on your computer](#make-sure-sanity-is-globally-installed-on-your-computer)
+- [Sanity.io - The URL](#sanityio---the-url)
+- [sanity init](#sanity-init)
+- [We have a project already setup](#we-have-a-project-already-setup)
+- [Troubleshooting](#troubleshooting)
+  - [One error was](#one-error-was)
+  - [sanity terminal questions](#sanity-terminal-questions)
+- [Start up sanity](#start-up-sanity)
+  - [You will see a local URL](#you-will-see-a-local-url)
+  - [After logging in to sanity](#after-logging-in-to-sanity)
+  - [Open sanity.json in VS Code](#open-sanityjson-in-vs-code)
+  - [Add this to schema.js](#add-this-to-schemajs)
+- [You will get an error because we need to add `fields`](#you-will-get-an-error-because-we-need-to-add-fields)
+- [Now you see your new content added in the UI](#now-you-see-your-new-content-added-in-the-ui)
+- [Everything in sanity studio is a React component](#everything-in-sanity-studio-is-a-react-component)
+- [react-icons](#react-icons)
+- [Hotspot](#hotspot)
+- [Add a number with validation](#add-a-number-with-validation)
+- [Hit Publish](#hit-publish)
+- [Next - Creating the Toppings Content Type and custom previews](#next---creating-the-toppings-content-type-and-custom-previews)
+
+<!-- /MarkdownTOC -->
+
 * No theme, no way to view the data in your website with sanity because it is just the backend
   - We log into Sanity
   - We are able to create our content types and our fields and crud data

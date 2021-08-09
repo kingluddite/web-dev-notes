@@ -1,4 +1,19 @@
 # Gatsby Sanity Cheatsheet
+<!-- MarkdownTOC -->
+
+- [Gatsby](#gatsby)
+    - [Where is gatsby?](#where-is-gatsby)
+    - [Start gatsby](#start-gatsby)
+    - [Stop Gatsby](#stop-gatsby)
+- [Sanity](#sanity)
+    - [Where is Sanity?](#where-is-sanity)
+    - [Start sanity](#start-sanity)
+    - [Stop Sanity](#stop-sanity)
+- [Alfred App](#alfred-app)
+    - [Alfred App snippets](#alfred-app-snippets)
+
+<!-- /MarkdownTOC -->
+
 
 # Gatsby
 ## Where is gatsby?
@@ -8,7 +23,7 @@
 * Instead of using the traditional `$ gatsby develop`
 * Runs through `package.json` script so can use ES modules
 
-```
+```js
 // MORE CODE
 
     "develop": "cross-env NODE_OPTIONS=\"-r esm\" gatsby develop",
@@ -29,7 +44,7 @@
 ## Start sanity
 * Instead of traditional `$ sanity start` runs through `package.json` script
 
-```
+```js
 // MORE CODE
 
     "start": "sanity start"

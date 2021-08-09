@@ -1,4 +1,24 @@
 # Sourcing data from an external
+<!-- MarkdownTOC -->
+
+- [What if we want to pull data into from another place? \(API\)](#what-if-we-want-to-pull-data-into-from-another-place-api)
+- [Sample APIs!](#sample-apis)
+- [How do we get this API data into our gatsby GraphQL API?](#how-do-we-get-this-api-data-into-our-gatsby-graphql-api)
+- [Sourcing Nodes](#sourcing-nodes)
+    - [What we need to do](#what-we-need-to-do)
+- [Watch out for this error](#watch-out-for-this-error)
+- [Run gatsby](#run-gatsby)
+- [Let's get our beers!](#lets-get-our-beers)
+    - [Is fetch a node API?](#is-fetch-a-node-api)
+        - [How can I use fetch in node?](#how-can-i-use-fetch-in-node)
+- [Let's test if we can pull in beers now](#lets-test-if-we-can-pull-in-beers-now)
+    - [Fix - await!](#fix---await)
+    - [Create a GraphQL query](#create-a-graphql-query)
+        - [GraphQL Playground](#graphql-playground)
+- [Next - Write queries to pull beers into our beers page](#next---write-queries-to-pull-beers-into-our-beers-page)
+
+<!-- /MarkdownTOC -->
+
 * All of our data we've been pulling lives inside of Sanity
 
 ## What if we want to pull data into from another place? (API)
@@ -37,7 +57,7 @@
         + This means it happens before the createPages is finished because the data needs to exist first before the pages are created
         + So you should put this code BEFORE your `createPages()` function in `gatsby-nodes.js`
 
-```
+```js
 // MORE CODE
 
 export async function sourceNodes() {
@@ -54,7 +74,7 @@ export async function createPages(params) {
     - **answer** It sets us up to add more stuff to do with no extra cost
         + If you Promise.all, it will just wait for that one promise to resolve and there is no downside to doing that
 
-```
+```js
 // MORE CODE
 
 async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContentDigest }) {
@@ -77,7 +97,7 @@ export async function sourceNodes() {
 
 `gatsby-node.js`
 
-```
+```js
 // MORE CODE
 
 export async function sourceNodes(params) {
@@ -112,7 +132,7 @@ export async function sourceNodes(params) {
 
 `gatsby-node.js`
 
-```
+```js
 import path from 'path'; // I also converted this to ES6 imports from Common JS
 import fetch from 'isomorphic-fetch'; // Awesome!
 
@@ -122,7 +142,7 @@ import fetch from 'isomorphic-fetch'; // Awesome!
 ## Let's test if we can pull in beers now
 * Also remove all `console.log()` statements (it's getting cluttered)
 
-```
+```js
 // MORE CODE
 
 async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContentDigest }) {
@@ -138,7 +158,7 @@ async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContent
 * You will see a PENDING in our console.log(beers)
 
 ### Fix - await!
-```
+```js
 // MORE CODE
 
 async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContentDigest }) {
@@ -167,7 +187,7 @@ async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContent
                 - `contentDigest` this is internal for gatsby to let it know if the data has changed or not
     - Lastly, we need to take our `actions` and run createNode() and pass it an object holding our `beer` and our `nodeMeta`
 
-```
+```js
 // MORE CODE
 
 async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContentDigest }) {
@@ -211,7 +231,7 @@ async function fetchBeersAndTurnIntoNodes({ actions, createNodeId, createContent
         + And the reviews and average for each rating
 
 #### GraphQL Playground
-```
+```js
 // MORE CODE
 
 query MyQuery {

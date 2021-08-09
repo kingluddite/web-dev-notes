@@ -1,4 +1,11 @@
 # Styling layout
+<!-- MarkdownTOC -->
+
+- [How to style current page](#how-to-style-current-page)
+- [TODO - Can we do this?](#todo---can-we-do-this)
+
+<!-- /MarkdownTOC -->
+
 * If components (like our style components) are not rendering out any DOM, they are "side effects"
 * The Logo
     - It was so small Gatsby was so smart that it decided to turn the image into a base64 representation of the stripes (and this means it doesn't need to make another request to download another file, it just knows that the image is those stripes)

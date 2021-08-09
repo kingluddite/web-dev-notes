@@ -1,10 +1,20 @@
 # Templating and Styling our Single Pizza Page
+<!-- MarkdownTOC -->
+
+- [Destructure our data](#destructure-our-data)
+- [You can destructure a property two levels deep](#you-can-destructure-a-property-two-levels-deep)
+- [We don't need toppings in ToppingsFilter.js](#we-dont-need-toppings-in-toppingsfilterjs)
+- [Fix stylelint issue](#fix-stylelint-issue)
+- [The finished Pizza.js](#the-finished-pizzajs)
+
+<!-- /MarkdownTOC -->
+
 `Pizza.js`
 
 * We get our props but we just need to get to our data
     - So we can destructure it
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 
@@ -16,9 +26,9 @@ export default function SinglePizzaPage(props) {
 // MORE CODE
 ```
 
-* Destructure our data
+## Destructure our data
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -35,9 +45,9 @@ SinglePizzaPage.propTypes = {
 // MORE CODE
 ```
 
-* You can destructure a property two levels deep
+## You can destructure a property two levels deep
 
-```
+```js
 import { graphql } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -57,7 +67,7 @@ SinglePizzaPage.propTypes = {
 ![destructured 2 levels deep](https://i.imgur.com/6ZoTqyE.png)
 
 ## We don't need toppings in ToppingsFilter.js
-```
+```js
 // MORE CODE
 
 export default function ToppingsFilter() {
@@ -86,7 +96,7 @@ export default function ToppingsFilter() {
 ## Fix stylelint issue
 * grid-template-columns needs to come first (order!)
 
-```
+```js
 // MORE CODE
 
 const PizzaGrid = styled.div`
@@ -98,8 +108,8 @@ const PizzaGrid = styled.div`
 // MORE CODE
 ```
 
-## The finised Pizza.js
-```
+## The finished Pizza.js
+```js
 import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';

@@ -1,4 +1,22 @@
 # Styling Nav and Logo
+<!-- MarkdownTOC -->
+
+- [Styled-components](#styled-components)
+- [fix vs code prettier settings](#fix-vs-code-prettier-settings)
+- [Stylelint](#stylelint)
+- [stylelint with custom components](#stylelint-with-custom-components)
+- [Creating custom styled components](#creating-custom-styled-components)
+- [Best practices for styled components](#best-practices-for-styled-components)
+- [base and rem](#base-and-rem)
+- [transform](#transform)
+- [Note](#note)
+- [Nav now](#nav-now)
+- [clamp](#clamp)
+- [Style our logo](#style-our-logo)
+- [Style our Layout](#style-our-layout)
+- [current page](#current-page)
+
+<!-- /MarkdownTOC -->
 
 ## Styled-components
 * I believe this is just a stylelint with styled components error

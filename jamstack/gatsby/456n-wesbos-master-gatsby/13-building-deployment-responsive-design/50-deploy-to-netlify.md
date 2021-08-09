@@ -1,4 +1,46 @@
 # Deploy to Netlify
+<!-- MarkdownTOC -->
+
+- [Netlify](#netlify)
+- [Netlify free alternatives](#netlify-free-alternatives)
+- [Netlify works with Git and Github](#netlify-works-with-git-and-github)
+    - [What is Continuous Deployment](#what-is-continuous-deployment)
+- [Configuring Continuous Deployment on Netlify with Github](#configuring-continuous-deployment-on-netlify-with-github)
+    - [Now we want to put the website on Github](#now-we-want-to-put-the-website-on-github)
+    - [Putting both gatsby and sanity in one repo](#putting-both-gatsby-and-sanity-in-one-repo)
+        - [Working locally on your machine](#working-locally-on-your-machine)
+- [TROUBLESHOOTING - Where did you initialize git?](#troubleshooting---where-did-you-initialize-git)
+- [Setting up your Remote GitHub repo](#setting-up-your-remote-github-repo)
+    - [Create a remote GitHub repo](#create-a-remote-github-repo)
+- [West Practice - On Netlify](#west-practice---on-netlify)
+    - [Add your repo to Netlify](#add-your-repo-to-netlify)
+- [Create a new site page on Netlify](#create-a-new-site-page-on-netlify)
+    - [Warning! - This won't work yet](#warning---this-wont-work-yet)
+- [Solution to Deploying our site successfully:](#solution-to-deploying-our-site-successfully)
+- [Troubles with your Netlify deploy](#troubles-with-your-netlify-deploy)
+- [What happens when Netlify deploys your site?](#what-happens-when-netlify-deploys-your-site)
+    - [Our build will fail for a second time](#our-build-will-fail-for-a-second-time)
+- [This deploy will fail again](#this-deploy-will-fail-again)
+- [Add environment variables](#add-environment-variables)
+    - [Under Environment variables](#under-environment-variables)
+- [Comment out or remove all console.log\(\)](#comment-out-or-remove-all-consolelog)
+    - [CORS issue](#cors-issue)
+- [react-is can't resolve issue on build](#react-is-cant-resolve-issue-on-build)
+    - [That fixed it!](#that-fixed-it)
+- [Make a better sub domain name in Netlify](#make-a-better-sub-domain-name-in-netlify)
+- [Now on the home page we get the CORS error page](#now-on-the-home-page-we-get-the-cors-error-page)
+- [I kept getting a CORS error even after adding to CORS API list on Sanity](#i-kept-getting-a-cors-error-even-after-adding-to-cors-api-list-on-sanity)
+- [Test the remote site](#test-the-remote-site)
+- [All of our functions are automatically deployed](#all-of-our-functions-are-automatically-deployed)
+- [Continuous deployment](#continuous-deployment)
+- [What if you edit a pizza in Sanity?](#what-if-you-edit-a-pizza-in-sanity)
+- [How do you get the images updating on the site?](#how-do-you-get-the-images-updating-on-the-site)
+    - [Let's do that now](#lets-do-that-now)
+- [Use the sanity CLI to add the hook we just copied from Netlify](#use-the-sanity-cli-to-add-the-hook-we-just-copied-from-netlify)
+- [Now test it out](#now-test-it-out)
+
+<!-- /MarkdownTOC -->
+
 * **note** You can deploy gatsby sites anywhere
 
 ## Netlify
@@ -213,7 +255,7 @@
 * You won't see the new pizza immediately
 
 ## How do you get the images updating on the site?
-You need to set up a webhook in Sanity so sanity will push everytime you add new pizzas or slices
+You need to set up a webhook in Sanity so sanity will push every time you add new pizzas or slices
 
 ### Let's do that now
 * In Netlify
@@ -230,7 +272,6 @@ You need to set up a webhook in Sanity so sanity will push everytime you add new
 
 * See the deploy and you should see a new deploy triggered
 * Once it is finished building, you will see your modified pizza is updated on the size
-
 * It will ask you the Hook name: Name it `netlify deploy` 
 * Select dataset hook should apply to: Choose `production`
 * Hook URL: Paste the URL you just copied from Netlify (the netlify hook)
