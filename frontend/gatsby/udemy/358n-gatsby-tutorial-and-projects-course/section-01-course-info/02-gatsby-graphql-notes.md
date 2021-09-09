@@ -3,11 +3,10 @@
 * It allows you to interact with all the data, schemas added by additional Gatsby plugins
 * GraphQL Playground uses components of GraphiQL under the hood but is essentially a more powerful GraphQL IDE that enables better development workflows
 * The GraphQL Playground also adds additional features like:
-
-* Interactive, multi-column schema documentation
-* Multiple Tabs just like you'd have in an IDE
-* Customizable HTTP headers
-* Query history
+    - Interactive, multi-column schema documentation
+    - Multiple Tabs just like you'd have in an IDE
+    - Customizable HTTP headers
+    - Query history
 
 ## To use the GraphQL Playground in your Gatsby project, edit the develop script in the package.json file:
 

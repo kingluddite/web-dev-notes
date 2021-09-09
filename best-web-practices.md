@@ -1,12 +1,12 @@
 # Best Web Practices
 
+
 ## HTML validator VC Code extension
 https://marketplace.visualstudio.com/items?itemName=CelianRiboulet.webvalidator#review-details
 
 ## Preventing Automatic Favicon Requests
 * This is a performance quick tip to get rid of that annoying favicon error
 * [credit to source](https://webdesign.tutsplus.com/tutorials/prevent-automatic-favicon-requests--cms-34762)
-
 ### Why do we get the favicon error?
 * Most we browsers make an automatic favicon request on each page load
 * If you have a default favicon, you won't notice
@@ -17,7 +17,7 @@ https://marketplace.visualstudio.com/items?itemName=CelianRiboulet.webvalidator#
 * Customize your Emmet Snippets in VSCode
   - (video showing you how)[https://www.youtube.com/watch?v=ePNT21D3d2M]
 
-sample `snippets.json` file to include boilerplate
+Sample `snippets.json` file to include boilerplate
 
 ```
 {
